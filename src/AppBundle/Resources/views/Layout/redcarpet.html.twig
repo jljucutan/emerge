@@ -1,0 +1,38 @@
+{% extends 'AppBundle:Layout:base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://eformdev4-redcarpet.silkroad.com/RedCarpetDotNet_PhysMap/CSS/Popup.css">
+    <link rel="stylesheet" href="https://eformdev4-redcarpet.silkroad.com/RedCarpetDotNet_PhysMap/CSS/Global.css">
+    <link rel="stylesheet" href="https://eformdev4-redcarpet.silkroad.com/map_images/main/RedCarpet/FormTemplates/FormSupport/FormStyles.css">
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/css/main.css') }}">
+{% endblock %}
+
+{% block head %}
+    <script src="{{ asset('/bundles/app/assets/vendor/modernizr-2.8.3.min.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<table id="tablePopup">
+    <tbody>
+        <tr>
+            <td id="tdContentWrapper">
+                <table id="tableContent" cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <td id="tdContent">
+                            <form action="">{% block form %}{% endblock %}</form>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.2.0.min.js" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="{{ asset('/bundles/app/assets/js/vendor/jquery-3.2.0.min.js') }}"><\/script>')</script>
+    <script src="{{ asset('/bundles/app/assets/js/js/plugins.js') }}"></script>
+    <script src="{{ asset('/bundles/app/assets/js/js/main.js') }}"></script>
+{% endblock %}

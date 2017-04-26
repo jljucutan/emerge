@@ -1,0 +1,92 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block header %}
+<nav class="navbar navbar-dashboard navbar-static-top">
+    <a href="#" class="pull-left menu-control"><i class="glyphicon glyphicon-menu-hamburger"></i></a>
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="#">
+                <i class="fa fa-bell"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-envelope"></i>
+            </a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-circle"></i> Hi, {{ app.user }}
+             <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+                <a href="#">
+                    <span class="fa fa-cogs"></span> Settings
+                </a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+                <a href="{{ url('fos_user_security_logout') }}">
+                 <span class="fa fa-sign-out"></span> Logout
+                </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+{% endblock %}
+
+{% block sidebar_left %}
+    <div class="col-md-2 col-sm-2 dashboard-sidenav">
+        {% block dashboard_sidenav %}
+            <ul class="nav nav-stacked">
+                <li>
+                    <a href="">test</a>
+                    <ul class="nav nav-stacked nav-children collapse in">
+                        <li>
+                            <a href="#">nested</a>
+                        </li>
+                        <li>
+                            <a href="#">nested</a>
+                        </li>
+                        <li>
+                            <a href="#">nested</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">test</a>
+                </li>
+                <li>
+                    <a href="">test</a>
+                </li>
+            </ul>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-10 col-sm-10">
+        {% block dashboard_main_content %}
+        {% endblock %}
+    </div>
+{% endblock %}
