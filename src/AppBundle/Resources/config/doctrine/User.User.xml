@@ -4,8 +4,11 @@
     xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="AppBundle\Entity\User\User" table="fos__user_user">
-        <id name="id" type="guid" column="id">
-            <generator strategy="UUID"/>
-        </id>
+        <attribute-overrides>
+            <id name="id" type="guid" column="id">
+                <generator strategy="UUID"/>
+            </id>
+            <field name="field" type="text" column="field" length="64" nullable="false" />
+        </attribute-overrides>
     </entity>
 </doctrine-mapping>

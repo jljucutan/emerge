@@ -21,4 +21,37 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="UUID")
      */
     protected $id;
+
+    /**
+     * @ORM\Column(type="string", name="firstname", length=64, nullable=false)
+     */
+    protected $firstname;
+
+    /**
+     * @ORM\Column(type="string", name="lastname", length=64, nullable=false)
+     */
+    protected $lastname;
+
+    public function setFirstName($firstname)
+    {
+        $this->firstname = $firstname;
+        return $this;
+    }
+
+    public function getFirstName()
+    {
+        return $this->firstname;
+    }
+
+    public function setLastName($lastname)
+    {
+        $this->lastname = $lastname;
+        return $this;
+    }
+
+    public function getLastName()
+    {
+        return $this->lastname;
+    }
+    
 }
