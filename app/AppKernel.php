@@ -3,6 +3,7 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
+/* @Entity */
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -24,6 +25,7 @@ class AppKernel extends Kernel
 
             // Custom
             new AppBundle\AppBundle(),
+            new Emerge\DashboardBundle\EmergeDashboardBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
