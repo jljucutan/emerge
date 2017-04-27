@@ -15,7 +15,7 @@ Close the project from this repository
 ```
 
 ```
-    php composer.phar install --prefer-dist
+    composer install --prefer-dist # You must have composer install in your system or refer to https://getcomposer.org/download
 ```
 
 ```
