@@ -8,15 +8,18 @@ Get rid of repetitive task of replacing html fields with merge fields on small a
 
 ## Installation
 
-Close the project from this repository
+Clone the project from this repository
 
 ```
     git clone https://github.com/jljucutan/emerge.git
 ```
 
+
 ```
-    composer install --prefer-dist # You must have composer install in your system or refer to https://getcomposer.org/download
+    composer install --prefer-dist 
 ```
+
+	*You must have composer install in your system or refer to https://getcomposer.org/download
 
 ```
     php -dmemory_limit=-1 app/console doctrine:database:create
