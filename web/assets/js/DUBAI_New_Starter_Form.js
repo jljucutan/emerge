@@ -1,14 +1,12 @@
 $(function() {
-    
-
-if (typeof jQuery != 'undefined') {  
-    // jQuery is loaded => print the version
-    alert(jQuery.fn.jquery);
-}
-
-
-    $('[data-radio]').val();
-    // $('[data-radio="true"]').on('input[type="checkbox"]', 'click', function() {
-        // console.log("checked");
-    // });
+    $('[data-radio="true"]').on('click', 'input[type="checkbox"]', function(e) {
+        var checkbox = $(this);
+        var container = checkbox.closest('[data-radio="true"]');
+        $.each(container.find('input[type="checkbox"]'), function(k, v) {
+            if ($(v).val() == checkbox.val()) {
+                return;
+            }
+            v.checked = false;
+        });
+    });
 });
