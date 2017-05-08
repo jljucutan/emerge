@@ -25,7 +25,6 @@ class AppKernel extends Kernel
 
             // Custom
             new AppBundle\AppBundle(),
-            new Emerge\DashboardBundle\EmergeDashboardBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
