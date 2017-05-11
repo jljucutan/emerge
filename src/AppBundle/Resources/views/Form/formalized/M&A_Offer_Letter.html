@@ -1,0 +1,236 @@
+<div id="container">
+  <div class="staticContent">
+    <header class="vspace clearfix">
+      <div class="col-20 vertical-middle">
+        <img src="/assets/img/ebay_logo.png" class="img-responsive" alt="">
+      </div>
+      <div class="col-20 pull-right">
+        <address>
+          <strong>eBay Inc.</strong><br>
+          <em>
+            2145 Hamilton Avenue <br>
+            San Jose, CA 95125
+          </em>
+        </address>
+      </div>
+    </header>
+    <div class="vspace">
+      <$client.env.eval(date.now('%B %d, %Y'))>
+      <address>
+      <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name> <br>
+      <$client.tForWhomUserInfo.Address1> <$client.tForWhomUserInfo.Address2> <br>
+      <$client.tForWhomUserInfo.City>, <$client.tForWhomUserInfo.State> <$client.tForWhomUserInfo.Zip>
+      </address>
+      Dear <$client.tForWhomUserInfo.First_Name>:
+    </div>
+    <p>
+      <span class="indent-1">eBay Inc. its subsidiaries, successors and predecessors (collectively “eBay”), is pleased to offer you employment with our <$client.tForWhomUserInfo.EnityName> group.  The offer details and conditions are described below.</span>
+    </p>
+  </div>
+
+  <div id="incomplete">
+    <!-- include if excempt fulltime -->
+    <p class="section">
+      <span class="indent-1">Effective as of your Start Date, eBay is pleased to offer you the exempt position of <$client.tForWhomUserInfo.Business_Title>, at a bi-weekly salary of $<$client.tForWhomUserInfo.SalaryOffered>, which is equivalent to an annualized salary of $<$client.tForWhomUserInfo.Salary_Amount>.</span>
+    </p>
+
+    <!-- include if non-excempt fulltime -->
+    <p class="section">
+      <span class="indent-1">Effective as of your Start Date, eBay is pleased to offer you the non-exempt position of <$client.tForWhomUserInfo.Business_Title>, at a rate of $<$client.tForWhomUserInfo.SalaryOffered> per hour, payable bi-weekly.</span>
+    </p>
+
+    <!-- include if exempt part time -->
+    <p class="section">
+      <span class="indent-1"> Effective as of the Start Date, eBay is pleased to offer you the exempt position of <$client.tForWhomUserInfo.Business_Title>, at a bi-weekly salary of $<$client.tForWhomUserInfo.SalaryOffered>, which is equivalent to an annualized salary of $<$client.tForWhomUserInfo.Salary_Amount>.  This salary is based on a part time, <$client.tForWhomUserInfo.Cap_UTIL_LVL_PCT> work </span>
+    </p>
+
+    <!-- include if non exempt part time -->
+    <p class="section">
+      <span class="indent-1">Effective as of the Start Date, eBay is pleased to offer you the non-exempt position of <$client.tForWhomUserInfo.Business_Title>, at a rate of $<$client.tForWhomUserInfo.SalaryOffered> per hour, payable bi-weekly.  You are currently scheduled to work <$client.tForWhomUserInfo.HoursPerWeek> hours per week.</span>
+    </p>
+
+    <!-- include if transitional -->
+    <p class="section">
+      <span class="indent-1">Your employment is on a transitional basis with an expected End Date on or around <$client.tForWhomUserInfo.date>. If you remain continuously employed by the Company in good standing through the End Date and, at the end of your employment, you sign a release of claims in a form substantially similar to that attached as Exhibit A, you will be eligible for a transition bonus of $<$client.tForWhomUserInfo.Transitional_Bonus> (the “Transition Bonus”), less applicable taxes and withholdings.  Further, during your eBay employment, you will be eligible for the same employee benefits available to other similarly-situated eBay employees and subject to the same eligibility requirements set forth in the plans.</span>
+    </p>
+
+    <div class="section">
+      <span class="indent-1">
+        You will continue under your current incentive plan <$client.tForWhomUserInfo.Free_Text_Field>.
+      </span>
+    </div>
+
+    <!-- [Include for employees not on other incentive plans (sales or CS) and who will immediately go on eIP] -->
+    <p class="section">
+       <span class="indent-1">Effective on your Start Date, you will be eligible to participate in the eBay Incentive Plan (eIP) with an annual bonus based on individual achievement as well as company performance.  The annual bonus period is from January 1 through December 31.  Your target bonus for the eIP is <$client.tForWhomUserInfo.eIP_Target_Pct>% of your annual base salary.  There is no guarantee any eIP bonus will be paid. Any actual bonus will be determined after the end of the annual bonus period and pro-rated based on the eligible earnings paid while you are employed in an eIP-eligible position during the annual bonus period. To be eligible to receive any eIP bonus, you must be employed on or before the first business day of the fourth quarter, and you must be employed on the date the bonus is paid.  The payment of any bonus is at eBay’s sole and absolute discretion and subject to the terms and conditions of the eIP.  eBay reserves the right, in its sole discretion, to amend, change or cancel the eIP at any time.</span>
+    </p>
+
+    <p>
+      <!-- [Include if offering sales incentive] -->
+      <span class="indent-1">
+         You will be eligible to participate in a sales incentive plan with an annual target incentive of $<$client.tForWhomUserInfo.SalesTargetDollarAmt>.  Details of the plan will be provided to you by your manager. The payment of any incentive is at the Company’s sole and absolute discretion and subject to the terms and conditions of the plan. The Company reserves the right, in its sole discretion, to amend, change or cancel the plan at any time.
+      </span>
+    </p>
+
+    <!-- [include if offering CS/Ops incentive] -->
+    <p class="section">
+      <span class="indent-1">
+          You will be eligible to participate in an incentive plan with an annual target incentive of $<$client.tForWhomUserInfo.CSIncentivePlan_fixed>.  Details of the plan will be provided to you by your manager. The payment of any incentive is at the Company’s sole and absolute discretion and subject to the terms and conditions of the plan. The Company reserves the right, in its sole discretion, to amend, change or cancel the plan at any time.
+      </span>
+    </p>
+
+    <!--  [If Signing Bonus <25K (Also include <25K Repayment form)] -->
+    <p class="section">
+        <span class="indent-1">
+           You will also be eligible to receive a hire-on bonus of $<$client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT> (less deductions and applicable taxes), which will be payable within two payroll periods of your start date.  In the event your employment ceases for reasons of cause or resignation prior to completion of one year from your start date, the hire-on bonus shall be fully refundable to the Company.  No repayment would be required for termination after one year of employment with the Company.  We have included a Repayment Requirement Agreement that covers the specific terms of the hire-on bonus.  Please review the agreement carefully before signing and submitting it to eBay’s human resources department.
+        </span>
+    </p>
+
+    <!-- [If Signing Bonus ≥25K (Also include >25K Repayment form)] -->
+    <p class="section">
+      <span class="indent">
+        You will also be eligible to receive a hire-on bonus of $<$client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT> (less deductions and applicable taxes) payable within two payroll periods of your start date. In the event that your employment ceases for reasons of cause or resignation prior to completion of one year of service from your start date, the special hire-on bonus is fully refundable to the Company. If your employment ceases for reasons of cause or resignation after one year but prior to two years from your start date, your repayment obligation will be reduced by 1/24th for every full month of active employment.  No repayment of the bonus would be required upon termination after two years of employment with the Company.  We have included a Repayment Requirement Agreement that covers the specific terms of the hire-on bonus.  Please review the agreement carefully before signing and submitting it to eBay’s human resources department.
+      </span>
+    </p>
+
+    <!-- [Include if eBay RSUs offered] -->
+    <p class="section">
+      <span class="indent-1">
+         It will be recommended to the Board of Directors of eBay that you be granted restricted stock units (“RSUs”) as described in the following paragraphs.  The grant is described below as a U.S. dollar value.  The number of shares to be granted will be determined by dividing the U.S. dollar value of the award by the Average eBay Closing Price (as described in this paragraph) and rounding up to the nearest whole number of shares of eBay common stock.  The “Average eBay Closing Price” shall be calculated based on the average of the closing prices of eBay common stock as reported on the NASDAQ Global Select Market for the period of 10 consecutive trading days ending on (and including) the last trading day prior to the date of grant.
+      </span>
+    </p>
+
+    <p class="section">
+      <span class="indent-1">
+        In accordance with the methodology above, it will be recommended to the Board of Directors that you be granted an award of RSUs valued at $<$client.tForWhomUserInfo.SupplementalRSU> to be granted under and subject to the terms of eBay’s current stock plans as well as the terms and conditions of the RSU agreement (which will be provided to you as soon as practicable after the grant date). Generally, the RSUs will vest and become non-forfeitable (assuming your continued employment with an eBay company on each vesting date) over four years as follows: 25% of the shares subject to the RSU award will vest on the first anniversary of the date of grant and an additional 1/16th of the shares subject to the RSU award will vest at the end of each three-month period thereafter, subject to applicable taxes and withholdings. However, in its discretion, eBay may impose a different vesting schedule for the RSUs if it determines that a different vesting schedule is required or recommended to comply with local law or is advisable to take advantage of any favorable tax regime available in your country.
+      </span>
+    </p>
+
+    <!-- [Include if 2nd eBay RSUs offered] -->
+    <p class="section">
+      <span class="indent-1">
+        In accordance with the methodology above, it will be recommended to the Board of Directors that you be granted a 2nd award of RSUs valued at $<$client.tForWhomUserInfo.SupplementalRSU> to be granted under and subject to the terms of eBay’s current stock plans as well as the terms and conditions of the RSU agreement (which will be provided to you as soon as practicable after the grant date). Generally, the RSUs will vest and become non-forfeitable (assuming your continued employment with an eBay company on each vesting date) over four years as follows: 25% of the shares subject to the RSU award will vest on the first anniversary of the date of grant and an additional 1/16th of the shares subject to the RSU award will vest at the end of each three-month period thereafter, subject to applicable taxes and withholdings. However, in its discretion, eBay may impose a different vesting schedule for the RSUs if it determines that a different vesting schedule is required or recommended to comply with local law or is advisable to take advantage of any favorable tax regime available in your country.
+      </span>
+    </p>
+
+    <p class="section">
+      <span class="indent-1">
+           You will be eligible to participate in the benefits that eBay customarily makes available to employees in positions comparable to yours. Please refer to the benefit plan documents for more details, including eligibility. eBay reserves the right, in its sole discretion, to amend, change or cancel the benefits at any time.
+      </span>
+    </p>
+
+    <p class="section">
+      <span class="indent-1">
+        Your employment at eBay is “at-will,” and either you or eBay may terminate your employment at any time, with or without cause or advance notice.  The at-will nature of the employment relationship can only be changed by written agreement signed by eBay’s SVP of Human Resources.  Other terms, conditions, job responsibilities, compensation and benefits may be adjusted by eBay from time to time in their sole discretion.
+      </span>
+    </p>
+
+    <div class="section">
+      <span class="indent-1">
+        This offer is contingent upon the following:
+      </span>
+      <ul class="indent-3">
+        <li class="section">
+          The successful closing of the Transaction For the purposes of this contingency, the transaction is successfully closed when <$client.tForWhomUserInfo.Free_Text_Field_2>.
+        </li>
+        <li class="section">
+          A signed copy of this offer letter being returned by the deadline.
+        </li>
+        <li class="section">
+          Your ability to provide appropriate documentation as required by federal laws. eBay is required to verify each new employee’s identity and legal authority to work in the United States.  Included in this package is a list of the required documents.
+        </li>
+        <li class="section">
+          A signed copy of eBay’s Insider Trading Agreement. All employees of an eBay company are subject to eBay’s Insider Trading Agreement, which outlines the procedures and guidelines governing securities trades by company personnel.
+        </li>
+        <li class="section">
+          A signed copy of the Employee Proprietary Information and Inventions Agreement prior to the Closing.
+        </li>
+        <li class="section">
+          A signed copy of the Mutual Arbitration Agreement. All of us at eBay are very excited about you joining our team and look forward to a beneficial and fruitful relationship.  However, should any dispute arise with respect to your employment or the termination of that employment, we both agree that such dispute shall be conclusively resolved by final, binding and confidential arbitration rather than by a jury court or administrative agency.  eBay will bear those expenses unique to arbitration.
+        </li>
+        <!-- [include if Exhibit A is populated “Yes”] -->
+        <li class="section">
+          A signed copy of the release of claims attached as Exhibit A.  By signing the release of claims in Exhibit A, you specifically acknowledge that the grant of Restricted Stock Units you will receive is one form of consideration in exchange for the release of claims in Exhibit A and that eBay is not otherwise obligated to grant you any shares of RSUs.
+        </li>
+        <li class="section">
+          The results of your background verification and reference checks.
+        </li>
+      </ul>
+    </div>
+
+    <p class="section">
+      <span class="indent-1">
+        The items mentioned above address important obligations to eBay, both during and after your employment; therefore, please read the agreements carefully before signing them and submitting them to <$client.tForWhomUserInfo.Document_Return_Contact_Person> by <$client.tForWhomUserInfo.Deadline_Date>. Should you have any questions with regard to any of the items indicated above, please contact <$client.tForWhomUserInfo.Document_Return_Contact_Person>.
+      </span>
+    </p>
+
+    <p class="section">
+      <span class="indent-1">
+        Upon your signature below, this will become our binding agreement with respect to your employment, its terms merging and superseding in their entirety all other or prior offers, agreements and communications, whether written or oral, by you and eBay as to the specific subjects of this letter.
+      </span>
+    </p>
+
+    <p class="section">
+      <span class="indent-1">
+        We are excited at the prospect of you joining our team. Your background and qualifications will add a unique strength to eBay, as well as to our continued success. We look forward to having you on board!
+      </span>
+    </p>
+
+  </div>
+  <div id="complete"></div>
+  <div id="hiddendiv_pg1"></div>
+
+  <div class="staticContent">
+    <p class="section">
+      Sincerely,
+    </p>
+    <div class="section">
+      <div class="col-40">
+        <input type="text" name="" value="">
+        <$client.tForWhomUserInfo.Business_Unit_VP_Name> <$client.tForWhomUserInfo.BU_VP_Title>
+      </div>
+    </div>
+    <div class="section">
+      ACCEPTED:
+    </div>
+    <div class="section">
+      <div class="col-40">
+          <input type="text" name="" value="">
+          <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name>
+      </div>
+    </div>
+    <div class="section">
+      <div class="col-40">
+          <input type="text" name="" value="">
+          Date
+      </div>
+    </div>
+  </div>
+</div>
+<table>
+  <tbody>
+    <tr>
+      <td><$client.env.FormField.SignatureVerification.HTML></td>
+    </tr>
+  </tbody>
+</table>
+<div id="offerprint"><$client.env.FormButtons>&nbsp;<input type="button"
+class="appInputButton RCappInputButtonBlue" value="Print Offer Letter"
+onclick="javascript:OfferLetterPrint();"></div>
+
+
+<SCRIPT>
+//Show populated form if already completed
+var strCompletedForm = FORM_COMPLETED;
+if (strCompletedForm != "")
+{
+  showCompleted();
+}
+</SCRIPT>
+<script language="javascript">
+function OfferLetterPrint()
+{
+  if(SubmitCallback(document.forms['frmForm'])==false) {return false;}
+  window.print();
+}
+</script>
