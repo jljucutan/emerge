@@ -6,9 +6,10 @@
            $.merge(errors, $(this).requireAll());
            $.merge(errors, $(this).validateFields());
         } else {
-            $.each($(this).children('table'), function(k, table) {
-                if ($(table).is(':visible') && $(table).sectionIsRequired()) {
+            $.each($(this).children('table:visible'), function(k, table) {
+                if ($(table).sectionIsRequired()) {
                     $.merge(errors, $(table).requireAll());
+                    $.merge(errors, $(table).validateFields());
                 }
             });
         }
@@ -40,10 +41,10 @@
         var errors = [];
 
         $.each(fields, function(k, field) {
-            var maxlength = $(field).attr('size');
+            var maxlength = $(field).attr('maxlength');
             if (typeof maxlength !== typeof undefined && maxlength !== false && maxlength > 0) {
                 if ($(field).val().length > maxlength) {
-                    errors.push('\nField ' + $(field).attr('title') + ' should not exceed more than ' + maxlength + ' characters.');
+                    errors.push('\nField ' + $(field).attr('data-title') + ' should not exceed more than ' + maxlength + ' characters.');
                 }
             }
             var validationType = $(field).attr('data-validation');
@@ -53,17 +54,17 @@
             switch (validationType) {
                 case 'email':
                     if (!emailReg.test($(field).val()) && $(field).val().length > 0) {
-                        errors.push('\nField ' + $(field).attr('title') + ' is not a valid email.');
+                        errors.push('\nField ' + $(field).attr('data-title') + ' is not a valid email.');
                     }
                 break;
                 case 'date':
                     if (!dateReg.test($(field).val()) && $(field).val().length > 0) {
-                        errors.push('\nField ' + $(field).attr('title') + ' is not a valid date.');
+                        errors.push('\nField ' + $(field).attr('data-title') + ' is not a valid date.');
                     }
                 break;
                 case 'numeric':
                     if (!numericReg.test($(field).val()) && $(field).val().length > 0) {
-                        errors.push('\nField ' + $(field).attr('title') + ' should contain only numbers.');
+                        errors.push('\nField ' + $(field).attr('data-title') + ' should contain only numbers.');
                     }
                 break;
             }
@@ -78,7 +79,7 @@
             var required = $(field).attr('data-required');
             if (typeof required !== typeof undefined && required !== false) {
                 if ((required == 'yes' && $(field).val() == '') || (required == 'maybe' && $(field).val() == '')) {
-                    errors.push('\nField ' + $(field).attr('title') + ' is a required field.');
+                    errors.push('\nField ' + $(field).attr('data-title') + ' is a required field.');
                 }
             }
         });
@@ -87,6 +88,7 @@
 }( jQuery ));
 
 $(function() {
+    $('#buttonPrint, #buttonPreviewSave').addClass('hidden');
     
    /* Previous events */
    $('#previous1').click(function(e) {
@@ -113,6 +115,7 @@ $(function() {
             return;
         }
         if ($(visibleStage).traverseStage()) {
+            $('#buttonPrint, #buttonPreviewSave').removeClass('hidden');
             $(visibleStage).addClass('hidden').next('div[data-stage]').removeClass('hidden');
         }
    });
