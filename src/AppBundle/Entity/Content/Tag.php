@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Tag
  *
- * @ORM\Table(name="content_tag")
+ * @ORM\Table(name="app__content_tag")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Content\TagRepository")
  */
 class Tag

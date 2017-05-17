@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Category
  *
- * @ORM\Table(name="content_category")
+ * @ORM\Table(name="app__content_category")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Content\CategoryRepository")
  */
 class Category

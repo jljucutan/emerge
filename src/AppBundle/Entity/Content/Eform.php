@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Eform
  *
- * @ORM\Table(name="content_eform")
+ * @ORM\Table(name="app__content_eform")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Content\EformRepository")
  */
 class Eform
