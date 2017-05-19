@@ -46,7 +46,7 @@
     <!-- include if exempt part time -->
     <span class="<$client.env.eval(client.tForWhomUserInfo.Exempt=='E'? '':'hidden')>">
       <p class="<$client.env.eval(client.tForWhomUserInfo.JobType=='Part Time'?'section':'hidden')>">
-        <span class="indent-1"> Effective as of the Start Date, eBay is pleased to offer you the exempt position of <$client.tForWhomUserInfo.Business_Title>, at a bi-weekly salary of $<$client.tForWhomUserInfo.SalaryOffered>, which is equivalent to an annualized salary of $<$client.tForWhomUserInfo.Salary_Amount>.  This salary is based on a part time, <$client.tForWhomUserInfo.Cap_UTIL_LVL_PCT> work </span>
+        <span class="indent-1"> Effective as of the Start Date, eBay is pleased to offer you the exempt position of <$client.tForWhomUserInfo.Business_Title>, at a bi-weekly salary of $<$client.tForWhomUserInfo.SalaryOffered>, which is equivalent to an annualized salary of $<$client.tForWhomUserInfo.Salary_Amount>.  This salary is based on a part time, <$client.tForWhomUserInfo.Cap_UTIL_LVL_PCT>% work schedule. </span>
       </p>
     </span>
 
@@ -74,7 +74,7 @@
     </p>
 
     <!-- [Include if offering sales incentive] -->
-    <p class="<$client.env.eval(client.tForWhomUserInfo.eIP_Target_Pct !=null?'section':'hidden')>">
+    <p class="<$client.env.eval(client.tForWhomUserInfo.SalesTargetDollarAmt !=null?'section':'hidden')>">
       <span class="indent-1">
          You will be eligible to participate in a sales incentive plan with an annual target incentive of $<$client.tForWhomUserInfo.SalesTargetDollarAmt>.  Details of the plan will be provided to you by your manager. The payment of any incentive is at the Company’s sole and absolute discretion and subject to the terms and conditions of the plan. The Company reserves the right, in its sole discretion, to amend, change or cancel the plan at any time.
       </span>
@@ -110,14 +110,14 @@
 
     <p class="section">
       <span class="indent-1">
-        In accordance with the methodology above, it will be recommended to the Board of Directors that you be granted an award of RSUs valued at $<$client.tForWhomUserInfo.SupplementalRSU> to be granted under and subject to the terms of eBay’s current stock plans as well as the terms and conditions of the RSU agreement (which will be provided to you as soon as practicable after the grant date). Generally, the RSUs will vest and become non-forfeitable (assuming your continued employment with an eBay company on each vesting date) over four years as follows: 25% of the shares subject to the RSU award will vest on the first anniversary of the date of grant and an additional 1/16th of the shares subject to the RSU award will vest at the end of each three-month period thereafter, subject to applicable taxes and withholdings. However, in its discretion, eBay may impose a different vesting schedule for the RSUs if it determines that a different vesting schedule is required or recommended to comply with local law or is advisable to take advantage of any favorable tax regime available in your country.
+        In accordance with the methodology above, it will be recommended to the Board of Directors that you be granted an award of RSUs valued at $<$client.tForWhomUserInfo.NEW_HIRE_REST_STOCK_UNITS> to be granted under and subject to the terms of eBay’s current stock plans as well as the terms and conditions of the RSU agreement (which will be provided to you as soon as practicable after the grant date). Generally, the RSUs will vest and become non-forfeitable (assuming your continued employment with an eBay company on each vesting date) over four years as follows: 25% of the shares subject to the RSU award will vest on the first anniversary of the date of grant and an additional 1/16th of the shares subject to the RSU award will vest at the end of each three-month period thereafter, subject to applicable taxes and withholdings. However, in its discretion, eBay may impose a different vesting schedule for the RSUs if it determines that a different vesting schedule is required or recommended to comply with local law or is advisable to take advantage of any favorable tax regime available in your country.
       </span>
     </p>
 
     <!-- [Include if 2nd eBay RSUs offered] -->
     <p class="<$client.env.eval(client.tForWhomUserInfo.SupplementalRSU != null ?'section':'hidden')>">
       <span class="indent-1">
-        In accordance with the methodology above, it will be recommended to the Board of Directors that you be granted a 2nd award of RSUs valued at $<$client.tForWhomUserInfo.SupplementalRSU> to be granted under and subject to the terms of eBay’s current stock plans as well as the terms and conditions of the RSU agreement (which will be provided to you as soon as practicable after the grant date). Generally, the RSUs will vest and become non-forfeitable (assuming your continued employment with an eBay company on each vesting date) over four years as follows: 25% of the shares subject to the RSU award will vest on the first anniversary of the date of grant and an additional 1/16th of the shares subject to the RSU award will vest at the end of each three-month period thereafter, subject to applicable taxes and withholdings. However, in its discretion, eBay may impose a different vesting schedule for the RSUs if it determines that a different vesting schedule is required or recommended to comply with local law or is advisable to take advantage of any favorable tax regime available in your country.
+        In accordance with the methodology above, it will be recommended to the Board of Directors that you be granted a 2<sup>nd</sup> award of RSUs valued at $<$client.tForWhomUserInfo.SupplementalRSU> to be granted under and subject to the terms of eBay’s current stock plans as well as the terms and conditions of the RSU agreement (which will be provided to you as soon as practicable after the grant date). Generally, the RSUs will vest and become non-forfeitable (assuming your continued employment with an eBay company on each vesting date) over four years as follows: 25% of the shares subject to the RSU award will vest on the first anniversary of the date of grant and an additional 1/16th of the shares subject to the RSU award will vest at the end of each three-month period thereafter, subject to applicable taxes and withholdings. However, in its discretion, eBay may impose a different vesting schedule for the RSUs if it determines that a different vesting schedule is required or recommended to comply with local law or is advisable to take advantage of any favorable tax regime available in your country.
       </span>
     </p>
 
@@ -194,7 +194,7 @@
     </p>
     <div class="section">
       <div class="col-40">
-        <input type="text" name="" value="">
+        <$client.env.FormField.vpsignature.HTML>
         <$client.tForWhomUserInfo.Business_Unit_VP_Name> <$client.tForWhomUserInfo.BU_VP_Title>
       </div>
     </div>
@@ -203,7 +203,7 @@
     </div>
     <div class="section">
       <div class="col-40">
-          <input type="text" name="" value="">
+          <$client.env.FormField.signature.HTML>
           <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name>
       </div>
     </div>
@@ -292,13 +292,13 @@
     </p>
     <div class="section">
       <div class="col-40">
-        <input type="text">
-        #EmployeeFirstName# #EmployeeLastName#
+        <$client.env.FormField.signature2.HTML>
+        <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name>
       </div>
     </div>
     <div class="section">
       <div class="col-40">
-        <input type="text">
+        <$client.env.FormField.date2.HTML>
         <div class="col-100">
           Date
         </div>
@@ -311,6 +311,15 @@
   <tbody>
     <tr>
       <td><$client.env.FormField.SignatureVerification.HTML></td>
+    </tr>
+    <tr>
+      <td><$client.env.FormField.SignatureVerification2.HTML></td>
+    </tr>
+    <tr>
+      <td><$client.env.FormField.SignatureVerification3.HTML></td>
+    </tr>
+    <tr>
+      <td><$client.env.FormField.employee_name.HTML></td>
     </tr>
   </tbody>
 </table>

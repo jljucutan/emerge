@@ -29,6 +29,13 @@ class Ticket
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=128, unique=false)
+     */
+    private $status;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=true)
@@ -150,5 +157,16 @@ class Ticket
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function getStatus()
+    {
+        return $this->status;
     }
 }
