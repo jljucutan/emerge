@@ -20,5 +20,22 @@
         }
     }
 }());
-
 // Place any jQuery/helper plugins in here.
+(function($) {
+    $.fn.makeRadio = function() {
+        var container = $(this);
+        container.on('change', '[data-radio]', function(e) {
+            (e.preventDefault) ? e.preventDefault() : e.returnValue = false;
+            var radio = $(this);
+            $.each(container.find('input[data-radio="' + radio.attr('data-radio') +'"]'), function(k, radioSiblings) {
+                if ($(radioSiblings).val() == radio.val()) {
+                    $(radioSiblings).prop('checked', false)
+                }
+            });
+            // For some reason the IE8 too slow to loop through elements so we delay setting radio button to checked
+            setTimeout(function() {
+                radio.prop('checked', true);
+            }, 200);
+        });
+    };
+})( jQuery );
