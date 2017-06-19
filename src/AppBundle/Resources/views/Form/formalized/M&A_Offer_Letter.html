@@ -15,15 +15,21 @@
       </div>
     </header>
     <div class="vspace">
-      <$client.env.eval(date.now('%B %d, %Y'))>
+      <div class="col-25">
+        <$client.env.eval(date.now('%B %d, %Y'))>
+        <hr>
+      </div>
       <address>
       <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name> <br>
       <$client.tForWhomUserInfo.Address1> <$client.tForWhomUserInfo.Address2> <br>
       <$client.tForWhomUserInfo.City>, <$client.tForWhomUserInfo.State> <$client.tForWhomUserInfo.Zip>
       </address>
+      <div class="col-25">
+        <hr>
+      </div><br>
       Dear <$client.tForWhomUserInfo.First_Name>:
     </div>
-    <p>
+    <p class="section">
       <span class="indent-1">eBay Inc. its subsidiaries, successors and predecessors (collectively “eBay”), is pleased to offer you employment with our <$client.tForWhomUserInfo.EnityName> group.  The offer details and conditions are described below.</span>
     </p>
   </div>
@@ -59,7 +65,7 @@
 
     <!-- include if transitional -->
     <p class="<$client.env.eval(client.tForWhomUserInfo.Transitional_Bonus != null?'section':'hidden')>">
-      <span class="indent-1">Your employment is on a transitional basis with an expected End Date on or around <$client.tForWhomUserInfo.End_Date>. If you remain continuously employed by the Company in good standing through the End Date and, at the end of your employment, you sign a release of claims in a form substantially similar to that attached as Exhibit A, you will be eligible for a transition bonus of $<$client.tForWhomUserInfo.Transitional_Bonus> (the “Transition Bonus”), less applicable taxes and withholdings.  Further, during your eBay employment, you will be eligible for the same employee benefits available to other similarly-situated eBay employees and subject to the same eligibility requirements set forth in the plans.</span>
+      <span class="indent-1">Your employment is on a transitional basis with an expected End Date on or around <$client.env.eval(client.tForWhomUserInfo.End_Date.subString(5,6))>/<$client.env.eval(client.tForWhomUserInfo.End_Date.subString(8,9))>/<$client.env.eval(client.tForWhomUserInfo.End_Date.subString(0,3))>. If you remain continuously employed by the Company in good standing through the End Date and, at the end of your employment, you sign a release of claims in a form substantially similar to that attached as Exhibit A, you will be eligible for a transition bonus of $<$client.tForWhomUserInfo.Transitional_Bonus> (the “Transition Bonus”), less applicable taxes and withholdings.  Further, during your eBay employment, you will be eligible for the same employee benefits available to other similarly-situated eBay employees and subject to the same eligibility requirements set forth in the plans.</span>
     </p>
 
     <div class="section">
@@ -168,7 +174,7 @@
 
     <p class="section">
       <span class="indent-1">
-        The items mentioned above address important obligations to eBay, both during and after your employment; therefore, please read the agreements carefully before signing them and submitting them to <$client.tForWhomUserInfo.Document_Return_Contact_Person> by <$client.tForWhomUserInfo.Deadline_Date>. Should you have any questions with regard to any of the items indicated above, please contact <$client.tForWhomUserInfo.Document_Return_Contact_Person>.
+        The items mentioned above address important obligations to eBay, both during and after your employment; therefore, please read the agreements carefully before signing them and submitting them to <$client.tForWhomUserInfo.Document_Return_Contact_Person> by <$client.env.eval(client.tForWhomUserInfo.Deadline_Date.subString(5,6))>/<$client.env.eval(client.tForWhomUserInfo.Deadline_Date.subString(8,9))>/<$client.env.eval(client.tForWhomUserInfo.Deadline_Date.subString(0,3))>. Should you have any questions with regard to any of the items indicated above, please contact <$client.tForWhomUserInfo.Document_Return_Contact_Person>.
       </span>
     </p>
 
