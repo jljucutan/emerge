@@ -10,7 +10,7 @@ class TicketManager
 
     protected $class;
 
-    public __construct(EntityManager $em, $class)
+    public function __construct(EntityManager $em, $class)
     {
         $this->em    = $em;
         $this->class = $class;
