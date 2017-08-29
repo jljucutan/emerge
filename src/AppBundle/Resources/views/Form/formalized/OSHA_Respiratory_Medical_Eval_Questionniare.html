@@ -828,3 +828,27 @@
        </div>              
     </div> 
 </div>
+
+<script type="text/javascript">
+(function($) {
+    $.fn.toggleRespiratorOptions = function(target) {
+        if ($(this).is(':checked')) {
+            $.each($(target), function(k,v) {
+                $(v).filter('[value=2]').prop('checked', true);
+                $(v).prop('disabled', true);
+            });
+        } else {
+            $.each($(target), function(k,v) {
+                $(v).prop('disabled', false);
+            });
+        }
+    };
+} (jQuery));
+
+$(function() {
+    $('[data-toggle="respirator"]').toggleRespiratorOptions('[data-id="respirator"]');
+    $('[data-toggle="respirator"]').on('change', function() {
+        $(this).toggleRespiratorOptions('[data-id="respirator"]');
+    });
+});
+</script>
