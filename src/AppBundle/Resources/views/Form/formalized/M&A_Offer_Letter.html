@@ -102,7 +102,7 @@
 
     <!-- [If Signing Bonus ≥25K (Also include >25K Repayment form)] -->
     <p class="<$client.env.eval(client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT >= 25000 ?'section':'hidden')>">
-      <span class="indent">
+      <span class="indent-1">
         You will also be eligible to receive a hire-on bonus of $<$client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT> (less deductions and applicable taxes) payable within two payroll periods of your start date. In the event that your employment ceases for reasons of cause or resignation prior to completion of one year of service from your start date, the special hire-on bonus is fully refundable to the Company. If your employment ceases for reasons of cause or resignation after one year but prior to two years from your start date, your repayment obligation will be reduced by 1/24th for every full month of active employment.  No repayment of the bonus would be required upon termination after two years of employment with the Company.  We have included a Repayment Requirement Agreement that covers the specific terms of the hire-on bonus.  Please review the agreement carefully before signing and submitting it to eBay’s human resources department.
       </span>
     </p>
@@ -110,15 +110,12 @@
     <!-- [Include if eBay RSUs offered] -->
     <p class="<$client.env.eval(client.tForWhomUserInfo.NEW_HIRE_REST_STOCK_UNITS != null ?'section':'hidden')>">
       <span class="indent-1">
-         It will be recommended to the Board of Directors of eBay that you be granted restricted stock units (“RSUs”) as described in the following paragraphs.  The grant is described below as a U.S. dollar value.  The number of shares to be granted will be determined by dividing the U.S. dollar value of the award by the Average eBay Closing Price (as described in this paragraph) and rounding up to the nearest whole number of shares of eBay common stock.  The “Average eBay Closing Price” shall be calculated based on the average of the closing prices of eBay common stock as reported on the NASDAQ Global Select Market for the period of 10 consecutive trading days ending on (and including) the last trading day prior to the date of grant.
-      </span>
-    </p>
-
-    <p class="section">
-      <span class="indent-1">
+         It will be recommended to the Board of Directors of eBay that you be granted restricted stock units (“RSUs”) as described in the following paragraphs.  The grant is described below as a U.S. dollar value.  The number of shares to be granted will be determined by dividing the U.S. dollar value of the award by the Average eBay Closing Price (as described in this paragraph) and rounding up to the nearest whole number of shares of eBay common stock.  The “Average eBay Closing Price” shall be calculated based on the average of the closing prices of eBay common stock as reported on the NASDAQ Global Select Market for the period of 10 consecutive trading days ending on (and including) the last trading day prior to the date of grant.<p></br>
+<span class="indent-1">
+    
         In accordance with the methodology above, it will be recommended to the Board of Directors that you be granted an award of RSUs valued at $<$client.tForWhomUserInfo.NEW_HIRE_REST_STOCK_UNITS> to be granted under and subject to the terms of eBay’s current stock plans as well as the terms and conditions of the RSU agreement (which will be provided to you as soon as practicable after the grant date). Generally, the RSUs will vest and become non-forfeitable (assuming your continued employment with an eBay company on each vesting date) over four years as follows: 25% of the shares subject to the RSU award will vest on the first anniversary of the date of grant and an additional 1/16th of the shares subject to the RSU award will vest at the end of each three-month period thereafter, subject to applicable taxes and withholdings. However, in its discretion, eBay may impose a different vesting schedule for the RSUs if it determines that a different vesting schedule is required or recommended to comply with local law or is advisable to take advantage of any favorable tax regime available in your country.
       </span>
-    </p>
+    </p></br>
 
     <!-- [Include if 2nd eBay RSUs offered] -->
     <p class="<$client.env.eval(client.tForWhomUserInfo.SupplementalRSU != null ?'section':'hidden')>">
@@ -174,7 +171,7 @@
 
     <p class="section">
       <span class="indent-1">
-        The items mentioned above address important obligations to eBay, both during and after your employment; therefore, please read the agreements carefully before signing them and submitting them to <$client.tForWhomUserInfo.Document_Return_Contact_Person> by <$client.env.eval(client.tForWhomUserInfo.Deadline_Date.subString(5,6))>/<$client.env.eval(client.tForWhomUserInfo.Deadline_Date.subString(8,9))>/<$client.env.eval(client.tForWhomUserInfo.Deadline_Date.subString(0,3))>. Should you have any questions with regard to any of the items indicated above, please contact <$client.tForWhomUserInfo.Document_Return_Contact_Person>.
+        The items mentioned above address important obligations to eBay, both during and after your employment; therefore, please read the agreements carefully before signing them and submitting them to <$client.tForWhomUserInfo.Document_Return_Contact_Person> by <span id='deadline_date'></span>. Should you have any questions with regard to any of the items indicated above, please contact <$client.tForWhomUserInfo.Document_Return_Contact_Person>.
       </span>
     </p>
 
@@ -269,7 +266,7 @@
     </div>
 
     <!-- Use for Signing Bonus >25K Repayment Requirement  -->
-    <div class="<$client.env.eval(client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT > 25000 ? 'vspace':'hidden')>">
+    <div class="<$client.env.eval(client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT >= 25000 ? 'vspace':'hidden')>">
       <p class="section">
         <h4 class="text-center">Hire-On Bonus</h4>
         <h4 class="text-center">Repayment Requirement</h4>
@@ -325,6 +322,9 @@
       <td><$client.env.FormField.SignatureVerification3.HTML></td>
     </tr>
     <tr>
+      <td><$client.env.FormField.vp_name.HTML></td>
+    </tr>
+    <tr>
       <td><$client.env.FormField.employee_name.HTML></td>
     </tr>
   </tbody>
@@ -332,15 +332,19 @@
 <div id="offerprint"><$client.env.FormButtons>&nbsp;<input type="button" class="appInputButton RCappInputButtonBlue" value="Print Offer Letter"
 onclick="javascript:OfferLetterPrint();"></div>
 
+<div style='display:none;'>
+<$client.env.FormField.hidden_pg1.HTML>
+<$client.env.FormField.hidden_pg2.HTML>
+</div>
 
-<SCRIPT>
+<script>
 //Show populated form if already completed
 var strCompletedForm = FORM_COMPLETED;
 if (strCompletedForm != "")
 {
   showCompleted();
 }
-</SCRIPT>
+</script>
 <script language="javascript">
 function OfferLetterPrint()
 {
@@ -348,3 +352,5 @@ function OfferLetterPrint()
   window.print();
 }
 </script>
+
+<script>
