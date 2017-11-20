@@ -1,3 +1,74 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+    <div id="box">
+        <b>Electronic Signature</b>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <b>Type your Name:</b>
+        <input type=text id="eSignature1">&nbsp;
+        <input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv','c2_Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+
+<div style="display: none;">
+
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML> 
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+<!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+
+<$client.env.FormField.a1_FullName.prompt>
+<$client.env.FormField.a2_Address.prompt>
+<$client.env.FormField.a3_JobTitle.prompt>
+<$client.env.FormField.a3_Reportingto.prompt>
+<$client.env.FormField.a4_PlaceofWork.prompt>
+<$client.env.FormField.a5_ContractualStatus.prompt>
+<$client.env.FormField.a6_StartDate.prompt>
+<$client.env.FormField.a8_ContinousServiceFrom.prompt>
+<$client.env.FormField.a9_ProbationaryPeriod.prompt>
+<$client.env.FormField.b1_WorkingPatternAndHours.prompt>
+<$client.env.FormField.b3_NoticePeriodAfterProbation.prompt>
+<$client.env.FormField.b3_NoticePeriodAfterProbationEmployer.prompt>
+<$client.env.FormField.b4_AnnualBasicSalary.prompt>
+<$client.env.FormField.b5_GeneralAllowance.prompt>
+<$client.env.FormField.b6_CarAllowance.prompt>
+<$client.env.FormField.b7_BonusPercentage.prompt>
+<$client.env.FormField.b7_BonusScheme.prompt>
+<$client.env.FormField.b8_HolidayEntitlement.prompt>
+<$client.env.FormField.c1_Signature.prompt>
+<$client.env.FormField.c2_Date.prompt>
+<$client.env.FormField.d2_Date.prompt>
+</div>
+
+<input name="tagparamlist" type="hidden" value="<$client.env.tagparamlist>" /> 
+
+<!-- Replace With eForm Specific HTML -->
+
 <main>
     <header class="vspace">
         <span class="bg-black">
@@ -107,6 +178,20 @@
                 <div class="col-90 box pull-right box">
                     <div class="input-wrapper">
                         <$client.env.FormField.a6_StartDate.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-100 pull-right border-left">
+            <div class="border-top col-41 pull-left">
+                <strong class="indent-1">
+                    End date
+                </strong>
+            </div>
+            <div class="col-60 pull-right clearfix border-left">
+                <div class="col-90 box pull-right box">
+                    <div class="input-wrapper">
+                        <$client.env.FormField.a7_EndDate.HTML>
                     </div>
                 </div>
             </div>
@@ -226,11 +311,11 @@
             <div class="col-60 pull-right clearfix border-left">
                 <div class="col-90 box pull-right box">
                     <div class="input-wrapper">
-                        <$client.env.FormField.b7_BonusPercentage.HTML>
+                        <$client.env.FormField.b7_BonusScheme.HTML>
                     </div>
                     (up to 
                     <div class="col-20">
-                        <$client.env.FormField.b7_BonusScheme.HTML>
+                        <$client.env.FormField.b7_BonusPercentage.HTML>
                     </div>
                     %) Subject to terms &amp; conditions of the scheme.
                 </div>
@@ -855,3 +940,24 @@
         A1/3
     </footer>
 </main>
+
+
+
+<$client.env.FormField.SignatureVerification.HTML>
+
+<$client.env.FormButtons>
+</form>
+<script>
+    ChangeCalendarIcons(); //for popup calendar
+$(document).ready(function() {
+    (function($) {
+        $.fn.disableCalendarButton = function() {
+            $(this).parent()
+                .find('input')
+                .prop('disabled', true);
+        }
+    } (jQuery));
+    $('.readonly-date').disableCalendarButton();
+    <$client.env.eval((url.forWhom==account.userguid)?'$(".hr-date").disableCalendarButton();':'$(".newhire-date").disableCalendarButton();')> 
+});
+</script>
