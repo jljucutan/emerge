@@ -2,8 +2,7 @@
   <header class="row border-bottom vspace">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
       <div class="col-lg-2 col-md-3 col-sm-12 col-xs-12">
-        <h5><strong>MARYLAND</strong></h5>
-        <h5><strong>FORM</strong></h5>
+        <h5><strong>MARYLAND <br class="hidden-xs" /> FORM</strong></h5>
         <h3>
           <strong>MW507</strong>
         </h3>
@@ -11,7 +10,7 @@
     </div>
   </header>
   <div class="row border-bottom-dotted vspace">
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 inner-wrapper col-left">
       <p class="text-justify">
         <strong>Purpose.</strong> Complete Form MW507 so that your employer can withhold the correct Maryland income tax from your pay. Consider completing a new Form MW507 each year and when your personal or financial situation changes.
       </p>
@@ -48,7 +47,7 @@
         Line 4 is <strong>NOT</strong> to be used by residents of other states who are working in Maryland, because such persons are liable for Maryland income tax and withholding from
       </p>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 inner-wrapper col-right">
       <p>
         their wages is required.
       </p>
@@ -107,27 +106,42 @@
       </h3>
     </div>
   </header>
-  <div class="row border-top border-bottom border-left border-right vspace">
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-hiddem-sm border-right border-bottom">
+  <div class="row border-top border-bottom border-left border-right">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-hidden-sm border-right inner-wrapper">
       Print full name
-      <input type="text" class="lifesuite__text-input">
+      <$client.env.FormField.FullName.HTML>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 inner-wrapper">
       Social Security Number
-      <input type="text" class="lifesuite__text-input">
+      <$client.env.FormField.SSN.HTML>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-hiddem-sm border-right border-bottom">
+  </div>
+  <div class="row border-bottom border-left border-right">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-hidden-sm border-right inner-wrapper">
       Street Address, City, State, ZIP
       <div class="invisible">&bsp;</div>
-      <input type="text" class="lifesuite__text-input">
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom">
-      County of residence (Nonresidents enter Maryland county (or Baltimore City) where you are employed.)
-      <input type="text" class="lifesuite__text-input">
-    </div>
-    <div class="col-lg-12 text-center">
       <div class="inline-block">
-        <input type="checkbox"> Single
+        <$client.env.FormField.Address.HTML>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.City.HTML>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.State.HTML>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.Zip.HTML>
+      </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 inner-wrapper">
+      County of residence (Nonresidents enter Maryland county (or Baltimore City) where you are employed.)
+      <$client.env.FormField.County.HTML>
+    </div>
+  </div>
+  <div class="row border-bottom border-left border-right vspace">
+    <div class="col-lg-12 text-center inner-wrapper">
+      <div class="inline-block label-normal">
+        <$client.env.FormField.FilingStatus.HTML>
       </div>
     </div>
   </div>
@@ -141,7 +155,7 @@
           <div class="inline-block col-20 text-right">
             1.
             <div class="inline-block">
-              <input type="text" class="lifesuite__text-input">
+              <$client.env.FormField.Exemptions.HTML>
             </div>
           </div>
         </li>
@@ -152,7 +166,7 @@
           <div class="inline-block col-20 text-right">
             2.
             <div class="inline-block">
-              <input type="text" class="lifesuite__text-input">
+              <$client.env.FormField.AdditionalWithholding.HTML>
             </div>
           </div>
         </li>
@@ -166,21 +180,22 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      <div class="indent-1">
-        <input type="checkbox">a. Last year I did not owe any Maryland income tax and had a right to a full refund of all income tax withheld and
+      <div class="indent-1 label-normal">
+        <$client.env.FormField.ExemptA.HTML>
+        <$client.env.FormField.ExemptB.HTML>
         <div class="inline-1">
           (This includes seasonal and student employees whose annual income will be below the minimum filing requirements).
         </div>
-        <div class="inline-1 clearfix">
+        <div class="inline-1 clearfix" style="padding-right: 10px;">
           If both a and b apply, enter year applicable
           <div class="inline-block">
-            <input type="text" class="lifesuite__text-input">
+            <$client.env.FormField.ExemptYear.HTML>
           </div>
           (year effective) Enter “EXEMPT” here
           <div class="inline-block col-20 text-right pull-right">
             3.
             <div class="inline-block">
-              <input type="text" class="lifesuite__text-input">
+              <$client.env.FormField.Exempt3.HTML>
             </div>
           </div>
         </div>
@@ -194,16 +209,44 @@
           <div class="inline-block col-80">
             I claim exemption from withholding because I am domiciled in one of the following states. Check state that applies.
           </div>
-          <div class="inline-block col-20 text-right">
-            4.
-            <div class="inline-block">
-              <input type="text" class="lifesuite__text-input">
-            </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <ul class="list-no-margin">
+        <li>
+          <div class="inline-block label-normal">
+            <$client.env.FormField.DC.HTML>
+          </div>
+          <div class="inline-block label-normal">
+            <$client.env.FormField.VA.HTML>
+          </div>
+          <div class="inline-block label-normal">
+            <$client.env.FormField.WV.HTML>
           </div>
         </li>
         <li>
-          <div class="inline-block col-80">
-            I claim exemption from Maryland state withholding because I am domiciled in the Commonwealth of Pennsylvania and I do not <br>
+          <div class="inline-block">
+            I further certify that I do not maintain a place of abode in Maryland as described in the instructions above. Enter “EXEMPT” here
+          </div>
+          <div class="inline-block col-20 text-right">
+            4.
+            <div class="inline-block">
+              <$client.env.FormField.Exempt4.HTML>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <ol type="1" class="list-no-margin" start="5">
+        <li>
+          <div class="inline-block">
+            I claim exemption from Maryland <strong>state</strong> withholding because I am domiciled in the Commonwealth of Pennsylvania and I do not <br>
           </div>
         </li>
       </ol>
@@ -219,11 +262,11 @@
           <div class="inline-block col-20 text-right">
             5.
             <div class="inline-block">
-              <input type="text" class="lifesuite__text-input">
+              <$client.env.FormField.Exempt5.HTML>
             </div>
           </div>
         </li>
-      </ol>
+      </ul>
     </div>
   </div>
   <div class="row">
@@ -231,7 +274,7 @@
       <ol type="1" class="list-no-margin" start="6">
         <li>
           <div class="inline-block">
-            I claim exemption from Maryland local tax because I live in a local Pennysylvania jurisdiction within York or Adams counties.
+            I claim exemption from Maryland <strong>local</strong> tax because I live in a local Pennysylvania jurisdiction within York or Adams counties.
           </div>
         </li>
       </ol>
@@ -247,11 +290,11 @@
           <div class="inline-block col-20 text-right">
             6.
             <div class="inline-block">
-              <input type="text" class="lifesuite__text-input">
+              <$client.env.FormField.Exempt6.HTML>
             </div>
           </div>
         </li>
-      </ol>
+      </ul>
     </div>
   </div>
   <div class="row">
@@ -259,7 +302,7 @@
       <ol type="1" class="list-no-margin" start="7">
         <li>
           <div class="inline-block">
-            I claim exemption from Maryland local tax because I live in a local Pennsylvania jurisdiction that does not impose an earnings or income
+            I claim exemption from Maryland <strong>local</strong> tax because I live in a local Pennsylvania jurisdiction that does not impose an earnings or income
           </div>
         </li>
       </ol>
@@ -275,11 +318,11 @@
           <div class="inline-block col-20 text-right">
             7.
             <div class="inline-block">
-              <input type="text" class="lifesuite__text-input">
+              <$client.env.FormField.Exempt7.HTML>
             </div>
           </div>
         </li>
-      </ol>
+      </ul>
     </div>
   </div>
   <div class="row">
@@ -290,7 +333,7 @@
             I certify that I am a legal resident of the state of
           </div>
           <div class="inline-block">
-            <input type="text" class="lifesuite__text-input">
+            <$client.env.FormField.StateOfResidence.HTML>
           </div>
           <div class="inline-block">
             and am not subject to Maryland withholding because l meet the requirements
@@ -309,11 +352,11 @@
           <div class="inline-block col-20 text-right">
             8.
             <div class="inline-block">
-              <input type="text" class="lifesuite__text-input">
+              <$client.env.FormField.Exempt8.HTML>
             </div>
           </div>
         </li>
-      </ol>
+      </ul>
     </div>
   </div>
   <div class="row">
@@ -324,30 +367,39 @@
     </div>
   </div>
   <div class="row border-top border-bottom">
-    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 border-right border-hiddem-sm">
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 border-right border-hidden-sm inner-wrapper">
       Employee's signature
-      <input type="text" class="lifesuite__text-input">
+      <$client.env.FormField.Signature.HTML>
     </div>
-    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 inner-wrapper">
       Date
       <div>
-        <input type="text" class="lifesuite__text-input">
+        <$client.env.FormField.DateSigned.HTML>
       </div>
     </div>
   </div>
   <div class="row border-bottom vspace">
-    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 border-right border-hiddem-sm">
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 border-right border-hidden-sm inner-wrapper">
       Employee's name and address including ZIP code (For employer use only)
-      <input type="text" class="lifesuite__text-input">
+      <div class="vspace">
+        <$client.env.FormField.EmployerName.HTML>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.EmployerAddress.HTML>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.EmployerCity.HTML>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.EmployerState.HTML>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.EmployerZip.HTML>
+      </div>
     </div>
-    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 inner-wrapper">
       Federal Employer Identification Number
-      <input type="text" class="lifesuite__text-input">
-    </div>
-  </div>
-  <div class="row vspace">
-    <div class="col-lg-12">
-      COM/RAD-036 18-49
+      <$client.env.FormField.EIN.HTML>
     </div>
   </div>
   <header class="row border-bottom vspace border-thick">
@@ -382,7 +434,7 @@
       --><div class="inline-block text-right">
         a.
         <div class="inline-block">
-          <input type="text" class="lifesuite__text-input">
+          <$client.env.FormField.a.HTML>
         </div>
       </div>
     </div>
@@ -396,7 +448,7 @@
       --><div class="inline-block text-right">
         b.
         <div class="inline-block">
-          <input type="text" class="lifesuite__text-input">
+          <$client.env.FormField.b.HTML>
         </div>
       </div>
     </div>
@@ -410,7 +462,7 @@
       --><div class="inline-block text-right">
         c.
         <div class="inline-block">
-          <input type="text" class="lifesuite__text-input">
+          <$client.env.FormField.c.HTML>
         </div>
       </div>
     </div>
@@ -424,7 +476,7 @@
       --><div class="inline-block text-right">
         d.
         <div class="inline-block">
-          <input type="text" class="lifesuite__text-input">
+          <$client.env.FormField.d.HTML>
         </div>
       </div>
     </div>
@@ -438,7 +490,7 @@
       --><div class="inline-block text-right">
         e.
         <div class="inline-block">
-          <input type="text" class="lifesuite__text-input">
+          <$client.env.FormField.e.HTML>
         </div>
       </div>
     </div>
@@ -452,15 +504,15 @@
       --><div class="inline-block text-right">
         f.
         <div class="inline-block">
-          <input type="text" class="lifesuite__text-input">
+          <$client.env.FormField.f.HTML>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row vspace">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <div class="table-responsive">
-        <table class="table table-bordered border-thick table-hover">
+      <div class="responsive-table vspace">
+        <table class="table table-bordered border-thick table-hover block-center">
           <tbody>
             <tr class="border-thick">
               <td rowspan="2" valign="middle" class="text-center border-thick" colspan="2">
@@ -495,9 +547,65 @@
                 <strong>$3,200</strong>
               </td>
             </tr>
+            <tr>
+              <td class="text-center"><strong>Over</strong></td>
+              <td class="text-center"><strong>But not over</strong></td>
+              <td class="text-center bg-gray"><strong>&nbsp;</strong></td>
+              <td class="text-center bg-gray"><strong>&nbsp;</strong></td>
+            </tr>
+            <tr>
+              <td class="text-center"><strong>$100,000</strong></td>
+              <td class="text-center"><strong>$125,000</strong></td>
+              <td class="text-center"><strong>$1,600</strong></td>
+              <td class="text-center"><strong>$3,200</strong></td>
+            </tr>
+            <tr>
+              <td class="text-center"><strong>$125,000</strong></td>
+              <td class="text-center"><strong>$150,000</strong></td>
+              <td class="text-center"><strong>$800</strong></td>
+              <td class="text-center"><strong>$3,200</strong></td>
+            </tr>
+            <tr>
+              <td class="text-center"><strong>$150,000</strong></td>
+              <td class="text-center"><strong>$175,000</strong></td>
+              <td class="text-center"><strong>$0</strong></td>
+              <td class="text-center"><strong>$1,600</strong></td>
+            </tr>
+            <tr>
+              <td class="text-center"><strong>$175,000</strong></td>
+              <td class="text-center"><strong>$200,000</strong></td>
+              <td class="text-center"><strong>$0</strong></td>
+              <td class="text-center"><strong>$800</strong></td>
+            </tr>
+            <tr>
+              <td class="text-center" colspan="2"><strong>In excess of $200,000</strong></td>
+              <td class="text-center"><strong>$0</strong></td>
+              <td class="text-center"><strong>$0</strong></td>
+            </tr>
           </tbody>
         </table>
       </div>
+    </div>
+  </div>
+  <header class="row border-top border-bottom vspace border-thick">
+    <h4 class="header-title text-center">FEDERAL PRIVACY ACT INFORMATION</h4>
+  </header>
+  <div class="row border-bottom border-thick vspace">
+    <div class="col-lg-12">
+      <p class="text-justify">
+        Social Security numbers must be included. The mandatory disclosure of your Social Security number is authorized by the provisions set forth in the Tax-General Article of the Annotated Code of Maryland. Such numbers are used primarily to administer and enforce the individual income tax laws and to exchange income tax information with the Internal Revenue Service, other states and other tax officials of this state. Information furnished to other agencies or persons shall be used solely for the purpose of administering tax laws or the specific laws administered by the person having statutory right to obtain it.
+      </p>
+    </div>
+  </div>
+  <footer class="row vspace">
+    <div class="col-lg-12">
+      COM/RAD-036 18-49
+    </div>
+  </footer>
+  <hr class="lifesuite__hr">
+  <div class="row" id="formButtons" style="display: none;">
+    <div class="lifesuite__clearfix lifesuite__float-right">
+      <$client.env.FormButtons>
     </div>
   </div>
 </main>
