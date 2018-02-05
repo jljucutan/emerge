@@ -44,6 +44,20 @@ function validateTimezone(sValue,sName,sField){
   return isValid;
 }
 
+function isValidNumeric(sVal,sName,sID){
+  var isValid = true;
+  if('<$client.env.serversidevalidation>'=='1'){ return isValid; }
+  if (sVal.length < 1) {
+    return eFormRequiredField(sVal,sName,sID);
+  }
+  var reg = /^[0-9]+$/;
+  if (!sVal.match(reg)) {
+    AddError(sID, 'Error in validation, numbers should be input in', '');
+    isValid = false;
+  }
+  return isValid;
+}
+
 $(document).ready(function() {
     $('.autoWidth_text input[type=text]').each(function(index) {
 
@@ -447,10 +461,13 @@ var employee = {
 
 			if_gam_and_director_executive_managing_director: (("<$client.tForWhomUserInfo.Legal_Entity>" == "UBS O'Connor" || "<$client.tForWhomUserInfo.Legal_Entity>" == "UBS O’Connor") && ('<$client.tForWhomUserInfo.Division>' == 'GAM' || '<$client.tForWhomUserInfo.Division>' == 'Asset Management') && ('<$client.tForWhomUserInfo.Rank_desc>' == 'Director' || '<$client.tForWhomUserInfo.Rank_desc>' == 'Executive Director' || '<$client.tForWhomUserInfo.Rank_desc>' == 'Managing Director')) ? true : false,
 
-			if_license_requirement: (('<$client.tEventCategories_25.Code>' == 'Yes' || '<$client.tEventCategories_25.Code>' == 'Registered') && ('<$client.env.eval(client.tForWhomUserInfo.License_requirement != null ? 1 : 0)>' == '1')) ? true : false,
+			if_license_requirement: (('<$client.tEventCategories_25.Code>' == 'No' || '<$client.tEventCategories_25.Code>' == 'Not Registered') && ('<$client.env.eval(client.tForWhomUserInfo.License_requirement != null ? 1 : 0)>' == '1')) ? true : false,
 
 			if_license_requirement_only: <$client.env.eval((client.tForWhomUserInfo.License_requirement != null) ? 'true' : 'false')>,
-			if_license_requirement_null: (('<$client.tEventCategories_25.Code>' == 'No') && ('<$client.env.eval(client.tForWhomUserInfo.License_requirement == null ? 1 : 0)>' == '1')) ? true : false,
+			if_license_requirement_null: (('<$client.tEventCategories_25.Code>' == 'No' || '<$client.tEventCategories_25.Code>' == 'Not Registered') && ('<$client.env.eval(client.tForWhomUserInfo.License_requirement == null ? 1 : 0)>' == '1')) ? true : false,
+
+      if_licensing_required: (('<$client.tEventCategories_25.Code>' == 'Yes' || '<$client.tEventCategories_25.Code>' == 'Registered') && ('<$client.env.eval(client.tForWhomUserInfo.License_requirement != null ? 1 : 0)>' == '1')) ? true : false,
+
 			if_not_wma: ("<$client.tForWhomUserInfo.Division>" != "WMA" || "<$client.tForWhomUserInfo.Division>" != "Wealth Management Americas") ? true : false,
 			if_license_contains_2706_2707: /2706|2707/.test("<$client.tForWhomUserInfo.License_requirement>"),
 			if_equity_research: <$client.env.eval(client.tForWhomUserInfo.Equity_Research != null ? 'true' : 'false')>,
