@@ -475,3 +475,9 @@ var employee = {
 			if_flsa_exempt: ('<$client.tForWhomUserInfo.FLSA_Status>' == 'Exempt') ? 'base salary' : '',
 			if_flsa_non_exempt: ('<$client.tForWhomUserInfo.FLSA_Status>' == 'Non-Exempt') ? 'base compensation' : ''
 	};
+
+  $(document).ready(function() {
+    $.getJSON('<$link;/main/RedCarpet/FormTemplates/Orientation_Instructions_New_Test/Orientation_Instructions_New_Test.json>', function(data) {
+      $('#orientation-location').val(data.locations["<$client.tEventCategories_26.Code>"])
+    })
+  });
