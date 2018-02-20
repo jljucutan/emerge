@@ -481,3 +481,20 @@ var employee = {
       $('#orientation-location').val(data.locations["<$client.tEventCategories_26.Code>"])
     })
   });
+
+function sumOf(arr) {
+  return (arr.length === 0) ? 0 : arr[0] + sumOf(arr.slice(1));
+}
+
+function isRequiredPercentFull(sVal,sName,sID) {
+  var isValid = true;
+  if ('<$client.env.serversidevalidation>'=='1') return true;
+  var arr = $(document.getElementById(sID)).data('data-percent-requires'); //.slice(',');
+  if (sumOf(arr) < 100) {
+    return eFormRequiredField(sVal,sName,sID);
+  }
+  return isValid;
+}
+
+function isDependentOnPercentage(sVal,sName,sID) {
+}
