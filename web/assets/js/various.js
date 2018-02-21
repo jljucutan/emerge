@@ -489,12 +489,67 @@ function sumOf(arr) {
 function isRequiredPercentFull(sVal,sName,sID) {
   var isValid = true;
   if ('<$client.env.serversidevalidation>'=='1') return true;
-  var arr = $(document.getElementById(sID)).data('data-percent-requires'); //.slice(',');
-  if (sumOf(arr) < 100) {
+  var deps = document
+                .getElementById(sID)
+                .getAttribute('data-percent-requires')
+                .toString()
+                .replace(/\s/g, '')
+                .split(',');
+  var percentages = [];
+  for (i = 0; i < deps.length; i++) {
+    var percVal = $(deps[i]).val().length ? $(deps[i]).val() : 0;
+    percentages.push(parseInt(percVal));
+  }
+  if (sumOf(percentages) < 100) {
+    console.log(sumOf(percentages));
     return eFormRequiredField(sVal,sName,sID);
   }
   return isValid;
 }
 
-function isDependentOnPercentage(sVal,sName,sID) {
+function isFullPercentOnly(sVal,sName,sID) {
+  var isValid = true;
+  if ('<$client.env.serversidevalidation>'=='1') return true;
+  var total = 0;
+  $.each($('[data-percentage]'), function(k, v) {
+    var percent = $(v).val().length ? $(v).val() : 0;
+    total += parseInt(percent);
+  });
+  if (total < 100) {
+    AddError(sID, 'Error in validation, percentages must add up to 100%', '');
+    isValid = false;
+  }
+  if (total > 100) {
+    AddError(sID, 'Error in validation, percentages must not exceed 100%', '');
+    isValid = false;
+  }
 }
+
+$('[data-checkbox-group]').on('click', function() {
+  var groupId = $(this).data('checkbox-group');
+  $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+  $(this).prop('checked', true);
+});
+
+$(function() {
+  if ($('#lv1').val().length < 1 || $('#lv1').val() == '<$client.env.eval(client.account.loginID)>') {
+    $('[data-target-level="#lv2"], [data-target-level="#lv3"], [data-target-level="#lv4"]').disableField();
+    $('[data-date-id="#lv2"], [data-date-id="#lv3"], [data-date-id="#lv4"]').disableField().disableDate();
+  } else if ($('#lv2').val().length < 1 && $('#lv3').val().length < 1) {
+    $('[data-target-level="#lv3"]').disableField();
+    $('[data-date-id="#lv3"]').disableField().disableDate();
+  } else {
+    $('[data-target-level]').each(function(k, v) {
+      if ($($(v).data('target-level')).val().length < 1) {
+        return true;
+      }
+      if ($($(v).data('target-level')).val() != '<$client.env.eval(client.account.loginID)>') {
+        $(v).disableField();
+        $('[data-date-id="' + $(v).data('target-level') + '"]').disableField().disableDate();
+      }
+      if (<$client.env.eval((client.role.HR)?1:0)> == 1) {
+        $('[data-date-id="#lv3"],[data-date-id="#lv2"],[data-date-id="#lv1"]').disableField().disableDate();
+      }
+    });
+  }
+});
