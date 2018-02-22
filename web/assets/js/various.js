@@ -553,3 +553,16 @@ $(function() {
     });
   }
 });
+
+function makeTimeStamp(target) {
+  var targetElem = document.getElementsByClassName(target);
+  var i = 0;
+  var curDate = new Date();
+  for (i; i < targetElem.length; i++) {
+    var year = curDate.getFullYear(),
+        month = curDate.getMonth() + 1,
+        day = curDate.getDate();
+
+    targetElem[i].value =  year + '/' + month + '/' + day;
+  }
+}
