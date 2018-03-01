@@ -11,10 +11,12 @@
             <$client.env.FormField.a01_Social_Security_No.HTML>
           </div>
         </div>
-        <div class="form-group">
-          <label class="control-label col-lg-4 col-md-4 col-sm-6 col-xs-12">COLSA Rehire?</label>
-          <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-            <$client.env.FormField.a02_Rehire.HTML>
+        <div class="vspace">
+          <div class="form-group">
+            <label class="col-lg-4 col-md-4 col-sm-6 col-xs-12">COLSA Rehire?</label>
+            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+              <$client.env.FormField.a02_Rehire.HTML>
+            </div>
           </div>
         </div>
         <div class="form-group">
@@ -55,16 +57,20 @@
             <$client.env.FormField.a09_Home_Phone.HTML>
           </div>
         </div>
-        <div class="form-group">
-          <label class="control-label col-lg-2 col-md-2 col-sm-6 col-xs-12">Cell Phone</label>
-          <div class="col-lg-10 col-md-10 col-sm-6 col-xs-12">
-            <$client.env.FormField.a10_Cell_Phone.HTML>
+        <div class="vspace">
+          <div class="form-group">
+            <label class="control-label col-lg-3 col-md-3 col-sm-6 col-xs-12">Cell Phone</label>
+            <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+              <$client.env.FormField.a10_Cell_Phone.HTML>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label class="control-label col-lg-3 col-md-3 col-sm-6 col-xs-12">Marital Status</label>
-          <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
-            <$client.env.FormField.a11_Marital_Status.HTML>
+        <div class="vspace">
+          <div class="form-group">
+            <label class="col-lg-3 col-md-3 col-sm-6 col-xs-12">Marital Status</label>
+            <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+              <$client.env.FormField.a11_Marital_Status.HTML>
+            </div>
           </div>
         </div>
         <div class="vspace">
@@ -98,7 +104,7 @@
             </div>
           </div>
         </div>
-        <div class="box form-horizontal">
+        <div id='hidetoHR' class="box form-horizontal <$client.env.eval(!(client.role.rc_Security)?'hide':'')>">
           <em>
             For Security Use Only:
           </em>
@@ -171,11 +177,15 @@
                 </div>
               </div>
               <div class="vspace">
-                <$client.env.FormField.a27_Military_Service_Date_From.HTML>
-                <div class="text-center">
+                <div class="inline-block vertical-top">
+                  <$client.env.FormField.a27_Military_Service_Date_From.HTML>
+                </div>
+                <div class="inline-block vertical-top">
                   <strong>to</strong>
                 </div>
-                <$client.env.FormField.a28_Military_Service_Date_To.HTML>
+                <div class="inline-block vertical-top">
+                  <$client.env.FormField.a28_Military_Service_Date_To.HTML>
+                </div>
               </div>
             </div>
           </div>
@@ -195,40 +205,44 @@
             <div class="form-group">
               <label class="control-label col-lg-5 col-md-5 col-sm-6 col-xs-12">Dates of Employment:</label>
               <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-                <$client.env.FormField.a31_Dates_of_Employment_from.HTML>
-                <div class="text-center">
+                <div class="inline-block vertical-top">
+                  <$client.env.FormField.a31_Dates_of_Employment_from.HTML>
+                </div>
+                <div class="inline-block vertical-top">
                   <strong>to</strong>
                 </div>
-                <$client.env.FormField.a32_Dates_of_Employment_to.HTML>
+                <div class="inline-block vertical-top">
+                  <$client.env.FormField.a32_Dates_of_Employment_to.HTML>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 inner-wrapper">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 inner-wrapper <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'invisible':'')>">
         <div class="box clearfix form-horizontal">
           <h4>
             <strong>For HR Use Only</strong>
           </h4>
-          <div class="form-group">
+          <div class="form-group <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <label class="control-label col-lg-3 col-md-3 col-sm-6 col-xs-12">Employee No.</label>
             <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
               <$client.env.FormField.a33_Employee_No.HTML>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <label class="control-label col-lg-3 col-md-3 col-sm-6 col-xs-12">Hire Date</label>
             <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
               <$client.env.FormField.a34_Hire_Date.HTML>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <label class="control-label col-lg-3 col-md-3 col-sm-6 col-xs-12">Job Title</label>
             <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
               <$client.env.FormField.a35_Job_Title.HTML>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="control-label col-lg-3 col-md-3 col-sm-6 col-xs-12">Labor Grade</label>
               <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
@@ -236,31 +250,47 @@
               </div>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <label class="col-lg-4 col-md-4 col-sm-6 col-xs-12">Wage Determination</label>
             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
               <$client.env.FormField.a37_Wage_Determination.HTML>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <label class="control-label col-lg-4 col-md-4 col-sm-6 col-xs-12">Department Name</label>
             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
               <$client.env.FormField.a38_Department_Name.HTML>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <label class="control-label col-lg-3 col-md-3 col-sm-6 col-xs-12">Department No</label>
             <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
               <$client.env.FormField.a39_Department_No.HTML>
             </div>
           </div>
-          <div class="form-group">
+          <div class="form-group <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <label class="control-label col-lg-3 col-md-3 col-sm-6 col-xs-12">Supervisor</label>
             <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
               <$client.env.FormField.a40_Supervisor.HTML>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR)?'hidden':'')>">
+            <div class="form-group">
+              <label class="control-label col-lg-3 col-md-3 col-sm-6 col-xs-12">Salary Amount</label>
+              <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                <$client.env.FormField.Salary_Amount.HTML>
+              </div>
+            </div>
+          </div>
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR)?'hidden':'')>">
+            <div class="form-group">
+              <label class="control-label col-lg-3 col-md-3 col-sm-6 col-xs-12">Pay Basis</label>
+              <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                <$client.env.FormField.Pay_Basis.HTML>
+              </div>
+            </div>
+          </div>
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="control-label col-lg-3 col-md-3 col-sm-6 col-xs-12">Hourly Rate</label>
               <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
@@ -268,7 +298,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="control-label col-lg-12 col-md-12 col-sm-12 col-xs-12">Status</label>
               <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
@@ -278,7 +308,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="col-lg-1 col-md-1 col-sm-6 col-xs-6">AWS</label>
               <div class="col-lg-5 col-md-5 col-sm-6 col-xs-6">
@@ -290,7 +320,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="col-lg-2 col-md-2 col-sm-12 col-xs-12">FLSA:</label>
               <div class="col-lg-10 col-md-10 col-sm-6 col-xs-12">
@@ -300,7 +330,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <div class="col-lg-12">
                 <strong>Labor Location</strong>
@@ -312,7 +342,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="control-label col-lg-4 col-md-4 col-sm-12 col-xs-12">AL - Hunstville</label>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -320,7 +350,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="control-label col-lg-4 col-md-4 col-sm-12 col-xs-12">CA - San Diego - Palmdale</label>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -328,7 +358,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="control-label col-lg-4 col-md-4 col-sm-12 col-xs-12">CO - CoSp</label>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -336,7 +366,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="control-label col-lg-4 col-md-4 col-sm-12 col-xs-12">FL - Orlando &amp; Tampa</label>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -344,7 +374,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="col-lg-4 col-md-4 col-sm-12 col-xs-12">GA-WarnRobins</label>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -352,7 +382,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="control-label col-lg-4 col-md-4 col-sm-12 col-xs-12">OH- Dayton</label>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -360,7 +390,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="col-lg-4 col-md-4 col-sm-12 col-xs-12">OK- Tinker</label>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -368,7 +398,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="col-lg-4 col-md-4 col-sm-12 col-xs-12">VA</label>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -376,7 +406,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="col-lg-4 col-md-4 col-sm-12 col-xs-12">TMAS</label>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
@@ -387,7 +417,7 @@
               </div>
             </div>
           </div>
-          <div class="vspace">
+          <div class="vspace <$client.env.eval(!(client.role.rc_Payroll || client.role.rc_HR || client.role.rc_Security)?'hidden':'')>">
             <div class="form-group">
               <label class="control-label col-lg-3 col-md-3 col-sm-12 col-xs-12">
                   <$client.env.FormField.a54_Location_10.HTML>
@@ -405,6 +435,7 @@
             Rev. 08/2016
         </div>
       </footer>
+      <div class="filler hidden-sm hidden-xs">&nbsp;</div>
     </div>
   </div>
   <hr class="lifesuite__hr">

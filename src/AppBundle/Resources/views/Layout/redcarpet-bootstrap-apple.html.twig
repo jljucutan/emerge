@@ -1,0 +1,409 @@
+{% extends 'AppBundle:Layout:layout.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/css/Popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/css/Global.css') }}">
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/css/Default.css') }}">
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/css/TaskSummary.css') }}">
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/css/FormStyles.css') }}">
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/css/FormScript_Verify.css') }}">
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/css/lifesuite.css') }}">
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/css/formbuilder.css') }}">
+    <link rel="stylesheet" href="{{ asset('/bundles/app/assets/css/responsive.css') }}">
+    <style>
+    * {
+    box-sizing: border-box;
+    }
+    td {
+        position: relative;
+    }
+    body.apple_custom_theme {
+         font-family: Helvetica, Arial, "sans-serif";
+        padding: 40px;
+        color: #333333;
+        /*overflow: hidden;*/
+        font-size: 10pt;
+        line-height: 15pt;
+    }
+    .apple_custom_theme .lifesuite__h1, .apple_custom_theme .lifesuite__h2, .apple_custom_theme .lifesuite__h3, .apple_custom_theme .lifesuite__h4, .apple_custom_theme .lifesuite__h5, .apple_custom_theme .lifesuite__h6 {
+        font-family: inherit;
+    }
+    .apple_custom_theme #over {
+        position: fixed;
+    }
+    .apple_custom_theme .modal-content {
+        border-radius: 0;
+        border: 0;
+        box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.2);
+    }
+    .apple_custom_theme td#tdContentWrapper, .apple_custom_theme #tableContent {
+        padding: 0;
+        box-shadow: none !important;
+    }
+    .apple_custom_theme #tablePopup {
+        padding: 0;
+        border: 0;
+        background-color: transparent;
+        border-width: 0;
+        left: 0px;
+        top: 0px;
+        max-width: 100%;
+    }
+    .apple_custom_theme img#imgLogo {
+        display: none;
+    }
+    .apple_custom_theme td#tdContentWrapper {
+        border-radius: 0;
+    }
+    .apple_custom_theme table {
+        width: 100%;
+    }
+    .apple_custom_theme #main-content {
+        width: 100%;
+        margin: auto;    /* float: left; */
+        display: table;
+        background: #FFF;
+        border: 1px solid #acacac;
+    }
+    .apple_custom_theme #tdContent {
+        padding: 0;
+    }
+    .apple_custom_theme #formButtons {
+
+        /* padding: 40px; */
+        float: left;
+        width: 100%;
+        /*background: #f6f6f6;*/
+    }
+    .apple_custom_theme #formButtons input {
+        background: #0070c9;
+        border: 0;
+        color: #FFF;
+        padding: 12px 20px;    /* font-family: 'HelveticaNeue-Medium'; */
+        font-family: inherit;
+        letter-spacing: -0.021em;
+        border: 2px solid #0070c9 !important;
+        font-size: 14px;
+        -webkit-transition: all 0.30s ease-in-out;
+        -moz-transition: all 0.30s ease-in-out;
+        -ms-transition: all 0.30s ease-in-out;
+        -o-transition: all 0.30s ease-in-out;
+        transition: all 0.30s ease-in-out;
+        outline: none;
+        font-weight: 500;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        margin-right: 10px;
+    }
+
+    .apple_custom_theme #formButtons input:hover {
+        background: #FFF !important;
+        background-color: #FFF !important;
+        color: #0070c9;
+    }
+    .apple_custom_theme .srt_eform_row {
+        max-width: 90%;    /* float: left; */
+        margin: auto;
+    }
+    .small-text {
+        font-size: 12px;
+    }
+    #srt_eform_logo img {
+        max-width: 50px;
+    }
+    #srt_form_btn_wrapper {
+        padding: 20px;
+        float: left;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .offerClause {
+        float: left;
+        width: 100%;
+    }
+    ol, ul {
+        margin-left: 30px;
+    }
+    .apple_custom_theme .hasDatepicker.lifesuite__text-input {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+    .apple_custom_theme .calendar_button {
+        height: 20px;
+        position: absolute;
+        right: 15px;
+        top: 8px;
+    }
+    .apple_custom_theme #container {
+
+        /* height: 500px; */
+
+        /* overflow-y: scroll;
+        display: none;
+        overflow-y: scroll;
+        overflow-x: hidden;  */  /* padding: 10px; */
+        margin: 60px 20px;
+    }
+    .apple_custom_theme p {
+        margin: 0;
+        float: left;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 14pt;
+    }
+    .apple_custom_theme ul {
+        list-style-type: disc;
+    }
+    .apple_custom_theme ul li, .apple_custom_theme ol li {
+        margin: 10px 0;
+        float: left;
+        width: 100%;
+    }
+    .apple_custom_theme .paragraph {
+        margin: 20px 0;
+        line-height: 25px;
+    }
+    .apple_custom_theme .lifesuite__text-input {
+        line-height: normal;
+        vertical-align: middle;
+    }
+    .apple_custom_theme .lifesuite__text-input, .apple_custom_theme .lifesuite__textarea-input {
+        font-family: inherit;
+        font-size: inherit;
+    }
+    .apple_custom_theme .float-left {
+        float: left;
+    }
+    .apple_custom_theme .float-right {
+        float: right;
+    }
+    .apple_custom_theme label {
+        font-weight: normal;
+        font-size: 20px;
+    }
+    .apple_custom_theme .lifesuite__button {
+        background-color: #0070c9;
+        color: #FFF;
+        border-radius: 0;
+        border: 2px solid #0070c9;
+        box-shadow: none;    /* padding: 10px; */
+        border: 2px solid #0070c9 !important;
+        -webkit-transition: all 0.30s ease-in-out;
+        -moz-transition: all 0.30s ease-in-out;
+        -ms-transition: all 0.30s ease-in-out;
+        -o-transition: all 0.30s ease-in-out;
+        transition: all 0.30s ease-in-out;
+    }
+    .apple_custom_theme .lifesuite__button.btn-sign {
+        background-color: #FFF;
+        color: #0070c9 !important;
+    }
+    .apple_custom_theme .lifesuite__button:hover {
+        background-color: #FFF !important;
+        color: #0070c9 !important;
+    }
+    .apple_custom_theme .lifesuite__button.btn-sign:hover {
+        background-color: #FFF;
+        color: #0070c9 !important;
+    }
+    .apple_custom_theme .lifesuite__button {
+        box-shadow: none;
+        border-radius: 0;
+        background-color: #0070c9;
+        color: #FFF;
+    }
+
+    .apple_custom_theme ul.display-line li:before {
+        /* content: ""; */
+        float: left;
+        content: "-";
+        position: absolute;
+        left: -15px;
+    }
+
+    ul.display-line {
+        list-style-type: none;
+       position: relative;
+    }
+
+    .apple_custom_theme #complete {
+        max-width: 90%;
+        /* float: left; */
+        margin: auto;
+    }
+
+    #srt_eform_logo i {
+        font-size: 50px;
+    }
+
+    a:link {
+        font-size: inherit;
+    }
+    .apple_custom_theme .col-lg-9, .apple_custom_theme .col-lg-3 {
+        padding: 0;
+    }
+    @media only screen and (max-width:768px) {
+    /* Extra small devices: Phones */
+        #srt_form_btn_wrapper {
+            padding: 15px;
+        }
+        .srt_eform_row {
+            max-width: 100%;
+        }
+        body {
+            padding: 20px !important;
+        }
+        #srt_form_container {
+            margin: 20px;
+        }
+        .srt_eform_module {
+            padding: 0 !important;
+        }
+        #srt_header_right {
+            float: left;
+            width: 100%;
+        }
+        #srt_header_left {
+            float: left;
+            width: 100%;
+        }
+    /*
+        #srt_eform_logo img {
+            display: table;
+            float: none !important;
+            margin: auto;
+        }
+    */
+        .srt_eform_module {
+            margin-top: 0;
+        }
+
+        .apple_custom_theme #container {
+            margin: 30px 20px;
+        }
+
+    .input-text, .input-label {
+        float: left;
+        width: 100%;
+    }
+
+    .input-text input[type=text] {
+        margin-bottom: 5px !important;
+        margin-right: 0 !important;
+    }
+
+    .input-label {
+        margin-bottom: 30px;
+    }
+
+    #fields .srt_eform_text_inner {
+        margin: 0;
+    }
+
+    .apple_custom_theme #formButtons input{
+             padding: 10px 7px;
+        }
+    }
+
+
+    @media only screen and (min-width: 140px) and (max-width: 380px) {
+        #srt_form_btn_wrapper input {
+
+            margin: 5px 0;
+        }
+        #srt_form_container {
+            height: 450px;
+        }
+        .apple_custom_theme .float-left {
+            float: none !important;
+        }
+        .apple_custom_theme .float-right {
+            float: none !important;
+        }
+        .pull-right {
+            float: none !important;
+        }
+        #srt_eform_logo {
+            width: 100%;
+        }
+        #srt_eform_logo img {
+            margin-bottom: 20px;
+        }
+        #srt_eform_logo {
+        }
+
+    .apple_custom_theme #formButtons input {
+        padding: 8px 4px;
+    }
+    .apple_custom_theme #formButtons input {
+    font-size: 12px;
+    margin-right: 3px;
+    }
+
+    }
+
+
+
+
+
+
+
+
+    .apple_custom_theme h1 {
+        font-size: 11pt;
+        font-weight: bold;
+        line-height: 15pt;
+        margin: 0;
+        margin-bottom: 3pt;
+    }
+    .apple_custom_theme h2 {
+        font-size: 10pt;
+        font-weight: bold;
+        line-height: 15pt;
+        margin: 0;
+        margin-bottom: 3pt;
+    }
+
+    .offerClause a:link,
+    .offerClause a:visited,
+    .offerClause a:hover {
+        font-size: inherit;
+        color: #0070c9 !important;
+    }
+
+    .section-title {
+        margin-bottom: 0pt !important;
+    }
+    </style>
+{% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block body_attributes %}
+  <body class="apple_custom_theme">
+{% endblock %}
+{% block content %}
+<table id="tablePopup">
+    <tbody>
+        <tr>
+            <td id="tdContentWrapper">
+                <table id="tableContent" cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                        <td id="tdContent">
+                            <form action="">{% block form %}{% endblock %}</form>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://code.jquery.com/jquery-1.11.1.min.js" integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE=" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="{{ asset('/bundles/app/assets/js/vendor/jquery-1.11.1.min.js') }}"><\/script>')</script>
+    <script src="{{ asset('/bundles/app/assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('/bundles/app/assets/vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
+{% endblock %}

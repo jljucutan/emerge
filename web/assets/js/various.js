@@ -523,6 +523,7 @@ function isFullPercentOnly(sVal,sName,sID) {
     AddError(sID, 'Error in validation, percentages must not exceed 100%', '');
     isValid = false;
   }
+  return isValid;
 }
 
 $('[data-checkbox-group]').on('click', function() {
@@ -554,6 +555,30 @@ $(function() {
   }
 });
 
+function isNumeric(sVal,sName,sID){
+  var isValid = true;
+  if('<$client.env.serversidevalidation>'=='1'){ return isValid; }
+
+  var reg = /^[0-9]+$/;
+  if (!sVal.match(reg) && sVal.length > 1) {
+    AddError(sID, 'Error in validation, only numbers are allowed in', '');
+    isValid = false;
+  }
+  return isValid;
+}
+
+function isRequiredNumeric(sVal,sName,sID){
+  var isValid = true;
+  if ('<$client.env.serversidevalidation>'=='1'){ return isValid; }
+  if (sVal.length < 1) {
+    return eFormRequiredField(sVal,sName,sID);
+  }
+  if (!isNumeric(sVal,sName,sID)) {
+    isValid = false;
+  }
+  return isValid;
+}
+
 function makeTimeStamp(target) {
   var targetElem = document.getElementsByClassName(target);
   var i = 0;
@@ -564,5 +589,13 @@ function makeTimeStamp(target) {
         day = curDate.getDate();
 
     targetElem[i].value =  year + '/' + month + '/' + day;
+  }
+}
+
+function isRequireOne(sVal, sName, sField) {
+  var isValid = true;
+  if ('<$client.env.serversidevalidation>'=='1'){ return isValid;}
+  if (!$('[data-checkbox-group]:checked').length) {
+    return eFormRequiredField(sVal, sName, sField);
   }
 }

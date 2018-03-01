@@ -1,3 +1,142 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+              <div class="modal-content">
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+                             <p style="fontweight:normal;padding:0px">
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+                             </p>
+                             <br>
+                             <div class="row">
+                                           <div class="lifesuite__clearfix">
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                             </div>
+                             </div>
+                             <div class="row">
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+                                           </div>
+                             </div>
+              </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+              <div class="modal-content">
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+                             <p style="fontweight:normal;padding:0px">
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+                             </p>
+                             <br>
+                             <div class="row">
+                                           <div class="lifesuite__clearfix">
+                                                          <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                             </div>
+                             </div>
+                             <div class="row">
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','','modal2','over','sv2');xbObj('eSignature2').value='';">&nbsp;
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';">&nbsp;
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+                                           </div>
+                             </div>
+              </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+
+<$client.env.FormField.a07_Zip_Code.prompt>
+<$client.env.FormField.a08_Date_of_Birth.prompt>
+<$client.env.FormField.a01_Participant_Name.prompt>
+<$client.env.FormField.a02_Social_Security_Number.prompt>
+<$client.env.FormField.a03_Street_Address.prompt>
+<$client.env.FormField.a03_Street_Address2.prompt>
+<$client.env.FormField.a04_Date_Of_Employment.prompt>
+<$client.env.FormField.a05_City.prompt>
+<$client.env.FormField.a06_State.prompt>
+<$client.env.FormField.a09_Daytime_Phone_Number.prompt>
+<$client.env.FormField.a10_Email_Address.prompt>
+<$client.env.FormField.a11_Company_Division_or_Location.prompt>
+<$client.env.FormField.a12_Marital_Status.prompt>
+<$client.env.FormField.a12_Marital_Status_Married_Not_Married.prompt>
+<$client.env.FormField.a13_Beneficiary_Name.prompt>
+<$client.env.FormField.a14_Social_Security_Number.prompt>
+<$client.env.FormField.a15_Primary_or_Contigent_Beneficiary.prompt>
+<$client.env.FormField.a16_Relationship.prompt>
+<$client.env.FormField.a17_Date_of_Birth.prompt>
+<$client.env.FormField.a18_Street_Address.prompt>
+<$client.env.FormField.a18_Street_Address2.prompt>
+<$client.env.FormField.a19_City.prompt>
+<$client.env.FormField.a20_State.prompt>
+<$client.env.FormField.a21_Zip_Code.prompt>
+<$client.env.FormField.a22_Required.prompt>
+<$client.env.FormField.a23_Beneficiary_Name.prompt>
+<$client.env.FormField.a24_Social_Security_Number.prompt>
+<$client.env.FormField.a25_Primary_or_Contigent_Beneficiary.prompt>
+<$client.env.FormField.a26_Relationship.prompt>
+<$client.env.FormField.a27_Date_of_Birth.prompt>
+<$client.env.FormField.a28_Street_Address.prompt>
+<$client.env.FormField.a28_Street_Address2.prompt>
+<$client.env.FormField.a29_City.prompt>
+<$client.env.FormField.a30_State.prompt>
+<$client.env.FormField.a31_Zip_Code.prompt>
+<$client.env.FormField.a32_Required.prompt>
+<$client.env.FormField.a33_Beneficiary_Name.prompt>
+<$client.env.FormField.a34_Social_Security_Number.prompt>
+<$client.env.FormField.a35_Primary_or_Contigent_Beneficiary.prompt>
+<$client.env.FormField.a36_Relationship.prompt>
+<$client.env.FormField.a37_Date_of_Birth.prompt>
+<$client.env.FormField.a38_Street_Address.prompt>
+<$client.env.FormField.a38_Street_Address2.prompt>
+<$client.env.FormField.a39_City.prompt>
+<$client.env.FormField.a40_State.prompt>
+<$client.env.FormField.a41_Zip_Code.prompt>
+<$client.env.FormField.a42_Required.prompt>
+<$client.env.FormField.a43_Participants_Signature.prompt>
+<$client.env.FormField.a44_Date.prompt>
+<$client.env.FormField.a45_Participants_Spouse.prompt>
+<$client.env.FormField.a46_Date.prompt>
+<$client.env.FormField.a47_Plan_Representative_or_Notary_Public.prompt>
+<$client.env.FormField.a48_Date.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
 <main class="container-fluid">
   <header class="row box bg-gray vspace">
     <div class="col-lg-12 text-center">
@@ -56,11 +195,11 @@
     </div>
     <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 border-bottom border-right">
       Zip Code
-      <$client.env.FormField.07_Zip_Code.HTML>
+      <$client.env.FormField.a07_Zip_Code.HTML>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 border-bottom">
       Date of Birth
-      <$client.env.FormField.08_Date_of_Birth.HTML>
+      <$client.env.FormField.a08_Date_of_Birth.HTML>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 border-bottom border-right">
       Daytime Phone Number
@@ -382,3 +521,54 @@
     </div>
   </div>
 </main>
+
+
+
+
+<$client.env.FormField.SignatureVerification.HTML>
+<$client.env.FormField.SignatureVerification2.HTML>
+</form>
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonComplete").addClass("lifesuite__button primary");
+        $('#buttonComplete').attr('id','ButtonComplete');
+       document.getElementById('formButtons').style.display = "block";
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+$(document).ready(function() {
+    $('[data-checkbox-group]').on('click', function() {
+      var groupId = $(this).data('checkbox-group');
+      $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+      $(this).prop('checked', true);
+    });
+});
+</SCRIPT>
