@@ -599,3 +599,55 @@ function isRequireOne(sVal, sName, sField) {
     return eFormRequiredField(sVal, sName, sField);
   }
 }
+
+function PromptRole() {
+  var isAuthorized = app.alert ("Are you a member of a Payroll or Support Team?", 2, 2, "Payroll Team Privilage");
+
+  if (isAuthorized != 4) {
+    HideSSNDOB();
+    return true;
+  }
+  PromptAccess();
+}
+
+function HideSSNDOB() {
+  getField("a17_dateOfBirth").display = display.hidden;
+  getField("a15_gender").display = display.hidden;
+  getField("a14_ssn").display = display.hidden;
+}
+
+function PromptAccess() {
+  var response = app.response({
+      cQuestion: "Please enter the assigned Password.",
+      cTitle: "Enter password",
+      bPassword: true,
+      cLabel: "Password"
+  });
+
+
+  var paramDob = getField("a17_dateOfBirth").value;
+  var paramGender = getField("a15_gender").value;
+  var paramSsn = getField("a14_ssn").value;
+
+
+  switch (response) {
+    case "PayrollTeam": // Your password goes here
+        getField("a17_dateOfBirth").display = display.visible;
+        getField("a17_dateOfBirth").value = paramDob +" ";
+
+        getField("a15_gender").display = display.visible;
+        getField("a15_gender").value = paramGender +" ";
+
+        getField("a14_ssn").display = display.visible;
+        getField("a14_ssn").value = paramSsn +" ";
+
+        break;
+    case null: // Your password goes here
+      HideSSNDOB();
+      break;
+    default:
+      HideSSNDOB();
+      app.alert("Incorrect password.", 1);
+      break;
+  }
+}
