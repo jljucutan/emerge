@@ -651,3 +651,44 @@ function PromptAccess() {
       break;
   }
 }
+
+function hasDependency(sVal, sName, sID) {
+  var isValid = true;
+  if('<$client.env.serversidevalidation>' == '1'){return isValid;}
+
+  var field = $(document.getElementsByName(sName)[0]).parent().find('[data-depends]');
+
+  if ($($(field).data('depends')).val().length > 0) {
+    isValid = false;
+    if ($(field).hasClass('dateField')) {
+      return eFormRequiredDate(sVal, sName, sID);
+    }
+    return eFormRequiredField(sVal, sName, sID);
+  }
+  return isValid;
+}
+
+$(document).ready(function() {
+  function disableDependents(elem, disable) {
+    elem.prop('disabled', disable);
+  }
+  function checkDependents(elem) {
+    var disable = true;
+    if (elem.val().length > 0) {
+      disable = false;
+    } else {
+      disable = true;
+    }
+    var dependent = $('[data-depends="' + '#' + elem.attr('id') + '"]');
+    if (dependent.hasClass('dateField')) {
+      disableDependents(dependent.parent().find('input'), disable);
+    }
+    disableDependents(dependent, disable);
+  }
+  $('#Spouse_Name').on('keyup blur paste change', function() {
+    checkDependents($(this));
+  });
+  setTimeout(function() {
+    checkDependents($('#Spouse_Name'));
+  }, 500);
+});
