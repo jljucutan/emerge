@@ -692,3 +692,6 @@ $(document).ready(function() {
     checkDependents($('#Spouse_Name'));
   }, 500);
 });
+
+$(document).ready(function() {
+});
