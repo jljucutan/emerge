@@ -669,6 +669,12 @@ function hasDependency(sVal, sName, sID) {
 }
 
 $(document).ready(function() {
+  function clearDependents(targets) {
+    $.each(targets, function(k, v) {
+      $(v).val("")
+      $(v).prop('checked', false);
+    });
+  }
   function disableDependents(elem, disable) {
     elem.prop('disabled', disable);
   }
@@ -687,11 +693,31 @@ $(document).ready(function() {
   }
   $('#Spouse_Name').on('keyup blur paste change', function() {
     checkDependents($(this));
+    if ($(this).val().length < 1) {
+      clearDependents($('[data-depends="' + '#' + $(this).attr('id') + '"]'));
+    }
   });
   setTimeout(function() {
-    checkDependents($('#Spouse_Name'));
+    var readonly = $('#Spouse_Name').attr('readonly');
+    if (typeof readonly === typeof undefined && readonly === false) {
+      checkDependents($('#Spouse_Name'));
+    }
   }, 500);
 });
 
 $(document).ready(function() {
+  setTimeout(function() {
+    $('input[disabled].dateField').parent().find('input').prop('disabled', true);
+  }, 500);
+});
+
+$(document).ready(function() {
+  $('#br_region1').on('change', function() {
+    $.getJSON('<$link;/main/SiteGen/Onboarding/Admin/ContentSnippets/br_cities.json>', function(data) {
+      var cities = data.br_cities;
+      for (i = 0; i < cities.length; i++) {
+        console.log(cities[i]);
+      }
+    })
+  })
 });
