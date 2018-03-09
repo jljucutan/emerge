@@ -712,12 +712,24 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  $('#br_region1').on('change', function() {
+  function populateCities(state_code) {
+    if (state_code === undefined) {return false;}
+    $('#spinner').fadeIn();
     $.getJSON('<$link;/main/SiteGen/Onboarding/Admin/ContentSnippets/br_cities.json>', function(data) {
-      var cities = data.br_cities;
-      for (i = 0; i < cities.length; i++) {
-        console.log(cities[i]);
-      }
-    })
+      var cities = data.br_cities[state_code];
+      $('#br_city').html("");
+      $('#br_city').append($('<option/>'));
+      $.each(cities, function(k, v) {
+        $('#br_city').append(
+          $('<option/>').val(v).append(v)
+        );
+      });
+    });
+    $('#spinner').fadeOut();
+  }
+  populateCities($('#br_region1').val());
+  $('#br_region1').on('change', function() {
+    var state_code = $(this).val();
+    populateCities(state_code);
   })
 });
