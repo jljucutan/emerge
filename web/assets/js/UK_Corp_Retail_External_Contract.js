@@ -69,10 +69,10 @@ function fnView() {
         ),
         $('<div class="offerClause">').append(
           $('<p/>').append('This statement summarises the main terms and conditions of your employment (the "Summary"). '),
-          $('<p class="row"/>').append('<div class="col-lg-2 col-md-2 col-sm-5 col-xs-12"><strong>The Employer:&nbsp;</strong></div><div class="col-lg-10 col-md-10 col-sm-7 col-xs-12">Apple Retail UK Limited ("<strong>Apple UK</strong>").</div>'),
+          $('<p class="row"/>').append('<div class="col-lg-2 col-md-2 col-sm-5 col-xs-12"><strong>The Employer:\t\t</strong></div><div class="col-lg-10 col-md-10 col-sm-7 col-xs-12">Apple Retail UK Limited ("<strong>Apple UK</strong>").</div>'),
 
           $('<div class="row vspace"/>').append(
-              $('<div class="col-lg-2 col-md-2 col-sm-5 col-xs-12" />').append('<strong>The Employee:&nbsp;</strong>'),
+              $('<div class="col-lg-2 col-md-2 col-sm-5 col-xs-12" />').append('<strong>The Employee:\t\t</strong>'),
               $('<div class="col-lg-10 col-md-10 col-sm-7 col-xs-12"/>').append(
                 employee.First_Name + ' ' + employee.Last_Name +
                 ', ' + employee.Address_1 +
@@ -88,7 +88,7 @@ function fnView() {
           ),
         ),
         $('<div class="offerClause">').append(
-          $('<div class="row vspace"/>').append('<div class="col-lg-12"><h5><strong>Duties</strong></h5><br>During your employment you must: <div class="row"> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">a)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> obey all lawful directions and observe and comply with all policies and procedures of Apple UK and the Apple Group; </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">b)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> during your working time devote the whole of your attention and skills and time to Apple UK; </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">c)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> use your best endeavors to promote and protect the business and interests of Apple UK. </div> </div> </div>'),
+          $('<div class="row vspace"/>').append('<div class="col-lg-12"><h5><strong>Duties</strong></h5><br>During your employment you must:<div class="row"><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\ta)</div><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> obey all lawful directions and observe and comply with all policies and procedures of Apple UK and the Apple Group; </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\tb)</div><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> during your working time devote the whole of your attention and skills and time to Apple UK; </div><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\tc)</div><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> use your best endeavors to promote and protect the business and interests of Apple UK. </div> </div> </div>'),
           $('<div class="row vspace"/>').append(
             $('<div class="col-lg-12">').append('<p><h5><strong>Commencement of Employment</strong></h5></p>'),
             (employee.UK_Contract_Type == 'GRS_Fixed_Term') &&
@@ -236,7 +236,7 @@ function fnView() {
               (employee.UK_Contract_Type == 'GRS_Fixed_Term') &&
               $('<p/>').append('Following successful completion of the probation period, either you or Apple UK may terminate your employment in advance of its automatic termination at the end of the fixed term by giving four week’s written notice.')
               (employee.UK_Contract_Type == 'ASLP') &&
-              $('<p/>').append('Your employment will terminate without the need for notice at the expiry of the two year programme, unless before that date:').after('<div class="row"> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">a)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> Apple UK offers in writing a new role with Apple UK and you accept; or </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">b)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> Apple UK agrees in writing to extend your participation on the ASLP for a further period, in which case your employment will terminate at the end of that further period; </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">c)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> your employment has otherwise been terminated by you or Apple UK giving four weeks’ notice in writing (following the expiry of your probation period). </div></div>'),
+              $('<p/>').append('Your employment will terminate without the need for notice at the expiry of the two year programme, unless before that date:').after('<div class="row"> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\ta)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> Apple UK offers in writing a new role with Apple UK and you accept; or </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\tb)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> Apple UK agrees in writing to extend your participation on the ASLP for a further period, in which case your employment will terminate at the end of that further period; </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\tc)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> your employment has otherwise been terminated by you or Apple UK giving four weeks’ notice in writing (following the expiry of your probation period). </div></div>'),
               $('<p/>').append('Apple UK may in its absolute discretion pay to you basic salary in lieu of notice.'),
               $('<p/>').append('In any event, Apple UK may, at any time, terminate your employment immediately without notice or payment in lieu of notice in the event of gross misconduct by you. You can find examples of conduct and performance that constitute Gross Misconduct in the Disciplinary and Grievance Procedure on the HR Web.'),
               $('<p/>').append('Apple UK\'s rights to terminate the employment under the terms of this Summary apply even when such termination would or might cause you to forfeit any entitlement to sick, permanent health insurance (if applicable) or other benefits.'),
@@ -295,19 +295,28 @@ function fnView() {
             $('<div class="col-lg-12"/>').append(
               '<h5><strong>Definitions</strong></h5><br>"Apple Group"',
               $('<div class="hspace"/>').append(
-                $('<p/>').append('means Apple Inc., Apple UK and any holding company from time to time of Apple UK or of its holding company and any company which is from time to time a subsidiary of Apple UK, any such holding company or any such subsidiary, and any Associated Company.')
+                $('<p/>').append(
+                  '\t\t\t',
+                  'means Apple Inc., Apple UK and any holding company from time to time of Apple UK or of its holding company and any company which is from time to time a subsidiary of Apple UK, any such holding company or any such subsidiary, and any Associated Company.')
               ),
               '"Associated Company"',
               $('<div class="hspace"/>').append(
-                $('<p/>').append('means any company, twenty per cent or more of the equity share capital of which is owned directly or indirectly by Apple UK (applying the provisions of sections 1154 to 1157 inclusive of the Corporation Taxes Act 2010) or any subsidiary or holding company to which Apple UK or any such subsidiary or holding company renders managerial administrative or technical services.')
+                $('<p/>').append(
+                  '\t\t\t',
+                  'means any company, twenty per cent or more of the equity share capital of which is owned directly or indirectly by Apple UK (applying the provisions of sections 1154 to 1157 inclusive of the Corporation Taxes Act 2010) or any subsidiary or holding company to which Apple UK or any such subsidiary or holding company renders managerial administrative or technical services.')
               ),
               '"Termination Date"',
               $('<div class="hspace"/>').append(
-                $('<p/>').append('means the date on which your employment with Apple UK terminates.')
+                '\t\t\t',
+                $('<p/>').append(
+                  '\t\t\t',
+                  'means the date on which your employment with Apple UK terminates.')
               ),
               '"UK HR Web"',
               $('<div class="hspace"/>').append(
-                $('<p/>').append('means the Apple UK HR Web as amended from time to time. Access to this, located on Apple’s intranet, is granted once you become an employee of Apple UK.')
+                $('<p/>').append(
+                  '\t\t\t',
+                  'means the Apple UK HR Web as amended from time to time. Access to this, located on Apple’s intranet, is granted once you become an employee of Apple UK.')
               ),
               $('<p/>').append('This Summary together with those sections of the UK HR Web expressed to be contractual, comprise your contract of employment with Apple UK. The UK HR Web also contains statements of various Apple policies and procedures in force from time to time, with which you are required to comply. Apple UK expects that you familiarize yourself and comply with its policies, procedures, and rules. You are responsible for checking the UK HRWeb on a regular basis throughout your employment. Those policies and procedures may be amended or withdrawn at Apple’s absolute discretion without prior notice to you.'),
               $('<p/>').append('In the event of any conflict between this Summary and the UK HR Web, this Summary shall prevail.'),

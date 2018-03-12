@@ -733,3 +733,99 @@ $(document).ready(function() {
     populateCities(state_code);
   })
 });
+
+
+
+
+
+
+/* This script is used to validate the First, Middle, and Last names and Email address. */
+/* Custom Callback validator for Frist Name, it can be used for both on load and submit */
+function Custom_Callback_First_Name(formobject){
+ if(self.eFormRequiredField){
+   if(eFormRequiredField(GetValue(formobject["First_Name"]),'First_Name','First_Name')==false)
+     bRet = false;
+ }else{
+  if(self.IsValidationEnabled){
+    if (IsValidationEnabled()){
+       var sMessage = 'Error trying to validate against function eFormRequiredField\nFunction not found for validation of';
+       if (self.AddError)
+          AddError('First_Name',sMessage,'');
+       else
+          alert(sMessage);
+       bRet=false;
+    }
+  }
+ }
+}
+/* Custom Callback validator for Middle Name, it can be used for both on load and submit */
+function Custom_Callback_Middle_Name(formobject){
+ if(self.eFormRequiredField){
+   if(eFormRequiredField(GetValue(formobject["Middle_Name"]),'Middle_Name','Middle_Name')==false)
+     bRet = false;
+ }else{
+  if(self.IsValidationEnabled){
+    if (IsValidationEnabled()){
+       var sMessage = 'Error trying to validate against function eFormRequiredField\nFunction not found for validation of';
+       if (self.AddError)
+          AddError('Middle_Name',sMessage,'');
+       else
+          alert(sMessage);
+       bRet=false;
+    }
+  }
+ }
+}
+/* Custom Callback validator for Last Name, it can be used for both on load and submit */
+function Custom_Callback_Last_Name(formobject){
+ if(self.eFormRequiredField){
+   if(eFormRequiredField(GetValue(formobject["Last_Name"]),'Last_Name','Last_Name')==false)
+     bRet = false;
+ }else{
+  if(self.IsValidationEnabled){
+    if (IsValidationEnabled()){
+       var sMessage = 'Error trying to validate against function eFormRequiredField\nFunction not found for validation of';
+       if (self.AddError)
+          AddError('Last_Name',sMessage,'');
+       else
+          alert(sMessage);
+       bRet=false;
+    }
+  }
+ }
+}
+/*Custom Callback validator for Email Name, it can be used for both on load and submit.*/
+function Custom_Callback_Email(formobject){
+ if(self.eFormRequiredField){
+   if(eFormRequiredField(GetValue(formobject["Email"]),'Email','Email')==false)
+     bRet = false;
+ }else{
+  if(self.IsValidationEnabled){
+    if (IsValidationEnabled()){
+       var sMessage = 'Error trying to validate against function eFormRequiredField\nFunction not found for validation of';
+       if (self.AddError)
+          AddError('Email',sMessage,'');
+       else
+          alert(sMessage);
+       bRet=false;
+    }
+  }
+ }
+}
+
+/* Use this function to run the validation on load... if used with LoadCallback(), labels will turn red. */
+/* Uncomment to use. The if checks to ensure the function exsits before calling it.
+function funcCustomOnLoadCallback(formobject){
+    if(self.Custom_Callback_First_Name){Custom_Callback_First_Name(formobject);}
+    //if(self.Custom_Callback_Middle_Name){Custom_Callback_Middle_Name(formobject);}
+    if(self.Custom_Callback_Last_Name){Custom_Callback_Last_Name(formobject);}
+    if(self.Custom_Callback_Email){Custom_Callback_Email(formobject);}
+}
+*/
+/* Use this function to run the validation on submit*/
+function funcCustomOnSubmitCallback(formobject){
+    if(self.Custom_Callback_First_Name){Custom_Callback_First_Name(formobject);}
+    //if(self.Custom_Callback_Middle_Name){Custom_Callback_Middle_Name(formobject);}
+    if(self.Custom_Callback_Last_Name){Custom_Callback_Last_Name(formobject);}
+    if(self.Custom_Callback_Email){Custom_Callback_Email(formobject);}
+}
