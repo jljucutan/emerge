@@ -1,0 +1,474 @@
+<script id="template" type="x-tmpl-mustache">
+var employee = {
+	    // Dates
+	    Start_Date: "<$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tEventDates_2.Value))>','%A, %B %d, %Y'))>",
+	    Hire_Date: "<$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.Hire_Date))>','%A, %B %d, %Y'))>",
+	    Termination_Date: "<$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.TerminationDate))>','%A, %B %d, %Y'))>",
+	    Date_Of_Birth: "<$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.DOB))>','%A, %B %d, %Y'))>",
+	    Today: "<$client.env.eval(date.now('%B %d, %Y'))>",
+
+	    // Events
+	    Location: "<$client.tEventCategories_11.Code>",
+	    Hire_Type: "<$client.tEventCategories_22.Code>",
+	    Hire_Category: "<$client.tEventCategories_23.Code>",
+	    Commitments: "<$client.tEventCategories_24.Code>",
+	    Registered: "<$client.tEventCategories_25.Code>",
+	    Role_Type: "<$client.tEventCategories_26.Code>",
+	    Manager: "<$client.tEventManagers_1.First_Name> <$client.tEventManagers_1.Last_Name>",
+	    HR_Ops: "<$client.tEventManagers_9.First_Name> <$client.tEventManagers_9.Last_Name>",
+	    Requestor: "<$client.tEventManagers_10.First_Name> <$client.tEventManagers_10.Last_Name>",
+	    New_Joiner_Liaison: "<$client.tEventManagers_11.First_Name> <$client.tEventManagers_11.Last_Name>",
+
+
+	    // EUP
+	    First_Name: "<$client.tForWhomUserInfo.First_Name>",
+	    Middle_Name: "<$client.tForWhomUserInfo.Middle_Name>",
+	    Last_Name: "<$client.tForWhomUserInfo.Last_Name>",
+	    Employee_ID: "<$client.tForWhomUserInfo.Employee_ID>",
+
+	    Business_First_Name: "<$client.tForWhomUserInfo.Preferred_FName>",
+	    Business_Last_Name: "<$client.tForWhomUserInfo.Preferred_LName>",
+	    Honors: "<$client.tForWhomUserInfo.Honors>",
+	    SSN: "<$client.tForWhomUserInfo.SSNO>",
+
+	    Address1: "<$client.tForWhomUserInfo.Address1>",
+	    Address2: "<$client.tForWhomUserInfo.Address2>",
+	    City: "<$client.tForWhomUserInfo.City>",
+	    State: "<$client.tForWhomUserInfo.State>",
+	    Zip: "<$client.tForWhomUserInfo.Zip>",
+	    Country: "<$client.tForWhomUserInfo.Country>",
+	    Primary_Phone: "<$client.tForWhomUserInfo.Phone>",
+
+	    Sensitive_Hire: "<$client.tForWhomUserInfo.Sensitive_Hire>",
+	    Earliest_Date_Hri_Entry: "<$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.Earliest_Date_Hri_Entry))>','%A, %B %d, %Y'))>",
+	    SNOW_Case_ID: "<$client.tForWhomUserInfo.SNOW_Case_ID>",
+	    Legal_Entity: "<$client.tForWhomUserInfo.Legal_Entity_description>",
+	    Division: "<$client.tForWhomUserInfo.Division>",
+	    Pay_Company: "<$client.tForWhomUserInfo.Pay_Company>",
+	    Unit: "<$client.tForWhomUserInfo.Unit>",
+	    Area: "<$client.tForWhomUserInfo.Area>",
+	    Sector: "<$client.tForWhomUserInfo.Sector>",
+	    Market: "<$client.tForWhomUserInfo.Market>",
+	    Segment: "<$client.tForWhomUserInfo.Segment>",
+	    Function: "<$client.tForWhomUserInfo.Function>",
+	    Location_Code: "<$client.tForWhomUserInfo.Location_Code>",
+	    Location_Description: "<$client.tForWhomUserInfo.Location_Description>",
+	    Location_City: "<$client.tForWhomUserInfo.Location_City>",
+	    OU_Code: "<$client.tForWhomUserInfo.OU_Code>",
+	    Branch_Code: "<$client.tForWhomUserInfo.Branch_Code>",
+	    Dual_Employee: "<$client.tForWhomUserInfo.Dual_Employee>",
+	    Equity_Research: "<$client.tForWhomUserInfo.Equity_Research>",
+	    Mortgage_Specialist: "<$client.tForWhomUserInfo.Mortgage_Specialist>",
+	    Business_Title: "<$client.tForWhomUserInfo.Business_Title>",
+	    Rank: "<$client.tForWhomUserInfo.Rank_desc>",
+	    Brass_Ring_Key: "<$client.tForWhomUserInfo.Tracking_Code>",
+	    Role_Job_Code: "<$client.tForWhomUserInfo.Job_Template_Code>",
+	    Role_Job_Description: "<$client.tForWhomUserInfo.Job_Template_Name>",
+	    FLSA_Status: "<$client.tForWhomUserInfo.FLSA_Status>",
+	    Rate_of_Pay: "<$client.tForWhomUserInfo.Rate_Pay>",
+	    Standard_Weekly_Hours: "<$client.tForWhomUserInfo.Standard_Hours>",
+	    Base_Salary: "<$client.tForWhomUserInfo.Salary_Base>",
+	    Localization_Country: "<$client.tForWhomUserInfo.Localization_Country>",
+	    Revision_Supersedes: "<$client.tForWhomUserInfo.Revision_Supersedes>",
+
+	    Sign_On: "<$client.tForWhomUserInfo.SignOn>",
+	    Sign_On_Year: "<$client.tForWhomUserInfo.SignOn_Yr>",
+	    Sign_On_Amount: "<$client.tForWhomUserInfo.SignOn_Amt>",
+	    Sign_On_Currency: "<$client.tForWhomUserInfo.SignOn_Amt_Currency>",
+	    Sign_On_EOP: "<$client.tForWhomUserInfo.SignOn_EOP>",
+	    Sign_On_EOP_Year: "<$client.tForWhomUserInfo.SignOn_EOP_Yr>",
+	    Sign_On_EOP_Amount: "<$client.tForWhomUserInfo.SignOn_EOP_Amt>",
+	    Sign_On_EOP_Currency: "<$client.tForWhomUserInfo.SignOn_EOP_Currency>",
+
+	    Sign_On_DCCP: "<$client.tForWhomUserInfo.SignOn_DCCP>",
+	    Sign_On_DCCP_Currency: "<$client.tForWhomUserInfo.SignOn_DCCP_Currency>",
+	    Sign_On_DCCP_Amount: "<$client.tForWhomUserInfo.SignOn_DCCP_Amt>",
+
+	    Sign_On_Lieu_of_Bonus: "<$client.tForWhomUserInfo.SignOnInLieuBon>",
+	    SOILOB_Year: "<$client.tForWhomUserInfo.SignOnInLieuBon_Yr>",
+	    SOILOB_Amount: "<$client.tForWhomUserInfo.SignOnInLieuBon_Amt>",
+	    SOILOB_DCCP_Mix: "<$client.tForWhomUserInfo.SignOnInLieuBon_EOPDCCPMix>",
+	    SOILOB_Amount_2: "<$client.tForWhomUserInfo.SignOnInLieuBon_Amt2>",
+	    SOILOB_Amount_3: "<$client.tForWhomUserInfo.SignOnInLieuBon_Amt3>",
+
+	    Supplemental_Cash: "<$client.tForWhomUserInfo.SuppCash>",
+	    Supplemental_Cash_Amount: "<$client.tForWhomUserInfo.SuppCash_Amount>",
+
+	    Employee_Transition_Program: "<$client.tForWhomUserInfo.Empl_Trns_Prg>",
+	    ETP_Amount: "<$client.tForWhomUserInfo.Empl_Trns_Prg_Amt>",
+	    ETP_Term: "<$client.tForWhomUserInfo.Empl_Trns_Prg_Term>",
+
+	    FA_Paid_Sign_On: "<$client.tForWhomUserInfo.FA_Paid_Sign-On>",
+	    FA_Sign_On_Year: "<$client.tForWhomUserInfo.SignOn_FA_PD_Yr>",
+	    FA_Sign_On_Amount: "<$client.tForWhomUserInfo.SignOn_FA_PD_Amt>",
+	    FA_Sign_On_Currency: "<$client.tForWhomUserInfo.SignOn_FA_PD_Currency>",
+	    FA_Name: "<$client.tForWhomUserInfo.SignOn_FA_PD_Name>",
+
+	    Buy_Out_Stock_Options: "<$client.tForWhomUserInfo.Buy_Out_Stock_Options>",
+	    Buy_Out_Amount: "<$client.tForWhomUserInfo.BuyOut_Options_Amount>",
+	    Buy_Out_Sign_On_Year: "<$client.tForWhomUserInfo.BuyOut_Options_Year>",
+
+	    Supplemental_Comp_1: "<$client.tForWhomUserInfo.Supp_Comp_1>",
+	    Supp_Comp_Amount_1: "<$client.tForWhomUserInfo.Supp_Comp_1_Amt>",
+	    Supp_Comp_Gross_Net_1: "<$client.tForWhomUserInfo.Supp_Comp_1_GrossNet>",
+	    Supp_Comp_FA_Name_1: "<$client.tForWhomUserInfo.Supp_Comp_1_FA_Name>",
+	    Supp_Comp_FA_ID_1: "<$client.tForWhomUserInfo.Supp_Comp_1_FA_ID>",
+	    Supp_Comp_FA_GPN_1: "<$client.tForWhomUserInfo.Supp_Comp_1_FA_GPN>",
+	    Supplemental_Comp_2: "<$client.tForWhomUserInfo.Supp_Comp_2>",
+	    Supp_Comp_Amount_2: "<$client.tForWhomUserInfo.Supp_Comp_2_Amt>",
+	    Supp_Comp_Gross_Net_2: "<$client.tForWhomUserInfo.Supp_Comp_2_GrossNet>",
+	    Supp_Comp_FA_Name_2: "<$client.tForWhomUserInfo.Supp_Comp_2_FA_Name>",
+	    Supp_Comp_FA_ID_2: "<$client.tForWhomUserInfo.Supp_Comp_2_FA_ID>",
+	    Supp_Comp_FA_GPN_2: "<$client.tForWhomUserInfo.Supp_Comp_2_FA_GPN>",
+	    Supplemental_Comp_3: "<$client.tForWhomUserInfo.Supp_Comp_3>",
+	    Supp_Comp_Amount_3: "<$client.tForWhomUserInfo.Supp_Comp_3_Amt>",
+	    Supp_Comp_Gross_Net_3: "<$client.tForWhomUserInfo.Supp_Comp_3_GrossNet>",
+	    Supp_Comp_FA_Name_3: "<$client.tForWhomUserInfo.Supp_Comp_3_FA_Name>",
+	    Supp_Comp_FA_ID_3: "<$client.tForWhomUserInfo.Supp_Comp_3_FA_ID>",
+	    Supp_Comp_FA_GPN_3: "<$client.tForWhomUserInfo.Supp_Comp_3_FA_GPN>",
+	    Supplemental_Comp_4: "<$client.tForWhomUserInfo.Supp_Comp_4>",
+	    Supp_Comp_Amount_4: "<$client.tForWhomUserInfo.Supp_Comp_4_Amt>",
+	    Supp_Comp_Gross_Net_4: "<$client.tForWhomUserInfo.Supp_Comp_4_GrossNet>",
+	    Supp_Comp_FA_Name_4: "<$client.tForWhomUserInfo.Supp_Comp_4_FA_Name>",
+	    Supp_Comp_FA_ID_4: "<$client.tForWhomUserInfo.Supp_Comp_4_FA_ID>",
+	    Supp_Comp_FA_GPN_4: "<$client.tForWhomUserInfo.Supp_Comp_4_FA_GPN>",
+	    Supplemental_Comp_5: "<$client.tForWhomUserInfo.Supp_Comp_5>",
+	    Supp_Comp_Amount_5: "<$client.tForWhomUserInfo.Supp_Comp_5_Amt>",
+	    Supp_Comp_Gross_Net_5: "<$client.tForWhomUserInfo.Supp_Comp_5_GrossNet>",
+	    Supp_Comp_FA_Name_5: "<$client.tForWhomUserInfo.Supp_Comp_5_FA_Name>",
+	    Supp_Comp_FA_ID_5: "<$client.tForWhomUserInfo.Supp_Comp_5_FA_ID>",
+	    Supp_Comp_FA_GPN_5: "<$client.tForWhomUserInfo.Supp_Comp_5_FA_GPN>",
+	    Supplemental_Comp_6: "<$client.tForWhomUserInfo.Supp_Comp_6>",
+	    Supp_Comp_Amount_6: "<$client.tForWhomUserInfo.Supp_Comp_6_Amt>",
+	    Supp_Comp_Gross_Net_6: "<$client.tForWhomUserInfo.Supp_Comp_6_GrossNet>",
+	    Supp_Comp_FA_Name_6: "<$client.tForWhomUserInfo.Supp_Comp_6_FA_Name>",
+	    Supp_Comp_FA_ID_6: "<$client.tForWhomUserInfo.Supp_Comp_6_FA_ID>",
+	    Supp_Comp_FA_GPN_6: "<$client.tForWhomUserInfo.Supp_Comp_6_FA_GPN>",
+
+	    NBSA: "<$client.tForWhomUserInfo.NBSA>",
+	    NBSA_Type: "<$client.tForWhomUserInfo.NBSA_Type>",
+	    Firm_Pay_Amount: "<$client.tForWhomUserInfo.NBSA_Firm_Pay_Amt>",
+
+	    FA_Paid_Amount_1: "<$client.tForWhomUserInfo.NBSA_FA_Paid_Amt_1>",
+	    FA_Name_1: "<$client.tForWhomUserInfo.NBSA_FA_Name_1>",
+	    FA_ID_1: "<$client.tForWhomUserInfo.NBSA_FA_ID_1>",
+	    FA_GPN_1: "<$client.tForWhomUserInfo.NBSA_FA_GPN_1>",
+	    FA_Paid_Amount_2: "<$client.tForWhomUserInfo.NBSA_FA_Paid_Amt_2>",
+	    FA_Name_2: "<$client.tForWhomUserInfo.NBSA_FA_Name_2>",
+	    FA_ID_2: "<$client.tForWhomUserInfo.NBSA_FA_ID_2>",
+	    FA_GPN_2: "<$client.tForWhomUserInfo.NBSA_FA_GPN_2>",
+	    FA_Paid_Amount_3: "<$client.tForWhomUserInfo.NBSA_FA_Paid_Amt_3>",
+	    FA_Name_3: "<$client.tForWhomUserInfo.NBSA_FA_Name_3>",
+	    FA_ID_3: "<$client.tForWhomUserInfo.NBSA_FA_ID_3>",
+	    FA_GPN_3: "<$client.tForWhomUserInfo.NBSA_FA_GPN_3>",
+	    FA_Paid_Amount_4: "<$client.tForWhomUserInfo.NBSA_FA_Paid_Amt_4>",
+	    FA_Name_4: "<$client.tForWhomUserInfo.NBSA_FA_Name_4>",
+	    FA_ID_4: "<$client.tForWhomUserInfo.NBSA_FA_ID_4>",
+	    FA_GPN_4: "<$client.tForWhomUserInfo.NBSA_FA_GPN_4>",
+	    FA_Paid_Amount_5: "<$client.tForWhomUserInfo.NBSA_FA_Paid_Amt_5>",
+	    FA_Name_5: "<$client.tForWhomUserInfo.NBSA_FA_Name_5>",
+	    FA_ID_5: "<$client.tForWhomUserInfo.NBSA_FA_ID_5>",
+	    FA_GPN_5: "<$client.tForWhomUserInfo.NBSA_FA_GPN_5>",
+	    FA_Paid_Amount_6: "<$client.tForWhomUserInfo.NBSA_FA_Paid_Amt_6>",
+	    FA_Name_6: "<$client.tForWhomUserInfo.NBSA_FA_Name_6>",
+	    FA_ID_6: "<$client.tForWhomUserInfo.NBSA_FA_ID_6>",
+	    FA_GPN_6: "<$client.tForWhomUserInfo.NBSA_FA_GPN_6>",
+
+	    Total_Sal_FA: "<$client.tForWhomUserInfo.Salary_FA_plus_FirmPD>",
+	    Total_Percent_Firm_Paid: "<$client.tForWhomUserInfo.Total_Per_FirmPD>",
+	    Total_Percent_FA_Paid: "<$client.tForWhomUserInfo.Total_Per_FAPD>",
+
+	    Transfer_Benefit_Relocation: "<$client.tForWhomUserInfo.TrnsBenfReloc>",
+	    Relocation_Type: "<$client.tForWhomUserInfo.RelocationType>",
+	    Relocation_From: "<$client.tForWhomUserInfo.Relocation_From>",
+	    Relocation_To: "<$client.tForWhomUserInfo.Relocation_To>",
+	    Type_of_Lump_Sum: "<$client.tForWhomUserInfo.TypeOfLumpSum>",
+	    Lump_Sum_Payment_Amt: "<$client.tForWhomUserInfo.LumpSumPmtAmt>",
+	    Core_Relo_Benefits: "<$client.tForWhomUserInfo.Core_Relo_Benefits>",
+	    Overseas_Relo_Type: "<$client.tForWhomUserInfo.Overseas_Relo_Type>",
+	    Max_Reimbursement_Amt: "<$client.tForWhomUserInfo.WMA_Max_Reimb_Amt>",
+	    Temporary_housing_max_days: "<$client.tForWhomUserInfo.Temp_Housing_Max_Days>",
+	    Household_storage_goods_days: "<$client.tForWhomUserInfo.Household_Storage_Goods_days>",
+	    Days_of_Temp_Housing: "<$client.tForWhomUserInfo.Days_Temp_Housing>",
+	    Duplicate_Housing: "<$client.tForWhomUserInfo.Duplicate_Housing>",
+	    Household_Good_Shipment: "<$client.tForWhomUserInfo.Household_Goods_Ship>",
+	    Final_Move_Airfare_Type: "<$client.tForWhomUserInfo.Final_Move_Airfare_Type>",
+	    Final_Move_Airfare_For: "<$client.tForWhomUserInfo.Final_Move_Airfare_For>",
+	    Tax_Prep_Assist_1st_Year: "<$client.tForWhomUserInfo.Tax_Prep_Assis_1stYr>",
+	    Apartment_Finding_Assist: "<$client.tForWhomUserInfo.Apartment_Finding_Assist>",
+	    BVO_Home_Sale_Program: "<$client.tForWhomUserInfo.BVO_Home_Sale_Program>",
+	    Duplicate_housing: "<$client.tForWhomUserInfo.Duplicate_Housing_Coverage_Days>",
+	    Home_Purchase: "<$client.tForWhomUserInfo.Home_Purchase_Closing_Assist>",
+	    Lease_Cancellation: "<$client.tForWhomUserInfo.Lease_Cancellation>",
+	    Marketing_Assistance: "<$client.tForWhomUserInfo.Marketing_Assistance_Home_selling>",
+	    Miscellaneous_Expense: "<$client.tForWhomUserInfo.Misc_Exp_Allowance>",
+	    Allowance_Expense_Amount: "<$client.tForWhomUserInfo.Expense_Amt>",
+	    Rental_Finder_Fee: "<$client.tForWhomUserInfo.Rental_Finder_Fee_Cov>",
+	    Return_Trips: "<$client.tForWhomUserInfo.Return_Trip_Frmr_Resid>",
+	    Spouse_Career_Relo_Assist: "<$client.tForWhomUserInfo.Spouse_Prtner_Career_Relo_Assist>",
+	    Pet_Shipment_Reimb: "<$client.tForWhomUserInfo.PetShip_Reimbursement>",
+	    Home_Finding_Trip: "<$client.tForWhomUserInfo.Home_Finding_Trip>",
+
+	    Buy_Out_Stock_Apprec: "<$client.tForWhomUserInfo.BuyOut_Stk_Apr>",
+	    Buy_Out_Stock_Apprec_Amount: "<$client.tForWhomUserInfo.BuyOut_Stk_Apr_Amt>",
+	    Buy_Out_Stock_Apprec_Currency: "<$client.tForWhomUserInfo.Buy_Out_Stock_Apr_Curr>",
+	    Buy_Out_Stock_Apprec_Year: "<$client.tForWhomUserInfo.BuyOut_Stk_Apr_Year>",
+	    Buy_Out_Stock_Apprec_Comments: "<$client.tForWhomUserInfo.BuyOut_Stk_Aprc_Rights_Comments>",
+
+	    Sign_On_Stock_Apprec: "<$client.tForWhomUserInfo.SignOn_Stock_Apr>",
+	    Sign_On_Stock_Number_Options: "<$client.tForWhomUserInfo.SignOn_Stock_Apr_Rights_Nbr_Opts>",
+	    Sign_On_Stock_Apprec_Year: "<$client.tForWhomUserInfo.SignOn_Stk_Aprc_Year>",
+
+	    Special_Agreement: "<$client.tForWhomUserInfo.Special_Agreement>",
+	    Special_Agreement_Wording: "<$client.tForWhomUserInfo.Special_Agreement_Wording>",
+	    Additional_Vacation_Days: "<$client.tForWhomUserInfo.Addl_Vacation>",
+	    Number_of_Vacation_Days: "<$client.tForWhomUserInfo.Vacation_Days>",
+	    Special_Candidate_Instructions: "<$client.tForWhomUserInfo.Spec_Candidate_Instructions>",
+
+	    License_Requirement: "<$client.tForWhomUserInfo.License_requirement>",
+	    Licenses_series_transferring: "<$client.tForWhomUserInfo.License_Transfer>",
+	    License_Transfer_Completed_by: "<$client.tForWhomUserInfo.License_Transfer_completed_by>",
+	    NFA_Phase_1_Class_Start: "<$client.tForWhomUserInfo.NFA_Class_Start_Phase1>",
+	    NFA_Phase_2_Class_Start: "<$client.tForWhomUserInfo.NFA_Class_Start_Phase2>",
+	    Phase_I_Training_Weeks: "<$client.tForWhomUserInfo.Training_Weeks>",
+	    NFA_Exempt_Monthly_Salary: "<$client.tForWhomUserInfo.NFA_Exempt_Monthly_Salary>",
+	    Non_Solicit_Months: "<$client.tForWhomUserInfo.Non_Solicit_Months>",
+	    Notice_Period: "<$client.tForWhomUserInfo.Notice_Period>",
+	    iHIRE: "<$client.tForWhomUserInfo.iHire>",
+	    iHIRE_Referring_Employee: "<$client.tForWhomUserInfo.iHIRE_referring_employee>",
+	    UserType: "<$client.env.eval((url.forWhom!=account.userguid)?'Admin':'New Hire')>",
+
+			if_has_notices_text: <$client.env.eval((client.tForWhomUserInfo.Notices_Text != null) ? 'true' : 'false')>,
+			if_associate_director_non_officer_not_wma: ('<$client.tForWhomUserInfo.Rank_desc>' == 'Associate Director' || '<$client.tForWhomUserInfo.Rank_desc>' == 'Non-Officer' || '<$client.tForWhomUserInfo.Rank_desc>' == 'Employee') && ('<$client.tForWhomUserInfo.Division>' != 'WMA' || '<$client.tForWhomUserInfo.Division>' != 'Wealth Management Americas') ? true : false,
+			if_guarantee_year_1: <$client.env.eval(client.tForWhomUserInfo.GTE_Year1 != null ? 'true' : 'false')>,
+			if_managing_or_executive_director: ('<$client.tForWhomUserInfo.Rank_desc>' == 'Managing Director' || '<$client.tForWhomUserInfo.Rank_desc>' == 'Executive Director') ? true : false,
+			if_director : ('<$client.tForWhomUserInfo.Rank_desc>' == 'Director') ? true : false,
+			if_ib_or_wma_or_gam_and_not_director_executive_managing_director:  (('<$client.tForWhomUserInfo.Division>' == 'IB' || '<$client.tForWhomUserInfo.Division>' == 'Investment Bank' || '<$client.tForWhomUserInfo.Division>' == 'WMA' || '<$client.tForWhomUserInfo.Division>' == 'Wealth Management Americas' || '<$client.tForWhomUserInfo.Division>' == 'GAM' || '<$client.tForWhomUserInfo.Division>' == 'Asset Management' || '<$client.tForWhomUserInfo.Division>' == 'Corporate Center') && (('<$client.tForWhomUserInfo.Legal_Entity>' != '2468') && ('<$client.tForWhomUserInfo.Rank_desc>' != 'Director' || '<$client.tForWhomUserInfo.Rank_desc>' != 'Executive Director' || '<$client.tForWhomUserInfo.Rank_desc>' != 'Managing Director')))? true : false,
+			if_gam_and_director_executive_managing_director: (('<$client.tForWhomUserInfo.Legal_Entity>' == '2468') && ('<$client.tForWhomUserInfo.Rank_desc>' == 'Director' || '<$client.tForWhomUserInfo.Rank_desc>' == 'Executive Director' || '<$client.tForWhomUserInfo.Rank_desc>' == 'Managing Director')) ? true : false,
+			if_licensing_required:  (('<$client.tEventCategories_25.Code>' == 'Yes') && ('<$client.env.eval(client.tForWhomUserInfo.License_requirement != null ? 1 : 0)>' == 1)) ? true : false,
+			if_license_requirement: (('<$client.tEventCategories_25.Code>' == 'No') && ('<$client.env.eval(client.tForWhomUserInfo.License_requirement != null ? 1 : 0)>' == 1)) ? true : false,
+			if_license_requirement_only: <$client.env.eval((client.tForWhomUserInfo.License_requirement != null) ? 'true' : 'false')>,
+			if_license_requirement_null: (('<$client.tEventCategories_25.Code>' == 'No') && ('<$client.env.eval(client.tForWhomUserInfo.License_requirement == null ? 1 : 0)>' == 1)) ? true : false,
+			if_not_wma: ("<$client.tForWhomUserInfo.Division>" != "WMA" || "<$client.tForWhomUserInfo.Division>" != "Wealth Management Americas") ? true : false,
+			if_license_contains_2706_2707: /2706|2707/.test("<$client.tForWhomUserInfo.License_requirement>"),
+			if_equity_research: <$client.env.eval(client.tForWhomUserInfo.Equity_Research != null ? 'true' : 'false')>,
+			if_ccs_and_managing_director: (('<$client.tForWhomUserInfo.Area>' == 'CCS') && '<$client.tForWhomUserInfo.Rank_desc>' == 'Managing Director') ? 90 : 60,
+			if_flsa_exempt: ('<$client.tForWhomUserInfo.FLSA_Status>' == 'Exempt') ? 'base salary' : '',
+			if_flsa_non_exempt: ('<$client.tForWhomUserInfo.FLSA_Status>' == 'Non-Exempt') ? 'base compensation' : ''
+	};
+
+
+
+
+<p class="text-center"><strong><u>NOTICE OF TERMINATION, CONFIDENTIALITY AND NON-SOLICITATION AND OTHER EMPLOYMENT TERMS ADDENDUM</u></strong></p>
+{{ #if_associate_director_non_officer_not_wma }}
+	<p>
+		<strong>
+			<u>Notice of Termination</u>
+		</strong><br>
+		You agree to provide the Firm with reasonable and customary prior written notice of your intent to terminate your employment with the Firm (the ‘Notice Period’). The Firm may elect in its sole discretion to waive or place you on paid leave for all or any part of the Notice Period, subject to applicable law and to the provisions of the UBS Section 409A Specified Employee Policy and the terms set forth under ‘Specified Employees’ below. {{ #if_guarantee_year_1 }}In addition, the Firm retains the right to terminate you for Cause, as defined above; provided, however, the Firm may not terminate you for Cause during the Notice Period based on your failure to report to work should the Firm not require you to report to work. {{ /if_guarantee_year_1 }}If the Firm places you on paid leave for any part of the Notice Period, you agree that, while on paid leave and through the date your employment terminates, you will not provide services for any other business enterprise.
+	</p>
+{{ /if_associate_director_non_officer_not_wma }}
+{{ #if_managing_or_executive_director }}
+	<p>
+		<strong><u>Notice of Termination</u></strong><br>
+		You understand and agree that you will have access to the Firm’s confidential and proprietary information and valued client relationships (collectively the ‘Information’). You recognize and agree that it is reasonable and necessary to protect the Firm’s Information and to provide a smooth transition if you choose to leave the Firm. Consequently, you agree to provide the Firm with {{ if_ccs_and_managing_director }} days’ prior written notice of your intent to terminate your employment with the Firm (the ‘Notice Period’). The Firm may elect in its sole discretion to waive or place you on paid leave for all or any part of such Notice Period, subject to applicable law and to the provisions of the UBS Section 409A Specified Employee Policy and the terms set forth under ‘Specified Employees’ below. If such notice is provided to the Firm prior to the Payment Date, you shall not be entitled to receive any incentive compensation award that you may have otherwise been eligible for on the Payment Date. {{ #if_guarantee_year_1 }}In addition, the Firm retains the right to terminate you for Cause, as defined above; provided, however, the Firm may not terminate you for Cause during the Notice Period based on your failure to report to work should the Firm not require you to report to work. {{ /if_guarantee_year_1 }}
+	</p>
+	<p>
+		During your employment (including the Notice Period), you will: (i) perform any reasonable duties and responsibilities the Firm requests; (ii) devote all of your labor, skill and energies during regular working hours to the business and affairs of the Firm; (iii) be paid your {{ if_flsa_exempt }}{{ if_flsa_non_exempt }} pursuant to the Firm’s customary payroll policy applicable to you immediately prior to the commencement of the Notice Period, less any necessary withholdings and authorized and/or required deductions, and be eligible to participate in the Firm employee benefit plans and programs that you were participating in as of the date of the notice of your resignation. The Firm will have no further obligations to you under this Offer Letter, including, without limitation, that, if such notice is provided to the Firm prior to the date incentive compensation is payable for that calendar year, you will not be eligible for, and shall not receive, any such incentive compensation.
+	</p>
+	<p>
+		If the Firm does not require you to work during the Notice Period, you will not be required or permitted to be present in any facility and/or contact any existing or prospective clients of the Firm absent the express written approval of your immediate supervisor. In addition, you agree that during the Notice Period you will not provide services for any other entity including, without limitation, engaging in, directly or indirectly, or managing or supervising personnel engaged in, any activity (i) that is similar or substantially related to any activity in which you were engaged, in whole or in part, at the Firm; (ii) for which you had direct or indirect managerial or supervisory responsibility at the Firm; or (iii) that calls for the application of the same or similar specialized knowledge or skills as those used by you in your activities with the Firm. During the Notice Period you will continue to receive your {{ if_flsa_exempt }}{{ if_flsa_non_exempt }} pursuant to the Firm’s customary payroll policy applicable to you immediately prior to the commencement of the Notice Period, less any necessary withholdings and authorized and/or required deductions, and be eligible to participate in the Firm employee benefit plans and programs that you were participating in as of the date of the notice of your resignation. The Firm will have no further obligations to you under this Offer Letter, including, without limitation, that, if such notice is provided to the Firm prior to the date incentive compensation is payable for that calendar year, you will not be eligible for, and shall not receive, any such incentive compensation.
+	</p>
+	<p>
+		You further acknowledge and agree that to the extent you are in breach of your obligations to the Firm during the Notice Period, the Notice Period will be increased for such a period of time as to ensure that the Firm and/or UBS Group has received the benefit of the full Notice Period, provided however, that if the Notice Period has expired, you agree not to provide services for any other entity (and if necessary, to cease providing such services) for the length of time for which you were in breach of your notice obligations, and the Firm will pay you an amount equivalent to your	{{ if_flsa_exempt }}{{ if_flsa_non_exempt }} only (less applicable deductions and withholdings) for such length of time.
+	</p>
+{{ /if_managing_or_executive_director }}
+{{ #if_director }}
+	<p>
+		<strong>
+			<u>Notice of Termination</u>
+		</strong><br>
+		You understand and agree that you will have access to the Firm’s confidential and proprietary information and valued client relationships (collectively the ‘Information’). You recognize and agree that it is reasonable and necessary to protect the Firm’s Information and to provide a smooth transition if you choose to leave the Firm. Consequently, you agree to provide the Firm with 30 days’ prior written notice of your intent to terminate your employment with the Firm (the ‘Notice Period’). The Firm may elect in its sole discretion to waive or place you on paid leave for all or any part of such Notice Period, subject to applicable law and to the provisions of the UBS Section 409A Specified Employee Policy and the terms set forth under ‘Specified Employees’ below. If such notice is provided to the Firm prior to the Payment Date, you shall not be entitled to receive any incentive compensation award that you may have otherwise been eligible for on the Payment Date. {{ #if_guarantee_year_1 }}In addition, the Firm retains the right to terminate you for Cause, as defined above; provided, however, the Firm may not terminate you for Cause during the Notice Period based on your failure to report to work should the Firm not require you to report to work. {{ /if_guarantee_year_1 }}
+	</p>
+	<p>
+		During your employment (including the Notice Period), you will: (i) perform any reasonable duties and responsibilities the Firm requests; (ii) devote all of your labor, skill and energies during regular working hours to the business and affairs of the Firm; (iii) be paid your {{ if_flsa_exempt }}{{ if_flsa_non_exempt }} pursuant to the Firm’s customary payroll policy applicable to you, less any necessary withholdings and authorized and/or required deductions; and (iv) be entitled to continue to participate in the Firm’s employee benefit plans as provided for herein.
+	</p>
+	<p>
+		If the Firm does not require you to work during the Notice Period, you will not be required or permitted to be present in any facility and/or contact any existing or prospective clients of the Firm absent the express written approval of your immediate supervisor. In addition, you agree that during the Notice Period you will not provide services for any other entity including, without limitation, engaging in, directly or indirectly, or managing or supervising personnel engaged in, any activity (i) that is similar or substantially related to any activity in which you were engaged, in whole or in part, at the Firm; (ii) for which you had direct or indirect managerial or supervisory responsibility at the Firm; or (iii) that calls for the application of the same or similar specialized knowledge or skills as those used by you in your activities with the Firm. During the Notice Period you will continue to receive your {{ if_flsa_exempt }}{{ if_flsa_non_exempt }} pursuant to the Firm’s customary payroll policy applicable to you immediately prior to the commencement of the Notice Period, less any necessary withholdings and authorized and/or required deductions, and be eligible to participate in the Firm employee benefit plans and programs that you were participating in as of the date of the notice of your resignation. The Firm will have no further obligations to you under this Offer Letter, including, without limitation, that, if such notice is provided to the Firm prior to the date incentive compensation is payable for that calendar year, you will not be eligible for, and shall not receive, any such incentive compensation.
+	</p>
+	<p>
+		You further acknowledge and agree that to the extent you are in breach of your obligations to the Firm during the Notice Period, the Notice Period will be increased for such a period of time as to ensure that the Firm and/or UBS Group has received the benefit of the full Notice Period, provided however, that if the Notice Period has expired, you agree not to provide services for any other entity (and if necessary, to cease providing such services) for the length of time for which you were in breach of your notice obligations, and the Firm will pay you an amount equivalent to your {{ if_flsa_exempt }}{{ if_flsa_non_exempt }} only (less applicable deductions and withholdings) for such length of time.
+	</p>
+{{ /if_director }}
+<p>
+	<strong>
+		<u>Protection of Confidential Information</u>
+	</strong><br>
+	Certain information that you create during your employment with the Firm is considered by the UBS Group to be trade secret and confidential information. This information may relate to intellectual property, financial information, personnel, projections, strategic planning, client information, or any other work product. Collectively, this information is defined as ‘Confidential Information’ in that it is not readily available to the public and the UBS Group takes reasonable steps to keep the information confidential. You agree that your employment is contingent upon your signing and adhering to the Firm’s Agreement Concerning the Handling of Confidential Information and the Assignment of Employee Inventions (‘Confidentiality Agreement’), which is attached to this Offer Letter and incorporated by reference herein.
+</p>
+<p>
+	Among other things, the Firm’s Confidentiality Agreement states that during your employment with the Firm and even after your termination of employment you agree to return to the Firm any and all copies of Confidential Information in your possession. This obligation applies irrespective of the medium or form in which the Confidential Information is stored, and even if no one specifically requests the return of Confidential Information. You also agree that you will never use or disclose the UBS Group’s Confidential Information for any reason, except as may be required by law. If a court, government agency or regulatory authority requires, or formally requests, you to disclose the UBS Group’s Confidential Information, you agree to immediately notify the Firm, in writing, so that the Firm will have the opportunity to respond to such a request. Your obligations under this section and the attached Confidentiality Agreement are ongoing, even after the termination of your employment. Notwithstanding the foregoing, nothing in the Offer Letter (including, without limitation, this addendum) or any other agreement or document (including, without limitation the attached Confidentiality Agreement) prohibits you from voluntarily communicating, without notice to or approval by the UBS Group, with any government agency or self-regulatory organization (SRO) about a potential violation of a law or regulation or SRO regulation.
+</p>
+<p>
+	Please also note that, with respect to your obligations to maintain in confidence any and all confidential and/or trade secret information of UBS, the Defend Trade Secrets Act of 2016 ('DTSA'), 18 U.S.C. § 1833(b), provides you with immunity from criminal or civil liability under any federal or state trade secret law for your disclosure of a trade secret that is made in confidence to a federal, state, or local government official, either directly or indirectly, or to an attorney, provided that it is disclosed solely for the purpose of reporting or investigating a suspected violation of law, or is made in a complaint or other document filed in a lawsuit or other proceeding and the document is filed under seal so that it is not disclosed to the public.
+</p>
+{{ #if_ib_or_wma_or_gam_and_not_director_executive_managing_director }}
+	<p>
+		<strong>
+			<u>Non-Solicitation</u>
+		</strong><br>
+		You agree that during your employment, and for a period of 12 months from the termination date of your employment for whatever reason, you will not, directly or indirectly, for yourself or for any third party, solicit, influence, induce, recruit or cause any employee of any UBS Group entity to terminate his or her employment with the UBS Group for the purpose of joining, associating or becoming employed with any business wherever located, with which or of which you are or anticipate becoming an employee, owner, partner, investor, member, agent, director, consultant, independent contractor or otherwise associated in any way whatsoever.
+	</p>
+	<p>
+		You further agree that during your employment, and for a period of {{ Non_Solicit_Months }} month(s) from the termination date of your employment for whatever reason, you will not directly or indirectly solicit or interfere with any of the clients or client relationships of any UBS Group entity that you either performed work for, supervised or actively solicited work from during the {{ Non_Solicit_Months }} months prior to the termination of your employment or whose name became known to you during your employment. Your agreement ‘not to solicit’ includes but is not limited to your agreement not to ask such UBS Group clients to transfer any account from the UBS Group to you or your new employer; to open a new account with you or your new employer; or to discontinue its business relationship with the UBS Group.
+	</p>
+	<p>
+		You acknowledge and agree that the UBS Group is global and includes offices throughout the world. You therefore acknowledge and agree that the foregoing provisions are necessary for the protection of the business and goodwill of the UBS Group, are not overly broad, and that they are reasonable and fair. You further acknowledge and agree that to the extent you are in breach of any of these restrictive covenants, the length of the restriction will be increased (or if such finding is made after the restriction has expired, reinstated) for such a period of time as to ensure that UBS Group has received the benefit of the full period of the restriction.
+	</p>
+	<p>
+		You understand that the terms of this section are material to the UBS Group and, therefore, if a court or arbitration panel of competent jurisdiction rules that you have breached the terms of this section, you agree that damages in the event of breach of this section would not be possible to ascertain. Therefore, you further agree that in addition to and without limiting any other remedy or right the UBS Group may have, it shall have a right to an injunction or other equitable relief enjoining any such breach or prospective breach. The existence of this right shall not preclude any other rights and remedies at law or in equity. The UBS Group shall not be required to post any bond in connection with the foregoing. For the avoidance of doubt, the restrictions set forth herein are in addition to and not in lieu of any post-employment restrictions set forth in any plan rules governing awards, and nothing in this Offer Letter limits the terms and conditions of the applicable plan rules.
+	</p>
+	<p>
+		You agree that if any restriction set forth in this section is found by any court or arbitrator of competent jurisdiction to be unenforceable because it extends for too long a period of time or over too great a range of activities or in too broad a geographic area, it shall be interpreted to extend only over the maximum period of time, range of activities or geographic areas to which it may be enforceable.
+	</p>
+{{ /if_ib_or_wma_or_gam_and_not_director_executive_managing_director }}
+{{ #if_gam_and_director_executive_managing_director }}
+	<p>
+		<strong>
+			<u>Non-Solicitation and Non-Competition</u>
+		</strong><br>
+		You agree that during your employment, and for a period of twelve (12) months from the termination date of your employment for whatever reason, you will not, directly or indirectly, for yourself or for any third party, solicit, influence, induce, recruit or cause any employee of any UBS Group entity to terminate his or her employment with the UBS Group for the purpose of joining, associating or becoming employed with any business wherever located, with which or of which you are or anticipate becoming an employee, owner, partner, investor, member, agent, director, consultant, independent contractor or otherwise associated in any way whatsoever.
+	</p>
+	<p>
+		You further agree that during your employment, and for a period of twelve (12) months from the termination date of your employment for whatever reason, you will not directly or indirectly solicit or interfere with any of the clients or client relationships of any UBS Group entity that you either performed work for, supervised or actively solicited work from during the 12 months prior to the termination of your employment or whose name became known to you during your employment. Your agreement ‘not to solicit’ includes but is not limited to your agreement not to ask such UBS Group clients to transfer any account from the UBS Group to you or your new employer; to open a new account with you or your new employer; or to discontinue or reduce its business relationship with the UBS Group.
+	</p>
+	<p>
+		You further agree that during your employment, and for the duration of the Non-Compete Period as defined below, you will not, as an officer, employee, consultant, partner, independent contractor, representative or fiduciary, directly or indirectly be employed by, work for or provide services to a Restricted Enterprise (as defined herein) in a capacity similar to which you were employed, worked for or provided services to UBS Group. As used herein, 'Restricted Enterprise' means any person or entity that is engaged in the business of providing investment products, advice and other services to private investors, financial intermediaries and institutional investors. During the Non-Compete Period, you will be paid only your {{ if_flsa_exempt }}{{ if_flsa_non_exempt }} on a monthly basis, less any necessary withholdings and authorized and/or required deductions. For the avoidance of doubt during the Non-Compete Period you will not be entitled to participate in the Firm’s employee benefit plans.
+	</p>
+	<p>
+		Upon the termination of your employment, the Firm may, in its sole discretion, choose to waive the Non-Compete Period by notifying you in writing within 30 days of the termination date of your employment of such waiver; provided however, that should the Firm choose to waive the Non-Compete Period, the remaining obligations set forth herein, including without limitation your non-solicitation obligations, shall continue to apply. Should the Firm choose to waive the Non-Compete Period, you will not receive the additional payments set forth in the paragraph above.
+	</p>
+	<p>
+		For purposes of this Offer Letter, the Non-Compete Period shall be determined based on your corporate rank at the time of the termination of your employment and shall be defined as followed:
+	</p>
+	<p>
+		{{{ non_compete_period }}}
+	</p>
+	<p>
+		Please note that your current corporate rank is {{ Rank }} and the terms on this Offer Letter do not in any way guarantee or suggest that you will be considered for or receive a promotion to any other corporate rank.
+	</p>
+	<p>
+		You acknowledge and agree that the UBS Group is global and includes offices throughout the world. You further acknowledge and agree that you will have access to UBS Group’s confidential and proprietary information, trade secrets and client relationships unique to your role and position within the Firm. You therefore acknowledge and agree that the foregoing provisions are necessary for the protection of the business and goodwill of the UBS Group, are not overly broad, and that they are reasonable and fair. You further acknowledge and agree that to the extent you are in breach of any of these restrictive covenants, the length of the restriction will be increased (or if such finding is made after the restriction has expired, reinstated) for such a period of time as to ensure that UBS Group has received the benefit of the full period of the restriction.
+	</p>
+	<p>
+		You understand that the terms of this section are material to the UBS Group and, therefore, if a court or arbitration panel of competent jurisdiction rules that you have breached the terms of this section, you agree that damages in the event of breach of this section would not be possible to ascertain. Therefore, you further agree that in addition to and without limiting any other remedy or right the UBS Group may have, it shall have a right to an injunction or other equitable relief enjoining any such breach or prospective breach. The existence of this right shall not preclude any other rights and remedies at law or in equity. The UBS Group shall not be required to post any bond in connection with the foregoing.
+	</p>
+	<p>
+		You agree that if any restriction set forth in this section is found by any court or arbitrator of competent jurisdiction to be unenforceable because it extends for too long a period of time or over too great a range of activities or in too broad a geographic area, it shall be interpreted to extend only over the maximum period of time, range of activities or geographic areas to which it may be enforceable and that no other such restriction set forth in this section or any other provision of this Offer Letter shall be affected. For the avoidance of doubt, the restrictions set forth herein are in addition to and not in lieu of any post-employment restrictions set forth in any plan rules governing awards, and nothing in this Offer Letter limits the terms and conditions of the applicable plan rules.
+	</p>
+{{ /if_gam_and_director_executive_managing_director }}
+<p>
+	<strong>
+		<u>Specified Employees</u>
+	</strong><br>
+	You understand and agree that the UBS Section 409A Specified Employee Policy (and any successor policy) may apply to you.
+</p>
+<p>
+	Notwithstanding anything in this Offer Letter to the contrary, if you experience a 409A Separation from Service and UBS determines that you are a ‘specified employee’ under the terms of the UBS Section 409A Specified Employee Policy (or any successor policy or, if no such policy is then in effect, within the meaning of Section 409A) on the date of your 409A Separation from Service any {{ if_flsa_exempt }}{{ if_flsa_non_exempt }}, bonus or other benefits or compensation scheduled to be paid to you following your 409A Separation from Service will be delayed until, and will be paid on the first business day following the six month anniversary of your separation from service to the extent necessary to comply with, and avoid imposition on you of any additional tax or penalty under, Section 409A.
+</p>
+<p>
+	For purposes of this Offer Letter, the phrase ‘409A Separation from Service’ will refer to your ‘separation from service’ within the meaning of Section 409A of the U.S. Internal Revenue Code (‘Section 409A’) and the regulations promulgated thereunder. Your 409A Separation from Service will generally be deemed to occur on your first off-premises date, or such other time as Section 409A provides, even if you remain on payroll as of such date.
+</p>
+{{ #if_licensing_required }}
+<p>
+	<strong>
+		<u>Licensing</u>
+	</strong><br>
+	Based on your expected job functions, the Firm has determined that you must transfer existing securities licensing as appropriate for your role to UBS. Furthermore, we have agreed that this offer is predicated on your ability to be properly licensed for the offered position.
+</p>
+{{ /if_licensing_required }}
+<p>
+	You further agree that your continued employment is contingent upon your successful completion of any and all licensing requirements now or in the future required of your position, including passing the appropriate exams within any time limits imposed by the Firm, and your compliance with applicable regulatory and state registration and continuing education requirements.
+</p>
+{{ #if_license_requirement }}
+	<p>
+		<strong>
+			<u>Securities Licensing Requirements</u>
+		</strong><br>
+		By signing this Offer Letter you agree that this offer and your continued employment are contingent upon compliance with applicable regulatory and state registration and continuing education requirements. Based on your expected job functions at UBS, the Firm has determined that you must obtain or maintain the Series {{ License_Requirement }} registration(s). You must successfully complete the first of the Series examination(s) within 60 days of your Start Date. If you are required to take more than one (1) exam, you will have 30 days from passing of an exam for each subsequent exam requirement. In addition, with the exception of Series 99 requirements, if you are not properly qualified to hold a securities license, you may not act in a registered capacity and perform your job function until you complete the exam(s) that you require for your role. In the event you have not received the required licenses within the time frames set forth herein, you agree to voluntarily resign your employment with UBS. If this occurs, UBS will have no further obligation to you, provided however that UBS may, in its sole discretion, permit you to retain your employment in this event upon the express condition that you successfully complete the above exams within a time frame set forth by UBS at that time.
+	</p>
+	<p>
+		You further agree that your continued employment is contingent upon your successful completion of any and all licensing requirements now or in the future required of your position, including passing the appropriate exams within any time limits imposed by the Firm, and your compliance with applicable regulatory and state registration and continuing education requirements.
+	</p>
+{{ /if_license_requirement }}
+{{ #if_license_requirement_null }}
+	<p>
+		<strong>
+			<u>Securities Licensing</u>
+		</strong><br>
+		You further agree that your continued employment is contingent upon your successful completion of any and all licensing requirements now or in the future required of your position, including passing the appropriate exams within any time limits imposed by the Firm, and your compliance with applicable regulatory and state registration and continuing education requirements.
+	</p>
+{{ /if_license_requirement_null }}
+{{ #if_not_wma }}
+	<p>
+		<strong>
+			<u>Compliance</u>
+		</strong><br>
+		You must follow the rules, regulations and UBS Compliance policies applicable to the business division with which you are employed, as well as policies that may be specific to your business area. You can access such policies through the Compliance website.
+	</p>
+	<p>
+		<u>Personal Securities Trading</u>
+	</p>
+	<p>
+		Generally, the policy relating to personal securities trading requires you to:
+	</p>
+	<p>
+		1) Disclose all personal accounts (this includes all household family members’ accounts) within 7 days; and
+	</p>
+	<p>
+		2) Obtain trade pre-clearance from Compliance on all securities transactions (prior to placing the order with your broker) and approval from your manager (if applicable); and
+	</p>
+	<p>
+		3) Provide Compliance with duplicate confirmation and monthly account statements; and
+	</p>
+	<p>
+		4) Transfer accounts to UBS Financial Services (unless the account falls within an exception).
+	</p>
+	<p>
+		Please contact Compliance if you have questions related to the applicability of a rule, regulation or policy or if you have other Compliance-related questions.
+	</p>
+{{ /if_not_wma }}
+{{ #if_license_contains_2706_2707 }}
+	<p>
+		<u>Fingerprinting Requirement</u><br>
+		Federal laws and the Firm’s regulators require that in a sales capacity you be fingerprinted as a registered employee of UBS Fund Services (USA) LLC. Electronic fingerprint submissions will be used to check FBI Records for any criminal history.
+	</p>
+{{ /if_license_contains_2706_2707 }}
+{{ #if_equity_research }}
+	<p>
+		Employees of the Equity Research Department are subject to regulatory and Firm restrictions regarding their Personal Securities Account Dealings. You may be precluded from holding or transacting in securities that you or your family members may already own.
+	</p>
+	<p>
+		With respect to securities issued by a company that you cover or will cover, you will be required to divest any such securities held in your personal or family/household accounts prior to your initiation of coverage of that company. You must contact Compliance within 7 days of your start date at (203-719-5590) to disclose your investment(s) and agree to a course of action, if you have not sold the conflicted securities prior to {{ Start_Date }}
+	</p>
+	<p>
+		Additionally, you must disclose and seek approval via the Affirmation Online platform within one week of employment if you or a household member serve as an officer, director, or advisory board member of any public firm.
+	</p>
+	<p>
+		If you are required to obtain the Series 86 or Series 87 license, regulations prohibit you from publishing or having your name placed on any research until you have successfully completed the related exam.
+	</p>
+{{ /if_equity_research }}
+<p>
+	<strong>
+		<u>Immigration Compliance</u>
+	</strong><br>
+	Should you need employment visa sponsorship now or in the future (e.g., at completion of your optional practical training/EAD authorization), this Offer Letter and your continued employment will be contingent upon the appropriate employment visa being filed with and approved by the USCIS. If, however, the USCIS denies our application for a visa on your behalf, we are otherwise unable to make application for you, or you are unable to provide other means to verify your identity and eligibility to work in the United States, then this Offer Letter will immediately become null and void and neither UBS, nor any affiliated entity, will have any obligation now or in the future to employ you under the terms of this Offer Letter or otherwise.
+</p>
+<p>
+	<strong>
+		<u>Representations and Warranties</u>
+	</strong><br>
+	You represent and warrant that (1) you will not possess as of your Start Date and during your employment with the Firm, any material, tangible, confidential or proprietary information, including documents, files, disks, or other data, belonging to your former employer or its affiliates; (2) as of your Start Date, you have not solicited any employees or clients of your former employer or its affiliates to change their association with your former employer or its affiliates; (3) you are not subject to any restrictive covenant, notice of termination requirement, non-competition or non-solicitation provision with any former employer or any agreement that prevents your entering into employment by the Firm and that you conducted a due diligence review of copies of all agreements you may have entered into with your former employer to ensure that this is correct; (4) you have not made any material misrepresentation or omission in the course of your application to the Firm regarding employment or your ability to perform the position offered; and (5) no representations were made to you concerning this offer or the terms or conditions of your anticipated employment except as expressly set out in this Offer Letter and its addenda.
+</p>
+</script>

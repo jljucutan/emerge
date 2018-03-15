@@ -829,3 +829,13 @@ function funcCustomOnSubmitCallback(formobject){
     if(self.Custom_Callback_Last_Name){Custom_Callback_Last_Name(formobject);}
     if(self.Custom_Callback_Email){Custom_Callback_Email(formobject);}
 }
+
+function isValidDOB(sVal, sName, sID) {
+  var isValid = true;
+  if('<$client.env.serversidevalidation>' == '1'){return isValid;}
+  if ($('#real_DOB').val() !== sVal) {
+    AddError(sID, 'Error in validation, Data did not match on profile in', '');
+    isValid = false;
+  }
+  return isValid;
+}

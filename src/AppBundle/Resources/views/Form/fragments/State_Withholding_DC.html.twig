@@ -1,60 +1,60 @@
 <main class="container-fluid">
   <header class="row vspace">
     <div class="col-lg-2">
-      <img src="/assets/img/dc_logo.jpg" alt="" class="img-responsive">
+      <img src="assets/img/dc_logo.jpg" alt="" class="img-responsive">
     </div>
     <div class="col-lg-10">
       <h4 class="text-center">
         <div class="inline-block">
-          <input type="text" class="lifesuite__text-input">
+          <$client.env.FormField.Year.HTML>
         </div>
         D-4 DC Withholding Allowance Certificate
       </h4>
     </div>
   </header>
-  <div class="bg-teal">
+  <div class="bg-teal border-bottom-thick vspace">
     <div class="row vspace">
       <div class="col-lg-5">
         Taxpayer identification number (TIN) See instructions.
-        <input type="text" class="lifesuite__text-input">
+        <$client.env.FormField.SSN.HTML>
       </div>
     </div>
     <div class="row vspace">
       <div class="col-lg-5">
         First Name
-        <input type="text" class="lifesuite__text-input">
+        <$client.env.FormField.FirstName.HTML>
       </div>
       <div class="col-lg-2">
         M.I.
-        <input type="text" class="lifesuite__text-input">
+        <$client.env.FormField.MiddleInitial.HTML>
       </div>
       <div class="col-lg-5">
         Last Name
-        <input type="text" class="lifesuite__text-input">
+        <$client.env.FormField.LastName.HTML>
       </div>
     </div>
     <div class="row vspace">
       <div class="col-lg-12">
         Home address (number, street and suite/apartment number if applicable)
-        <input type="text" class="lifesuite__text-input">
+        <$client.env.FormField.Address.HTML>
       </div>
     </div>
     <div class="row vspace">
       <div class="col-lg-5">
         City
-        <input type="text" class="lifesuite__text-input">
+        <$client.env.FormField.City.HTML>
       </div>
       <div class="col-lg-1">
         State
-        <input type="text" class="lifesuite__text-input">
+        <$client.env.FormField.State.HTML>
       </div>
       <div class="col-lg-3">
         Zip code +4
-        <input type="text" class="lifesuite__text-input">
+        <$client.env.FormField.Zip.HTML>
       </div>
       <div class="col-lg-3">
         &nbsp;
-        <input type="text" class="lifesuite__text-input">
+        <$client.env.FormField.Zip2.HTML>
       </div>
     </div>
     <div class="row vspace">
@@ -62,7 +62,7 @@
         1 Tax filing status (Fill in only one)
       </div>
       <div class="col-lg-9">
-        <input type="checkbox"> Single
+        <$client.env.FormField.FilingStatus.HTML>
       </div>
     </div>
     <div class="row">
@@ -74,15 +74,15 @@
       <div class="col-lg-12">
         <strong>Enter total from Sec. A, Line i</strong>
         <div class="inline-block wrapper-thin">
-          <input type="text" class="lifesuite__text-input">
+          <$client.env.FormField.Allowances_A.HTML>
         </div>
         <strong>Enter total from Sec. B, Line m</strong>
         <div class="inline-block wrapper-thin">
-          <input type="text" class="lifesuite__text-input">
+          <$client.env.FormField.Allowances_B.HTML>
         </div>
         <strong>Total number of withholding allowances , Line n</strong>
         <div class="inline-block wrapper-thin">
-          <input type="text" class="lifesuite__text-input">
+          <$client.env.FormField.Allowances.HTML>
         </div>
       </div>
     </div>
@@ -92,7 +92,7 @@
         <div class="inline-block">
           $
           <div class="inline-block">
-            <input type="text" class="lifesuite__text-input">
+            <$client.env.FormField.AdditionalWithholding.HTML>
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@
         <div class="inline-block">
           &#9656;
           <div class="inline-block">
-            <input type="text" class="lifesuite__text-input">
+            <$client.env.FormField.Exempt.HTML>
           </div>
         </div>
       </div>
@@ -111,26 +111,295 @@
     <div class="row vspace">
       <div class="col-lg-12">
         5 My domicile is a state other than the District of Columbia
-        <div class="inline-block">
-          <input type="radio"> Yes
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.OtherState.HTML>
         </div>
-        <div class="inline-block">
-          <input type="text" class="lifesuite__text-input">
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.Domicile.HTML>
         </div>
       </div>
     </div>
     <div class="row vspace">
       <div class="col-lg-12">
-        <p>
+        <p class="indent-1">
           I am exempt because: last year I did not owe any DC income tax and had a right to a full refund of all DC income tax withheld from me; and this year I do not expect to owe any DC income tax and expect a full refund of all DC income tax withheld from me; and I qualify for exempt status on federal Form W-4.
         </p>
+        <div class="indent-1">
+          If claiming exemption from withholding, are you a full-time student?
+          <div class="inline-block vertical-middle">
+            <$client.env.FormField.Student.HTML>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
   <div class="row vspace">
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis quaerat eveniet consectetur cum at possimus qui aut quibusdam expedita, voluptate fuga ullam repellat non suscipit molestias facilis, quam beatae voluptas.
-    </p>
+    <div class="col-lg-12">
+      <h4>
+        Signature
+        <small>
+          Under penalties of law, I declare that the information provided on this certificate is, to the best of my knowledge, correct.
+        </small>
+      </h4>
+    </div>
+  </div>
+  <div class="row vspace">
+    <div class="col-lg-5">
+      Employee's Signature
+      <$client.env.FormField.Signature.HTML>
+    </div>
+    <div class="col-lg-3">
+      Date <br>
+      <$client.env.FormField.DateSigned.HTML>
+    </div>
+    <div class="col-lg-12">
+      <h4>
+        Employer
+        <small>
+          Keep this certificate with your records. If 10 or more exemptions are claimed or if you suspect this certificate contains false information please send a copy to: Office of Tax and Revenue, 1101 4th St., SW, Washington, DC 20024 Attn: Compliance Administration
+        </small>
+      </h4>
+    </div>
+  </div>
+  <div class="row vspace">
+    <div class="col-lg-12 text-center">
+      Detach and give the top portion to your employer. Keep the bottom portion for your records.
+    </div>
+  </div>
+  <div class="dotted-line vspace">&nbsp;</div>
+  <header class="row">
+    <div class="col-lg-2">
+      <img src="assets/img/dc_logo.jpg" alt="" class="img-responsive">
+    </div>
+    <div class="col-lg-10 border-bottom">
+      <div class="col-lg-7 text-center">
+        <h4>
+          D-4 DC Withholding Allowance Worksheet
+        </h4>
+      </div>
+    </div>
+  </header>
+  <div class="bg-teal vspace">
+    <div class="row vspace">
+      <div class="col-lg-12 border-bottom">
+        <h4>
+          <strong>Section A Number of withholding allowances</strong>
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        a Enter 1 for yourself
+      </div>
+      <div class="col-lg-1 text-right">
+        a
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineA.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        b Enter 1 if you are filing as a head of household
+      </div>
+      <div class="col-lg-1 text-right">
+        b
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineB.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        c Enter 1 if you are 65 or over
+      </div>
+      <div class="col-lg-1 text-right">
+        c
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineC.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        d Enter 1 if you are blind
+      </div>
+      <div class="col-lg-1 text-right">
+        d
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineD.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        e Enter number of dependents
+      </div>
+      <div class="col-lg-1 text-right">
+        e
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineE.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        f Enter 1 for your spouse or registered domestic partner filing jointly or filing separately on same return or if you are a qualifying widow(er) with dependent child
+      </div>
+      <div class="col-lg-1 text-right">
+        f
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineF.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        g Enter 1 if married or registered domestic partner filing jointly or filing separately on same return and your spouse or registered domestic partner is 65 or over
+      </div>
+      <div class="col-lg-1 text-right">
+        g
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineG.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        h Enter 1 if married or registered domestic partner filing jointly or filing separately on same return and your spouse or registered domestic partner is blind
+      </div>
+      <div class="col-lg-1 text-right">
+        h
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineH.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row border-bottom">
+      <div class="col-lg-11">
+        i Number of allowances Add Lines a through h, enter here and on Line 2 above, next to "Enter total from Sec. A, Line i".
+      </div>
+      <div class="col-lg-1 text-right">
+        i
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineI.HTML>
+        </div>
+      </div>
+      <div class="col-lg-11 text-center">
+        <strong><em>If you want to claim additional withholding allowances, complete Section B below.</em></strong>
+      </div>
+    </div>
+    <div class="row border-bottom vspace">
+      <div class="col-lg-12">
+        <h4>Section B Additional withholding allowances</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        j Enter estimate of your itemized deductions
+      </div>
+      <div class="col-lg-1 text-right">
+        j
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineJ.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-10">
+        k Enter $6,500 if single, married/registered domestic partners filing separately or a dependent. Enter $9,550 if head of household. Enter $13,000 if married/registered domestic partner filing jointly, married filing separately on the same return, or qualifying widow(er) with dependent child.
+      </div>
+      <div class="col-lg-2 text-right">
+        k
+        <div class="inline-block wrapper-short">
+          <$client.env.FormField.LineK.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        l Subtract Line k from Line j
+      </div>
+      <div class="col-lg-1 text-right">
+        l
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineL.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        m Divide Line l by $4,150. Round to the nearest whole number, enter here and on Line 2 above, next to "Enter total from Sec.B, Line m".
+      </div>
+      <div class="col-lg-1 text-right">
+        m
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineM.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-11">
+        n Add Lines m and i, enter here and on Line 2 above, next to "Total number of withholding allowances, Line n".
+      </div>
+      <div class="col-lg-1 text-right">
+        n
+        <div class="inline-block wrapper-thin">
+          <$client.env.FormField.LineN.HTML>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row pre-footer">
+    <div class="col-lg-12">
+      <small>Revised 10/2017</small>
+    </div>
+  </div>
+  <footer class="row">
+    <div class="col-lg-12 text-center vspace dotted-line">
+      <small>Detach and give the top portion to your employer. Keep the bottom portion for your records.</small>
+    </div>
+    <div class="col-lg-6">
+      <strong class="text-danger">Taxpayer Identification Number(s) (TIN)</strong>
+      <p class="text-danger vspace">
+        You must have a TIN, whether it is a Federal Employer Identification Number (FEIN), Social Security Number (SSN), Individual Taxpayer Identification Number (ITIN) or Preparer Tax Identification Number (PTIN).
+      </p>
+      <strong>Who must file a Form D-4?</strong>
+      <p class="vspace">
+        Every new employee who resides in DC and is required to have DC income taxes withheld, must fi ll out Form. D-4 and file it with his/ her employer.
+      </p>
+      <p class="vspace">
+        If you are not liable for DC income taxes because you are a nonresident or military spouse, you must file Form D-4A, Certificate of Non-residence in the District of Columbia, with your employer.
+      </p>
+      <strong>When should you file?</strong>
+      <p class="vspace">
+        File Form D-4 whenever you start new employment. Once filed with your employer, it will remain in effect until you file a new certifi cate. You may file a new withholding allowance certificate any time the number of withholding allowances you are entitled to increases.
+      </p>
+      <p class="vspace">
+        <u>You must file a new certificate</u> within 10 days if the number of withholding allowances you claimed decreases.
+      </p>
+    </div>
+    <div class="col-lg-6">
+      <strong>
+        How many withholding allowances should you claim?
+      </strong>
+      <p class="vspace">
+        Use the worksheet on the front of this form to figure the number of withholding allowances you should claim. If you want less money withheld from your paycheck, you may claim additional allowances by completing Section B of the worksheet, Lines j through n. However, if you claim too many allowances, you may owe additional taxes at the end of the year.
+      </p>
+      <strong>Should I have an additional amount deducted from my paycheck?</strong>
+      <p class="vspace">
+        In some instances, even if you claim zero withholding allowances, you may not have enough tax withheld. You may, upon agreement with your employer, have more tax withheld by entering on Line 3, a dollar amount of your choosing.
+      </p>
+      <strong>What to file</strong>
+      <p class="vspace">
+        After completing Form D-4, detach the top portion and file it with your employer. Keep the bottom portion for your records.
+      </p>
+    </div>
+  </footer>
+  <hr class="lifesuite__hr">
+  <div class="row" id="formButtons" style="display: none;">
+    <div class="lifesuite__clearfix lifesuite__float-right">
+      <$client.env.FormButtons>
+    </div>
   </div>
 </main>

@@ -49,7 +49,7 @@ var employee = [{
     Recruiter_Phone: "<$client.tForWhomUserInfo.Recruiter_Phone>",
     Contact_Phone: "<$client.tForWhomUserInfo.Contact_Phone>",
 
-    UK_Contract_Type: "<$client.tEventCategories_48.Value>",
+    UK_Contract_Type: "<$client.tEventCategories_48.Code>",
     UK_Job_Title: "<$client.tForWhomUserInfo.Job_Title_Retail>",
     UK_Sign_On_Bonus_Amount: "<$client.tForWhomUserInfo.EMEIA_Sign_on_Bonus_Amount>",
     UK_Car_Cash_Allowance: "<$client.tForWhomUserInfo.EMEIA_Car_Cash_Allowance>",
@@ -81,8 +81,8 @@ function fnView() {
           $('<div class="row vspace"/>').append(
               $('<div class="col-lg-2 col-md-2 col-sm-5 col-xs-12" />').append('<strong>The Employee:\t\t</strong>'),
               $('<div class="col-lg-10 col-md-10 col-sm-7 col-xs-12"/>').append(
-                employee.First_Name + ' ' + employee.Last_Name +
-                ', ' + employee.Address1 +
+                employee.First_Name + ' ' + employee.Last_Name + '<br>\n\t\t\t\t\t\t\t' +
+                employee.Address1 +
                 ', ' + employee.Address2 +
                 ', ' + employee.City
               )
@@ -96,9 +96,10 @@ function fnView() {
         ),
         $('<div class="offerClause">').append(
           $('<div class="row vspace"/>').append('<div class="col-lg-12"><h5><strong>Duties</strong></h5><br>During your employment you must:<div class="row"><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\ta)</div><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> obey all lawful directions and observe and comply with all policies and procedures of Apple UK and the Apple Group; </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\tb)</div><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> during your working time devote the whole of your attention and skills and time to Apple UK; </div><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\tc)</div><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> use your best endeavors to promote and protect the business and interests of Apple UK. </div> </div> </div>'),
+          (employee.UK_Contract_Type.length > 0) &&
           $('<div class="row vspace"/>').append(
             $('<div class="col-lg-12">').append('<p><h5><strong>Commencement of Employment</strong></h5></p>'),
-            (employee.UK_Contract_Type == 'Fixed_term_FWE') &&
+            (['Fixed_term_FWE', '10_day_probation', '28_day_probation', 'FWE_PER'].indexOf(employee.UK_Contract_Type) > -1) &&
             $('<p/>').append('Your employment will begin on ' + employee.UK_Start_Date + ' and end on ' + employee.UK_End_Date  + ' without the need for notice unless previously terminated by either party by giving the other the notice set out in this Summary'),
             (employee.UK_Contract_Type == 'Maternity_Coverage') &&
             $('<p/>').append('Your employment will begin on ' + employee.UK_Start_Date + ' and, as you are covering ' + employee.UK_Employee_Name_on_Maternity_Leave + '\'s maternity leave, this contract will terminate on UK_End_Date or until ' + employee.UK_Employee_Name_on_Maternity_Leave + ' returns to work after the end of her maternity leave and any necessary handover is complete, whichever is sooner. Apple UK cannot confirm at this point in time exactly how long UK_Employee_Name_on_Maternity_Leave\'s leave will last, but if the return is before UK_End_Date, Apple UK will provide you with up to one month\'s written notice to expire no later than ' + employee.UK_End_Date + '.'),
@@ -107,6 +108,7 @@ function fnView() {
             ),
             $('<p/>').append('Your period of continuous employment will begin on the date that you commence work with Apple UK. No period of employment with another employer will count towards your period of continuous employment with Apple UK.')
           ),
+          (employee.UK_Contract_Type.length > 0) &&
           $('<div class="row vspace"/>').append(
             $('<div class="col-lg-12"/>').append(
               '<h5><strong>Probation Period</strong></h5>',
@@ -114,18 +116,19 @@ function fnView() {
               $('<p/>').append('Your employment with Apple UK is subject to undertaking a period of training and completing a six-month probation period. Apple UK may in its discretion extend the probationary period. If at the end of the probationary period Apple UK is satisfied with your performance you will become a permanent employee. During the probationary period, you or Apple UK may terminate your employment by giving four week’s written notice.'),
               (employee.UK_Contract_Type == 'ASLP') &&
               $('<p/>').append('Your employment with Apple UK is subject to undertaking a period of training and completing a six-month probation period. Apple UK may in its discretion extend the probationary period. During the probationary period, you or Apple UK may terminate your employment by giving two weeks\' written notice.'),
-              (employee.UK_Contract_Type == 'Fixed_term_FWE') &&
+              (['Fixed_term_FWE', '10_day_probation', '28_day_probation', 'FWE_PER'].indexOf(employee.UK_Contract_Type) > -1) &&
               $('<p/>').append('Your employment with Apple UK is subject to undertaking a period of training and completing a three-month probation period. During the probation period, you or Apple UK may terminate your employment by giving one week\'s written notice.'),
               (employee.UK_Contract_Type == 'FWE_PER') &&
               $('<p/>').append('Your employment with Apple UK is subject to undertaking a period of training and a probation period. The probation period is a six-month probation period, less the period of your previous service with Apple UK. Apple UK may in its discretion extend the probationary period. If at the end of the probationary period Apple UK is satisfied with your performance you will become a permanent employee. During the probationary period, you or Apple UK may terminate your employment by giving four week\'s written notice.')
             ),
           ),
+          (['Manager', 'Store_Leader', 'Market_Leader', 'ASLP', 'Retail_Corp', 'Director', 'Fixed_term_FWE', 'FWE_PER'].indexOf(employee.UK_Contract_Type) > -1) &&
           $('<div class="row vspace"/>').append(
             $('<div class="col-lg-12"/>').append(
               '<h5><strong>Place of Work (Business rules coming next week)</strong></h5>',
-              (employee.UK_Contract_Type == 'Manager' || employee.UK_Contract_Type == 'Store_Leader') &&
-              $('<p/>').append('Your normal place of work is the UK_Location Apple Store, but Apple UK may require you at any time to work at or relocate to such other place of work within the United Kingdom, whether on a temporary basis or not. For the avoidance of doubt, Apple UK will not require you to work outside of the UK for a period greater than one month, unless you agree.'),
-              (employee.UK_Contract_Type == 'Retail_Corp' || employee.UK_Contract_Type == 'Director' || employee.UK_Contract_Type == 'Fixed_term_FWE' || employee.UK_Contract_Type == 'FWE_PER') &&
+              (['Manager', 'Store_Leader'].indexOf(employee.UK_Contract_Type) > -1) &&
+              $('<p/>').append('Your normal place of work is the ' + employee.UK_Location + ' Apple Store, but Apple UK may require you at any time to work at or relocate to such other place of work within the United Kingdom, whether on a temporary basis or not. For the avoidance of doubt, Apple UK will not require you to work outside of the UK for a period greater than one month, unless you agree.'),
+              (['Retail_Corp', 'Director', 'Fixed_term_FWE', 'FWE_PER'].indexOf(employee.UK_Contract_Type) > -1) &&
               $('<p/>').append('Your normal place of work is ' + employee.UK_Location + ' but Apple UK may require you at any time to work at or relocate to such other place of work within the United Kingdom, whether on a temporary basis or not. For the avoidance of doubt, Apple UK will not require you to work outside of the UK for a period greater than one month, unless you agree. You acknowledge that you are aware of Apple\'s plans to consolidate its London offices in or around 2021, and that the intended new location is currently Battersea. You will likely be required to move work location accordingly and this will be confirmed to you at Apple\'s discretion.'),
               (employee.UK_Contract_Type == 'Market_Leader') &&
               $('<p/>').append('Your normal place of work will be ' + employee.Home_Address + ', although you are required to travel to the stores in the market region for which you are responsible as needed and are expected to attend meetings and trainings in such locations as Apple UK may specify from time to time. You must inform HR in writing of any change in your address. You confirm that you are not in breach of any covenant or agreement in doing work at your home. Apple UK may require you at any time to work at or relocate to another place of work within the United Kingdom, whether on a temporary basis or not. Apple UK will not require you to work outside the UK for a period greater than one month, unless you agree.'),
@@ -133,6 +136,7 @@ function fnView() {
               $('<p/>').append('You will be based in Apple UK stores. For administrative purposes you will assigned to ' + employee.UK_Location + '. However, given the nature of the ASLP, you will be required to work in other stores within the same market. Apple UK may also require you at any time upon reasonable notice to work at or relocate to another place of work within the United Kingdom, whether on a temporary or permanent basis. For the avoidance of doubt, Apple UK will not require you to work outside the UK for a period greater than one month unless you agree,')
             )
           ),
+          (['Manager', 'Salaried', 'Store_Leader', 'Market_Leader', 'ASLP', 'Store_Leader', 'Market_Leader', 'Field_Director', 'Retail_Corp', 'Director', 'Fixed_term_FWE'].indexOf(employee.UK_Contract_Type) > -1) &&
           $('<div class="row vspace"/>').append(
             $('<div class="col-lg-12"/>').append(
               '<h5><strong>Hours of Work</strong></h5>',
@@ -200,6 +204,7 @@ function fnView() {
               $('<p/>').append('Apple UK is entitled to deduct any amount owed by you to Apple UK from any monies due to you from Apple UK (including wages as defined by the Employment Rights Act 1996), including the value (as calculated in accordance with the Apple Retail Web UK) of any Apple product issued to you during your employment which you fail to return to Apple UK on or before the Termination Date.')
             )
           ),
+          (employee.UK_Contract_Type.length > 0) &&
           $('<div class="row vspace"/>').append(
             $('<div class="col-lg-12"/>').append(
               '<h5><strong>Holiday Entitlement</strong></h5>',
@@ -234,17 +239,18 @@ function fnView() {
               $('<p/>').append('The above provisions in this section remain in force notwithstanding termination of your employment.')
             )
           ),
+          (employee.UK_Contract_Type.length > 0) &&
           $('<div class="row vspace"/>').append(
             $('<div class="col-lg-12"/>').append(
               '<h5><strong>Termination of employment</strong></h5>',
               (employee.UK_Contract_Type == 'Manager') &&
               $('<p/>').append('Following successful completion of your probation period you or Apple UK, giving the following notice, may terminate your employment:'),
               (employee.UK_Contract_Type == 'Manager') &&
-              $('<div class="row"/>').appened('<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">a)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> up to four years\' of continuous employment, four weeks\' notice in writing; </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">b)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> after four complete years’ of continuous employment, one week\'s notice for each complete year of continuous employment, up to a maximum of twelve weeks.</div>'),
+              $('<div class="row"/>').append('<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">a)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> up to four years\' of continuous employment, four weeks\' notice in writing; </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">b)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> after four complete years’ of continuous employment, one week\'s notice for each complete year of continuous employment, up to a maximum of twelve weeks.</div>'),
               (['Store_Leader', 'Market_Leader', 'Retail_Corp', 'Director', 'GRS'].indexOf(employee.UK_Contract_Type) > -1) &&
               $('<p/>').append('Following successful completion of your probation period, either you or Apple, giving 12 weeks’ notice in writing, may terminate your employment.'),
-              (employee.UK_Contract_Type == 'Fixed_term_FWE') &&
-              $('<p/>').append('Following successful completion of the probation period, either you or Apple UK may terminate your employment in advance of its automatic termination at the end of the fixed term by giving four week’s written notice.')
+              (['Fixed_term_FWE', '10_day_probation', '28_day_probation', 'FWE_PER'].indexOf(employee.UK_Contract_Type) > -1) &&
+              $('<p/>').append('Following successful completion of the probation period, either you or Apple UK may terminate your employment in advance of its automatic termination at the end of the fixed term by giving four week’s written notice.'),
               (employee.UK_Contract_Type == 'ASLP') &&
               $('<p/>').append('Your employment will terminate without the need for notice at the expiry of the two year programme, unless before that date:'),
               (employee.UK_Contract_Type == 'ASLP') &&
@@ -286,6 +292,7 @@ function fnView() {
               $('<p/>').append('Apple UK\'s disciplinary and grievance procedures, as amended from time to time, are contained in the UK HR Web.')
             )
           ),
+          (employee.UK_Contract_Type.length > 0) &&
           $('<div class="row vspace"/>').append(
             $('<div class="col-lg-12"/>').append(
               '<h5><strong>Conditional offer of employment</strong></h5>',
