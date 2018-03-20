@@ -839,3 +839,18 @@ function isValidDOB(sVal, sName, sID) {
   }
   return isValid;
 }
+
+$(document).ready(function() {
+  function hideTarget(targeter, target) {
+    if (targeter.val() == 3) {
+      target.show();
+    } else {
+      target.hide();
+    }
+  }
+
+  $('#choose_one input').on('change', function() {
+    hideTarget($(this), $('#citizen-other'));
+  });
+  hideTarget($('#choose_one input'), $('#citizen-other'));
+});
