@@ -1,0 +1,157 @@
+<main class="container-fluid">
+  <header class="row vspace">
+    <div class="col-lg-3 col-md-3 col-sm-6">
+      <img src="assets/img/paypal_logo.jpg" alt="Paypal" class="img-responsive">
+    </div>
+  </header>
+  <section id="incomplete">
+
+    <div id="clause_1_6" class="row offerClause">
+      <div class="col-lg-12 vspace">
+        <$client.env.eval(date.now('%m/%d/%Y'))>
+      </div>
+      <div class="col-lg-12">
+        <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>
+      </div>
+      <div class="col-lg-12">
+        <$client.tForWhomUserInfo.Address1> <$client.tForWhomUserInfo.Address2>
+      </div>
+      <div class="col-lg-6 vspace">
+        <$client.env.eval((client.tForWhomUserInfo.City != '') ? client.tForWhomUserInfo.City : 'City')>, <$client.env.eval((client.tForWhomUserInfo.State != '') ? client.tForWhomUserInfo.State : 'State')> <$client.env.eval((client.tForWhomUserInfo.Zip != '') ? client.tForWhomUserInfo.Zip : 'Zip')>
+      </div>
+      <div class="col-lg-12 vspace">
+        Dear <$client.tForWhomUserInfo.First_Name>,
+      </div>
+    </div>
+
+    <!-- Intern Exempt -->
+    <div id="clause_2_6" class="row offerClause">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.Exempt=='E')?'':' hide')>">
+        We are excited for your PayPal internship!  Let's make this official. On behalf of <$client.tForWhomUserInfo.EnityName> we are pleased to offer you the exempt position of <$client.tForWhomUserInfo.Business_Title> (System Title: <$client.tForWhomUserInfo.SystemTitle>). Your immediate supervisor during your internship will be <$client.tForWhomUserInfo.Hiring_Manager>, <$client.tForWhomUserInfo.MngrBsnssTitle>.  Your internship is anticipated to continue for no more than <$client.tForWhomUserInfo.InternshipLength> weeks (provided that your engagement remains “at-will” as described below).
+      </div>
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.Exempt=='E')?'':' hide')>">
+        Your bi-weekly salary during your internship will be $<$client.tForWhomUserInfo.SalaryOffered> based on a work week of approximately <$client.tForWhomUserInfo.HoursPerWeek> hours per week. PayPal may adjust your work week and your bi-weekly salary from time to time in its sole discretion.  As an intern, you will be eligible for Holiday pay but you will not be eligible for other Company sponsored benefits.
+      </div>
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.Exempt=='N')?'':' hide')>">
+        We are excited for your PayPal internship!  Let's make this official. On behalf of <$client.tForWhomUserInfo.EnityName> ('<$client.tForWhomUserInfo.EnityName>';  or the 'PayPal') we are pleased to offer you the non-exempt position of <$client.tForWhomUserInfo.Business_Title> (System Title: <$client.tForWhomUserInfo.SystemTitle>). Your immediate supervisor during your internship will be <$client.tForWhomUserInfo.Hiring_Manager>, <$client.tForWhomUserInfo.MngrBsnssTitle>.  Your internship is anticipated to continue for no more than <$client.tForWhomUserInfo.InternshipLength> weeks (provided that your engagement remains “at-will” as described below).
+      </div>
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.Exempt=='N')?'':' hide')>">
+        Your hourly pay rate during your internship will be $<$client.tForWhomUserInfo.SalaryOffered> per hour, Payable bi-weekly during your internship. As an intern, you will be eligible for Holiday pay but you will not be eligible for other Company sponsored benefits.
+      </div>
+    </div>
+
+    <!-- Intern Stipend not null -->
+    <div id="clause_2_3" class="row offerClause">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.InternStipend!=null)&&(client.tForWhomUserInfo.InternStipend>0)?'':' hide')>">
+        PayPal will provide you with a special $<$client.tForWhomUserInfo.InternStipend> stipend for you to use towards expenses you may incur.  This stipend will be payable within two payroll periods of your start date and is subject to all applicable withholdings and legal deductions.
+      </div>
+    </div>
+
+    <!-- Relocation -->
+    <div id="clause_7_3" class="row offerClause">
+      <div class="col-lg-12 vspace<$client.env.eval(client.tForWhomUserInfo.Relocation=='Y'?'':' hide')>">
+        You will be provided relocation support to move from <$client.tForWhomUserInfo.RelocationFrom> to <$client.tForWhomUserInfo.PayAreaCity>. Details will be sent separately.
+      </div>
+    </div>
+
+    <!-- Terms and Conditions -->
+    <div id="clause_8_4" class="row offerClause">
+      <div class="col-lg-12 vspace">
+        This offer is contingent upon the results of your background verification and reference checks,  as PayPal deems appropriate, in its sole discretion.
+      </div>
+      <div class="col-lg-12 vspace">
+        Under federal immigration laws, PayPal is required to verify each new employee's identify and legal authority to work in the United States.  Accordingly, please be prepared to furnish appropriate documents satisfying those requirements: this offer of employment is condictioned on submission of sastifactory documentation.  You will be provided with a list of required documents.
+      </div>
+    </div>
+
+    <!-- Non-US Citizen & Non Permanent Residence -->
+    <div id="clause_9_4" class="row offerClause">
+      <div class="col-lg-12<$client.env.eval(client.tForWhomUserInfo.Immigration=='Yes'?' vspace':' hide')>">
+        You will receive a Non-US Citizen/Permanent Residence Non-Immigrant Checklist under separate cover with other instructions and documentation for the processing of your visa. So that we may move forward with your visa application, please provide copies of the documents on the checklist to our immigration attorney as soon as possible. Any delay in the submitting these documents may affect your start date with PayPal.
+      </div>
+    </div>
+
+    <div id="clause_11_4" class="row offerClause">
+      <div class="col-lg-12 vspace">
+        Your internship is "at will" and either you or PayPal may terminate your internship at any time, with or without cause or advance notice.  The at-will nature of the internship can only be changed by written agreement signed by PayPal's SVP,  Chief People Officer. Other terms, conditions job responsibilities, compensation and benefits may be adjusted by PayPal from time to time in its sole discretion.
+      </div>
+    </div>
+
+    <div id="clause_12_5" class="row offerClause">
+      <div class="col-lg-12 vspace">
+        In addition to this letter, other important documents, including the Intern Insider Trading Policy, Intern Arbitration Agreement and the Intern Proprietary Information and Inventions Agreement, outline additional terms and conditions of your internship.  These documents have been provided to you in the offer packet included with this letter.  These documents must be signed prior to your start date.
+      </div>
+    </div>
+
+    <div id="clause_13_4" class="row offerClause">
+      <div class="col-lg-12 vspace">
+        Kindly indicate your consent to this offer letter by electronically signing below within 90 days of the date of the offer.  Upon your signature below, this will become our binding agreement with respect to your internship and its terms, merging and superseding in their entirety all other or prior written or oral offers, agreements and communications.  In accepting this offer and signing below, you acknowledge that you have not relied upon any statement, promise, agreement or representation not set forth in this letter.
+      </div>
+    </div>
+
+    <div id="clause_14_3" class="row offerClause">
+      <div class="col-lg-12 vspace">
+        A mutually agreeable start date for University hires to be determined by candidate and recruiter three months in advance of beginning employment with PayPal.
+      </div>
+    </div>
+
+    <div id="clause_15_6" class="row">
+      <div class="col-lg-12 vspace">
+        At PayPal, we have a big opportunity ahead of us to reimagine money so that every person can participate in the global economy. We think your skills and experience could make a tremendous impact, and you will be a great addition to the team.
+      </div>
+    </div>
+
+    <div id="clause_17_6" class="row">
+      <div class="col-lg-12 vspace">
+        Sincerely,
+      </div>
+      <div class="col-lg-12">
+        <$client.tForWhomUserInfo.Recruiter>
+      </div>
+      <div class="col-lg-12 vspace">
+        Recruiter
+      </div>
+      <div class="col-lg-12 vspace">
+        Signature area indicating acceptance of the above terms and conditions to follow
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <strong>ACCEPT OR DECLINE OFFER:</strong>
+      </div>
+      <div class="col-lg-5">
+        <$client.env.formfield.AcceptDecline.HTML>
+      </div>
+    </div>
+    <div class="row vspace">
+      <div class="col-lg-3">
+        Other Reason
+      </div>
+      <div class="col-lg-5">
+        <$client.env.formfield.OtherReason.HTML>
+      </div>
+    </div>
+    <div class="row vspace">
+      <div class="col-lg-2">
+        E-Signature
+      </div>
+      <div class="col-lg-6">
+        <$client.env.formfield.Signature.HTML>
+      </div>
+      <div class="col-lg-1 text-right">
+        Date
+      </div>
+      <div class="col-lg-3">
+        <$client.env.formfield.Date.HTML>
+      </div>
+    </div>
+  </section>
+  <section id="complete"></section>
+</main>
+<div id="hiddendiv_pg">
+  <$client.env.formfield.hidden_pg1.html>
+  <$client.env.formfield.hidden_pg2.html>
+</div>
+
+<$client.env.FormField.signatureverification.HTML>
+<$client.env.formfield.Name.HTML>
