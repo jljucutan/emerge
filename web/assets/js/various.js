@@ -594,15 +594,15 @@ $(document).ready(function() {
 (function($) {
   $.fn.checkOne = function() {
     var checkbox = $(this),
-        group = checkbox.data('group');
-    $.each($('[data-group="' + group + '"]'), function(k, v) {
+        group = checkbox.data('checkbox-group');
+    $.each($('[data-checkbox-group="' + group + '"]'), function(k, v) {
       $(v).prop('checked', false);
     });
     checkbox.prop('checked', true);
   }
 }(jQuery));
 $(function() {
-  $('[data-group]').on('click change', function() {
+  $('[data-checkbox-group]').on('click change', function() {
     $(this).checkOne();
   });
 });
@@ -610,9 +610,44 @@ $(function() {
 function checkOnlyOne(sVal, sName, sID) {
   var isValid = true;
   if('<$client.env.serversidevalidation>' == '1'){return isValid;}
-  if ($('[data-group="' + $(document.getElementById(sID)).data('group') + '"]:checked').length > 1) {
+  if ($('[data-checkbox-group="' + $(document.getElementById(sID)).data('group') + '"]:checked').length > 1) {
     AddError(sID, 'Error in validation, only one option should be selected in', '');
     isValid = false;
   }
   return isValid;
+}
+
+
+function requireOne(sVal, sName, sID) {
+  var isValid = true;
+  if('<$client.env.serversidevalidation>' == '1'){return isValid;}
+  if ($('[data-checkbox-group="' + $(document.getElementById(sID)).data('group') + '"]:checked').length < 1) {
+    isValid = false;
+    return eFormRequiredField(sVal, sName, sID);
+  }
+  return isValid;
+}
+
+function concatAddr() {
+  var addr = '';
+  var addrFull = [];
+  if (!arguments.length) {
+    return addr;
+  }
+  for (i = 0; i < arguments.length; i++) {
+    if(arguments[i]) {
+      addrFull.push(arguments[i]);
+    }
+  }
+  if (addrFull.length <= 1) {
+    addr += addrFull[0];
+    return addr;
+  }
+  for (j = 0; j < addrFull.length; j++) {
+    addr += addrFull[j];
+    if (j < addrFull.length) {
+      addr += ', ';
+    }
+  }
+  return addr;
 }
