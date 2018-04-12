@@ -1,0 +1,289 @@
+<main class="container-fluid">
+  <header class="row vspace">
+    <div class="col-lg-3 col-md-3 col-sm-6 staticContent">
+      <img src="assets/img/paypal_logo.jpg" alt="Paypal" class="img-responsive">
+    </div>
+  </header>
+  <section id="incomplete">
+
+    <div class="row">
+      <div class="col-lg-12 vspace offerClause">
+        <$client.env.eval(date.now('%m/%d/%Y'))>
+      </div>
+      <div class="col-lg-12 offerClause">
+        <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>
+      </div>
+      <div class="col-lg-12 offerClause">
+        <$client.tForWhomUserInfo.Address1> <$client.tForWhomUserInfo.Address2>
+      </div>
+      <div class="col-lg-6 vspace offerClause">
+        <$client.env.eval((client.tForWhomUserInfo.City != '') ? client.tForWhomUserInfo.City : 'City')>, <$client.env.eval((client.tForWhomUserInfo.State != '') ? client.tForWhomUserInfo.State : 'State')> <$client.env.eval((client.tForWhomUserInfo.Zip != '') ? client.tForWhomUserInfo.Zip : 'Zip')>
+      </div>
+      <div class="col-lg-12 vspace offerClause">
+        Dear <$client.tForWhomUserInfo.First_Name>,
+      </div>
+    </div>
+
+    <!-- Intern Exempt -->
+    <div class="row">
+      <div class="col-lg-12 offerClause vspace<$client.env.eval(((client.tForWhomUserInfo.Exempt=='E')&&(client.tForWhomUserInfo.JobType=='Full Time'))?'':' hide')>">
+        <$client.tForWhomUserInfo.EnityName> ('<$client.tForWhomUserInfo.EnityName>' or the 'Company') is pleased to offer you the exempt position of <$client.tForWhomUserInfo.Business_Title> (System Title: <$client.tForWhomUserInfo.SystemTitle>), reporting to <$client.tForWhomUserInfo.Hiring_Manager>, <$client.tForWhomUserInfo.MngrBsnssTitle>, at a bi-weekly salary of $<$client.tForWhomUserInfo.SalaryOffered>, which is equivalent to an annualized salary of $<$client.tForWhomUserInfo.Salary_Amount>.
+      </div>
+      <div class="col-lg-12 vspace<$client.env.eval(((client.tForWhomUserInfo.Exempt=='N')&&(client.tForWhomUserInfo.JobType=='Full Time'))?' offerClause':' hide')>">
+        <$client.tForWhomUserInfo.EnityName> ('<$client.tForWhomUserInfo.EnityName>';  or the 'Company') is pleased to offer you the non-exempt position of <$client.tForWhomUserInfo.Business_Title> (System Title: <$client.tForWhomUserInfo.SystemTitle>), reporting to <$client.tForWhomUserInfo.Hiring_Manager>, <$client.tForWhomUserInfo.MngrBsnssTitle>, at a rate of $<$client.tForWhomUserInfo.SalaryOffered> per hour, payable bi-weekly.
+      </div>
+      <div class="col-lg-12 offerClause vspace<$client.env.eval(((client.tForWhomUserInfo.Exempt=='E')&&(client.tForWhomUserInfo.JobType=='Part Time'))?'':' hide')>">
+        <$client.tForWhomUserInfo.EnityName> ('<$client.tForWhomUserInfo.EnityName>' or the 'Company') is pleased to offer you the exempt position of <$client.tForWhomUserInfo.Business_Title> (System Title: <$client.tForWhomUserInfo.SystemTitle>), reporting to <$client.tForWhomUserInfo.Hiring_Manager>, <$client.tForWhomUserInfo.MngrBsnssTitle>, at a bi-weekly salary of $<$client.tForWhomUserInfo.SalaryOffered>, which is equivalent to an annualized salary of $<$client.tForWhomUserInfo.Salary_Amount>. This salary is based on a part time, <$client.tForWhomUserInfo.CAP_UTIL_LVL_PCT>% work schedule.
+      </div>
+      <div class="col-lg-12 offerClause vspace<$client.env.eval(((client.tForWhomUserInfo.Exempt=='N')&&(client.tForWhomUserInfo.JobType=='Part Time'))?'':' hide')>">
+        <$client.tForWhomUserInfo.EnityName> ('<$client.tForWhomUserInfo.EnityName>';  or the 'Company') is pleased to offer you the non-exempt position of <$client.tForWhomUserInfo.Business_Title> (System Title: <$client.tForWhomUserInfo.SystemTitle>), reporting to <$client.tForWhomUserInfo.Hiring_Manager>, <$client.tForWhomUserInfo.MngrBsnssTitle>, at a rate of $<$client.tForWhomUserInfo.SalaryOffered> per hour, payable bi-weekly. You are currently scheduled to work <$client.tForWhomUserInfo.HoursPerWeek> hours per week.
+      </div>
+    </div>
+
+    <!-- Intern Stipend not null -->
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval( ((client.tForWhomUserInfo.SHIFT_DIFFERENTIAL!=null)||(client.tForWhomUserInfo.SHIFT_DIFFERENTIAL!=0))&&(client.tForWhomUserInfo.Exempt=='N')? ' offerClause':' hide')>">
+        You may be eligible for a shift differential for hours worked outside of 6:00 a.m. to 6:00 p.m., and for hours worked on the weekend. There will be no differential applied to paid time off, including but not limited to PTO, holidays, civic duty, bereavement leave.  Please see the employee handbook for specific shift differential policy details. The Company reserves the right, in its sole discretion, to amend, change or cancel its shift differential policy at any time.
+      </div>
+    </div>
+
+    <!-- Relocation -->
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval( ((client.tForWhomUserInfo.Shift_Differential_Exempt!=null)||(client.tForWhomUserInfo.Shift_Differential_Exempt!=0))&&(client.tForWhomUserInfo.Exempt=='E')? ' offerClause':' hide')>">
+        You may be eligible for a shift differential for hours worked outside of 6:00 a.m. to 6:00 p.m., and for hours worked on the weekend. There will be no differential applied to paid time off, including but not limited to PTO, holidays, civic duty, bereavement leave.  Please see the employee handbook for specific shift differential policy details. The Company reserves the right, in its sole discretion, to amend, change or cancel its shift differential policy at any time.
+      </div>
+    </div>
+
+    <!-- Terms and Conditions -->
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval( ((client.tForWhomUserInfo.Shift_Differential_Exempt!=null)||(client.tForWhomUserInfo.Shift_Differential_Exempt!=0))&&(client.tForWhomUserInfo.Exempt=='E') ? ' offerClause': ' hide')>">
+        You will be eligible for a <$client.tForWhomUserInfo.Shift_Differential_Exempt>%  shift differential while working <$client.tForWhomUserInfo.Shift> shift. Should you change shifts at any time during your employment, a different differential may be applied or completely eliminated depending on the shift. Please see the employee handbook for specific shift differential policy details. Further, the Company reserves the right, in its sole discretion, to amend, change or cancel its shift differential policy at any time.
+      </div>
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.LANGUAGE_DIFFERENTIAL==null)||(client.tForWhomUserInfo.LANGUAGE_DIFFERENTIAL==0)?' offerClause':' hide')>">
+        You will be eligible for a <$client.tForWhomUserInfo.LANGUAGE_DIFFERENTIAL>% language differential because your position requires a language skill other than English for at least twenty-five percent (25%) of your time worked.  Should you change positions or no longer require a language skill other than English for the required percentage of your time worked, a different differential may be applied or completely eliminated depending on the role. Further, the Company reserves the right, in its sole discretion, to amend, change or cancel its language differential policy at any time.
+      </div>
+    </div>
+
+    <!-- Non-US Citizen & Non Permanent Residence -->
+    <div class="row">
+      <div class="col-lg-12<$client.env.eval((client.tForWhomUserInfo.GSI_Incentive_Plan_Target==null)||(client.tForWhomUserInfo.GSI_Incentive_Plan_Target==0)&&(client.tForWhomUserInfo.EIP_Target_Pct!=0)?' offerClause':' hide')>">
+        You will be eligible to participate in the PayPal Annual Incentive Plan (“AIP”).  Currently, 50% of the award is based on company performance measured against financial objectives and 50% of the award is based upon individual achievement.  The annual bonus period is from January 1 through December 31.  Your target bonus for the AIP is <$client.tForWhomUserInfo.EIP_Target_Pct>% of your annual base salary, calculated on a prorated basis based on your hire date and days of service during the AIP bonus period.  This bonus is subject to the terms and conditions of the AIP plan document.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.SalesTargetDollarAmt!=null)&&(client.tForWhomUserInfo.SalesTargetDollarAmt>0)?' offerClause':' hide')>">
+        You will be eligible to participate in a sales incentive plan with a target incentive of $<$client.tForWhomUserInfo.SalesTargetDollarAmt>. Details of the plan will be provided to you by your manager. The payment of any incentive is at the Company’s sole and absolute discretion and subject to the terms and conditions of the plan.  The Company reserves the right, in its sole discretion, to amend, change or cancel the plan at any time.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.Sales_commission_plan!=null)&&(client.tForWhomUserInfo.Sales_commission_plan>0)?' offerClause':' hide')>">
+        You will be eligible to participate in a sales commission plan.  Details of the plan will be provided to you by your manager. The payment of any commission is subject to the terms and conditions of the plan.  The Company reserves the right, in its sole discretion, to amend, change or cancel the plan at any time.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.CSIncentivePlan!=null)&&(client.tForWhomUserInfo.CSIncentivePlan>0)?' offerClause':' hide')>">
+        You will be eligible to participate in an incentive plan based on individual achievement and/or other group performance measures. Your target incentive is <$client.tForWhomUserInfo.CSIncentivePlan>% of your eligible earnings.  Details of the plan will be provided to you by your manager.   The payment of any incentive is at the Company’s sole and absolute discretion and subject to the terms and conditions of the plan.   The Company reserves the right, in its sole discretion, to amend, change or cancel the plan at any time.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.CSIncentivePlan_fixed!=null)&&(client.tForWhomUserInfo.CSIncentivePlan_fixed>0)?' offerClause':' hide')>">
+        You will be eligible to participate in an incentive plan based on individual achievement and/or other group performance measures.   Details of the plan will be provided to you by your manager.   The payment of any incentive is at the Company’s sole and absolute discretion and subject to the terms and conditions of the plan.   The Company reserves the right, in its sole discretion, to amend, change or cancel the plan at any time.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.NEW_HIRE_REST_STOCK_UNITS!=null)&&(client.tForWhomUserInfo.NEW_HIRE_REST_STOCK_UNITS>0)&&(client.tForWhomUserInfo.OFFER_TYPE=="USD")?' offerClause':' hide')>">
+        It will be recommended to the Compensation Committee of the Board of Directors of PayPal Holdings, Inc. (or its delegate, as applicable) that you be granted an award of restricted stock units (“RSUs”) valued at USD $<$client.tForWhomUserInfo.NEW_HIRE_REST_STOCK_UNITS>. The value of this equity award will be converted into the number of shares to be granted, as determined based on current company policies.  One-third (1/3) of the shares subject to the RSU awards will vest (conditioned upon your continued employment with a PayPal company on each vesting date) on each anniversary of the grant date, less applicable taxes and withholdings. Please note this is a summary of the RSUs, and you will be required to sign equity award and other related agreements that set forth terms and conditions that govern your awards.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.SupplementalRSU!=null)&&(client.tForWhomUserInfo.SupplementalRSU>0)&&(client.tForWhomUserInfo.OFFER_TYPE=="USD")?' offerClause':' hide')>">
+        It will also be recommended to the Compensation Committee of the Board of Directors of PayPal Holdings, Inc. (or its delegate, as applicable) that you be granted a supplemental RSU award valued at USD $<$client.tForWhomUserInfo.SupplementalRSU>. The value of this equity award will be converted into the number of shares to be granted, as determined based on current company policies.  One-third (1/3) of the shares subject to the RSU awards will vest (conditioned upon your continued employment with a PayPal company on each vesting date) on each anniversary of the grant date, less applicable taxes and withholdings.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.SupplementalRSU!=null)&&(client.tForWhomUserInfo.SupplementalRSU>0)&&(client.tForWhomUserInfo.OFFER_TYPE=="USD")?' offerClause':' hide')>">
+        Please note this is a summary of the RSUs, and you will be required to sign equity award and other related agreements that set forth terms and conditions that govern your awards.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.SupplementalRSU!=null)&&(client.tForWhomUserInfo.SupplementalRSU>0)&&(client.tForWhomUserInfo.OFFER_TYPE=="USD")?' offerClause':' hide')>">
+        All employees are subject to PayPal’s Insider Trading Agreement, which outlines the procedures and guidelines governing securities trades by company personnel.  You will be provided with a copy of PayPal’s Insider Trading Agreement.  Please review the Agreement carefully, execute the certification and submit it to PayPal’s People team.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT!=0)&&(client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT.replace(",","")<25000)?' offerClause':' hide')>">
+        You will also be eligible to receive a hire-on bonus of $<$client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT> (less deductions and applicable taxes), which will be payable within two payroll periods of your start date.  In the event your employment ceases for reasons of cause or resignation prior to completion of one year from your start date, the hire-on bonus shall be fully refundable to the Company.  No repayment would be required for termination after one year of employment with the Company.  We have included a Repayment Requirement Agreement that covers the specific terms of the hire-on bonus.  Please review the agreement carefully before signing and submitting it to PayPal’s human resources department.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT.replace(",","")>=25000)? ((client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT!=null)?' offerClause':' hide'):' hide')>">
+        You will also be eligible to receive a hire-on bonus of $<$client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT> (less deductions and applicable taxes) payable within two payroll periods of your start date. In the event that your employment ceases for reasons of cause or resignation prior to completion of one year of service from your start date, the special hire-on bonus is fully refundable to the Company. If your employment ceases for reasons of cause or resignation after one year but prior to two years from your start date, your repayment obligation will be reduced by 1/24th for every full month of active employment.  No repayment of the bonus would be required upon termination after two years of employment with the Company.  We have included a Repayment Requirement Agreement that covers the specific terms of the hire-on bonus.  Please review the agreement carefully before signing and submitting it to PayPal’s human resources department.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.paymentAmount1!=null)&&(client.tForWhomUserInfo.paymentAmount1!=0)?' offerClause':' hide')>">
+        You shall also receive a one-time make-good bonus of $<$client.tForWhomUserInfo.paymentAmount1> (less deductions and applicable taxes). This make-good payment is payable within two payroll periods of your start date.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.paymentAmount2!=null)&&(client.tForWhomUserInfo.paymentAmount2>0)?' offerClause':' hide')>">
+        You shall also receive a one-time make-good bonus of $<$client.tForWhomUserInfo.paymentAmount2> (less deductions and applicable taxes), which will be payable in two installments.  The first installment of $<$client.tForWhomUserInfo.firstinstallmentamount> (less deductions and applicable taxes) will be payable on or around <$client.env.eval(client.tForWhomUserInfo.firstpaymentdate.subString(5,6))>/<$client.env.eval(client.tForWhomUserInfo.firstpaymentdate.subString(0,3))> and the second installment of $<$client.tForWhomUserInfo.secondinstallmentamount> (less deductions and applicable taxes) will be payable on or around <$client.env.eval(client.tForWhomUserInfo.secondpaymentdate.subString(5,6))>/<$client.env.eval(client.tForWhomUserInfo.secondpaymentdate.subString(0,3))>, subject to your continued employment on each date of payment.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.Option2PaymentAmt!=null)&&(client.tForWhomUserInfo.Option2PaymentAmt>0)?' offerClause':' hide')>">
+        You shall also receive a one-time make-good bonus of $<$client.tForWhomUserInfo.Option2PaymentAmt> (less deductions and applicable taxes), which will be payable in two installments.  The first installment of $<$client.tForWhomUserInfo.Option2FirstInstallment> (less deductions and applicable taxes) will be payable within two payroll periods of your start date and the second installment of $<$client.tForWhomUserInfo.Option2SecondInstallmentAmt> (less deductions and applicable taxes) will be payable on or around the first anniversary of your start date, subject to your continued employment on each date of payment.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace offerClause">
+        You will be also entitled to the benefits that PayPal customarily makes available to employees in positions comparable to yours.  Please refer to the benefit plan documents for more details, including eligibility.  PayPal reserves the right, in its sole discretion, to amend, change or cancel the benefits at any time.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval(client.tForWhomUserInfo.Relocation=='Y'?' offerClause':' hide')>">
+        The Company will assist with many expenses associated with your relocation from <$client.tForWhomUserInfo.RelocationFrom> to <$client.tForWhomUserInfo.PayAreaCity>. Details regarding your relocation and the terms of our assistance will be provided under separate cover by our relocation services provider.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval(client.tForWhomUserInfo.Immigration=='Yes'?' offerClause':' hide')>">
+        You will receive a Non-US Citizen/Permanent Residence Non-Immigrant Checklist under separate cover with other instructions and documentation for the processing of your visa. So that we may move forward with your visa application, please provide copies of the documents on the checklist to our immigration attorney as soon as possible. Any delay in submitting these documents may affect your start date with the Company.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace offerClause">
+        This offer is contingent upon the results of your background verification and reference checks, as PayPal deems appropriate, in its sole discretion.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace offerClause">
+        Under federal immigration laws, PayPal is required to verify each new employee’s identity and legal authority to work in the United States.  Accordingly, please be prepared to furnish appropriate documents satisfying those requirements; this offer of employment is conditioned on submission of satisfactory documentation.  You will be provided with a list of the required documents.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace offerClause">
+        Your employment at PayPal is “at-will” and either you or PayPal may terminate your employment at any time, with or without cause or advance notice. The at-will nature of the employment relationship can only be changed by written agreement signed by PayPal’s SVP, Chief People Officer. Other terms, conditions, job responsibilities, compensation and benefits may be adjusted by PayPal from time to time in its sole discretion.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace offerClause">
+        In addition to this letter, other important documents outline additional terms and conditions of your employment.  These documents are briefly explained below and will be provided to you for signature under separate cover.  Please be sure to thoroughly review these documents prior to signing.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace offerClause">
+        Mutual Arbitration Agreement.  All of us at PayPal are very excited about you joining our team and look forward to a beneficial and fruitful relationship. However, should any dispute arise regarding your hiring, employment or termination, we both agree that such dispute shall be resolved by final, binding and confidential arbitration rather than by a court of law. PayPal will bear those expenses unique to arbitration.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace offerClause">
+        Employee Proprietary Information and Inventions Agreement.  This Agreement addresses important obligations you will have to PayPal as an employee, both during and after your employment, regarding intellectual property, confidentiality of company proprietary information, and related subjects.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace<$client.env.eval((client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT!=0)&&(client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT!=null)?' offerClause':' hide')>">
+        A signed copy of the Repayment Requirement Agreement being returned to the Company.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace offerClause">
+        If you agree to the terms and conditions of this offer, please sign below and return to the Company within 90 days of the date of the offer.  Upon your signature below, this will become our binding agreement with respect to your employment and its terms merging and superseding in their entirety all other or prior offers, agreements and communications, whether written or oral, by you and PayPal as to the specific subjects of this letter.  In accepting this offer and signing below, you warrant and acknowledge that you have not relied upon any statement, promise, agreement or representation not set forth expressly herein.
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace offerClause">
+        We are excited at the prospect of you joining our team. Your background and qualifications will add a unique strength to our department, as well as to the Company's continued success. We look forward to having you on board!
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 vspace offerClause">
+        Very truly yours,
+      </div>
+      <div class="col-lg-12 offerClause">
+        <$client.tForWhomUserInfo.Recruiter>
+      </div>
+      <div class="col-lg-12 vspace offerClause">
+        Recruiter
+      </div>
+      <div class="col-lg-12 vspace offerClause">
+        Signature area indicating acceptance of the above terms and conditions to follow
+      </div>
+      <div class="col-lg-12 vspace offerClause">
+        A mutually agreeable start date for University hires to be determined by candidate and recruiter 90 days in advance of beginning employment with PayPal Inc.
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <strong>ACCEPT OR DECLINE OFFER:</strong>
+      </div>
+      <div class="col-lg-5">
+        <$client.env.formfield.AcceptDecline.HTML>
+      </div>
+    </div>
+    <div class="row vspace">
+      <div class="col-lg-3">
+        Other Reason
+      </div>
+      <div class="col-lg-5">
+        <$client.env.formfield.OtherReason.HTML>
+      </div>
+    </div>
+    <div class="row vspace">
+      <div class="col-lg-2">
+        E-Signature
+      </div>
+      <div class="col-lg-6">
+        <$client.env.formfield.Signature.HTML>
+      </div>
+      <div class="col-lg-1 text-right">
+        Date
+      </div>
+      <div class="col-lg-3">
+        <$client.env.formfield.Date.HTML>
+      </div>
+    </div>
+    <div class="row vspace">
+      <div class="col-lg-2">
+        Name
+      </div>
+      <div class="col-lg-6">
+        <$client.env.formfield.Name.HTML>
+      </div>
+    </div>
+  </section>
+  <section id="complete"></section>
+</main>
+<div id="hiddendiv_pg">
+  <$client.env.formfield.hidden_pg1.html>
+  <$client.env.formfield.hidden_pg2.html>
+  <$client.env.formfield.hidden_pg3.html>
+  <$client.env.formfield.hidden_pg4.html>
+</div>
+
+<$client.env.FormField.SignatureVerification.HTML>
