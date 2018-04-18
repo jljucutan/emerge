@@ -651,3 +651,12 @@ function concatAddr() {
   }
   return addr;
 }
+
+function isRequiredIfActive(sVal, sName, sID) {
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if(document.getElementById(sID).is(':visible'))
+  {
+    return eFormRequiredField(sVal, sName, sID);
+  }
+  return true;
+}
