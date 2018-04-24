@@ -334,6 +334,7 @@ function isRequireOne(sVal, sName, sField) {
   if (!$('[data-checkbox-group]:checked').length) {
     return eFormRequiredField(sVal, sName, sField);
   }
+  return isValid;
 }
 
 function PromptRole() {
@@ -654,9 +655,62 @@ function concatAddr() {
 
 function isRequiredIfActive(sVal, sName, sID) {
   if('<$client.env.serversidevalidation>' == '1'){return true;}
-  if(document.getElementById(sID).is(':visible'))
+  var lang = $(document.getElementById(sID)).data('lang');
+  if(lang == $('#lang').val())
   {
     return eFormRequiredField(sVal, sName, sID);
   }
   return true;
+}
+
+function isRequiredBySiblings(sVal, sName, sID) {
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var siblingsGroup = $(document.getElementById(sID)).data('siblings'),
+      siblings = $('[data-siblings="' + siblingsGroup + '"]'),
+      isRequired = true;
+  $.each(siblings, function(k, v) {
+    if ($(v).is(':checked')) {
+      isRequired = false;
+    }
+  });
+  if (!isRequired) {
+    return eFormRequiredField(sVal, sName, sID);
+  }
+  return true;
+}
+
+$(function() {
+  $('[data-checkbox-group]').on('click change', function() {
+    $(this).checkOne();
+  });
+  $('a[data-target-lang]').on('click', function(e) {
+      e.preventDefault();
+      $('[data-target-lang]').removeClass('active');
+      toggleActiveLink($(this));
+      hideSection($(this).data('target-lang'));
+      $('#lang').val($(this).data('target-lang'));
+    });
+  $(document).ready(function() {
+    hideSection($('#lang').val());
+    toggleActiveLink($('[data-target-lang="' + $('#lang').val() + '"]'));
+  });
+});
+
+function syncFullName(firstName, middleInitial, lastName, target) {
+  target.val($.trim(firstName) + ' ' + $.trim(middleInitial) + ' ' + $.trim(lastName))
+}
+
+function isRequiredOneCheckbox(sVal, sName, sID) {
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var checkboxGroup = $(document.getElementById(sID)).data('checkbox-group'),
+      isRequired = true;
+  $.each($('[data-checkbox-group="' + checkboxGroup + '"]:checked'), function(k, v) {
+    if($(v).length) {
+      isRequired = false;
+    }
+  });
+  if (isRequired) {
+    return eFormRequiredField(sVal, sName, sID);
+  }
+  return isRequired;
 }
