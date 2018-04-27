@@ -714,3 +714,57 @@ function isRequiredOneCheckbox(sVal, sName, sID) {
   }
   return isRequired;
 }
+
+function isValidPhoneNumber(sVal, sName, sID) {
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var regStr = /^(\d+-?)+\d+$/,
+      isValid = true;
+  if (sVal.length < 1) {
+    return isValid;
+  }
+  if (!sVal.match(regStr)) {
+    AddError(sID, 'Error in validation, only valid phone numbers (numbers and dashes) should be input in', '');
+    isValid = false;
+  }
+  if (sVal.replace(/-/g, "").length > 10) {
+    AddError(sID, 'Error in validation, only 10 digits (excluding dashes) should be input in', '');
+    isValid = false;
+  }
+  return isValid;
+}
+
+  function isValidPhoneInput(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+     if (charCode != 45  && charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+     }
+     return true;
+  }
+
+  $('#a31_Primary_Phone, #a33_Secondary_Phone').on('keyup keypress blur change', function(e) {
+    var isValid = $(this).val().match(/^\d+(-\d+)*$/);
+    if(!isValid){
+      return false;
+    }
+    return true;
+  });
+  $("#a31_Primary_Phone, #a33_Secondary_Phone").bind({
+    keydown: function(e) {
+      var charCode = (e.which) ? e.which : event.keyCode;
+      if (charCode >= 48 && charCode <= 57 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+      }
+      return true;
+    }
+  });
+
+    function isValidPhoneInput(ev){
+      var $this = $(this);
+
+      $this.data('value', $this.val());
+      $this.val(function(idx, val){
+          var mask = val.match(/^(.*?)(\d{4})$/);
+
+          return (mask[1] ? mask[1].replace(/\d/g, '*') : '') + (mask[2] ? mask[2] : '')
+      });
+    };
