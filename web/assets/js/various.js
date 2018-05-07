@@ -262,10 +262,12 @@ function isFullPercentOnly(sVal,sName,sID) {
   return isValid;
 }
 
-$('[data-checkbox-group]').on('click', function() {
-  var groupId = $(this).data('checkbox-group');
-  $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
-  $(this).prop('checked', true);
+$(document).ready(function() {
+  $('[data-checkbox-group]').on('click', function() {
+    var groupId = $(this).data('checkbox-group');
+    $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+    $(this).prop('checked', true);
+  });
 });
 
 $(function() {
@@ -622,7 +624,7 @@ function checkOnlyOne(sVal, sName, sID) {
 function requireOne(sVal, sName, sID) {
   var isValid = true;
   if('<$client.env.serversidevalidation>' == '1'){return isValid;}
-  if ($('[data-checkbox-group="' + $(document.getElementById(sID)).data('group') + '"]:checked').length < 1) {
+  if ($('[data-checkbox-group="' + $(document.getElementById(sID)).data('checkbox-group') + '"]:checked').length < 1) {
     isValid = false;
     return eFormRequiredField(sVal, sName, sID);
   }
@@ -768,3 +770,60 @@ function isValidPhoneNumber(sVal, sName, sID) {
           return (mask[1] ? mask[1].replace(/\d/g, '*') : '') + (mask[2] ? mask[2] : '')
       });
     };
+
+
+function ValidateDCDateSigned_Custom(sVal,sName,sID){
+    var initToday = function(sName) {
+        var dateFields = document.getElementsByName(sName);
+        for (i = 0; i < dateFields.length; i++) {
+            dateFields[i].value = '<$client.env.eval(date.now('%m/%d/%Y'))>';
+        }
+    };
+    if(sVal.length < 1) {
+        setTimeout(function() {
+            initToday(sName);
+            initToday(sName + "_display");
+        }, 500);
+    }
+    if('<$client.env.serversidevalidation>'=='1'){ return eFormRequiredDate(sVal,sName,sID); }
+    else{ return eFormRequiredTodayDate(sVal,sName,sID); }
+}
+
+function getDateFieldsByPseudoID(pseudoID) {
+  getElementsByName()
+}
+
+function initDay() {
+  var elems = document.getElementsByTagName(input);
+  for (i = 0; i < elems.length; i++) {
+    if(elems[i].id && elems[i].id != undefined) {
+      if (elems[i].id.match(/DateSigned/g)) {
+        document.getElementById(elems[i].id).value = '<$client.env.eval(date.now("%m/%d/%Y"))>';
+      }
+    }
+  }
+}
+
+function getElementsByClassName_Custom(myClassName){ 
+   var myTagNameArray = document.getElementsByTagName('input'); 
+   var singleClass = ""; 
+   var myClassArray = new Array; 
+   var i = 0; 
+   var j = 0; 
+   while(i<myTagNameArray.length){ 
+      singleClass = myTagNameArray[i].name.split("."); 
+      while(j<singleClass.length){ 
+         if(singleClass[j]==myClassName){ 
+            myClassArray.push(myTagNameArray[i]); 
+         } 
+         j++; 
+      } 
+      j=0; 
+      i++; 
+   } 
+   return myClassArray; 
+}
+
+if(DateSigned[0].value.length < 1) {
+  DateSigned[0].value = "<$client.env.eval(date.now("%m/%d/%Y"))>";
+}
