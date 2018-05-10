@@ -827,3 +827,10 @@ function getElementsByClassName_Custom(myClassName){
 if(DateSigned[0].value.length < 1) {
   DateSigned[0].value = "<$client.env.eval(date.now("%m/%d/%Y"))>";
 }
+
+(function($) {
+  $.fn.disableDate = function() {
+    $(this).parent().find('input[type="button"]').prop("disabled", true);
+    return $(this);
+  }
+}(jQuery));
