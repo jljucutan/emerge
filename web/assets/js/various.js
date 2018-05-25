@@ -804,24 +804,24 @@ function initDay() {
   }
 }
 
-function getElementsByClassName_Custom(myClassName){ 
-   var myTagNameArray = document.getElementsByTagName('input'); 
-   var singleClass = ""; 
-   var myClassArray = new Array; 
-   var i = 0; 
-   var j = 0; 
-   while(i<myTagNameArray.length){ 
-      singleClass = myTagNameArray[i].name.split("."); 
-      while(j<singleClass.length){ 
-         if(singleClass[j]==myClassName){ 
-            myClassArray.push(myTagNameArray[i]); 
-         } 
-         j++; 
-      } 
-      j=0; 
-      i++; 
-   } 
-   return myClassArray; 
+function getElementsByClassName_Custom(myClassName){
+   var myTagNameArray = document.getElementsByTagName('input');
+   var singleClass = "";
+   var myClassArray = new Array;
+   var i = 0;
+   var j = 0;
+   while(i<myTagNameArray.length){
+      singleClass = myTagNameArray[i].name.split(".");
+      while(j<singleClass.length){
+         if(singleClass[j]==myClassName){
+            myClassArray.push(myTagNameArray[i]);
+         }
+         j++;
+      }
+      j=0;
+      i++;
+   }
+   return myClassArray;
 }
 
 if(DateSigned[0].value.length < 1) {
@@ -834,3 +834,34 @@ if(DateSigned[0].value.length < 1) {
     return $(this);
   }
 }(jQuery));
+
+$(document).ready(function() {
+  var compRate = <$client.env.eval((client.tForWhomUserInfo.COMPRATE != '') ? client.tForWhomUserInfo.COMPRATE : 0)>,
+      dailyRate = '<$client.tForWhomUserInfo.Daily_Rate>',
+      hourlyRate = '<$client.tForWhomUserInfo.Hourly_Rate>',
+      salaryAmount = '<$client.tForWhomUserInfo.Salary_Amount>',
+      FLSAStatus = '<$client.tForWhomUserInfo.FLSA_Status>';
+  $('#para-1, #para-2, #para-3').hide();
+  if (compRate > 0 && FLSAStatus == 'E' && hourlyRate.length > 0) {
+    $('#para-1').show()
+  }
+  if (compRate > 0 && FLSAStatus == 'N' && hourlyRate.length > 0) {
+    $('#para-2').show()
+  }
+  if (compRate == 0 && dailyRate.length > 0) {
+    $('#para-3').show()
+  }
+});
+
+function eFormIsRequiredNumeric(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (sVal.length < 1) {
+    return eFormRequiredField(sVal,sName,sID)
+  }
+  var reg = /^\d+$/;
+  if (!reg.test(sVal)) {
+    AddError(sID, 'Error in validation, only numeric values permitted in', '');
+    return false;
+  }
+  return true;
+}
