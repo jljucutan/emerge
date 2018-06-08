@@ -865,3 +865,318 @@ function eFormIsRequiredNumeric(sVal,sName,sID) {
   }
   return true;
 }
+
+$(function() {
+  var countries = {
+    'AR'   : 'Argentina',
+    'AU'   : 'Australia',
+    'AT'   : 'Austria',
+    'BE'   : 'Belgium',
+    'BR'   : 'Brazil',
+    'CA'   : 'Canada',
+    'CN'   : 'China',
+    'HR'   : 'Croatia',
+    'CZ'   : 'Czech Republic',
+    'DK'   : 'Denmark',
+    'EE'   : 'Estonia',
+    'FR'   : 'France',
+    'DE'   : 'Germany',
+    'HK'   : 'Hong Kong',
+    'IN'   : 'India',
+    'ID'   : 'Indonesia',
+    'IE'   : 'Ireland',
+    'IL'   : 'Israel',
+    'IT'   : 'Italy',
+    'JP'   : 'Japan',
+    'LU'   : 'Luxembourg',
+    'MY'   : 'Malaysia',
+    'MX'   : 'Mexico',
+    'NL'   : 'Netherlands',
+    'NO'   : 'Norway',
+    'PH'   : 'Philippines',
+    'PL'   : 'Poland',
+    'RU'   : 'Russia',
+    'SG'   : 'Singapore',
+    'ZA'   : 'South Africa',
+    'KR'   : 'South Korea',
+    'ES'   : 'Spain',
+    'SE'   : 'Sweden',
+    'CH'   : 'Switzerland',
+    'TW'   : 'Taiwan',
+    'TH'   : 'Thailand',
+    'TR'   : 'Turkey',
+    'UA'   : 'Ukraine',
+    'GB'   : 'United Kingdom',
+    'US'   : 'USA'
+  }
+  var countryCodes = {
+    'AR'   : 'ARG',
+    'AU'   : 'AUS',
+    'AT'   : 'AUT',
+    'BE'   : 'BEL',
+    'BR'   : 'BRA',
+    'CA'   : 'CAN',
+    'CN'   : 'CHN',
+    'HR'   : 'HRV',
+    'CZ'   : 'CZE',
+    'DK'   : 'DNK',
+    'EE'   : 'EST',
+    'FR'   : 'FRA',
+    'DE'   : 'DEU',
+    'HK'   : 'HKG',
+    'IN'   : 'IND',
+    'ID'   : 'IDN',
+    'IE'   : 'IRL',
+    'IL'   : 'ISR',
+    'IT'   : 'ITA',
+    'JP'   : 'JPN',
+    'LU'   : 'LUX',
+    'MY'   : 'MYS',
+    'MX'   : 'MEX',
+    'NL'   : 'NLD',
+    'NO'   : 'NOR',
+    'PH'   : 'PHL',
+    'PL'   : 'POL',
+    'RU'   : 'RUS',
+    'SG'   : 'SGP',
+    'ZA'   : 'ZAF',
+    'KR'   : 'KOR',
+    'ES'   : 'ESP',
+    'SE'   : 'SWE',
+    'CH'   : 'CHE',
+    'TW'   : 'TWN',
+    'TH'   : 'THA',
+    'TR'   : 'TUR',
+    'UA'   : 'UKR',
+    'GB'   : 'GBR',
+    'US'   : 'USA'
+  }
+
+  $('[data-html="event-country"]').html(countries["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"]);
+  $('[data-val="event-country"]').val(countries["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"]);
+
+  function toggleHideTarget(hideElem, target) {
+    if (hideElem()) {
+      target.addClass('hide');
+    } else {
+      target.removeClass('hide');
+    }
+  }
+
+  $('[data-checkbox-group]').on('click', function() {
+    var groupId = $(this).data('checkbox-group');
+    $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+    $(this).prop('checked', true);
+  });
+
+  $('[data-checkbox-group="citizenship"]').on('change', function() {
+    var val = $(this).is(':checked') ? $(this).val() : '';
+    toggleHideTarget(function(){
+      if (val == 'No') {
+        return false;
+      }
+      return true;
+    },$($(this).data('target')));
+  });
+
+  $('#visa_country').on('change', function() {
+    var val = $(this).val();
+    toggleHideTarget(function(){
+      if (val == 'MYS') {
+        return false;
+      }
+      return true;
+    },$($(this).data('target')));
+  });
+
+  var visa = $('#visa_country');
+  toggleHideTarget(function(){
+    if (visa.val() == 'MYS') {
+      return false;
+    }
+    return true;
+  },$(visa.data('target')));
+
+  var citizenship = $('[data-checkbox-group="citizenship"]');
+  toggleHideTarget(function(){
+    var noCitizenship = true;
+    $.each(citizenship, function(k, v) {
+      $('#visa_country').val(countries["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"]);
+      if ($(v).is(':checked') && $(v).val() == 'No') {
+        $('#visa_country').val('');
+        noCitizenship = false;
+      }
+    })
+    return noCitizenship;
+  },$(citizenship.data('target')));
+
+  function validateDate(field, errorContainer) {
+    if (field.data('accepts-date')) {
+      var d = new Date();
+      switch(field.data('accepts-date')) {
+        case 'future':
+          if (new Date(field.val()) < d.setHours(0,0,0,0)) {
+            field.addClass('input-error');
+            errorContainer.html('This field accepts only future date.');
+            return false;
+          }
+        break;
+        case 'past':
+          if (new Date(field.val()) > d.setHours(0,0,0,0)) {
+            field.addClass('input-error');
+            errorContainer.html('This field accepts only past date.');
+            return false;
+          }
+        break;
+        default:
+          return true;
+      }
+    }
+  }
+
+  function validateForm(fields) {
+    var formIsValid = true;
+    $.each(fields, function(k, v) {
+      var field = $(v);
+      if (field.prop('required') && field.is(':visible')) {
+        if (field.hasClass('dateField')) {
+          var target = field.closest('table.cal_and_button').parent().find('span.help-block');
+          toggleHideTarget(function() {
+            if (field.val().length < 1) {
+              field.addClass('input-error');
+              target.html('This field is required.');
+              formIsValid = false;
+              return false;
+            }
+            var dateIsValid = validateDate(field, target);
+            if (false == dateIsValid) {
+              formIsValid = false;
+              return false
+            }
+
+            field.removeClass('input-error');
+            return true;
+          }, target)
+        }
+
+        if (field.is(':checkbox')) {
+          var checkboxGroup = $('[data-checkbox-group="' + field.data('checkbox-group') + '"]'),
+            checked = false;
+          $.each(checkboxGroup, function(key, val) {
+            if ($(val).is(':checked')) {
+              checked = true;
+            }
+          });
+          toggleHideTarget(function() {
+            if (!checked) {
+              formIsValid = false;
+              return false;
+            }
+            return true;
+          }, field.closest('table').parent().find('span.help-block'))
+        }
+
+        toggleHideTarget(function() {
+          if (field.val().length < 1) {
+            field.addClass('input-error');
+            formIsValid = false;
+            return false;
+          }
+          field.removeClass('input-error');
+          return true;
+          }, field.parent().find('span.help-block'));
+      } 
+      if (!field.prop('required') && field.hasClass('dateField')) {
+        var target = field.closest('table.cal_and_button').parent().find('span.help-block');
+        toggleHideTarget(function() {
+          var dateIsValid = validateDate(field, target);
+          if (false == dateIsValid) {
+            formIsValid = false;
+            return false
+          }
+
+          field.removeClass('input-error');
+          return true;
+        }, target)
+      }
+    });
+    return formIsValid;
+  }
+
+  $('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete').on('click', function(e) {
+    e.preventDefault();
+    var fields = $('#form-apac input, #form-apac select'),
+      btn = $(this),
+      formIsValid = true;
+    formIsValid = validateForm(fields);
+    if (formIsValid) {
+      switch (btn.attr('id')) {
+        case 'ButtonPrint':
+          funcPrint();
+        break;
+        case 'ButtonSaveAndComplete':
+          funcSaveAndComplete();
+        break;
+      }
+    }
+  });
+
+  $('#form-apac input, #form-apac select').on('blur change keyup', function() {
+    validateForm($(this));
+  });
+
+});
+
+function extractVal(el) {
+  var elem = $(el);
+  if (elem.is(':checkbox')) {
+    if (elem.is(':checked')) {
+      return elem.val();
+    }
+    return false;
+  } else {
+    return elem.val();
+  }
+}
+
+function requireByDeps(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var field = (document.getElementsByName(sName)[0].getAttribute('type') == 'hidden') ? $(document.getElementsByName(document.getElementsByName(sName)[0].getAttribute('name') + '_display')[0]) : $(document.getElementsByName(sName)[0]),
+    dep = field.data('dependency');
+  if (extractVal(dep) == field.data('wants-val')) {
+    if (field.hasClass('dateField')) {
+      return eFormRequiredDate(sVal,sName,sID)
+    }
+    return eFormRequiredField(sVal,sName,sID)
+  }
+}
+
+function requireDeps(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var checkboxes = document.getElementsByName(sName);
+  var requireDeps = false,
+    satisfied = true;
+  $.each(checkboxes, function(k, c) {
+    if($(c).is(':checked')) {
+      requireDeps = true;
+      satisfied = false;
+    }
+  });
+  if (requireDeps) {
+    $.each($('[data-dependency="' + dep + '"]'), function(k, v) {
+      if ($(v).val() == $(v).data('required-val')) {
+        satisfied = true;
+      }
+    });
+  }
+  if (!satisfied) {
+    AddError('', 'Error in validation, please select disability', '');
+    return false;
+  }
+}
+
+function acceptsOnlyPastDate(sVal, sName, sID) {
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var d = new Date();
+  if 
+}
