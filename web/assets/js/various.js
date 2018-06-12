@@ -954,6 +954,13 @@ $(function() {
 
   $('[data-html="event-country"]').html(countries["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"]);
   $('[data-val="event-country"]').val(countries["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"]);
+  $('#Country1').val(countries["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"] + " prior to commencing employment.");
+  $('#Country2').val(countries["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"] + "?");
+
+  $('#nid_type')
+    .find('option')
+    .not('[value^=' + countryCodes["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"] + ']')
+    .remove();
 
   function toggleHideTarget(hideElem, target) {
     if (hideElem()) {
@@ -970,10 +977,13 @@ $(function() {
   });
 
   $('[data-checkbox-group="citizenship"]').on('change', function() {
-    var val = $(this).is(':checked') ? $(this).val() : '';
+    var checkbox = $(this);
+    $('select#visa_country option:selected').attr("selected",null);
     toggleHideTarget(function(){
-      if (val == 'No') {
+      if (checkbox.is(':checked') && checkbox.val() == 'No') {
         return false;
+      } else if (checkbox.is(':checked') && checkbox.val() == 'Yes') {
+        $('select#visa_country option[value="' + countryCodes["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"] + '"]').attr("selected","selected");
       }
       return true;
     },$($(this).data('target')));
@@ -1001,10 +1011,11 @@ $(function() {
   toggleHideTarget(function(){
     var noCitizenship = true;
     $.each(citizenship, function(k, v) {
-      $('#visa_country').val(countries["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"]);
       if ($(v).is(':checked') && $(v).val() == 'No') {
-        $('#visa_country').val('');
         noCitizenship = false;
+      } else if ($(v).is(':checked') && $(v).val() == 'Yes' && strFormCompleted == "") {
+        $('select#visa_country option:selected').attr("selected",null);
+        $('select#visa_country option[value="' + countryCodes["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"] + '"]').attr("selected","selected");
       }
     })
     return noCitizenship;
@@ -1012,17 +1023,19 @@ $(function() {
 
   function validateDate(field, errorContainer) {
     if (field.data('accepts-date')) {
-      var d = new Date();
+      var d = new Date(),
+        fieldArr = field.val().split('/'),
+        fieldDate = new Date(fieldArr[2] + "-" + fieldArr[1] + "-" + fieldArr[0]);
       switch(field.data('accepts-date')) {
         case 'future':
-          if (new Date(field.val()) < d.setHours(0,0,0,0)) {
+          if (fieldDate < d) {
             field.addClass('input-error');
             errorContainer.html('This field accepts only future date.');
             return false;
           }
         break;
         case 'past':
-          if (new Date(field.val()) > d.setHours(0,0,0,0)) {
+          if (fieldDate >= d) {
             field.addClass('input-error');
             errorContainer.html('This field accepts only past date.');
             return false;
@@ -1108,7 +1121,7 @@ $(function() {
     var fields = $('#form-apac input, #form-apac select'),
       btn = $(this),
       formIsValid = true;
-    formIsValid = validateForm(fields);
+    var formIsValid = validateForm(fields);
     if (formIsValid) {
       switch (btn.attr('id')) {
         case 'ButtonPrint':
