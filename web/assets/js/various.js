@@ -1057,7 +1057,7 @@ $(function() {
           toggleHideTarget(function() {
             if (field.val().length < 1) {
               field.addClass('input-error');
-              target.html('This field is required.');
+              target.html(field.data('field-label') + ' is required.');
               formIsValid = false;
               return false;
             }
@@ -1164,32 +1164,30 @@ function requireByDeps(sVal,sName,sID) {
   }
 }
 
-function requireDeps(sVal,sName,sID) {
+function eFormRequireDeps(sVal,sName,sID) {
   if('<$client.env.serversidevalidation>' == '1'){return true;}
-  var checkboxes = document.getElementsByName(sName);
-  var requireDeps = false,
+  var dep = $(document.getElementById(sID)).data('depends-on'),
+    siblings = $('[data-siblings="' + $(document.getElementById(sID)).data('siblings') + '"]'),
+    checkboxes = $('[data-checkbox-group="' + dep + '"]'),
+    requireDeps = false,
     satisfied = true;
+
   $.each(checkboxes, function(k, c) {
     if($(c).is(':checked')) {
       requireDeps = true;
       satisfied = false;
     }
   });
+
   if (requireDeps) {
-    $.each($('[data-dependency="' + dep + '"]'), function(k, v) {
-      if ($(v).val() == $(v).data('required-val')) {
+    $.each(siblings, function(k, sibling) {
+      if ($(sibling).find('option:selected').val() == $(sibling).data('required-val')) {
         satisfied = true;
       }
-    });
+    })
   }
   if (!satisfied) {
-    AddError('', 'Error in validation, please select disability', '');
+    AddError('', 'Error in validation, please select disability request for accomodation or disabled veteran', '');
     return false;
   }
-}
-
-function acceptsOnlyPastDate(sVal, sName, sID) {
-  if('<$client.env.serversidevalidation>' == '1'){return true;}
-  var d = new Date();
-  if 
 }
