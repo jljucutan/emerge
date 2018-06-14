@@ -866,7 +866,7 @@ function eFormIsRequiredNumeric(sVal,sName,sID) {
   return true;
 }
 
-$(function() {
+$(document).ready(function() {
   var countries = {
     'AR'   : 'Argentina',
     'AU'   : 'Australia',
@@ -962,13 +962,21 @@ $(function() {
     .not('[value^=' + countryCodes["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"] + ']')
     .remove();
 
-  function toggleHideTarget(hideElem, target) {
+  var toggleHideTarget = function(hideElem, target) {
     if (hideElem()) {
       target.addClass('hide');
     } else {
       target.removeClass('hide');
     }
   }
+
+  toggleHideTarget(function(){
+    var visa = $('#visa_country');
+    if (countryCodes["<$client.env.eval( client.tEventCategories_Category_11.Code.subString(0,1))>"] == 'MYS') {
+      return false;
+    }
+    return true;
+  },$('#malaysia-specific-information'));
 
   $('[data-checkbox-group]').on('click', function() {
     var groupId = $(this).data('checkbox-group');
@@ -978,34 +986,18 @@ $(function() {
 
   $('[data-checkbox-group="citizenship"]').on('change', function() {
     var checkbox = $(this);
-    $('select#visa_country option:selected').attr("selected",null);
     toggleHideTarget(function(){
       if (checkbox.is(':checked') && checkbox.val() == 'No') {
+        $('select#visa_country option:selected').attr("selected",null);
         return false;
       } else if (checkbox.is(':checked') && checkbox.val() == 'Yes') {
-        $('select#visa_country option[value="' + countryCodes["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"] + '"]').attr("selected","selected");
-      }
+        setTimeout(function() {
+          $('#visa_country option[value="' + countryCodes["<$client.env.eval( client.tEventCategories_Category_11.Code.subString(0,1))>"] + '"]').attr("selected","selected");
+          $('#visa_country').val(countryCodes["<$client.env.eval( client.tEventCategories_Category_11.Code.subString(0,1))>"]);
+        }, 500);      }
       return true;
     },$($(this).data('target')));
   });
-
-  $('#visa_country').on('change', function() {
-    var val = $(this).val();
-    toggleHideTarget(function(){
-      if (val == 'MYS') {
-        return false;
-      }
-      return true;
-    },$($(this).data('target')));
-  });
-
-  var visa = $('#visa_country');
-  toggleHideTarget(function(){
-    if (visa.val() == 'MYS') {
-      return false;
-    }
-    return true;
-  },$(visa.data('target')));
 
   var citizenship = $('[data-checkbox-group="citizenship"]');
   toggleHideTarget(function(){
@@ -1014,7 +1006,6 @@ $(function() {
       if ($(v).is(':checked') && $(v).val() == 'No') {
         noCitizenship = false;
       } else if ($(v).is(':checked') && $(v).val() == 'Yes' && strFormCompleted == "") {
-        $('select#visa_country option:selected').attr("selected",null);
         $('select#visa_country option[value="' + countryCodes["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>"] + '"]').attr("selected","selected");
       }
     })
@@ -1136,6 +1127,14 @@ $(function() {
 
   $('#form-apac input, #form-apac select').on('blur change keyup', function() {
     validateForm($(this));
+  });
+
+  $('.modal input').on('focus', function() {
+    $(this).css({'outline-color': '#3d8789 !important'});
+  });
+
+  $('.modal input').on('blur', function() {
+    $(this).css({'outline-color': '#333 !important'});
   });
 
 });
