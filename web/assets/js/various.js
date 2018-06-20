@@ -1183,3 +1183,7 @@ function eFormRequireDeps(sVal,sName,sID) {
     return false;
   }
 }
+
+var disableCalButton = function(elClass) {
+  $(elClass).parent().find('input').prop('disabled', true);
+}
