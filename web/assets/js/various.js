@@ -1000,12 +1000,24 @@ $(document).ready(function() {
   var validateForm = function (fields) {
     var formIsValid = true;
     $.each(fields, function(k, v) {
-      var field = $(v);
-      if (field.prop('required') && field.is(':visible')) {
+      var field = $(v), 
+        isRequired = false,
+        dep = $(field.data('dependency')).data('checkbox-group');
+
+      if (field.data('dependency') != undefined && $("[data-checkbox-group=" + dep + "]:checked").val() == field.data('wants-val')) {
+        isRequired = true;
+      }
+
+      if (field.prop('required')) {
+        isRequired = true;
+      }
+
+      if (field.is(':visible')) {
+
         if (field.hasClass('dateField')) {
           var target = field.closest('table.cal_and_button').parent().find('span.help-block');
           toggleHideTarget(function() {
-            if (field.val().length < 1) {
+            if (isRequired && field.val().length < 1) {
               field.addClass('input-error');
               target.html(field.data('field-label') + ' is required.');
               formIsValid = false;
@@ -1026,7 +1038,7 @@ $(document).ready(function() {
           var checkboxGroup = $('[data-checkbox-group="' + field.data('checkbox-group') + '"]'),
             checked = false;
           $.each(checkboxGroup, function(key, val) {
-            if ($(val).is(':checked')) {
+            if (isRequired && $(val).is(':checked')) {
               checked = true;
             }
           });
@@ -1038,7 +1050,7 @@ $(document).ready(function() {
         }
 
         toggleHideTarget(function() {
-          if (field.val().length < 1) {
+          if (isRequired && field.val().length < 1) {
             field.addClass('input-error');
             formIsValid = false;
             return false;
@@ -1047,19 +1059,7 @@ $(document).ready(function() {
           return true;
           }, field.parent().find('span.help-block'));
       } 
-      if (!field.prop('required') && field.hasClass('dateField')) {
-        var target = field.closest('table.cal_and_button').parent().find('span.help-block');
-        toggleHideTarget(function() {
-          var dateIsValid = validateDate(field, target);
-          if (false == dateIsValid) {
-            formIsValid = false;
-            return false
-          }
 
-          field.removeClass('input-error');
-          return true;
-        }, target)
-      }
     });
     return formIsValid;
   }
@@ -1089,6 +1089,7 @@ $(document).ready(function() {
       }
       return true;
     },$($(this).data('target')));
+    validateForm($('#form-apac input, #form-apac select'));
   });
 
   var citizenship = $('[data-checkbox-group="citizenship"]');
@@ -1132,23 +1133,19 @@ $(document).ready(function() {
 
 });
 
-function extractVal(el) {
-  var elem = $(el);
-  if (elem.is(':checkbox')) {
-    if (elem.is(':checked')) {
-      return elem.val();
-    }
-    return false;
-  } else {
-    return elem.val();
-  }
-}
-
 function requireByDeps(sVal,sName,sID) {
   if('<$client.env.serversidevalidation>' == '1'){return true;}
   var field = (document.getElementsByName(sName)[0].getAttribute('type') == 'hidden') ? $(document.getElementsByName(document.getElementsByName(sName)[0].getAttribute('name') + '_display')[0]) : $(document.getElementsByName(sName)[0]),
-    dep = field.data('dependency');
-  if (extractVal(dep) == field.data('wants-val')) {
+    isRequired = false,
+    deps = $('[data-checkbox-group="' + field.data('checkbox-group') + '"]');
+
+  $.each(deps, function(k, v) {
+    if ($(v).is(':checked') && $(v).val() == field.data('wants-val')) {
+      isRequired = true;
+    }
+  });
+
+  if (isRequired && field.is(':visible')) {
     if (field.hasClass('dateField')) {
       return eFormRequiredDate(sVal,sName,sID)
     }
