@@ -952,7 +952,7 @@ $(document).ready(function() {
     'US'   : 'USA'
   }
 
-  var eventLocation = $('#event-location').val();
+  var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>" : $('#event-location').val();
   $('[data-html="event-country"]').html(countries[eventLocation]);
   $('[data-val="event-country"]').val(countries[eventLocation]);
   $('#Country1').val(countries[eventLocation] + " prior to commencing employment.");
@@ -1089,6 +1089,15 @@ $(document).ready(function() {
       }
       return true;
     },$($(this).data('target')));
+    toggleHideTarget(function(){
+      if (checkbox.is(':checked') && checkbox.val() == 'No') {
+        return true;
+      } else if (checkbox.is(':checked') && checkbox.val() == 'Yes') {
+        $('#visa_country').val(countryCodes[eventLocation]);
+      }
+      return false;
+    },$('.required-by-citizenship'));
+        
     validateForm($('#form-apac input, #form-apac select'));
   });
 
