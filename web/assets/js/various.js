@@ -1064,6 +1064,18 @@ $(document).ready(function() {
     return formIsValid;
   }
 
+  var toggleRequiredLabel = function(els, requires) {
+    $.each(els, function(k, v) {
+      var el = $(v);
+      toggleHideTarget(function() {
+        if (el.data('label-citizenship-requires') == requires) {
+          return false;
+        }
+        return true;
+      }, el.find('span.text-danger'));
+    });
+  }
+
   toggleHideTarget(function(){
     var visa = $('#visa_country');
     if (countryCodes[eventLocation] == 'MYS') {
@@ -1089,15 +1101,9 @@ $(document).ready(function() {
       }
       return true;
     },$($(this).data('target')));
-    toggleHideTarget(function(){
-      if (checkbox.is(':checked') && checkbox.val() == 'No') {
-        return true;
-      } else if (checkbox.is(':checked') && checkbox.val() == 'Yes') {
-        $('#visa_country').val(countryCodes[eventLocation]);
-      }
-      return false;
-    },$('.required-by-citizenship'));
-        
+    if (checkbox.is(':checked')) {
+      toggleRequiredLabel($('[data-label-citizenship-requires]'), checkbox.val());
+    }
     validateForm($('#form-apac input, #form-apac select'));
   });
 
