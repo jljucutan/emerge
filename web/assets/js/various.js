@@ -997,7 +997,7 @@ $(document).ready(function() {
     }
   }
 
-  var validateForm = function (fields) {
+  var validateForm = function (fields, clear) {
     var formIsValid = true;
     $.each(fields, function(k, v) {
       var field = $(v), 
@@ -1010,6 +1010,10 @@ $(document).ready(function() {
 
       if (field.prop('required')) {
         isRequired = true;
+      }
+
+      if (clear) {
+        isRequired = false;
       }
 
       if (field.is(':visible')) {
@@ -1104,7 +1108,7 @@ $(document).ready(function() {
     if (checkbox.is(':checked')) {
       toggleRequiredLabel($('[data-label-citizenship-requires]'), checkbox.val());
     }
-    validateForm($('#form-apac input, #form-apac select'));
+    validateForm($('#form-apac input, #form-apac select'), true);
   });
 
   var citizenship = $('[data-checkbox-group="citizenship"]');
