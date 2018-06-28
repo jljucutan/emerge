@@ -1203,3 +1203,108 @@ function eFormRequireDeps(sVal,sName,sID) {
 var disableCalButton = function(elClass) {
   $(elClass).parent().find('input').prop('disabled', true);
 }
+
+$(document).ready(function() {
+  $('#buttonCancel').before(
+      $('<button/>').prop({
+        'id': 'buttonPrint',
+        'type': 'button', 
+        'class': 'lifesuite__button primary',
+      }).html('<i class="fa fa-print"></i>&nbsp;Print')
+    );
+  $('#buttonPrint').on('click', function(e) {
+    e.preventDefault();
+    OfferLetterPrint();
+  });
+});
+
+$(document).ready(function() {
+  var countries = {
+    'AR'   : 'Argentina',
+    'AU'   : 'Australia',
+    'AT'   : 'Austria',
+    'BE'   : 'Belgium',
+    'BR'   : 'Brazil',
+    'CA'   : 'Canada',
+    'CN'   : 'China',
+    'HR'   : 'Croatia',
+    'CZ'   : 'Czech Republic',
+    'DK'   : 'Denmark',
+    'EE'   : 'Estonia',
+    'FR'   : 'France',
+    'DE'   : 'Germany',
+    'HK'   : 'Hong Kong',
+    'IN'   : 'India',
+    'ID'   : 'Indonesia',
+    'IE'   : 'Ireland',
+    'IL'   : 'Israel',
+    'IT'   : 'Italy',
+    'JP'   : 'Japan',
+    'LU'   : 'Luxembourg',
+    'MY'   : 'Malaysia',
+    'MX'   : 'Mexico',
+    'NL'   : 'Netherlands',
+    'NO'   : 'Norway',
+    'PH'   : 'Philippines',
+    'PL'   : 'Poland',
+    'RU'   : 'Russia',
+    'SG'   : 'Singapore',
+    'ZA'   : 'South Africa',
+    'KR'   : 'South Korea',
+    'ES'   : 'Spain',
+    'SE'   : 'Sweden',
+    'CH'   : 'Switzerland',
+    'TW'   : 'Taiwan',
+    'TH'   : 'Thailand',
+    'TR'   : 'Turkey',
+    'UA'   : 'Ukraine',
+    'GB'   : 'United Kingdom',
+    'US'   : 'USA'
+  }
+  var countryCodes = {
+    'AR'   : 'ARG',
+    'AU'   : 'AUS',
+    'AT'   : 'AUT',
+    'BE'   : 'BEL',
+    'BR'   : 'BRA',
+    'CA'   : 'CAN',
+    'CN'   : 'CHN',
+    'HR'   : 'HRV',
+    'CZ'   : 'CZE',
+    'DK'   : 'DNK',
+    'EE'   : 'EST',
+    'FR'   : 'FRA',
+    'DE'   : 'DEU',
+    'HK'   : 'HKG',
+    'IN'   : 'IND',
+    'ID'   : 'IDN',
+    'IE'   : 'IRL',
+    'IL'   : 'ISR',
+    'IT'   : 'ITA',
+    'JP'   : 'JPN',
+    'LU'   : 'LUX',
+    'MY'   : 'MYS',
+    'MX'   : 'MEX',
+    'NL'   : 'NLD',
+    'NO'   : 'NOR',
+    'PH'   : 'PHL',
+    'PL'   : 'POL',
+    'RU'   : 'RUS',
+    'SG'   : 'SGP',
+    'ZA'   : 'ZAF',
+    'KR'   : 'KOR',
+    'ES'   : 'ESP',
+    'SE'   : 'SWE',
+    'CH'   : 'CHE',
+    'TW'   : 'TWN',
+    'TH'   : 'THA',
+    'TR'   : 'TUR',
+    'UA'   : 'UKR',
+    'GB'   : 'GBR',
+    'US'   : 'USA'
+  }
+
+  var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>" : $('#EventLocation').val();
+  $('[data-text="country"]').html(countries[eventLocation]);
+  $('#Country').val(countries[eventLocation] + "?");
+});
