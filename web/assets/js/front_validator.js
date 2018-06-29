@@ -1,36 +1,52 @@
-var validateFormField = function(fields) {
-    $.each(fields, function(k, v) {
-        var field = $(v),
-            isValid = false;
-        // validate date field
-        if (field.hasClass("dateField") && field.val().length > 0) {
-            isValid = true;
-            field.addClass('input-error')
+var validateField = function(field) {
+    var isValid = false;
+    // please add data-title="field name" on form field
+    var fieldName = field.data("title") ? field.data("title") : field.prop("title");
+    // validate checkbox or radio 
+    // this field request data-label attribute that
+    // targets id of label
+    if (field.is(':checkbox') || field.is(':radio')) {
+      var checkboxGroup = $('[name="' + field.prop('name') + '"]'),
+        checked = false;
+      $.each(checkboxGroup, function(key, val) {
+        if ($(val).is(':checked')) {
+          checked = true;
         }
-        // validate checkbox or radio requires data-checkbox-group attribute
-        // and grouped as their name
-        if (field.is(':checkbox') || field.is(':radio')) {
-          var checkboxGroup = $('[data-checkbox-group="' + field.data('checkbox-group') + '"]'),
-            checked = false;
-          $.each(checkboxGroup, function(key, val) {
-            if (isRequired && $(val).is(':checked')) {
-              checked = true;
-            }
-          });
-          if (!checked) {
-            field.addClass('input-error')
-            isValid = true;
-          } 
-        }
-        // validate input fields
-        if (field.is(":text") && field.val().length > 0) {
-            isValid = true;
-        }
-    });
-    if (isValid) {
-        $(field.data("error-container")).hide();
-    } else {
-        $(field.data("error-container")).show();
+      });
+      // validate if required
+      if (!checked) {
+        $(field.data("label")).addClass('label-has-error')
+        isValid = false;
+      } else {
+        $(field.data("label")).removeClass('label-has-error')
+        isValid = true;
+      }
     }
+    // validate input fields
+    else {
+        // validate if required
+        if (field.val().length > 0) {
+            isValid = true;
+            field.removeClass('input-error')
+        } else {
+            isValid = false;
+            field.addClass('input-error')
+        }
+        var errorContainer = $('[data-error-id="' + field.prop("name") + '"]');
+        var errorContainerTemplate = $('<span class="text-error" data-error-id="' + field.prop("name") + '" />');
+        var inputContainer = field.closest("div");
+        if (!isValid) {
+            if (errorContainer.length) {
+                errorContainer.html(fieldName + " is required.").css({'display': 'inline-block'});
+            } else {
+                inputContainer.append(errorContainerTemplate.html(fieldName + " is required.").css({'display': 'inline-block'}));
+            }
+        } else {
+            if (errorContainer.length) {
+                errorContainer.css({'display': 'none'});
+            } 
+        }
+    }
+
     return isValid;
 }

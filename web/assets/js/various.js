@@ -1307,4 +1307,41 @@ $(document).ready(function() {
   var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>" : $('#EventLocation').val();
   $('[data-text="country"]').html(countries[eventLocation]);
   $('#Country').val(countries[eventLocation] + "?");
+
+  $('#global-new-hire-form input[required][type="radio"]').on('click change', function() {
+    validateField($(this));
+  });
+
+  $('#global-new-hire-form input[required]:visible, #global-new-hire-form input[required].dateField').on('blur', function() {
+    validateField($(this));
+  });
+
+  $('#global-new-hire-form select[required], #global-new-hire-form input[required].dateField').on('blur change', function() {
+    validateField($(this));
+  });
+
+  $('#modal').on('click', 'input.lifesuite__button', function() {
+    validateField($('#signature'));
+  });
+
+  $('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete').on('click', function(e) {
+    var formIsValid = true, btn = $(this);
+    e.preventDefault();
+    $.each($('#global-new-hire-form input[required]:not(:button):visible, #global-new-hire-form select[required]'), function(k, v) {
+      if(false == validateField($(v))) {
+        formIsValid = false;
+      }
+    });
+    if (formIsValid) {
+      switch (btn.attr('id')) {
+        case 'ButtonPrint':
+          funcPrint();
+        break;
+        case 'ButtonSaveAndComplete':
+          funcSaveAndComplete();
+        break;
+      }
+    }
+  });
+
 });
