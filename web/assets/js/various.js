@@ -1353,7 +1353,7 @@ $(document).ready(function() {
     $('#additional-account, #toggle-additional-account button').toggleClass('hide');
   });
   var hasSecondAccount = false;
-  $('#additional-account').each(function(k,v) {
+  $('#additional-account input').each(function(k,v) {
     if($(v).val().length) {
       hasSecondAccount = true;
     }
