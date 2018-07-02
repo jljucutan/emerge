@@ -1312,11 +1312,7 @@ $(document).ready(function() {
     validateField($(this));
   });
 
-  $('#global-new-hire-form input[required]:visible, #global-new-hire-form input[required].dateField').on('blur', function() {
-    validateField($(this));
-  });
-
-  $('#global-new-hire-form select[required], #global-new-hire-form input[required].dateField').on('blur change', function() {
+  $('#global-new-hire-form input[required]:visible, #global-new-hire-form input[required], #global-new-hire-form select[required]').on('blur change keyup paste', function() {
     validateField($(this));
   });
 
@@ -1344,4 +1340,28 @@ $(document).ready(function() {
     }
   });
 
+});
+
+$(document).ready(function() {
+  $('#toggle-additional-account').on('click', 'button:not("disabled")', function(e) {
+    e.preventDefault();
+    if ($('#additional-account').is(':visible')) {
+      $('#additional-account input').each(function(k,v) {
+        $(v).val('');
+      });
+    }
+    $('#additional-account, #toggle-additional-account button').toggleClass('hide');
+  });
+  var hasSecondAccount = false;
+  $('#additional-account').each(function(k,v) {
+    if($(v).val().length) {
+      hasSecondAccount = true;
+    }
+  });
+  if (hasSecondAccount) {
+    $('#additional-account, #toggle-additional-account button').toggleClass('hide');
+  }
+  if (strFormCompleted != "") {
+    $('#toggle-additional-account button').prop('disabled', true);
+  }
 });
