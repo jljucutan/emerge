@@ -868,91 +868,49 @@ function eFormIsRequiredNumeric(sVal,sName,sID) {
 
 $(document).ready(function() {
   var countries = {
-    'AR'   : 'Argentina',
-    'AU'   : 'Australia',
-    'AT'   : 'Austria',
-    'BE'   : 'Belgium',
-    'BR'   : 'Brazil',
-    'CA'   : 'Canada',
-    'CN'   : 'China',
-    'HR'   : 'Croatia',
-    'CZ'   : 'Czech Republic',
-    'DK'   : 'Denmark',
-    'EE'   : 'Estonia',
-    'FR'   : 'France',
-    'DE'   : 'Germany',
-    'HK'   : 'Hong Kong',
-    'IN'   : 'India',
-    'ID'   : 'Indonesia',
-    'IE'   : 'Ireland',
-    'IL'   : 'Israel',
-    'IT'   : 'Italy',
-    'JP'   : 'Japan',
-    'LU'   : 'Luxembourg',
-    'MY'   : 'Malaysia',
-    'MX'   : 'Mexico',
-    'NL'   : 'Netherlands',
-    'NO'   : 'Norway',
-    'PH'   : 'Philippines',
-    'PL'   : 'Poland',
-    'RU'   : 'Russia',
-    'SG'   : 'Singapore',
-    'ZA'   : 'South Africa',
-    'KR'   : 'South Korea',
-    'ES'   : 'Spain',
-    'SE'   : 'Sweden',
-    'CH'   : 'Switzerland',
-    'TW'   : 'Taiwan',
-    'TH'   : 'Thailand',
-    'TR'   : 'Turkey',
-    'UA'   : 'Ukraine',
-    'GB'   : 'United Kingdom',
-    'US'   : 'USA'
-  }
-  var countryCodes = {
-    'AR'   : 'ARG',
-    'AU'   : 'AUS',
-    'AT'   : 'AUT',
-    'BE'   : 'BEL',
-    'BR'   : 'BRA',
-    'CA'   : 'CAN',
-    'CN'   : 'CHN',
-    'HR'   : 'HRV',
-    'CZ'   : 'CZE',
-    'DK'   : 'DNK',
-    'EE'   : 'EST',
-    'FR'   : 'FRA',
-    'DE'   : 'DEU',
-    'HK'   : 'HKG',
-    'IN'   : 'IND',
-    'ID'   : 'IDN',
-    'IE'   : 'IRL',
-    'IL'   : 'ISR',
-    'IT'   : 'ITA',
-    'JP'   : 'JPN',
-    'LU'   : 'LUX',
-    'MY'   : 'MYS',
-    'MX'   : 'MEX',
-    'NL'   : 'NLD',
-    'NO'   : 'NOR',
-    'PH'   : 'PHL',
-    'PL'   : 'POL',
-    'RU'   : 'RUS',
-    'SG'   : 'SGP',
-    'ZA'   : 'ZAF',
-    'KR'   : 'KOR',
-    'ES'   : 'ESP',
-    'SE'   : 'SWE',
-    'CH'   : 'CHE',
-    'TW'   : 'TWN',
-    'TH'   : 'THA',
-    'TR'   : 'TUR',
-    'UA'   : 'UKR',
-    'GB'   : 'GBR',
-    'US'   : 'USA'
+    'ARG'   : 'Argentina',
+    'AUS'   : 'Australia',
+    'AUT'   : 'Austria',
+    'BEL'   : 'Belgium',
+    'BRA'   : 'Brazil',
+    'CAN'   : 'Canada',
+    'CHN'   : 'China',
+    'HRV'   : 'Croatia',
+    'CZE'   : 'Czech Republic',
+    'DNK'   : 'Denmark',
+    'EST'   : 'Estonia',
+    'FRA'   : 'France',
+    'DEU'   : 'Germany',
+    'HKG'   : 'Hong Kong',
+    'IND'   : 'India',
+    'IDN'   : 'Indonesia',
+    'IRL'   : 'Ireland',
+    'ISR'   : 'Israel',
+    'ITA'   : 'Italy',
+    'JPN'   : 'Japan',
+    'LUX'   : 'Luxembourg',
+    'MYS'   : 'Malaysia',
+    'MEX'   : 'Mexico',
+    'NLD'   : 'Netherlands',
+    'NOR'   : 'Norway',
+    'PHL'   : 'Philippines',
+    'POL'   : 'Poland',
+    'RUS'   : 'Russia',
+    'SGP'   : 'Singapore',
+    'ZAF'   : 'South Africa',
+    'KOR'   : 'South Korea',
+    'ESP'   : 'Spain',
+    'SWE'   : 'Sweden',
+    'CHE'   : 'Switzerland',
+    'TWN'   : 'Taiwan',
+    'THA'   : 'Thailand',
+    'TUR'   : 'Turkey',
+    'UKR'   : 'Ukraine',
+    'GBR'   : 'United Kingdom',
+    'USA'   : 'USA'
   }
 
-  var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>" : $('#event-location').val();
+  var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>" : $('#event-location').val();
   $('[data-html="event-country"]').html(countries[eventLocation]);
   $('[data-val="event-country"]').val(countries[eventLocation]);
   $('#Country1').val(countries[eventLocation] + " prior to commencing employment.");
@@ -960,7 +918,7 @@ $(document).ready(function() {
 
   $('#nid_type')
     .find('option')
-    .not('[value^=' + countryCodes[eventLocation] + ']')
+    .not('[value^=' + eventLocation + ']')
     .remove();
 
   var toggleHideTarget = function(hideElem, target) {
@@ -1082,7 +1040,7 @@ $(document).ready(function() {
 
   toggleHideTarget(function(){
     var visa = $('#visa_country');
-    if (countryCodes[eventLocation] == 'MYS') {
+    if (eventLocation == 'MYS') {
       return false;
     }
     return true;
@@ -1101,7 +1059,7 @@ $(document).ready(function() {
       if (checkbox.is(':checked') && checkbox.val() == 'No') {
         return false;
       } else if (checkbox.is(':checked') && checkbox.val() == 'Yes') {
-        $('#visa_country').val(countryCodes[eventLocation]);
+        $('#visa_country').val(eventLocation);
       }
       return true;
     },$($(this).data('target')));
@@ -1115,10 +1073,13 @@ $(document).ready(function() {
   toggleHideTarget(function(){
     var noCitizenship = true;
     $.each(citizenship, function(k, v) {
+      if ($(v).is(':checked')) {
+        toggleRequiredLabel($('[data-label-citizenship-requires]'), $(v).val());
+      }
       if ($(v).is(':checked') && $(v).val() == 'No') {
         noCitizenship = false;
       } else if ($(v).is(':checked') && $(v).val() == 'Yes' && strFormCompleted == "") {
-        $('select#visa_country option[value="' + countryCodes[eventLocation] + '"]').attr("selected","selected");
+        $('select#visa_country option[value="' + eventLocation + '"]').attr("selected","selected");
       }
     })
     return noCitizenship;
@@ -1220,99 +1181,62 @@ $(document).ready(function() {
 
 $(document).ready(function() {
   var countries = {
-    'AR'   : 'Argentina',
-    'AU'   : 'Australia',
-    'AT'   : 'Austria',
-    'BE'   : 'Belgium',
-    'BR'   : 'Brazil',
-    'CA'   : 'Canada',
-    'CN'   : 'China',
-    'HR'   : 'Croatia',
-    'CZ'   : 'Czech Republic',
-    'DK'   : 'Denmark',
-    'EE'   : 'Estonia',
-    'FR'   : 'France',
-    'DE'   : 'Germany',
-    'HK'   : 'Hong Kong',
-    'IN'   : 'India',
-    'ID'   : 'Indonesia',
-    'IE'   : 'Ireland',
-    'IL'   : 'Israel',
-    'IT'   : 'Italy',
-    'JP'   : 'Japan',
-    'LU'   : 'Luxembourg',
-    'MY'   : 'Malaysia',
-    'MX'   : 'Mexico',
-    'NL'   : 'Netherlands',
-    'NO'   : 'Norway',
-    'PH'   : 'Philippines',
-    'PL'   : 'Poland',
-    'RU'   : 'Russia',
-    'SG'   : 'Singapore',
-    'ZA'   : 'South Africa',
-    'KR'   : 'South Korea',
-    'ES'   : 'Spain',
-    'SE'   : 'Sweden',
-    'CH'   : 'Switzerland',
-    'TW'   : 'Taiwan',
-    'TH'   : 'Thailand',
-    'TR'   : 'Turkey',
-    'UA'   : 'Ukraine',
-    'GB'   : 'United Kingdom',
-    'US'   : 'USA'
-  }
-  var countryCodes = {
-    'AR'   : 'ARG',
-    'AU'   : 'AUS',
-    'AT'   : 'AUT',
-    'BE'   : 'BEL',
-    'BR'   : 'BRA',
-    'CA'   : 'CAN',
-    'CN'   : 'CHN',
-    'HR'   : 'HRV',
-    'CZ'   : 'CZE',
-    'DK'   : 'DNK',
-    'EE'   : 'EST',
-    'FR'   : 'FRA',
-    'DE'   : 'DEU',
-    'HK'   : 'HKG',
-    'IN'   : 'IND',
-    'ID'   : 'IDN',
-    'IE'   : 'IRL',
-    'IL'   : 'ISR',
-    'IT'   : 'ITA',
-    'JP'   : 'JPN',
-    'LU'   : 'LUX',
-    'MY'   : 'MYS',
-    'MX'   : 'MEX',
-    'NL'   : 'NLD',
-    'NO'   : 'NOR',
-    'PH'   : 'PHL',
-    'PL'   : 'POL',
-    'RU'   : 'RUS',
-    'SG'   : 'SGP',
-    'ZA'   : 'ZAF',
-    'KR'   : 'KOR',
-    'ES'   : 'ESP',
-    'SE'   : 'SWE',
-    'CH'   : 'CHE',
-    'TW'   : 'TWN',
-    'TH'   : 'THA',
-    'TR'   : 'TUR',
-    'UA'   : 'UKR',
-    'GB'   : 'GBR',
-    'US'   : 'USA'
+    'ARG'   : 'Argentina',
+    'AUS'   : 'Australia',
+    'AUT'   : 'Austria',
+    'BEL'   : 'Belgium',
+    'BRA'   : 'Brazil',
+    'CAN'   : 'Canada',
+    'CHN'   : 'China',
+    'HRV'   : 'Croatia',
+    'CZE'   : 'Czech Republic',
+    'DNK'   : 'Denmark',
+    'EST'   : 'Estonia',
+    'FRA'   : 'France',
+    'DEU'   : 'Germany',
+    'HKG'   : 'Hong Kong',
+    'IND'   : 'India',
+    'IDN'   : 'Indonesia',
+    'IRL'   : 'Ireland',
+    'ISR'   : 'Israel',
+    'ITA'   : 'Italy',
+    'JPN'   : 'Japan',
+    'LUX'   : 'Luxembourg',
+    'MYS'   : 'Malaysia',
+    'MEX'   : 'Mexico',
+    'NLD'   : 'Netherlands',
+    'NOR'   : 'Norway',
+    'PHL'   : 'Philippines',
+    'POL'   : 'Poland',
+    'RUS'   : 'Russia',
+    'SGP'   : 'Singapore',
+    'ZAF'   : 'South Africa',
+    'KOR'   : 'South Korea',
+    'ESP'   : 'Spain',
+    'SWE'   : 'Sweden',
+    'CHE'   : 'Switzerland',
+    'TWN'   : 'Taiwan',
+    'THA'   : 'Thailand',
+    'TUR'   : 'Turkey',
+    'UKR'   : 'Ukraine',
+    'GBR'   : 'United Kingdom',
+    'USA'   : 'USA'
   }
 
   var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>" : $('#EventLocation').val();
   $('[data-text="country"]').html(countries[eventLocation]);
   $('#Country').val(countries[eventLocation] + "?");
 
-  $('#global-new-hire-form input[required][type="radio"]').on('click change', function() {
+  var toggler = new Toggler({"config": "<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/toggler_config.json>"});
+  toggler.then(function() {
+    getConfig();
+  });
+
+  $('#global-new-hire-form input:visible[type="radio"]').on('click change', function() {
     validateField($(this));
   });
 
-  $('#global-new-hire-form input[required]:visible, #global-new-hire-form input[required], #global-new-hire-form select[required]').on('blur change keyup paste', function() {
+  $('#global-new-hire-form input:visible, #global-new-hire-form select:visible').on('blur change keyup paste', function() {
     validateField($(this));
   });
 
@@ -1323,7 +1247,7 @@ $(document).ready(function() {
   $('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete').on('click', function(e) {
     var formIsValid = true, btn = $(this);
     e.preventDefault();
-    $.each($('#global-new-hire-form input[required]:not(:button):visible, #global-new-hire-form select[required]'), function(k, v) {
+    $.each($('#global-new-hire-form input:not(:button):visible, #global-new-hire-form select:visible'), function(k, v) {
       if(false == validateField($(v))) {
         formIsValid = false;
       }
