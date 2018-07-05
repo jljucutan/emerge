@@ -1226,17 +1226,22 @@ $(document).ready(function() {
   var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>" : $('#EventLocation').val();
   $('[data-text="country"]').html(countries[eventLocation]);
   $('#Country').val(countries[eventLocation] + "?");
+  $('#visa_country').val(eventLocation);
+  $('#visa_permit_type').find('option').not('[value^=' + eventLocation + ']').remove();
 
-  var toggler = new Toggler({"config": "<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/toggler_config.json>"});
-  toggler.then(function() {
-    getConfig();
+  var sectionToggler = new SectionToggler({"config": "<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/toggler_config.json>"});
+  setTimeout(function() {
+    sectionToggler.run();
+  }, 500);
+  $('#global-new-hire-form').on('change', 'input:radio:visible', function() {
+    sectionToggler.run();
   });
 
-  $('#global-new-hire-form input:visible[type="radio"]').on('click change', function() {
+  $('#global-new-hire-form').on('click change', 'input:visible[type="radio"]', function() {
     validateField($(this));
   });
 
-  $('#global-new-hire-form input:visible, #global-new-hire-form select:visible').on('blur change keyup paste', function() {
+  $('#global-new-hire-form').on('blur change keyup paste', 'input:visible, select:visible', function() {
     validateField($(this));
   });
 
