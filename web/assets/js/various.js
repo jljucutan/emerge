@@ -1223,7 +1223,7 @@ $(document).ready(function() {
     'USA'   : 'USA'
   }
 
-  var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,1))>" : $('#EventLocation').val();
+  var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>" : $('#EventLocation').val();
   $('[data-text="country"]').html(countries[eventLocation]);
   $('#Country').val(countries[eventLocation] + "?");
   $('#visa_country').val(eventLocation);
@@ -1252,8 +1252,8 @@ $(document).ready(function() {
   $('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete').on('click', function(e) {
     var formIsValid = true, btn = $(this);
     e.preventDefault();
-    $.each($('#global-new-hire-form input:not(:button):visible, #global-new-hire-form select:visible'), function(k, v) {
-      if(false == validateField($(v))) {
+    $.each($('#global-new-hire-form input:not(:button), #global-new-hire-form select'), function(k, v) {
+      if(false == validateField($(v)) && $(v).is(':visible')) {
         formIsValid = false;
       }
     });
@@ -1269,7 +1269,11 @@ $(document).ready(function() {
     }
   });
 
+  // Style modifiers
+  $('.cal_and_button td').prepend($('<span class="calendar-btn-container"/>').append($('<i class="fa fa-calendar"></i>')));
+
 });
+
 
 $(document).ready(function() {
   $('#toggle-additional-account').on('click', 'button:not("disabled")', function(e) {
