@@ -1298,3 +1298,33 @@ $(document).ready(function() {
     $('#toggle-additional-account button').prop('disabled', true);
   }
 });
+
+$(document).ready(function() {
+  var empData = {
+    "a01_First_name": "<$client.tForWhomUserInfo.First_Name>",
+    "a03_Last_Name": "<$client.tForWhomUserInfo.Last_Name>",
+    "fullName": "<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name>",
+    "a04_Preferred_First_Name": "<$client.tForWhomUserInfo.Preferred_Name>",
+    "a05_Gender": "<$client.tForWhomUserInfo.Gender>",
+    "a06_Home_Phone_Number": "<$client.tForWhomUserInfo.Phone>",
+    "a08_Email_Address": "<$client.tForWhomUserInfo.Email>",
+    "a09_Social_Insurance_Number": "<$client.tForWhomUserInfo.SSNO>",
+    "a10_Date_of_Birth": "<$client.tForWhomUserInfo.DOB>",
+    "a12_Street_Address": "<$client.tForWhomUserInfo.Address1>",
+    "a14_City": "<$client.tForWhomUserInfo.City>",
+    "a16_Post_Code": "<$client.tForWhomUserInfo.Zip>"
+  }
+  if (strFormCompleted == "") {
+    $.each(empData, function(k,v) {
+      var field = $(document.getElementById(k));
+      if ($(document.getElementById(k)).length < 1)  {
+        setTimeout(function() {
+          var d = new Date(v);
+          var mm = d.getMonth() + 1;
+          $(document.querySelector('[id$="' + k + '_display' + '"]')).val(mm + '/' + ("0" + d.getDate()).slice(-2) + '/' + d.getFullYear());
+        }, 500);
+      }
+      field.val(v);
+    })
+  }
+});
