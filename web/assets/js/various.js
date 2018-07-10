@@ -1224,15 +1224,29 @@ $(document).ready(function() {
   }
 
   var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>" : $('#EventLocation').val();
-  $('[data-text="country"]').html(countries[eventLocation]);
+  $('[data-text="country"]').html(countries[eventLocation] + "?");
   $('#Country').val(countries[eventLocation] + "?");
   $('#visa_country').val(eventLocation);
-  $('#visa_permit_type').find('option').not('[value^=' + eventLocation + ']').remove();
+  $('#visa_permit_type').find('option').not('[value^="' + eventLocation + '"]').remove();
 
   var sectionToggler = new SectionToggler({"config": "<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/toggler_config.json>"});
   setTimeout(function() {
     sectionToggler.run();
   }, 500);
+
+  var populateByCity = function(obj, targetObj) {
+    targetObj.find('option').not('[value^="' + obj.val() + '"]').addClass('hide');
+    targetObj.find('option[value^="' + obj.val() + '"]').removeClass('hide');
+  }
+
+  if ($('#fid_country').is(':visible') && $('#fid_country').val().length) {
+    populateByCity($('#fid_country'), $('#fid_type'));
+  }
+
+  $('#global-new-hire-form').on('change', '#fid_country', function() {
+    populateByCity($(this), $('#fid_type'));
+  });
+
   $('#global-new-hire-form').on('change', 'input:radio:visible', function() {
     sectionToggler.run();
   });
@@ -1302,6 +1316,7 @@ $(document).ready(function() {
 $(document).ready(function() {
   var empData = {
     "a01_First_name": "<$client.tForWhomUserInfo.First_Name>",
+    "a02_Middle_Initial": "<$client.tForWhomUserInfo.Middle_Initial>",
     "a03_Last_Name": "<$client.tForWhomUserInfo.Last_Name>",
     "fullName": "<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name>",
     "a04_Preferred_First_Name": "<$client.tForWhomUserInfo.Preferred_Name>",
