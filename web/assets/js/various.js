@@ -1227,24 +1227,31 @@ $(document).ready(function() {
   $('[data-text="country"]').html(countries[eventLocation] + "?");
   $('#Country').val(countries[eventLocation] + "?");
   $('#visa_country').val(eventLocation);
-  $('#visa_permit_type').find('option').not('[value^="' + eventLocation + '"]').remove();
 
   var sectionToggler = new SectionToggler({"config": "<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/toggler_config.json>"});
+  // display allowed form input groups based on selected citizen status
   setTimeout(function() {
     sectionToggler.run();
   }, 500);
 
-  var populateByCity = function(obj, targetObj) {
-    targetObj.find('option').not('[value^="' + obj.val() + '"]').addClass('hide');
-    targetObj.find('option[value^="' + obj.val() + '"]').removeClass('hide');
+  var populateByLocation = function(targetObj, loc) {
+    var location = loc.length ? loc : eventLocation;
+    targetObj.find('option').not('[value^="' + location + '"]').not('[value=""]').addClass('hide');
+    targetObj.find('option[value^="' + location + '"]').removeClass('hide');
   }
 
-  if ($('#fid_country').is(':visible') && $('#fid_country').val().length) {
-    populateByCity($('#fid_country'), $('#fid_type'));
-  }
+  // show only list of permits per country by default
+  populateByLocation($('#visa_permit_type'), $('#visa_country').val());
+
+  // show only list of id types per country by default
+  populateByLocation($('#fid_type'), $('#fid_country').val());
 
   $('#global-new-hire-form').on('change', '#fid_country', function() {
-    populateByCity($(this), $('#fid_type'));
+    populateByLocation($('#fid_type'), $(this).val());
+  });
+
+  $('#global-new-hire-form').on('change', '#visa_country', function() {
+    populateByLocation($('#visa_permit_type'), $(this).val());
   });
 
   $('#global-new-hire-form').on('change', 'input:radio:visible', function() {
@@ -1255,7 +1262,7 @@ $(document).ready(function() {
     validateField($(this));
   });
 
-  $('#global-new-hire-form').on('blur change keyup paste', 'input:visible, select:visible', function() {
+  $('#global-new-hire-form').on('blur change keyup paste', 'input:not(#signature):visible, select:visible', function() {
     validateField($(this));
   });
 
