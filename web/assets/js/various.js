@@ -1226,7 +1226,25 @@ $(document).ready(function() {
   var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>" : $('#EventLocation').val();
   $('[data-text="country"]').html(countries[eventLocation] + "?");
   $('#Country').val(countries[eventLocation] + "?");
-  $('#visa_country').val(eventLocation);
+
+  // populate countries
+  var removeCountriesWithNoOption = function(allOptionsObj, countryOptionsObj) {
+    var existingOptions = [];
+    allOptionsObj.each(function(k,v) {
+      if ($(v).val().length < 1) {
+        return true;
+      }
+      var countryCode = $(v).val().substring(0, 3);
+      if (existingOptions.indexOf(countryCode) < 0) {
+        existingOptions.push(countryCode);
+      }
+    });
+    $.each(countryOptionsObj, function(k,v) {
+      if($(v).val().length > 0 && existingOptions.indexOf($(v).val()) < 0 ) {
+        $(v).remove();
+      }
+    });
+  }
 
   var sectionToggler = new SectionToggler({"config": "<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/toggler_config.json>"});
   // display allowed form input groups based on selected citizen status
@@ -1234,35 +1252,100 @@ $(document).ready(function() {
     sectionToggler.run();
   }, 500);
 
-  var populateByLocation = function(targetObj, loc) {
-    var location = loc.length ? loc : eventLocation;
-    targetObj.find('option').not('[value^="' + location + '"]').not('[value=""]').addClass('hide');
-    targetObj.find('option[value^="' + location + '"]').removeClass('hide');
+  var populateByLocation = function(targetObj, source, loc) {
+    var location = (loc && loc.length > 0) ? loc : eventLocation;
+    var optionVal = targetObj.val();
+    targetObj.html(source.clone());
+    targetObj.find('option').not('[value^="' + location + '"]').remove();
+    targetObj.prepend($('<option value=""/>'));
+    targetObj.val([]);
+
+    setTimeout(function() {
+      if (targetObj.is(':visible')) {
+        targetObj.val(optionVal)
+      }
+    }, 1000);
   }
 
+  var setDefaultCountry = function(obj) {
+    if (obj && obj.val().length < 1) {
+      obj.val(eventLocation);
+    }
+  }
+
+  // show only countries with option
+  removeCountriesWithNoOption($('#visa_permit_type option'), $('#visa_country option'));
+  removeCountriesWithNoOption($('#fid_type option'), $('#fid_country option'));
+
   // show only list of permits per country by default
-  populateByLocation($('#visa_permit_type'), $('#visa_country').val());
+  populateByLocation($('#visa_permit_type'), $('#Work_Permit_Type_Global option'), $('#visa_country').val());
 
   // show only list of id types per country by default
-  populateByLocation($('#fid_type'), $('#fid_country').val());
+  populateByLocation($('#fid_type'), $('#National_ID_Type option'), $('#fid_country').val());
+
+  // set default country
+  setDefaultCountry($('#passport_country'));
+  setDefaultCountry($('#visa_country'));
+  setDefaultCountry($('#fid_country'));
 
   $('#global-new-hire-form').on('change', '#fid_country', function() {
-    populateByLocation($('#fid_type'), $(this).val());
+    populateByLocation($('#fid_type'), $('#National_ID_Type option'), $(this).val());
+    $('#National_ID_Type').val($(this)).val();
   });
 
   $('#global-new-hire-form').on('change', '#visa_country', function() {
-    populateByLocation($('#visa_permit_type'), $(this).val());
+    populateByLocation($('#visa_permit_type'), $('#Work_Permit_Type_Global option'), $(this).val());
+    $('#Work_Permit_Type_Global').val($(this)).val();
   });
 
-  $('#global-new-hire-form').on('change', 'input:radio:visible', function() {
+
+  $('#global-new-hire-form').on('click', 'input:radio:visible', function() {
     sectionToggler.run();
+    $('#global-new-hire-form input[type="text"]:hidden, #global-new-hire-form select:hidden').val('');
+    if ($('#visa_permit_type').is(':visible')) {
+      populateByLocation($('#visa_permit_type'), $('#Work_Permit_Type_Global option'), $('#visa_country').val());
+    }
+    if ($('#fid_type').is(':visible')) {
+      populateByLocation($('#fid_type'), $('#National_ID_Type option'), $('#fid_country').val());
+    }
+    setDefaultCountry($('#passport_country'));
+    setDefaultCountry($('#visa_country'));
+    setDefaultCountry($('#fid_country'));
+    console.log($('#national-identification-container').hasClass('hide'));
+    console.log($('#passport-information-container').hasClass('hide'));
+    console.log($('#noncitizen-identification-container').hasClass('hide'));
+    console.log($('#visa-identification-container').hasClass('hide'));
+
+
+    setTimeout(function() {
+
+    if ($('#national-identification-container').hasClass('hide')) {
+      $('#national-identification-container').find('input:radio:checked').prop('checked', false);
+      $('#national-identification-container').find('input').val('');
+    }
+    if ($('#passport-information-container').hasClass('hide')) {
+      $('#passport-information-container').find('input:radio:checked').prop('checked', false);
+      $('#passport-information-container').find('input').val('');
+    }
+    if ($('#noncitizen-identification-container').hasClass('hide')) {
+      $('#noncitizen-identification-container').find('input:radio:checked').prop('checked', false);
+      $('#noncitizen-identification-container').find('input').val('');
+      $('#fid_type').find('select').val('');
+    }
+    if ($('#visa-identification-container').hasClass('hide')) {
+      $('#visa-identification-container').find('input:radio:checked').prop('checked', false);
+      $('#visa-identification-container').find('input').val('');
+      $('#visa_permit_type').find('select').val('');
+    }
+    }, 1000);
+
   });
 
   $('#global-new-hire-form').on('click change', 'input:visible[type="radio"]', function() {
     validateField($(this));
   });
 
-  $('#global-new-hire-form').on('blur change keyup paste', 'input:not(#signature):visible, select:visible', function() {
+  $('#global-new-hire-form').on('change', 'input:visible:not(#signature):not(:button), select:visible', function() {
     validateField($(this));
   });
 
@@ -1273,7 +1356,7 @@ $(document).ready(function() {
   $('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete').on('click', function(e) {
     var formIsValid = true, btn = $(this);
     e.preventDefault();
-    $.each($('#global-new-hire-form input:not(:button), #global-new-hire-form select'), function(k, v) {
+    $.each($('#global-new-hire-form input:visible:not(:button), #global-new-hire-form select:visible'), function(k, v) {
       if(false == validateField($(v)) && $(v).is(':visible')) {
         formIsValid = false;
       }
