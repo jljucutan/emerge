@@ -1433,3 +1433,12 @@ $(document).ready(function() {
     })
   }
 });
+
+function requireWhenEnabled(sValue, sName, sField) {
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = $(document.getElementsByName(sName)[0]).is(':visible') ? $(document.getElementsByName(sName)[0]) : $(document.getElementsByName(sName  + "_display")[0]);
+  if (!field.prop('disabled') && field.val().length < 1) {
+    return eFormRequiredField(sValue, sName, sField);
+  }
+  return true;
+}
