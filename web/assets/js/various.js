@@ -1442,3 +1442,38 @@ function requireWhenEnabled(sValue, sName, sField) {
   }
   return true;
 }
+
+$(document).on('ready', function() {
+  var reopened = false;
+  var signer = 0;
+  var signStamps = $('[data-group="levels"]');
+  $.each(signStamps, function(k,v) {
+    if ($(v).val().length > 0) {
+      signer++;
+    }
+  });
+  if (signStamps.length <= signer) {
+    reopened = true;
+  }
+  if (!reopened) {
+    var disableRest = false;
+    $.each($('#a26_First_Level_Supervisors_Signature, #a28_Second_Level_Supervisors_Signature, #a30_Third_Level_Supervisors_Signature, #a32_Human_Resources_Signature'), function(k,v) {
+      if ($($(v).data('target-level')).val() == '<$client.account.loginID>') {
+        disableRest = true;
+        return true;
+      }
+      if (disableRest || k !== signer) {
+        $(v).disableField();
+        $('[data-date-id="' + $(v).data('target-level') + '"]').disableDate().disableField();
+      }
+    })
+  }
+  else {
+    $.each(signStamps, function(k,v) {
+      if ($(v).val() !== '<$client.account.loginID>') {
+        $('[data-target-level="#' + $(v).prop('id') + '"]').disableField();
+        $('[data-date-id="#' + $(v).prop('id') + '"]').disableDate().disableField();
+      }
+    })
+  }
+});
