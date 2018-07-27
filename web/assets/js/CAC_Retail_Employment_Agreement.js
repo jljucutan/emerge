@@ -354,7 +354,7 @@ $(document).on('ready',function() {
     fnView();
 
     // completed letter
-    if (!$("input.calendar_button").length) {
+    if ($('#today').prop('readonly')) {
         $("#ButtonSaveAndComplete").remove();
         $("input[type=text]").removeAttr('onfocus').attr("disabled", "disabled");
 

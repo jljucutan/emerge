@@ -1445,15 +1445,19 @@ function requireWhenEnabled(sValue, sName, sField) {
 
 $(document).on('ready', function() {
   var reopened = false;
-  var signer = 0;
+  var signed = 0;
   var signStamps = $('[data-group="levels"]');
+  var isHR = <$client.env.eval((client.role.HR_Directors==1) ? 'true': 'false')>;
   $.each(signStamps, function(k,v) {
     if ($(v).val().length > 0) {
-      signer++;
+      signed++;
     }
   });
-  if (signStamps.length <= signer) {
+  if (signStamps.length <= signed) {
     reopened = true;
+  }
+  if (signed > 0 && $('#lv1').val() != '<$client.account.loginID>') {
+    $('#evaluation-container input, #evaluation-container textarea').disableField();
   }
   if (!reopened) {
     var disableRest = false;
@@ -1462,7 +1466,10 @@ $(document).on('ready', function() {
         disableRest = true;
         return true;
       }
-      if (disableRest || k !== signer) {
+      if (isHR && $(v).prop('id') == 'a32_Human_Resources_Signature') {
+        return true;
+      }
+      else if (isHR || disableRest || k !== signed) {
         $(v).disableField();
         $('[data-date-id="' + $(v).data('target-level') + '"]').disableDate().disableField();
       }
