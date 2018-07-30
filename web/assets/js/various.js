@@ -1341,7 +1341,12 @@ $(document).ready(function() {
 
   });
 
-  $('#global-new-hire-form').on('click change', 'input:visible[type="radio"]', function() {
+  $('#global-new-hire-form').on('click change blur', 'input:visible[type="radio"]', function() {
+    if ($(this).attr('id') == 'test1') {
+      if ($('#radio-button').val() = 'yes') {
+        $(this).data('title', 'dynamic title')
+      }
+    }
     validateField($(this));
   });
 
