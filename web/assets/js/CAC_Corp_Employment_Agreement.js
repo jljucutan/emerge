@@ -9,7 +9,7 @@ function fnView() {
         // add the form title
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h1 class="vspace-lg"/>').append('Employment Agreement')
+                $('<h1 class="vspace-lg"/>').append('<strong>Employment Agreement</strong>')
             )
         ),
         $('<div class="row offerClause"/>').append(
@@ -30,16 +30,17 @@ function fnView() {
                 'AND:'
             ),
             $('<div class="col-lg-11 col-md-11 col-sm-8 col-xs-12"/>').append(
+                '<p>' +
                 employee.Candidate_First_Name + ' ' + employee.Candidate_Middle_Name + ' ' + employee.Candidate_Last_Name + ' ("You" or "Employee")<br/>' +
                 employee.Address_1 + '<br/>' +
-                employee.City + ', ' + employee.Province + '<br/>',
-                $('<p/>').append(employee.Address_2)
+                employee.City + ', ' + employee.Province + '<br/>' +
+                employee.Zip + '</p>'
             )
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('This Agreement sets forth the terms upon which Apple agrees to employ the Employee and upon which Employee agrees to be employed by Apple. For good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the parties agree as follows:'),
-                $('<h3 class="text-grey"/>').append('<strong>Job Title and Job Duties</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Job Title and Job Duties</strong>'),
             )
         ),
         (employee.CAC_EA_Type == 'Engineering') && $('<div class="row offerClause"/>').append(
@@ -48,7 +49,7 @@ function fnView() {
                 $('<p/>').append(
                     'Under the general direction and supervision of Apple, as an Engineer, you shall be responsible for ' + 
                     employee.Main_Responsibility + ' at ' + 
-                    ((employee.CAC_Work_location != 'Home Office') ? employee.CAC_Work_location + ' ("The Facility")' : ' your home office in ') +
+                    ((employee.CAC_Work_location != 'Home Office') ? employee.CAC_Work_location + ' ("The Facility") ' : ' your home office in ') +
                     employee.City + ', ' +
                     employee.Province +
                     '. Specifically, your duties include, but are not limited to:'
@@ -313,9 +314,9 @@ function fnView() {
                 $('<p/>').append('Apple may from time to time redefine the job title, description, functions and/or responsibilities of the position without changing any rights or obligations of the parties hereto.')
             )
         ),
-        (employee.CAC_Contract_Type == 'Standard Permanent') && $('<div class="row offerClause"/>').append(
+        $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Commencement of Employment</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Commencement of Employment</strong>'),
                 $('<p/>').append(
                     'Your employment will begin on ' +
                     fnConvertDate(employee.Start_Date) +
@@ -325,39 +326,39 @@ function fnView() {
         ),
         (employee.CAC_EA_Type != 'AHA') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Probation Period</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Probation Period</strong>'),
                 $('<p/>').append('Your employment with Apple is subject to a ninety (90) day probationary period. At any time during your probationary period, either you or Apple may terminate your employment without notice or any other obligation to the other party, except the minimum notice or pay in lieu of notice and any other entitlements required by the applicable employment standards statute.')
             )
         ),
         (employee.CAC_EA_Type == 'AHA') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Probation Period and Initial Training Requirements</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Probation Period and Initial Training Requirements</strong>'),
                 $('<p/>').append('Your employment with Apple is subject to a ninety (90) day probationary period during which time you will be trained on the essential functions and skills required for your role. You will be required to attend or take any training and exams provided by Apple and must achieve a minimum score in order to be able to continue your employment. At any time and for any reason during your probationary period, either you or Apple may terminate your employment without notice or any other obligation to the other party, except the minimum notice or pay in lieu of notice and any other entitlements required by the applicable employment standards statute.')
             )
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Conditional Offer of Employment</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Conditional Offer of Employment</strong>'),
                 $('<p/>').append('Your employment with Apple is conditional upon verification satisfactory to Apple of the information you provided to it during the job application process, the receipt of references satisfactory to Apple from those nominated by you, and the receipt of documentary evidence satisfactory to Apple of your continued right to work in Canada. It is your responsibility to maintain your legal right to work in Canada.')
             )
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Place of Work</strong>')
+                $('<h1 class="text-left"/>').append('<strong>Place of Work</strong>')
             )
         ),
-        (employee.CAC_EA_Type == 'Engineer' && employee.CAC_Work_Location != 'Home Office') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_EA_Type == 'Engineering' && employee.CAC_Work_Location != 'Home Office') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append(
                     'While your usual place of work is the ' +
                     employee.CAC_Work_Location +
                     ' facility, Apple may, at its sole discretion, require you to relocate to any other location within the Greater ' +
-                    employment.Greater_City_Area +
+                    employee.Greater_City_Area +
                     ' area, either temporarily or permanently, without thereby breaching this Agreement or any terms of your employment.'
                 )
             )
         ),
-        (employee.CAC_EA_Type == 'Engineer' && employee.CAC_Work_Location == 'Home Office') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_EA_Type == 'Engineering' && employee.CAC_Work_Location == 'Home Office') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You will be eligible to maintain a home office in accordance to Apple’s Accounting and Finance Policy. Apple may, at its sole discretion, require you to relocate to any other location within a reasonable geographic area, either temporarily or permanently, without thereby breaching this Agreement or any terms of your employment.')
             )
@@ -378,7 +379,7 @@ function fnView() {
         ),
         (employee.CAC_EA_Type == 'AHA') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Place of Work; Equipment; Safety; Monitoring.</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Place of Work; Equipment; Safety; Monitoring.</strong>'),
                 $('<p/>').append('<strong>Office location.</strong> While your usual place of work is your home office location identified above, Apple may, at its sole discretion, require you to relocate to any other location within the Greater City Area, either temporarily or permanently, without thereby breaching this Agreement or any terms of your employment. On occasion you may be asked to attend meetings or training at another location, in which case you will be notified in advance and reimbursed, if necessary for related expenses in accordance with Apple’s Finance policies.'),
                 $('<p/>').append('<strong>Equipment provided by Apple.</strong> To facilitate your working as an AHA, Apple will provide certain equipment for use in your home office. The equipment provided will remain the property of Apple and must be returned to Apple upon request. You agree to maintain the equipment in good working order and follow applicable Apple procedures if maintenance and repairs are required. In the event of equipment or system malfunction, you will immediately notify your manager who will decide whether replacement equipment or an alternative system should be used. You understand that use of the equipment and related systems is restricted to you and for Apple-designated work only, and not any personal use, and that no other member of your household or guests are permitted to use the equipment. Use of the equipment and related systems, as well as the data stored or accessible by means of the equipment and systems, will remain subject to Apple policies, including, but not limited to, the “Employee Use of Electronic Systems and Communications” and “Confidential Information” policies referenced in the AHA Program Guidelines. You agree to immediately return at your expense any Apple owned equipment and/or property if and when the AHA Program is discontinued or your employment with Apple is terminated.'),
                 $('<p/>').append('<strong>Equipment provided by Employee.</strong> You agree to provide the necessary equipment, services and home office location as set out in the AHA Program Guidelines at your own expense, and to notify your manager immediately of any changes to such.'),
@@ -388,33 +389,37 @@ function fnView() {
         ),
         (employee.CAC_Relo_Allowance.length > 0) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3/>').append('<em>Relocation Assistance Allowance</em>'),
-                $('<p/>').append('You are eligible for relocation assistance in connection with your transfer to <Canada Work Location>. The approved budget for your relocation assistance is (CAD) $ ' +
+                $('<h1/>').append('<em>Relocation Assistance Allowance</em>'),
+                $('<p/>').append('You are eligible for relocation assistance in connection with your transfer to ' +
+                    employee.CAC_Work_Location + 
+                    '. The approved budget for your relocation assistance is (CAD) $ ' +
                     employee.CAC_Relo_Allowance +
                     '. This is the maximum total expendable amount for appropriate relocation expenses. Substitutions or cash payouts are not permitted.'),
                 $('<p/>').append('Please note that in order to earn your relocation package, you must be actively employed with Apple for twelve (12) months following your start date. If you resign your employment from Apple or are terminated for cause within twelve (12) months of your start date, you may be responsible for repayment of a prorated portion of the relocation package at Apple’s sole discretion. In the event repayment is required, you agree and authorize Apple to deduct from your final pay cheque the pro rata amount owed to Apple.')
             )
         ),
-        (employee.CAC_EA_Type == 'RAS' && employee.CAC_EA_Type == 'ASC Manager') && $('<div class="row offerClause"/>').append(
+        (['ASC Manager', 'ASC Lead (RAS)'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Business Travel</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Business Travel</strong>'),
                 $('<p/>').append('As part of your job duties, you are required to have a vehicle to travel to different reseller locations. You will only be reimbursed for travel within the geographic area that you are responsible for, as set out in this Agreement, and in accordance with Apple\'s Accounting and Finance Policy.'),
                 $('<p/>').append('You may additionally be required from time to time to travel to the United States or elsewhere and will be reimbursed in accordance with Apple’s Accounting and Finance Policy for such travel. If there is any reason why you cannot operate a vehicle or travel outside Canada, you must advise us prior to hire.')
             )
         ),
-        (['Engineer', 'ASC'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
+        (['Engineering', 'ASC'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('As part of your job duties, you may be required from time to time to travel to the United States or elsewhere and will be reimbursed in accordance with Apple’s Accounting and Finance Policy, attached as Exhibit D, for such travel. If there is any reason why you cannot travel outside Canada, you must advise us prior to hire.')
             )
         ),
         (employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<p/>').append('You are employed on a full-time basis. Your usual weekly hours are forty (40) hours per week exclusive of breaks (your “Basic Hours”). <Your actual working days and hours will be determined by your manager who will notify you in advance, at the beginning of each week, what your working schedule will be for that week.'),
+                $('<h1/>').append('<strong>Days and Hours of Work</strong>'),
+                $('<p/>').append('You are employed on a full-time basis. Your usual weekly hours are forty (40) hours per week exclusive of breaks (your “Basic Hours”). Your actual working days and hours will be determined by your manager who will notify you in advance, at the beginning of each week, what your working schedule will be for that week.'),
                 $('<p/>').append('Apple reserves the right to have you work either a reasonable number of additional hours or fewer hours than your Basic Hours as its business requires. Apple may implement these changes to your hours without prior notice and without thereby breaching any term of this Agreement or your employment with Apple.')
             )
         ),
         (employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
+                $('<h1/>').append('<strong>Days and Hours of Work</strong>'),
                 $('<p/>').append(
                     'You are employed on a part time basis. Your usual weekly hours are ' +
                     employee.CAC_Weekly_Hours +
@@ -423,9 +428,9 @@ function fnView() {
                 $('<p/>').append('Apple reserves the right to have you work either a reasonable number of additional hours or fewer hours than your Basic Hours as its business requires. Apple may implement these changes to your hours without prior notice and without thereby breaching any term of this Agreement or your employment with Apple.')
             )
         ),
-        (employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
+        $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('Compensation')
+                $('<h1 class="text-left"/>').append('Compensation')
             )
         ),
         (['ASC Manager', 'ASC Lead (RAS)', 'ASC'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
@@ -438,13 +443,13 @@ function fnView() {
                 $('<p/>').append(
                     'You will be eligible for Commissions and/or Performance Incentives according to the terms of the Incentive Compensation Plan. Your annual target variable compensation for this fiscal year is $' +
                     employee.CAC_Commission +
-                    ' at 100 percent target achievement. Your total on target earnings (annual salary + target variable) is based on a job mix of' +
+                    ' at 100 percent target achievement. Your total on target earnings (annual salary + target variable) is based on a job mix of ' +
                     employee.CAC_Target_Mix +
                     '. You will receive Apple Canada’s Incentive Compensation Plan document separately.'
                 )
             )
         ),
-        (employee.CAC_EA_Type == 'Engineer' && employee.CAC_Compensation_Type == 'Annual') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_EA_Type == 'Engineering' && employee.CAC_Compensation_Type == 'Salary') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append(
                     'Apple shall pay you an annual salary of (CAD) $' +
@@ -453,7 +458,7 @@ function fnView() {
                 )
             )
         ),
-        (employee.CAC_EA_Type == 'Engineer' && employee.CAC_Compensation_Type == 'Hourly') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_EA_Type == 'Engineering' && employee.CAC_Compensation_Type == 'Hourly') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append(
                     'Your basic rate of pay is (CAD) $' +
@@ -468,14 +473,14 @@ function fnView() {
                 $('<p/>').append(
                     'Apple will pay you an hourly rate of (CAD)$' +
                     employee.Salary_Amount +
-                    ' payable every other week, one week in arrears, subject to the withholding of all applicable statutory deductions.'
+                    ', payable every other week, one week in arrears, subject to the withholding of all applicable statutory deductions.'
                 ),
                 $('<p/>').append('Overtime is paid in accordance with the employment standards laws of the Province in which you are employed.')
             )
         ),
         (employee.CAC_Hire_On.length > 0) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3/>').append('<em>Hire-On Bonus</em>'),
+                $('<h1/>').append('<em>Hire-On Bonus</em>'),
                 $('<p/>').append(
                     'You will be eligible to receive a one time hire-on bonus of (CAD) $' +
                     employee.CAC_Hire_On + 
@@ -490,12 +495,12 @@ function fnView() {
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('Benefits Program'),
+                $('<h1 class="text-left"/>').append('Benefits Program'),
                 $('<p/>').append('You may be eligible to participate in various benefit plans offered by Apple from time to time, including Retirement Savings Plan, and health, life and disability insurance plans offered by Apple to its employees. You acknowledge and agree that any benefit plan in effect from time to time is subject to availability and other requirements of Apple or the applicable insurer and the written terms and conditions contained in each plan and that Apple makes no promise about your eligibility for or entitlement to benefits and will have no liability or responsibility in the event you are denied coverage.'),
-                $('<h3 class="text-grey"/>').append('Vacation')
+                $('<h1 class="text-left"/>').append('Vacation')
             )
         ),
-        (['RAS', 'ASC', 'Engineer'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
+        (['ASC Lead (RAS)', 'ASC', 'Engineering'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('As an employee you are eligible to accrue vacation days in accordance with the employment standard legislation in the province in which you are employed. Apple\'s vacation policy may be amended or modified from time to time by Apple at its sole discretion.')
             )
@@ -511,16 +516,16 @@ function fnView() {
                 $('<p/>').append('Apple makes your vacation time available at the start of each year, however, should you leave the Company during that year, you acknowledge that you will be required to repay Apple for any time taken but not yet accrued, and you hereby provide consent for Apple to withhold such payment from your final pay or from any other amounts owing from Apple to you.')
             )
         ),
-        (['AHA', 'Engineer'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
+        (['AHA', 'Engineering'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey/>').append('Bonus'),
+                $('<h1 class="text-left"/>').append('Bonus'),
                 $('<p/>').append('You may be eligible to participate in any of Apple’s bonus and incentive schemes in place from time to time, details of which will be provided by your manager.'),
                 $('<p/>').append('All bonus and incentive schemes in which you may be eligible to participate are discretionary and may be amended or withdrawn at any time without breaching a term of this Agreement or your employment with Apple.')
             )
         ),
         (/^ASC/i.test(employee.CAC_EA_Type) == true) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey/>').append('<strong>Sunday/Statutory Holiday/Shift Work</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Sunday/Statutory Holiday/Shift Work</strong>'),
                 $('<p/>').append('You understand that your position is located within a reseller’s store and that because the reseller’s store is a retail operation, which may be open on Sundays and statutory holidays, you may be scheduled to work on Sundays and statutory holidays.'),
                 $('<p/>').append('You agree that you will work on Sundays and statutory holidays if a Sunday or statutory holiday shift is assigned to you. You also acknowledge that you may be scheduled to work on different shifts (eg. morning, afternoon or evening) and that your shift schedule may change from time to time.')
             )
@@ -551,12 +556,25 @@ function fnConvertFullDate(eventDate) {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    var year = d.getFullYear(),
-        month = d.getMonth(),
-        n_date = d.getDate(),
-        day = d.getDay();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var day = d.getDay();
+    var ordinalDate = '';
+    switch(parseInt(d.getDate()) % 10) {
+        case 1: 
+            ordinalDate = d.getDate() + "1st";
+        break;
+        case 2: 
+            ordinalDate = d.getDate() + "2nd";
+        break;
+        case 2: 
+            ordinalDate = d.getDate() + "3rd";
+        break;
+        default:
+            ordinalDate = d.getDate() + "th";
+    }
 
-    return parseInt(n_date) + ' of ' +  months[month] + ', ' + year;
+    return ordinalDate + ' of ' +  months[month] + ', ' + year;
 
 }
 
@@ -615,9 +633,20 @@ $(document).on('ready',function() {
         var arrParts = [
             [1, 'hidden_pg']
         ];
+        var arrParts2 = [
+            [1, 'hidden_pg2']
+        ];
+        var arrParts3 = [
+            [1, 'hidden_pg3']
+        ];
         showCompletedOfferLetter('incomplete', 'complete', arrParts);
+        showCompletedOfferLetter('incomplete2', 'complete2', arrParts2);
+        showCompletedOfferLetter('incomplete3', 'complete3', arrParts3);
     }
     else{
         makeOfferLetter('hidden_pg','offerClause');
+        makeOfferLetter('hidden_pg2','offerClause2');
+        makeOfferLetter('hidden_pg3','offerClause3');
+        makeOfferLetter('hidden_pg4','offerClause4');
     }
 });

@@ -9,7 +9,7 @@ function fnView() {
         // add the form title
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h1 class="vspace-lg"/>').append('Employment Agreement')
+                $('<h1 class="vspace-lg"/>').append('<strong>Employment Agreement</strong>')
             )
         ),
         $('<div class="row offerClause"/>').append(
@@ -30,40 +30,45 @@ function fnView() {
                 'AND:'
             ),
             $('<div class="col-lg-11 col-md-11 col-sm-8 col-xs-12"/>').append(
-                employee.Candidate_First_Name + ' ' + employee.Candidate_Middle_Name + ' ' + employee.Candidate_Last_Name + ' ("You" or "Employee")<br/>' +
+                employee.Candidate_First_Name + ' ' + employee.Candidate_Last_Name + ' ("You" or "Employee")<br/>' +
                 employee.Address_1 + '<br/>' +
                 employee.Address_2 + '<br/>' +
                 employee.City + ', ' + employee.Province + '<br/>',
-                $('<p/>').append(employee.Address_2)
+                $('<p/>').append(employee.Postal_Code)
             )
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('This Agreement sets forth the terms upon which Apple agrees to employ the Employee and upon which Employee agrees to be employed by Apple. For good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the parties agree as follows:'),
-                $('<h3 class="text-grey"/>').append('<strong>Job Title and Job Duties</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Job Title and Job Duties</strong>'),
                 $('<p/>').append(
                     'You are employed as ' + 
                     ((employee.CAC_Employee_Type == 'FEW') ? (employee.CAC_Employee_Type + ' ') : '') +
                     employee.Job_Title_Retail +
                     'The duties of this position include sales and customer service and any other duties assigned to you from time to time by Apple.'
-                )
+                ),
+                $('<p/>').append('Apple may from time to time redefine the job title, description, functions and/or responsibilities of the position without changing any rights or obligations of the parties hereto.')
             )
         ),
         (employee.CAC_Contract_Type == 'Standard Permanent') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Commencement of Employment</strong>'),
-                $('<p/>').append('Your employment will begin on [Start_Date] and shall continue until terminated pursuant to this Agreement.')
+                $('<h1 class="text-left"/>').append('<strong>Commencement of Employment</strong>'),
+                $('<p/>').append(
+                    'Your employment will begin on ' +
+                    employee.Start_Date +
+                    ' and shall continue until terminated pursuant to this Agreement.'
+                )
             )
         ),
         (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Term of Employment</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Term of Employment</strong>'),
                 $('<p/>').append('Your employment will begin on ' + employee.Start_Date + ' and end on ' + employee.End_Date + '. Unless Apple terminates your employment before the end of this term, or renews this Agreement for a further term, your employment will end on ' + employee.End_Date + ', at which time Apple will have no obligation to give you any notice of termination, or compensatory indemnity in lieu of such notice, and will have no further obligation whatsoever to you.')
             )
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Probation Period</strong>')
+                $('<h1 class="text-left"/>').append('<strong>Probation Period</strong>')
             )
         ),
         $('<div class="row offerClause"/>').append(
@@ -73,7 +78,7 @@ function fnView() {
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                '<h3 class="text-grey"><strong>Conditional Offer of Employment</strong></h3>'
+                '<h1 class="text-left"><strong>Conditional Offer of Employment</strong></h1>'
             )
         ),
         $('<div class="row offerClause"/>').append(
@@ -83,7 +88,7 @@ function fnView() {
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                '<h3 class="text-grey"><strong>Place of Work</strong></h3>'
+                '<h1 class="text-left"><strong>Place of Work</strong></h1>'
             )
         ),
         $('<div class="row offerClause"/>').append(
@@ -93,7 +98,7 @@ function fnView() {
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                '<h3 class="text-grey"><strong>Days and Hours of Work</strong></h3>'
+                '<h1 class="text-left"><strong>Days and Hours of Work</strong></h1>'
             )
         ),
         (employee.CAC_Contract_Type != 'FEW' && employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
@@ -123,7 +128,7 @@ function fnView() {
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Compensation</strong>')
+                $('<h1 class="text-left"/>').append('<strong>Compensation</strong>')
             )
         ),
         $('<div class="row offerClause"/>').append(
@@ -143,7 +148,7 @@ function fnView() {
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Benefits Programs</strong>')
+                $('<h1 class="text-left"/>').append('<strong>Benefits Programs</strong>')
             )
         ),
         (employee.CAC_Contract_Type != 'FEW' && employee.CAC_Contract_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
@@ -163,7 +168,7 @@ function fnView() {
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Vacation</strong>')
+                $('<h1 class="text-left"/>').append('<strong>Vacation</strong>')
             )
         ),
         (employee.CAC_Contract_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
@@ -183,25 +188,25 @@ function fnView() {
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h3 class="text-grey"/>').append('<strong>Bonus</strong>')
+                $('<h1 class="text-left"/>').append('<strong>Bonus</strong>')
             )
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You may be eligible to participate in any of Apple’s bonus and incentive schemes in place from time to time, details of which will be provided by your manager.'),
                 $('<p/>').append('All bonus and incentive schemes in which you may be eligible to participate are discretionary and may be amended or withdrawn at any time without breaching a term of this Agreement or your employment with Apple.'),
-                $('<h3 class="text-grey"/>').append('<strong>Sunday Work/Statutory Holiday/Shift Work</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Sunday Work/Statutory Holiday/Shift Work</strong>'),
                 $('<p/>').append('You understand that your position is with Apple’s Retail division and that because the Store is a retail operation, which is open on Sundays and statutory holidays, you may be scheduled to work on Sundays and statutory holidays. You agree that you will work on Sundays and statutory holidays if a Sunday or statutory holiday shift is assigned to you and you will not refuse to do so.'),
                 $('<p/>').append('You also acknowledge that you may be scheduled to work on different shifts (eg. morning, afternoon or evening) and that your shift schedule may change from time to time.'),
-                $('<h3 class="text-grey"/>').append('<strong>Absence and Sickness</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Absence and Sickness</strong>'),
                 $('<p/>').append('If you are unable to attend work for any reason you must provide notice and otherwise follow Apple\’s standard policies and procedures with respect to absences and sickness.'),
-                $('<h3 class="text-grey"/>').append('<strong>Service to Apple</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Service to Apple</strong>'),
                 $('<p/>').append('During your employment with Apple, you will in all respects conform to and comply with the directions and policies of Apple, including Apple’s Code of Business Conduct Policy, and any other standard Apple employment policies that are provided to or accessible by Apple employees, perform each of the duties assigned from time to time by Apple to the best of your skill and ability, faithfully and diligently serve Apple, use your best efforts to promote the interests and reputation of Apple, and devote your full working time, attention and energies to the business of Apple.'),
-                $('<h3 class="text-grey"/>').append('<strong>Personal Information</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Personal Information</strong>'),
                 $('<p/>').append('Your personal information will be collected, processed, transferred and safeguarded by Apple in accordance with the terms of the Employee Privacy Notice signed by you.'),
-                $('<h3 class="text-grey"/>').append('<strong>Disciplinary and Grievance Procedures</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Disciplinary and Grievance Procedures</strong>'),
                 $('<p/>').append('Apple\’s disciplinary and grievance procedures, as amended from time to time, are contained in Apple\’s standard employment policies and procedures.'),
-                $('<h3 class="text-grey"/>').append('<strong>Termination of Employment</strong>')
+                $('<h1 class="text-left"/>').append('<strong>Termination of Employment</strong>')
             )
         ),
         (employee.CAC_Contract_Type != 'FEW') && $('<div class="row offerClause"/>').append(
@@ -297,13 +302,25 @@ function fnConvertFullDate(eventDate) {
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    var year = d.getFullYear(),
-        month = d.getMonth(),
-        n_date = d.getDate(),
-        day = d.getDay();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var day = d.getDay();
+    var ordinalDate = '';
+    switch(parseInt(d.getDate()) % 10) {
+        case 1: 
+            ordinalDate = d.getDate() + "1st";
+        break;
+        case 2: 
+            ordinalDate = d.getDate() + "2nd";
+        break;
+        case 2: 
+            ordinalDate = d.getDate() + "3rd";
+        break;
+        default:
+            ordinalDate = d.getDate() + "th";
+    }
 
-    return parseInt(n_date) + ' of ' +  months[month] + ', ' + year;
-
+    return ordinalDate + ' of ' +  months[month] + ', ' + year + '.';
 }
 
 
@@ -365,5 +382,8 @@ $(document).on('ready',function() {
     }
     else{
         makeOfferLetter('hidden_pg','offerClause');
+        makeOfferLetter('hidden_pg2','offerClause2');
+        makeOfferLetter('hidden_pg3','offerClause3');
+        makeOfferLetter('hidden_pg4','offerClause4');
     }
 });
