@@ -548,34 +548,28 @@ function fnConvertDate(eventDate) {
 
 }
 
-
-
 function fnConvertFullDate(eventDate) {
-
     var d = new Date(eventDate);
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    var year = d.getFullYear();
-    var month = d.getMonth();
-    var day = d.getDay();
     var ordinalDate = '';
     switch(parseInt(d.getDate()) % 10) {
         case 1: 
-            ordinalDate = d.getDate() + "1st";
+            ordinalDate = d.getDate() + "st";
         break;
         case 2: 
-            ordinalDate = d.getDate() + "2nd";
+            ordinalDate = d.getDate() + "nd";
         break;
-        case 2: 
-            ordinalDate = d.getDate() + "3rd";
+        case 3: 
+            ordinalDate = d.getDate() + "rd";
         break;
         default:
             ordinalDate = d.getDate() + "th";
     }
-
-    return ordinalDate + ' of ' +  months[month] + ', ' + year;
-
+    if (d.getDate() > 3 && d.getDate() > 21) {
+        ordinalDate = d.getDate() + "th";
+    }
+    return ordinalDate + ' of ' +  months[d.getMonth()] + ', ' + d.getFullYear() + '.';
 }
 
 

@@ -1,359 +1,535 @@
-var employee = [{
-    // Dates
-    Initiation_Of_Offer: "<$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tEventDates_7.Value))>','%B %d, %Y'))>",
-    Expiration_Of_Offer: "<$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tEventDates_6.Value))>','%A, %B %d, %Y'))>",
-    Start_Date: "<$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tEventDates_2.Value))>','%A, %B %d, %Y'))>",
-    End_Date: "<$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.End_Date))>','%A, %B %d, %Y'))>",
-
-    // Events
-    Corp_Retail: "<$client.tEventCategories_22.Code>",
-    Employee_Type: "<$client.tEventCategories_21.Code>",
-    Offer_Type: "<$client.tEventCategories_23.Code>",
-    Relocation: "<$client.tEventCategories_24.Code>",
-    Work_Location: "<$client.tEventCategories_11.Code>",
-    Retail_Offer_Type: "<$client.tEventCategories_26.Code>",
-    Retail_Employee_Type: "<$client.tEventCategories_28.Code>",
-    Offer_Initiator: "<$client.tEventManagers_9.First_Name> <$client.tEventManagers_9.Last_Name>",
-
-    // EUP
-    First_Name: "<$client.tForWhomUserInfo.First_Name>",
-    Middle_Name: "<$client.tForWhomUserInfo.Middle_Name>",
-    Last_Name: "<$client.tForWhomUserInfo.Last_Name>",
-    Preferred_Name: "<$client.tForWhomUserInfo.Preferred_Name>",
-    Address1: "<$client.tForWhomUserInfo.Address1>",
-    Address2: "<$client.tForWhomUserInfo.Address2>",
-    City: "<$client.tForWhomUserInfo.City>",
-    State: "<$client.tForWhomUserInfo.State>",
-    Zip: "<$client.tForWhomUserInfo.Zip>",
-    Country: "<$client.tForWhomUserInfo.Country>",
-    today: "<$client.env.eval(date.now('%B %d, %Y'))>",
-    Hiring_Manager: "<$client.tForWhomUserInfo.Hiring_Manager>",
-    Team_Name: "<$client.tForWhomUserInfo.Team_Name>",
-    Weekly_Hours: "<$client.tForWhomUserInfo.Weekly_Hours>",
-    Salary: "<$client.tForWhomUserInfo.Salary_Amount>",
-    Bonus: "<$client.tForWhomUserInfo.Bonus>",
-    Bonus_Package: "<$client.tForWhomUserInfo.Bonus1>",
-    Fiscal_Year: "<$client.tForWhomUserInfo.Fiscal_Year>",
-    Commission: "<$client.tForWhomUserInfo.Commission>",
-    Target_Amount: "<$client.tForWhomUserInfo.Target_Amount>",
-    UK_Bonus: "<$client.tForWhomUserInfo.Discretionary_Bonus>",
-    RSU_Amount: "<$client.tForWhomUserInfo.RSU_Amount>",
-    Auto_Allowance: "<$client.tForWhomUserInfo.Auto>",
-    Relo_Net_Amount: "<$client.tForWhomUserInfo.Relo_Net_Amount>",
-    Housing_Allowance: "<$client.tForWhomUserInfo.Housing_Allowance>",
-    Campus_Site: "<$client.tForWhomUserInfo.Campus_Site>",
-    Entity: "<$client.tForWhomUserInfo.Entity>",
-    State_Of_Employment: "<$client.tForWhomUserInfo.State_Of_Employment>",
-    Recruiter_Name: "<$client.tForWhomUserInfo.Recruiter_Name>",
-    Recruiter_Phone: "<$client.tForWhomUserInfo.Recruiter_Phone>",
-    Recruiter_Phone: "<$client.tForWhomUserInfo.Recruiter_Phone>",
-    Contact_Phone: "<$client.tForWhomUserInfo.Contact_Phone>",
-
-    UK_Contract_Type: "<$client.tEventCategories_48.Code>",
-    UK_Job_Title: "<$client.tForWhomUserInfo.Job_Title_Retail>",
-    UK_Sign_On_Bonus_Amount: "<$client.tForWhomUserInfo.EMEIA_Sign_on_Bonus_Amount>",
-    UK_Car_Cash_Allowance: "<$client.tForWhomUserInfo.EMEIA_Car_Cash_Allowance>",
-    UK_Employee_Name_on_Maternity_Leave: "<$client.tForWhomUserInfo.EMEIA_Employee_on_maternity_leave>",
-    UK_Start_Date: "<$client.tForWhomUserInfo.EMEIA_Original_Start_date>",
-    UK_End_Date: "<$client.tForWhomUserInfo.End_Date>",
-    UK_Location: "<$client.tEventCategories_11.Value>",
-    GRS_Fixed_Term: "<$client.tForWhomUserInfo.Fixed_term_FWE>",
-    GRS_Fixed_Term_to_Perm: "<$client.tForWhomUserInfo.FWE_PER>",
-    Annual_Salary: "<$client.tForWhomUserInfo.Salary_Amount>",
-}];
-
-// UK Corp External Contract
 function fnView() {
     $("#markup").html("").append(
-        // Company Logo
-        $('<div class="offerClause">').append(
-          $('<header id="srt_eform_logo" class="row text-right" />').html('<img src=' + company.Logo + '>')
+        // add apple img logo header
+        $('<div class="row vspace offerClause"/>').append(
+            $('<div class="col-lg-1 col-md-1 col-sm-4 col-xs-4 pull-right"/>').append(
+                $('<img src="img/apple_logo.jpg" alt="" class="img-responsive"/>')
+            )
         ),
-        $('<div class="offerClause">').append(
-          $('<div class="vspace text-center"/>').append(
-            $('<h5/>').append('<strong>Summary Statement of Terms and Conditions of Employment</strong><br><strong>Under the Employment Rights Act 1996</strong>')
-          ),
+        // add the form title
+        $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="vspace-lg"/>').append('<strong>Employment Agreement</strong>')
+            )
         ),
-        $('<div class="offerClause">').append(
-          $('<p/>').append('This statement summarises the main terms and conditions of your employment (the "Summary"). '),
-          $('<p class="row"/>').append('<div class="col-lg-2 col-md-2 col-sm-5 col-xs-12"><strong>The Employer:\t\t</strong></div><div class="col-lg-10 col-md-10 col-sm-7 col-xs-12">Apple Retail UK Limited ("<strong>Apple UK</strong>").</div>'),
-
-          $('<div class="row vspace"/>').append(
-              $('<div class="col-lg-2 col-md-2 col-sm-5 col-xs-12" />').append('<strong>The Employee:\t\t</strong>'),
-              $('<div class="col-lg-10 col-md-10 col-sm-7 col-xs-12"/>').append(
-                employee.First_Name + ' ' + employee.Last_Name + '<br>\n\t\t\t\t\t\t\t' +
-                employee.Address1 +
-                ', ' + employee.Address2 +
-                ', ' + employee.City
-              )
-          ),
+        $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('THIS AGREEMENT is made as of the ' + fnConvertFullDate($('#today').val()))
+            )
         ),
-        $('<div class="offerClause">').append(
-          $('<div class="row vspace" />').append(
-            $('<div class="col-lg-12"/>').append('<p><h5><strong>Job Title</strong></h5></p>'),
-            $('<p/>').append('You are employed as ' + employee.UK_Job_Title + '. Your job title does not limit or define what you are required to do and in addition to your normal duties, you may be required to undertake other duties from time to time on behalf of Apple UK and any other company in the Apple Group.')
-          ),
-        ),
-        $('<div class="offerClause">').append(
-          $('<div class="row vspace"/>').append('<div class="col-lg-12"><h5><strong>Duties</strong></h5><br>During your employment you must:<div class="row"><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\ta)</div><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> obey all lawful directions and observe and comply with all policies and procedures of Apple UK and the Apple Group; </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\tb)</div><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> during your working time devote the whole of your attention and skills and time to Apple UK; </div><div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\tc)</div><div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> use your best endeavors to promote and protect the business and interests of Apple UK. </div> </div> </div>'),
-          (employee.UK_Contract_Type.length > 0) &&
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12">').append('<p><h5><strong>Commencement of Employment</strong></h5></p>'),
-            (['Fixed_term_FWE', '10_day_probation', '28_day_probation', 'FWE_PER'].indexOf(employee.UK_Contract_Type) > -1) &&
-            $('<p/>').append('Your employment will begin on ' + employee.UK_Start_Date + ' and end on ' + employee.UK_End_Date  + ' without the need for notice unless previously terminated by either party by giving the other the notice set out in this Summary'),
-            (employee.UK_Contract_Type == 'Maternity_Coverage') &&
-            $('<p/>').append('Your employment will begin on ' + employee.UK_Start_Date + ' and, as you are covering ' + employee.UK_Employee_Name_on_Maternity_Leave + '\'s maternity leave, this contract will terminate on UK_End_Date or until ' + employee.UK_Employee_Name_on_Maternity_Leave + ' returns to work after the end of her maternity leave and any necessary handover is complete, whichever is sooner. Apple UK cannot confirm at this point in time exactly how long UK_Employee_Name_on_Maternity_Leave\'s leave will last, but if the return is before UK_End_Date, Apple UK will provide you with up to one month\'s written notice to expire no later than ' + employee.UK_End_Date + '.'),
-            (employee.UK_Contract_Type == 'ASLP') &&
-            $('<p/>').append('Your employment will begin on ' + employee.UK_Start_Date + ' and will end on ' + employee.UK_End_Date + ' (subject to earlier termination in accordance with this Summary) since two years is the length of the ASLP. It is hoped that, upon successful completion of the ASLP, Apple UK would be able to offer you a Leader position within one of its Stores. However, your employment beyond the fixed term duration will be dependent upon the final evaluation of your performance on the programme as well as taking into account the availability of any vacant positions. If Apple UK is not able to offer you a leader position at the end of the two year programme for the reasons outlined above, Apple UK will explore other options for you. It cannot be guaranteed, though, that there will be any suitable role to offer you at the relevant time.'
+        $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-1 col-md-1 col-sm-4 col-xs-12"/>').append(
+                'BETWEEN:'
             ),
-            $('<p/>').append('Your period of continuous employment will begin on the date that you commence work with Apple UK. No period of employment with another employer will count towards your period of continuous employment with Apple UK.')
-          ),
-          (employee.UK_Contract_Type.length > 0) &&
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Probation Period</strong></h5>',
-              (["Manager", "Salaried", "Store_Leader", "Market_Leader", "Retail_Corp", "Director"].indexOf(employee.UK_Contract_Type) > -1) &&
-              $('<p/>').append('Your employment with Apple UK is subject to undertaking a period of training and completing a six-month probation period. Apple UK may in its discretion extend the probationary period. If at the end of the probationary period Apple UK is satisfied with your performance you will become a permanent employee. During the probationary period, you or Apple UK may terminate your employment by giving four week’s written notice.'),
-              (employee.UK_Contract_Type == 'ASLP') &&
-              $('<p/>').append('Your employment with Apple UK is subject to undertaking a period of training and completing a six-month probation period. Apple UK may in its discretion extend the probationary period. During the probationary period, you or Apple UK may terminate your employment by giving two weeks\' written notice.'),
-              (['Fixed_term_FWE', '10_day_probation', '28_day_probation', 'FWE_PER'].indexOf(employee.UK_Contract_Type) > -1) &&
-              $('<p/>').append('Your employment with Apple UK is subject to undertaking a period of training and completing a three-month probation period. During the probation period, you or Apple UK may terminate your employment by giving one week\'s written notice.'),
-              (employee.UK_Contract_Type == 'FWE_PER') &&
-              $('<p/>').append('Your employment with Apple UK is subject to undertaking a period of training and a probation period. The probation period is a six-month probation period, less the period of your previous service with Apple UK. Apple UK may in its discretion extend the probationary period. If at the end of the probationary period Apple UK is satisfied with your performance you will become a permanent employee. During the probationary period, you or Apple UK may terminate your employment by giving four week\'s written notice.')
+            $('<div class="col-lg-11 col-md-11 col-sm-8 col-xs-12"/>').append(
+                $('<p/>').append('Apple Canada Inc. ("Apple" or "Company"), an Ontario company having offices at 120 Bremner Boulevard, Suite 1600, Toronto, Ontario, Canada M5J 0A8')
+            )
+        ),
+        $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-1 col-md-1 col-sm-4 col-xs-12"/>').append(
+                'AND:'
             ),
-          ),
-          (['Manager', 'Store_Leader', 'Market_Leader', 'ASLP', 'Retail_Corp', 'Director', 'Fixed_term_FWE', 'FWE_PER', '10_day_probation', '28_day_probation'].indexOf(employee.UK_Contract_Type) > -1) &&
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Place of Work (Business rules coming next week)</strong></h5>',
-              (['Manager', 'Store_Leader'].indexOf(employee.UK_Contract_Type) > -1) &&
-              $('<p/>').append('Your normal place of work is the ' + employee.UK_Location + ' Apple Store, but Apple UK may require you at any time to work at or relocate to such other place of work within the United Kingdom, whether on a temporary basis or not. For the avoidance of doubt, Apple UK will not require you to work outside of the UK for a period greater than one month, unless you agree.'),
-              (['Retail_Corp', 'Director', 'Fixed_term_FWE', '10_day_probation', '28_day_probation', 'FWE_PER'].indexOf(employee.UK_Contract_Type) > -1) &&
-              $('<p/>').append('Your normal place of work is ' + employee.UK_Location + ' but Apple UK may require you at any time to work at or relocate to such other place of work within the United Kingdom, whether on a temporary basis or not. For the avoidance of doubt, Apple UK will not require you to work outside of the UK for a period greater than one month, unless you agree. You acknowledge that you are aware of Apple\'s plans to consolidate its London offices in or around 2021, and that the intended new location is currently Battersea. You will likely be required to move work location accordingly and this will be confirmed to you at Apple\'s discretion.'),
-              (employee.UK_Contract_Type == 'Market_Leader') &&
-              $('<p/>').append('Your normal place of work will be ' + employee.Home_Address + ', although you are required to travel to the stores in the market region for which you are responsible as needed and are expected to attend meetings and trainings in such locations as Apple UK may specify from time to time. You must inform HR in writing of any change in your address. You confirm that you are not in breach of any covenant or agreement in doing work at your home. Apple UK may require you at any time to work at or relocate to another place of work within the United Kingdom, whether on a temporary basis or not. Apple UK will not require you to work outside the UK for a period greater than one month, unless you agree.'),
-              (employee.UK_Contract_Type == 'ASLP') &&
-              $('<p/>').append('You will be based in Apple UK stores. For administrative purposes you will assigned to ' + employee.UK_Location + '. However, given the nature of the ASLP, you will be required to work in other stores within the same market. Apple UK may also require you at any time upon reasonable notice to work at or relocate to another place of work within the United Kingdom, whether on a temporary or permanent basis. For the avoidance of doubt, Apple UK will not require you to work outside the UK for a period greater than one month unless you agree,')
+            $('<div class="col-lg-11 col-md-11 col-sm-8 col-xs-12"/>').append(
+                '<p>' +
+                employee.Candidate_First_Name + ' ' + employee.Candidate_Middle_Name + ' ' + employee.Candidate_Last_Name + ' ("You" or "Employee")<br/>' +
+                employee.Address_1 + '<br/>' +
+                employee.City + ', ' + employee.Province + '<br/>' +
+                employee.Zip + '</p>'
             )
-          ),
-          (['Manager', 'Salaried', 'Store_Leader', 'Market_Leader', 'ASLP', 'Store_Leader', 'Market_Leader', 'Field_Director', 'Retail_Corp', 'Director', 'Fixed_term_FWE'].indexOf(employee.UK_Contract_Type) > -1) &&
-          $('<div class="row vspace"/>').append(
+        ),
+        $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Hours of Work</strong></h5>',
-              (['Manager', 'Salaried', 'Store_Leader', 'Market_Leader', 'ASLP'].indexOf(employee.UK_Contract_Type) > -1) &&
-              $('<p/>').append('You are employed on a full-time basis. You are normally required to work 38 hours each week (exclusive of meal breaks) but you will be expected to work in excess of your normal weekly hours without extra remuneration as may be necessary for the proper performance of your duties or at the request of Apple UK as Apple UK’s business needs dictate. If you work part-time any additional hours that you are required to work will be paid at your normal hourly rate up to 38 hours. Your normal working week will be Saturday to Friday inclusive. You are required to be available for work on these days as directed.'),
-              (['Store_Leader', 'Market_Leader', 'Field_Director'].indexOf(employee.UK_Contract_Type) > -1) &&
-              $('<p/>').append('As a senior employee of Apple UK, you acknowledge that your working time cannot be measured or pre-determined and that you are responsible for determining your own hours of work. You shall undertake such hours as are reasonably necessary for the proper performance of your duties under this Summary.'),
-              (['Retail_Corp', 'Director', 'Fixed_term_FWE'].indexOf(employee.UK_Contract_Type) > -1) &&
-              $('<p/>').append('You are employed on a full-time basis. You are normally required to work 38 hours each week (exclusive of meal breaks) but you will be expected to work in excess of your normal weekly hours without extra remuneration as may be necessary for the proper performance of your duties or at the request of Apple UK as Apple UK\'s business needs dictate. Your normal working week will be Monday to Friday inclusive. You agree, in accordance with Regulation 5 of the Working Time Regulations 1998, to opt out of the 48 hour working time limit. You may elect to terminate this agreement to opt out of the working time limit by giving Apple UK 3 months\' notice in writing, but without prejudice to the remaining provisions of this Summary.')
+                $('<p/>').append('This Agreement sets forth the terms upon which Apple agrees to employ the Employee and upon which Employee agrees to be employed by Apple. For good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the parties agree as follows:'),
+                $('<h1 class="text-left"/>').append('<strong>Job Title and Job Duties</strong>'),
             )
-          ),
-          $('<div class="row vspace"/>').append(
+        ),
+        (employee.CAC_EA_Type == 'Engineering') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Remuneration</strong></h5>',
-              $('<p/>').append('Your basic salary is £ ' + employee.Annual_Salary + ' per year and will be paid to you monthly in arrears, less tax and national insurance contributions.'),
-              $('<p/>').append('Our review period is effective around 1 October each year. This date may change and is provided as a guide. The merit review process does not guarantee that you will be granted a salary increase. Generally if you join Apple UK within 180 days of the review date your salary will take into account of this and will not be increased. The exact period may be varied.')
-            )
-          ),
-          (employee.UK_Bonus == 'IR_Sign_On') &&
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Sign-On Bonus</strong></h5>',
-              $('<p/>').append('You will receive a gross sign-on bonus of €' + employee.UK_Sign_On_Bonus_Amount + ' when your employment with Apple begins. This payment will be subject to the usual statutory deductions and will be paid through the first or second payroll run after your employment has commenced. If you voluntarily leave Apple within one year of the payment date, you will be required to repay a proportionate part of such bonus, whereby the amount to be repaid reflects a decrease by 1/12 for each complete month you are in active employment beyond the payment date.')
-            )
-          ),
-          (employee.UK_Bonus == 'IR_Sign_On_Installments') &&
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Sign-On Bonus</strong></h5>',
-              $('<p/>').append('You will receive a gross sign-on bonus of €' + employee.UK_Sign_On_Bonus_Amount + ', the first 50% (€' + employee.UK_Sign_On_Bonus_Amount + '*.5) of which is payable when your employment with Apple begins and will be paid through the first or second payroll run after your employment has commenced. ("First Installment"). The second installment of 50% (€Bonus_Amount*.5) ("the Second Installment") will be paid in the payroll run 12 months after your employment with Apple begins. These payments will be subject to normal statutory deductions. Payment of the First and Second Installments is dependent on you being in active employment (and not under notice either given or received) at the time of the respective payment dates. If you voluntarily leave Apple within one year of the payment dates of the First and Second Installment, you will be required to pay a proportionate part of such installment, whereby the amount to be repaid reflects a decrease in each installment by 1/12 for each complete month you are in active employment beyond the First or Second Installment payment date, as appropriate.')
-            )
-          ),
-          (['Retail_Corp', 'VP_Director'].indexOf(employee.UK_Bonus) > -1) &&
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Bonus</strong></h5>',
-              (employee.UK_Bonus  == 'Retail_Corp') &&
-              $('<p/>').append('Apple UK may from time to time, and depending on Apple’s performance and your overall performance, pay you a bonus. The payment or otherwise of any bonus will be wholly at the discretion of your manager and Apple UK and there is no contractual entitlement for you to receive a bonus at any time, irrespective of whether bonuses have been paid to you or to others on previous occasions. Where a bonus is paid, the amount will also be wholly at the discretion of Apple UK. You should have no right to a bonus if your employment terminates for any reason or you are under notice (whether given by you or by Apple UK) at or prior to the date when a bonus might otherwise have been payable.'),
-              (employee.UK_Bonus  == 'VP_Director') &&
-              $('<p/>').append('You will be eligible for participation in the VP &amp; Director Bonus Plan from time to time in force, subject to programme approval. Details about the FY\'XX plan, including eligibility, financial measurements and bonus targets, shall be fixed by Apple for the relevant time period as indicated in the relevant plan document and sent to you separately. Any specific plan feature and/or bonus payment shall not continue to apply for any future reference period outside the FY as indicated by Apple. Therefore, you should be aware that Apple reserves the right to amend or withdraw the VP &amp; Director Bonus Plan at any time at its discretion implying that you shall not have any contractual or otherwise acquired (future) rights to a bonus payment based on an previous payment or previous plan conditions. You should have no right to a bonus if your employment terminates for any reason or you are under notice of termination (whether given by you or by Apple UK) at or prior to the date when a bonus might otherwise have been payable.')
-            )
-          ),
-          (employee.UK_Car_Cash_Allowance.length > 0) &&
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Car Cash Allowance</strong></h5>',
-              $('<p/>').append('You are entitled to a car cash allowance subject to the terms of the Car Policy from time tot time in force, available on HRWeb. You should be aware that the car cash allowance amount may decrease as well as increase and any car cash allowance received in a previous year does not confer entitlement for future years. You are responsible for checking the Car Policy on a regular basis for details of the car cash allowance from time to time in force.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Pension</strong></h5>',
-              $('<p/>').append('Apple UK provides an online Group Personal Pension (GPP). There are various contribution tiers under the plan. Please see HRWeb for more details. In accordance with its statutory obligations, Apple UK automatically enrols qualifying employees in the GPP at the matching level from time to time in force. Where applicable, such contributions shall be made by way of a deduction from your salary. Further information can be found on UK HRWeb. There is no certificate of contracting out of the state second pension scheme relating to your employment.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Benefits</strong></h5>',
-              $('<p/>').append('Details of benefits to which you may be entitled are available on the UK HR Web. Your eligibility for any benefits provided by Apple UK (and, where appropriate, your dependents) is subject to the rules or terms of the relevant scheme or policy (as amended from time to time) and you (and, where appropriate, your dependents) being eligible to participate in or benefit from such schemes or policies pursuant to their rules or terms at a cost and on terms which are acceptable to Apple. Apple may replace or withdraw such schemes or policies at any time on reasonable notice to you.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Deductions from pay</strong></h5>',
-              $('<p/>').append('Apple UK is entitled to deduct any amount owed by you to Apple UK from any monies due to you from Apple UK (including wages as defined by the Employment Rights Act 1996), including the value (as calculated in accordance with the Apple Retail Web UK) of any Apple product issued to you during your employment which you fail to return to Apple UK on or before the Termination Date.')
-            )
-          ),
-          (employee.UK_Contract_Type.length > 0) &&
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Holiday Entitlement</strong></h5>',
-              (['Manager', 'Store_Leader', 'ASLP'].indexOf(employee.UK_Contract_Type) > -1) &&
-              $('<p/>').append('The holiday year runs from 1 October to 30 September. You are entitled to 22 days paid holiday in each holiday year exclusive of regional bank and public holidays. This will increase based on length of service as per annual leave policy on UK Retail HR Web. You will be required to work at least four of the Bank Holidays each year. If you work part-time your entitlement to holiday (and your requirement to work a certain number of Bank Holidays) will be calculated on a pro rata basis.'),
-              (['Manager', 'Store_Leader', 'ASLP'].indexOf(employee.UK_Contract_Type) < 1) &&
-              $('<p/>').append('The holiday year runs from 1 October to 30 September. You will be entitled to 27 days\' annual holiday in each holiday year until you have completed 5 years\' continuous service within the Apple Group, whereupon you will be entitled to 29 days\' annual holiday in each holiday year exclusive of regional bank and public holidays. If you work part-time your entitlement to holiday will be calculated on a pro rata basis.'),
-              $('<p/>').append('Should you leave Apple UK you will receive payment for any outstanding holidays due to you up to and including your date of termination at your contractual rate of pay (less tax and national insurance). Your entitlement to holiday will be assessed on a pro rata basis and if at the date of your termination you have taken holiday in excess of your entitlement, the appropriate deduction will be made from your final payment. For the avoidance of doubt, the first four weeks of he leave you take in any holiday year shall be deemed to be the leave derived from regulation 13 of the Working Time Regulations 1998, as amended from time to time, and the remainder shall be deemed to be derived from regulation 13A of those regulations.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Absence and Sickness</strong></h5>',
-              $('<p/>').append('If you are unable to attend work for any reason not previously approved in advance you must follow the absence notification procedures set out on the UK HR as amended from time to time.'),
-              $('<p/>').append('At Apple UK\'s discretion you are entitled to be paid your normal basic salary, inclusive of any statutory sick pay to which you may be entitled and conditional upon your compliance with Apple UK\'s absence notification procedures, in accordance with Apple UK\'s sickness policy in place from time to time. This entitlement to company sick pay cannot be carried over from one year to the next.'),
-              $('<p/>').append('In the event of your prolonged, recurrent or frequent absence due to sickness or at any time if requested in writing, Apple UK may, at its expense, require you to have a medical examination by a medical practitioner chosen by Apple UK. By signing this letter you give authority, in accordance with the Access to Medical Reports Act 1988, for the medical advisor to disclose the report of any such examination to your Manager and Human Resources in Apple UK.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Right of search</strong></h5>',
-              $('<p/>').append('You agree to submit to a personal search and search of all personal packages and bags when requested to do so and when required to do so under any applicable Apple policy.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Proprietary Information, Intellectual Property and Inventions</strong></h5>',
-              $('<p/>').append('Your employment by Apple UK creates a relationship of confidence and trust with respect to any information of a confidential, proprietary, and secret nature that may be disclosed to you or otherwise learned by you in the course of your employment.'),
-              $('<p/>').append('Furthermore, you agree that during the course of your employment, your job functions may require you to make, conceive, or improve (solely by you or jointly with others) inventions, ideas, discoveries, designs, plans, manufacturing methods, formulas, computer programs, databases, processes, techniques, original works of authorship, documentation, and other materials.'),
-              $('<p/>').append('By signing this Summary, you hereby agree to comply with the terms of the Confidentiality and Intellectual Property Agreement appended to this Summary.'),
-              $('<p/>').append('You authorize Apple UK to notify others, including customers of Apple, and any future employers you may have, of the terms of this Summary, the Confidentiality and Intellectual Property Agreement incorporated into this Summary, and your responsibilities under this Summary'),
-              $('<p/>').append('The above provisions in this section remain in force notwithstanding termination of your employment.')
-            )
-          ),
-          (employee.UK_Contract_Type.length > 0) &&
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Termination of employment</strong></h5>',
-              (employee.UK_Contract_Type == 'Manager') &&
-              $('<p/>').append('Following successful completion of your probation period you or Apple UK, giving the following notice, may terminate your employment:'),
-              (employee.UK_Contract_Type == 'Manager') &&
-              $('<div class="row"/>').append('<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">a)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> up to four years\' of continuous employment, four weeks\' notice in writing; </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">b)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> after four complete years’ of continuous employment, one week\'s notice for each complete year of continuous employment, up to a maximum of twelve weeks.</div>'),
-              (['Store_Leader', 'Market_Leader', 'Retail_Corp', 'Director', 'GRS'].indexOf(employee.UK_Contract_Type) > -1) &&
-              $('<p/>').append('Following successful completion of your probation period, either you or Apple, giving 12 weeks’ notice in writing, may terminate your employment.'),
-              (['Fixed_term_FWE', '10_day_probation', '28_day_probation', 'FWE_PER'].indexOf(employee.UK_Contract_Type) > -1) &&
-              $('<p/>').append('Following successful completion of the probation period, either you or Apple UK may terminate your employment in advance of its automatic termination at the end of the fixed term by giving four week’s written notice.'),
-              (employee.UK_Contract_Type == 'ASLP') &&
-              $('<p/>').append('Your employment will terminate without the need for notice at the expiry of the two year programme, unless before that date:'),
-              (employee.UK_Contract_Type == 'ASLP') &&
-              $('<div class="row"/>').append('<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\ta)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> Apple UK offers in writing a new role with Apple UK and you accept; or </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\tb)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> Apple UK agrees in writing to extend your participation on the ASLP for a further period, in which case your employment will terminate at the end of that further period; </div> <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">\n\t\t\tc)</div> <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11"> your employment has otherwise been terminated by you or Apple UK giving four weeks’ notice in writing (following the expiry of your probation period). </div>'),
-              $('<p/>').append('Apple UK may in its absolute discretion pay to you basic salary in lieu of notice.'),
-              $('<p/>').append('In any event, Apple UK may, at any time, terminate your employment immediately without notice or payment in lieu of notice in the event of gross misconduct by you. You can find examples of conduct and performance that constitute Gross Misconduct in the Disciplinary and Grievance Procedure on the HR Web.'),
-              $('<p/>').append('Apple UK\'s rights to terminate the employment under the terms of this Summary apply even when such termination would or might cause you to forfeit any entitlement to sick, permanent health insurance (if applicable) or other benefits.'),
-              $('<p/>').append('If either party has served notice to terminate the employment, Apple UK may require you to take any accrued but unused holiday during the notice period.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Suspension</strong></h5>',
-              $('<p/>').append('Apple UK may suspend you during any period in which it is carrying out an investigation into any alleged acts by your or any allegations you make about the act of others. Such suspension shall be on full salary and benefits.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Garden Leave</strong></h5>',
-              $('<p/>').append('Once you or Apple UK have given notice of termination in accordance with the provisions of this Summary, Apple UK shall have the right to require you to stay away from work or to require you to perform duties different from your normal duties or not to contact any employees, customers or suppliers of Apple UK for part or all of the notice period. In this event you agree to comply with any reasonable conditions laid down by Apple UK and undertake that you will not work for any other person, firm, company or on your own behalf during this period without Apple UK’s prior written permission. If Apple UK exercises its right under these provisions, you shall remain an employee and continue to receive your basic salary and you acknowledge and agree that your duties of confidentiality and good faith shall continue to apply.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Post-termination restrictions </strong></h5>',
-              $('<p/>').append('You may not at any time during your employment by Apple UK or during a period of three months after the Termination Date directly or indirectly induce or procure or attempt to induce or procure any person who is on and/or was in the six months preceding the Termination Date an employee or consultant of or under contract of services to Apple UK or any other member of the Apple Group to leave nor accept into employment or otherwise engage or use the services of any such person who is and/or was for the six months preceding the Termination Date an employee or consultant of or under contract of services to Apple UK or any other member of the Apple Group with whom you worked or dealt.'),
-              $('<p/>').append('The period of restriction referred to above may be reduced by any period where no work is given to you during any period of Garden Leave.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Return of property</strong></h5>',
-              $('<p/>').append('You shall promptly whenever requested by Apple UK and in any event upon termination of your employment (for whatever reason) return to Apple UK all property in your possession which relates to the business or affairs of Apple UK or any member of the Apple Group or is the property of Apple UK or any member of the Apple Group, including without limitation all documents, training materials, including copies of such documents and training materials, keys, mobile telephones, security passes, company credit cards and equipment.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Disciplinary and grievance procedures</strong></h5>',
-              $('<p/>').append('Apple UK\'s disciplinary and grievance procedures, as amended from time to time, are contained in the UK HR Web.')
-            )
-          ),
-          (employee.UK_Contract_Type.length > 0) &&
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Conditional offer of employment</strong></h5>',
-              (employee.UK_Contract_Type != 'ASLP') &&
-              $('<p/>').append('The commencement (and continuation) of your employment with Apple UK is conditional upon verification satisfactory to Apple UK of the information you have provided to it during the job application process, the receipt of a background check satisfactory to Apple UK, the receipt of references satisfactory to Apple UK from those referees nominated by you, and the receipt of documentary evidence satisfactory to Apple UK of your right to work in the United Kingdom. These checks and references may take up to three months for us to complete and/or verify.'),
-              (employee.UK_Contract_Type == 'ASLP') &&
-              $('<p/>').append('The commencement (and continuation) of your employment with Apple UK is conditional upon the receipt of an official transcript to verify to Apple UK\’s satisfaction that you have obtained at least a 2:2 in your UK undergraduate university studies (or foreign equivalent as determined by Apple UK); verification satisfactory to Apple UK of the information you have provided to it during the job application process; the receipt of a background check satisfactory to Apple UK; the receipt of references satisfactory to Apple UK from those referees nominated by you; and the receipt of documentary evidence satisfactory to Apple UK of your right to work in the United Kingdom. These checks and references may take up to three months for us to complete and/or verify.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Governing law</strong></h5>',
-              $('<p/>').append('Your contract of employment will be governed by and interpreted in accordance with English law and the parties hereby submit to the exclusive jurisdiction of the Courts of England and Wales except that any court of competent authority may enforce this agreement.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Collective Agreements</strong></h5>',
-              $('<p/>').append('There are no collective agreements in force in relation to your appointment.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<p><h5><strong>Apple\'s Business Conduct Policy</strong></h5><p>',
-              $('<p/>').append('Apple conducts business ethically, honestly and in full compliance with all laws and regulations. This applies to every business decision in every area of the company worldwide. Apple\'s Business Conduct policy, a copy of which is enclosed, reflects our continued commitment to doing business the right way. By accepting this offer, you acknowledge that you have received, read and understand Apple’s Business Conduct policy and that you agree to comply with Apple\'s Business Conduct policy.')
-            )
-          ),
-          $('<div class="row vspace"/>').append(
-            $('<div class="col-lg-12"/>').append(
-              '<h5><strong>Definitions</strong></h5><br>"Apple Group"',
-              $('<div class="hspace"/>').append(
+                $('<p/>').append('You are employed as ' + employee.Job_Title),
                 $('<p/>').append(
-                  '\t\t\t',
-                  'means Apple Inc., Apple UK and any holding company from time to time of Apple UK or of its holding company and any company which is from time to time a subsidiary of Apple UK, any such holding company or any such subsidiary, and any Associated Company.')
-              ),
-              '"Associated Company"',
-              $('<div class="hspace"/>').append(
-                $('<p/>').append(
-                  '\t\t\t',
-                  'means any company, twenty per cent or more of the equity share capital of which is owned directly or indirectly by Apple UK (applying the provisions of sections 1154 to 1157 inclusive of the Corporation Taxes Act 2010) or any subsidiary or holding company to which Apple UK or any such subsidiary or holding company renders managerial administrative or technical services.')
-              ),
-              '"Termination Date"',
-              $('<div class="hspace"/>').append(
-                '\t\t\t',
-                $('<p/>').append(
-                  '\t\t\t',
-                  'means the date on which your employment with Apple UK terminates.')
-              ),
-              '"UK HR Web"',
-              $('<div class="hspace"/>').append(
-                $('<p/>').append(
-                  '\t\t\t',
-                  'means the Apple UK HR Web as amended from time to time. Access to this, located on Apple’s intranet, is granted once you become an employee of Apple UK.')
-              ),
-              $('<p/>').append('This Summary together with those sections of the UK HR Web expressed to be contractual, comprise your contract of employment with Apple UK. The UK HR Web also contains statements of various Apple policies and procedures in force from time to time, with which you are required to comply. Apple UK expects that you familiarize yourself and comply with its policies, procedures, and rules. You are responsible for checking the UK HRWeb on a regular basis throughout your employment. Those policies and procedures may be amended or withdrawn at Apple’s absolute discretion without prior notice to you.'),
-              $('<p/>').append('In the event of any conflict between this Summary and the UK HR Web, this Summary shall prevail.'),
-              $('<p/>').append('This Summary supersedes any previous statements or agreements in relation to your employment with any member of the Apple Group. Any future changes to your terms and conditions of employment will be notified to you or incorporated in the UK Retail Web.')
+                    'Under the general direction and supervision of Apple, as an Engineer, you shall be responsible for ' + 
+                    employee.Main_Responsibility + ' at ' + 
+                    ((employee.CAC_Work_location != 'Home Office') ? employee.CAC_Work_location + ' ("The Facility") ' : ' your home office in ') +
+                    employee.City + ', ' +
+                    employee.Province +
+                    '. Specifically, your duties include, but are not limited to:'
+                )
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(a)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('observation of all applicable rules, regulations and policies of Apple;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(b)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(c)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('performance of all of the duties and responsibilities assigned to you from time to time by Apple.')
             )
-          )
+        ),
+        (employee.CAC_EA_Type == 'ASC Lead (RAS)') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('You are employed as a full-time Retail Account Specialist (RAS). Specifically, your duties include, but are not limited to:')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(a)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('developing Apple business within the territory by building a strong, influential, collaborative business relationship with the reseller’s management and sales team;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(b)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('training the reseller’s store team members on selling Apple hardware, software, and accessories;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(c)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('delivering optimal customer service through professionalism and product knowledge;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(d)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('working with the store staff to maintain merchandising and visual standards according to Apple and reseller standards;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(e)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(f)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('observation of all applicable rules, regulations and policies of Apple;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(g)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(h)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('performance of all of the duties and responsibilities assigned to you from time to time by Apple.')
+            )
+        ),
+        (employee.CAC_EA_Type == 'ASC Manager') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('You are employed as an ASC Manager.'),
+                $('<p/>').append('Under the general direction and supervision of Apple, as an ASC Manager, you shall be responsible for the general operation and profitable management of the ASC Program at Apple Canada. Specifically, your duties include, but are not limited to:')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(a)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('effective management and operation of your region including recruiting, hiring, training, promotion, discipline, demotion and supervision of the ASC employees;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(b)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('development and implementation of new and existing products or store promotions;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(c)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('increasing Apple sales at stores in assigned region;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(d)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('establishing and maintaining outstanding relationship with in-store management;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(e)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(f)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('observation of all applicable rules, regulations and policies of Apple;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(g)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(h)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('performance of all of the duties and responsibilities assigned to you from time to time by Apple.')
+            )
+        ),
+        (employee.CAC_EA_Type == 'ASC Supervisor') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('You are employed as an ASC Supervisor. Specifically, your duties include, but are not limited to:')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(a)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('growing sales of Apple-based complete solutions;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(b)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('increasing the customer base purchasing Apple products from all retailer locations in the Supervisor’s assigned territory;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(c)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('supervising and developing ASCs in multiple store locations within an assigned territory;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(d)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('establishing communication between ASCs and in-store general and regional management;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(e)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('merchandising Apple and related 3rd party products in the AppleShop, according to Apple and the retailer partner’s standards;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(f)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(g)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('observation of all applicable rules, regulations and policies of Apple;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(h)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(i)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('performance of all of the duties and responsibilities assigned to you from time to time by Apple.')
+            )
+        ),
+        (employee.CAC_EA_Type == 'ASC') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append(
+                    'You are employed as a ' +
+                    employee.CAC_Employee_Type + ' ' +
+                    employee.Job_Title +
+                    '. Specifically, your duties include, but are not limited to:'
+                )
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(a)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('growing sales of Apple-based complete solutions;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(b)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('training the reseller’s store team members on selling Apple hardware, software, and accessories;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(c)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('developing the store’s Apple business by building a strong, influential, collaborative business relationship with the reseller’s management and sales team;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(d)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('maintaining merchandising and visual standards according to Apple and reseller standards;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(e)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('delivering optimal customer service through professionalism and product knowledge;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(f)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(g)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('observation of all applicable rules, regulations and policies of Apple;')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(h)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and')
+            ),
+            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(i)'
+            ),
+            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                $('<p/>').append('performance of all of the duties and responsibilities assigned to you from time to time by Apple.')
+            )
+        ),
+        (employee.CAC_EA_Type == 'AHA') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('You are employed as an AppleCare At Home Advisor (“AHA”). The duties of this position include customer service and any other duties assigned to you from time to time by Apple.')
+            )
+        ),
+        $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('Apple may from time to time redefine the job title, description, functions and/or responsibilities of the position without changing any rights or obligations of the parties hereto.')
+            )
+        ),
+        $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="text-left"/>').append('<strong>Commencement of Employment</strong>'),
+                $('<p/>').append(
+                    'Your employment will begin on ' +
+                    fnConvertDate(employee.Start_Date) +
+                    ' and shall continue until terminated pursuant to this Agreement.'
+                )
+            )
+        ),
+        (employee.CAC_EA_Type != 'AHA') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="text-left"/>').append('<strong>Probation Period</strong>'),
+                $('<p/>').append('Your employment with Apple is subject to a ninety (90) day probationary period. At any time during your probationary period, either you or Apple may terminate your employment without notice or any other obligation to the other party, except the minimum notice or pay in lieu of notice and any other entitlements required by the applicable employment standards statute.')
+            )
+        ),
+        (employee.CAC_EA_Type == 'AHA') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="text-left"/>').append('<strong>Probation Period and Initial Training Requirements</strong>'),
+                $('<p/>').append('Your employment with Apple is subject to a ninety (90) day probationary period during which time you will be trained on the essential functions and skills required for your role. You will be required to attend or take any training and exams provided by Apple and must achieve a minimum score in order to be able to continue your employment. At any time and for any reason during your probationary period, either you or Apple may terminate your employment without notice or any other obligation to the other party, except the minimum notice or pay in lieu of notice and any other entitlements required by the applicable employment standards statute.')
+            )
+        ),
+        $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="text-left"/>').append('<strong>Conditional Offer of Employment</strong>'),
+                $('<p/>').append('Your employment with Apple is conditional upon verification satisfactory to Apple of the information you provided to it during the job application process, the receipt of references satisfactory to Apple from those nominated by you, and the receipt of documentary evidence satisfactory to Apple of your continued right to work in Canada. It is your responsibility to maintain your legal right to work in Canada.')
+            )
+        ),
+        $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="text-left"/>').append('<strong>Place of Work</strong>')
+            )
+        ),
+        (employee.CAC_EA_Type == 'Engineering' && employee.CAC_Work_Location != 'Home Office') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append(
+                    'While your usual place of work is the ' +
+                    employee.CAC_Work_Location +
+                    ' facility, Apple may, at its sole discretion, require you to relocate to any other location within the Greater ' +
+                    employee.Greater_City_Area +
+                    ' area, either temporarily or permanently, without thereby breaching this Agreement or any terms of your employment.'
+                )
+            )
+        ),
+        (employee.CAC_EA_Type == 'Engineering' && employee.CAC_Work_Location == 'Home Office') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('You will be eligible to maintain a home office in accordance to Apple’s Accounting and Finance Policy. Apple may, at its sole discretion, require you to relocate to any other location within a reasonable geographic area, either temporarily or permanently, without thereby breaching this Agreement or any terms of your employment.')
+            )
+        ),
+        (employee.CAC_EA_Type == 'ASC Lead (RAS)') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('While your usual place of work will be across multiple locations within ' +
+                    employee.ASC_Region +
+                    ', at a reseller store, Apple may, at its sole discretion, require you to relocate to any other reseller\’s location within a reasonable geographic area, either temporarily or permanently, without thereby breaching this Agreement or any terms of your employment.'),
+                $('<p/>').append('You will be required to adhere to the workplace rules when working at any reseller\’s location where you are placed, in addition to Apple\’s workplace policies.')
+            )
+        ),
+        (employee.CAC_EA_Type == 'ASC Manager') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('You will be eligible to maintain a home office in accordance to Apple’s Accounting and Finance Policy. Apple may, at its sole discretion, require you to relocate to any other location within a reasonable geographic area, either temporarily or permanently, without thereby breaching this Agreement or any terms of your employment.'),
+                $('<p/>').append('When visiting reseller locations, you are required to adhere to the reseller workplace rules.')
+            )
+        ),
+        (employee.CAC_EA_Type == 'AHA') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="text-left"/>').append('<strong>Place of Work; Equipment; Safety; Monitoring.</strong>'),
+                $('<p/>').append('<strong>Office location.</strong> While your usual place of work is your home office location identified above, Apple may, at its sole discretion, require you to relocate to any other location within the Greater City Area, either temporarily or permanently, without thereby breaching this Agreement or any terms of your employment. On occasion you may be asked to attend meetings or training at another location, in which case you will be notified in advance and reimbursed, if necessary for related expenses in accordance with Apple’s Finance policies.'),
+                $('<p/>').append('<strong>Equipment provided by Apple.</strong> To facilitate your working as an AHA, Apple will provide certain equipment for use in your home office. The equipment provided will remain the property of Apple and must be returned to Apple upon request. You agree to maintain the equipment in good working order and follow applicable Apple procedures if maintenance and repairs are required. In the event of equipment or system malfunction, you will immediately notify your manager who will decide whether replacement equipment or an alternative system should be used. You understand that use of the equipment and related systems is restricted to you and for Apple-designated work only, and not any personal use, and that no other member of your household or guests are permitted to use the equipment. Use of the equipment and related systems, as well as the data stored or accessible by means of the equipment and systems, will remain subject to Apple policies, including, but not limited to, the “Employee Use of Electronic Systems and Communications” and “Confidential Information” policies referenced in the AHA Program Guidelines. You agree to immediately return at your expense any Apple owned equipment and/or property if and when the AHA Program is discontinued or your employment with Apple is terminated.'),
+                $('<p/>').append('<strong>Equipment provided by Employee.</strong> You agree to provide the necessary equipment, services and home office location as set out in the AHA Program Guidelines at your own expense, and to notify your manager immediately of any changes to such.'),
+                $('<p/>').append('<strong>Safety.</strong> You understand that claims associated with the theft, loss or damage of Apple-owned equipment in your home is not covered by Apple’s insurance program and that replacement and repair expenses related to these areas will be applied to your department’s budget. You also understand that claims and costs associated with the theft, loss or damage to your personal equipment or property is your sole responsibility and that the Company assumes no responsibility for injuries you incur in your workspace during non-working hours or for injury to non-business related guests at any time. You understand and acknowledge that Apple or its designated representatives shall have right of access, on reasonable notice, to the premises to conduct safety inspections, audits or investigations.'),
+                $('<p/>').append('<strong>Monitoring.</strong> You understand that Apple reserves the right to monitor your calls, e-mails, chat conversations and computer desktop while working as an AHA and that Apple will exercise this right from time to time in its sole discretion.')
+            )
+        ),
+        (employee.CAC_Relo_Allowance.length > 0) && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1/>').append('<em>Relocation Assistance Allowance</em>'),
+                $('<p/>').append('You are eligible for relocation assistance in connection with your transfer to ' +
+                    employee.CAC_Work_Location + 
+                    '. The approved budget for your relocation assistance is (CAD) $ ' +
+                    employee.CAC_Relo_Allowance +
+                    '. This is the maximum total expendable amount for appropriate relocation expenses. Substitutions or cash payouts are not permitted.'),
+                $('<p/>').append('Please note that in order to earn your relocation package, you must be actively employed with Apple for twelve (12) months following your start date. If you resign your employment from Apple or are terminated for cause within twelve (12) months of your start date, you may be responsible for repayment of a prorated portion of the relocation package at Apple’s sole discretion. In the event repayment is required, you agree and authorize Apple to deduct from your final pay cheque the pro rata amount owed to Apple.')
+            )
+        ),
+        (['ASC Manager', 'ASC Lead (RAS)'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="text-left"/>').append('<strong>Business Travel</strong>'),
+                $('<p/>').append('As part of your job duties, you are required to have a vehicle to travel to different reseller locations. You will only be reimbursed for travel within the geographic area that you are responsible for, as set out in this Agreement, and in accordance with Apple\'s Accounting and Finance Policy.'),
+                $('<p/>').append('You may additionally be required from time to time to travel to the United States or elsewhere and will be reimbursed in accordance with Apple’s Accounting and Finance Policy for such travel. If there is any reason why you cannot operate a vehicle or travel outside Canada, you must advise us prior to hire.')
+            )
+        ),
+        (['Engineering', 'ASC'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('As part of your job duties, you may be required from time to time to travel to the United States or elsewhere and will be reimbursed in accordance with Apple’s Accounting and Finance Policy, attached as Exhibit D, for such travel. If there is any reason why you cannot travel outside Canada, you must advise us prior to hire.')
+            )
+        ),
+        (employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1/>').append('<strong>Days and Hours of Work</strong>'),
+                $('<p/>').append('You are employed on a full-time basis. Your usual weekly hours are forty (40) hours per week exclusive of breaks (your “Basic Hours”). Your actual working days and hours will be determined by your manager who will notify you in advance, at the beginning of each week, what your working schedule will be for that week.'),
+                $('<p/>').append('Apple reserves the right to have you work either a reasonable number of additional hours or fewer hours than your Basic Hours as its business requires. Apple may implement these changes to your hours without prior notice and without thereby breaching any term of this Agreement or your employment with Apple.')
+            )
+        ),
+        (employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1/>').append('<strong>Days and Hours of Work</strong>'),
+                $('<p/>').append(
+                    'You are employed on a part time basis. Your usual weekly hours are ' +
+                    employee.CAC_Weekly_Hours +
+                    ' hours per week exclusive of breaks (your “Basic Hours”).'
+                ),
+                $('<p/>').append('Apple reserves the right to have you work either a reasonable number of additional hours or fewer hours than your Basic Hours as its business requires. Apple may implement these changes to your hours without prior notice and without thereby breaching any term of this Agreement or your employment with Apple.')
+            )
+        ),
+        $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="text-left"/>').append('Compensation')
+            )
+        ),
+        (['ASC Manager', 'ASC Lead (RAS)', 'ASC'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append(
+                    'Apple shall pay you an annual salary of (CAD) $' +
+                    employee.Salary_Amount +
+                    ', payable every other week, one week in arrears, subject to the withholding of all applicable deductions.'
+                ),
+                $('<p/>').append(
+                    'You will be eligible for Commissions and/or Performance Incentives according to the terms of the Incentive Compensation Plan. Your annual target variable compensation for this fiscal year is $' +
+                    employee.CAC_Commission +
+                    ' at 100 percent target achievement. Your total on target earnings (annual salary + target variable) is based on a job mix of ' +
+                    employee.CAC_Target_Mix +
+                    '. You will receive Apple Canada’s Incentive Compensation Plan document separately.'
+                )
+            )
+        ),
+        (employee.CAC_EA_Type == 'Engineering' && employee.CAC_Compensation_Type == 'Salary') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append(
+                    'Apple shall pay you an annual salary of (CAD) $' +
+                    employee.Salary_Amount +
+                    ', payable every other week, one week in arrears, subject to the withholding of all applicable deductions.'
+                )
+            )
+        ),
+        (employee.CAC_EA_Type == 'Engineering' && employee.CAC_Compensation_Type == 'Hourly') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append(
+                    'Your basic rate of pay is (CAD) $' +
+                    employee.Salary_Amount +
+                    ' per hour. You will be paid every two weeks, one week in arrears, less the applicable deductions.'
+                ),
+                $('<p/>').append('Overtime is paid in accordance with the employment standards laws of the Province in which you are employed.')
+            )
+        ),
+        (employee.CAC_EA_Type == 'AHA') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append(
+                    'Apple will pay you an hourly rate of (CAD)$' +
+                    employee.Salary_Amount +
+                    ', payable every other week, one week in arrears, subject to the withholding of all applicable statutory deductions.'
+                ),
+                $('<p/>').append('Overtime is paid in accordance with the employment standards laws of the Province in which you are employed.')
+            )
+        ),
+        (employee.CAC_Hire_On.length > 0) && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1/>').append('<em>Hire-On Bonus</em>'),
+                $('<p/>').append(
+                    'You will be eligible to receive a one time hire-on bonus of (CAD) $' +
+                    employee.CAC_Hire_On + 
+                    ' (less deductions required by law), subject to the following terms and conditions:'
+                ),
+                $('<ul/>').append(
+                    '<li>In order to earn the bonus you must be actively employed by Apple for twelve (12) months following your start date. Apple will advance you payment of the bonus in the next regular payroll cycle following your first thirty (30) days of active employment.</li>' +
+                    '<li>Should you voluntarily terminate your employment or be terminated for cause with Apple within twelve (12) months of your start date, and thus fail to meet the conditions to earn your bonus, you will be responsible for reimbursing all or a prorated amount of the advance bonus payment at Apple’s sole discretion.</li>'
+                ),
+                $('<p/>').append('By your signature below, you authorize Apple to deduct any unearned bonus advance from your final paycheque.')
+            )
+        ),
+        $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="text-left"/>').append('Benefits Program'),
+                $('<p/>').append('You may be eligible to participate in various benefit plans offered by Apple from time to time, including Retirement Savings Plan, and health, life and disability insurance plans offered by Apple to its employees. You acknowledge and agree that any benefit plan in effect from time to time is subject to availability and other requirements of Apple or the applicable insurer and the written terms and conditions contained in each plan and that Apple makes no promise about your eligibility for or entitlement to benefits and will have no liability or responsibility in the event you are denied coverage.'),
+                $('<h1 class="text-left"/>').append('Vacation')
+            )
+        ),
+        (['ASC Lead (RAS)', 'ASC', 'Engineering'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('As an employee you are eligible to accrue vacation days in accordance with the employment standard legislation in the province in which you are employed. Apple\'s vacation policy may be amended or modified from time to time by Apple at its sole discretion.')
+            )
+        ),
+        (employee.CAC_EA_Type == 'ASC Manager') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('Apple offers you fifteen (15) days of vacation per calendar year. For the current year, you will be entitled to 1.25 days per full calendar month worked, to a maximum of fifteen (15) days. Apple\'s vacation policy may be amended or modified from time to time by Apple at its sole discretion.')
+            )
+        ),
+        (employee.CAC_EA_Type == 'AHA') && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<p/>').append('As an employee you are eligible for 120 hours of vacation per calendar year. For the current year you will be entitled to ten (10) hours per full calendar month worked to a maximum of 120 hours. You agree to plan your vacation time in advance with your manager, and you understand that Apple may impose “blackout periods” during peak business periods when vacation may not be scheduled.'),
+                $('<p/>').append('Apple makes your vacation time available at the start of each year, however, should you leave the Company during that year, you acknowledge that you will be required to repay Apple for any time taken but not yet accrued, and you hereby provide consent for Apple to withhold such payment from your final pay or from any other amounts owing from Apple to you.')
+            )
+        ),
+        (['AHA', 'Engineering'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="text-left"/>').append('Bonus'),
+                $('<p/>').append('You may be eligible to participate in any of Apple’s bonus and incentive schemes in place from time to time, details of which will be provided by your manager.'),
+                $('<p/>').append('All bonus and incentive schemes in which you may be eligible to participate are discretionary and may be amended or withdrawn at any time without breaching a term of this Agreement or your employment with Apple.')
+            )
+        ),
+        (/^ASC/i.test(employee.CAC_EA_Type) == true) && $('<div class="row offerClause"/>').append(
+            $('<div class="col-lg-12"/>').append(
+                $('<h1 class="text-left"/>').append('<strong>Sunday/Statutory Holiday/Shift Work</strong>'),
+                $('<p/>').append('You understand that your position is located within a reseller’s store and that because the reseller’s store is a retail operation, which may be open on Sundays and statutory holidays, you may be scheduled to work on Sundays and statutory holidays.'),
+                $('<p/>').append('You agree that you will work on Sundays and statutory holidays if a Sunday or statutory holiday shift is assigned to you. You also acknowledge that you may be scheduled to work on different shifts (eg. morning, afternoon or evening) and that your shift schedule may change from time to time.')
+            )
         )
-        // end append
     );
 }
 
@@ -373,21 +549,66 @@ function fnConvertDate(eventDate) {
 }
 
 
-function fnConvertFullDate(eventDate) {
+
+/*function fnConvertFullDate(eventDate) {
 
     var d = new Date(eventDate);
-    console.log(d);
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    var year = d.getFullYear(),
-        month = d.getMonth(),
-        n_date = d.getDate(),
-        day = d.getDay();
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var day = d.getDay();
+    var ordinalDate = '';
+    switch(parseInt(d.getDate()) % 10) {
+        case 1: 
+            ordinalDate = d.getDate() + "st";
+        break;
+        case 2: 
+            ordinalDate = d.getDate() + "nd";
+        break;
+        case 3: 
+            ordinalDate = d.getDate() + "rd";
+        break;
+        default:
+            ordinalDate = d.getDate() + "th";
+    }
 
-    return days[parseInt(day)] + ', ' + months[month] + ' ' + parseInt(n_date) + ', ' + year;
+    return ordinalDate + ' of ' +  months[month] + ', ' + year;
+
+}*/
+
+function fnConvertFullDate(eventDate) {
+
+    var d = new Date(eventDate);
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    var year = d.getFullYear();
+    var month = d.getMonth();
+    var day = d.getDay();
+    var ordinalDate = '';
+ 
+ var j = d.getDate() % 10;
+ var k = d.getDate() % 100;
+    if (j == 1 && k != 11) {
+        ordinalDate = d.getDate() + "st";
+    }
+   else if (j == 2 && k != 12) {
+       ordinalDate = d.getDate() + "nd";
+    }
+  else  if (j == 3 && k != 13) {
+       ordinalDate = d.getDate() + "rd";
+    }
+
+else{
+    ordinalDate = d.getDate() + "th";;
+   }
+
+    return ordinalDate + ' day of ' +  months[month] + ', ' + year;
 
 }
+
 
 
 function fnTime_And_Half(amount, rate) {
@@ -411,7 +632,13 @@ function fnFormatCurrency(total) {
     }
 }
 
-$(function() {
+function fnFormatNumeric(total){
+       var number = total.replace(/[^0-9\.]+/g,"");
+       var bonusInst = number *.5      
+       return formatCurrency(bonusInst);
+}
+
+$(document).on('ready',function() {
     function _fnAssignValue(targetElement, value) {
         document.getElementById(targetElement).value = value;
         $("#" + targetElement).attr("value", value);
@@ -419,23 +646,39 @@ $(function() {
 
     function fnGetName(first, middlename, last) {
 
-        var middle_inital = ((middlename) ? middlename.substring(0, 1) + ' ' : '');
-        var fullname = first + " " + middle_inital + last;
+       // var middle_inital = ((middlename) ? middlename.substring(0, 1) + ' ' : '');
+        var fullname = first + " " + middlename + " " + last;
         return fullname;
     }
+
+    var name = fnGetName(employee.Candidate_First_Name, employee.Candidate_Middle_Name, employee.Candidate_Last_Name);
+    _fnAssignValue('Full_Name', name);
 
     // render template
     fnView();
 
     // completed letter
-    if (!$("input.calendar_button").length) {
+    if ($('#today').prop('readonly')) {
         $("#ButtonSaveAndComplete").remove();
         $("input[type=text]").removeAttr('onfocus').attr("disabled", "disabled");
 
         var arrParts = [
             [1, 'hidden_pg']
         ];
-
+        var arrParts2 = [
+            [1, 'hidden_pg2']
+        ];
+        var arrParts3 = [
+            [1, 'hidden_pg3']
+        ];
         showCompletedOfferLetter('incomplete', 'complete', arrParts);
+        showCompletedOfferLetter('incomplete2', 'complete2', arrParts2);
+        showCompletedOfferLetter('incomplete3', 'complete3', arrParts3);
+    }
+    else{
+        makeOfferLetter('hidden_pg','offerClause');
+        makeOfferLetter('hidden_pg2','offerClause2');
+        makeOfferLetter('hidden_pg3','offerClause3');
+        makeOfferLetter('hidden_pg4','offerClause4');
     }
 });

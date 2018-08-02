@@ -11,19 +11,19 @@
             <p class="text-justify">
                 This Confidentiality and Non-Solicitation Agreement (“Agreement”) is made as of the
                 <span class="inline-block">
-                    <input type="text">
+                    <$client.env.FormField.a01_Day.HTML>
                 </span>
                 day of
                 <span class="inline-block">
-                    <input type="text">
+                    <$client.env.FormField.a02_Month.HTML>
                 </span>
                 , 20
                 <span class="inline-block">
-                    <input type="text">
+                    <$client.env.FormField.a03_Year.HTML>
                 </span>
                 , by and between Dixon Hughes Goodman LLP (“DHG”) and
                 <span class="inline-block">
-                    <input type="text">
+                    <$client.env.FormField.a04_Employee.HTML>
                 </span>
                 (“Employee”).
             </p>
@@ -182,8 +182,84 @@
                 Date:
             </div>
             <div class="inline-block">
-                <input type="text">
+                <$client.env.FormField.a05_Date.HTML>
             </div>
         </div>
     </div>
+    <div class="row vspace-md">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            Employee Signature:
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <$client.env.FormField.a06_Signature.HTML>
+        </div>
+    </div>
+    <div class="row vspace-md">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            Employee Printed Name and Title:
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <$client.env.FormField.a07_Printed_Name.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <$client.env.FormField.a08_Title.HTML>
+        </div>
+    </div>
+    <div class="row vspace-lg">
+        <div class="col-lg-12">
+            <div class="inline-block vertical-middle">
+                Date:
+            </div>
+            <div class="inline-block vertical-middle">
+                <$client.env.FormField.Initials.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row vspace-lg">
+        <div class="col-lg-12">
+            <p>4846-2029-4665, v. 24846-2029-4665, v.2</p>
+        </div>
+    </div>
+    <footer class="row vspace">
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+            <p>681289</p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-right">
+            <div class="inline-block vertical-middle">
+                Initials
+            </div>
+            <div class="inline-block vertical-middle">
+                <$client.env.FormField.testfield.HTML>
+            </div>
+        </div>
+    </footer>
+  <hr class="lifesuite__hr">
+  <div class="row" id="formButtons" style="display: none;">
+    <div class="lifesuite__clearfix lifesuite__float-right">
+      <$client.env.FormButtons>
+    </div>
+  </div>
 </main>
+
+<script type="text/javascript">
+$(function() {
+    var d = new Date();
+    $('#signature-sign').on('click', function() {
+        if (validateSignature('signature','eSignature1','fullName','modal','over','sv')) {
+            $('.dateField').datepicker("setDate", d);
+            $('#a01_Day').val(d.getDate());
+            $('#a02_Month').val(function() {
+                var m = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                return m[d.getMonth()];
+            });
+        }
+        $('#a03_Year').val(d.getFullYear().toString().substr(-2));
+        xbObj('eSignature1').value='';
+    });
+    $('#signature-clear').on('click', function() {
+        xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';
+        $('.dateField').datepicker("setDate", null);
+        $('#a01_Day, #a02_Month, #a03_Year').val('');
+    });
+});
+</script>

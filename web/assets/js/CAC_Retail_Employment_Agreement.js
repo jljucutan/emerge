@@ -3,7 +3,7 @@ function fnView() {
         // add apple img logo header
         $('<div class="row vspace offerClause"/>').append(
             $('<div class="col-lg-1 col-md-1 col-sm-4 col-xs-4 pull-right"/>').append(
-                $('<img src="img/apple_logo.jpg" alt="" class="img-responsive"/>')
+                $('<img src="img/apple_logo.jpg" alt="" class="img-responsive pull-right"/>')
             )
         ),
         // add the form title
@@ -30,11 +30,13 @@ function fnView() {
                 'AND:'
             ),
             $('<div class="col-lg-11 col-md-11 col-sm-8 col-xs-12"/>').append(
-                employee.Candidate_First_Name + ' ' + employee.Candidate_Last_Name + ' ("You" or "Employee")<br/>' +
-                employee.Address_1 + '<br/>' +
-                employee.Address_2 + '<br/>' +
-                employee.City + ', ' + employee.Province + '<br/>',
-                $('<p/>').append(employee.Postal_Code)
+                $('<p/>').append(
+                    employee.Candidate_First_Name + ' ' + employee.Candidate_Last_Name + ' ("You" or "Employee")<br/>' +
+                    ((employee.Address_1.length > 0) ? employee.Address_1 + '<br/>' : '') +
+                    ((employee.Address_2.length > 0) ? employee.Address_2 + '<br/>' : '') +
+                    employee.City + ', ' + employee.Province + '<br/>' +
+                    employee.Postal_Code
+                )
             )
         ),
         $('<div class="row offerClause"/>').append(
@@ -43,9 +45,10 @@ function fnView() {
                 $('<h1 class="text-left"/>').append('<strong>Job Title and Job Duties</strong>'),
                 $('<p/>').append(
                     'You are employed as ' + 
-                    ((employee.CAC_Employee_Type == 'FEW') ? (employee.CAC_Employee_Type + ' ') : '') +
+                    ((['Full Time', 'Part Time'].indexOf(employee.CAC_Employee_Type) > -1) ? employee.CAC_Employee_Type: '') +
+                    ((employee.CAC_Employee_Type == 'FEW') ? 'Seasonal ' : '') +
                     employee.Job_Title_Retail +
-                    'The duties of this position include sales and customer service and any other duties assigned to you from time to time by Apple.'
+                    '. The duties of this position include sales and customer service and any other duties assigned to you from time to time by Apple.'
                 ),
                 $('<p/>').append('Apple may from time to time redefine the job title, description, functions and/or responsibilities of the position without changing any rights or obligations of the parties hereto.')
             )
@@ -151,12 +154,12 @@ function fnView() {
                 $('<h1 class="text-left"/>').append('<strong>Benefits Programs</strong>')
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW' && employee.CAC_Contract_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FEW' && employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('Apple offers various benefits plans to its part-time employees. You will be eligible to enroll once you have completed any applicable waiting period.')
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW' && employee.CAC_Contract_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FEW' && employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You may be eligible to participate in various benefit plans offered by Apple from time to time, including Retirement Savings Plan, and health, life and disability insurance plans offered by Apple to its employees. You acknowledge and agree that any benefit plan in effect from time to time is subject to availability and other requirements of Apple or the applicable insurer and the written terms and conditions contained in each plan and that Apple makes no promise about your eligibility for or entitlement to benefits and will have no liability or responsibility in the event you are denied coverage.')
             )
@@ -171,12 +174,12 @@ function fnView() {
                 $('<h1 class="text-left"/>').append('<strong>Vacation</strong>')
             )
         ),
-        (employee.CAC_Contract_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('Vacation pay will be added to each paycheque in accordance with the employment standards laws of the Province in which you are employed.')
             )
         ),
-        (employee.CAC_Contract_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('As an employee you are eligible to accrue vacation in accordance with the employment standard legislation in the Province in which you are employed.')
             )
@@ -297,30 +300,27 @@ function fnConvertDate(eventDate) {
 
 
 function fnConvertFullDate(eventDate) {
-
     var d = new Date(eventDate);
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-    var year = d.getFullYear();
-    var month = d.getMonth();
-    var day = d.getDay();
     var ordinalDate = '';
     switch(parseInt(d.getDate()) % 10) {
         case 1: 
-            ordinalDate = d.getDate() + "1st";
+            ordinalDate = d.getDate() + "st";
         break;
         case 2: 
-            ordinalDate = d.getDate() + "2nd";
+            ordinalDate = d.getDate() + "nd";
         break;
-        case 2: 
-            ordinalDate = d.getDate() + "3rd";
+        case 3: 
+            ordinalDate = d.getDate() + "rd";
         break;
         default:
             ordinalDate = d.getDate() + "th";
     }
-
-    return ordinalDate + ' of ' +  months[month] + ', ' + year + '.';
+    if (d.getDate() > 3 && d.getDate() > 21) {
+        ordinalDate = d.getDate() + "th";
+    }
+    return ordinalDate + ' of ' +  months[d.getMonth()] + ', ' + d.getFullYear() + '.';
 }
 
 
