@@ -45,8 +45,8 @@ function fnView() {
                 $('<h1 class="text-left"/>').append('<strong>Job Title and Job Duties</strong>'),
                 $('<p/>').append(
                     'You are employed as ' + 
-                    ((['Full Time', 'Part Time'].indexOf(employee.CAC_Employee_Type) > -1) ? employee.CAC_Employee_Type: '') +
-                    ((employee.CAC_Employee_Type == 'FEW') ? 'Seasonal ' : '') +
+                    ((['Full Time', 'Part Time'].indexOf(employee.CAC_Employee_Type) > -1) ? employee.CAC_Employee_Type + ' ': '') +
+                    ((employee.CAC_Contract_Type == 'FEW') ? 'Seasonal ' : '') +
                     employee.Job_Title_Retail +
                     '. The duties of this position include sales and customer service and any other duties assigned to you from time to time by Apple.'
                 ),

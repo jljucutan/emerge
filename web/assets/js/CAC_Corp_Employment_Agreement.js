@@ -40,91 +40,89 @@ function fnView() {
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('This Agreement sets forth the terms upon which Apple agrees to employ the Employee and upon which Employee agrees to be employed by Apple. For good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the parties agree as follows:'),
-                $('<h1 class="text-left"/>').append('<strong>Job Title and Job Duties</strong>'),
+                $('<h1 class="text-left"/>').append('<strong>Job Title and Job Duties</strong>')
             )
         ),
         (employee.CAC_EA_Type == 'Engineering') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<p/>').append('You are employed as ' + employee.Job_Title),
+                $('<p/>').append('You are employed as ' + employee.Job_Title + '.'),
                 $('<p/>').append(
                     'Under the general direction and supervision of Apple, as an Engineer, you shall be responsible for ' + 
                     employee.Main_Responsibility + ' at ' + 
-                    ((employee.CAC_Work_location != 'Home Office') ? employee.CAC_Work_location + ' ("The Facility") ' : ' your home office in ') +
-                    employee.City + ', ' +
-                    employee.Province +
+                    ((employee.CAC_Work_location != 'Home Office') ? employee.CAC_Work_location + ' ("The Facility") ' : ' your home office in ' + employee.City + ', ' + employee.Province ) +
                     '. Specifically, your duties include, but are not limited to:'
                 )
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(a)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(a)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('observation of all applicable rules, regulations and policies of Apple;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'observation of all applicable rules, regulations and policies of Apple;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(b)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(b)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(c)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(c)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('performance of all of the duties and responsibilities assigned to you from time to time by Apple.')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'performance of all of the duties and responsibilities assigned to you from time to time by Apple.\n'
             )
         ),
         (employee.CAC_EA_Type == 'ASC Lead (RAS)') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You are employed as a full-time Retail Account Specialist (RAS). Specifically, your duties include, but are not limited to:')
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(a)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(a)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('developing Apple business within the territory by building a strong, influential, collaborative business relationship with the reseller’s management and sales team;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'developing Apple business within the territory by building a strong, influential, collaborative business relationship with the reseller’s management and sales team;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(b)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(b)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('training the reseller’s store team members on selling Apple hardware, software, and accessories;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'training the reseller’s store team members on selling Apple hardware, software, and accessories;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(c)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(c)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('delivering optimal customer service through professionalism and product knowledge;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'delivering optimal customer service through professionalism and product knowledge;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(d)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(d)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('working with the store staff to maintain merchandising and visual standards according to Apple and reseller standards;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'working with the store staff to maintain merchandising and visual standards according to Apple and reseller standards;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(e)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(e)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(f)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(f)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('observation of all applicable rules, regulations and policies of Apple;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'observation of all applicable rules, regulations and policies of Apple;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(g)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(g)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(h)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(h)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('performance of all of the duties and responsibilities assigned to you from time to time by Apple.')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'performance of all of the duties and responsibilities assigned to you from time to time by Apple.\n'
             )
         ),
         (employee.CAC_EA_Type == 'ASC Manager') && $('<div class="row offerClause"/>').append(
@@ -132,112 +130,112 @@ function fnView() {
                 $('<p/>').append('You are employed as an ASC Manager.'),
                 $('<p/>').append('Under the general direction and supervision of Apple, as an ASC Manager, you shall be responsible for the general operation and profitable management of the ASC Program at Apple Canada. Specifically, your duties include, but are not limited to:')
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(a)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(a)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('effective management and operation of your region including recruiting, hiring, training, promotion, discipline, demotion and supervision of the ASC employees;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'effective management and operation of your region including recruiting, hiring, training, promotion, discipline, demotion and supervision of the ASC employees;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(b)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(b)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('development and implementation of new and existing products or store promotions;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'development and implementation of new and existing products or store promotions;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(c)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(c)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('increasing Apple sales at stores in assigned region;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'increasing Apple sales at stores in assigned region;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(d)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(d)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('establishing and maintaining outstanding relationship with in-store management;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'establishing and maintaining outstanding relationship with in-store management;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(e)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(e)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(f)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(f)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('observation of all applicable rules, regulations and policies of Apple;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                'observation of all applicable rules, regulations and policies of Apple;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(g)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(g)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(h)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(h)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('performance of all of the duties and responsibilities assigned to you from time to time by Apple.')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
+                'performance of all of the duties and responsibilities assigned to you from time to time by Apple.\n'
             )
         ),
         (employee.CAC_EA_Type == 'ASC Supervisor') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You are employed as an ASC Supervisor. Specifically, your duties include, but are not limited to:')
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(a)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(a)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('growing sales of Apple-based complete solutions;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'growing sales of Apple-based complete solutions;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(b)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(b)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('increasing the customer base purchasing Apple products from all retailer locations in the Supervisor’s assigned territory;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'increasing the customer base purchasing Apple products from all retailer locations in the Supervisor’s assigned territory;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(c)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(c)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('supervising and developing ASCs in multiple store locations within an assigned territory;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'supervising and developing ASCs in multiple store locations within an assigned territory;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(d)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(d)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('establishing communication between ASCs and in-store general and regional management;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'establishing communication between ASCs and in-store general and regional management;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(e)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(e)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('merchandising Apple and related 3rd party products in the AppleShop, according to Apple and the retailer partner’s standards;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'merchandising Apple and related 3rd party products in the AppleShop, according to Apple and the retailer partner’s standards;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(f)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(f)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(g)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(g)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('observation of all applicable rules, regulations and policies of Apple;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'observation of all applicable rules, regulations and policies of Apple;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(h)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(h)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(i)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(i)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('performance of all of the duties and responsibilities assigned to you from time to time by Apple.')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'performance of all of the duties and responsibilities assigned to you from time to time by Apple.'
             )
         ),
         (employee.CAC_EA_Type == 'ASC') && $('<div class="row offerClause"/>').append(
@@ -249,59 +247,59 @@ function fnView() {
                     '. Specifically, your duties include, but are not limited to:'
                 )
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(a)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(a)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('growing sales of Apple-based complete solutions;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'growing sales of Apple-based complete solutions;'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(b)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(b)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('training the reseller’s store team members on selling Apple hardware, software, and accessories;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'training the reseller’s store team members on selling Apple hardware, software, and accessories;'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(c)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(c)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('developing the store’s Apple business by building a strong, influential, collaborative business relationship with the reseller’s management and sales team;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'developing the store’s Apple business by building a strong, influential, collaborative business relationship with the reseller’s management and sales team;'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(d)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(d)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('maintaining merchandising and visual standards according to Apple and reseller standards;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'maintaining merchandising and visual standards according to Apple and reseller standards;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(e)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(e)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('delivering optimal customer service through professionalism and product knowledge;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'delivering optimal customer service through professionalism and product knowledge;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(f)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(f)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'timely transmission of complete and accurate reports and information pertaining to the operations of the ASC Program;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(g)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(g)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('observation of all applicable rules, regulations and policies of Apple;')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'observation of all applicable rules, regulations and policies of Apple;\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(h)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(h)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'preservation and maintenance of all Apple property in your custody, possession or control or under your direction; and\n'
             ),
-            $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(i)'
+            $('<span class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
+                '(i)    '
             ),
-            $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
-                $('<p/>').append('performance of all of the duties and responsibilities assigned to you from time to time by Apple.')
+            $('<span class="col-lg-11 col-md-11 col-sm-10 col-xs-10 vspace"/>').append(
+                'performance of all of the duties and responsibilities assigned to you from time to time by Apple.\n'
             )
         ),
         (employee.CAC_EA_Type == 'AHA') && $('<div class="row offerClause"/>').append(
@@ -342,7 +340,7 @@ function fnView() {
                 $('<p/>').append('Your employment with Apple is conditional upon verification satisfactory to Apple of the information you provided to it during the job application process, the receipt of references satisfactory to Apple from those nominated by you, and the receipt of documentary evidence satisfactory to Apple of your continued right to work in Canada. It is your responsibility to maintain your legal right to work in Canada.')
             )
         ),
-        $('<div class="row offerClause"/>').append(
+        (employee.CAC_EA_Type != 'Engineering' && employee.CAC_Work_Location == 'Home Office') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<h1 class="text-left"/>').append('<strong>Place of Work</strong>')
             )
@@ -392,8 +390,7 @@ function fnView() {
                 $('<h1/>').append('<em>Relocation Assistance Allowance</em>'),
                 $('<p/>').append('You are eligible for relocation assistance in connection with your transfer to ' +
                     employee.CAC_Work_Location + 
-                    '. The approved budget for your relocation assistance is (CAD) $ ' +
-                    employee.CAC_Relo_Allowance +
+                    '. The approved budget for your relocation assistance is (CAD) $' + employee.CAC_Relo_Allowance +
                     '. This is the maximum total expendable amount for appropriate relocation expenses. Substitutions or cash payouts are not permitted.'),
                 $('<p/>').append('Please note that in order to earn your relocation package, you must be actively employed with Apple for twelve (12) months following your start date. If you resign your employment from Apple or are terminated for cause within twelve (12) months of your start date, you may be responsible for repayment of a prorated portion of the relocation package at Apple’s sole discretion. In the event repayment is required, you agree and authorize Apple to deduct from your final pay cheque the pro rata amount owed to Apple.')
             )
@@ -407,7 +404,8 @@ function fnView() {
         ),
         (['Engineering', 'ASC'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<p/>').append('As part of your job duties, you may be required from time to time to travel to the United States or elsewhere and will be reimbursed in accordance with Apple’s Accounting and Finance Policy, attached as Exhibit D, for such travel. If there is any reason why you cannot travel outside Canada, you must advise us prior to hire.')
+                $('<h1 class="text-left"/>').append('<strong>Business Travel</strong>'),
+                $('<p/>').append('As part of your job duties, you may be required from time to time to travel to the United States or elsewhere and will be reimbursed in accordance with <a href="' + employee.policy_link + '" target="_blank">Apple’s Accounting and Finance Policy</a>, for such travel. If there is any reason why you cannot travel outside Canada, you must advise us prior to hire.')
             )
         ),
         (employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
@@ -430,7 +428,7 @@ function fnView() {
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h1 class="text-left"/>').append('Compensation')
+                $('<h1 class="text-left"/>').append('<strong>Compensation</strong>')
             )
         ),
         (['ASC Manager', 'ASC Lead (RAS)', 'ASC'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
@@ -454,7 +452,7 @@ function fnView() {
                 $('<p/>').append(
                     'Apple shall pay you an annual salary of (CAD) $' +
                     employee.Salary_Amount +
-                    ' payable every other week, one week in arrears, subject to the withholding of all applicable deductions.'
+                    ', payable every other week, one week in arrears, subject to the withholding of all applicable deductions.'
                 )
             )
         ),
@@ -471,7 +469,7 @@ function fnView() {
         (employee.CAC_EA_Type == 'AHA') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append(
-                    'Apple will pay you an hourly rate of (CAD)$' +
+                    'Apple will pay you an hourly rate of (CAD) $' +
                     employee.Salary_Amount +
                     ', payable every other week, one week in arrears, subject to the withholding of all applicable statutory deductions.'
                 ),
@@ -495,9 +493,9 @@ function fnView() {
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h1 class="text-left"/>').append('Benefits Program'),
+                $('<h1 class="text-left"/>').append('<strong>Benefits Program</strong>'),
                 $('<p/>').append('You may be eligible to participate in various benefit plans offered by Apple from time to time, including Retirement Savings Plan, and health, life and disability insurance plans offered by Apple to its employees. You acknowledge and agree that any benefit plan in effect from time to time is subject to availability and other requirements of Apple or the applicable insurer and the written terms and conditions contained in each plan and that Apple makes no promise about your eligibility for or entitlement to benefits and will have no liability or responsibility in the event you are denied coverage.'),
-                $('<h1 class="text-left"/>').append('Vacation')
+                $('<h1 class="text-left"/>').append('<strong>Vacation</strong>')
             )
         ),
         (['ASC Lead (RAS)', 'ASC', 'Engineering'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
@@ -518,7 +516,7 @@ function fnView() {
         ),
         (['AHA', 'Engineering'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h1 class="text-left"/>').append('Bonus'),
+                $('<h1 class="text-left"/>').append('<strong>Bonus</strong>'),
                 $('<p/>').append('You may be eligible to participate in any of Apple’s bonus and incentive schemes in place from time to time, details of which will be provided by your manager.'),
                 $('<p/>').append('All bonus and incentive schemes in which you may be eligible to participate are discretionary and may be amended or withdrawn at any time without breaching a term of this Agreement or your employment with Apple.')
             )
@@ -548,6 +546,7 @@ function fnConvertDate(eventDate) {
 
 }
 
+
 function fnConvertFullDate(eventDate) {
     var d = new Date(eventDate);
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -571,6 +570,8 @@ function fnConvertFullDate(eventDate) {
     }
     return ordinalDate + ' of ' +  months[d.getMonth()] + ', ' + d.getFullYear() + '.';
 }
+
+
 
 
 function fnTime_And_Half(amount, rate) {
