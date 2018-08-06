@@ -199,15 +199,17 @@ $(document).on('ready', function() {
     validateField($(this));
   });
 
-  $('#global-new-hire-form').on('blur keyup change', 'input:visible:not(#signature):not(:button), select:visible', function() {
-    if($(this).hasClass('dateField')) {
-        $($(this).data('date-mapped')).val($(this).val());
-    }
+  $('#global-new-hire-form').on('blur change', 'input:visible:not(#signature):not(:button):not(.dateField), select:visible', function() {
+    validateField($(this));
+  });
+
+  $('#global-new-hire-form').on('change', 'input.dateField:visible', function() {
+    $($(this).data('date-mapped')).val($(this).val());
     validateField($(this));
   });
 
   $('#modal').on('click', '#signature-submit', function() {
-    if (validateSignature('signature','eSignature1','fullName','modal','over','sv','date')) {
+    if (validateSignature('signature','eSignature1','fullName','modal','over','sv', 'date')) {
         $('#date_mapped').val($('[data-date-mapped="#date_mapped"]').val());
     }
     xbObj('eSignature1').value='';
@@ -245,7 +247,12 @@ $(document).on('ready', function() {
         });
     }
   // Style modifiers
-  $('.cal_and_button td').prepend($('<span class="calendar-btn-container"/>').append($('<i class="fa fa-calendar"></i>')));
+  $.each($('input.dateField'), function(k,v) {
+    if (!$(v).is(':disabled')) {
+      $(v).closest('td').prepend($('<span class="calendar-btn-container"/>').append($('<i class="fa fa-calendar"></i>')));
+    }
+  });
+  $(".modal").hide(); 
 }); 
 $('#buttonPrint').removeAttr('onclick');
 $('#buttonSaveAndComplete').removeAttr('onclick');
