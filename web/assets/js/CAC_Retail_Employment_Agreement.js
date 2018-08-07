@@ -204,7 +204,7 @@ function fnView() {
                 $('<h1 class="text-left"/>').append('<strong>Absence and Sickness</strong>'),
                 $('<p/>').append('If you are unable to attend work for any reason you must provide notice and otherwise follow Apple\’s standard policies and procedures with respect to absences and sickness.'),
                 $('<h1 class="text-left"/>').append('<strong>Service to Apple</strong>'),
-                $('<p/>').append('During your employment with Apple, you will in all respects conform to and comply with the directions and policies of Apple, including Apple’s Code of Business Conduct Policy, and any other standard Apple employment policies that are provided to or accessible by Apple employees, perform each of the duties assigned from time to time by Apple to the best of your skill and ability, faithfully and diligently serve Apple, use your best efforts to promote the interests and reputation of Apple, and devote your full working time, attention and energies to the business of Apple.'),
+                $('<p/>').append('During your employment with Apple, you will in all respects conform to and comply with the directions and policies of Apple, including <a href="' + employee.policy_link + '" target="_blank">Apple’s Code of Business Conduct Policy</a>, and any other standard Apple employment policies that are provided to or accessible by Apple employees, perform each of the duties assigned from time to time by Apple to the best of your skill and ability, faithfully and diligently serve Apple, use your best efforts to promote the interests and reputation of Apple, and devote your full working time, attention and energies to the business of Apple.'),
                 $('<h1 class="text-left"/>').append('<strong>Personal Information</strong>'),
                 $('<p/>').append('Your personal information will be collected, processed, transferred and safeguarded by Apple in accordance with the terms of the Employee Privacy Notice signed by you.'),
                 $('<h1 class="text-left"/>').append('<strong>Disciplinary and Grievance Procedures</strong>'),
@@ -253,7 +253,7 @@ function fnView() {
         ),
         (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(d)'
+                '(a)'
             ),
             $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
                 $('<p/>').append('by Apple, for just cause, immediately, with no obligation to provide to you any notice or pay in lieu of notice or severance pay;')
@@ -261,7 +261,7 @@ function fnView() {
         ),
         (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(e)'
+                '(b)'
             ),
             $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
                 $('<p/>').append('by Apple, without just cause, by providing you with the notice, or pay in lieu of notice and severance pay, if any, as required by the employment standards act of the Province in which you are employed, or any successor legislation; or')
@@ -269,7 +269,7 @@ function fnView() {
         ),
         (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
-                '(f)'
+                '(c)'
             ),
             $('<div class="col-lg-11 col-md-11 col-sm-10 col-xs-10"/>').append(
                 $('<p/>').append('by you, upon giving Apple two (2) weeks advance written notice.')
@@ -366,6 +366,9 @@ $(document).on('ready',function() {
 
     var name = fnGetName(employee.Candidate_First_Name, employee.Candidate_Middle_Name, employee.Candidate_Last_Name);
     _fnAssignValue('Full_Name', name);
+
+    // set contract date to current date
+    $('#today:not([readonly])').val(new Date());
 
     // render template
     fnView();

@@ -340,7 +340,7 @@ function fnView() {
                 $('<p/>').append('Your employment with Apple is conditional upon verification satisfactory to Apple of the information you provided to it during the job application process, the receipt of references satisfactory to Apple from those nominated by you, and the receipt of documentary evidence satisfactory to Apple of your continued right to work in Canada. It is your responsibility to maintain your legal right to work in Canada.')
             )
         ),
-        (employee.CAC_EA_Type != 'Engineering' && employee.CAC_Work_Location == 'Home Office') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_EA_Type != 'AHA') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<h1 class="text-left"/>').append('<strong>Place of Work</strong>')
             )
@@ -387,7 +387,7 @@ function fnView() {
         ),
         (employee.CAC_Relo_Allowance.length > 0) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h1/>').append('<em>Relocation Assistance Allowance</em>'),
+                $('<p/>').append('<em>Relocation Assistance Allowance</em>'),
                 $('<p/>').append('You are eligible for relocation assistance in connection with your transfer to ' +
                     employee.CAC_Work_Location + 
                     '. The approved budget for your relocation assistance is (CAD) $' + employee.CAC_Relo_Allowance +
@@ -399,13 +399,13 @@ function fnView() {
             $('<div class="col-lg-12"/>').append(
                 $('<h1 class="text-left"/>').append('<strong>Business Travel</strong>'),
                 $('<p/>').append('As part of your job duties, you are required to have a vehicle to travel to different reseller locations. You will only be reimbursed for travel within the geographic area that you are responsible for, as set out in this Agreement, and in accordance with Apple\'s Accounting and Finance Policy.'),
-                $('<p/>').append('You may additionally be required from time to time to travel to the United States or elsewhere and will be reimbursed in accordance with Apple’s Accounting and Finance Policy for such travel. If there is any reason why you cannot operate a vehicle or travel outside Canada, you must advise us prior to hire.')
+                $('<p/>').append('You may additionally be required from time to time to travel to the United States or elsewhere and will be reimbursed in accordance with <a href="' + employee.policy_link + '" target="_blank">Apple’s Accounting and Finance Policy</a> for such travel. If there is any reason why you cannot operate a vehicle or travel outside Canada, you must advise us prior to hire.')
             )
         ),
         (['Engineering', 'ASC'].indexOf(employee.CAC_EA_Type) > -1) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<h1 class="text-left"/>').append('<strong>Business Travel</strong>'),
-                $('<p/>').append('As part of your job duties, you may be required from time to time to travel to the United States or elsewhere and will be reimbursed in accordance with <a href="' + employee.policy_link + '" target="_blank">Apple’s Accounting and Finance Policy</a>, for such travel. If there is any reason why you cannot travel outside Canada, you must advise us prior to hire.')
+                $('<p/>').append('As part of your job duties, you may be required from time to time to travel to the United States or elsewhere and will be reimbursed in accordance with <a href="' + employee.policy_link + '" target="_blank">Apple’s Accounting and Finance Policy</a> for such travel. If there is any reason why you cannot travel outside Canada, you must advise us prior to hire.')
             )
         ),
         (employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
@@ -478,7 +478,7 @@ function fnView() {
         ),
         (employee.CAC_Hire_On.length > 0) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<h1/>').append('<em>Hire-On Bonus</em>'),
+                $('<p/>').append('<em>Hire-On Bonus</em>'),
                 $('<p/>').append(
                     'You will be eligible to receive a one time hire-on bonus of (CAD) $' +
                     employee.CAC_Hire_On + 
@@ -616,6 +616,9 @@ $(document).on('ready',function() {
 
     var name = fnGetName(employee.Candidate_First_Name, employee.Candidate_Middle_Name, employee.Candidate_Last_Name);
     _fnAssignValue('Full_Name', name);
+
+    // set contract date to current date
+    $('#today:not([readonly])').val(new Date());
 
     // render template
     fnView();
