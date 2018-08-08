@@ -387,8 +387,9 @@ function fnView() {
         ),
         (employee.CAC_Relo_Allowance.length > 0) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<p/>').append('<em>Relocation Assistance Allowance</em>'),
-                $('<p/>').append('You are eligible for relocation assistance in connection with your transfer to ' +
+                $('<p/>').append(
+                    '<em>Relocation Assistance Allowance</em><br>' +
+                    'You are eligible for relocation assistance in connection with your transfer to ' +
                     employee.CAC_Work_Location + 
                     '. The approved budget for your relocation assistance is (CAD) $' + employee.CAC_Relo_Allowance +
                     '. This is the maximum total expendable amount for appropriate relocation expenses. Substitutions or cash payouts are not permitted.'),
@@ -478,8 +479,8 @@ function fnView() {
         ),
         (employee.CAC_Hire_On.length > 0) && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<p/>').append('<em>Hire-On Bonus</em>'),
                 $('<p/>').append(
+                    '<em>Hire-On Bonus</em><br>' +
                     'You will be eligible to receive a one time hire-on bonus of (CAD) $' +
                     employee.CAC_Hire_On + 
                     ' (less deductions required by law), subject to the following terms and conditions:'
@@ -635,11 +636,16 @@ $(document).on('ready',function() {
             [1, 'hidden_pg2']
         ];
         var arrParts3 = [
+            [0, '<img src="' + employee.heidi_sig + '"/>'],
             [1, 'hidden_pg3']
+        ];
+        var arrParts4 = [
+            [1, 'hidden_pg4']
         ];
         showCompletedOfferLetter('incomplete', 'complete', arrParts);
         showCompletedOfferLetter('incomplete2', 'complete2', arrParts2);
         showCompletedOfferLetter('incomplete3', 'complete3', arrParts3);
+        showCompletedOfferLetter('incomplete4', 'complete4', arrParts4);
     }
     else{
         makeOfferLetter('hidden_pg','offerClause');
