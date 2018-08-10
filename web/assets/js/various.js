@@ -1489,3 +1489,15 @@ $(document).on('ready', function() {
     })
   }
 });
+
+function eFormRequiredNumeric(sValue,sName,sField) {
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.length < 1) {
+    eFormRequiredField(sValue,sName,sField);
+  }
+  if (false === /[0-9]+/.test(sValue)) {
+    eFormIsNumeric(sValue,sName,sField);
+    return false;
+  }
+  return true;
+}
