@@ -1501,3 +1501,34 @@ function eFormRequiredNumeric(sValue,sName,sField) {
   }
   return true;
 }
+
+function eFormAUTaxValidate(sValue,sName,sField) {
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  // remove spaces and hyphens
+  var val = sValue.trim().replace(/[-]/g, '');
+  if (val.length < 1) {
+    return eFormRequiredField(sValue,sName,sField);
+  }
+
+  if (val.length !== 9) {
+    AddError(sField, 'Error in validation, value should be exactly 9 digits in', '');
+    return false;
+  }
+
+  if (false === /^\d+$/.test(val)) {
+    return eFormIsNumeric(sValue,sName,sField);
+  }
+
+  var sum = 0;
+  var entry = val.split('');
+  var weights = [1, 4, 3, 7, 5, 8, 6, 9, 10];
+  for (i = 0; i < weights.length; i++) {
+    sum += (weights[i] * entry[i]);
+  }
+  if ((sum % 11) !== 0) {
+    AddError(sField, 'Error in validation, tax number not valid in', '');
+    return false;
+  }
+
+  return true;
+}
