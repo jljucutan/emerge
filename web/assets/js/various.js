@@ -1509,19 +1509,16 @@ function eFormAUTaxValidate(sValue,sName,sField) {
   if (val.length < 1) {
     return eFormRequiredField(sValue,sName,sField);
   }
-
   if (val.length !== 9) {
     AddError(sField, 'Error in validation, value should be exactly 9 digits in', '');
     return false;
   }
-
   if (false === /^\d+$/.test(val)) {
     return eFormIsNumeric(sValue,sName,sField);
   }
-
   var sum = 0;
   var entry = val.split('');
-  var weights = [1, 4, 3, 7, 5, 8, 6, 9, 10];
+  var weights = [1, 4, 3, 7, 5, 8, 6, 9, 10]; // Constant - do not change
   for (i = 0; i < weights.length; i++) {
     sum += (weights[i] * entry[i]);
   }
@@ -1529,6 +1526,17 @@ function eFormAUTaxValidate(sValue,sName,sField) {
     AddError(sField, 'Error in validation, tax number not valid in', '');
     return false;
   }
-
   return true;
 }
+
+// require if not local nationality = NZ
+function eFormRequireForeign(sValue,sName,sField) {
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var dep = $($(document.getElementsByName(sName)[0]).data('depends'));
+  var nationalityRequired = 'NZ';
+  if (dep.val() !== nationalityRequired) {
+    return eFormRequiredField(sValue,sName,sField);
+  }
+  return true;
+}
+$('.lifesuite__button.ng-scope:not(.active)').trigger('click').hide();

@@ -46,7 +46,7 @@ function fnView() {
                 $('<p/>').append(
                     'You are employed as ' + 
                     ((['Full Time', 'Part Time'].indexOf(employee.CAC_Employee_Type) > -1) ? employee.CAC_Employee_Type + ' ': '') +
-                    ((employee.CAC_Contract_Type == 'FEW') ? 'Seasonal ' : '') +
+                    ((employee.CAC_Contract_Type == 'FWE') ? 'Seasonal ' : '') +
                     employee.Job_Title_Retail +
                     '. The duties of this position include sales and customer service and any other duties assigned to you from time to time by Apple.'
                 ),
@@ -63,7 +63,7 @@ function fnView() {
                 )
             )
         ),
-        (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type == 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<h1 class="text-left"/>').append('<strong>Term of Employment</strong>'),
                 $('<p/>').append('Your employment will begin on ' + employee.Start_Date + ' and end on ' + employee.End_Date + '. Unless Apple terminates your employment before the end of this term, or renews this Agreement for a further term, your employment will end on ' + employee.End_Date + ', at which time Apple will have no obligation to give you any notice of termination, or compensatory indemnity in lieu of such notice, and will have no further obligation whatsoever to you.')
@@ -104,17 +104,17 @@ function fnView() {
                 '<h1 class="text-left"><strong>Days and Hours of Work</strong></h1>'
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW' && employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You are employed on a full-time basis. Your usual weekly hours are forty (40) hours per week exclusive of breaks (your "Basic Hours").')
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW' && employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You are employed on a part-time basis. Your usual weekly hours are twenty (20) hours per week exclusive of breaks (your "Basic Hours").')
             )
         ),
-        (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type == 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You are employed on a seasonal basis. Your usual weekly hours are ' + employee.CAC_Weekly_Hours + ' hours per week exclusive of breaks (your "Basic Hours").')
             )
@@ -139,12 +139,12 @@ function fnView() {
                 $(' <p/>').append('Your basic rate of pay is (CAD) $' + employee.Salary_Amount + ' per hour. You will be paid every two weeks, one week in arrears, less the applicable deductions.')
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('Overtime is paid in accordance with the employment standards laws of the Province in which you are employed.')
             )
         ),
-        (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type == 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('Overtime is paid for each complete period of 15 minutes, and as stipulated in the employment standards laws of the Province in which you work.')
             )
@@ -154,17 +154,17 @@ function fnView() {
                 $('<h1 class="text-left"/>').append('<strong>Benefits Programs</strong>')
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW' && employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('Apple offers various benefits plans to its part-time employees. You will be eligible to enroll once you have completed any applicable waiting period.')
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW' && employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You may be eligible to participate in various benefit plans offered by Apple from time to time, including Retirement Savings Plan, and health, life and disability insurance plans offered by Apple to its employees. You acknowledge and agree that any benefit plan in effect from time to time is subject to availability and other requirements of Apple or the applicable insurer and the written terms and conditions contained in each plan and that Apple makes no promise about your eligibility for or entitlement to benefits and will have no liability or responsibility in the event you are denied coverage.')
             )
         ),
-        (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type == 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You may be eligible to participate in various benefit plans offered by Apple from time to time. You acknowledge and agree that any benefit plan in effect from time to time is subject to availability and other requirements of Apple or the applicable insurer and the written terms and conditions contained in each plan and that Apple makes no promise about your eligibility for or entitlement to benefits and will have no liability or responsibility in the event you are denied coverage.')
             )
@@ -212,12 +212,12 @@ function fnView() {
                 $('<h1 class="text-left"/>').append('<strong>Termination of Employment</strong>')
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('Upon successful completion of your probationary period referred to above, your employment may be terminated as follows: ')
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
                 '(a)'
             ),
@@ -225,7 +225,7 @@ function fnView() {
                 $('<p/>').append('by Apple Canada, for just cause, with no obligation to provide to you any notice or pay in lieu of notice or any indemnity or severance whatsoever;')
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
                 '(b)'
             ),
@@ -233,7 +233,7 @@ function fnView() {
                 $('<p/>').append('by Apple Canada, without just cause, by providing you with the minimum statutory notice, or pay in lieu of such notice as may be required by the employment standards act of the Province in which you are employed, or any successor legislation, plus one additional week for each completed year of service with Apple Canada for which you intend to give a full and satisfactory release in favour of Apple;')
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
                 '(c)'
             ),
@@ -241,17 +241,17 @@ function fnView() {
                 $('<p/>').append('by you, upon giving Apple Canada two (2) weeks’ advance written notice of your intention to resign, in which event Apple Canada has a right to renounce in whole or in part, to such notice without having any further obligations.')
             )
         ),
-        (employee.CAC_Contract_Type != 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('In the event of termination, you will be paid any unpaid base salary and any accrued vacation earned up to your last day of active employment with Apple Canada, and benefits will be continued to the extent required by applicable legislation. You acknowledge and expressly agree that upon the termination of employment for any reason other than for cause, you will only be entitled to the above notice or pay in lieu of notice and benefits provisions, and that such termination is fair and reasonable and Apple Canada shall not, in any case, be responsible for any additional notice, pay in lieu of notice, minimum statutory notice, severance pay, termination pay, or other indemnity or damage arising from the termination of your employment.')
             )
         ),
-        (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type == 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('Your employment may be terminated prior to the term end date, or any renewal thereof, as follows:')
             )
         ),
-        (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type == 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
                 '(a)'
             ),
@@ -259,7 +259,7 @@ function fnView() {
                 $('<p/>').append('by Apple, for just cause, immediately, with no obligation to provide to you any notice or pay in lieu of notice or severance pay;')
             )
         ),
-        (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type == 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
                 '(b)'
             ),
@@ -267,7 +267,7 @@ function fnView() {
                 $('<p/>').append('by Apple, without just cause, by providing you with the notice, or pay in lieu of notice and severance pay, if any, as required by the employment standards act of the Province in which you are employed, or any successor legislation; or')
             )
         ),
-        (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type == 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-1 col-md-1 col-sm-2 col-xs-2"/>').append(
                 '(c)'
             ),
@@ -275,7 +275,7 @@ function fnView() {
                 $('<p/>').append('by you, upon giving Apple two (2) weeks advance written notice.')
             )
         ),
-        (employee.CAC_Contract_Type == 'FEW') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type == 'FWE') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('In the event of termination, you will be paid any unpaid wages earned up to the date of termination, and benefits will be continued to the extent required by applicable legislation. You acknowledge and expressly agree that upon the termination of employment for any reason other than for cause you will only be entitled to the above notice, pay in lieu of notice, severance and benefits provisions which apply under then current legislation, and any claim for damages for failure to provide adequate notice of termination at law or to any other amount under employment statutes or at law will be limited to such amount or provisions.')
             )
@@ -317,7 +317,7 @@ function fnConvertFullDate(eventDate) {
         default:
             ordinalDate = d.getDate() + "th";
     }
-    if (d.getDate() > 3 && d.getDate() > 21) {
+    if (date > 3 && date > 21 || date > 10 && date < 20) {
         ordinalDate = d.getDate() + "th";
     }
     return ordinalDate + ' of ' +  months[d.getMonth()] + ', ' + d.getFullYear() + '.';
