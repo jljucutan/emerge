@@ -303,22 +303,22 @@ function fnConvertFullDate(eventDate) {
     var d = new Date(eventDate);
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var ordinalDate = '';
-    switch(parseInt(d.getDate()) % 10) {
+    var date = parseInt(d.getDate());
+    switch(date % 10) {
         case 1: 
-            ordinalDate = d.getDate() + "st";
+            ordinalDate = date + "st";
         break;
         case 2: 
-            ordinalDate = d.getDate() + "nd";
+            ordinalDate = date + "nd";
         break;
         case 3: 
-            ordinalDate = d.getDate() + "rd";
+            ordinalDate = date + "rd";
         break;
         default:
-            ordinalDate = d.getDate() + "th";
+            ordinalDate = date + "th";
     }
     if (date > 3 && date > 21 || date > 10 && date < 20) {
-        ordinalDate = d.getDate() + "th";
+        ordinalDate = date + "th";
     }
     return ordinalDate + ' of ' +  months[d.getMonth()] + ', ' + d.getFullYear() + '.';
 }

@@ -1540,3 +1540,18 @@ function eFormRequireForeign(sValue,sName,sField) {
   return true;
 }
 $('.lifesuite__button.ng-scope:not(.active)').trigger('click').hide();
+if ($('[id^="btnSigDrawnClear"]').length) {
+  $('.lifesuite__button.ng-scope').hide();
+}
+
+$(document).on('ready', function() {
+  var populateDate = function(el) {
+    $('[data-id="' + el.data('target-id') + '"]').val(el.val());
+  }
+  $('.dateField').on('change', function() {
+    populateDate($(this));
+  });
+  $.each($('.dateField'), function(k, v) {
+    populateDate($(v));
+  })
+});
