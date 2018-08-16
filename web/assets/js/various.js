@@ -1554,4 +1554,16 @@ $(document).on('ready', function() {
   $.each($('.dateField'), function(k, v) {
     populateDate($(v));
   })
+
+  $('.ng-scope').on('keyup change', '.lifesuite__text-input', function() {
+    var input = $(this);
+    var btn = input.closest('.lifesuite__module').find('button.lifesuite__button.primary');
+    if (input.val().trim().length > 0) {
+      btn.prop('disabled', null);
+    } else {
+      btn.prop('disabled', 'disabled');
+    }
+  });
+
+
 });
