@@ -1,15 +1,19 @@
 function fnView() {
     $("#markup").html("").append(
         // add apple img logo header
-        $('<div class="row vspace offerClause"/>').append(
-            $('<div class="col-lg-1 col-md-1 col-sm-4 col-xs-4 pull-right"/>').append(
-                $('<img src="img/apple_logo.jpg" alt="" class="img-responsive pull-right"/>')
+        $('<div class="offerClause"/>').append(
+            $('<div class="row vspace" />').append(
+                $('<div class="col-lg-1 col-md-1 col-sm-4 col-xs-4 pull-right"/>').append(
+                    $('<img src="img/apple_logo.jpg" alt="" class="img-responsive pull-right"/>')
+                )
             )
         ),
         // add the form title
-        $('<div class="row offerClause"/>').append(
-            $('<div class="col-lg-12"/>').append(
-                $('<h1 class="vspace-lg"/>').append('<strong>Employment Agreement</strong>')
+        $('<div class="offerClause"/>').append(
+            $('<div class="row" />').append(
+                $('<div class="col-lg-12"/>').append(
+                    $('<h1 class="vspace-lg"/>').append('<strong>Employment Agreement</strong>')
+                )
             )
         ),
         $('<div class="row offerClause"/>').append(
@@ -45,7 +49,7 @@ function fnView() {
                 $('<h1 class="text-left"/>').append('<strong>Job Title and Job Duties</strong>'),
                 $('<p/>').append(
                     'You are employed as ' + 
-                    ((['Full Time', 'Part Time'].indexOf(employee.CAC_Employee_Type) > -1) ? employee.CAC_Employee_Type + ' ': '') +
+                    ((['full-time', 'part-time'].indexOf(employee.CAC_Employee_Type) > -1) ? employee.CAC_Employee_Type + ' ': '') +
                     ((employee.CAC_Contract_Type == 'FWE') ? 'Seasonal ' : '') +
                     employee.Job_Title_Retail +
                     '. The duties of this position include sales and customer service and any other duties assigned to you from time to time by Apple.'
@@ -96,7 +100,7 @@ function fnView() {
         ),
         $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
-                $('<p/>').append('While your usual place of work is the ' + employee.Work_Location +' store, Apple may, at its sole discretion, require you to relocate to any other location within the Greater ' + employee.Greater_City_Area + ' Area, either temporarily or permanently, without thereby breaching this Agreement or any terms of your employment.')
+                $('<p/>').append('While your usual place of work is the ' + employee.Work_Location +' store, Apple may, at its sole discretion, require you to relocate to any other location within the greater ' + employee.Greater_City_Area + ' area, either temporarily or permanently, without thereby breaching this Agreement or any terms of your employment.')
             )
         ),
         $('<div class="row offerClause"/>').append(
@@ -104,12 +108,12 @@ function fnView() {
                 '<h1 class="text-left"><strong>Days and Hours of Work</strong></h1>'
             )
         ),
-        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'full-time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You are employed on a full-time basis. Your usual weekly hours are forty (40) hours per week exclusive of breaks (your "Basic Hours").')
             )
         ),
-        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'part-time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You are employed on a part-time basis. Your usual weekly hours are twenty (20) hours per week exclusive of breaks (your "Basic Hours").')
             )
@@ -154,12 +158,12 @@ function fnView() {
                 $('<h1 class="text-left"/>').append('<strong>Benefits Programs</strong>')
             )
         ),
-        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'part-time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('Apple offers various benefits plans to its part-time employees. You will be eligible to enroll once you have completed any applicable waiting period.')
             )
         ),
-        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Contract_Type != 'FWE' && employee.CAC_Employee_Type == 'full-time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('You may be eligible to participate in various benefit plans offered by Apple from time to time, including Retirement Savings Plan, and health, life and disability insurance plans offered by Apple to its employees. You acknowledge and agree that any benefit plan in effect from time to time is subject to availability and other requirements of Apple or the applicable insurer and the written terms and conditions contained in each plan and that Apple makes no promise about your eligibility for or entitlement to benefits and will have no liability or responsibility in the event you are denied coverage.')
             )
@@ -174,12 +178,12 @@ function fnView() {
                 $('<h1 class="text-left"/>').append('<strong>Vacation</strong>')
             )
         ),
-        (employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Employee_Type == 'part-time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('Vacation pay will be added to each paycheque in accordance with the employment standards laws of the Province in which you are employed.')
             )
         ),
-        (employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Employee_Type == 'full-time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<p/>').append('As an employee you are eligible to accrue vacation in accordance with the employment standard legislation in the Province in which you are employed.')
             )
@@ -204,7 +208,7 @@ function fnView() {
                 $('<h1 class="text-left"/>').append('<strong>Absence and Sickness</strong>'),
                 $('<p/>').append('If you are unable to attend work for any reason you must provide notice and otherwise follow Apple\’s standard policies and procedures with respect to absences and sickness.'),
                 $('<h1 class="text-left"/>').append('<strong>Service to Apple</strong>'),
-                $('<p/>').append('During your employment with Apple, you will in all respects conform to and comply with the directions and policies of Apple, including <a href="' + employee.policy_link + '" target="_blank">Apple’s Code of Business Conduct Policy</a>, and any other standard Apple employment policies that are provided to or accessible by Apple employees, perform each of the duties assigned from time to time by Apple to the best of your skill and ability, faithfully and diligently serve Apple, use your best efforts to promote the interests and reputation of Apple, and devote your full working time, attention and energies to the business of Apple.'),
+                $('<p/>').append('During your employment with Apple, you will in all respects conform to and comply with the directions and policies of Apple, including <a href="' + employee.policy_link + '" target="_blank"><u>Apple’s Code of Business Conduct Policy</u></a>, and any other standard Apple employment policies that are provided to or accessible by Apple employees, perform each of the duties assigned from time to time by Apple to the best of your skill and ability, faithfully and diligently serve Apple, use your best efforts to promote the interests and reputation of Apple, and devote your full working time, attention and energies to the business of Apple.'),
                 $('<h1 class="text-left"/>').append('<strong>Personal Information</strong>'),
                 $('<p/>').append('Your personal information will be collected, processed, transferred and safeguarded by Apple in accordance with the terms of the Employee Privacy Notice signed by you.'),
                 $('<h1 class="text-left"/>').append('<strong>Disciplinary and Grievance Procedures</strong>'),
