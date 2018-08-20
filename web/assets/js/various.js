@@ -1567,3 +1567,15 @@ $(document).on('ready', function() {
 
 
 });
+
+// require if not local nationality = NZ
+function eFormRequireForeign(sValue,sName,sField) {
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = $(document.getElementsByName(sName)[0]);
+  var dep = field.is(':visible') ? $($(field).data('depends')) : $($(document.getElementsByName(sName + '_display')[0]).data('depends'));
+  var nationalityRequired = 'NZ';
+  if (dep.val() !== nationalityRequired) {
+    return (sName.indexOf("_display") >= 0) ? eFormRequiredDate(sValue,sName,sField) : eFormRequiredField(sValue,sName,sField);
+  }
+  return true;
+}

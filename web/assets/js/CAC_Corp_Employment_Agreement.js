@@ -1,9 +1,11 @@
 function fnView() {
     $("#markup").html("").append(
         // add apple img logo header
-        $('<div class="row vspace offerClause"/>').append(
-            $('<div class="col-lg-1 col-md-1 col-sm-4 col-xs-4 pull-right"/>').append(
-                $('<img src="img/apple_logo.jpg" alt="" class="img-responsive"/>')
+        $('<div class="vspace offerClause"/>').append(
+            $('<div class="row" />').append(
+                $('<div class="col-lg-1 col-md-1 col-sm-4 col-xs-4 pull-right"/>').append(
+                    $('<img src="img/apple_logo.jpg" alt="" class="img-responsive"/>')
+                )
             )
         ),
         // add the form title
@@ -409,14 +411,14 @@ function fnView() {
                 $('<p/>').append('As part of your job duties, you may be required from time to time to travel to the United States or elsewhere and will be reimbursed in accordance with <a href="' + employee.policy_link + '" target="_blank">Apple’s Accounting and Finance Policy</a> for such travel. If there is any reason why you cannot travel outside Canada, you must advise us prior to hire.')
             )
         ),
-        (employee.CAC_Employee_Type == 'Full Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Employee_Type == 'full-time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<h1/>').append('<strong>Days and Hours of Work</strong>'),
                 $('<p/>').append('You are employed on a full-time basis. Your usual weekly hours are forty (40) hours per week exclusive of breaks (your “Basic Hours”). Your actual working days and hours will be determined by your manager who will notify you in advance, at the beginning of each week, what your working schedule will be for that week.'),
                 $('<p/>').append('Apple reserves the right to have you work either a reasonable number of additional hours or fewer hours than your Basic Hours as its business requires. Apple may implement these changes to your hours without prior notice and without thereby breaching any term of this Agreement or your employment with Apple.')
             )
         ),
-        (employee.CAC_Employee_Type == 'Part Time') && $('<div class="row offerClause"/>').append(
+        (employee.CAC_Employee_Type == 'part-time') && $('<div class="row offerClause"/>').append(
             $('<div class="col-lg-12"/>').append(
                 $('<h1/>').append('<strong>Days and Hours of Work</strong>'),
                 $('<p/>').append(
@@ -633,7 +635,7 @@ $(document).on('ready',function() {
             [1, 'hidden_pg2']
         ];
         var arrParts3 = [
-            [0, '<div class="col-lg-4 vspace"><img src="' + employee.heidi_sig + '" class="img-responsive"/></div>'],
+            [0, '<div class="col-lg-4 vspace"><img src="' + employee.gina_sig + '" class="img-responsive"/></div>'],
             [1, 'hidden_pg3']
         ];
         var arrParts4 = [
