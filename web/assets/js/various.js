@@ -1579,3 +1579,37 @@ function eFormRequireForeign(sValue,sName,sField) {
   }
   return true;
 }
+
+function eFormTodayFormatted(sValue,sName,sField) {
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = $(document.getElementsByName(sName)[0]);
+  if (field.data('realdate') === undefined || sValue.length < 1) {
+    return eFormRequiredField("", sName, sField);
+  }
+  var d = new Date();
+  if (field.data('realdate') !== d.toLocaleDateString()) {
+    AddError(sField, 'Error in validation, current date must be set on', '');
+    return false;
+  }
+  return true;
+}
+
+function eFormRequireByDep(sValue,sName,sField) {
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var dep = $(document.getElementsByName(sName)[0]).data('dep');
+  var validation = $(document.getElementsByName(sName)[0]).data('validation');
+  if (validation && sValue.length > 0) {
+    switch(validation) {
+      case "numeric":
+        if (!/^[0-9]+$/.test(sValue)) {
+          AddError(sField, 'Error in validation, only numbers are allowed in', '');
+          return false;
+        }
+      break;
+    }
+  }
+  if (!$(dep).is(':checked')) {
+    return eFormRequiredField(sValue,sName,sField);
+  }
+  return true;
+}
