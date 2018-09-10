@@ -1613,3 +1613,149 @@ function eFormRequireByDep(sValue,sName,sField) {
   }
   return true;
 }
+
+// data-checkbox-group='worked-at-apple'
+(function($){
+  $.fn.checkOne = function() {
+    var checkboxes = $('[data-checkbox-group="' + $(this).data('checkbox-group') + '"]')
+    $.each(checkboxes, function(k,v){
+      $(v).prop('checked', false);
+    });
+    $(this).prop('checked', true)
+  }
+})(jQuery);
+  $('[data-checkbox-group="worked-at-apple"]').on('change', function() {
+    $(this).checkOne();
+  });
+
+$(document).on('ready', function() {
+  var assignee = "<$client.account.username_first> <$client.account.username>";
+  var recruiter = "<$client.tEventManagers_16.First_Name> <$client.tEventManagers_16.Last_Name>";
+  var asignatory = "<$client.account.username_first> <$client.account.username>";
+  var recruiter_signature = document.getElementById('recruiter_signature');
+  var recruiter_name = document.getElementById('recruiter_name');
+  var rec_name =  document.getElementById('name2');
+  var finalval = "";
+  if(recruiter_signature.readOnly == false){
+    if(assignee == recruiter){
+      finalval = recruiter;
+    }
+    else{
+      finalval = assignee + ' (on behalf of ' + recruiter +')';
+    }
+
+    recruiter_signature.value = finalval;
+    recruiter_name.value = <$client.env.eval((client.role.rc_canada_company_signatory==1)?'asignatory':'assignee')>;
+    rec_name.value = <$client.env.eval((client.role.rc_canada_company_signatory==1)?'asignatory':'assignee')>;
+  }
+  if(!$('#signature2').val().length) {
+    recruiter_name.value = <$client.env.eval((client.role.rc_canada_company_signatory==1)?'assignee':'recruiter')>;
+    rec_name.value = <$client.env.eval((client.role.rc_canada_company_signatory==1)?'assignee':'recruiter')>;
+  }
+  var sigholder = document.getElementsByClassName('signDisplay2');
+  sigholder[0].innerHTML = recruiter_signature.value;
+  disableCalButton("signDate");
+});
+
+$(document).on('ready', function() {
+  var keepIndPan = function(el) {
+    if (el.val() === "IND") {
+      $('#NationalID_Type option:not([value="IND-PAN"])').remove();
+    }
+  }
+  keepIndPan($('#NationalID_Country'));
+  $('#NationalID_Country').on('change', function() {
+    keepIndPan($(this));
+  });
+});
+
+/**
+ * SERVICES-35248 | jjucutan | LOREAL NZ - Please create custom EXIT INTERVIEW EFORM
+ */
+function eFormRequireByDep(sValue,sName,sField) {
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var depName = $($(document.getElementsByName(sName)[0]).data('requires')).prop('name');
+  var deps = $(document.getElementsByName(depName));
+  var requires = $(document.getElementsByName(sName)[0]).data('require-value');
+  $.each(deps, function(k,v) {
+    if($(v).is(':checked') && $(v).val() === requires) {
+      return eFormRequiredField(sValue,sName,sField);
+    }
+  });
+  return true;
+}
+
+var isHr = <$client.env.eval((url.forWhom!=account.userguid)?'true':'false')>;
+if (isHr) {
+  $('#hr').removeClass('hide');
+}
+
+  var isSignatory = <$client.env.eval((client.role.rc_canada_company_signatory==1)?'true':'false')>;
+  if (!isSignatory && !$('.startDate').is(':disabled')) {
+    setTimeout(function() {
+      $('#signature2, #signature, #sv1, #sv2, #recruiter_name, #recruiter_signature, #name1, #name2, .signDate').val('')
+    },500);
+  }
+
+  var completeStamp = function(id) {
+    if(id.length) {
+      document.getElementById(id).value = 0;console.log(document.getElementById(id).value);
+    }
+  }
+
+  var isSignatory = <$client.env.eval((client.role.rc_canada_company_signatory==1)?'true':'false')>;
+  var isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+  var init = function() {
+    if(FORM_COMPLETED.length) {
+      return false;
+    }
+    if (isSignatory && parseInt($('#SignatoryStamp').val()) === 0) {
+      $('#signature2').val('');
+      $('#SignatoryStamp').val(1);
+      setTimeout(function() {
+        $('.signDate2').val('');
+      }, 400);
+    }
+    if (isEmployee &&  parseInt($('#EmployeeStamp').val()) === 0) {
+      $('#signature').val('');
+      $('#EmployeeStamp').val(1);
+      setTimeout(function() {
+        $('.signDate').val('');
+      }, 400);
+    }
+    if(!isEmployee && !isSignatory) {
+      $('#signature2, #signature, #name2').val('');
+      setTimeout(function() {
+        $('.signDate, .signDate2').val('');
+      }, 400);
+    }
+  }
+  setTimeout(init(),400);
+  $('form').on('click', '#ButtonSaveAndComplete', function() {
+      completeStamp("<$client.env.eval((client.role.rc_canada_company_signatory==1)?'SignatoryStamp':'')>");
+      completeStamp("<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>");
+      void(funcSaveAndComplete());
+  });
+
+
+
+
+  if (!reopened) {
+    var disableRest = false;
+    $.each($('#a26_First_Level_Supervisors_Signature, #a28_Second_Level_Supervisors_Signature, #a30_Third_Level_Supervisors_Signature, #a32_Human_Resources_Signature'), function(k,v) {
+      if ($('[data-date-id="' + $(v).data('target-level') + '"]')) {
+        $(v).disableDate().disableField();
+      }
+      if ($($(v).data('target-level')).val() == '<$client.account.loginID>') {
+        disableRest = true;
+        return true;
+      }
+      if (isHR && $(v).prop('id') == 'a32_Human_Resources_Signature') {
+        return true;
+      }
+      else if (isHR || disableRest || k !== signed) {
+        $(v).disableField();
+        $('[data-date-id="' + $(v).data('target-level') + '"]').disableDate().disableField();
+      }
+    })
+  }
