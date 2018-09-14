@@ -81,8 +81,10 @@
                         <span class="floating-label"><$client.env.promptLabor_booklet_series></span>
                     </div>
                 </div>
-                <div class="input_wrapper" data-location-group="BRA">
-                    <strong>Does this employee qualify for a bonus plan?</strong>
+                <div class="input_wrapper" data-location-group="BRA" data-fieldgroup-title="<$client.env.promptBonus_Plan>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Bonus_Plan_label">
+                    <label id="Bonus_Plan_label">
+                        <strong>Does this employee qualify for a bonus plan?</strong>
+                    </label>
                     <$client.env.inputBonus_Plan>
                 </div>
                 <div class="input_wrapper" data-location-group="BRA">
@@ -106,7 +108,7 @@
                     <$client.env.inputLong_Date_pr_placeholder>
                 </div>
                 <div class="hr-sect" data-location-group="MEX">
-                    Mexico: Onboarding Event Header
+                    Mexico: Onboarding Event
                 </div>
                 <div class="input_wrapper" data-location-group="MEX" data-fieldgroup-title="<$client.env.promptDOB>">
                     <span class="floating-label"><$client.env.promptDOB></span>
@@ -245,6 +247,15 @@
             }
         });
     }
+    var fieldHasVal = function(el) {
+        var hasVal = false;
+        $.each(el, function(k, v) {
+            if ($(v).val().length) {
+                hasVal = true;
+            }
+        });
+        return hasVal;
+    }
     var isCheckboxChecked = function(el) {
         var hasChecked = false;
         $.each(el, function(k,v){
@@ -263,6 +274,7 @@
                     }
                 });
             }
+            el.val([defaultValue]);
         }
         if (el.is('input[type="text"]') && el.val().trim().length < 1) {
             el.val(defaultValue);
@@ -287,30 +299,25 @@
         $('[name$="DOB_display"]').trigger('change');
 
         if (!isCheckboxChecked($('[name$="Bonus_Plan"]'))) {
-            if ($('[name$="CSIncentivePlan"]').val().trim().length || $('[name$="CSIncentivePlan_fixed"]').val().trim().length) {
-                $('[name$="Bonus_Plan"][value="No"]').prop('checked', null);
-                $('[name$="Bonus_Plan"][value="CS Incentive Plan"]').prop('checked', 'checked');
+            if (fieldHasVal($('[name$="CSIncentivePlan"], [name$="CSIncentivePlan_fixed"]')) && !fieldHasVal($('[name$="eIP_Target_Pct"]'))) {
+                setDefaultValue($('[name$="Bonus_Plan"]'), "CS Incentive Plan");
             }
-            if ($('[name$="eIP_Target_Pct"]').val().trim().length) {
-                $('[name$="Bonus_Plan"][value="No"]').prop('checked', null);
-                $('[name$="Bonus_Plan"][value="Annual Incentive Plan"]').prop('checked', 'checked');
+            if (!fieldHasVal($('[name$="CSIncentivePlan"], [name$="CSIncentivePlan_fixed"]')) && fieldHasVal($('[name$="eIP_Target_Pct"]'))) {
+                setDefaultValue($('[name$="Bonus_Plan"]'), "Annual Incentive Plan");
+            }
+            if ((!fieldHasVal($('[name$="CSIncentivePlan"], [name$="CSIncentivePlan_fixed"]')) && !fieldHasVal($('[name$="eIP_Target_Pct"]')))) {
+                setDefaultValue($('[name$="Bonus_Plan"]'), "No");
+            }
+            if (fieldHasVal($('[name$="CSIncentivePlan"], [name$="CSIncentivePlan_fixed"]')) && fieldHasVal($('[name$="eIP_Target_Pct"]'))) {
+                $('[name$="Bonus_Plan"]:checked').prop('checked', false);
             }
         }
+
         // set default value
-        setDefaultValue($('[name$="Bonus_Plan"]'), "No");
         setDefaultValue($('[name$="Manager"]'), "No");
         setDefaultValue($('[name$="Job_Title_PR"]'), $('[name$="Business_Title"]').val());
         setDefaultValue($('[name$="job_title_mx"]'), $('[name$="Business_Title"]').val());
         setDefaultValue($('[name$="System_Title_pr"]'), $('[name$="SystemTitle"]').val());
-
-        // group checkboxes
-        $('[name$="Bonus_Plan"]').on('change', function() {
-            if ($(this).val() === "No") {
-                $('[name$="Bonus_Plan"]:not([value="No"])').prop('checked', null)
-            } else {
-                $('[name$="Bonus_Plan"][value="No"]').prop('checked', null)
-            }
-        });
 
         // custom datepicker 
         var monthsPortuguese = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
@@ -339,7 +346,7 @@
             focusInputLabel($(this));
         });
 
-        // hide section not on event location
+        // hide sections not on event location
         $.each($('[data-location-group]'), function(k,v) {
             if($(v).data('location-group') !== $('#Evt_Location_Code').val().substring(0,3)) {
                 $(v).hide().find('input[type="text"]').val("");
@@ -348,12 +355,17 @@
 
         // pass validation data to each fields
         $.each($('[data-fieldgroup-validation]'), function(k,v) {
-            $(v).find('input[type="text"]:not(":hidden"), select').data('validation', $(v).data('fieldgroup-validation'));
+            $(v).find('input:not(":hidden"), select').data('validation', $(v).data('fieldgroup-validation'));
+        });
+        
+        // pass target label to each radio or checkbox fields
+        $.each($('[data-fieldgroup-targetlabel]'), function(k,v) {
+            $(v).find('input[type="checkbox"]:not(":hidden"), input[type="radio"]:not(":hidden")').data('label', $(v).data('fieldgroup-targetlabel'));
         });
 
         // pass title data to each fields
         $.each($('[data-fieldgroup-title]'), function(k,v) {
-            $(v).find('input[type="text"]:not(":hidden"), select').data('title', $(v).data('fieldgroup-title'));
+            $(v).find('input:not(":hidden"), select').data('title', $(v).data('fieldgroup-title'));
         });
 
         // validate each field
@@ -365,7 +377,7 @@
         $('form').on('click', '#TaskSummary_ButtonSave', function(e) {
             e.preventDefault();
             var formIsValid = true;
-            $.each($('form input[type="text"]:not(":hidden"), form select'), function(k,v) {
+            $.each($('form input:not(":hidden"), form select'), function(k,v) {
                 if(!validateField($(v))) {
                     formIsValid = false;
                 }
@@ -377,7 +389,5 @@
                 $("html, body").animate({ scrollTop: 0 }, "slow");
             }
         });
-
-        var isProfileCompleted = sTaskComplete;
     });
 </script>
