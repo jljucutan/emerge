@@ -1568,9 +1568,9 @@ $(document).on('ready', function() {
 
 });
 
-// require if not local nationality = NZ
-function eFormRequireForeign(sValue,sName,sField) {
+// require if not local nationality = NZfunction eFormRequireForeign(sValue,sName,sField) {
   if ('<$client.env.serversidevalidation>' == '1') {return true;}
+
   var field = $(document.getElementsByName(sName)[0]);
   var dep = field.is(':visible') ? $($(field).data('depends')) : $($(document.getElementsByName(sName + '_display')[0]).data('depends'));
   var nationalityRequired = 'NZ';
@@ -1759,3 +1759,75 @@ if (isHr) {
       }
     })
   }
+
+$(document).on('ready', function() {
+  var numerify = function(el, disable) {console.log(el);
+    if (disable !== false) {
+      el.addClass('remove-alpha');
+      return el;
+    }
+    el.removeClass('remove-alpha');
+    return el;
+  }
+  $('form').on('keyup paste change', '.remove-alpha', function () {
+      if (!$(this).val().match(/^[0-9]$/)) {
+          $(this).val($(this).val().replace(/[^0-9]/g, ''));
+      }
+  });
+  $('#nid_type').on('change', function() {
+    if ($(this).val() === "MYS-SOSCO") {
+      numerify($('[name$="nid_number"]'));
+      $('[name$="nid_number"]').trigger('change');
+    }
+    else {
+      numerify($('[name$="nid_number"]'), false);
+    }
+  });
+  if ($('#nid_type').val() === "MYS-SOSCO") {
+    $('[name$="nid_number"]').trigger('change');
+  }
+});
+
+
+function eFormValidateMaxFloat(sValue,sName,sField) { // SERVICES-35563 | Avery Dennison: JS Validation
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var isValid = true;
+  if (!sValue.trim().match(/^-?\d*(\.\d+)?$/)){
+    AddError(sField, 'Error in validation, input value should be valid number in', '');
+    isValid = false;
+  }
+  var MAX_CHARS = 4; // set this to whatever maximum characters you like
+  if (sValue.trim().length > MAX_CHARS){
+    AddError(sField, 'Error in validation, input value should not exceed ' + MAX_CHARS + ' characters in', '');
+    isValid = false;
+  }
+  var MAX_VALUE = 1.00; // set this to whatever maximum value you like
+  if (parseFloat(sValue) > parseFloat(MAX_VALUE)) {
+    AddError(sField, 'Error in validation, input value should not exceed ' + MAX_VALUE + ' in', '');
+    isValid = false;
+  }
+  return isValid;
+}
+
+////////////////////////////////////////////////////
+//  ValidateW4Allowances Custom
+//  SERVICES-35347 | jjucutan | Seattle Children's Hospital - Research Foundation -RC- W-4 Validation
+////////////////////////////////////////////////////
+function ValidateW4Allowances_Custom(sVal,sName,sID) {
+    if('<$client.env.serversidevalidation>'=='1'){ return true; }
+    if(!sVal.trim().length) {
+      return eFormRequiredField(sVal,sName,sID)
+    }
+    if(!/^[0-9]+$/.test(sVal)) { 
+      AddError(sID, 'Error in validation, only whole numbers are allowed in', ''); 
+      return false; 
+    }
+    if(parseInt(sVal) < 1) {
+      AddError(sID, 'Error in validation, input value should greater than 0 in', ''); 
+      return false; 
+    }
+    if(document.getElementById('exempt').value.length>0) {
+      return true; 
+    }
+    return true;
+}
