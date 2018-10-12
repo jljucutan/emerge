@@ -1831,3 +1831,130 @@ function ValidateW4Allowances_Custom(sVal,sName,sID) {
     }
     return true;
 }
+
+var toggleBrazilFields = function(nationalID) {
+  switch (nationalID) {
+    case "BRA-CTPS":
+      $('#toggleable-merge').removeClass().addClass('merge');
+      $('#Series_Number, #Issuing_Agency').parent().show();
+    break;
+    case "BRA-VRN":
+      $('#toggleable-merge').removeClass().addClass('merge');
+      $('#Series_Number').parent().show();
+      $('#Issuing_Agency').val('').parent().hide();
+    break;
+    case "BRA-RNE":
+    case "BRA-RG":
+      $('#toggleable-merge').removeClass().addClass('input_wrapper');
+      $('#Series_Number').val('').parent().hide();
+      $('#Issuing_Agency').parent().show();
+    break;
+    default:
+    $('#toggleable-merge').removeClass().addClass('input_wrapper');
+    $('#Series_Number, #Issuing_Agency').val('').removeClass("input-error").parent().hide();
+    $(".issuing-agency-error, .series-number-error").removeClass("error-message"); 
+  }
+}
+
+  var toggleBrazilFields = function(nationalID) {
+    switch (nationalID) {
+      case "BRA-CTPS":
+        $('#nid_series_number, #nid_issuing_agency').closest('.row').show();
+      break;
+      case "BRA-VRN":
+        validateField($('#nid_issuing_agency'), true);
+        $('#nid_series_number').closest('.row').show();
+        $('#nid_issuing_agency').val('').closest('.row').hide();
+      break;
+      case "BRA-RNE":
+      case "BRA-RG":
+        validateField($('#nid_series_number'), true);
+        $('#nid_series_number').val('').closest('.row').hide();
+        $('#nid_issuing_agency').closest('.row').show();
+      break;
+      default:
+      validateField($('#nid_series_number'), true);
+      validateField($('#nid_issuing_agency'), true);
+      $('#nid_series_number, #nid_issuing_agency').val('').closest('.row').hide();
+    }
+  }
+
+$('#NationalID_Type').on('change', function() {
+});
+
+$(document).on('ready', function() {
+  var todaysDate = new Date();
+  var months = ["January","February","March","April","May","June","July", "August","September","October","November","December"];
+  $('.modal').on('click', '#hr-sign', function() {
+    if (validateSignature('signature','eSignature1','','modal','over','sv')) {
+      $('[data-date-day="hr-date"]').val(todaysDate.getDate());
+      $('[data-date-month="hr-date"]').val(months[todaysDate.getMonth()]);
+      $('#hidden_pg2').val('<p>Date signed: this ' + todaysDate.getDate() + ' of ' + months[todaysDate.getMonth()]  + ', ' + todaysDate.getFullYear() + '</p>');
+    }
+    xbObj('eSignature1').value='';
+  });
+  $('.modal').on('click', '#hr-clear', function() {
+    xbObj('signature').value='';
+    showHide('modal');
+    showHide('over');
+    xbObj('eSignature1').value='';
+    $('[data-date-day="hr-date"],[data-date-month="hr-date"], #hidden_pg2').val('');
+  });
+  $('.modal').on('click', '#nh-sign', function() {
+    if(validateSignature('signature2','eSignature2','nh-name','modal2','over','sv2')) {
+      $('[data-date-day="nh-date"]').val(todaysDate.getDate());
+      $('[data-date-month="nh-date"]').val(months[todaysDate.getMonth()]);
+      $('#hidden_pg3').val('<p>Date signed: this ' + todaysDate.getDate() + ' of ' + months[todaysDate.getMonth()]  + ', ' + todaysDate.getFullYear() + '</p>');
+    }
+    xbObj('eSignature2').value='';
+  });
+  $('.modal').on('click', '#nh-clear', function() {
+    xbObj('signature2').value='';
+    showHide('modal2');showHide('over');
+    xbObj('eSignature2').value='';
+    $('[data-date-day="nh-date"],[data-date-month="nh-date"], #hidden_pg3').val('');
+  });
+  $(".modal").hide();
+});
+
+  $('#united-kingdom-onboarding-application').on('click', '.fancybox', function() {
+    window.open($(this).data('document'));
+    $(this).find('img.invisible').removeClass('invisible');
+    $(this).find('input[type="checkbox"]').prop('checked', true);
+  });
+  $.each($('.fancybox input[type="checkbox"]'), function(k,v) {
+    if($(v).is(':checked')) {
+      $(v).closest('.fancybox').find('img.invisible').removeClass('invisible');
+    }
+  });
+
+function eFormValidTaxID(sValue,sName,sField) {
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if(sValue.trim().length < 1) {
+    return true;
+  }
+  if(!/^[0-9]+$/.test(sValue.trim())) {
+    AddError(sField, 'Error in validation, only numeric input allowed in', '');
+    return false;
+  }
+  if(sValue.trim().length !== 11) {
+    AddError(sField, 'Error in validation, input length must be 11 numeric digits in', '');
+    return false;
+  }
+  return true;
+}
+function eFormValidSSNO(sValue,sName,sField) {
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if(sValue.trim().length < 1) {
+    return true;
+  }
+  if(!/^[a-z0-9]+$/.test(sValue.trim())) {
+    AddError(sField, 'Error in validation, only alphanumeric input allowed in', '');
+    return false;
+  }
+  if(sValue.trim().length !== 12) {
+    AddError(sField, 'Error in validation, input length must be 12 alphanumeric characters in', '');
+    return false;
+  }
+  return true;
+}

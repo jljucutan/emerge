@@ -209,6 +209,7 @@
     .input-error, .input-error:focus {outline: none; border: 1px solid rgb(255, 77, 77); border-radius: none !important; box-shadow: none !important; margin-bottom: -2px; !important;}
     .input-error, .input-error:focus {outline: none; border: 1px solid rgba(255, 77, 77, 0.6) !important;box-shadow: none;}
     .floating-label.label-focus {font-size: 12px !important; font-weight: 600 !important; top: 5px;}
+    #EditProfile .input-focus {border: 1px solid #0070BA !important;}
     #TaskSummary_ButtonCancel, #TaskSummary_ButtonSave, #EUPDefaultSaveButton {display: none;}
     #EditProfile {align-items: stretch !important;}
     #EditProfile input[type="checkbox"], #EditProfile input[type="radio"] {width: auto;}
@@ -245,6 +246,7 @@
      * Define here functions that can be reused
      */
     var focusInputLabel = function(el, isFocused) {
+        el.removeClass('input-focus');
         var label = el.closest('.input_wrapper')
             .find('span.floating-label')
             .removeClass('label-focus')
@@ -254,6 +256,7 @@
         }
         if (isFocused === true) {
             label.css({"color": "#0070BA"});
+            el.addClass('input-focus');
         }
     }
     var updateTargetOnChange = function(origin, target) {
@@ -341,16 +344,18 @@
         setDefaultValue($('[name$="job_title_mx"]'), $('[name$="Business_Title"]').val());
         setDefaultValue($('[name$="System_Title_pr"]'), $('[name$="SystemTitle"]').val());
 
-        // add when requested
-        // $('[name$="MaritalStatus"] > option:not([value=""]):not([value^="' + $("#Evt_Location_Code").val().substring(0,3) + '"])').remove();
-
         // custom datepicker 
         var monthsPortuguese = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"];
         if ($('#Long_Date_pr_placeholder').val().length < 1) {
             $('#Long_Date_pr_placeholder').val("<$client.env.eval(client.tEventDates_8.Value.subString(8,9))>-<$client.env.eval(    client.tEventDates_8.Value.subString(5,6))>-<$client.env.eval(client.tEventDates_8.Value.subString(0,3))>");
         }
         $('#Long_Date_pr_placeholder') 
-            .datepicker({"dateFormat": "dd-mm-yy"})
+            .datepicker({
+                "dateFormat": "dd-mm-yy",
+                "changeMonth": true,
+                "changeYear": true,
+                "yearRange": "-100:+100"
+            })
             .css({'position': 'absolute', 'top': 0, 'left': 0, 'opacity': 0})
             .on('change', function() {
                 var dateArr = $(this).val().split("-");
@@ -375,11 +380,14 @@
             focusInputLabel($(this));
         });
         $('form').on('focus change', '.datepicker_button', function() {
-            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'), true);
+            focusInputLabel($(this).parent().find('input[type="text"]'), true);
         }).on('blur change', '.datepicker_button', function() {
-            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'));
+            focusInputLabel($(this).parent().find('input[type="text"]'));
             $(this).parent().find('.hasDatepicker').trigger('change'); 
         });
+
+        // remove irrelevant options under marital status
+        $('#Emp_MaritalStatus').find('option:not([value=""]):not([value^="' + $('#Evt_Location_Code').val().substring(0,3) + '"])').remove();
 
         // hide sections not on event location
         $.each($('[data-location-group]'), function(k,v) {
@@ -409,9 +417,9 @@
         });
 
         // validate each field
-        $('form').on('blur click', 'input[type="text"]:not(":hidden"), select', function() {
+        $('form').on('blur change', 'input[type="text"]:not(":hidden"), select', function() {
             if(!validateField($(this))) {
-                $(this).parent().find('.text-error').css({'display': 'block', 'margin-bottom': '-2px'}); // style hack since IE is such a reliable browser ;-)
+                $(this).parent().find('.text-error').css({'display': 'inline-block', 'margin-bottom': '-2px'}); // style hack since IE is such a reliable browser ;-) // changed block to inline-block
             }
         });
 
