@@ -1958,3 +1958,91 @@ function eFormValidSSNO(sValue,sName,sField) {
   }
   return true;
 }
+
+function isDependentOnLevel(sVal, sName, sID) {
+    var isValid = true;
+    if('<$client.env.serversidevalidation>'=='1'){return isValid;}
+    var levelSource =  $('[data-level="source"]').val(),
+        level = $("#" + sID).data('level');
+    if (levelSource < 1) {
+        return isValid;
+    }
+    switch (parseInt(levelSource)) {
+        case '1':
+            if (level == 1) {return eFormRequiredField(sVal, sName, sID);}
+            break;
+        case '2':
+            if (level <= 2) {return eFormRequiredField(sVal, sName, sID);}
+            break;
+        case '3':
+            if (level <= 3) {return eFormRequiredField(sVal, sName, sID);}
+            break;
+        case '4':
+            if (level <= 4) {return eFormRequiredField(sVal, sName, sID);}
+            break;
+        case '5':
+            if (level <= 5) {return eFormRequiredField(sVal, sName, sID);}
+            break;
+        default:
+            if (level <= 6) {return eFormRequiredField(sVal, sName, sID);}
+    }
+}
+
+function eFormMonthYearFormat(sVal, sName, sID) {
+    if('<$client.env.serversidevalidation>'=='1'){return true;}
+    if (sVal.length < 1) {
+      return true;
+    }
+    if (/^[0-9]{2}\/[0-9]{4}$/.test(sVal) || /^[0-9]{2}\/[0-9]{2}$/.test(sVal)) {
+      return true;
+    }
+    AddError(sID, 'Error in validation, date format should be MM/YYYY or MM/YY in', '');
+    return false;
+}
+
+function eFormRequireByController(sVal, sName, sID) {
+    if('<$client.env.serversidevalidation>'=='1'){return true;}
+    if (sVal.length > 0) {
+      return true;
+    }
+    var controller = $($(document.getElementsByName(sName)).data('controller'));
+    if (controller.val().trim().length > 0) {
+      return eFormRequiredField(sVal, sName, sID);
+    }
+    return true;
+}
+
+function eFormRequireEnabled(sVal, sName, sID) {
+    if('<$client.env.serversidevalidation>'=='1'){return true;}
+    if (!$(document.getElementById(sID)).prop('disabled', 'disabled')) {
+      return eFormRequiredField(sVal, sName, sID);
+    }
+    return true;
+}
+
+$(document).on('ready', function() {
+  var enableTargetByValue = function(parent, target, val){
+    if(parent.is(':checked') && parent.val() === val) {
+      target.removeAttr('disabled');
+      return;
+    }
+    target.prop('disabled', 'disabled').val('');
+  };
+  $('[data-target-require]').on('change', function() {
+    enableTargetByValue($(this), $($(this).data('target-require')), 'Other');
+  });
+  $.each($('[data-target-require]:checked'), function(k, v) {
+    setTimeout(function() {
+      enableTargetByValue($(v), $($(v).data('target-require')), 'Other');
+    }, 500);
+  });
+});
+
+function phoneDashesRequired(sVal, sName, sID) {
+  var iSS = <$client.env.eval(client.env.serversidevalidation==1?true:false)>;
+    if(iSS){return true;}
+    if(sVal.length < 1) {
+      return eFormRequiredField(sVal, sName, sID);
+    }
+    return phoneDashesRequired(sVal, sName, sID);
+}
