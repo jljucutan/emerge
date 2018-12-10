@@ -54,7 +54,8 @@
                 <div class="merge">
                     <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptSALARY_CURRENCY>" data-fieldgroup-validation="required">
                         <span class="floating-label"><$client.env.promptSALARY_CURRENCY></span>
-                        <$client.env.inputSALARY_CURRENCY>
+                        <select name="SALARY_CURRENCY_pseudo" id="SALARY_CURRENCY_pseudo">
+                        </select>
                     </div>
                     <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptSalary_Amount>" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
                         <span class="floating-label"><$client.env.promptSalary_Amount></span>
@@ -63,17 +64,17 @@
                 </div>
                 <div class="merge">
                     <div class="input_wrapper mb-0 hidden-xs"></div>
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptSalaryOffered>" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
-                        <span class="floating-label"><$client.env.promptSalaryOffered></span>
+                    <div class="input_wrapper mb-0" data-fieldgroup-title="Monthly Pay Rate Amount" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
+                        <span class="floating-label">Monthly Pay Rate Amount</span>
                         <$client.env.inputSalaryOffered>
                     </div>
                 </div>
-                <div class="input_wrapper" data-fieldgroup-title="<$client.env.prompteIP_Target_Pct>" data-fieldgroup-maxlength="3" data-fieldgroup-validation="regex"  data-fieldgroup-regex="^[0-9]+$" data-fieldgroup-message="consisting of numbers only">
-                    <span class="floating-label"><$client.env.prompteIP_Target_Pct></span>
+                <div class="input_wrapper" data-fieldgroup-title="Annual Incentive Plan Percentage (AIP)" data-fieldgroup-maxlength="3" data-fieldgroup-validation="regex"  data-fieldgroup-regex="^[0-9]+$" data-fieldgroup-message="consisting of numbers only">
+                    <span class="floating-label">Annual Incentive Plan Percentage (AIP)</span>
                     <$client.env.inputeIP_Target_Pct>
                 </div>
-                <div class="input_wrapper mb-30" data-fieldgroup-title="<$client.env.promptNEW_HIRE_REST_STOCK_UNITS>" data-fieldgroup-validation="regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
-                    <span class="floating-label"><$client.env.promptNEW_HIRE_REST_STOCK_UNITS></span>
+                <div class="input_wrapper mb-30" data-fieldgroup-title="Restricted Stock Units (USD $ Amount)" data-fieldgroup-validation="regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
+                    <span class="floating-label">Restricted Stock Units (USD $ Amount)</span>
                     <$client.env.inputNEW_HIRE_REST_STOCK_UNITS>
                 </div>
 
@@ -89,9 +90,10 @@
                     <$client.env.inputHire_on_Bonus_Eligible>
                 </div>
                 <div class="merge equal">
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptHIRE_ON_BONUS_CRNCY_CD>" data-fieldgroup-validation="required">
-                        <span class="floating-label"><$client.env.promptHIRE_ON_BONUS_CRNCY_CD></span>
-                        <$client.env.inputHIRE_ON_BONUS_CRNCY_CD>
+                    <div class="input_wrapper mb-0" data-fieldgroup-title="Currency Code" data-fieldgroup-validation="required">
+                        <span class="floating-label">Currency Code</span>
+                        <select name="HIRE_ON_BONUS_CRNCY_CD_pseudo" id="HIRE_ON_BONUS_CRNCY_CD_pseudo">
+                        </select>
                     </div>
                     <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptHIRE_ON_BONUS_AMOUNT>" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
                         <span class="floating-label"><$client.env.promptHIRE_ON_BONUS_AMOUNT></span>
@@ -125,7 +127,7 @@
                 </div>
                 <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptProbationPeriodTime>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#ProbationPeriodTime_label">
                     <label id="Language_Allowance_label">
-                        <strong>Select the probation period for this employee.</strong>
+                        <strong>Select the probation period for this employee (in months).</strong>
                     </label>
                     <$client.env.inputProbationPeriodTime>
                 </div>
@@ -201,6 +203,12 @@
             </div>
         </div>
     </div>
+</div>
+
+<div style="display: none;">
+    <$client.env.inputSALARY_CURRENCY>
+    <$client.env.inputHIRE_ON_BONUS_CRNCY_CD>
+    <$client.env.inputCurrency_Code_new>
 </div>
 
 <input type="hidden" id="Site_Name" name="Site_Name" value="<$client.env.index.site_name>" />
@@ -286,10 +294,28 @@
             $('#EUPDefaultSaveButton').appendTo('#save').show();
         }
 
+        // fill pseudo selects with real options
+        $('[name$="Currency_Code_new"]').val("");
+        $('#SALARY_CURRENCY_pseudo').append($('[name$="Currency_Code_new"] > option').clone());
+        $('#HIRE_ON_BONUS_CRNCY_CD_pseudo').append($('[name$="Currency_Code_new"] > option').clone());
+
         // load form when all set
         $('#EditProfile_wrapper').fadeIn();
-        
 
+        // set default values
+        $('select[name$="SALARY_CURRENCY_pseudo"]').val($('input[name$="SALARY_CURRENCY"]').val());
+        $('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]').val($('input[name$="HIRE_ON_BONUS_CRNCY_CD"]').val());
+        setDefaultValue($('[name$="China_Entity_Name"]'), "<$client.tForWhomUserInfo.EnityName>");
+        setDefaultValue($('[name$="China_Entity_Address"]'), "<$client.tForWhomUserInfo.EntityAddress>");
+        setDefaultValue($('[name$="China_Event_Location"]'), "<$client.tEventCategories_Category_11.Value>");
+        setDefaultValue($('[name$="China_Business_Card_Title"]'), "<$client.tForWhomUserInfo.Business_Title>");
+        setDefaultValue($('[name$="China_Job_Type"]'), "<$client.tForWhomUserInfo.JobType>");
+        setDefaultValue($('[name$="China_Current_Date"]'), new Date().getDate() + " " + months[new Date().getMonth()] + " " + new Date().getFullYear());
+
+        // update fields with dependets
+        updateTargetOnChange($('select[name$="SALARY_CURRENCY_pseudo"]'), $('input[name$="SALARY_CURRENCY"]'));
+        updateTargetOnChange($('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]'), $('input[name$="HIRE_ON_BONUS_CRNCY_CD"]'));
+        
         // set datepickers
         $('[name$="China_Current_Date"],[name$="China_Start_Date"]').datepicker({
             dateFormat: 'd MM yy',
@@ -304,9 +330,6 @@
                 }
             }
         });
-        if (!isProfileCompleted && "<$client.env.eval(date.now('%B %d, %Y').toString())>".length) {
-            $('[name$="China_Current_Date"]').datepicker('setDate', new Date("<$client.env.eval(date.now('%B %d, %Y').toString())>"));
-        }
         $('[name$="China_Start_Date"]').datepicker({
             'onSelect': function(dateText, instance) {
                 if($(this).val().length) {
@@ -337,7 +360,7 @@
         $('[name$="ProbationPeriodTime"]').on('change', function() {
             $('[name$="China_Start_Date"]').trigger('change');
         });
-        if (!isProfileCompleted && (!$('[name$="China_Start_Date"]').val().length || "<$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tEventDates_Date_2.Value))>','%B %d %Y'))>".length)) {
+        if (!isProfileCompleted && $('[name$="China_Start_Date"]').val().length < 1) {
             $('[name$="China_Start_Date"]')
                 .datepicker('setDate', new Date("<$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tEventDates_Date_2.Value))>','%B %d %Y'))>"))
                 .trigger('change');
@@ -409,6 +432,18 @@
         $('form').on('blur click', 'input[type="text"]:not(":hidden"), select', function() {
             if(!validateField($(this))) {
                 $(this).parent().find('.text-error').css({'display': 'inline-block', 'margin-bottom': '-2px'}); // style hack since IE is such a reliable browser ;-) // changed block to inline-block
+            }
+        });
+        
+        // validation toggling
+        $('form').on('change', '[name$="Hire_on_Bonus_Eligible"]', function() {
+            validateField($('[name$="HIRE_ON_BONUS_CRNCY_CD"]').data('validation', null), true);
+            validateField($('[name$="HIRE_ON_BONUS_AMOUNT"]').data('validation', 'regex'), true);
+            validateField($('[name$="Installment_Amount"]').data('validation', 'regex'), true);
+            if ($('[name$="Hire_on_Bonus_Eligible"]:checked').val() === 'Yes') {
+                $('[name$="HIRE_ON_BONUS_CRNCY_CD"]').data('validation', 'required');
+                $('[name$="HIRE_ON_BONUS_AMOUNT"]').data('validation', 'required,regex');
+                $('[name$="Installment_Amount"]').data('validation', 'required,regex');
             }
         });
 

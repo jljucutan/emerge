@@ -70,8 +70,8 @@
                         <$client.env.inputSalaryOffered>
                     </div>
                 </div>
-                <div class="input_wrapper mb-18" data-fieldgroup-title="<$client.env.prompteIP_Target_Pct>">
-                    <span class="floating-label"><$client.env.prompteIP_Target_Pct></span>
+                <div class="input_wrapper mb-18" data-fieldgroup-title="Annual Incentive Plan Percentage">
+                    <span class="floating-label">Annual Incentive Plan Percentage</span>
                     <$client.env.inputeIP_Target_Pct>
                 </div>
                 <div class="heading" data-location-group="BRA">
@@ -103,7 +103,7 @@
                 </div>
                 <div class="heading" data-location-group="BRA">
                     <span class="heading-inner">
-                        BRAZIL: TRANSLATE TO PORTUGESE
+                        BRAZIL: TRANSLATE TO PORTUGUESE
                     </span>
                 </div>
                 <div class="input_wrapper" data-location-group="BRA" data-fieldgroup-title="<$client.env.promptJob_Title_PR>" data-fieldgroup-validation="required">
@@ -316,6 +316,17 @@
 
         // load form when all set
         $('#EditProfile_wrapper').fadeIn();
+
+        // load custom styles
+        var isIE = function() {
+            var ua = window.navigator.userAgent;
+            var msie = ua.indexOf("MSIE ");
+            if (msie > 0 || navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                return true;
+            }
+            return false;
+        }
+        
         
         // update hidden eup values on load and change event
         updateTargetOnChange($('[name$="Currency_Code_new"]'), $('[name$="SALARY_CURRENCY"]'));
