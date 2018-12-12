@@ -19,21 +19,21 @@
                     <$client.env.inputSystemTitle>
                 </div>
                 <div class="merge">
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptSalaryGradeLvl>" data-fieldgroup-validation="required">
+                    <div class="input_wrapper" data-fieldgroup-title="<$client.env.promptSalaryGradeLvl>" data-fieldgroup-validation="required">
                         <span class="floating-label"><$client.env.promptSalaryGradeLvl></span>
                         <$client.env.inputSalaryGradeLvl>
                     </div>
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptEmployee_Group_CD>" data-fieldgroup-validation="required">
+                    <div class="input_wrapper" data-fieldgroup-title="<$client.env.promptEmployee_Group_CD>" data-fieldgroup-validation="required">
                         <span class="floating-label"><$client.env.promptEmployee_Group_CD></span>
                         <$client.env.inputEmployee_Group_CD>
                     </div>
                 </div>
                 <div class="merge">
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptExempt>" data-fieldgroup-validation="required">
+                    <div class="input_wrapper" data-fieldgroup-title="<$client.env.promptExempt>" data-fieldgroup-validation="required">
                         <span class="floating-label"><$client.env.promptExempt></span>
                         <$client.env.inputExempt>
                     </div>
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptJobType>" data-fieldgroup-validation="required">
+                    <div class="input_wrapper" data-fieldgroup-title="<$client.env.promptJobType>" data-fieldgroup-validation="required">
                         <span class="floating-label"><$client.env.promptJobType></span>
                         <$client.env.inputJobType>
                     </div>
@@ -52,7 +52,7 @@
                     </span>
                 </div>
                 <div class="merge">
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptSALARY_CURRENCY>" data-fieldgroup-validation="required">
+                    <div class="input_wrapper" data-fieldgroup-title="<$client.env.promptSALARY_CURRENCY>" data-fieldgroup-validation="required">
                         <span class="floating-label"><$client.env.promptSALARY_CURRENCY></span>
                         <select name="SALARY_CURRENCY_pseudo" id="SALARY_CURRENCY_pseudo">
                         </select>
@@ -63,8 +63,8 @@
                     </div>
                 </div>
                 <div class="merge">
-                    <div class="input_wrapper mb-0 hidden-xs"></div>
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptSalaryOffered>" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
+                    <div class="input_wrapper hidden-xs"></div>
+                    <div class="input_wrapper" data-fieldgroup-title="<$client.env.promptSalaryOffered>" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
                         <span class="floating-label"><$client.env.promptSalaryOffered></span>
                         <$client.env.inputSalaryOffered>
                     </div>
@@ -90,7 +90,7 @@
                     <$client.env.inputHire_on_Bonus_Eligible>
                 </div>
                 <div class="merge">
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="Currency Code">
+                    <div class="input_wrapper" data-fieldgroup-title="Currency Code">
                         <span class="floating-label">Currency Code</span>
                         <select name="HIRE_ON_BONUS_CRNCY_CD_pseudo" id="HIRE_ON_BONUS_CRNCY_CD_pseudo">
                         </select>
@@ -101,8 +101,8 @@
                     </div>
                 </div>
                 <div class="merge mb-30">
-                    <div class="input_wrapper mb-0 hidden-xs"></div>
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptInstallment_Amount>" data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
+                    <div class="input_wrapper hidden-xs"></div>
+                    <div class="input_wrapper" data-fieldgroup-title="<$client.env.promptInstallment_Amount>" data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
                         <span class="floating-label"><$client.env.promptInstallment_Amount></span>
                         <$client.env.inputInstallment_Amount>
                     </div>
@@ -178,6 +178,10 @@
                 <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Nationality>" data-fieldgroup-validation="required">
                     <span class="floating-label"><$client.env.promptFrench_Nationality></span>
                     <$client.env.inputFrench_Nationality>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_dob>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptFrench_dob></span>
+                    <$client.env.inputFrench_dob>
                 </div>
                 <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Current_Long_Date>" data-fieldgroup-validation="required">
                     <span class="floating-label"><$client.env.promptFrench_Current_Long_Date></span>
@@ -357,6 +361,10 @@
         };
         var today = new Date();
         var eventDate = new Date("<$client.tEventDates_8.Value>");
+        var eupBirthDate = new Date("<$client.tForWhomUserInfo.DOB>");
+
+        eventDate.setMinutes(eventDate.getMinutes() + eventDate.getTimezoneOffset());
+        eupBirthDate.setMinutes(eupBirthDate.getMinutes() + eupBirthDate.getTimezoneOffset());
 
         $('.floating-label span').css('color', 'rgb(102, 102, 102)');
         $('.cal_and_button').prop('cellpadding', 0).prop('cellspacing', 0);
@@ -374,14 +382,20 @@
         $('#HIRE_ON_BONUS_CRNCY_CD_pseudo').append($('[name$="Currency_Code_new"] > option').clone());
 
         // set default values if fields as blank
-        $('select[name$="SALARY_CURRENCY_pseudo"]').val($('input[name$="SALARY_CURRENCY"]').val());
-        $('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]').val($('input[name$="HIRE_ON_BONUS_CRNCY_CD"]').val());
+        if ($('select[name$="SALARY_CURRENCY_pseudo"] option[value="' + $('input[name$="SALARY_CURRENCY"]').val() + '"]').length > 0) {
+            $('select[name$="SALARY_CURRENCY_pseudo"]').val($('input[name$="SALARY_CURRENCY"]').val());
+        }
+        if ($('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"] option[value="' + $('input[name$="HIRE_ON_BONUS_CRNCY_CD"]').val() + '"]').length > 0) {
+            $('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]').val($('input[name$="HIRE_ON_BONUS_CRNCY_CD"]').val());
+        }
         setDefaultValue($('[name$="French_Business_Title"]'), $('[name$="Business_Title"]').val());
         setDefaultValue($('[name$="Russian_Business_Title"]'), $('[name$="Business_Title"]').val());
         setDefaultValue($('[name$="Russian_Business_Division"]'), $('[name$="business_division"]').val());
         setDefaultValue($('[name$="Russian_Manager_Title"]'), $('[name$="MngrBsnssTitle"]').val());
         setDefaultValue($('[name$="French_Current_Long_Date"]'), today.getDate() + " " + months.fr[today.getMonth()] + " " + today.getFullYear());
         setDefaultValue($('[name$="French_event_start_date"]'), eventDate.getDate() + " " + months.fr[eventDate.getMonth()] + " " + eventDate.getFullYear());
+        // setDefaultValue($('[name$="French_dob"]'), eupBirthDate.getDate() + " " + months.fr[eupBirthDate.getMonth()] + " " + eupBirthDate.getFullYear());
+        setDefaultValue($('[name$="French_dob"]'), (eupBirthDate.getDate() ? eupBirthDate.getDate() + " " : "") + (months.fr[eupBirthDate.getMonth()] ? months.fr[eupBirthDate.getMonth()] + " " : "") + (eupBirthDate.getFullYear() ? eupBirthDate.getFullYear(): ""));
         setDefaultValue($('[name$="Russian_current_long_date"]'), today.getDate() + " " + months.ru[today.getMonth()] + " " + today.getFullYear());
         setDefaultValue($('[name$="Russian_Start_Date"]'), eventDate.getDate() + " " + months.ru[eventDate.getMonth()] + " " + eventDate.getFullYear());
         setDefaultValue($('[name$="ProbationPeriodRequired"]'), "no");
@@ -420,16 +434,25 @@
             yearRange: "-100:+100",
             onSelect: function(dateText, instance) {
                 var dateVal = '';
+                var d = '';
+                var real_date = ''; //  Added
                 if ($(this).val().length > 0) {
-                    var dateVal = $(this).datepicker('getDate').toISOString().substring(0,10);
+                    d = $(this).datepicker('getDate');
+                    real_date = $(this).datepicker('getDate'); //  Added
+                    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+                    var dateVal = d.toISOString().substring(0,10);
+                    // d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); // Removed being excess
                 }
-                $('[name$="DOB_display"]').datepicker('setDate', $(this).datepicker('getDate'));
+                $('[name$="DOB_display"]').datepicker('setDate', real_date ); // Updated
+                $('[name$="French_dob"]').val(real_date.getDate() + " " + months.fr[real_date.getMonth()] + " " + real_date.getFullYear());
                 validateField($(this).data('realdate', dateVal));
                 focusInputLabel($(this));
             }
         });
         if ($('[name$="DOB"]').val().length) {
-            $('#dob-display').datepicker('setDate', new Date($('[name$="DOB"]').val()));
+            d = new Date($('[name$="DOB"]').val());
+            d.setMinutes(d.getMinutes() + d.getTimezoneOffset());
+            $('#dob-display').datepicker('setDate', d);
         }
 
         // hide sections not on event location
