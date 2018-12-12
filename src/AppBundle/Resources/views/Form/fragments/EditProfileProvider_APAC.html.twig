@@ -57,14 +57,14 @@
                         <select name="SALARY_CURRENCY_pseudo" id="SALARY_CURRENCY_pseudo">
                         </select>
                     </div>
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptSalary_Amount>" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
+                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptSalary_Amount>" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of number, comma, and/or period">
                         <span class="floating-label"><$client.env.promptSalary_Amount></span>
                         <$client.env.inputSalary_Amount>
                     </div>
                 </div>
                 <div class="merge">
                     <div class="input_wrapper mb-0 hidden-xs"></div>
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="Monthly Pay Rate Amount" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
+                    <div class="input_wrapper mb-0" data-fieldgroup-title="Monthly Pay Rate Amount" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of number, comma, and/or period">
                         <span class="floating-label">Monthly Pay Rate Amount</span>
                         <$client.env.inputSalaryOffered>
                     </div>
@@ -73,7 +73,7 @@
                     <span class="floating-label">Annual Incentive Plan Percentage (AIP)</span>
                     <$client.env.inputeIP_Target_Pct>
                 </div>
-                <div class="input_wrapper mb-30" data-fieldgroup-title="Restricted Stock Units (USD $ Amount)" data-fieldgroup-validation="regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
+                <div class="input_wrapper mb-30" data-fieldgroup-title="Restricted Stock Units (USD $ Amount)" data-fieldgroup-validation="regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of number, comma, and/or period">
                     <span class="floating-label">Restricted Stock Units (USD $ Amount)</span>
                     <$client.env.inputNEW_HIRE_REST_STOCK_UNITS>
                 </div>
@@ -95,14 +95,14 @@
                         <select name="HIRE_ON_BONUS_CRNCY_CD_pseudo" id="HIRE_ON_BONUS_CRNCY_CD_pseudo">
                         </select>
                     </div>
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptHIRE_ON_BONUS_AMOUNT>" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
+                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptHIRE_ON_BONUS_AMOUNT>" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of number, comma, and/or period">
                         <span class="floating-label"><$client.env.promptHIRE_ON_BONUS_AMOUNT></span>
                         <$client.env.inputHIRE_ON_BONUS_AMOUNT>
                     </div>
                 </div>
                 <div class="merge mb-30 equal">
                     <div class="input_wrapper mb-0 hidden-xs"></div>
-                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptInstallment_Amount>" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
+                    <div class="input_wrapper mb-0" data-fieldgroup-title="<$client.env.promptInstallment_Amount>" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of number, comma, and/or period">
                         <span class="floating-label"><$client.env.promptInstallment_Amount></span>
                         <$client.env.inputInstallment_Amount>
                     </div>
@@ -131,7 +131,7 @@
                     </label>
                     <$client.env.inputProbationPeriodTime>
                 </div>
-                <div class="input_wrapper" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptLanguage_Allowance_Amount>" data-fieldgroup-validation="regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="consisting of number, comma, and/or period">
+                <div class="input_wrapper" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptLanguage_Allowance_Amount>" data-fieldgroup-validation="regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of number, comma, and/or period">
                     <span class="floating-label"><$client.env.promptLanguage_Allowance_Amount></span>
                     <$client.env.inputLanguage_Allowance_Amount>
                 </div>
@@ -303,8 +303,12 @@
         $('#EditProfile_wrapper').fadeIn();
 
         // set default values
-        $('select[name$="SALARY_CURRENCY_pseudo"]').val($('input[name$="SALARY_CURRENCY"]').val());
-        $('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]').val($('input[name$="HIRE_ON_BONUS_CRNCY_CD"]').val());
+        if ($('select[name$="SALARY_CURRENCY_pseudo"] option[value="' + $('input[name$="SALARY_CURRENCY"]').val() + '"]').length > 0) {
+            $('select[name$="SALARY_CURRENCY_pseudo"]').val($('input[name$="SALARY_CURRENCY"]').val());
+        }
+        if ($('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"] option[value="' + $('input[name$="HIRE_ON_BONUS_CRNCY_CD"]').val() + '"]').length > 0) {
+            $('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]').val($('input[name$="HIRE_ON_BONUS_CRNCY_CD"]').val());
+        }
         setDefaultValue($('[name$="China_Entity_Name"]'), "<$client.tForWhomUserInfo.EnityName>");
         setDefaultValue($('[name$="China_Entity_Address"]'), "<$client.tForWhomUserInfo.EntityAddress>");
         setDefaultValue($('[name$="China_Event_Location"]'), "<$client.tEventCategories_Category_11.Value>");
@@ -437,15 +441,16 @@
         
         // validation toggling
         $('form').on('change', '[name$="Hire_on_Bonus_Eligible"]', function() {
-            validateField($('[name$="HIRE_ON_BONUS_CRNCY_CD"]').data('validation', null), true);
+            validateField($('[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]').data('validation', null), true);
             validateField($('[name$="HIRE_ON_BONUS_AMOUNT"]').data('validation', 'regex'), true);
             validateField($('[name$="Installment_Amount"]').data('validation', 'regex'), true);
             if ($('[name$="Hire_on_Bonus_Eligible"]:checked').val() === 'Yes') {
-                $('[name$="HIRE_ON_BONUS_CRNCY_CD"]').data('validation', 'required');
+                $('[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]').data('validation', 'required');
                 $('[name$="HIRE_ON_BONUS_AMOUNT"]').data('validation', 'required,regex');
                 $('[name$="Installment_Amount"]').data('validation', 'required,regex');
             }
         });
+        $('[name$="Hire_on_Bonus_Eligible"]').trigger('change');
 
         // validate each date fields
         $('form').on('change', 'input[name$="_display"]:not(":hidden"), input.hasDatepicker', function() {
