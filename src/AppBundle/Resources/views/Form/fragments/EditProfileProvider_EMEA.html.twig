@@ -1,0 +1,896 @@
+<div id="task_summary_outer">
+    <div id="bg-image">.</div>
+    <div id="EditProfile_container">
+        <div id="EditProfile_wrapper">
+            <div id="EditProfile">
+                <h2>Launch Onboarding Event</h2>
+                <h4>This page simplifies the process of launching an onboarding event.</h4>
+                <div class="heading">
+                    <span class="heading-inner">
+                        POSITION INFORMATION
+                    </span>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="Business Card Title" data-fieldgroup-validation="required">
+                    <span class="floating-label">Business Card Title</span>
+                    <$client.env.inputBusiness_Title>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="System Title" data-fieldgroup-validation="required">
+                    <span class="floating-label">System Title</span>
+                    <$client.env.inputSystemTitle>
+                </div>
+                <div class="merge">
+                    <div class="input_wrapper" data-fieldgroup-title="Salary Grade" data-fieldgroup-validation="required">
+                        <span class="floating-label">Salary Grade</span>
+                        <$client.env.inputSalaryGradeLvl>
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="Employee Type" data-fieldgroup-validation="required">
+                        <span class="floating-label">Employee Type</span>
+                        <$client.env.inputEmployee_Group_CD>
+                    </div>
+                </div>
+                <div class="merge">
+                    <div class="input_wrapper" data-fieldgroup-title="Exempt Status" data-fieldgroup-validation="required">
+                        <span class="floating-label">Exempt Status</span>
+                        <$client.env.inputExempt>
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="Part or Full-Time" data-fieldgroup-validation="required">
+                        <span class="floating-label">Part or Full-Time</span>
+                        <$client.env.inputJobType>
+                    </div>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="Entity Name" data-fieldgroup-validation="required">
+                    <span class="floating-label">Entity Name</span>
+                    <$client.env.inputEnityName>
+                </div>
+                <div class="input_wrapper mb-13" data-fieldgroup-title="Entity Address (Office Location)" data-fieldgroup-validation="required">
+                    <span class="floating-label">Entity Address (Office Location)</span>
+                    <$client.env.inputEntityAddress>
+                </div>
+                <div class="input_wrapper mb-25" data-fieldgroup-title="<$client.env.promptManager>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Manager_label">
+                    <label id="Manager_label">
+                        <strong>Is this employee in a position of trust (Manager or Supervisor)?</strong>
+                    </label>
+                    <$client.env.inputManager>
+                </div>
+
+                <div class="heading">
+                    <span class="heading-inner">
+                        COMPENSATION
+                    </span>
+                </div>
+                <div class="merge">
+                    <div class="input_wrapper" data-fieldgroup-title="Currency Code" data-fieldgroup-validation="required">
+                        <span class="floating-label">Currency Code</span>
+                        <select name="SALARY_CURRENCY_pseudo" id="SALARY_CURRENCY_pseudo">
+                        </select>
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="Annual Salary" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Annual Salary</span>
+                        <$client.env.inputSalary_Amount>
+                    </div>
+                </div>
+                <div class="merge">
+                    <div class="input_wrapper hidden-xs"></div>
+                    <div class="input_wrapper" data-fieldgroup-title="Monthly Pay Rate Amount" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Monthly Pay Rate Amount</span>
+                        <$client.env.inputSalaryOffered>
+                    </div>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="Annual Incentive Plan Percentage (AIP)" data-fieldgroup-maxlength="3" data-fieldgroup-validation="regex"  data-fieldgroup-regex="^[0-9]+$" data-fieldgroup-message="consisting of numbers only">
+                    <span class="floating-label">Annual Incentive Plan Percentage (AIP)</span>
+                    <$client.env.inputeIP_Target_Pct>
+                </div>
+                <div class="input_wrapper mb-30" data-fieldgroup-title="Restricted Stock Units (USD $ Amount)" data-fieldgroup-validation="regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                    <span class="floating-label">Restricted Stock Units (USD $ Amount)</span>
+                    <$client.env.inputNEW_HIRE_REST_STOCK_UNITS>
+                </div>
+
+                <div class="heading">
+                    <span class="heading-inner">
+                        BONUS
+                    </span>
+                </div>
+                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptHire_on_Bonus_Eligible>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Hire_on_Bonus_Eligible_label">
+                    <label id="Hire_on_Bonus_Eligible_label">
+                        <strong>Is this employee eligible for a sign-on/hire-on bonus?</strong>
+                    </label>
+                    <$client.env.inputHire_on_Bonus_Eligible>
+                </div>
+                <div class="merge bonus-eligible-section">
+                    <div class="input_wrapper" data-fieldgroup-title="Currency Code" data-fieldgroup-validation="required">
+                        <span class="floating-label">Currency Code</span>
+                        <select name="HIRE_ON_BONUS_CRNCY_CD_pseudo" id="HIRE_ON_BONUS_CRNCY_CD_pseudo">
+                        </select>
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="Bonus Amount" data-fieldgroup-validation="required,regex" data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Bonus Amount</span>
+                        <$client.env.inputHIRE_ON_BONUS_AMOUNT>
+                    </div>
+                </div>
+                <div class="merge mb-18 bonus-eligible-section">
+                    <div class="input_wrapper hidden-xs"></div>
+                    <div class="input_wrapper" data-fieldgroup-title="<$client.env.promptInstallment_Amount>" data-fieldgroup-validation="required,regex" data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label"><$client.env.promptInstallment_Amount></span>
+                        <$client.env.inputInstallment_Amount>
+                    </div>
+                </div>
+                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptVariable_Bonus>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Variable_Bonus_label">
+                    <label id="Variable_Bonus_label">
+                        <strong>Does this employee eligible for variable or incentive bonus?</strong>
+                    </label>
+                    <$client.env.inputVariable_Bonus>
+                </div>
+                <div class="variable-bonus-section merge">
+                    <div class="input_wrapper" data-fieldgroup-title="Currency Code" data-fieldgroup-validation="required">
+                        <span class="floating-label">Currency Code</span>
+                        <select name="Comp_Currency_pseudo" id="Comp_Currency_pseudo"></select>
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="Target Amount" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Target Amount</span>
+                        <$client.env.inputComp_Target_Amount>
+                    </div>
+                </div>
+                <div class="variable-bonus-section merge mb-30">
+                    <div class="input_wrapper mb-0 hidden-xs"></div>
+                    <div class="input_wrapper" data-fieldgroup-title="Target Percentage" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="^^\d(\d)?(\d)?$$" data-fieldgroup-message="valid 3 digit number.">
+                        <span class="floating-label">Target Percentage</span>
+                        <$client.env.inputCompensation_Target_Percentage>
+                    </div>
+                </div>
+
+                <div class="heading">
+                    <span class="heading-inner">
+                        PROBATION
+                    </span>
+                </div>
+                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptProbationPeriodRequired>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#ProbationPeriodRequired_label">
+                    <label id="ProbationPeriodRequired_label">
+                        <strong>Is a probation period required for this employee?</strong>
+                    </label>
+                    <$client.env.inputProbationPeriodRequired>
+                </div>
+                <div id="probation-timeframe" class="input_wrapper mb-25 hide" data-fieldgroup-title="<$client.env.promptProbationPeriodTime>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#ProbationPeriodTime_label">
+                    <label id="ProbationPeriodTime_label">
+                        <strong>If yes, select the probation period timeframe (in months).</strong>
+                    </label>
+                    <$client.env.inputProbationPeriodTime>
+                </div>
+
+                <div class="heading">
+                    <span class="heading-inner">
+                        RELOCATION
+                    </span>
+                </div>
+                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptRelocation>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Relocation_label">
+                    <label id="Relocation_label">
+                        <strong>Is this employee relocating for this role?</strong>
+                    </label>
+                    <$client.env.inputRelocation>
+                </div>
+                <div class="relocation-section merge equal">
+                    <div class="input_wrapper" data-fieldgroup-title="From City (or State)" data-fieldgroup-validation="required">
+                        <span class="floating-label">From City (or State)</span>
+                        <input type="text" name="from-city-state" id="from-city-state">
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="From State (or Country)" data-fieldgroup-validation="required">
+                        <span class="floating-label">From State (or Country)</span>
+                        <$client.env.inputRelocationFromStateOrCountry>
+                        <input type="text" name="from-state-country" id="from-state-country">
+                    </div>
+                </div>
+                <div class="relocation-section merge equal mb-18">
+                    <div class="input_wrapper" data-fieldgroup-title="To City (or State)" data-fieldgroup-validation="required">
+                        <span class="floating-label">To City (or State)</span>
+                        <input type="text" name="to-city-state" id="to-city-state">
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="To State (or Country)" data-fieldgroup-validation="required">
+                        <span class="floating-label">To State (or Country)</span>
+                        <input type="text" name="to-state-country" id="to-state-country">
+                    </div>
+                </div>
+                <div class="relocation-section input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptRelo_Bonus>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Relo_Bonus_label">
+                    <label id="Relo_Bonus_label">
+                        <strong>Will this be a relocation bonus only? (one-time miscellaneous lump sum)</strong>
+                    </label>
+                    <$client.env.inputRelo_Bonus>
+                </div>
+                <div class="relocation-bonus-section merge">
+                    <div class="input_wrapper" data-fieldgroup-title="Currency Code" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Currency Code</span>
+                        <select name="ESTIMATED_RELO_COST_CRNCY_CD_pseudo" id="ESTIMATED_RELO_COST_CRNCY_CD_pseudo"></select>
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="Relocation Bonus Amount" data-fieldgroup-validation="required,regex" data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Relocation Bonus Amount</span>
+                        <$client.env.inputESTIMATED_RELO_COST>
+                    </div>
+                </div>
+                <div class="relocation-bonus-section merge">
+                    <div class="input_wrapper mb-0"></div>
+                    <div class="input_wrapper mb-30" data-fieldgroup-title="Additional Cash Bonus" data-fieldgroup-validation="required,regex" data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Additional Cash Bonus</span>
+                        <$client.env.inputCashBonus>
+                    </div>
+                </div>
+
+                <div class="heading" data-location-group="FRA">
+                    <span class="heading-inner">
+                        FRANCE-SPECIFIC SECTION
+                    </span>
+                </div>
+                <div class="input_wrapper mb-13" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptCitizenship_Status>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Citizenship_Status_label">
+                    <label id="Citizenship_Status_label">
+                        <strong>Is this employee a citizen, permanent resident, or allowed to work in France without a work visa?</strong>
+                    </label>
+                    <div class="citizenship-status-container"></div>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Salutation>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptFrench_Salutation></span>
+                    <$client.env.inputFrench_Salutation>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptNationality>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptNationality></span>
+                    <$client.env.inputNationality>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="Date of Birth (d mmmm yyyy)" data-fieldgroup-validation="required,past-date">
+                    <span class="floating-label">Date of Birth (d mmmm yyyy)</span>
+                    <input type="text" id="dob-display" name="dob-display">
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="National Identification Number (numéro de sécurité sociale)" data-fieldgroup-validation="required">
+                    <span class="floating-label">National Identification Number (numéro de sécurité sociale)</span>
+                    <$client.env.inputSSNO>
+                </div>
+                <div class="input_wrapper mb-30" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Coefficient>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptFrench_Coefficient></span>
+                    <$client.env.inputFrench_Coefficient>
+                </div>
+
+                <div class="heading" data-location-group="FRA">
+                    <span class="heading-inner">
+                        TRANSLATE TO FRENCH
+                    </span>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Business_Title>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptFrench_Business_Title></span>
+                    <$client.env.inputFrench_Business_Title>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Salary_Words>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptFrench_Salary_Words></span>
+                    <$client.env.inputFrench_Salary_Words>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Previous_Employment>">
+                    <span class="floating-label"><$client.env.promptFrench_Previous_Employment></span>
+                    <$client.env.inputFrench_Previous_Employment>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Nationality>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptFrench_Nationality></span>
+                    <$client.env.inputFrench_Nationality>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_dob>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptFrench_dob></span>
+                    <$client.env.inputFrench_dob>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Current_Long_Date>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptFrench_Current_Long_Date></span>
+                    <$client.env.inputFrench_Current_Long_Date>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_event_start_date>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptFrench_event_start_date></span>
+                    <$client.env.inputFrench_event_start_date>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Transfer_Country>">
+                    <span class="floating-label"><$client.env.promptFrench_Transfer_Country></span>
+                    <$client.env.inputFrench_Transfer_Country>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Transfer_City>">
+                    <span class="floating-label"><$client.env.promptFrench_Transfer_City></span>
+                    <$client.env.inputFrench_Transfer_City>
+                </div>
+                <div class="input_wrapper" data-location-group="FRA" data-fieldgroup-title="<$client.env.promptFrench_Transfer_Entity>">
+                    <span class="floating-label"><$client.env.promptFrench_Transfer_Entity></span>
+                    <$client.env.inputFrench_Transfer_Entity>
+                </div>
+
+                <div class="heading" data-location-group="RUS">
+                    <span class="heading-inner">
+                        RUSSIA-SPECIFIC SECTION
+                    </span>
+                </div>
+                <div class="input_wrapper mb-13" data-location-group="RUS" data-fieldgroup-title="<$client.env.promptCitizenship_Status>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Citizenship_Status_label">
+                    <label id="Citizenship_Status_label">
+                        <strong>Is this employee a citizen, permanent resident, or allowed to work in Russia without a work visa?</strong>
+                    </label>
+                    <div class="citizenship-status-container"></div>
+                </div>
+                <div class="input_wrapper" data-location-group="RUS" data-fieldgroup-title="<$client.env.promptPassportNo>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptPassportNo></span>
+                    <$client.env.inputPassportNo>
+                </div>
+
+                <div class="input_wrapper mb-30" data-location-group="RUS" data-fieldgroup-title="<$client.env.promptbusiness_division>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptbusiness_division></span>
+                    <$client.env.inputbusiness_division>
+                </div>
+
+                <div class="heading" data-location-group="RUS">
+                    <span class="heading-inner">
+                        TRANSLATE TO RUSSIAN
+                    </span>
+                </div>
+                <div class="input_wrapper" data-location-group="RUS" data-fieldgroup-title="<$client.env.promptRussian_Business_Title>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptRussian_Business_Title></span>
+                    <$client.env.inputRussian_Business_Title>
+                </div>
+                <div class="input_wrapper" data-location-group="RUS" data-fieldgroup-title="<$client.env.promptRussian_Business_Division>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptRussian_Business_Division></span>
+                    <$client.env.inputRussian_Business_Division>
+                </div>
+                <div class="input_wrapper" data-location-group="RUS" data-fieldgroup-title="<$client.env.promptRussian_Manager_Title>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptRussian_Manager_Title></span>
+                    <$client.env.inputRussian_Manager_Title>
+                </div>
+                <div class="input_wrapper" data-location-group="RUS" data-fieldgroup-title="<$client.env.promptRussian_Temporary_Duration>">
+                    <span class="floating-label"><$client.env.promptRussian_Temporary_Duration></span>
+                    <$client.env.inputRussian_Temporary_Duration>
+                </div>
+                <div class="input_wrapper" data-location-group="RUS" data-fieldgroup-title="<$client.env.promptRussian_Temporary_Reason>">
+                    <span class="floating-label"><$client.env.promptRussian_Temporary_Reason></span>
+                    <$client.env.inputRussian_Temporary_Reason>
+                </div>
+                <div class="input_wrapper" data-location-group="RUS" data-fieldgroup-title="<$client.env.promptRussian_current_long_date>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptRussian_current_long_date></span>
+                    <$client.env.inputRussian_current_long_date>
+                </div>
+                <div class="input_wrapper mb-30" data-location-group="RUS" data-fieldgroup-title="<$client.env.promptRussian_Start_Date>" data-fieldgroup-validation="required">
+                    <span class="floating-label"><$client.env.promptRussian_Start_Date></span>
+                    <$client.env.inputRussian_Start_Date>
+                </div>
+
+                <div class="heading" data-location-group="SWE">
+                    <span class="heading-inner">
+                        SWEDEN-SPECIFIC SECTION
+                    </span>
+                </div>
+                <div class="input_wrapper mb-13" data-location-group="SWE" data-fieldgroup-title="<$client.env.promptWorkPermitRequired>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#WorkPermitRequired_label">
+                    <label id="WorkPermitRequired_label">
+                        <strong>Is a Swedish work permit required for this employee?</strong>
+                    </label>
+                    <$client.env.inputWorkPermitRequired>
+                </div>
+                <div class="input_wrapper mb-13" data-location-group="SWE" data-fieldgroup-title="<$client.env.promptEligible_Sales_Incentive>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Eligible_Sales_Incentive_label">
+                    <label id="Eligible_Sales_Incentive_label">
+                        <strong>Is this employee eligible for a Sales Incentive Plan?</strong>
+                    </label>
+                    <$client.env.inputEligible_Sales_Incentive>
+                </div>
+                <div class="sales-incentive input_wrapper" data-location-group="SWE" data-fieldgroup-title="<$client.env.promptSales_Manager>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Sales_Manager_label">
+                    <label id="Sales_Manager_label">
+                        <strong>Is this Employee a Sales Manager?</strong>
+                    </label>
+                    <$client.env.inputSales_Manager>
+                </div>
+                <div class="sales-manager input_wrapper mb-30" data-location-group="SWE" data-fieldgroup-title="Select the Pay Schedule" data-fieldgroup-validation="required">
+                    <span class="floating-label">Select the Pay Schedule</span>
+                    <$client.env.inputSales_Pay_Schedule>
+                </div>
+
+                <div class="heading" data-location-group="DEU">
+                    <span class="heading-inner">
+                        GERMANY-SPECIFIC SECTION
+                    </span>
+                </div>
+                <div class="input_wrapper mb-13" data-location-group="DEU" data-fieldgroup-title="<$client.env.promptWC_Approval_Required>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#WC_Approval_Required_label">
+                    <label id="WC_Approval_Required_label">
+                        <strong>Is prior consent from works council required for this employee's role?</strong>
+                    </label>
+                    <$client.env.inputWC_Approval_Required>
+                </div>
+                <div class="input_wrapper mb-13" data-location-group="DEU" data-fieldgroup-title="<$client.env.promptContract_Term_Exception>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Contract_Term_Exception_label">
+                    <label id="Contract_Term_Exception_label">
+                        <strong>Is the employee going to be granted a contract term exception?</strong>
+                    </label>
+                    <div style="margin-top: -5px;"><small class="lead">(If yes, the employment can be terminated by giving legal period of notice)</small></div>
+                    <$client.env.inputContract_Term_Exception>
+                </div>
+                <div class="input_wrapper mb-13" data-location-group="DEU" data-fieldgroup-title="<$client.env.promptGerman_Credit_Continuous_Service>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#German_Credit_Continuous_Service_label">
+                    <label id="German_Credit_Continuous_Service_label">
+                        <strong>Is this employee going to be credited tenure for previous employment with PayPal?</strong>
+                    </label>
+                    <$client.env.inputGerman_Credit_Continuous_Service>
+                </div>
+                <div class="continuous-service-section input_wrapper" data-location-group="DEU" data-fieldgroup-title="Entity Name" data-fieldgroup-validation="required">
+                    <span class="floating-label">Entity Name</span>
+                    <$client.env.inputPrevious_Entity>
+                </div>
+                <div class="continuous-service-section merge equal mb-13">
+                    <div class="input_wrapper" data-fieldgroup-title="Start Date" data-fieldgroup-validation="required">
+                        <span class="floating-label">Start Date</span>
+                        <$client.env.inputGerman_Previous_Start_Date>
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="End Date" data-fieldgroup-validation="required">
+                        <span class="floating-label">End Date</span>
+                        <$client.env.inputGerman_Contract_End_Date>
+                    </div>
+                </div>
+                <div class="input_wrapper" data-location-group="DEU" data-fieldgroup-title="employee-role-type" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#employee-role-type_label">
+                    <label id="employee-role-type_label">
+                        <strong>Is this role a temporary or fixed-term employment?</strong>
+                        <small class="hidden-error">Please review the selection for Employee Type above. Employee type must be Temporary to select yes</small>
+                    </label>
+                    <div class="horizontal_radio_group">
+                        <div class="horizontal_radio_item" style="display: inline-block;">
+                            <input id="employee-role-type-1" type="radio" name="employee-role-type" value="T"<$client.env.eval(client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=="T"?" checked":"")>>
+                            <label for="employee-role-type-1">Yes</label>
+                        </div>
+                        <div class="horizontal_radio_item" style="display: inline-block;">
+                            <input id="employee-role-type-2" type="radio" name="employee-role-type" value="0"<$client.env.eval(client.tForWhomUserInfo.EMPLOYEE_GROUP_CD!="T"?" checked":"")>>
+                            <label for="employee-role-type-2">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="employee-role-section merge mb-30" data-location-group="DEU">
+                    <div class="input_wrapper" data-fieldgroup-title="Contract Length" data-fieldgroup-validation="required">
+                        <span class="floating-label">Contract Length</span>
+                        <$client.env.inputContract_Length_Dropdown>
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="Contract End Date" data-fieldgroup-validation="required">
+                        <span class="floating-label">Contract End Date</span>
+                        <input type="text" id="ContractEndDate_pseudo" name="ContractEndDate_pseudo">
+                    </div>
+                </div>
+                
+                <div class="button_group">
+                    <div id="save"></div>
+                    <div id="saveandcomplete"></div>
+                    <div id="cancel"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display: none;">
+    <$client.env.inputCitizenship_Status>
+    <$client.env.inputDOB>
+    <$client.env.inputMngrBsnssTitle>
+    <$client.env.inputHIRE_ON_BONUS_CRNCY_CD>
+    <$client.env.inputSALARY_CURRENCY>
+    <$client.env.inputCurrency_Code_new>
+    <$client.env.inputComp_Currency>
+    <$client.env.inputESTIMATED_RELO_COST_CRNCY_CD>
+    <$client.env.inputContractEndDate>
+    <$client.env.inputFTELength>
+    <$client.env.inputPayAreaCity>
+    <$client.env.inputRelocationFrom>
+</div>
+
+<input type="hidden" id="Site_Name" name="Site_Name" value="<$client.env.index.site_name>" />
+<input type="hidden" id="Evt_Location_Code" name="Evt_Location_Code" value="<$client.tEventCategories_Category_11.Code>" />
+<input type="hidden" id="Evt_Location" name="Evt_Location" value="<$client.tEventCategories_Category_11.Value>" />
+
+<link href="<$link;/main/RedCarpet/FormTemplates/FormSupport/css/front_validator.css>" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/country.js"></script>
+<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/custom-paypal.js"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>" defer></script>
+
+<script type="text/javascript">
+    /**
+     * SERVICES-36405 | jjucutan | PayPal - Create EMEA Provider Page
+     * Define here functions that can be reused
+     */
+    var focusInputLabel = function(el, isFocused) {
+        var label = el.closest('.input_wrapper')
+            .find('span.floating-label')
+            .removeClass('label-focus')
+            .css({"color": "#666666"});
+        if (el.val().trim().length > 0 || isFocused) {
+            label.addClass('label-focus');
+        }
+        if (isFocused === true) {
+            label.css({"color": "#0070BA"});
+        }
+    }
+    var updateTargetOnChange = function(origin, target) {
+        origin.on('change', function() {
+            target.val(origin.val());
+            if (origin.is(':checked')) {
+                target.val(origin.val());
+            }
+            if (origin.hasClass('hasDatepicker')) {
+                target.val(moment().diff(origin.val(), 'years'));
+            }
+        });
+    }
+    var fieldHasVal = function(el) {
+        var hasVal = false;
+        $.each(el, function(k, v) {
+            if ($(v).val().length) {
+                hasVal = true;
+            }
+        });
+        return hasVal;
+    }
+    var isCheckboxChecked = function(el) {
+        var hasChecked = false;
+        $.each(el, function(k,v){
+            if ($(v).is(':checked')) {
+                hasChecked = true;
+            }
+        });
+        return hasChecked;
+    }
+    var setDefaultValue = function(el, defaultValue) {
+        if (el.is('input[type="checkbox"]') || el.is('input[type="radio"]')) {
+            if (isCheckboxChecked(el) === false) {
+                $.each(el, function(k,v) {
+                    if ($(v).val() === defaultValue) {
+                        $(v).prop('checked', 'checked');
+                    }
+                });
+            }
+        }
+        if (el.is('select') && el.val().length < 1 && el.find('option[value="' + defaultValue + '"]').length > 0) {
+            el.val(defaultValue);
+        }
+        if (el.is('select') && el.val().length < 1 && el.find('option:contains(' + defaultValue + ')').length > 0) {
+            el.val(el.find('option:contains(' + defaultValue + ')').prop('value'));
+        }
+        if (el.is('input[type="text"]') && el.val().trim().length < 1) {
+            el.val(defaultValue);
+        }
+    }
+    
+    var checkNationalID = function() {return null;}; // deactivate useless functions from portal
+
+    $(window).on('load', function() {
+        var months = {
+            "en": ["January","February","March","April","May","June","July", "August","September","October","November","December"],
+            "ru": ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+            "fr": ["Janvier","Février","Mars","Avril", "Mai", "Juin","Juillet","Août", "Septembre","Octobre","Novembre","Décembre"],
+            "de": ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
+        };
+        var today = new Date();
+        var eventDate = new Date("<$client.tEventDates_8.Value>");
+        var eupBirthDate = new Date("<$client.tForWhomUserInfo.DOB>");
+
+        eventDate.setMinutes(eventDate.getMinutes() + eventDate.getTimezoneOffset());
+        eupBirthDate.setMinutes(eupBirthDate.getMinutes() + eupBirthDate.getTimezoneOffset());
+
+        $('.floating-label span').css('color', 'rgb(102, 102, 102)');
+        $('.cal_and_button').prop('cellpadding', 0).prop('cellspacing', 0);
+        var isProfileCompleted = sTaskComplete;
+        // replace default submit button with paypal styled
+        $('#TaskSummary_ButtonCancel').appendTo('#cancel').show();
+        if (!isProfileCompleted) {
+            $('#TaskSummary_ButtonSave').appendTo('#saveandcomplete').prop('onclick', null).show().text('Continue');
+            $('#EUPDefaultSaveButton').appendTo('#save').show();
+        }
+
+        // fill pseudo selects with real options
+        $('[name$="Currency_Code_new"]').val("");
+        $('#SALARY_CURRENCY_pseudo').append($('[name$="Currency_Code_new"]').find('option').clone()).val("");
+        $('#HIRE_ON_BONUS_CRNCY_CD_pseudo').append($('[name$="Currency_Code_new"]').find('option').clone()).val("");
+        $('#Comp_Currency_pseudo').append($('[name$="Currency_Code_new"]').find('option').clone()).val("").val("");
+        $('#ESTIMATED_RELO_COST_CRNCY_CD_pseudo').append($('[name$="Currency_Code_new"]').find('option').clone()).val("");
+
+        // set default values if fields as blank
+        if ($('select[name$="SALARY_CURRENCY_pseudo"] option[value="' + $('input[name$="SALARY_CURRENCY"]').val() + '"]').length > 0) {
+            $('select[name$="SALARY_CURRENCY_pseudo"]').val($('input[name$="SALARY_CURRENCY"]').val());
+        }
+        if ($('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"] option[value="' + $('input[name$="HIRE_ON_BONUS_CRNCY_CD"]').val() + '"]').length > 0) {
+            $('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]').val($('input[name$="HIRE_ON_BONUS_CRNCY_CD"]').val());
+        }
+        setDefaultValue($('[name$=".WorkPermitRequired"]'), "no");
+        setDefaultValue($('[name$=".Sales_Manager"]'), "No");
+        setDefaultValue($('[name$=".Eligible_Sales_Incentive"]'), "No");
+        setDefaultValue($('[name$=".Manager"]'), "No");
+        setDefaultValue($('[name$="Variable_Bonus"]'), "No");
+        setDefaultValue($('[name$=".Relo_Bonus"]'), "No");
+        setDefaultValue($('[name$=".Relocation"]'), "N");
+        setDefaultValue($('[name$=".WC_Approval_Required"]'), "No");
+        setDefaultValue($('[name$=".Contract_Term_Exception"]'), "No");
+        setDefaultValue($('[name$=".German_Credit_Continuous_Service"]'), "No");
+        setDefaultValue($('[name$="French_Business_Title"]'), $('[name$="Business_Title"]').val());
+        setDefaultValue($('[name$="Russian_Business_Title"]'), $('[name$="Business_Title"]').val());
+        setDefaultValue($('[name$="Russian_Business_Division"]'), $('[name$="business_division"]').val());
+        setDefaultValue($('[name$="Russian_Manager_Title"]'), $('[name$="MngrBsnssTitle"]').val());
+        setDefaultValue($('[name$="French_Current_Long_Date"]'), today.getDate() + " " + months.fr[today.getMonth()] + " " + today.getFullYear());
+        setDefaultValue($('[name$="French_event_start_date"]'), eventDate.getDate() + " " + months.fr[eventDate.getMonth()] + " " + eventDate.getFullYear());
+        setDefaultValue($('[name$="Comp_Currency_pseudo"]'), $('[name$="Comp_Currency"]').val());
+        setDefaultValue($('[name$="French_dob"]'), (eupBirthDate.getDate() ? eupBirthDate.getDate() + " " : "") + (months.fr[eupBirthDate.getMonth()] ? months.fr[eupBirthDate.getMonth()] + " " : "") + (eupBirthDate.getFullYear() ? eupBirthDate.getFullYear(): ""));
+        setDefaultValue($('[name$="Russian_current_long_date"]'), today.getDate() + " " + months.ru[today.getMonth()] + " " + today.getFullYear());
+        setDefaultValue($('[name$="Russian_Start_Date"]'), eventDate.getDate() + " " + months.ru[eventDate.getMonth()] + " " + eventDate.getFullYear());
+        setDefaultValue($('[name$="ProbationPeriodRequired"]'), "no");
+        setDefaultValue($('[name$="ESTIMATED_RELO_COST_CRNCY_CD_pseudo"]'), $('[name$="ESTIMATED_RELO_COST_CRNCY_CD"]').val());
+        if ($('[name$=".RelocationFrom"]').val().length > 0) {
+            var relocationFromArr = $('[name$=".RelocationFrom"]').val().replace(/\s*,\s*/g, ",").split(',');
+            $('#from-city-state').val(relocationFromArr[0]);
+            (typeof relocationFromArr[1] !== 'undefined') && $('#from-state-country').val(relocationFromArr[1]);
+        }
+        if ($('[name$=".PayAreaCity"]').val().length > 0) {
+            var relocationToArr = $('[name$=".PayAreaCity"]').val().replace(/\s*,\s*/g, ",").split(',');
+            $('#to-city-state').val(relocationToArr[0]);
+            (typeof relocationToArr[1] !== 'undefined') && $('#to-state-country').val(relocationToArr[1]);
+        }
+
+        // update fields with dependets
+        updateTargetOnChange($('select[name$="SALARY_CURRENCY_pseudo"]'), $('input[name$="SALARY_CURRENCY"]'));
+        updateTargetOnChange($('#Comp_Currency_pseudo'), $('[name$="Comp_Currency"]'));
+        updateTargetOnChange($('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]'), $('input[name$="HIRE_ON_BONUS_CRNCY_CD"]'));
+        updateTargetOnChange($('#ESTIMATED_RELO_COST_CRNCY_CD_pseudo'), $('[name$="ESTIMATED_RELO_COST_CRNCY_CD"]'));
+        $('form').on('keyup change paste', '#from-city-state, #from-state-country', function() {
+            $('[name$=".RelocationFrom"]').val($('#from-city-state').val() + ', ' + $('#from-state-country').val());
+        });
+        $('form').on('keyup change paste', '#to-city-state, #to-state-country', function() {
+            $('[name$=".PayAreaCity"]').val($('#to-city-state').val() + ', ' + $('#to-state-country').val());
+        });
+
+        // load form when all set
+        $('#EditProfile_wrapper').fadeIn();
+
+        // focus style text and select fields
+        $('form').on('focus', 'input[type="text"], select', function() {
+            focusInputLabel($(this), true);
+        }).on('blur', 'input[type="text"], select', function() {
+            focusInputLabel($(this));
+        });
+        // focus style date fields
+        $('form').on('focus change', 'input.hasDatepicker', function() {
+            focusInputLabel($(this), true);
+        }).on('blur change', 'input.hasDatepicker', function() {
+            focusInputLabel($(this));
+        });
+        $('form').on('focus change', '.datepicker_button', function() {
+            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'), true);
+        }).on('blur change', '.datepicker_button', function() {
+            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'));
+            $(this).parent().find('.hasDatepicker').trigger('change'); 
+        });
+
+        // date fields
+        $('#dob-display, [name$="German_Contract_End_Date"], [name$="German_Previous_Start_Date"], #ContractEndDate_pseudo').datepicker({
+            dateFormat: 'd MM yy',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+100"
+        });
+        $('#dob-display').datepicker("option", "onSelect", function(dateText, instance) {
+            var dateVal = '';
+            var d = '';
+            var real_date = ''; //  Added
+            if ($(this).val().length > 0) {
+                d = $(this).datepicker('getDate');
+                real_date = $(this).datepicker('getDate'); //  Added
+                d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+                var dateVal = d.toISOString().substring(0,10);
+                // d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); // Removed being excess
+            }
+            $('[name$="DOB_display"]').datepicker('setDate', real_date ); // Updated
+            $('[name$="French_dob"]').val(real_date.getDate() + " " + months.fr[real_date.getMonth()] + " " + real_date.getFullYear());
+            validateField($(this).data('realdate', dateVal));
+            focusInputLabel($(this));
+        });
+        if ($('[name$="DOB"]').val().length) {
+            var d = new Date($('[name$="DOB"]').val());
+            d.setMinutes(d.getMinutes() + d.getTimezoneOffset());
+            $('#dob-display').datepicker('setDate', d);
+        }
+        $('[name$="German_Contract_End_Date"], [name$="German_Previous_Start_Date"]').datepicker("option", "onSelect", function(dateText, instance) {
+            var dateVal = '';
+            var d = '';
+            var real_date = ''; 
+            if ($(this).val().length > 0) {
+                d = $(this).datepicker('getDate');
+                real_date = $(this).datepicker('getDate');
+                d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+                var dateVal = d.toISOString().substring(0,10);
+            }
+            validateField($(this).data('realdate', dateVal));
+            focusInputLabel($(this));
+        });
+        $('#ContractEndDate_pseudo').datepicker("option", "onSelect", function(dateText, instance) {
+            var dateVal = '';
+            var d = '';
+            var real_date = ''; 
+            if ($(this).val().length > 0) {
+                d = $(this).datepicker('getDate');
+                real_date = $(this).datepicker('getDate');
+                d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+                var dateVal = d.toISOString().substring(0,10);
+            }
+            $('[name$="ContractEndDate_display"]').datepicker('setDate', real_date ); // Updated
+            validateField($(this).data('realdate', dateVal));
+            focusInputLabel($(this));
+        });
+        if ($('[name$="ContractEndDate"]').val().length) {
+            var d = new Date($('[name$="ContractEndDate"]').val());
+            d.setMinutes(d.getMinutes() + d.getTimezoneOffset());
+            $('#ContractEndDate_pseudo').datepicker('setDate', d);
+        }
+
+        // elements that displays on one of displayed sections/countries
+        $.each($('.citizenship-status-container'), function(k,v) {
+            if($(v).is(':visible')){
+                $('[name$="Citizenship_Status"]')
+                    .closest('.horizontal_radio_group')
+                    .appendTo($(v));
+            }
+        });
+
+        // pass validation data to each fields
+        $.each($('[data-fieldgroup-validation]'), function(k,v) {
+            $(v).find('input, select').data('validation', $(v).data('fieldgroup-validation'));
+        });
+        // pass regex data to each fields
+        $.each($('[data-fieldgroup-regex]'), function(k,v) {
+            $(v).find('input').data('regex', $(v).data('fieldgroup-regex'));
+        });
+        // pass regex message to each fields
+        $.each($('[data-fieldgroup-message]'), function(k,v) {
+            $(v).find('input').data('message', $(v).data('fieldgroup-message'));
+        });
+
+        // pass validation data length to each fields
+        $.each($('[data-fieldgroup-minlength]'), function(k,v) {
+            $(v).find('input').data('minlength', $(v).data('fieldgroup-minlength'));
+        });
+        $.each($('[data-fieldgroup-maxlength]'), function(k,v) {
+            $(v).find('input').data('maxlength', $(v).data('fieldgroup-maxlength'));
+        });
+        
+        // pass target label to each radio or checkbox fields
+        $.each($('[data-fieldgroup-targetlabel]'), function(k,v) {
+            $(v).find('input[type="checkbox"]:not(":hidden"), input[type="radio"]:not(":hidden")').data('label', $(v).data('fieldgroup-targetlabel'));
+        });
+
+        // pass title data to each fields
+        $.each($('[data-fieldgroup-title]'), function(k,v) {
+            $(v).find('input:not(":hidden"), select').data('title', $(v).data('fieldgroup-title'));
+        });
+
+        // hide sections based on dependent value and validation toggling
+        // bonus eligible section
+        $('form').on('change', '[name$="Hire_on_Bonus_Eligible"]', function() {
+            $('.bonus-eligible-section').hide();
+            if ($('[name$="Hire_on_Bonus_Eligible"]:checked').val() === 'Yes'){
+                focusInputLabel($('.bonus-eligible-section').show().find('input:visible'));
+            }
+        });
+        $('[name$="Hire_on_Bonus_Eligible"]').trigger('change');
+        // probation required
+        $('form').on('change', '[name$="ProbationPeriodRequired"]', function() {
+            $('#probation-timeframe').hide();
+            if ($('[name$="ProbationPeriodRequired"]:checked').val() === 'yes'){
+                $('#probation-timeframe').show();
+            }
+        });
+        $('[name$="ProbationPeriodRequired"]').trigger('change');
+        // variable bonus
+        $('form').on('change', '[name$="Variable_Bonus"]', function() {
+            $('.variable-bonus-section').hide();
+            if ($('[name$="Variable_Bonus"]:checked').val() === 'Yes'){
+                focusInputLabel($('.variable-bonus-section').show().find('input:visible'));
+            }
+        });
+        $('[name$="Variable_Bonus"]').trigger('change');
+        // relocation bonus
+        $('form').on('change', '[name$="Relo_Bonus"]', function() {
+            $('.relocation-bonus-section').hide();
+            if ($('[name$="Relo_Bonus"]:visible') && $('[name$="Relo_Bonus"]:checked').val() === 'Yes'){
+                $('.relocation-bonus-section').show();
+            }
+        });
+        $('[name$="Relo_Bonus"]').trigger('change');
+        // relocation
+        $('form').on('change', '[name$=".Relocation"]', function() {
+            $('.relocation-bonus-section, .relocation-section').hide();
+            if ($('[name$=".Relocation"]:checked').val() === 'Y'){
+                focusInputLabel($('.relocation-bonus-section, .relocation-section').show().find('input:visible'));
+                $('[name$="Relo_Bonus"]').trigger('change');
+            }
+        });
+        $('[name$="Relocation"]').trigger('change');
+        // Sales_Manager
+        $('form').on('change', '[name$=".Sales_Manager"]', function() {
+            $('.sales-manager').hide();
+            if ($('[name$=".Sales_Manager"]:checked').val() === 'Yes'){
+                focusInputLabel($('.sales-manager').show().find('select:visible'));
+            }
+        });
+        $('[name$=".Sales_Manager"]').trigger('change');
+        // sales incentive
+        $('form').on('change', '[name$=".Eligible_Sales_Incentive"]', function() {
+            $('.sales-incentive, .sales-manager').hide();
+            if ($('[name$=".Eligible_Sales_Incentive"]:checked').val() === 'Yes'){
+                $('.sales-incentive, .sales-manager').show();
+                $('[name$=".Sales_Manager"]').trigger('change');
+            }
+        });
+        $('[name$=".Eligible_Sales_Incentive"]').trigger('change');
+        // Is this employee going to be credited tenure for previous employment with PayPal
+        $('form').on('change', '[name$=".German_Credit_Continuous_Service"]', function() {
+            $('.continuous-service-section').hide();
+            if ($('[name$=".German_Credit_Continuous_Service"]:checked').val() === 'Yes'){
+                focusInputLabel($('.continuous-service-section').show().find('input:visible'));
+            }
+        });
+        $('[name$=".German_Credit_Continuous_Service"]').trigger('change');
+        // Is this role a temporary or fixed-term employment
+        $('form').on('change click', '[name$="employee-role-type"]', function() {
+            $('.employee-role-section').hide();
+            if ($('[name$="employee-role-type"]:checked').val() === 'T'){
+                $('.employee-role-section').show();
+                focusInputLabel($('#ContractEndDate_pseudo'));
+                focusInputLabel($('[name$=".Contract_Length_Dropdown"]'));
+            }
+            $('[name$="EMPLOYEE_GROUP_CD"]').trigger('change');
+            validateField($(this));
+        });
+        $('[name$="employee-role-type"]').trigger('change');
+        // employee type toggle validation
+        $('form').on('change', '[name$="EMPLOYEE_GROUP_CD"]', function() {
+            if ($(this).val() !== "T" && $('#employee-role-type-1').is(':checked')) {
+                $.each($('[name="employee-role-type"]'), function(k,v) {
+                    $(v).prop('checked', false);
+                    $('[name$="employee-role-type"]').trigger('change');
+                });
+            }
+            if ($(this).val() === "T" && $('#employee-role-type-2').is(':checked')) {
+                $.each($('[name="employee-role-type"]'), function(k,v) {
+                    $(v).prop('checked', false);
+                });
+            }
+        });
+        $('[name$="EMPLOYEE_GROUP_CD"]').trigger('change');
+
+        // update date on change
+        $('form').on('change', '[name$="Contract_Length_Dropdown"]', function() {
+            $('[name$=".FTELength"]').val($(this).val());
+        });
+        $('[name$="Contract_Length_Dropdown"]').trigger('change');
+
+        // hide sections not on event location
+        $.each($('[data-location-group]'), function(k,v) {
+            if($(v).data('location-group') !== $('#Evt_Location_Code').val().substring(0,3)) {
+                $(v).hide().find('input[type="text"]').val("");
+            }
+        });
+
+        // focus field labels
+        $.each($('form input[type="text"]:not(":hidden"), form select'),function(k,v) {
+            focusInputLabel($(v));
+        });
+
+        // validate each field by event and field type
+        $('form').on('blur click', 'input[type="text"]:not(":hidden"), select', function() {
+            if(!validateField($(this))) {
+                $(this).parent().find('.text-error').css({'display': 'inline-block', 'margin-bottom': '-2px'}); // style hack since IE is such a reliable browser ;-) // changed block to inline-block
+            }
+        });
+
+        // validate each date fields
+        $('form').on('change', 'input[name$="_display"]:not(":hidden"), input.hasDatepicker', function() {
+            validateField($(this)); 
+        });
+
+        // submit the form if no errors
+        $('form').on('click', '#TaskSummary_ButtonSave', function(e) {
+            e.preventDefault();
+            var formIsValid = true;
+            $('[name$="employee-role-type"]').trigger('change'); // special validation case
+            $.each($('form input:not(":hidden"):not(".datepicker_button"), form select:not(":hidden")'), function(k,v) {
+                if(!validateField($(v))) {
+                    formIsValid = false;
+                }
+            })
+            if (formIsValid) {
+                doSave_Custom('refer-Complete');
+            }
+            else {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        });
+
+    });
+</script>

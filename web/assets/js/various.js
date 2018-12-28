@@ -2046,3 +2046,11 @@ function phoneDashesRequired(sVal, sName, sID) {
     }
     return phoneDashesRequired(sVal, sName, sID);
 }
+     $("#intlDate")
+        .formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>")
+        .datepicker('setDate', $('[name$="DOB_display"]').datepicker('getDate'))
+        .datepicker('option', 'onSelect', function(dateText, instance) {
+          $('[name$="DOB_display"]').datepicker('setDate', $(this).datepicker('getDate'));
+          $(this).trigger('change');
+      });
+      $('#date-format').text(dateConfig.regions[dateConfig.countries["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"]].replace('yy', 'yyyy'));
