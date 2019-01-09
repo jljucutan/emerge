@@ -2054,3 +2054,17 @@ function phoneDashesRequired(sVal, sName, sID) {
           $(this).trigger('change');
       });
       $('#date-format').text(dateConfig.regions[dateConfig.countries["<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"]].replace('yy', 'yyyy'));
+
+	  
+var toggleAttributesByRequirement = function(el, requiredVal, target, attrs) {
+	target
+	if (el.val() === requiredVal) {
+		
+	}
+}
+
+
+
+
+
+
