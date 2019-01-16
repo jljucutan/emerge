@@ -1,0 +1,1441 @@
+<!-- Main QA Area --> 
+ 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+                             </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px;"> 
+                                                         <input id="signature-submit" type="button" class="lifesuite__button primary" value="Sign">&nbsp; 
+                                                          <input  id="signature-clear" type="button" class="lifesuite__button" value="Clear">&nbsp;
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                                           </div> 
+                             </div> 
+              </div> 
+</div> 
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+    showScreen('over');
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+  
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+  
+<div class="modal" style="display:block; background: #002E6D;"> 
+              <div class="fb-spinner"> 
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+              </div> 
+</div> 
+  
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+ 
+<form id="global-bank-and-tax-form" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);"> 
+
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+<!-- Your Required/Validated Form Fields -->
+
+<$client.env.FormField.Date.prompt>
+<$client.env.FormField.Name.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.employee_number.prompt>
+<$client.env.FormField.event_country.prompt>
+<$client.env.FormField.first_account_country.prompt>
+<$client.env.FormField.first_account_number.prompt>
+<$client.env.FormField.first_account_type.prompt>
+<$client.env.FormField.first_bank_name.prompt>
+<$client.env.FormField.first_branch_name.prompt>
+<$client.env.FormField.first_identifier_number_1.prompt>
+<$client.env.FormField.first_identifier_number_2.prompt>
+<$client.env.FormField.first_identifier_number_3.prompt>
+<$client.env.FormField.first_identifier_type_1.prompt>
+<$client.env.FormField.first_identifier_type_2.prompt>
+<$client.env.FormField.first_identifier_type_3.prompt>
+<$client.env.FormField.first_name.prompt>
+<$client.env.FormField.first_net_pay.prompt>
+<$client.env.FormField.first_specific_amount.prompt>
+<$client.env.FormField.last_name.prompt>
+<$client.env.FormField.nid_number.prompt>
+<$client.env.FormField.nid_type.prompt>
+<$client.env.FormField.second_account_country.prompt>
+<$client.env.FormField.second_account_number.prompt>
+<$client.env.FormField.second_account_type.prompt>
+<$client.env.FormField.second_bank_name.prompt>
+<$client.env.FormField.second_branch_name.prompt>
+<$client.env.FormField.second_identifier_number_1.prompt>
+<$client.env.FormField.second_identifier_number_2.prompt>
+<$client.env.FormField.second_identifier_number_3.prompt>
+<$client.env.FormField.second_identifier_type_1.prompt>
+<$client.env.FormField.second_identifier_type_2.prompt>
+<$client.env.FormField.second_identifier_type_3.prompt>
+<$client.env.FormField.second_net_pay.prompt>
+<$client.env.FormField.work_site.prompt>
+</div>
+
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<!-- Begin HTML Content -->
+
+    <main class="container-fluid">
+        <!--//Logo-->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgr">
+                <img src="<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/img/logo.png>" class="img-responsive" style="max-width: 120px;">
+            </div>
+        </div>
+        <!--//Logo-->
+        <!--//Header-->
+        <div class="row margin-bottom">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <h3>Global Bank and Tax Form</h3>
+                <p>Direct deposit is a benefit available to all employees that will allow your payroll funds to be automatically deposited into your checking and/or savings account</p>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+        </div>
+        <!--//Header-->
+        <section class="margin-bottom">
+            <!--//Section 1 -->
+            <div class="row margin-bottom hide">
+                <div class="col-lg-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+                    <h5 class="margin-bottom form-heading"><span>EMPLOYEE INFORMATION</span></h5>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">First Name: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_name.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Last Name: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.last_name.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Employee Number: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.employee_number.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">National ID Type: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.nid_type.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">National ID Number: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.nid_number.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Work Site: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.work_site.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Event Country: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.event_country.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--//Section 1-->
+            <!--//Section 2-->
+            <div class="row margin-bottom">
+                <div class="col-lg-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+                    <h5 class="margin-bottom form-heading"><span>BANK ACCOUNT #1</span></h5>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="first_account_type">
+                            <p class="text-indent">What is the account type? <span class="font-red">*</span></p>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="text-indent">
+                                <$client.env.FormField.first_account_type.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row first_name_on_account">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Name on Account: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_name_on_account.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Bank Name: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_bank_name.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row first_branch_name">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Branch Name: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_branch_name.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row first_account_number">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Bank Account Number: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_account_number.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Account Country: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_account_country.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Account Identifier Type:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_identifier_type_1.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row first_identifier_number_1">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label"><span class="first_identifier_number_1"></span>: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_identifier_number_1.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Account Identifier Type:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_identifier_type_2.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row first_identifier_number_2">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label"><span class="first_identifier_number_2"></span>: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_identifier_number_2.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Account Identifier Type:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_identifier_type_3.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row first_identifier_number_3">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label"><span class="first_identifier_number_3"></span>: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_identifier_number_3.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Account Identifier Type:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_identifier_type_4.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row first_identifier_number_4">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label"><span class="first_identifier_number_4"></span>: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_identifier_number_4.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row us_only" style="display: none;">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="first_net_pay">
+                            <p class="text-indent">Want your entire paycheck deposited to this account? <span class="font-red">*</span></p>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="text-indent">
+                                <$client.env.FormField.first_net_pay.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row us_only" style="display: none;">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Specific Amount: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.first_specific_amount.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--//Section 2-->
+            <!--//Section 3-->
+            <div id="additional-account" class="row margin-bottom">
+                <div class="col-lg-offset-2 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+                    <h5 class="margin-bottom form-heading"><span>BANK ACCOUNT #2</span></h5>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="second_account_type">
+                            <p class="text-indent">What is the account type? <span class="font-red">*</span></p>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="text-indent">
+                                <$client.env.FormField.second_account_type.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row second_name_on_account">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Name on Account:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_name_on_account.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Bank Name: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_bank_name.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row second_branch_name">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Branch Name: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_branch_name.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row second_account_number">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Bank Account Number: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_account_number.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Account Country: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_account_country.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Account Identifier Type:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_identifier_type_1.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row second_identifier_number_1">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label"><span class="second_identifier_number_1"></span>: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_identifier_number_1.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Account Identifier Type:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_identifier_type_2.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row second_identifier_number_2">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label"><span class="second_identifier_number_2"></span>: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_identifier_number_2.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Account Identifier Type:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_identifier_type_3.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row second_identifier_number_3">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label"><span class="second_identifier_number_3"></span>: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_identifier_number_3.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="display: none;">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label">Account Identifier Type:</label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_identifier_type_4.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row second_identifier_number_4">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                            <label class="control-label"><span class="second_identifier_number_4"></span>: <span class="font-red">* </span></label>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <$client.env.FormField.second_identifier_number_4.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="second_net_pay">
+                            <p class="text-indent">Want the remaining amount of your paycheck deposited to this account? <span class="font-red">*</span></p>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="text-indent">
+                                <$client.env.FormField.second_net_pay.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--//Section 3-->
+            <!--//Add or Remove Button-->
+            <div id="toggle-additional-account" class="row margin-bottom">
+                <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-0 col-xs-offset-0 col-lg-8 col-md-8 col-sm-12 col-xs-12 text-right">
+                    <button type="button" class="lifesuite__button-custom" data-action="remove">Remove Account</button>
+                </div>
+            </div>
+        </section>
+        <!--//Employee Signature-->
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label class="control-label">Signature: <span class="font-red">*</span> </label> 
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.signature.html>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                <label class="control-label">Date: </label>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="form-group" id="sign-date-container">
+                    <$client.env.FormField.Date_mapped.html>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <label class="control-label">Name: </label>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <$client.env.FormField.name.html>
+            </div>
+        </div>
+        <!--//Employee Signature-->
+        <!--//Form Buttons-->
+        <hr class="lifesuite__hr">
+        <div class="row" id="formButtons" style="display: none;">
+            <div class="lifesuite__clearfix lifesuite__float-right">                
+                <$client.env.FormButtons> 
+            </div>
+        </div>
+        <!--//Form Buttons-->
+    </main>
+    <div style="display:none">
+        <$client.env.FormField.SignatureVerification.HTML>
+        <$client.env.FormField.Date.HTML>
+    </div>
+</form>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+
+<script type="text/javascript">
+var bank_codes = {
+    //'eForms>List>Bank_Code>Code" : 'eForms>List>Bank_Code>Description',
+    "" : '',
+    "aus_bsb_number" : 'BSB Number',
+    "sgp_bank_code" : 'Bank Code',
+    "sgp_branch_code" : 'Branch Code',
+    "gbr_sort_code" : 'Bank Sort Code',
+    "isr_bank_code" : 'Bank Code',
+    "isr_branch_code" : 'Branch Code',
+    "chn_bank_code" : 'Bank Code',
+    "chn_branch_code" : 'Branch Code',
+    "hkg_bank_code" : 'Bank Code',
+    "hkg_branch_code" : 'Branch Code',
+    "jpn_bank_code" : 'Bank Code',
+    "jpn_branch_code" : 'Branch Code',
+    "jpn_bic" : 'BIC',
+    "swe_bank_code" : 'Bank Code',
+    "swe_iban" : 'IBAN',
+    "swe_bic" : 'BIC',
+    "deu_bank_code" : 'Bank Code',
+    "deu_iban" : 'IBAN',
+    "deu_bic" : 'BIC',
+    "fra_bank_code" : 'Bank Code',
+    "fra_branch_code" : 'Branch Code',
+    "fra_iban" : 'IBAN',
+    "fra_bic" : 'BIC',
+    "rus_bank_code" : 'Bank Code',
+    "rus_branch_code" : 'Branch Code',
+    "rus_bic" : 'BIC',
+    "phl_bank_code" : 'Bank Code',
+    "phl_branch_code" : 'Branch Code',
+    "phl_bic" : 'BIC'
+}
+
+var regular_expressions = {
+    //'eForms>List>Bank_Code>Code" : 'Regular Expression',
+    "" : '\\w',
+    "aus_bsb_number" : '^\\d{3}-?\\d{3}$',
+    "sgp_bank_code" : '^\\d{4}$',
+    "sgp_branch_code" : '^\\d{3}$',
+    "gbr_sort_code" : '^\\d{6}$',
+    "isr_bank_code" : '^\\d{2}$',
+    "isr_branch_code" : '^\\d{3}$',
+    "chn_bank_code" : '^\\d{4}$',
+    "chn_branch_code" : '^(\\d{3}|)$',
+    "hkg_bank_code" : '^\\d{4}$',
+    "hkg_branch_code" : '^(\\d{3}|)$',
+    "jpn_bank_code" : '^\\d{4}$',
+    "jpn_branch_code" : '^\\d{3}$',
+    "jpn_bic" : '^(.+|)$',
+    "swe_bank_code" : '^(\\d{4}|)$',
+    "swe_iban" : '^(.+)$',
+    "swe_bic" : '^(.+)$',
+    "deu_bank_code" : '^(\\d{4}|)$',
+    "deu_iban" : '^(.+)$',
+    "deu_bic" : '^(.+)$',
+    "fra_bank_code" : '^(\\d{4}|)$',
+    "fra_branch_code" : '^(\\d{3}|)$',
+    "fra_iban" : '^(.+)$',
+    "fra_bic" : '^(.+)$',
+    "rus_bank_code" : '^\\d{4}$',
+    "rus_branch_code" : '^(\\d{3}|)$',
+    "rus_bic" : '^(.+)$',
+    "phl_bank_code" : '^\\d{4}$',
+    "phl_branch_code" : '^(\\d{3}|)$',
+    "phl_bic" : '^(.+|)$'
+}
+
+var messages = {
+    //'eForms>List>Bank_Code>Code" : 'Error Message',
+    "" : '',
+    "aus_bsb_number" : '6 digits or ###-###',
+    "sgp_bank_code" : '4 digits',
+    "sgp_branch_code" : '3 digits',
+    "gbr_sort_code" : '6 digits',
+    "isr_bank_code" : '2 digits',
+    "isr_branch_code" : '3 digits. If you have a 2 digit code, please enter a 0 (zero) as your first number. (Example 012)',
+    "chn_bank_code" : '4 digits',
+    "chn_branch_code" : '3 digits or optional',
+    "hkg_bank_code" : '4 digits',
+    "hkg_branch_code" : '3 digits or optional',
+    "jpn_bank_code" : '4 digits',
+    "jpn_branch_code" : '3 digits',
+    "jpn_bic" : 'one or more characters, or optional',
+    "swe_bank_code" : '4 digits or optional',
+    "swe_iban" : 'one or more characters',
+    "swe_bic" : 'one or more characters',
+    "deu_bank_code" : '4 digits or optional',
+    "deu_iban" : 'one or more characters',
+    "deu_bic" : 'one or more characters',
+    "fra_bank_code" : '4 digits or optional',
+    "fra_branch_code" : '3 digits or optional',
+    "fra_iban" : 'one or more characters',
+    "fra_bic" : 'one or more characters',
+    "rus_bank_code" : '4 digits',
+    "rus_branch_code" : '3 digits or optional',
+    "rus_bic" : 'one or more characters',
+    "phl_bank_code" : '4 digits',
+    "phl_branch_code" : '3 digits or optional',
+    "phl_bic" : 'one or more characters, or optional'
+}
+
+// Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+var identifier_type_1 = "";
+var identifier_type_2 = "";
+var identifier_type_3 = "";
+var identifier_type_4 = "";
+
+// Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+var identification_number_regex_1 = "";
+var identification_number_regex_2 = "";
+var identification_number_regex_3 = "";
+var identification_number_regex_4 = "";
+
+function ClearAdditionalAccount () {
+    $('#additional-account input').each(function(k,v) {
+        if($(v).val().length && $(v).is(":radio") != true && $(v).prop("name").indexOf("_In_Display_") < 0) {
+            $(v).val('');
+        }
+    });
+    $('#additional-account input[type="radio"]').each(function(k,v) {
+        $(v).prop('checked', false);
+    });
+    $('#additional-account select').each(function(k,v) {
+        $(v).val('');
+    });
+    $.each($('#additional-account input:visible:not(:button), #additional-account select:visible'), function(k, v) {
+        validateField($(v), true);
+    });
+}
+
+function ToggleSpecificAmount (object) {
+    if (object.val() == "Yes") {
+        $("#specific-amount").prop("disabled", true);
+        $("#specific-amount").val("");
+        $("#specific-amount").removeData("validation");
+        $("#specific-amount").removeData("regex");
+        $("#specific-amount").removeData("message");
+        validateField($("#specific-amount"), true);
+        ClearAdditionalAccount ();
+        $('#toggle-additional-account').css("display", "none");
+        $('#additional-account').css("display", "none");
+    }
+    else if (object.val() == "No") {
+        $("#specific-amount").prop("disabled", false);
+        $("#specific-amount").data("validation", "required,regex");
+        $("#specific-amount").data("regex", "^((([1-9]\\d{0,9})|[0])([.]\\d{1,2})?)$");
+        $("#specific-amount").data("message", "numeric values up to 2 decimal places");
+        if ($(".account-type:checked").length == 0) {
+            $(".account-type").filter("[value='Checking']").prop("checked", true);
+        }
+        $(".account-country").val($("#account_country option:selected").val());
+        if ($(".net-pay2:checked").length == 0) {
+            $(".net-pay2").filter("[value='Yes']").prop("checked", true);
+        }
+        PopulateAccountIdentificationType2($("#account_country option:selected").text());
+        $('#toggle-additional-account').css("display", "block");
+        $('#additional-account').css("display", "block");
+    }
+}
+
+function AddDataValidation (object, validator) {
+    if (object.data("validation") === undefined) {
+        object.data("validation", validator);
+    }
+    else {
+        object.data("validation", (object.data("validation").trim().length > 0 ? object.data("validation").trim() + "," + validator : object.data("validation").trim() + validator));   
+    }
+}
+
+function PopulateAccountIdentificationType (country) {
+    // switch(eForms>List>EUP_Country_New>Description)
+    var fullLegalName = ($('#first_name_on_account').val().length > 0) ? $('#first_name_on_account').val() : "<$client.tForWhomUserInfo.Full_Name>";
+    switch (country) {
+        // Add all Account Identifier Type required or optional for specific country
+        case "Australia":
+            identifier_type_1 = "aus_bsb_number";
+            identification_number_regex_1 = "aus_bsb_number";
+            // "Name on Account" is not applicable for Australia
+            $("div.first_name_on_account").css("display", "none");
+            // "Branch Name" is optional for Australia
+            $("div.first_branch_name span.font-red").css("display", "none");
+            break;
+        case "Singapore":
+            identifier_type_1 = "sgp_bank_code";
+            identifier_type_2 = "sgp_branch_code";
+            identification_number_regex_1 = "sgp_bank_code";
+            identification_number_regex_2 = "sgp_branch_code";
+            // "Name on Account" is not applicable for Singapore
+            $("div.first_name_on_account").css("display", "none");
+            // "Branch Name" is optional for Singapore
+            $("div.first_branch_name span.font-red").css("display", "none");
+            break;
+        case "United Kingdom":
+            identifier_type_1 = "gbr_sort_code";
+            identification_number_regex_1 = "gbr_sort_code";
+            $("#first_identifier_number_1").addClass("remove-alpha");
+            // "Name on Account" is not applicable for United Kingdom
+            $("div.first_name_on_account").css("display", "none");
+            // "Branch Name" is optional for United Kingdom
+            $("div.first_branch_name span.font-red").css("display", "none");
+            break;
+        case "Israel":
+            identifier_type_1 = "isr_bank_code";
+            identifier_type_2 = "isr_branch_code";
+            identification_number_regex_1 = "isr_bank_code";
+            identification_number_regex_2 = "isr_branch_code";
+            $("#first_identifier_number_1").addClass("remove-alpha");
+            $("#first_identifier_number_2").addClass("remove-alpha");
+            // "Name on Account" is not applicable for Israel
+            $("div.first_name_on_account").css("display", "none");
+            // "Branch Name" is optional for Israel
+            $("div.first_branch_name span.font-red").css("display", "none");
+            break;
+        case "China":
+            identifier_type_1 = "chn_bank_code";
+            identifier_type_2 = "chn_branch_code";
+            identification_number_regex_1 = "chn_bank_code";
+            identification_number_regex_2 = "chn_branch_code";
+            // "Branch Code" is optional for China
+            $("div.first_identifier_number_2 span.font-red").css("display", "none");
+            // "Name on Account" is required for China
+            AddDataValidation($("#first_name_on_account").val(fullLegalName), "required");
+            // "Branch Name" is required for China
+            AddDataValidation($("#first_branch_name"), "required");
+            // "Account Number" is required for China
+            AddDataValidation($("#first_account_number"), "required");
+            break;
+        case "Hong Kong":
+            identifier_type_1 = "hkg_bank_code";
+            identifier_type_2 = "hkg_branch_code";
+            identification_number_regex_1 = "hkg_bank_code";
+            identification_number_regex_2 = "hkg_branch_code";
+            // "Branch Name" is optional for Hong Kong
+            $("div.first_branch_name span.font-red").css("display", "none");
+            // "Branch Code" is optional for Hong Kong
+            $("div.first_identifier_number_2 span.font-red").css("display", "none");
+            // "Name on Account" is required for Hong Kong
+            AddDataValidation($("#first_name_on_account").val(fullLegalName), "required");
+            // "Account Number" is required for Hong Kong
+            AddDataValidation($("#first_account_number"), "required");
+            break;
+        case "Japan":
+            identifier_type_1 = "jpn_bank_code";
+            identifier_type_2 = "jpn_branch_code";
+            identifier_type_3 = "jpn_bic";
+            identification_number_regex_1 = "jpn_bank_code";
+            identification_number_regex_2 = "jpn_branch_code";
+            identification_number_regex_3 = "jpn_bic";
+            // "Branch Name" is optional for Japan
+            $("div.first_branch_name span.font-red").css("display", "none");
+            // "BIC" is optional for Japan
+            $("div.first_identifier_number_3 span.font-red").css("display", "none");
+            // "Name on Account" is required for Japan
+            AddDataValidation($("#first_name_on_account").val(fullLegalName), "required");
+            // "Account Number" is required for Japan
+            AddDataValidation($("#first_account_number"), "required");
+            break;
+        case "Sweden":
+            identifier_type_1 = "swe_bank_code";
+            identifier_type_2 = "swe_iban";
+            identifier_type_3 = "swe_bic";
+            identification_number_regex_1 = "swe_bank_code";
+            identification_number_regex_2 = "swe_iban";
+            identification_number_regex_3 = "swe_bic";
+            // "Branch Name" is optional for Sweden
+            $("div.first_branch_name span.font-red").css("display", "none");
+            // "Account Number" is optional for Sweden
+            $("div.first_account_number span.font-red").css("display", "none");
+            // "Bank Code" is optional for Sweden
+            $("div.first_identifier_number_1 span.font-red").css("display", "none");
+            // "Name on Account" is required for Sweden
+            AddDataValidation($("#first_name_on_account").val(fullLegalName), "required");
+            break;
+        case "Germany":
+            identifier_type_1 = "deu_bank_code";
+            identifier_type_2 = "deu_iban";
+            identifier_type_3 = "deu_bic";
+            identification_number_regex_1 = "deu_bank_code";
+            identification_number_regex_2 = "deu_iban";
+            identification_number_regex_3 = "deu_bic";
+            // "Branch Name" is optional for Germany
+            $("div.first_branch_name span.font-red").css("display", "none");
+            // "Account Number" is optional for Germany
+            $("div.first_account_number span.font-red").css("display", "none");
+            // "Bank Code" is optional for Germany
+            $("div.first_identifier_number_1 span.font-red").css("display", "none");
+            // "Name on Account" is required for Germany
+            AddDataValidation($("#first_name_on_account").val(fullLegalName), "required");
+            break;
+        case "France":
+            identifier_type_1 = "fra_bank_code";
+            identifier_type_2 = "fra_branch_code";
+            identifier_type_3 = "fra_iban";
+            identifier_type_4 = "fra_bic";
+            identification_number_regex_1 = "fra_bank_code";
+            identification_number_regex_2 = "fra_branch_code";
+            identification_number_regex_3 = "fra_iban";
+            identification_number_regex_4 = "fra_bic";
+            // "Branch Name" is not applicable for France
+            $("div.first_branch_name").css("display", "none");
+            // "Account Number" is optional for Germany
+            $("div.first_account_number span.font-red").css("display", "none");
+            // "Bank Code" is optional for France
+            $("div.first_identifier_number_1 span.font-red").css("display", "none");
+            // "Branch Code" is optional for France
+            $("div.first_identifier_number_2 span.font-red").css("display", "none");
+            // "Name on Account" is required for France
+            AddDataValidation($("#first_name_on_account").val(fullLegalName), "required");
+            break;
+        case "Russian Federation":
+            identifier_type_1 = "rus_bank_code";
+            identifier_type_2 = "rus_branch_code";
+            identifier_type_3 = "rus_bic";
+            identification_number_regex_1 = "rus_bank_code";
+            identification_number_regex_2 = "rus_branch_code";
+            identification_number_regex_3 = "rus_bic";
+            // "Branch Name" is optional for Russian Federation
+            $("div.first_branch_name span.font-red").css("display", "none");
+            // "Branch Code" is optional for Russian Federation
+            $("div.first_identifier_number_2 span.font-red").css("display", "none");
+            // "Name on Account" is required for Russian Federation
+            AddDataValidation($("#first_name_on_account").val(fullLegalName), "required");
+            // "Account Number" is required for Russian Federation
+            AddDataValidation($("#first_account_number"), "required");
+            break;
+        case "Philippines":
+            identifier_type_1 = "phl_bank_code";
+            identifier_type_2 = "phl_branch_code";
+            identifier_type_3 = "phl_bic";
+            identification_number_regex_1 = "phl_bank_code";
+            identification_number_regex_2 = "phl_branch_code";
+            identification_number_regex_3 = "phl_bic";
+            // "Branch Name" is optional for Philippines
+            $("div.first_branch_name span.font-red").css("display", "none");
+            // "Branch Code" is optional for Philippines
+            $("div.first_identifier_number_2 span.font-red").css("display", "none");
+            // "BIC" is optional for Philippines
+            $("div.first_identifier_number_3 span.font-red").css("display", "none");
+            // "Name on Account" is required for Philippines
+            AddDataValidation($("#first_name_on_account").val(fullLegalName), "required");
+            // "Account Number" is required for Philippines
+            AddDataValidation($("#first_account_number"), "required");
+            break;
+        case "United States of America":
+            // "Want your entire paycheck deposited to this account?" is only available for United States of America
+            $(".us_only").css("display", "block");
+            // "Name on Account" is not applicable for United States of America
+            $("div.first_name_on_account").css("display", "none");
+            // "Branch Name" is optional for United States of America
+            $("div.first_branch_name span.font-red").css("display", "none");
+            // "Account Number" is required for United States of America
+            AddDataValidation($("#first_account_number"), "required");
+            break;
+        default:
+            // "Name on Account" is not applicable by default
+            $("div.first_name_on_account").css("display", "none");
+            // "Branch Name" is optional by default
+            $("div.first_branch_name span.font-red").css("display", "none");
+            // "Account Number" is required by default
+            AddDataValidation($("#first_account_number"), "required");
+            break;
+    }
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("#first_identifier_type_1").val(identifier_type_1);
+    $("#first_identifier_type_2").val(identifier_type_2);
+    $("#first_identifier_type_3").val(identifier_type_3);
+    $("#first_identifier_type_4").val(identifier_type_4);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("#first_identifier_number_1").data("title", bank_codes[identifier_type_1]);
+    $("#first_identifier_number_2").data("title", bank_codes[identifier_type_2]);
+    $("#first_identifier_number_3").data("title", bank_codes[identifier_type_3]);
+    $("#first_identifier_number_4").data("title", bank_codes[identifier_type_4]);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    AddDataValidation($("#first_identifier_number_1"), "regex-standalone");
+    AddDataValidation($("#first_identifier_number_2"), "regex-standalone");
+    AddDataValidation($("#first_identifier_number_3"), "regex-standalone");
+    AddDataValidation($("#first_identifier_number_4"), "regex-standalone");
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("#first_identifier_number_1").data("regex", regular_expressions[identifier_type_1]);
+    $("#first_identifier_number_2").data("regex", regular_expressions[identifier_type_2]);
+    $("#first_identifier_number_3").data("regex", regular_expressions[identifier_type_3]);
+    $("#first_identifier_number_4").data("regex", regular_expressions[identifier_type_4]);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("#first_identifier_number_1").data("message", messages[identifier_type_1]);
+    $("#first_identifier_number_2").data("message", messages[identifier_type_2]);
+    $("#first_identifier_number_3").data("message", messages[identifier_type_3]);
+    $("#first_identifier_number_4").data("message", messages[identifier_type_4]);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("#first_identifier_number_1").prop("placeholder", bank_codes[identifier_type_1]);
+    $("#first_identifier_number_2").prop("placeholder", bank_codes[identifier_type_2]);
+    $("#first_identifier_number_3").prop("placeholder", bank_codes[identifier_type_3]);
+    $("#first_identifier_number_4").prop("placeholder", bank_codes[identifier_type_4]);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("span.first_identifier_number_1").html(bank_codes[identifier_type_1]);
+    $("span.first_identifier_number_2").html(bank_codes[identifier_type_2]);
+    $("span.first_identifier_number_3").html(bank_codes[identifier_type_3]);
+    $("span.first_identifier_number_4").html(bank_codes[identifier_type_4]);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("div.first_identifier_number_1").css("display", (identifier_type_1 ? "block" : "none"));
+    $("div.first_identifier_number_2").css("display", (identifier_type_2 ? "block" : "none"));
+    $("div.first_identifier_number_3").css("display", (identifier_type_3 ? "block" : "none"));
+    $("div.first_identifier_number_4").css("display", (identifier_type_4 ? "block" : "none"));
+}
+
+function PopulateAccountIdentificationType2 (country) {
+    // switch(eForms>List>EUP_Country_New>Description)
+    switch (country) {
+        // Add all Account Identifier Type required or optional for specific country
+        case "Australia":
+            identifier_type_1 = "aus_bsb_number";
+            identification_number_regex_1 = "aus_bsb_number";
+            // "Name on Account" is not applicable for Australia
+            $("div.second_name_on_account").css("display", "none");
+            // "Branch Name" is optional for Australia
+            $("div.second_branch_name span.font-red").css("display", "none");
+            break;
+        case "Singapore":
+            identifier_type_1 = "sgp_bank_code";
+            identifier_type_2 = "sgp_branch_code";
+            identification_number_regex_1 = "sgp_bank_code";
+            identification_number_regex_2 = "sgp_branch_code";
+            // "Name on Account" is not applicable for Singapore
+            $("div.second_name_on_account").css("display", "none");
+            // "Branch Name" is optional for Singapore
+            $("div.second_branch_name span.font-red").css("display", "none");
+            break;
+        case "United Kingdom":
+            identifier_type_1 = "gbr_sort_code";
+            identification_number_regex_1 = "gbr_sort_code";
+            $("#second_identifier_number_1").addClass("remove-alpha");
+            // "Name on Account" is not applicable for United Kingdom
+            $("div.second_name_on_account").css("display", "none");
+            // "Branch Name" is optional for United Kingdom
+            $("div.second_branch_name span.font-red").css("display", "none");
+            break;
+        case "Israel":
+            identifier_type_1 = "isr_bank_code";
+            identifier_type_2 = "isr_branch_code";
+            identification_number_regex_1 = "isr_bank_code";
+            identification_number_regex_2 = "isr_branch_code";
+            $("#second_identifier_number_1").addClass("remove-alpha");
+            $("#second_identifier_number_2").addClass("remove-alpha");
+            // "Name on Account" is not applicable for Israel
+            $("div.second_name_on_account").css("display", "none");
+            // "Branch Name" is optional for Israel
+            $("div.second_branch_name span.font-red").css("display", "none");
+            break;
+        case "China":
+            identifier_type_1 = "chn_bank_code";
+            identifier_type_2 = "chn_branch_code";
+            identification_number_regex_1 = "chn_bank_code";
+            identification_number_regex_2 = "chn_branch_code";
+            // "Branch Code" is optional for China
+            $("div.second_identifier_number_2 span.font-red").css("display", "none");
+            // "Name on Account" is required for China
+            AddDataValidation($("#second_name_on_account"), "required");
+            // "Branch Name" is required for China
+            AddDataValidation($("#second_branch_name"), "required");
+            // "Account Number" is required for China
+            AddDataValidation($("#second_account_number"), "required");
+            break;
+        case "Hong Kong":
+            identifier_type_1 = "hkg_bank_code";
+            identifier_type_2 = "hkg_branch_code";
+            identification_number_regex_1 = "hkg_bank_code";
+            identification_number_regex_2 = "hkg_branch_code";
+            // "Branch Name" is optional for Hong Kong
+            $("div.second_branch_name span.font-red").css("display", "none");
+            // "Branch Code" is optional for Hong Kong
+            $("div.second_identifier_number_2 span.font-red").css("display", "none");
+            // "Name on Account" is required for Hong Kong
+            AddDataValidation($("#second_name_on_account"), "required");
+            // "Account Number" is required for Hong Kong
+            AddDataValidation($("#second_account_number"), "required");
+            break;
+        case "Japan":
+            identifier_type_1 = "jpn_bank_code";
+            identifier_type_2 = "jpn_branch_code";
+            identifier_type_3 = "jpn_bic";
+            identification_number_regex_1 = "jpn_bank_code";
+            identification_number_regex_2 = "jpn_branch_code";
+            identification_number_regex_3 = "jpn_bic";
+            // "Branch Name" is optional for Japan
+            $("div.second_branch_name span.font-red").css("display", "none");
+            // "BIC" is optional for Japan
+            $("div.second_identifier_number_3 span.font-red").css("display", "none");
+            // "Name on Account" is required for Japan
+            AddDataValidation($("#second_name_on_account"), "required");
+            // "Account Number" is required for Japan
+            AddDataValidation($("#second_account_number"), "required");
+            break;
+        case "Sweden":
+            identifier_type_1 = "swe_bank_code";
+            identifier_type_2 = "swe_iban";
+            identifier_type_3 = "swe_bic";
+            identification_number_regex_1 = "swe_bank_code";
+            identification_number_regex_2 = "swe_iban";
+            identification_number_regex_3 = "swe_bic";
+            // "Branch Name" is optional for Sweden
+            $("div.second_branch_name span.font-red").css("display", "none");
+            // "Account Number" is optional for Sweden
+            $("div.second_account_number span.font-red").css("display", "none");
+            // "Bank Code" is optional for Sweden
+            $("div.second_identifier_number_1 span.font-red").css("display", "none");
+            // "Name on Account" is required for Sweden
+            AddDataValidation($("#second_name_on_account"), "required");
+            break;
+        case "Germany":
+            identifier_type_1 = "deu_bank_code";
+            identifier_type_2 = "deu_iban";
+            identifier_type_3 = "deu_bic";
+            identification_number_regex_1 = "deu_bank_code";
+            identification_number_regex_2 = "deu_iban";
+            identification_number_regex_3 = "deu_bic";
+            // "Branch Name" is optional for Germany
+            $("div.second_branch_name span.font-red").css("display", "none");
+            // "Account Number" is optional for Germany
+            $("div.second_account_number span.font-red").css("display", "none");
+            // "Bank Code" is optional for Germany
+            $("div.second_identifier_number_1 span.font-red").css("display", "none");
+            // "Name on Account" is required for Germany
+            AddDataValidation($("#second_name_on_account"), "required");
+            break;
+        case "France":
+            identifier_type_1 = "fra_bank_code";
+            identifier_type_2 = "fra_branch_code";
+            identifier_type_3 = "fra_iban";
+            identifier_type_4 = "fra_bic";
+            identification_number_regex_1 = "fra_bank_code";
+            identification_number_regex_2 = "fra_branch_code";
+            identification_number_regex_3 = "fra_iban";
+            identification_number_regex_4 = "fra_bic";
+            // "Branch Name" is not applicable for France
+            $("div.second_branch_name").css("display", "none");
+            // "Account Number" is optional for France
+            $("div.second_account_number span.font-red").css("display", "none");
+            // "Bank Code" is optional for France
+            $("div.second_identifier_number_1 span.font-red").css("display", "none");
+            // "Branch Code" is optional for France
+            $("div.second_identifier_number_2 span.font-red").css("display", "none");
+            // "Name on Account" is required for France
+            AddDataValidation($("#second_name_on_account"), "required");
+            break;
+        case "Russian Federation":
+            identifier_type_1 = "rus_bank_code";
+            identifier_type_2 = "rus_branch_code";
+            identifier_type_3 = "rus_bic";
+            identification_number_regex_1 = "rus_bank_code";
+            identification_number_regex_2 = "rus_branch_code";
+            identification_number_regex_3 = "rus_bic";
+            // "Branch Name" is optional for Russian Federation
+            $("div.second_branch_name span.font-red").css("display", "none");
+            // "Branch Code" is optional for Russian Federation
+            $("div.second_identifier_number_2 span.font-red").css("display", "none");
+            // "Name on Account" is required for Russian Federation
+            AddDataValidation($("#second_name_on_account"), "required");
+            // "Account Number" is required for Russian Federation
+            AddDataValidation($("#second_account_number"), "required");
+            break;
+        case "Philippines":
+            identifier_type_1 = "phl_bank_code";
+            identifier_type_2 = "phl_branch_code";
+            identifier_type_3 = "phl_bic";
+            identification_number_regex_1 = "phl_bank_code";
+            identification_number_regex_2 = "phl_branch_code";
+            identification_number_regex_3 = "phl_bic";
+            // "Branch Name" is optional for Philippines
+            $("div.second_branch_name span.font-red").css("display", "none");
+            // "Branch Code" is optional for Philippines
+            $("div.second_identifier_number_2 span.font-red").css("display", "none");
+            // "BIC" is optional for Philippines
+            $("div.second_identifier_number_3 span.font-red").css("display", "none");
+            // "Name on Account" is required for Philippines
+            AddDataValidation($("#second_name_on_account"), "required");
+            // "Account Number" is required for Philippines
+            AddDataValidation($("#second_account_number"), "required");
+            break;
+        default:
+            // "Name on Account" is not applicable by default
+            $("div.second_name_on_account").css("display", "none");
+            // "Branch Name" is optional by default
+            $("div.second_branch_name span.font-red").css("display", "none");
+            // "Account Number" is required by default
+            AddDataValidation($("#second_account_number"), "required");
+            break;
+    }
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("#second_identifier_type_1").val(identifier_type_1);
+    $("#second_identifier_type_2").val(identifier_type_2);
+    $("#second_identifier_type_3").val(identifier_type_3);
+    $("#second_identifier_type_4").val(identifier_type_4);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("#second_identifier_number_1").data("title", bank_codes[identifier_type_1]);
+    $("#second_identifier_number_2").data("title", bank_codes[identifier_type_2]);
+    $("#second_identifier_number_3").data("title", bank_codes[identifier_type_3]);
+    $("#second_identifier_number_4").data("title", bank_codes[identifier_type_4]);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    AddDataValidation($("#second_identifier_number_1"), "regex-standalone");
+    AddDataValidation($("#second_identifier_number_2"), "regex-standalone");
+    AddDataValidation($("#second_identifier_number_3"), "regex-standalone");
+    AddDataValidation($("#second_identifier_number_4"), "regex-standalone");
+
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("#second_identifier_number_1").data("regex", regular_expressions[identifier_type_1]);
+    $("#second_identifier_number_2").data("regex", regular_expressions[identifier_type_2]);
+    $("#second_identifier_number_3").data("regex", regular_expressions[identifier_type_3]);
+    $("#second_identifier_number_4").data("regex", regular_expressions[identifier_type_4]);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("#second_identifier_number_1").data("message", messages[identifier_type_1]);
+    $("#second_identifier_number_2").data("message", messages[identifier_type_2]);
+    $("#second_identifier_number_3").data("message", messages[identifier_type_3]);
+    $("#second_identifier_number_4").data("message", messages[identifier_type_4]);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("#second_identifier_number_1").prop("placeholder", bank_codes[identifier_type_1]);
+    $("#second_identifier_number_2").prop("placeholder", bank_codes[identifier_type_2]);
+    $("#second_identifier_number_3").prop("placeholder", bank_codes[identifier_type_3]);
+    $("#second_identifier_number_4").prop("placeholder", bank_codes[identifier_type_4]);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("span.second_identifier_number_1").html(bank_codes[identifier_type_1]);
+    $("span.second_identifier_number_2").html(bank_codes[identifier_type_2]);
+    $("span.second_identifier_number_3").html(bank_codes[identifier_type_3]);
+    $("span.second_identifier_number_4").html(bank_codes[identifier_type_4]);
+    
+    // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
+    $("div.second_identifier_number_1").css("display", (identifier_type_1 ? "block" : "none"));
+    $("div.second_identifier_number_2").css("display", (identifier_type_2 ? "block" : "none"));
+    $("div.second_identifier_number_3").css("display", (identifier_type_3 ? "block" : "none"));
+    $("div.second_identifier_number_4").css("display", (identifier_type_4 ? "block" : "none"));
+}
+</script>
+
+<script type="text/javascript"> 
+
+    ChangeCalendarIcons(); //for popup calendar  
+
+$(window).ready(function() { 
+
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+        $("#buttonCancel").addClass("lifesuite__button"); 
+        $('#buttonCancel').attr('id','ButtonCancel'); 
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonSave").addClass("lifesuite__button primary"); 
+        $('#buttonSave').attr('id','ButtonSave'); 
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary"); 
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete'); 
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+        $("#buttonPrint").addClass("lifesuite__button"); 
+        $('#buttonPrint').attr('id','ButtonPrint'); 
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed"); 
+        $("#buttonPreviewDelete").addClass("lifesuite__button"); 
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete'); 
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonPreviewSave").addClass("lifesuite__button primary"); 
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave'); 
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete'); 
+
+       document.getElementById('formButtons').style.display = "block"; 
+
+        $("input[type=text]").addClass('lifesuite__text-input'); 
+        $("input[type=text].hasDatepicker").addClass('dateField'); 
+        $("select").addClass('lifesuite__select-input'); 
+        $("input[type=radio]").addClass('lifesuite__radio'); 
+        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+        $("textarea").addClass('lifesuite__textarea-input'); 
+        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+
+  var countries = {
+    "ARG"   : 'Argentina',
+    "AUS"   : 'Australia',
+    "AUT"   : 'Austria',
+    "BEL"   : 'Belgium',
+    "BRA"   : 'Brazil',
+    "CAN"   : 'Canada',
+    "CHN"   : 'China',
+    "HRV"   : 'Croatia',
+    "CZE"   : 'Czech Republic',
+    "DNK"   : 'Denmark',
+    "EST"   : 'Estonia',
+    "FRA"   : 'France',
+    "DEU"   : 'Germany',
+    "HKG"   : 'Hong Kong',
+    "IND"   : 'India',
+    "IDN"   : 'Indonesia',
+    "IRL"   : 'Ireland',
+    "ISR"   : 'Israel',
+    "ITA"   : 'Italy',
+    "JPN"   : 'Japan',
+    "LUX"   : 'Luxembourg',
+    "MYS"   : 'Malaysia',
+    "MEX"   : 'Mexico',
+    "NLD"   : 'Netherlands',
+    "NOR"   : 'Norway',
+    "PHL"   : 'Philippines',
+    "POL"   : 'Poland',
+    "RUS"   : 'Russia',
+    "SGP"   : 'Singapore',
+    "ZAF"   : 'South Africa',
+    "KOR"   : 'South Korea',
+    "ESP"   : 'Spain',
+    "SWE"   : 'Sweden',
+    "CHE"   : 'Switzerland',
+    "TWN"   : 'Taiwan',
+    "THA"   : 'Thailand',
+    "TUR"   : 'Turkey',
+    "UKR"   : 'Ukraine',
+    "GBR"   : 'United Kingdom',
+    "USA"   : 'USA'
+  }
+
+  //var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>" : $('#EventLocation').val();
+  //$('#Country').val(countries[eventLocation] + "?");
+
+  PopulateAccountIdentificationType($("#account_country option:selected").text());
+  ToggleSpecificAmount($("#net-pay:checked"));
+
+  $('.remove-alpha').keyup(function () {
+    if (!this.value.match(/^[0-9]$/)) {
+      this.value = this.value.replace(/[^0-9]/g, '');
+    }
+  });
+
+  $("#specific-amount").keydown(function (e) {
+    // Allow period only once
+    if (($.inArray(e.keyCode, [110]) !== -1 || (e.shiftKey || e.keyCode == 190)) && $(this).val().indexOf(".") >= 0) {
+      e.preventDefault();
+    }
+    // Allow: backspace, delete, tab, escape, enter and .
+    if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+    // Allow: Ctrl+A, Command+A
+    (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+    // Allow: home, end, left, right, down, up
+    (e.keyCode >= 35 && e.keyCode <= 40)) {
+    // let it happen, don't do anything
+      return;
+    }
+    // Ensure that it is a number and stop the keypress
+    if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105) && (e.shiftKey || e.keyCode != 190)) {
+      e.preventDefault();
+    }
+  });
+
+  $('#global-bank-and-tax-form').on('click change', 'input:visible[type="radio"]:not(:button)', function() {
+    if ($(this).prop("id") == "net-pay") {
+        ToggleSpecificAmount($("#net-pay:checked"));
+    }
+    validateField($(this));
+  });
+
+  $('#global-bank-and-tax-form').on('change blur', 'input:visible:not(#signature):not(:button), select:visible', function() {
+    validateField($(this));
+  });
+/*
+  $('#modal').on('click', 'input.lifesuite__button', function() {
+    validateField($('#signature'));
+    validateField($('#sign-date-container .cal_and_button input:not(:button)'), true);
+  });
+*/
+  $('#global-bank-and-tax-form').on('change', 'input.hasDatepicker:visible', function() {
+    $("[data-id='"+$(this).data('date-mapped')+"']").val($(this).data("realdate"));
+  });
+
+  $('#modal').on('click', '#signature-submit', function() {
+    if (validateSignature('signature','eSignature1','employee-name','modal','over','sv')) {
+        $('#Date_mapped').setFormattedDate(new Date());
+        $("[data-id='Date']").val($('#Date_mapped').data("realdate"));
+    }
+    xbObj('eSignature1').value='';
+    validateField($('#signature'));
+    document.getElementById('eSignature1').focus();
+  });
+
+  $('#modal').on('click', '#signature-clear', function() {
+    xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';
+    if (typeof targetdatecheckCLEAR == 'function' ){$('#Date_mapped').setFormattedDate(null);$("[data-id='Date']").val("");}
+    validateField($('#signature'));
+  });
+
+  $('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete').on('click', function(e) {
+    var formIsValid = true, btn = $(this);
+    e.preventDefault();
+    $.each($('#global-bank-and-tax-form input:visible:not(:button), #global-bank-and-tax-form  select:visible'), function(k, v) {
+      if (strFormCompleted) formIsValid = true;
+      else{
+        if(false == validateField($(v)) && $(v).is(':visible')) {
+          formIsValid = false;
+        }
+      }
+    });
+    if (formIsValid) {
+      switch (btn.attr('id')) {
+        case 'ButtonPrint':
+          funcPrint();
+        break;
+        case 'ButtonSaveAndComplete':
+          funcSaveAndComplete();
+        break;
+      }
+    }
+  });
+  // Style modifiers
+  // SERVICES-34931 | removed calendar icon as per client request on only disabled field
+  // $('.cal_and_button td').prepend($('<span class="calendar-btn-container"/>').append($('<i class="fa fa-calendar"></i>')));
+
+  <$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js> 
+  if (!$("#sv").prop('readonly')) {
+  $('#Date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+  }
+}); 
+
+$(function() {
+  $('#toggle-additional-account').on('click', 'button:not("disabled")', function(e) {
+    e.preventDefault();
+    if ($('#additional-account').is(':visible')) {
+        ClearAdditionalAccount ();
+    $(".net-pay1").filter("[value='Yes']").prop("checked", true);
+        ToggleSpecificAmount($("#net-pay:checked"));
+    }
+    $('#toggle-additional-account').css("display", "none");
+    $('#additional-account').css("display", "none");
+    $.each($('#additional-account input:visible:not(:button), #additional-account select:visible'), function(k, v) {
+      validateField($(v), true);
+    });
+  });
+  var hasSecondAccount = false;
+  $('#additional-account input').each(function(k,v) {
+    if($(v).val().length && $(v).is(":radio") != true && $(v).prop("name").indexOf("_In_Display_") < 0) {
+      hasSecondAccount = true;
+    }
+  });
+  if (hasSecondAccount) {
+    $('#additional-account').css("display", "block");
+    PopulateAccountIdentificationType2($("#account_country option:selected").text());
+  }
+  if (strFormCompleted != "") {
+    $('#toggle-additional-account button').prop('disabled', true);
+  }
+});
+
+$('#buttonPrint').removeAttr('onclick');
+$('#buttonSaveAndComplete').removeAttr('onclick');
+disableCalButton('disableDate');
+</script>

@@ -1,1300 +1,1545 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over');
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+		<$client.env.FormField.a01_SSNO.prompt>
+		<$client.env.FormField.a02_Title_Dr.prompt>
+		<$client.env.FormField.a02_Title_Mr.prompt>
+		<$client.env.FormField.a02_Title_Mrs.prompt>
+		<$client.env.FormField.a02_Title_Ms.prompt>
+		<$client.env.FormField.a03_Last_Plus_Suffix.prompt>
+		<$client.env.FormField.a04_Employee_No.prompt>
+		<$client.env.FormField.a05_Street_Address.prompt>
+		<$client.env.FormField.a06_Local_Municipality.prompt>
+		<$client.env.FormField.a07_City_State_Zip.prompt>
+		<$client.env.FormField.a08_County_Name.prompt>
+		<$client.env.FormField.a09_Mailing_Address.prompt>
+		<$client.env.FormField.a10_City_State_Zip.prompt>
+		<$client.env.FormField.a11_Home_Phone.prompt>
+		<$client.env.FormField.a12_Cell_Phone.prompt>
+		<$client.env.FormField.a13_Work_Phone.prompt>
+		<$client.env.FormField.a14_Date_of_Birth.prompt>
+		<$client.env.FormField.a15_Gender.prompt>
+		<$client.env.FormField.a16_Relationship_Status.prompt>
+		<$client.env.FormField.a17_Date_of_Marriage.prompt>
+		<$client.env.FormField.a18_covered_by_another_medical_plan.prompt>
+		<$client.env.FormField.a19_have_Medicare.prompt>
+		<$client.env.FormField.a20_Action_Requested.prompt>
+		<$client.env.FormField.a21_Event.prompt>
+		<$client.env.FormField.a22_Other.prompt>
+		<$client.env.FormField.a23_Date_of_Event.prompt>
+		<$client.env.FormField.a24_MEDICAL_BENEFITS.prompt>
+		<$client.env.FormField.a25_Effective_Date.prompt>
+		<$client.env.FormField.a26_Medical_Plan_Name.prompt>
+		<$client.env.FormField.a27_Health_Care_Center.prompt>
+		<$client.env.FormField.a28_Health_Care_Center.prompt>
+		<$client.env.FormField.a29_patient_of_this_practice.prompt>
+		<$client.env.FormField.a30_PRESCRIPTION_DRUG_BENEFITS.prompt>
+		<$client.env.FormField.a31_Effective_Date.prompt>
+		<$client.env.FormField.a32_SUPPLEMENTAL_BENEFITS.prompt>
+		<$client.env.FormField.a33_Effective_Date.prompt>
+		<$client.env.FormField.a34_Spouse_HR_initial_Eligibility_Doc_Verified.prompt>
+		<$client.env.FormField.a35_spouse_Name.prompt>
+		<$client.env.FormField.a36_Spouse_Domestic_Partner_SSN.prompt>
+		<$client.env.FormField.a37_Gender.prompt>
+		<$client.env.FormField.a38_Date_of_Birth.prompt>
+		<$client.env.FormField.a39_List_address.prompt>
+		<$client.env.FormField.a40_spouse_domestic_partner_have_Medicare.prompt>
+		<$client.env.FormField.a41_spouse_domestic_partner_covered_by_another_medical_plan.prompt>
+		<$client.env.FormField.a42_spouse_domestic_partner_employment_status.prompt>
+		<$client.env.FormField.a43_spouse_domestic_partner_eligible_for_health_coverage_through_employer.prompt>
+		<$client.env.FormField.a44_spouse_domestic_partner_enrolled_in_health_insurance_plan_NA.prompt>
+		<$client.env.FormField.a44_spouse_domestic_partner_enrolled_in_health_insurance_plan_No.prompt>
+		<$client.env.FormField.a44_spouse_domestic_partner_enrolled_in_health_insurance_plan_Yes.prompt>
+		<$client.env.FormField.a45_Is_the_plan_offered_at_a_cost.prompt>
+		<$client.env.FormField.a46_Is_there_a_monetary_incentive_to_decline_coverage.prompt>
+		<$client.env.FormField.a47_spouse_domestic_partner_have_HSA.prompt>
+		<$client.env.FormField.a48_Medical_plan_Add.prompt>
+		<$client.env.FormField.a48_Medical_plan_Remove.prompt>
+		<$client.env.FormField.a49_Effective_date.prompt>
+		<$client.env.FormField.a50_Health_Care_Center_Doctor_Name_or_ID.prompt>
+		<$client.env.FormField.a51_Currently_a_patient_of_this_practice.prompt>
+		<$client.env.FormField.a51_Prescription_drug_plan_Add.prompt>
+		<$client.env.FormField.a51_Prescription_drug_plan_Remove.prompt>
+		<$client.env.FormField.a52_Effective_date.prompt>
+		<$client.env.FormField.a53_Remarks.prompt>
+		<$client.env.FormField.a54_Supplemental_benefits_Add.prompt>
+		<$client.env.FormField.a54_Supplemental_benefits_Remove.prompt>
+		<$client.env.FormField.a55_Effective_date.prompt>
+		<$client.env.FormField.a56_Personal_data_change.prompt>
+		<$client.env.FormField.a57_Effective_date.prompt>
+		<$client.env.FormField.a58_Spouse_HR_initial_Eligibility_Doc_Verified.prompt>
+		<$client.env.FormField.a59_spouse_Name.prompt>
+		<$client.env.FormField.a60_Spouse_Domestic_Partner_SSN.prompt>
+		<$client.env.FormField.a61_Gender.prompt>
+		<$client.env.FormField.a62_Date_of_Birth.prompt>
+		<$client.env.FormField.a63_Dependent_Relationship.prompt>
+		<$client.env.FormField.a64_explain_relationship.prompt>
+		<$client.env.FormField.a65_List_address.prompt>
+		<$client.env.FormField.a66_Dependent_have_Medicare.prompt>
+		<$client.env.FormField.a67_Dependent_covered_by_another_plan.prompt>
+		<$client.env.FormField.a68_Medical_plan_Add.prompt>
+		<$client.env.FormField.a68_Medical_plan_Remove.prompt>
+		<$client.env.FormField.a69_Effective_date.prompt>
+		<$client.env.FormField.a70_Health_Care_Center_Doctor_Name_or_ID.prompt>
+		<$client.env.FormField.a71_Currently_a_patient_of_this_practice.prompt>
+		<$client.env.FormField.a72_Prescription_drug_plan_Add.prompt>
+		<$client.env.FormField.a72_Prescription_drug_plan_Remove.prompt>
+		<$client.env.FormField.a73_Effective_date.prompt>
+		<$client.env.FormField.a74_Remarks.prompt>
+		<$client.env.FormField.a75_Supplemental_benefits_Add.prompt>
+		<$client.env.FormField.a75_Supplemental_benefits_Remove.prompt>
+		<$client.env.FormField.a76_Effective_date.prompt>
+		<$client.env.FormField.a77_Personal_data_change.prompt>
+		<$client.env.FormField.a78_Effective_date.prompt>
+		<$client.env.FormField.a79_Spouse_HR_initial_Eligibility_Doc_Verified.prompt>
+		<$client.env.FormField.a80_spouse_Name.prompt>
+		<$client.env.FormField.a81_Spouse_Domestic_Partner_SSN.prompt>
+		<$client.env.FormField.a82_Gender.prompt>
+		<$client.env.FormField.a83_Date_of_Birth.prompt>
+		<$client.env.FormField.a84_Dependent_Relationship.prompt>
+		<$client.env.FormField.a85_explain_relationship.prompt>
+		<$client.env.FormField.a86_List_address.prompt>
+		<$client.env.FormField.a87_Dependent_have_Medicare.prompt>
+		<$client.env.FormField.a88_Dependent_covered_by_another_plan.prompt>
+		<$client.env.FormField.a89_Medical_plan_Add.prompt>
+		<$client.env.FormField.a89_Medical_plan_Remove.prompt>
+		<$client.env.FormField.a90_Effective_date.prompt>
+		<$client.env.FormField.a91_Health_Care_Center_Doctor_Name_or_ID.prompt>
+		<$client.env.FormField.a92_Currently_a_patient_of_this_practice.prompt>
+		<$client.env.FormField.a93_Prescription_drug_plan_Add.prompt>
+		<$client.env.FormField.a93_Prescription_drug_plan_Remove.prompt>
+		<$client.env.FormField.a94_Effective_date.prompt>
+		<$client.env.FormField.a95_Remarks.prompt>
+		<$client.env.FormField.a96_Supplemental_benefits_Add.prompt>
+		<$client.env.FormField.a96_Employee_Name.prompt>
+		<$client.env.FormField.a97_Date.prompt>
+		<$client.env.FormField.a97_Effective_date.prompt>
+		<$client.env.FormField.a98_Personal_data_change.prompt>
+		<$client.env.FormField.a99_Effective_date.prompt>
+		<$client.env.FormField.b01_Eligible_for_the_Bronze_Plan.prompt>
+		<$client.env.FormField.b02_HR_Service_Center_or_HR_Office_Signature.prompt>
+		<$client.env.FormField.b03_Date_Enrollment_Form_Received.prompt>
+		<$client.env.FormField.b04_Date_Enrollment_Form_Processed.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
 <main class="container-fluid">
-	<h3 class="text-center">
-		<strong>EMPLOYEE ENROLLMENT/CHANGE FORM</strong>
-	</h3>
-	<p class="text-center">
-		<strong>For enrollments and changes that are effective January 1, 2017 and later</strong>
-	</p>
-	<p class="text-center">
-		<strong>Important:</strong> Changes made on this form will affect your medical, prescription drug, and supplemental benefits.
-	</p>
+    <h3 class="text-center">
+        <strong>EMPLOYEE ENROLLMENT/CHANGE FORM</strong>
+    </h3>
+    <p class="text-center">
+        <strong>For enrollments and changes that are effective January 1, 2017 and later</strong>
+    </p>
+    <p class="text-center">
+        <strong>Important:</strong> Changes made on this form will affect your medical, prescription drug, and supplemental benefits.
+    </p>
 
-	<div class="box">
-		<div class="row bg-black">
-			<div class="col-lg-12">
-				<h3>
-					<strong>SECTION 1: EMPLOYEE DATA</strong>
-				</h3>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 mh-70">
-				Social Security #
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right b-left mh-70">
-				Title
-				<br>
-				<label>
-					<input type="checkbox"> Mr.
-				</label>
-				<label>
-					<input type="checkbox"> Dr.
-				</label>
-				<br>
-				<label>
-					<input type="checkbox"> Mrs.
-				</label>
-				<label>
-					<input type="checkbox"> Ms.
-				</label>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right mh-70">
-				Name (Last Plus Suffix, First, MI)
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-70">
-				Employee #
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 b-right">
-				Street Address
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-				Local Municipality(if address change)
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 b-right">
-				City/State/Zip
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-				County Name
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 b-right">
-				Mailing Address(if different than address listed above)
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-				City/State/Zip
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
-				Home Phone #
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
-				Cell Phone #
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				Work Phone #
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
-				Date of Birth (mm/dd/yyyy)
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
-				Gender
-				<input type="checkbox"> Male <br>
-				<input type="checkbox"> Female
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-				Relationship Status
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-left">
-				Date of Marriage/Domestic Partnership (mm/dd/yyyy)
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				Answer both of the following questions:
-				<div class="form-group">
-					<div class="inline-block">
-						Are you covered by another medical plan?
-					</div>
-					<div class="inline-block">
-						<input type="checkbox"> Yes
-						<input type="checkbox"> No
-					</div>
-					<div class="inline-block">
-						Do you have Medicare?
-					</div>
-					<div class="inline-block">
-						<input type="checkbox"> Yes
-						<input type="checkbox"> No
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row bg-black">
-			<div class="col-lg-12">
-				<h3>
-					<strong>SECTION 2: ENROLLMENT INFORMATION</strong>
-				</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<strong>a) Action Requested (select all that apply):</strong>
-				<div class="form-group mb-10">
-					<input type="checkbox"> New Enrollment
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 b-right">
-				<strong>b) Event (select all that apply):</strong>
-				<div class="form-group mb-10">
-					<div class="inline-block">
-						<input type="checkbox"> Marriage
-						<input type="checkbox"> Other
-					</div>
-					<div class="inline-block">
-						<input type="text">
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-				c) Date of Event: (if applicable) (mm/dd/yyyy)
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row bg-black">
-			<div class="col-lg-12">
-				<h3>
-					<strong>
-						SECTION 3: MEDICAL BENEFITS
-						<small>
-							<em>(Selectone)</em>
-						</small>
-					</strong>
-				</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<p>
-					<strong><em>Full-Time Employees: Additional costs may apply if selecting the CHOICE PPO.</em></strong><br>
-					<strong><em>Part-Time Employees: Additional costs will apply for any plan selection.</em></strong>
-				</p>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-				<div class="form-group">
-					<input type="checkbox"> CHOICE PPO <br>
-					<input type="checkbox"> Decline <br>
-				</div>
-			</div>
-			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-				<div class="form-group">
-					<div class="inline-block">Effective Date (mm/dd/yyyy):</div>
-					<div class="inline-block">
-						<input type="text">
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-				Medical Plan Name
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 b-left">
-				<div class="row b-bottom">
-					<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 b-right">
-						Health Care Center or Dr. Name (required for HMO)
-						<div class="form-group">
-							<input type="text">
-						</div>
-					</div>
-					<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-						Health Care Center/Dr. ID #
-						<div class="form-group">
-							<input type="text">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="form-group">
-							<div class="inline-block">
-								Are you currently a patient of this practice?
-							</div>
-							<div class="inline-block">
-								<input type="checkbox">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row bg-black">
-			<div class="col-lg-12">
-				<h3>
-					<strong>SECTION 4: PRESCRIPTION DRUG BENEFITS</strong>
-				</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<p>
-					<em>If enrolling in prescription drug plan only, also complete the PEBTF-41 form</em><br>
-					<strong>
-						<em>Full-Time Employees: Additional costs will apply for the first six months of employment.</em><br>
-					</strong>
-					<strong>
-						<em>Part-Time Employees: Additional costs will apply.</em>
-					</strong>
-				</p>
-				<div class="form-group">
-					<div class="inline-block">
-						<input type="checkbox"> Decline
-					</div>
-					<div class="inline-block">
-						<strong>Effective Date</strong> (mm/dd/yyyy):
-					</div>
-					<div class="inline-block">
-						<input type="text">
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row bg-black">
-			<div class="col-lg-12">
-				<h3>
-					<strong>
-						SECTION 5: SUPPLEMENTAL BENEFITS
-						<small>
-							<em>(Includes dental, vision and hearing aid coverage)</em>
-						</small>
-					</strong>
-				</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<p>
-					<strong>
-						<em>Supplemental Benefits will begin no earlier than your seventh month of employment.</em><br>
-					</strong>
-					<strong>
-						<em>Part-Time Employees: Additional costs will apply.</em>
-					</strong>
-				</p>
-				<div class="form-group">
-					<div class="inline-block">
-						<input type="checkbox"> Decline
-					</div>
-					<div class="inline-block">
-						<strong>Effective Date</strong> (mm/dd/yyyy):
-					</div>
-					<div class="inline-block">
-						<div class="form-group">
-							<input type="text">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row bg-black">
-			<div class="col-lg-12">
-				<h3>
-					<strong>
-						<em>SECTION 6: SPOUSE / DOMESTIC PARTNER DATA</em>
-					</strong>
-				</h3>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-12">
-				<p>
-					<em>Complete this section if adding or removing a spouse or domestic partner. If adding a new spouse, you must present your original marriage certificate to your local HR office or your supervisor. If adding a new domestic partner, additional documentation supporting the domestic partnership has been in existence at least six months is required.</em>
-				</p>
-			</div>
-		</div>
-		<div class="row bg-grey hidden-sm hidden-xs">
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				<div class="form-group">
-					<strong>HR initial Eligibility Doc Verified by HR</strong>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Name (Last, First, MI)</strong>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Spouse/Domestic Partner SSN</strong>
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Gender</strong>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Date of Birth(mm/dd/yyyy)</strong>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>HR initial Eligibility Doc Verified by HR</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Name (Last, First, MI)</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Spouse/Domestic Partner SSN</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Gender</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Date of Birth(mm/dd/yyyy)</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-12">
-				<p>
-					List address and telephone number if different than the employee:
-				</p>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-12">
-				<ol class="list-indented" type="1">
-					<li>
-						Does your spouse/domestic partner have Medicare?
-						<div class="form-group">
-							<input type="checkbox"> Yes
-							<input type="checkbox"> No
-						</div>
-					</li>
-					<li>
-						Is your spouse/domestic partner covered by another medical plan?
-						<div class="form-group">
-							<input type="checkbox"> Yes
-							<input type="checkbox"> No
-						</div>
-					</li>
-					<li>
-						My spouse/domestic partner is currently (Select One):
-						<div class="form-group">
-							<input type="checkbox"> A Commonwealth of Pennsylvania employee or retiree
-						</div>
-					</li>
-					<li>
-						Is your spouse/domestic partner eligible for health coverage through his or her employer or former employer?
-						<div class="form-group">
-							<input type="checkbox"> A Commonwealth of Pennsylvania employee or retiree
-						</div>
-					</li>
-					<li>
-						Is your spouse/domestic partner enrolled in his/her employer’s health insurance or enrolled in a retiree health insurance plan?
-						<div class="form-group">
-							<input type="checkbox"> A Commonwealth of Pennsylvania employee or retiree
-							<div class="list-indented">
-								<div class="inline-block">
-									a) Is the plan offered at a cost?
-								</div>
-								<div class="inline-block">
-									<input type="checkbox"> Yes
-								</div>
-							</div>
-							<div class="list-indented">
-								<div class="inline-block">
-									b) Is there a monetary incentive to decline coverage?
-								</div>
-								<div class="inline-block">
-									<input type="checkbox"> Yes
-								</div>
-							</div>
-							<input type="checkbox"> No
-							<input type="checkbox"> Not Applicable
-						</div>
-					</li>
-					<li>
-						<div class="inline-block">
-							Does your spouse/domestic partner have an HSA (Health Savings Account)?
-						</div>
-						<div class="inline-block">
-							<input type="checkbox"> Yes
-						</div>
-						<p>
-							(There may be tax implications if he or she enrolls in a PEBTF plan as secondary.)
-						</p>
-					</li>
-				</ol>
-			</div>
-		</div>
-		<div class="row b-bottom hidden-sm hidden-xs">
-			<div class="col-lg-3 col-md-3 bg-grey b-right">&nbsp;</div>
-			<div class="col-lg-1 col-md-1 text-center b-right">
-				Add
-			</div>
-			<div class="col-lg-1 col-md-1 text-center b-right">
-				Remove
-			</div>
-			<div class="col-lg-3 col-md-3 text-center b-right">
-				Effective date (mm/dd/yyyy)
-			</div>
-			<div class="col-lg-4 col-md-4 bg-grey">&nbsp;</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-3 col-md-3 col-sm-8 b-right mh-150">
-				<strong>Medical plan</strong>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
-				<div class="visible-sm visible-xs">
-					Add
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
-				<div class="visible-sm visible-xs">
-					Remove
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-150">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-150">
-				<p>
-					Health Care Center/Doctor Name or ID # for HMO only
-				</p>
-				<div class="form-group">
-					<input type="text">
-				</div>
-				Currently a patient of this practice?
-				<div class="form-group">
-					<input type="checkbox"> Yes
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-85">
-				<strong>Prescription drug plan</strong>
-				<p>
-					<em>If enrolling in prescription drug plan only, also complete the PEBTF-41 form</em>
-				</p>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
-				<div class="visible-sm visible-xs">
-					Add
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
-				<div class="visible-sm visible-xs">
-					Remove
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-85">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-85 mh-100-sm">
-				<p>
-					Remarks:
-				</p>
-				<div class="form-group textarea-across">
-					<textarea name="" id="" cols="4" rows="3"></textarea>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-50">
-				<strong>Supplemental benefits</strong>
-				<p>
-					(dental/vision/hearing aid plans)
-				</p>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
-				<div class="visible-sm visible-xs">
-					Add
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
-				<div class="visible-sm visible-xs">
-					Remove
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-50">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-5 col-md-5 col-sm-8 b-right mh-70">
-				<strong>Personal data change/correction:</strong> identify in Remarks
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-70">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row bg-black">
-			<div class="col-lg-12">
-				<h3>
-					<strong>
-						SECTION 7: DEPENDENT DATA
-						<small>
-							<em>(Complete second form if you have additional dependents)</em>
-						</small>
-					</strong>
-				</h3>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-12">
-				<p>
-					<em>Complete this section if adding or removing dependents. If adding a new dependent, you must present additional documentation such as a birth certificate to your local HR office or your supervisor.</em>
-				</p>
-			</div>
-		</div>
-		<div class="row bg-grey hidden-sm hidden-xs">
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				<div class="form-group">
-					<strong>HR initial Eligibility Doc Verified by HR</strong>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Name (Last, First, MI)</strong>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Spouse/Domestic Partner SSN</strong>
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Gender</strong>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Date of Birth(mm/dd/yyyy)</strong>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>HR initial Eligibility Doc Verified by HR</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Name (Last, First, MI)</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Spouse/Domestic Partner SSN</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Gender</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Date of Birth(mm/dd/yyyy)</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-12">
-				<div class="form-group">
-					<input type="checkbox"> Son
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-12">
-				<div class="form-group">
-					<div class="inline-block">
-						a) Does your dependent have Medicare?
-					</div>
-					<div class="inline-block">
-						<input type="checkbox"> Yes
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="inline-block">
-						b) Is your dependent covered by another plan?
-					</div>
-					<div class="inline-block">
-						<input type="checkbox"> Yes
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom hidden-sm hidden-xs">
-			<div class="col-lg-3 col-md-3 bg-grey b-right">&nbsp;</div>
-			<div class="col-lg-1 col-md-1 text-center b-right">
-				Add
-			</div>
-			<div class="col-lg-1 col-md-1 text-center b-right">
-				Remove
-			</div>
-			<div class="col-lg-3 col-md-3 text-center b-right">
-				Effective date (mm/dd/yyyy)
-			</div>
-			<div class="col-lg-4 col-md-4 bg-grey">&nbsp;</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-3 col-md-3 col-sm-8 b-right mh-150">
-				<strong>Medical plan</strong>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
-				<div class="visible-sm visible-xs">
-					Add
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
-				<div class="visible-sm visible-xs">
-					Remove
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-150">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-150">
-				<p>
-					Health Care Center/Doctor Name or ID # for HMO only
-				</p>
-				<div class="form-group">
-					<input type="text">
-				</div>
-				Currently a patient of this practice?
-				<div class="form-group">
-					<input type="checkbox"> Yes
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-85">
-				<strong>Prescription drug plan</strong>
-				<p>
-					<em>If enrolling in prescription drug plan only, also complete the PEBTF-41 form</em>
-				</p>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
-				<div class="visible-sm visible-xs">
-					Add
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
-				<div class="visible-sm visible-xs">
-					Remove
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-85">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-85 mh-100-sm">
-				<p>
-					Remarks:
-				</p>
-				<div class="form-group textarea-across">
-					<textarea name="" id="" cols="4" rows="3"></textarea>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-50">
-				<strong>Supplemental benefits</strong>
-				<p>
-					(dental/vision/hearing aid plans)
-				</p>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
-				<div class="visible-sm visible-xs">
-					Add
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
-				<div class="visible-sm visible-xs">
-					Remove
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-50">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-5 col-md-5 col-sm-8 b-right mh-70">
-				<strong>Personal data change/correction:</strong> identify in Remarks
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-70">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row bg-grey hidden-sm hidden-xs">
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				<div class="form-group">
-					<strong>HR initial Eligibility Doc Verified by HR</strong>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Name (Last, First, MI)</strong>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Spouse/Domestic Partner SSN</strong>
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Gender</strong>
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom">
-				<br>
-				<div class="form-group">
-					<strong>Date of Birth(mm/dd/yyyy)</strong>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>HR initial Eligibility Doc Verified by HR</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Name (Last, First, MI)</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Spouse/Domestic Partner SSN</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Gender</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom">
-				<div class="bg-grey b-bottom visible-sm visible-xs">
-					<strong>Date of Birth(mm/dd/yyyy)</strong>
-				</div>
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-12">
-				<div class="form-group">
-					<input type="checkbox"> Son
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-12">
-				<div class="form-group">
-					<div class="inline-block">
-						a) Does your dependent have Medicare?
-					</div>
-					<div class="inline-block">
-						<input type="checkbox"> Yes
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="inline-block">
-						b) Is your dependent covered by another plan?
-					</div>
-					<div class="inline-block">
-						<input type="checkbox"> Yes
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row b-bottom hidden-sm hidden-xs">
-			<div class="col-lg-3 col-md-3 bg-grey b-right">&nbsp;</div>
-			<div class="col-lg-1 col-md-1 text-center b-right">
-				Add
-			</div>
-			<div class="col-lg-1 col-md-1 text-center b-right">
-				Remove
-			</div>
-			<div class="col-lg-3 col-md-3 text-center b-right">
-				Effective date (mm/dd/yyyy)
-			</div>
-			<div class="col-lg-4 col-md-4 bg-grey">&nbsp;</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-3 col-md-3 col-sm-8 b-right mh-150">
-				<strong>Medical plan</strong>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
-				<div class="visible-sm visible-xs">
-					Add
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
-				<div class="visible-sm visible-xs">
-					Remove
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-150">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-150">
-				<p>
-					Health Care Center/Doctor Name or ID # for HMO only
-				</p>
-				<div class="form-group">
-					<input type="text">
-				</div>
-				Currently a patient of this practice?
-				<div class="form-group">
-					<input type="checkbox"> Yes
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-85">
-				<strong>Prescription drug plan</strong>
-				<p>
-					<em>If enrolling in prescription drug plan only, also complete the PEBTF-41 form</em>
-				</p>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
-				<div class="visible-sm visible-xs">
-					Add
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
-				<div class="visible-sm visible-xs">
-					Remove
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-85">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-85 mh-100-sm">
-				<p>
-					Remarks:
-				</p>
-				<div class="form-group textarea-across">
-					<textarea name="" id="" cols="4" rows="3"></textarea>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-50">
-				<strong>Supplemental benefits</strong>
-				<p>
-					(dental/vision/hearing aid plans)
-				</p>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
-				<div class="visible-sm visible-xs">
-					Add
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
-				<div class="visible-sm visible-xs">
-					Remove
-				</div>
-				<div class="inline-block">
-					<input type="checkbox">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-50">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-5 col-md-5 col-sm-8 b-right mh-70">
-				<strong>Personal data change/correction:</strong> identify in Remarks
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-70">
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="box">
+        <div class="row bg-black">
+            <div class="col-lg-12">
+                <h3>
+                    <strong>SECTION 1: EMPLOYEE DATA</strong>
+                </h3>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 mh-70">
+                Social Security #
+                <div class="form-group">
+                    <$client.env.FormField.a01_SSNO.HTML>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right b-left mh-70">
+                Title
+                <br>
+                <label>
+                    <$client.env.FormField.a02_Title_Mr.HTML>
+                </label>
+                <label>
+                    <$client.env.FormField.a02_Title_Dr.HTML>
+                </label>
+                <br>
+                <label>
+                    <$client.env.FormField.a02_Title_Mrs.HTML>
+                </label>
+                <label>
+                    <$client.env.FormField.a02_Title_Ms.HTML>
+                </label>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right mh-70">
+                Name (Last Plus Suffix, First, MI)
+                <div class="form-group">
+                    <$client.env.FormField.a03_Last_Plus_Suffix.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-70">
+                Employee #
+                <div class="form-group">
+                    <$client.env.FormField.a04_Employee_No.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 b-right">
+                Street Address
+                <div class="form-group">
+                    <$client.env.FormField.a05_Street_Address.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                Local Municipality(if address change)
+                <div class="form-group">
+                    <$client.env.FormField.a06_Local_Municipality.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 b-right">
+                City/State/Zip
+                <div class="form-group">
+                    <$client.env.FormField.a07_City_State_Zip.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                County Name
+                <div class="form-group">
+                    <$client.env.FormField.a08_County_Name.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 b-right">
+                Mailing Address(if different than address listed above)
+                <div class="form-group">
+                    <$client.env.FormField.a09_Mailing_Address.HTML>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                City/State/Zip
+                <div class="form-group">
+                    <$client.env.FormField.a10_City_State_Zip.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+                Home Phone #
+                <div class="form-group">
+                    <$client.env.FormField.a11_Home_Phone.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+                Cell Phone #
+                <div class="form-group">
+                    <$client.env.FormField.a12_Cell_Phone.HTML>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                Work Phone #
+                <div class="form-group">
+                    <$client.env.FormField.a13_Work_Phone.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+                Date of Birth (mm/dd/yyyy)
+                <div class="form-group">
+                    <$client.env.FormField.a14_Date_of_Birth.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+                Gender
+                <$client.env.FormField.a15_Gender.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                Relationship Status
+                <div class="form-group">
+                    <$client.env.FormField.a16_Relationship_Status.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-left">
+                Date of Marriage/Domestic Partnership (mm/dd/yyyy)
+                <div class="form-group">
+                    <$client.env.FormField.a17_Date_of_Marriage.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                Answer both of the following questions:
+                <div class="form-group">
+                    <div class="inline-block">
+                        Are you covered by another medical plan?
+                    </div>
+                    <div class="inline-block">
+                        <$client.env.FormField.a18_covered_by_another_medical_plan.HTML>
+                    </div>
+                    <div class="inline-block">
+                        Do you have Medicare?
+                    </div>
+                    <div class="inline-block">
+                        <$client.env.FormField.a19_have_Medicare.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-black">
+            <div class="col-lg-12">
+                <h3>
+                    <strong>SECTION 2: ENROLLMENT INFORMATION</strong>
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <strong>a) Action Requested (select all that apply):</strong>
+                <div class="form-group mb-10">
+                    <$client.env.FormField.a20_Action_Requested.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 b-right">
+                <strong>b) Event (select all that apply):</strong>
+                <div class="form-group mb-10">
+                    <div class="inline-block">
+                        <$client.env.FormField.a21_Event.HTML>
+                    </div>
+                    <div class="inline-block">
+                        <$client.env.FormField.a22_Other.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                c) Date of Event: (if applicable) (mm/dd/yyyy)
+                <div class="form-group">
+                    <$client.env.FormField.a23_Date_of_Event.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-black">
+            <div class="col-lg-12">
+                <h3>
+                    <strong>
+                        SECTION 3: MEDICAL BENEFITS
+                        <small>
+                            <em>(Selectone)</em>
+                        </small>
+                    </strong>
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    <strong><em>Full-Time Employees: Additional costs may apply if selecting the CHOICE PPO.</em></strong><br>
+                    <strong><em>Part-Time Employees: Additional costs will apply for any plan selection.</em></strong>
+                </p>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.a24_MEDICAL_BENEFITS.HTML>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <div class="inline-block">Effective Date (mm/dd/yyyy):</div>
+                    <div class="inline-block">
+                        <$client.env.FormField.a25_Effective_Date.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                Medical Plan Name
+                <div class="form-group">
+                    <$client.env.FormField.a26_Medical_Plan_Name.HTML>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 b-right">
+                        Health Care Center or Dr. Name (required for HMO)
+                        <div class="form-group">
+                            <$client.env.FormField.a27_Health_Care_Center.HTML>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                        Health Care Center/Dr. ID #
+                        <div class="form-group">
+                            <$client.env.FormField.a28_Health_Care_Center.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <div class="inline-block">
+                                Are you currently a patient of this practice?
+                            </div>
+                            <div class="inline-block">
+                                <$client.env.FormField.a29_patient_of_this_practice.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-black">
+            <div class="col-lg-12">
+                <h3>
+                    <strong>SECTION 4: PRESCRIPTION DRUG BENEFITS</strong>
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    <em>If enrolling in prescription drug plan only, also complete the PEBTF-41 form</em><br>
+                    <strong>
+                        <em>Full-Time Employees: Additional costs will apply for the first six months of employment.</em><br>
+                    </strong>
+                    <strong>
+                        <em>Part-Time Employees: Additional costs will apply.</em>
+                    </strong>
+                </p>
+                <div class="form-group">
+                    <div class="inline-block">
+                        <$client.env.FormField.a30_PRESCRIPTION_DRUG_BENEFITS.HTML>
+                    </div>
+                    <div class="inline-block">
+                        <strong>Effective Date</strong> (mm/dd/yyyy):
+                    </div>
+                    <div class="inline-block">
+                        <$client.env.FormField.a31_Effective_Date.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-black">
+            <div class="col-lg-12">
+                <h3>
+                    <strong>
+                        SECTION 5: SUPPLEMENTAL BENEFITS
+                        <small>
+                            <em>(Includes dental, vision and hearing aid coverage)</em>
+                        </small>
+                    </strong>
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    <strong>
+                        <em>Supplemental Benefits will begin no earlier than your seventh month of employment.</em><br>
+                    </strong>
+                    <strong>
+                        <em>Part-Time Employees: Additional costs will apply.</em>
+                    </strong>
+                </p>
+                <div class="form-group">
+                    <div class="inline-block">
+                        <$client.env.FormField.a32_SUPPLEMENTAL_BENEFITS.HTML>
+                    </div>
+                    <div class="inline-block">
+                        <strong>Effective Date</strong> (mm/dd/yyyy):
+                    </div>
+                    <div class="inline-block">
+                        <div class="form-group">
+                            <$client.env.FormField.a33_Effective_Date.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-black">
+            <div class="col-lg-12">
+                <h3>
+                    <strong>
+                        <em>SECTION 6: SPOUSE / DOMESTIC PARTNER DATA</em>
+                    </strong>
+                </h3>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <p>
+                    <em>Complete this section if adding or removing a spouse or domestic partner. If adding a new spouse, you must present your original marriage certificate to your local HR office or your supervisor. If adding a new domestic partner, additional documentation supporting the domestic partnership has been in existence at least six months is required.</em>
+                </p>
+            </div>
+        </div>
+        <div class="row bg-grey hidden-sm hidden-xs">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                <div class="form-group">
+                    <strong>HR initial Eligibility Doc Verified by HR</strong>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Name (Last, First, MI)</strong>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Spouse/Domestic Partner SSN</strong>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Gender</strong>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Date of Birth(mm/dd/yyyy)</strong>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>HR initial Eligibility Doc Verified by HR</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a34_Spouse_HR_initial_Eligibility_Doc_Verified.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Name (Last, First, MI)</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a35_spouse_Name.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Spouse/Domestic Partner SSN</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a36_Spouse_Domestic_Partner_SSN.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Gender</strong>
+                </div>
+                <$client.env.FormField.a37_Gender.HTML>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Date of Birth(mm/dd/yyyy)</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a38_Date_of_Birth.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <p>
+                    List address and telephone number if different than the employee:
+                </p>
+                <div class="form-group">
+                    <$client.env.FormField.a39_List_address.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <ol class="list-indented" type="1">
+                    <li>
+                        Does your spouse/domestic partner have Medicare?
+                        <div class="form-group">
+                            <$client.env.FormField.a40_spouse_domestic_partner_have_Medicare.HTML>
+                        </div>
+                    </li>
+                    <li>
+                        Is your spouse/domestic partner covered by another medical plan?
+                        <div class="form-group">
+                            <$client.env.FormField.a41_spouse_domestic_partner_covered_by_another_medical_plan.HTML>
+                        </div>
+                    </li>
+                    <li>
+                        My spouse/domestic partner is currently (Select One):
+                        <div class="form-group">
+                            <$client.env.FormField.a42_spouse_domestic_partner_employment_status.HTML>
+                        </div>
+                    </li>
+                    <li>
+                        Is your spouse/domestic partner eligible for health coverage through his or her employer or former employer?
+                        <div class="form-group">
+                            <$client.env.FormField.a43_spouse_domestic_partner_eligible_for_health_coverage_through_employer.HTML>
+                        </div>
+                    </li>
+                    <li>
+                        Is your spouse/domestic partner enrolled in his/her employer’s health insurance or enrolled in a retiree health insurance plan?
+                        <div class="form-group">
+                            <$client.env.FormField.a44_spouse_domestic_partner_enrolled_in_health_insurance_plan_Yes.HTML>
+                            <div class="list-indented">
+                                <div class="inline-block">
+                                    a) Is the plan offered at a cost?
+                                </div>
+                                <div class="inline-block">
+                                    <$client.env.FormField.a45_Is_the_plan_offered_at_a_cost.HTML>
+                                </div>
+                            </div>
+                            <div class="list-indented">
+                                <div class="inline-block">
+                                    b) Is there a monetary incentive to decline coverage?
+                                </div>
+                                <div class="inline-block">
+                                    <$client.env.FormField.a46_Is_there_a_monetary_incentive_to_decline_coverage.HTML>
+                                </div>
+                            </div>
+                            <$client.env.FormField.a44_spouse_domestic_partner_enrolled_in_health_insurance_plan_No.HTML>
+                            <$client.env.FormField.a44_spouse_domestic_partner_enrolled_in_health_insurance_plan_NA.HTML>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inline-block">
+                            Does your spouse/domestic partner have an HSA (Health Savings Account)?
+                        </div>
+                        <div class="inline-block">
+                            <$client.env.FormField.a47_spouse_domestic_partner_have_HSA.HTML>
+                        </div>
+                        <p>
+                            (There may be tax implications if he or she enrolls in a PEBTF plan as secondary.)
+                        </p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row b-bottom hidden-sm hidden-xs">
+            <div class="col-lg-3 col-md-3 bg-grey b-right">&nbsp;</div>
+            <div class="col-lg-1 col-md-1 text-center b-right">
+                Add
+            </div>
+            <div class="col-lg-1 col-md-1 text-center b-right">
+                Remove
+            </div>
+            <div class="col-lg-3 col-md-3 text-center b-right">
+                Effective date (mm/dd/yyyy)
+            </div>
+            <div class="col-lg-4 col-md-4 bg-grey">&nbsp;</div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-8 b-right mh-150">
+                <strong>Medical plan</strong>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
+                <div class="visible-sm visible-xs">
+                    Add
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a48_Medical_plan_Add.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
+                <div class="visible-sm visible-xs">
+                    Remove
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a48_Medical_plan_Remove.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-150">
+                <div class="form-group">
+                    <$client.env.FormField.a49_Effective_date.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-150">
+                <p>
+                    Health Care Center/Doctor Name or ID # for HMO only
+                </p>
+                <div class="form-group">
+                    <$client.env.FormField.a50_Health_Care_Center_Doctor_Name_or_ID.HTML>
+                </div>
+                Currently a patient of this practice?
+                <div class="form-group">
+                    <$client.env.FormField.a51_Currently_a_patient_of_this_practice.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-85">
+                <strong>Prescription drug plan</strong>
+                <p>
+                    <em>If enrolling in prescription drug plan only, also complete the PEBTF-41 form</em>
+                </p>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
+                <div class="visible-sm visible-xs">
+                    Add
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a51_Prescription_drug_plan_Add.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
+                <div class="visible-sm visible-xs">
+                    Remove
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a51_Prescription_drug_plan_Remove.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-85">
+                <div class="form-group">
+                    <$client.env.FormField.a52_Effective_date.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-85 mh-100-sm">
+                <p>
+                    Remarks:
+                </p>
+                <div class="form-group textarea-across">
+                    <$client.env.FormField.a53_Remarks.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-50">
+                <strong>Supplemental benefits</strong>
+                <p>
+                    (dental/vision/hearing aid plans)
+                </p>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
+                <div class="visible-sm visible-xs">
+                    Add
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a54_Supplemental_benefits_Add.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
+                <div class="visible-sm visible-xs">
+                    Remove
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a54_Supplemental_benefits_Remove.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-50">
+                <div class="form-group">
+                    <$client.env.FormField.a55_Effective_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-5 col-md-5 col-sm-8 b-right mh-70">
+                <strong>Personal data change/correction:</strong> identify in Remarks
+                <div class="form-group">
+                    <$client.env.FormField.a56_Personal_data_change.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-70">
+                <div class="form-group">
+                    <$client.env.FormField.a57_Effective_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-black">
+            <div class="col-lg-12">
+                <h3>
+                    <strong>
+                        SECTION 7: DEPENDENT DATA
+                        <small>
+                            <em>(Complete second form if you have additional dependents)</em>
+                        </small>
+                    </strong>
+                </h3>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <p>
+                    <em>Complete this section if adding or removing dependents. If adding a new dependent, you must present additional documentation such as a birth certificate to your local HR office or your supervisor.</em>
+                </p>
+            </div>
+        </div>
+        <div class="row bg-grey hidden-sm hidden-xs">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                <div class="form-group">
+                    <strong>HR initial Eligibility Doc Verified by HR</strong>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Name (Last, First, MI)</strong>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Spouse/Domestic Partner SSN</strong>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Gender</strong>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Date of Birth(mm/dd/yyyy)</strong>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>HR initial Eligibility Doc Verified by HR</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a58_Spouse_HR_initial_Eligibility_Doc_Verified.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Name (Last, First, MI)</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a59_spouse_Name.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Spouse/Domestic Partner SSN</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a60_Spouse_Domestic_Partner_SSN.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Gender</strong>
+                </div>
+                <$client.env.FormField.a61_Gender.HTML>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Date of Birth(mm/dd/yyyy)</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a62_Date_of_Birth.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <div class="form-group">
+                	<div class="inline-block">
+	                    <$client.env.FormField.a63_Dependent_Relationship.HTML>
+                	</div>
+                	<div class="inline-block">
+	                    <$client.env.FormField.a64_explain_relationship.HTML>
+                	</div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+        	<div class="col-lg-12">
+        		<div class="form-group">
+        			List address and telephone number if different than the employee:
+	                <$client.env.FormField.a65_List_address.HTML>
+        		</div>
+        	</div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <div class="inline-block">
+                        a) Does your dependent have Medicare?
+                    </div>
+                    <div class="inline-block">
+                        <$client.env.FormField.a66_Dependent_have_Medicare.HTML>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="inline-block">
+                        b) Is your dependent covered by another plan?
+                    </div>
+                    <div class="inline-block">
+                        <$client.env.FormField.a67_Dependent_covered_by_another_plan.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom hidden-sm hidden-xs">
+            <div class="col-lg-3 col-md-3 bg-grey b-right">&nbsp;</div>
+            <div class="col-lg-1 col-md-1 text-center b-right">
+                Add
+            </div>
+            <div class="col-lg-1 col-md-1 text-center b-right">
+                Remove
+            </div>
+            <div class="col-lg-3 col-md-3 text-center b-right">
+                Effective date (mm/dd/yyyy)
+            </div>
+            <div class="col-lg-4 col-md-4 bg-grey">&nbsp;</div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-8 b-right mh-150">
+                <strong>Medical plan</strong>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
+                <div class="visible-sm visible-xs">
+                    Add
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a68_Medical_plan_Add.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
+                <div class="visible-sm visible-xs">
+                    Remove
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a68_Medical_plan_Remove.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-150">
+                <div class="form-group">
+                    <$client.env.FormField.a69_Effective_date.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-150">
+                <p>
+                    Health Care Center/Doctor Name or ID # for HMO only
+                </p>
+                <div class="form-group">
+                    <$client.env.FormField.a70_Health_Care_Center_Doctor_Name_or_ID.HTML>
+                </div>
+                Currently a patient of this practice?
+                <div class="form-group">
+                    <$client.env.FormField.a71_Currently_a_patient_of_this_practice.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-85">
+                <strong>Prescription drug plan</strong>
+                <p>
+                    <em>If enrolling in prescription drug plan only, also complete the PEBTF-41 form</em>
+                </p>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
+                <div class="visible-sm visible-xs">
+                    Add
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a72_Prescription_drug_plan_Add.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
+                <div class="visible-sm visible-xs">
+                    Remove
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a72_Prescription_drug_plan_Remove.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-85">
+                <div class="form-group">
+                    <$client.env.FormField.a73_Effective_date.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-85 mh-100-sm">
+                <p>
+                    Remarks:
+                </p>
+                <div class="form-group textarea-across">
+                    <$client.env.FormField.a74_Remarks.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-50">
+                <strong>Supplemental benefits</strong>
+                <p>
+                    (dental/vision/hearing aid plans)
+                </p>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
+                <div class="visible-sm visible-xs">
+                    Add
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a75_Supplemental_benefits_Add.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
+                <div class="visible-sm visible-xs">
+                    Remove
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a75_Supplemental_benefits_Remove.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-50">
+                <div class="form-group">
+                    <$client.env.FormField.a76_Effective_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-5 col-md-5 col-sm-8 b-right mh-70">
+                <strong>Personal data change/correction:</strong> identify in Remarks
+                <div class="form-group">
+                    <$client.env.FormField.a77_Personal_data_change.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-70">
+                <div class="form-group">
+                    <$client.env.FormField.a78_Effective_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-grey hidden-sm hidden-xs">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                <div class="form-group">
+                    <strong>HR initial Eligibility Doc Verified by HR</strong>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Name (Last, First, MI)</strong>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Spouse/Domestic Partner SSN</strong>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Gender</strong>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom">
+                <br>
+                <div class="form-group">
+                    <strong>Date of Birth(mm/dd/yyyy)</strong>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>HR initial Eligibility Doc Verified by HR</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a79_Spouse_HR_initial_Eligibility_Doc_Verified.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Name (Last, First, MI)</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a80_spouse_Name.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Spouse/Domestic Partner SSN</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a81_Spouse_Domestic_Partner_SSN.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Gender</strong>
+                </div>
+                <$client.env.FormField.a82_Gender.HTML>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-bottom mh-50">
+                <div class="bg-grey b-bottom visible-sm visible-xs">
+                    <strong>Date of Birth(mm/dd/yyyy)</strong>
+                </div>
+                <div class="form-group">
+                    <$client.env.FormField.a83_Date_of_Birth.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <div class="form-group">
+                	<div class="inline-block">
+	                    <$client.env.FormField.a84_Dependent_Relationship.HTML>
+                	</div>
+                	<div class="inline-block">
+	                    <$client.env.FormField.a85_explain_relationship.HTML>
+                	</div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+        	<div class="col-lg-12">
+        		<div class="form-group">
+        			List address and telephone number if different than the employee:
+	                <$client.env.FormField.a86_List_address.HTML>
+        		</div>
+        	</div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <div class="inline-block">
+                        a) Does your dependent have Medicare?
+                    </div>
+                    <div class="inline-block">
+                        <$client.env.FormField.a87_Dependent_have_Medicare.HTML>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="inline-block">
+                        b) Is your dependent covered by another plan?
+                    </div>
+                    <div class="inline-block">
+                        <$client.env.FormField.a88_Dependent_covered_by_another_plan.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom hidden-sm hidden-xs">
+            <div class="col-lg-3 col-md-3 bg-grey b-right">&nbsp;</div>
+            <div class="col-lg-1 col-md-1 text-center b-right">
+                Add
+            </div>
+            <div class="col-lg-1 col-md-1 text-center b-right">
+                Remove
+            </div>
+            <div class="col-lg-3 col-md-3 text-center b-right">
+                Effective date (mm/dd/yyyy)
+            </div>
+            <div class="col-lg-4 col-md-4 bg-grey">&nbsp;</div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-8 b-right mh-150">
+                <strong>Medical plan</strong>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
+                <div class="visible-sm visible-xs">
+                    Add
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a89_Medical_plan_Add.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right mh-150">
+                <div class="visible-sm visible-xs">
+                    Remove
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a89_Medical_plan_Remove.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-150">
+                <div class="form-group">
+                    <$client.env.FormField.a90_Effective_date.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-150">
+                <p>
+                    Health Care Center/Doctor Name or ID # for HMO only
+                </p>
+                <div class="form-group">
+                    <$client.env.FormField.a91_Health_Care_Center_Doctor_Name_or_ID.HTML>
+                </div>
+                Currently a patient of this practice?
+                <div class="form-group">
+                    <$client.env.FormField.a92_Currently_a_patient_of_this_practice.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-85">
+                <strong>Prescription drug plan</strong>
+                <p>
+                    <em>If enrolling in prescription drug plan only, also complete the PEBTF-41 form</em>
+                </p>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
+                <div class="visible-sm visible-xs">
+                    Add
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a93_Prescription_drug_plan_Add.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-85">
+                <div class="visible-sm visible-xs">
+                    Remove
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a93_Prescription_drug_plan_Remove.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-85">
+                <div class="form-group">
+                    <$client.env.FormField.a94_Effective_date.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mh-85 mh-100-sm">
+                <p>
+                    Remarks:
+                </p>
+                <div class="form-group textarea-across">
+                    <$client.env.FormField.a95_Remarks.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-8 b-right b-bottom mh-50">
+                <strong>Supplemental benefits</strong>
+                <p>
+                    (dental/vision/hearing aid plans)
+                </p>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
+                <div class="visible-sm visible-xs">
+                    Add
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a96_Supplemental_benefits_Add.HTML>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-6 col-xs-6 text-center b-right b-bottom mh-50">
+                <div class="visible-sm visible-xs">
+                    Remove
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.a96_Supplemental_benefits_Remove.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right b-bottom mh-50">
+                <div class="form-group">
+                    <$client.env.FormField.a97_Effective_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-8 b-right mh-70">
+                <strong>Personal data change/correction:</strong> identify in Remarks
+                <div class="form-group">
+                    <$client.env.FormField.a98_Personal_data_change.HTML>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 text-center b-right mh-70">
+                <div class="form-group">
+                    <$client.env.FormField.a99_Effective_date.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<h3 class="text-center">
-		<strong>TERMS AND CONDITIONS</strong>
-	</h3>
-	<ol class="list-indented" type="1">
-		<li>
-			I hereby apply to enroll (or change) medical and/or prescription drug, and/or supplemental benefits in the Pennsylvania Employees Benefit Trust Fund ("Plan")for me and/or my dependents (as defined in the Plan) and declare that the foregoing information is true and correct to the best of my knowledge and belief. I understand that eligibility for coverage and payment of benefits under the Plan in all instances is subject to the terms of the Plan and that any false or misleading information that I provide to the Plan regarding the status of any dependent and any other medical or supplemental coverage that may be applicable may result in the suspension or termination of coverage under the Plan and may require the repayment to the Plan of any benefits paid under the Plan, in addition to the imposition of criminal and civil penalties. I understand that I must in form the Plan of any changes in the employment status of any dependents which may affect their eligibility under the Plan and that my failure to do so may result in the loss of coverage, repayment of any amounts paid on their behalf, in addition to the imposition of criminal and civil penalties.
-		</li>
-		<li>
-			I authorize any payroll deduction relating to my share of the cost of such coverage and understand that such deductions will be made on a pre−tax basis to the extent permitted by law.
-		</li>
-		<li>
-			I further understand that the Plan has the right to subrogate,on my behalf and on behalf of any dependent, against any third parties or others obligated to pay any claims which the Plan has paid or may pay. I agree that I will direct any attorney that I may retain to satisfy such subrogation interest in full prior to receipt by me or my dependents of any recovery to which I and/or my dependents may be entitled and to otherwise fully cooperate with the Plan regarding all subrogation matters.
-		</li>
-		<li>
-			I further understand that the Plan includes a coordination of benefits provision and agree to fully cooperate with the Plan regarding all coordination of benefit matters. I acknowledge that in the event the Plan concludes that I have provided any false or misleading information, or failed to appropriately cooperate with the Plan, regarding any subrogation or coordination of benefit matters, the Plan may suspend or terminate my coverage or my dependents' coverage under the Plan and take such other action as it deems appropriate.
-		</li>
-	</ol>
+    <h3 class="text-center">
+        <strong>TERMS AND CONDITIONS</strong>
+    </h3>
+    <ol class="list-indented" type="1">
+        <li>
+            I hereby apply to enroll (or change) medical and/or prescription drug, and/or supplemental benefits in the Pennsylvania Employees Benefit Trust Fund ("Plan")for me and/or my dependents (as defined in the Plan) and declare that the foregoing information is true and correct to the best of my knowledge and belief. I understand that eligibility for coverage and payment of benefits under the Plan in all instances is subject to the terms of the Plan and that any false or misleading information that I provide to the Plan regarding the status of any dependent and any other medical or supplemental coverage that may be applicable may result in the suspension or termination of coverage under the Plan and may require the repayment to the Plan of any benefits paid under the Plan, in addition to the imposition of criminal and civil penalties. I understand that I must in form the Plan of any changes in the employment status of any dependents which may affect their eligibility under the Plan and that my failure to do so may result in the loss of coverage, repayment of any amounts paid on their behalf, in addition to the imposition of criminal and civil penalties.
+        </li>
+        <li>
+            I authorize any payroll deduction relating to my share of the cost of such coverage and understand that such deductions will be made on a pre−tax basis to the extent permitted by law.
+        </li>
+        <li>
+            I further understand that the Plan has the right to subrogate,on my behalf and on behalf of any dependent, against any third parties or others obligated to pay any claims which the Plan has paid or may pay. I agree that I will direct any attorney that I may retain to satisfy such subrogation interest in full prior to receipt by me or my dependents of any recovery to which I and/or my dependents may be entitled and to otherwise fully cooperate with the Plan regarding all subrogation matters.
+        </li>
+        <li>
+            I further understand that the Plan includes a coordination of benefits provision and agree to fully cooperate with the Plan regarding all coordination of benefit matters. I acknowledge that in the event the Plan concludes that I have provided any false or misleading information, or failed to appropriately cooperate with the Plan, regarding any subrogation or coordination of benefit matters, the Plan may suspend or terminate my coverage or my dependents' coverage under the Plan and take such other action as it deems appropriate.
+        </li>
+    </ol>
 
-	<div class="box mb-10">
-		<div class="row bg-black">
-			<div class="col-lg-12">
-				<h3>
-					<strong>
-						<em>SECTION 8: EMPLOYEE AGREEMENT AND SIGNATURE</em>
-					</strong>
-				</h3>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<p class="mh-150">
-					“I certify that the information entered on this form is true and complete and that I agree to all of the Terms and Conditions listed above and in the PEBTF Summary Plan Description and Plan Document.”
-				</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-				<div class="form-group">
-					<input type="text">
-					<strong>Employee Name</strong>
-				</div>
-			</div>
-			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-				<div class="form-group">
-					<input type="text">
-					<strong>Employee Signature</strong>
-				</div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-				<div class="form-group">
-					<input type="text">
-					<strong>Date</strong>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<p>
-					<strong>Form must be signed in ink. Electronic signatures will not be accepted.</strong>
-				</p>
-			</div>
-		</div>
-	</div>
+    <div class="box mb-10">
+        <div class="row bg-black">
+            <div class="col-lg-12">
+                <h3>
+                    <strong>
+                        <em>SECTION 8: EMPLOYEE AGREEMENT AND SIGNATURE</em>
+                    </strong>
+                </h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="mh-150">
+                    “I certify that the information entered on this form is true and complete and that I agree to all of the Terms and Conditions listed above and in the PEBTF Summary Plan Description and Plan Document.”
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.a96_Employee_Name.HTML>
+                    <strong>Employee Name</strong>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <div class="form-group">
+                	<div class="b-bottom">
+                		<input type="text" class="invisible">
+                	</div>
+                    <strong>Employee Signature</strong>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.a97_Date.HTML>
+                    <strong>Date</strong>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    <strong>Form must be signed in ink. Electronic signatures will not be accepted.</strong>
+                </p>
+            </div>
+        </div>
+    </div>
 
-	<div class="box mb-10">
-		<div class="row bg-black">
-			<div class="col-lg-12">
-				<h3>
-					<strong>
-						SECTION 9: COMMONWEALTH DATA
-						<small>
-							<em>(to be completed by HR Service Center or HR Office)</em>
-						</small>
-					</strong>
-				</h3>
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				Position #
-				<div class="form-group"><input type="text"></div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				PEBTF Group #
-				<div class="form-group"><input type="text"></div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				PEBTF Sub Group
-				<div class="form-group"><input type="text"></div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				Plan Code
-				<div class="form-group"><input type="text"></div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				County Code
-				<div class="form-group"><input type="text"></div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-				&nbsp;
-			</div>
-		</div>
-		<div class="row b-bottom">
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				Current Service Date
-				<div class="form-group"><input type="text"></div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				Dept. Code
-				<div class="form-group"><input type="text"></div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				Barg. Unit
-				<div class="form-group"><input type="text"></div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				Org Code
-				<div class="form-group"><input type="text"></div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
-				SAP EEG
-				<div class="form-group"><input type="text"></div>
-			</div>
-			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-				SAP ESG
-				<div class="form-group"><input type="text"></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="inline-block">
-					Is employee ACA eligible for the Bronze Plan (works average of 30 hours per week)?
-				</div>
-				<div class="inline-block">
-					<div class="form-group">
-						<input type="checkbox"> Yes
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="box mb-10">
+        <div class="row bg-black">
+            <div class="col-lg-12">
+                <h3>
+                    <strong>
+                        SECTION 9: COMMONWEALTH DATA
+                        <small>
+                            <em>(to be completed by HR Service Center or HR Office)</em>
+                        </small>
+                    </strong>
+                </h3>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                Position #
+                <div class="form-group"><input type="text" readonly></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                PEBTF Group #
+                <div class="form-group"><input type="text" value="840039" readonly></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                PEBTF Sub Group
+                <div class="form-group"><input type="text" value="OFT" readonly></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                Plan Code
+                <div class="form-group"><input type="text" readonly></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                County Code
+                <div class="form-group"><input type="text" readonly></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                Current Service Date
+                <div class="form-group"><input type="text" readonly></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                Dept. Code
+                <div class="form-group"><input type="text" value="039" readonly></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                Barg. Unit
+                <div class="form-group"><input type="text" readonly></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                Org Code
+                <div class="form-group"><input type="text" readonly></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                SAP EEG
+                <div class="form-group"><input type="text" value="P" readonly></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                SAP ESG
+                <div class="form-group"><input type="text" value="F8" readonly></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="inline-block">
+                    Is employee ACA eligible for the Bronze Plan (works average of 30 hours per week)?
+                </div>
+                <div class="inline-block">
+                    <$client.env.FormField.b01_Eligible_for_the_Bronze_Plan.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div class="box mb-30">
-		<div class="row bg-black">
-			<div class="col-lg-12">
-				<h3>
-					<strong>
-						SECTION 10: HR REMARKS
-					</strong>
-				</h3>
-			</div>
-		</div>
-		<div class="row b-bottom mh-150"></div>
-		<div class="row">
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
-				HR Service Center or HR Office Signature
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
-				Date Enrollment Form Received
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
-				Date Enrollment Form Processed
-				<div class="form-group">
-					<input type="text">
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="box mb-30">
+        <div class="row bg-black">
+            <div class="col-lg-12">
+                <h3>
+                    <strong>
+                        SECTION 10: HR REMARKS
+                    </strong>
+                </h3>
+            </div>
+        </div>
+        <div class="row b-bottom mh-150"></div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+                HR Service Center or HR Office Signature
+                <div class="form-group">
+                    <$client.env.FormField.b02_HR_Service_Center_or_HR_Office_Signature.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+                Date Enrollment Form Received
+                <div class="form-group">
+                    <$client.env.FormField.b03_Date_Enrollment_Form_Received.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+                Date Enrollment Form Processed
+                <div class="form-group">
+                    <$client.env.FormField.b04_Date_Enrollment_Form_Processed.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <footer class="container-fluid">
-	<div class="row">
-		<div class="col-lg-12">
-			<p>
-				PEBTF−2 (Rev09−2016; For enrollments effective 01−01-2017 or later)
-			</p>
-		</div>
-	</div>
+    <div class="row mb-30">
+        <div class="col-lg-12">
+            <p>
+                PEBTF−2 (Rev09−2016; For enrollments effective 01−01-2017 or later)
+            </p>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
 </footer>
+
+<div class="hide">
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+(function($){
+  $.fn.groupCheckboxes = function() {
+    var checkbox = $(this);
+    $.each($('[data-checkbox-group="' + checkbox.data('checkbox-group') + '"]'), function(k,v) {
+    	if ($(v).val() !== checkbox.val()) {
+	    	$(v).prop('checked', false);
+    	}
+    });
+    checkbox.prop('checked', checkbox.prop('checked'));
+  }
+})(jQuery);
+$(window).on('load', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    document.getElementById('formButtons').style.display = "block";
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function disableCalButton(el) {
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+$(document).on('ready', function() {
+    $(".modal").hide();
+    $('form').on('click', '[data-checkbox-group]', function() {
+    	$(this).groupCheckboxes();
+    });
+});
+</script>

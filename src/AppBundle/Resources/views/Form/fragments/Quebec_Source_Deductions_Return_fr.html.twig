@@ -2,21 +2,21 @@
 <!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
 <div class="modal" id="modal" style="display:none;"> 
               <div class="modal-content"> 
-                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <h2 class="lifesuite__h2"><strong>Signature électronique</strong></h2> 
                              <p style="fontweight:normal;padding:0px"> 
-                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'Je comprends qu’en signant ce document électroniquement en écrivant mon nom complet ci-dessous, je reconnais, conviens et atteste que les renseignements que j’ai moi-même fournis sont véridiques et exacts et que je suis libre de créer et d’adopter une signature électronique légale portant le même effet juridique et caractère exécutoire que ma signature manuscrite.':client.env.param.verbiage)> 
                              </p> 
                              <br> 
                              <div class="row"> 
                                            <div class="lifesuite__clearfix"> 
-                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                                                          <b>Tapez votre nom:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
                              </div> 
                              </div> 
                              <div class="row"> 
-                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
-                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fname,lname','over','modal','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp; 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; max-width: 300px; width: 100%;"> 
+                                                         <input type="button" class="lifesuite__button primary" value="Signer" onClick="validateSignature('signature','eSignature1','fname,lname','over','modal','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp; 
                                                           <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp; 
-                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                                                          <input type="button" class="lifesuite__button" value="Annuler" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
                                            </div> 
                              </div> 
               </div> 
@@ -127,8 +127,8 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
           <h3 class="text-blue">
-            Source <br>
-            Deductions Return
+            Déclaration pour<br>
+            la retenue d’impôt
           </h3>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -145,38 +145,37 @@
   <div class="row">
     <div class="col-lg-12">
       <p>
-        You must give this form, duly completed, to your employer or payer so that the income tax to be withheld from the amounts paid to you can be determined. Be sure to read the “Instructions” section before completing the form.
+        Vous devez remplir ce formulaire et le remettre à votre employeur ou au payeur pour qu’il détermine l’impôt à retenir sur les sommes qu’il vous verse. Avant de remplir ce formulaire, lisez attentivement la partie  &laquo; Instructions &raquo;.
       </p>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">1 Information about the employee or beneficiary</strong>
-        <small>(please print)</small>
+        <strong class="text-blue">1 Renseignements sur l’employé ou sur le bénéficiaire</strong>
       </h4>
     </div>
   </div>
 
   <div class="row border-top border-left border-right bg-default">
     <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 border-bottom">
-      <small>Last Name</small>
+      <small>Nom de famille</small>
       <$client.env.FormField.LastName.HTML>
     </div>
     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 border-bottom">
-      <small>First Name</small>
+      <small>Prénom</small>
       <$client.env.FormField.FirstName.HTML>
     </div>
     <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-      Employee or beneficiary number
+      Numéro de l’employé ou du bénéficiaire
       <$client.env.FormField.EmployeeNumber.HTML>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-      <small>Date of birth</small>
+      <small>Date de naissance</small>
       <$client.env.FormField.DateOfBirth.HTML>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-      <small>Social insurance number</small>
+      <small>Numéro d’assurance sociale</small>
       <$client.env.FormField.SIN.HTML>
     </div>
   </div>
@@ -184,14 +183,13 @@
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">2 Amount used to determine the deduction code</strong>
+        <strong class="text-blue">2 Montants permettant de déterminer le code de retenues</strong>
       </h4>
     </div>
   </div>
-  
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom">
-      <strong>Basic amount.</strong> Enter $15,269. If you have more than one employer and have already claimed the basic amount, do not complete lines 1 through 10 and enter O in the box marked “Code” below.
+      <strong>Montant de base.</strong> Inscrivez 15 269 $. Si vous avez plus d’un employeur à la fois et que vous avez déjà demandé le montant de base, ne remplissez pas les lignes 1 à 10 et inscrivez le code de retenues O à la case &laquo; Code &raquo; ci-dessous.
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       &nbsp;
@@ -208,14 +206,14 @@
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong>Amount transferred from one spouse to the other</strong>
+        <strong>Montant transféré d’un conjoint à l’autre</strong>
       </h4>
     </div>
   </div>
   <div class="row indent-1">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 border-bottom row-min-35">
-        Maximum amount respecting a spouse
+        Montant maximal pour conjoint
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 clearfix">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -226,7 +224,7 @@
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-7 bg-default border-left border-top border-bottom text-center row-min-35">
           <h5>
-            <strong>$15,269</strong>
+            <strong>15 269 $</strong>
           </h5>
         </div>
       </div>
@@ -235,7 +233,7 @@
   <div class="row indent-1">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 border-bottom row-min-35">
-        Your spouse's estimated taxable income for 2019
+        Revenu imposable estimatif de votre conjoint pour 2019
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 clearfix">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -253,7 +251,7 @@
   <div class="row indent-1">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 border-bottom row-min-35">
-        Subtract line 1b from line 1a. If the result is negative, enter 0.
+        Montant de la ligne 1a moins celui de la ligne 1b. Si le résultat est négatif, inscrivez 0.
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 clearfix">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -280,8 +278,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35">
-      <strong>Amount for dependants</strong>
-      (Work Chart 1)
+      <strong>Montant pour personnes à charge</strong> (grille de calcul 1)
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -299,7 +296,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35">
-      <strong>Amount for a severe and prolonged impairment in mental or physical functions</strong>
+      <strong>Montant pour déficience grave et prolongée des fonctions mentales ou physiques</strong>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -317,7 +314,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35">
-      <strong>Age amount, amount for a person living alone and amount for retirement income</strong> (Work Chart 2)
+      <strong>Montant accordé en raison de l’âge ou pour personne vivant seule ou pour revenus de retraite</strong> (grille de calcul 2)
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -335,7 +332,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35">
-      Add lines 1 through 6.
+      Additionnez les montants des lignes 1 à 6.
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -353,7 +350,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35">
-      <strong>Amount for workers 62 or older</strong> (Work Chart 3)
+      <strong>Montant pour travailleur de 62 ans ou plus</strong> (grille de calcul 3)
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -371,13 +368,13 @@
   </div>
   <div class="row">
     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 border-bottom row-min-35">
-      Add lines 7 and 9.
+      Additionnez les montants des lignes 7 et 9.
     </div>
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 border-bottom row-min-35 hidden-md hidden-lg">
-      <strong>Amount</strong>
+      <strong>Montants</strong>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 border-bottom row-min-35 text-right hidden-sm hidden-xs">
-      <strong>Amount</strong>
+      <strong>Montants</strong>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -393,21 +390,21 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">3 Additional income tax to be withheld</strong>
+        <strong class="text-blue">3 Retenue supplémentaire d’impôt</strong>
       </h4>
     </div>
   </div>
 
   <div class="row border-bottom">
     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-      Enter the additional amount that you would like withheld from each paycheque.
+      Inscrivez le montant que vous désirez faire ajouter à la retenue d’impôt effectuée sur chaque paie.
     </div>
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
-      <strong>Additional income tax to be withheld</strong>
+      <strong>Retenue supplémentaire d’impôt</strong>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -427,19 +424,19 @@
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">4 Deductions</strong>
+        <strong class="text-blue">4 Déductions</strong>
       </h4>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-12">
-      Enter the deductions to be taken into account by your employer or payer to calculate source deductions.
+      Inscrivez les déductions dont votre employeur ou le payeur doit aussi tenir compte pour calculer la retenue d’impôt.
     </div>
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35">
-      Housing deduction for residents of designated remote areas
+      Déduction relative au logement pour particulier habitant une région éloignée reconnue
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -457,7 +454,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35">
-      Deductible support payments
+      Déduction pour une pension alimentaire qui n’est pas défiscalisée
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -475,15 +472,15 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      Add lines 14 and 15.
+      Additionnez les montants des lignes 14 et 15.
     </div>
   </div>
   <div class="row border-bottom">
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 row-min-35">
-      (Note that your employer or payer will distribute the amount evenly among the pay periods remaining in the year.)
+      (Notez que votre employeur ou le payeur divisera ce montant par le nombre de paies qui restent dans l’année.)
     </div>
     <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 row-min-35">
-      <strong>Deductions</strong>
+      <strong>Déductions</strong>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -503,14 +500,14 @@
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">5 Exemption</strong>
+        <strong class="text-blue">5 Exonération</strong>
       </h4>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12">
-      Check box 20 to request an exemption from source deductions of income tax with respect to your employment income for 2019.
+      Si vous demandez une exonération de la retenue d’impôt sur vos revenus d’emploi pour 2019, cochez la case 20.
     </div>
     <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -534,7 +531,7 @@
 
   <div class="row">
     <div class="col-lg-12">
-      I certify that the information provided in this return is accurate and complete.
+      Je déclare que les renseignements fournis dans ce formulaire sont exacts et complets.
     </div>
   </div>
   <div class="row form-horizontal">
@@ -559,33 +556,33 @@
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">Work Chart 1</strong>
-        <strong>– Amount for dependants</strong>
+        <strong class="text-blue">Grille de calcul 1 –</strong>
+        <strong>Montant pour personnes à charge</strong>
         <small>
-          (see the instructions for line 3)
+          (voyez les instructions concernant la ligne 3)
         </small>
       </h4>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-12">
-      If you are claiming an amount for more than two children under 18 enrolled in post-secondary studies or more than two other dependants, attach another sheet containing the requested information and enter the result of your calculations on line 52.
+      Si vous demandez un montant pour plus de deux enfants mineurs aux études postsecondaires ou pour plus de deux autres personnes à charge, joignez une feuille contenant les renseignements demandés et inscrivez le résultat de vos calculs à la ligne 52.
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block valign-bottom">
       <div class="text-bottom border-bottom">
-        Amount for children under 18 enrolled in post-secondary studies. Enter $2,933 per completed term that was started in 2019 (<strong>maximum: two terms per child</strong>).
+        Montant pour enfant mineur aux études postsecondaires. Inscrivez 2 933 $ par session complétée, commencée en 2019 <strong>(maximum : deux sessions par enfant).</strong>
       </div>
     </div><!--
     --><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <strong>Children under 18</strong>
+          <strong>Enfants mineurs</strong>
         </div>
         <div class="col-lg-12 text-center">
-          on December 31, 2019
+          au 31 décembre 2019
         </div>
       </div>
       <div class="row">
@@ -593,10 +590,10 @@
           &nbsp;
         </div>
         <div class="col-lg-5 border-top border-bottom border-left border-right text-center">
-          1st child
+          1<sup>er</sup> enfant
         </div>
         <div class="col-lg-5 border-top border-bottom border-right text-center">
-          2nd child
+          2<sup>e</sup> enfant
         </div>
       </div>
       <div class="row">
@@ -617,29 +614,29 @@
     --><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <strong>Other dependants</strong>
+          <strong>Autres personnes à charge</strong>
         </div>
         <div class="col-lg-12 text-center">
-          (18 or older)
+          (18 ans ou plus)
         </div>
       </div>
       <div class="row">
         <div class="col-lg-6 border-top border-bottom border-left border-right text-center">
-          1st person
+          1<sup>re</sup> personne
         </div>
         <div class="col-lg-6 border-top border-bottom border-right text-center">
-          2nd person
+          2<sup>e</sup> personne
         </div>
       </div>
       <div class="row">
         <div class="col-lg-6 border-top border-bottom border-left border-right text-center row-min-75">
           <h3>
-          $4,274
+          4 274 $
           </h3>
         </div>
         <div class="col-lg-6 border-top border-bottom border-right text-center row-min-75">
           <h3>
-          $4,274
+          4 274 $
           </h3>
         </div>
       </div>
@@ -648,7 +645,7 @@
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block valign-top">
       <div class="text-bottom border-bottom">
-        Estimated net income<sup>1</sup> of the child or dependant for 2019
+        Revenu net estimatif<sup>1</sup> de l’enfant ou de la personne à charge pour 2019
       </div>
     </div><!--
     --><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block valign-top">
@@ -682,8 +679,8 @@
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block valign-top">
       <div class="text-bottom">
-        Subtract line 45 from line 40. <br>
-        If the result is negative, enter 0.
+        Montant de la ligne 40 moins celui de la ligne 45. <br>
+        Si le résultat est négatif, inscrivez 0.
       </div>
     </div><!--
     --><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block valign-top">
@@ -716,7 +713,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35">
-      Add the amounts on line 50.
+      Additionnez tous les montants de la ligne 50.
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -734,7 +731,8 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      If any dependant for whom you are claiming an amount reaches the age of 18 in 2019, enter the result of the following calculation: <strong>$356</strong> × number of months in the year up to and including the month of the dependant’s birthday. Otherwise, enter 0.
+      Si vous demandez un montant pour une personne qui atteint 18 ans en 2019, inscrivez le résultat du calcul suivant: <br>
+      <strong>356 $</strong> × nombre de mois dans l’année qui précèdent l’anniversaire (y compris le mois de l’anniversaire). Sinon, inscrivez 0.
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -753,13 +751,13 @@
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
       <div class="col-lg-12">
-        Subtract line 55 from line 52.
+        Montant de la ligne 52 moins celui de la ligne 55.
       </div>
       <div class="col-lg-9">
-        If the result is negative, enter 0. Carry the result to line 3.
+        Si le résultat est négatif, inscrivez 0. Reportez le résultat à la ligne 3.
       </div>
       <div class="col-lg-3">
-        <strong>Amount for dependants</strong>
+        <strong>Montant pour personnes à charge</strong>
       </div>
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
@@ -778,29 +776,30 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      1. Do not take into account the amount of the deduction for residents of designated remote areas or the amount of scholarships, bursaries or any similar financial assistance.
+      1. Ne tenez pas compte du montant de la déduction pour particulier habitant une région éloignée reconnue, ni du montant des bourses d’études, ni de toute aide financière semblable.
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">Work Chart 2</strong>
-        <strong>– Age amount, amount for a person living alone and amount for retirement income</strong>
+        <strong class="text-blue">Grille de calcul 2 –</strong>
+        <strong>Montant accordé en raison de l’âge ou pour personne vivant seule ou pour revenus de retraite</strong>
         <small>
-          (see the instructions for line 6)
+          (voyez les instructions concernant la ligne 6)
         </small>
       </h4>
     </div>
   </div>
+
   <div class="row">
     <div class="col-lg-12">
-      <strong>Age amount</strong>
+      <strong>Montant accordé en raison de l’âge</strong>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Enter $3,212 for each person (you and your spouse) that is 65 or older in 2019.
+      Si vous ou votre conjoint avez 65 ans ou plus en 2019, inscrivez 3 212 $ pour chaque personne qui a 65 ans ou plus en 2019.
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -818,7 +817,7 @@
   </div>
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      <strong>Amount for a person living alone</strong>
+      <strong>Montant pour personne vivant seule</strong>
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 row-min-35 inline-block valign-bottom">
       &nbsp;
@@ -839,7 +838,7 @@
   </div>
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Additional amount for a person living alone (single-parent family)
+      Montant additionnel pour personne vivant seule (famille monoparentale)
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -857,7 +856,7 @@
   </div>
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      $180 × number of months in 2019 in which you are entitled to the child assistance payment
+      180 $ × nombre de mois en 2019 où vous avez droit au paiement de soutien aux enfants
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -875,7 +874,7 @@
   </div>
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Subtract line 77 from line 76.
+      Montant de la ligne 76 moins celui de la ligne 77
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -901,7 +900,7 @@
   </div>
   <div class="row vspace">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Add lines 75 and 78.
+      Additionnez les montants des lignes 75 et 78.
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -927,7 +926,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      <strong>Amount for retirement income</strong> (maximum: $2,853 for each person)
+      <strong>Montant pour revenus de retraite</strong> (maximum : 2 853 $ pour chaque personne)
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -945,7 +944,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Add lines 70, 79 and 80.
+      Additionnez les montants des lignes 70, 79 et 80.
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -963,12 +962,12 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      <strong>Estimated net family income</strong>
+      <strong>Revenu familial net estimatif</strong>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Total of your estimated net income and that of your spouse on December 31, 2019
+      Total de votre revenu net estimatif et de celui de votre conjoint au 31 décembre 2019
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -986,7 +985,7 @@
   </div>
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Subtract line 91 from line 90. If the result is negative, enter 0.
+      Montant de la ligne 90 moins celui de la ligne 91. Si le résultat est négatif, inscrivez 0.
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="row">
@@ -1000,7 +999,7 @@
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom text-center">
           <h5>
-            <strong>$34,030</strong>
+            <strong>34 610 $</strong>
           </h5>
         </div>
       </div>
@@ -1021,7 +1020,7 @@
   </div>
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Multiply line 92 by 18.75%.
+      Montant de la ligne 92 multiplié par 18,75%
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="row">
@@ -1035,7 +1034,7 @@
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom text-center">
           <h5>
-            <strong>18.75%</strong>
+            <strong>18,75%</strong>
           </h5>
         </div>
       </div>
@@ -1064,7 +1063,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Subtract line 95 from line 85. If the result is negative, enter 0.
+      Montant de la ligne 85 moins celui de la ligne 95. Si le résultat est négatif, inscrivez 0.
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1082,7 +1081,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Amount from line 6 of your spouse’s TP-1015.3-V form
+      Montant déjà demandé par votre conjoint à la ligne 6 de son formulaire TP-1015.3
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1100,13 +1099,13 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      Subtract line 97 from line 96. Carry the result to line 6.
+      Montant de la ligne 96 moins celui de la ligne 97. Reportez le résultat à la ligne 6.
     </div>
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
       <strong>
-        Age amount, amount for a person living alone and amount for retirement income
+        Montant accordé en raison de l’âge ou pour personne vivant seule ou pour revenus de retraite
       </strong>
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
@@ -1127,10 +1126,10 @@
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">Work Chart 3</strong>
-        <strong>– Amount for workers 62 or older</strong>
+        <strong class="text-blue">Grille de calcul 3 –</strong>
+        <strong>Montant pour travailleur d’exp&eacute;rience</strong>
         <small>
-          (see the instructions for line 9)
+          (voyez les instructions concernant la ligne 9)
         </small>
       </h4>
     </div>
@@ -1138,7 +1137,7 @@
   <div class="vspace">
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Estimated eligible work income
+        Revenu de travail admissible estimatif
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1156,7 +1155,7 @@
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Amount of income included on line 110 that you expect to earn before reaching the age of 62 or that is related to a previous year (retroactive amount)
+        Montant des revenus inclus à la ligne 110 que vous prévoyez gagner avant d’atteindre l’âge de 61 ans <strong>ou</strong> qui se rapportent à une année passée (montant rétroactif)
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1174,7 +1173,8 @@
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Subtract line 111 from line 110. If you are 63, 64 or 65 on December 31, 2019, go to line 118. Otherwise, continue the calculation.
+        Montant de la ligne 110 moins celui de la ligne 111. <br>
+        Si vous êtes n&eacute; en 1954, en 1955, en 1956 ou en 1957, passez &agrave; la ligne 118. Sinon, continuez le calcul.
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1192,7 +1192,7 @@
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Subtract line 114 from line 112 (<strong>maximum: $10,000</strong> if you are 66 or older on December 31, 2019, and <strong>$4,000</strong> if you are 62 on December 31, 2019). Carry the result to line 135 and continue on line 140.
+        Montant de la ligne 112 moins celui de la ligne 114 (<strong>maximum : 11 000 $</strong> si vous avez 66 ans ou plus au 31 décembre 2019 ou <strong>3 000 $</strong> si vous avez 62 ans au 31 décembre 2019). Reportez le résultat à la ligne 135 et passez à la ligne 140.
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="row">
@@ -1206,7 +1206,7 @@
           </div>
           <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             <h5 class="text-center">
-              <strong>$5,000</strong>
+              <strong>5 000 $</strong>
             </h5>
           </div>
         </div>
@@ -1227,14 +1227,12 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <strong>
-          Complete lines 118 through 130 only if you are 63, 64 or 65 on December 31, 2019.
-        </strong>
+        <strong>Remplissez les lignes 118 à 130 seulement si vous êtes né en 1954, en 1955, en 1956 ou en 1957.</strong>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Amount from line 112
+        Montant de la ligne 112
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1252,7 +1250,7 @@
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Amount of income included on line 112 that you expect to earn before reaching the age of 63, 64 or 65, as applicable
+        Montant des revenus inclus à la ligne 112 que vous prévoyez gagner avant votre anniversaire
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1270,7 +1268,7 @@
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Subtract line 119 from line 118.
+        Montant de la ligne 118 moins celui de la ligne 119
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1288,7 +1286,7 @@
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Amount from line 119
+        Montant de la ligne 119
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="row">
@@ -1302,7 +1300,7 @@
           </div>
           <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             <h5 class="text-center">
-              <strong>$5,000</strong>
+              <strong>5 000 $</strong>
             </h5>
           </div>
         </div>
@@ -1323,7 +1321,7 @@
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Subtract line 122 from line 121. If the result is negative, enter 0.
+        Montant de la ligne 121 moins celui de la ligne 122. Si le résultat est négatif, inscrivez 0.
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="row">
@@ -1353,7 +1351,7 @@
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Subtract line 125 from line 120.
+        Montant de la ligne 120 moins celui de la ligne 125
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1371,7 +1369,7 @@
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Amount from line 119
+        Montant de la ligne 119
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1389,7 +1387,7 @@
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Subtract line 128 from line 127 (<strong>maximum: $8,000</strong> if you are 65 on December 31, 2019, <strong>$6,000</strong> if you are 64 on December 31, 2019, and <strong>$4,000</strong> if you are 63 on December 31, 2019). If the result is negative, enter 0.
+        Montant de la ligne 127 moins celui de la ligne 128 (<strong>maximum : 9 000 $</strong> si vous êtes né en 1954; <strong>7 000 $</strong> si vous êtes né en 1955; <strong>5 000 $</strong> si vous êtes né en 1956; ou <strong>3 000 $</strong> si vous êtes né en 1957). Si le résultat est négatif, inscrivez 0.
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block valign-bottom">
         <div class="row">
@@ -1403,7 +1401,7 @@
           </div>
           <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             <h5 class="text-center">
-              <strong>$5,000</strong>
+              <strong>5 000 $</strong>
             </h5>
           </div>
         </div>
@@ -1432,7 +1430,7 @@
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Add lines 126 and 129 (<strong>maximum: $10,000</strong> if you are 65 on December 31, 2019, <strong>$8,000</strong> if you are 64 on December 31, 2019, and <strong>$6,000</strong> if you are 63 on December 31, 2019).
+        Additionnez les montants des lignes 126 et 129 (<strong>maximum : 11 000 $</strong> si vous êtes né en 1954; <strong>9 000 $</strong> si vous êtes né en 1955; <strong>7 000 $</strong> si vous êtes né en 1956; ou <strong>5 000 $</strong> si vous êtes né en 1957).
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1450,7 +1448,7 @@
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Amount from line 115 or line 130, as applicable. If you were born before January 1, 1951, and the amount on line 135 does not exceed $4,000, carry it to line 9. Otherwise, continue the calculation.
+        Montant de la ligne 115 ou celui de la ligne 130, selon le cas. Si vous êtes né avant le 1<sup>er</sup> janvier 1951 et que le résultat ne dépasse pas 4 000 $, reportez-le à la ligne 9. Dans les autres cas, continuez le calcul.
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1468,7 +1466,7 @@
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Amount from line 110
+        Montant de la ligne 110
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1486,7 +1484,7 @@
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Subtract line 141 from line 140. If the result is negative, enter 0.
+        Montant de la ligne 140 moins celui de la ligne 141. Si le résultat est négatif, inscrivez 0.
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block valign-bottom">
         <div class="row">
@@ -1500,7 +1498,7 @@
           </div>
           <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             <h5 class="text-center">
-              <strong>$34,030</strong>
+              <strong>34 610 $</strong>
             </h5>
           </div>
         </div>
@@ -1521,7 +1519,7 @@
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Multiply line 142 by 33.33%.
+        Montant de la ligne 142 multiplié par 33,33 %
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block valign-bottom">
         <div class="row">
@@ -1530,7 +1528,7 @@
           </div>
           <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             <h5 class="text-center">
-              <strong>33.33%</strong>
+              <strong>33,33%</strong>
             </h5>
           </div>
         </div>
@@ -1559,12 +1557,12 @@
     </div>
     <div class="row">
       <div class="col-lg-9">
-        Subtract line 144 from line 135. If the result is negative, enter 0. Carry the result to line 9, unless you were born before January 1, 1951, in which case you must carry either the amount from line 145 or $4,000, <strong>whichever is greater</strong>.
+        Montant de la ligne 135 moins celui de la ligne 144. Si le résultat est négatif, inscrivez 0. Reportez le résultat à la ligne 9, <strong>sauf</strong> si vous êtes né avant le 1<sup>er</sup> janvier 1951. Dans ce cas, reportez plutôt à la ligne 9 <strong>le plus élevé</strong> des montants suivants : celui de la ligne 145 ou 4 000 $.
       </div>
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom text-right">
-        <strong>Amount for workers 62 or older</strong>
+        <strong>Montant pour travailleur de 62 ans ou plus</strong>
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -1589,110 +1587,108 @@
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 box-wrapper">
       <p>
-        <strong>Are you required to complete this form?</strong>
+        <strong>Devez-vous remplir ce formulaire?</strong>
       </p>
       <p class="text-justify">
-        You must give this form, duly completed, to your employer or payer so that the employer or payer can determine the income tax to be withheld from salaries, wages, commissions, pension income, parental insurance benefits, Employment Insurance benefits, wage loss replacement benefits or any other remuneration paid to you. If you do not complete this form, your employer or payer will only take into account the basic personal amount to determine the income tax to be withheld. The deduction code will remain in effect until you give your employer or payer a new, duly completed copy of this form.
+        Vous devez remplir ce formulaire et le remettre à votre employeur ou au payeur pour qu’il détermine l’impôt à retenir sur un salaire, des commissions, des revenus de pension, des prestations d’assurance parentale, des prestations d’assurance emploi, des prestations d’assurance salaire ou toute autre rémunération qu’il vous verse et sur lesquels un impôt doit être retenu. Si vous ne remplissez pas ce formulaire, votre employeur ou le payeur déterminera l’impôt à retenir en tenant compte uniquement du montant personnel de base. Cette déclaration restera en vigueur tant que vous ne remettrez pas à votre employeur ou au payeur un nouvel exemplaire de ce formulaire dûment rempli.
       </p>
       <p class="text-justify">
-        You are not required to complete this form each year to benefit from the annual indexation of the income tax system.
+        Vous n’avez pas à remplir ce formulaire chaque année pour bénéficier de l’indexation annuelle du régime d’imposition.
       </p>
       <p class="text-justify">
-        The personal tax credits and deductions that appear on this form may be subject to a limit if you are not resident in Canada or if you become a non-resident during the year. In such cases, contact us.
+        Les déductions et les crédits d’impôt personnels qui figurent dans ce formulaire peuvent être limités si vous n’êtes pas résident du Canada ou si vous le devenez durant l’année. Dans de tels cas, communiquez avec nous.
       </p>
       <p>
-        This form is available on our website at <strong>www.revenuquebec.ca</strong>.
+        Notez que ce formulaire est accessible dans notre site Internet, à <strong>revenuquebec.ca</strong>.
       </p>
       <p>
         <strong>
-          Filing deadline
+          Délai de production
         </strong>
       </p>
       <p>
-        You must give this form, duly completed, to your employer or payer:
+        Vous devez remettre ce formulaire dûment rempli à votre employeur ou au payeur
       </p>
       <ul class="text-justify">
         <li>
-          on the day you take up employment, if it is an employer who pays the remuneration;
+          à la date de votre entrée en fonction, si c’est un employeur qui verse la rémunération;
         </li>
         <li>
-          before a payer (other than an employer) pays you remuneration for the first time;
+          avant le premier versement de la rémunération, si c’est un payeur (et non votre employeur) qui verse la rémunération;
         </li>
         <li>
-          within 15 days after an event that results in a reduction of the amounts entered on the previously completed copy of form TP-1015.3-V.
+          dans les quinze jours qui suivent un évènement entraînant une réduction des montants demandés dans le dernier formulaire TP-1015.3 que vous avez rempli, sauf si cette réduction vise les montants inscrits aux lignes 2 à 9 et qu’elle ne modifie pas le code de retenues correspondant au montant de la ligne 10.
         </li>
       </ul>
       <p>
-        Furthermore, you can give a duly completed copy of this form to your employer or payer at any time to:
+        Par ailleurs, vous pouvez en tout temps remettre ce formulaire ou un nouvel exemplaire de celui-ci dûment rempli à votre employeur ou au payeur, selon le cas,
       </p>
       <ul class="text-justify">
         <li>
-          have your employer or payer take into account any tax credits and deductions to which you are entitled when calculating the amount of income tax to withhold;
+          pour lui demander de tenir compte, dans le calcul de votre retenue d’impôt, des déductions ou des crédits d’impôt auxquels vous avez droit;
         </li>
         <li>
-          have an additional amount of income tax withheld; or
+          pour demander d’augmenter le montant de l’impôt retenu à la source;
         </li>
         <li>
-          apply for an exemption from source deductions of Qu&eacute;bec income tax from your employment income.
+          pour demander une exonération de la retenue d’impôt du Québec sur vos revenus d’emploi.
         </li>
       </ul>
       <p>
-        <strong>Reduction in source deductions of income tax</strong>
+        <strong>Réduction de la retenue d’impôt</strong>
       </p>
       <p class="text-justify">
-        If you are entitled to tax credits and deductions that do not appear on this form, complete the <em>Application for a Reduction in Source Deductions of Income Tax</em> (form TP-1016-V) so that we can authorize your employer or payer to reduce the income tax that is withheld.
+        Si vous avez droit à des déductions ou à des crédits d’impôt qui ne figurent pas dans ce formulaire, remplissez le formulaire <em>Demande de réduction de la retenue d’impôt</em> (TP-1016) afin que nous puissions autoriser votre employeur ou le payeur à réduire votre retenue d’impôt.
       </p>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
-          <strong>Line 2</strong>
+          <strong>Ligne 2</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Amount transferred from one spouse to the other</strong>
+          <strong>Montant transféré d’un conjoint à l’autre</strong>
         </div>
       </div>
       <p class="text-justify">
-        If you expect to have a <strong>spouse on December 31, 2019</strong>, you can claim the amount transferred from one spouse to the other. However, you cannot claim the amount if your spouse receives indemnities further to an industrial accident, a precautionary cessation of work, a traffic accident or an act of good citizenship, or because he or she was the victim of a crime.
+        Si vous prévoyez avoir un <strong>conjoint au 31 décembre 2019</strong>, vous pouvez demander le montant transféré d’un conjoint à l’autre. Toutefois, vous ne pouvez pas demander ce montant si votre conjoint reçoit des indemnités pour accident du travail, pour retrait préventif ou pour accident de la route, ou des indemnités en raison d’un acte de civisme ou à titre de victime d’un acte criminel.
       </p>
       <p class="text-justify">
-        To calculate your spouse’s estimated taxable income, refer to lines 101 through 299 in the guide to the income tax return for 2018. To claim the amount transferred from one spouse to the other, you and your spouse must each file an income tax return for 2019.
+        Pour calculer le revenu imposable estimatif de votre conjoint, vous pouvez vous référer aux lignes 101 à 299 de sa déclaration de revenus de 2018. Notez que, pour demander le montant transféré d’un conjoint à l’autre, vous et votre conjoint devez chacun produire une déclaration de revenus pour 2019.
       </p>
       <div class="bg-yellow vspace box-wrapper">
         <div class="row">
           <div class="col-lg-12">
             <p>
-              <strong>Spouse</strong>
+              <strong>Conjoint</strong>
             </p>
             <p class="text-justify">
-              The person to whom you are married, the person with whom you are living in a civil union or the person who is your de facto spouse.
+              Personne qui est unie à vous par les liens du mariage ou unie à vous civilement, ou personne qui est votre conjoint de fait.
             </p>
             <p>
-              <strong>De facto spouse</strong>
+              <strong>Conjoint de fait</strong>
             </p>
             <p class="text-justify">
-              A person of the opposite sex or of the same sex who, at any time in 2019:
+              Personne (du sexe opposé ou du même sexe) qui, à un moment de l’année 2019, selon le cas,
             </p>
             <ul class="text-justify">
               <li>
-                is living in a conjugal relationship with you and is the biological or adoptive parent (legally or in fact) of at least one of your children; or
+                vit maritalement avec vous et est la mère ou le père biologique ou adoptif (légalement ou de fait) d’au moins un de vos enfants;
               </li>
               <li>
-                has been living in a conjugal relationship with you for at least 12 consecutive months (the 12-month period is considered to have been uninterrupted if you live apart because of the breakdown of your relationship for a period of less than 90 days).
+                vit maritalement avec vous depuis au moins 12 mois consécutifs (toute rupture de l’union de moins de 90 jours n’interrompt pas la période de 12 mois).
               </li>
             </ul>
             <p>
-              <strong>Spouse on December 31, 2019</strong>
+              <strong>Conjoint au 31 décembre 2019</strong>
             </p>
             <p>
-              A person who is, as applicable:
+              Personne qui est, selon le cas,
             </p>
             <ul class="text-justify">
               <li>
-                your spouse at the end of that day: <br>
-                – if you were not living apart at that time because of a breakdown of your relationship, <br>
-                – if you were living apart at that time because of a breakdown of your relationship that lasted less than 90 days;
+                votre conjoint à la fin de cette journée si vous ne vivez pas séparé de lui à ce moment en raison de la rupture de votre union, ou si vous vivez séparé de lui à ce moment en raison de la rupture de votre union et que cette rupture a duré moins de 90 jours;
               </li>
               <li>
-                your spouse at the time of that person’s death in 2019 if you were not living apart at that time for more than 90 days because of the breakdown of your relationship and you did not have a new spouse on December 31, 2019.
+                votre conjoint au moment de son décès en 2019 si vous ne vivez pas séparé de lui à ce moment depuis au moins 90 jours en raison de la rupture de votre union et que vous n’avez pas de nouveau conjoint au 31 décembre 2019.
               </li>
             </ul>
           </div>
@@ -1700,271 +1696,264 @@
       </div>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
-          <strong>Line 3</strong>
+          <strong>Ligne 3</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Amount for dependants</strong>
+          <strong>Montant pour personnes à charge</strong>
         </div>
       </div>
       <p>
-        <strong>Amount for a child under 18 enrolled in post-secondary studies</strong>
+        <strong>Montant pour enfant mineur aux études postsecondaires</strong>
       </p>
       <p class="text-justify">
-        If you expect to be supporting at least one <strong>child under 18 enrolled in post-secondary studies</strong> on December 31, 2019, complete Work Chart 1.
-      </p>
-      <p class="text-justify">
-        If the child transfers the unused portion of his or her credits to his or her spouse, you cannot claim the amount for a child under 18 enrolled in post-secondary studies with respect to that child.
+        Si vous prévoyez subvenir aux besoins d’au moins un <strong>enfant mineur aux études postsecondaires</strong> au 31 décembre 2019, remplissez la grille de calcul 1. Si l’enfant a un conjoint et que cet enfant transfère la partie inutilisée de ses crédits à son conjoint, vous ne pouvez pas demander le montant pour enfant mineur aux études postsecondaires pour cet enfant.
       </p>
       <div class="bg-yellow vspace box-wrapper">
         <p class="text-justify">
-          <strong>Child under 18 enrolled in post-secondary studies</strong>
+          <strong>Enfant mineur aux études postsecondaires</strong>
         </p>
         <p class="text-justify">
-          A person born after December 31, 2000, who, in 2019, is a full-time student pursuing vocational training at the secondary level or post- secondary studies, and whom you are supporting. The person may be:
+          Personne née après le 31 décembre 2001 qui, en 2019, poursuit à temps plein des études secondaires à la formation professionnelle ou des études postsecondaires, et aux besoins de laquelle vous subvenez. Il peut s’agir des personnes suivantes :
         </p>
         <ul class="text-justify">
           <li>
-            your or your spouse’s child;
+            votre enfant ou celui de votre conjoint;
           </li>
           <li>
-            a person of whom you or your spouse hasthecustody and supervision (legally or in fact);
+            une personne dont vous ou votre conjoint avez la garde et la surveillance (de droit ou de fait);
           </li>
           <li>
-            your child’s spouse;
+            le conjoint de votre enfant;
           </li>
           <li>
-            the spouse of your spouse’s child.
+            le conjoint de l’enfant de votre conjoint.
           </li>
         </ul>
       </div>
       <p>
-        <strong>Amount for other dependants</strong>
+        <strong>Montant pour autres personnes à charge</strong>
       </p>
       <p class="text-justify">
-        If you support at least one <strong>other dependant</strong> who is 18 or older in 2019, complete Work Chart 1.
+        Si vous prévoyez subvenir aux besoins d’au moins une <strong>autre personne à charge</strong> âgée de 18 ans ou plus en 2019, remplissez la grille de calcul 1.
       </p>
       <div class="bg-yellow vspace box-wrapper">
         <p>
-          <strong>Other dependant</strong>
+          <strong>Autre personne à charge</strong>
         </p>
         <p class="text-justify">
-          A person who meets all three of the following conditions:
+          Personne qui remplit <strong>les trois</strong> conditions suivantes :
         </p>
         <ul class="text-justify">
           <li>
-            The person is 18 or older in 2019.
+            elle est âgée de 18 ans ou plus en 2019;
           </li>
           <li>
-            The person is related to you by blood, marriage or adoption.
+            elle est unie à vous par les liens du sang, du mariage ou de l’adoption;
           </li>
           <li>
-            The person <strong>ordinarily lives with you</strong> and is supported by you.
+            elle <strong>habite ordinairement</strong> avec vous, et vous subvenez à ses besoins.
           </li>
         </ul>
         <p class="text-justify">
-          The person is not your spouse, is not a person who transfers the unused portion of his or her credits to his or her spouse and is not a child who is transferring an amount for a child 18 or over enrolled in post-secondary studies.
+          Cette personne n’est ni votre conjoint, ni une personne qui transfère à son conjoint la partie inutilisée de ses crédits, ni un enfant qui transfère un montant pour enfant majeur aux études postsecondaires.
         </p>
       </div>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
-          <strong>Line 5</strong>
+          <strong>Ligne 5</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Amount for a severe and prolonged impairment in mental or physical functions</strong>
+          <strong>Montant pour déficience grave et prolongée des fonctions mentales ou physiques</strong>
         </div>
       </div>
       <p class="text-justify">
-        If you entered an amount on line 2 and, in 2019, you or your spouse is entitled to claim the amount for a severe and prolonged impairment in mental or physical functions, you can enter <strong>$3,391</strong> for each person with such an impairment, as certified by a health professional. For more information, refer to the <em>Certificate Respecting an Impairment</em> (form TP-752.0.14-V).
+        Si vous avez inscrit un montant à la ligne 2 et qu’en 2019, vous avez le droit de demander, pour vous ou votre conjoint, le montant pour déficience grave et prolongée des fonctions mentales ou physiques, vous pouvez inscrire <strong>3 391 $</strong> pour chaque personne qui a une telle déficience attestée par un professionnel de la santé. Pour plus de ren- seignements, consultez le formulaire <em>Attestationdedéficience</em> (TP-752.0.14).
+      </p>
+      <div class="border-bottom border-gray vspace">
+        <div class="inline-block bg-gray line-box valign-middle">
+          <strong>Ligne 6</strong>
+        </div>
+        <div class="inline-block valign-middle">
+          <strong>Montant accordé en raison de l’âge ou pour personne vivant seule ou pour revenus de retraite</strong>
+        </div>
+      </div>
+      <p class="text-justify">
+        Le montant accordé en raison de l’âge ou pour personne vivant seule ou pour revenus de retraite peut être réduit en fonction de votre revenu familial net estimatif. Pour calculer ce dernier, vous pouvez vous référer aux lignes 101 à 275 de votre déclaration de revenus de 2018 et de celle de votre conjoint, s’il y lieu.
+      </p>
+      <p class="text-justify">
+        Notez que vous n’avez pas droit à ce montant si votre revenu familial net estimatif dépasse 74 027 $ et que vous avez un conjoint au 31 décembre 2019, ou s’il dépasse 53 200 $ et que vous n’avez pas de conjoint au 31 décembre 2019.
       </p>
     </div>
-
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 box-wrapper">
-      <div class="border-bottom border-gray vspace">
-        <div class="inline-block bg-gray line-box valign-middle">
-          <strong>Line 6</strong>
-        </div>
-        <div class="inline-block valign-middle">
-          <strong>Age amount, amount for a person living alone and amount for retirement income</strong>
-        </div>
-      </div>
-      <p class="text-justify">
-        The age amount, amount for a person living alone and amount for retirement income can be reduced on the basis of your estimated net family income. To calculate your estimated net family income, refer to lines 101 through 275 on your 2018 income tax return and, if applicable, on your spouse’s return.
-      </p>
-      <p class="text-justify">
-        Note that you cannot claim this amount if your estimated net family income is more than $74,027 and you have a spouse on December 31, 2019, or if your estimated net family income is more than $53,200 and you do not have a spouse on December 31, 2019.
-      </p>
-
       <p>
-        <strong>Age amount</strong> (line 70 of Work Chart 2)
+        <strong>Montant accordé en raison de l’âge</strong> (ligne 70 de la grille de calcul 2)
       </p>
       <p class="text-justify">
-        Enter <strong>$3,212</strong> for each person (you and your spouse) that is 65 or older in 2019.
+        Si vous ou votre conjoint avez 65 ans ou plus en 2019, vous pouvez inscrire <strong>3 212 $</strong> pour chaque personne qui a 65 ans ou plus en 2019.
       </p>
       <p class="text-justify">
-        <strong>Amount for a person living alone</strong> (line 75 of Work Chart 2)
+        <strong>Montant pour personne vivant seule (ligne 75 de la grille de calcul 2)</strong>
       </p>
       <p class="text-justify">
-        If, <strong>throughout 2019</strong>, you expect to maintain and ordinarily live in a <strong>dwelling</strong> in which you live <strong>alone</strong> or <strong>only</strong> with one or more persons under 18, or one or more of your children 18 or older who are full-time students pursuing vocational training at the secondary level or post-secondary studies, enter <strong>$1,750</strong>.
+        Si, <strong>pendant toute l’année 2019</strong>, vous prévoyez occuper ordinairement et tenir une <strong>habitation</strong> dans laquelle vous vivrez <strong>seul</strong> ou <strong>uniquement</strong> avec une ou des personnes mineures, ou encore avec votre ou vos enfants, petits-enfants ou arrière-petits-enfants majeurs poursuivant à temps plein des études secondaires à la formation professionnelle ou des études postsecondaires, vous pouvez inscrire <strong>1 750 $</strong>.
       </p>
       <p class="text-justify">
-        <strong>
-          Additional amount for a person living alone (single-parent family) [line 76 of Work Chart 2]
-        </strong>
+        Montant additionnel pour personne vivant seule (famille monoparentale)[ligne 76 de la grille de calcul 2]
       </p>
       <p class="text-justify">
-        You can enter <strong>$2,160</strong> if you are entitled, for 2019, to the amount for a person living alone and:
+        Vous pouvez inscrire <strong>2 160 $</strong> si vous avez droit, pour 2019, au montant pour personne vivant seule et que
       </p>
       <ul class="text-justify">
         <li>
-          you live, <strong>at some time in 2019</strong>, with one or more of your children 18 or older who are full-time students pursuing vocational training at the secondary level or post-secondary studies; and
+          vous habitez, <strong>à un moment de l’année 2019</strong>, avec votre ou vos enfants majeurs poursuivant à temps plein des études secondaires à la formation professionnelle ou des études postsecondaires;
         </li>
         <li>
-          you are not entitled to the child assistance payment for the month of December 2019.
+          vous n’avez pas droit au paiement de soutien aux enfants pour le mois de décembre 2019.
         </li>
       </ul>
       <p class="text-justify">
-        <strong>Amount for retirement income</strong> (line 80 of Work Chart 2)
+        <strong>Montant pour revenus de retraite (ligne 80 de la grille de calcul 2)</strong>
       </p>
       <p class="text-justify">
-        If you or your spouse receives retirement income that qualifies for a tax credit in 2019, enter the lesser of the following amounts:
+        Si vous ou votre conjoint recevez des revenus de retraite donnant droit à un crédit d’impôt en 2019, inscrivez le moins élevé des montants suivants :
       </p>
       <ul class="text-justify">
         <li>
-          the amount that you, your spouse or both of you receive during the year, multiplied by 1.25;
+          le montant que vous ou votre conjoint , ou les deux, recevez dans l’année multiplié par 1,25;
         </li>
         <li>
-          $2,853 for you or your spouse, or $5,706 for both of you.
+          2 853 $ pour vous ou votre conjoint, ou 5 706 $ pour les deux.
         </li>
       </ul>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
-          <strong>Line 9</strong>
+          <strong>Ligne 9</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Amount for experienced workers</strong>
+          <strong>Montant pour travailleur d’expérience</strong>
         </div>
       </div>
       <p class="text-justify">
-        You can claim the amount for experienced workers if you meet the following conditions:
+        Vous pouvez demander le montant pour travailleur d’expérience si vous remplissez les conditions suivantes :
       </p>
       <ul class="text-justify">
         <li>
-          You expect to be resident in Qu&eacute;bec on December 31, 2019.
+          vous prévoyez résider au Québec le 31 décembre 2019;
         </li>
         <li>
-          You will be 61 or older on December 31, 2019.
+          vous aurez 61 ans ou plus au 31 décembre 2019;
         </li>
         <li>
-          Your estimated eligible work income is more than $5,000.
+          votre revenu de travail admissible estimatif dépasse 5 000 $.
         </li>
       </ul>
       <p>
-        To calculate the amount, complete Work Chart 3.
+        Pour calculer ce montant, remplissez la grille de calcul 3.
       </p>
       <div class="bg-yellow vspace box-wrapper">
         <p>
-          <strong>Eligible work income</strong>
+          <strong>Revenu de travail admissible</strong>
         </p>
         <p class="text-justify">
-          Employment income, net business income, the net amount of research grants, Wage Earner Protection Program payments and amounts received under a work-incentive project. The following types of income are excluded:
+          Revenus d’emploi, revenus nets d’entreprise, montant net des sub- ventions de recherche, prestations du Programme de protection des salariés et sommes reçues dans le cadre d’un programme d’incitation au travail. Les revenus suivants sont exclus :
         </p>
         <ul class="text-justify">
           <li>
-            employment income that consists solely of taxable benefits relating to previous employment;
+            les revenus d’emploicomposésuniquement d’avantages imposables relatifs à un ancien emploi;
           </li>
           <li>
-            employment income from an employer with whom you are not dealing at arm’s length, or from an employer that is a partnership in which you and one of the members are not dealing at arm’s length with each other;
+            les revenus d’emploi provenant d’un employeur avec lequel vous avez un lien de dépendance ou d’un employeur qui est une société de personnes et dont l’un des membres a un lien de dépendance avec vous;
           </li>
           <li>
-            amounts deducted in the calculation of your taxable income (for example, theamountsdeductedonlines 293 and 297 of the income tax return).
+            les montants déduits dans le calcul de votre revenu imposable (par exemple, ceux déduits aux lignes 293 et 297 de la déclaration de revenus).
           </li>
         </ul>
       </div>
-
+      
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
-          <strong>Line 11</strong>
+          <strong>Ligne 11</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Additional income tax to be withheld</strong>
+          <strong>Retenue supplémentaire d’impôt</strong>
         </div>
       </div>
       <p class="text-justify">
-        You can request that an additional amount of income tax be withheld to avoid owing an amount when you file your income tax return. Before you determine how much additional income tax should be withheld, you must estimate the amount that you will owe for the year. To do this, you can do one of the following:
+        Vous pouvez demander d’augmenter le montant de l’impôt retenu à la source pour éviter d’avoir un solde à payer lors de la production de votre déclaration de revenus. Pour déterminer le montant que vous désirez faire ajouter à votre retenue d’impôt, vous devez d’abord estimer votre solde à payer pour l’année. Pour ce faire, vous pouvez
       </p>
       <ul class="text-justify">
         <li>
-          base your estimate on the amount you owed when you filed last year’s income tax return;
+          vous baser sur le solde que vous avez dû payer à la suite de la production de votre déclaration de revenus de l’année précédente;
         </li>
         <li>
-          use form TP-1026-V, <em>Calculation of Instalment Payments to Be Made by Individuals</em>;
+          vousservir du formulaire <em>Calcul des acomptes provisionnels des particuliers</em> (TP-1026);
         </li>
         <li>
-          use the additional contribution calculator for subsidized childcare, which is available on the Minist&egrave;re des Finances website.
+          utiliser le calculateur de la contribution additionnelle à prévoir pour les services de garde subventionnés, accessible dans le site Internet du ministère des Finances.
         </li>
       </ul>
       <p class="text-justify">
-        Once you have estimated the amount you will owe, divide the amount by the number of pay periods left in the year. Note that if you use the calculator to determine the additional contribution for subsidized childcare, you do not have to divide the amount.
+        Vous devez ensuite diviser ce solde par le nombre de paies qui restent dans l’année. Notez que, si vous utilisez le calculateur pour estimer la contribution additionnelle pour les services de garde subventionnés, vous n’avez pas à faire ce calcul.
       </p>
       <p class="text-justify">
-        If you would like to change or cancel the amount of additional income tax being withheld, you must complete a new copy of this form and give it to your employer or payer.
+        Si vous désirez modifier ou annuler la retenue supplémentaire d’impôt, vous devez remplir un nouvel exemplaire de ce formulaire et le remettre à votre employeur ou au payeur.
       </p>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
-          <strong>Line 14</strong>
+          <strong>Ligne 14</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Housing deduction for residents of designated remote areas</strong>
+          <strong>Déduction relative au logement pour particulier habitant une région éloignée reconnue</strong>
         </div>
       </div>
       <p class="text-justify">
-        If you expect to live in a prescribed <strong>northern zone</strong> or a prescribed <strong>intermediate zone</strong> for a period of at least <strong>six consecutive months</strong> beginning or ending in 2019, you can enter the lesser of the following amounts:
+        Si vous prévoyez habiter dans une <strong>zone nordique</strong> ou dans une <strong>zone intermédiaire</strong> visées par règlement pendant une période d’au moins <strong>six mois consécutifs</strong> qui commence ou se termine en 2019, vous pouvez inscrire le moins élevé des montants suivants :
       </p>
       <ul class="text-justify">
         <li>
-          20% of your estimated net income for 2019;
+          20 % de votre revenu net estimatif pour 2019;
         </li>
         <li>
-          100% (50% for an intermediate zone) of one of the following amounts: <br>
-          – $22 multiplied by the number of days in 2019 you expect to live in such a zone, if no other person living in the same dwelling claims this deduction, or <br>
-          – $11 multiplied by the number of days in 2019 you expect to live in such a zone, in all other cases.
+          100 % de l’un des deux montants suivants (50 % si vous prévoyez habiter dans une <strong>zone intermédiaire</strong>) : <br>
+          – 22 $ multiplié par le nombrede jours en 2019 oùvous prévoyez habiter dans une telle zone, si vous êtes la seule personne de l’habitation à demander cette déduction, <br>
+          – 11 $ multiplié par le nombre de jours en 2019 où vous prévoyez habiter dans une telle zone, dans les autres cas.
         </li>
       </ul>
       <p class="text-justify">
-        For more information, consult the guide <em>Deduction for Residents of Designated Remote Areas</em> (TP-350.1.G-V).
+        Pour plus de renseignements, consultez le guide <em>Déduction pour particulier habitant une région éloignée reconnue</em> (TP-350.1.G).
       </p>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
-          <strong>Line 15</strong>
+          <strong>Ligne 15</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Deductible support payments</strong>
+          <strong>Déduction pour une pension alimentaire qui n’est pas défiscalisée</strong>
         </div>
       </div>
       <p class="text-justify">
-        If, in 2019, you expect to make support payments to your spouse or former spouse, to the mother or father of your child, or to a third party for the benefit of your child or one of the aforementioned persons, you can enter the amount of support on line 15, provided, as a rule, you meet the following conditions:
+        Si vous prévoyez verser en 2019 une pension alimentaire à votre conjoint ou à votre ex-conjoint, au père ou à la mère de votre enfant, ou à des tiers au bénéfice de votre enfant ou de l’une de ces personnes, vous pouvez inscrire le montant de cette pension alimentaire si, en règle générale, les conditions suivantes sont remplies :
       </p>
       <ul class="text-justify">
         <li>
-          The support is paid as a periodic allowance further to an order or a written agreementforthemaintenanceoftherecipient, themaintenance of one of his or her children, or the maintenance of the recipient and the child, and you are living apart from the recipient at the time the payments are made.
+          la pension alimentaire est versée à la suite d’une ordonnance ou d’une entente écrite, à titre d’allocation périodique, pour subvenir aux besoins du bénéficiaire ou d’un de ses enfants, ou aux besoins des deux à la fois, et vous ne vivez pas avec le bénéficiaire au moment du paiement;
         </li>
         <li>
-          The support payments are not subject to the measures concerning the tax treatment of support payments.
+          la pension alimentaire versée n’est pas assujettie aux mesures de défiscalisation des pensions alimentaires.
         </li>
       </ul>
       <p class="text-justify">
-        For further information, refer to <em>The Tax Effects of Separation and Divorce</em> (IN-128-V).
+        Pour plus de renseignements, consultez la brochure <em>>Les incidences fiscales d’une séparation ou d’un divorce</em (IN-128).
       </p>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
-          <strong>Box 20</strong>
+          <strong>Case 20</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Exemption from source deductions of income tax</strong>
+          <strong>Exonération de la retenue d’impôt</strong>
         </div>
       </div>
       <p class="text-justify">
-        You can ask your employer to not withhold income tax from your employment income if you expect the total of your income from all sources to be less than the result of the following calculation: the amount on line 10, <strong>plus</strong> the amount on line 19. Note that this exemption cannot be requested for remuneration that is not employment income. This request is valid only for 2019.
+        Vous pouvez demander à votre employeur de ne pas retenir d’impôt sur vos revenus d’emploi si vous prévoyez que le total de vos revenus de toute source sera inférieur au résultat du calcul suivant : le montant de la ligne 10 <strong>plus</strong> celui de la ligne 19. Vous ne pouvez pas demander d’exonération pour une rémunération qui n’est pas un revenu d’emploi. Cette demande est valide uniquement pour 2019.
       </p>
     </div>
   </div>
@@ -1976,12 +1965,10 @@
   </div>
 </main>
 
-<div class="hide">
-  <$client.env.FormField.signatureverification.HTML>
-  <$client.env.formfield.Login_ID.html>
-  <$client.env.formfield.Auth_Param.html>
-  <$client.env.formfield.EmployeeID.html>
-</div>
+<$client.env.FormField.signatureverification.HTML>
+<$client.env.formfield.Login_ID.html>
+<$client.env.formfield.Auth_Param.html>
+<$client.env.formfield.EmployeeID.html>
 
 
 </form> 
