@@ -1,0 +1,342 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+	<div class="modal-content">
+		<h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+		<p style="fontweight:normal;padding:0px">
+			<$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+		</p>
+		<br>
+		<div class="row">
+			<div class="lifesuite__clearfix">
+				<b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+              		</div>
+		</div>
+		<div class="row">
+			<div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+				<input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+				<input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+				<input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+			</div>
+		</div>
+	</div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+	<div class="fb-spinner">
+		<i class="fa fa-2x fa-spinner fa-pulse"></i>
+	</div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form''>
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+
+
+ 
+<!--////////////INSERT PROMPTS HERE///////////-->
+
+
+<$client.env.FormField.Account1_Account_Number.prompt>
+<$client.env.FormField.Account1_Fin.prompt>
+<$client.env.FormField.Account1_Partial_Amount.prompt>
+<$client.env.FormField.Account1_Percentage.prompt>
+<$client.env.FormField.Account1_Routing_Number.prompt>
+<$client.env.FormField.Account2_Account_Number.prompt>
+<$client.env.FormField.Account2_Fin.prompt>
+<$client.env.FormField.Account2_Partial_Amount.prompt>
+<$client.env.FormField.Account2_Percentage.prompt>
+<$client.env.FormField.Account2_Routing_Number.prompt>
+<$client.env.FormField.Account2_Type_Of_Account.prompt>
+<$client.env.FormField.Account3_Account_Number.prompt>
+<$client.env.FormField.Account3_Fin.prompt>
+<$client.env.FormField.Account3_Partial_Amount.prompt>
+<$client.env.FormField.Account3_Percentage.prompt>
+<$client.env.FormField.Account3_Routing_Number.prompt>
+<$client.env.FormField.Account3_Type_Of_Account.prompt>
+<$client.env.FormField.Account4_Account_Number.prompt>
+<$client.env.FormField.Account4_Fin.prompt>
+<$client.env.FormField.Account4_Partial_Amount.prompt>
+<$client.env.FormField.Account4_Percentage.prompt>
+<$client.env.FormField.Account4_Routing_Number.prompt>
+<$client.env.FormField.Account4_Type_Of_Account.prompt>
+<$client.env.FormField.Account5_Account_Number.prompt>
+<$client.env.FormField.Account5_Fin.prompt>
+<$client.env.FormField.Account5_Partial_Amount.prompt>
+<$client.env.FormField.Account5_Percentage.prompt>
+<$client.env.FormField.Account5_Routing_Number.prompt>
+<$client.env.FormField.Account5_Type_Of_Account.prompt>
+<$client.env.FormField.Accounting1_type.prompt>
+<$client.env.FormField.Date.prompt>
+<$client.env.FormField.Deposit_1.prompt>
+<$client.env.FormField.Deposit_2.prompt>
+<$client.env.FormField.Deposit_3.prompt>
+<$client.env.FormField.Deposit_4.prompt>
+<$client.env.FormField.Deposit_5.prompt>
+<$client.env.FormField.Email.prompt>
+<$client.env.FormField.Name.prompt>
+<$client.env.FormField.Phone_Number.prompt>
+<$client.env.FormField.SIN_No.prompt>
+<$client.env.FormField.signature.prompt>
+<$client.env.FormField.ACT_1.prompt>
+<$client.env.FormField.ACT_2.prompt>
+<$client.env.FormField.ACT_3.prompt>
+<$client.env.FormField.ACT_4.prompt>
+<$client.env.FormField.ACT_5.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+    <div class="container-fluid"> 
+    <div class="form-group"> 
+    <div id="DefaultFont">
+
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12"><h4><strong><center>CANADA DIRECT DEPOSIT AUTHORIZATION FORM</strong></center></h4></div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+</div>
+
+
+ <p>New enrollments are activated after a successful test run (pre-note) of the first check (second check for weekly pay) with no money being transferred. The second check (third check for weekly pay) will be deposited in your bank account as specified below.</p>
+
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+</div>
+<div class="row">
+    <div class="col-lg-12"><h4><strong>EMPLOYEE IDENTIFICATION</strong></h4></div>
+</div>
+ <div class="row">
+    <div class="col-xs-12 col-md-6">Name: <$client.env.FormField.Name.HTML></div>
+    <div class="col-xs-12 col-md-6">SIN Number: <$client.env.FormField.SIN_No.HTML></div>
+</div>
+
+  <br>
+
+ <div class="row">
+    <div class="col-xs-12 col-md-6">Email: <$client.env.FormField.Email.HTML></div>
+    <div class="col-xs-12 col-md-6">Phone Number: <$client.env.FormField.Phone_Number.HTML></div>
+</div>
+<br>
+<div class="row">
+    <div class="col-lg-12"><h4><strong>FINANCIAL INSTITUTION</strong></h4></div>
+</div>
+
+<p>Below is a sample check detailing where the necessary information can be found to complete this form.</p>
+
+<br>
+
+<div class="row">
+    <div class="col=xs-9" align="middle"><img class="img-responsive" src="Canada_Check_Image.png"></div>
+</div>
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+</div>
+
+ <p>5-digit Branch Transit Number</p>
+ <p>3-digit Financial Institution Number</p>
+ <p>7-digit Account Number – do not drop the zeros stated as part of your account number even if they are stated at the start of your account number</p>
+ <p>These three codes (Branch Transit/Financial Institution/Account) are not always reflected in the exact same sequence, however the same principles apply.</p>
+    <br>  
+
+ <div class="row">
+    <div class="col-lg-12"><h4><strong>ACCOUNT INFORMATION</strong></h4></div>
+ </div>
+
+ <p>Up to five accounts may be designated. If you are setting up only one account, 100% of your deposit will go into the Primary Account indicated in Account No. 1. If you are requesting two or more accounts, the additional (Account No. 2 – Account No. 5) must indicate a dollar or percentage amount to be deposited and your Primary Account (Account No. 1) will receive 100% of the remaining funds.</p>
+   <br>
+
+ <p><strong>Account No. 1 (Primary Account)</strong> * All Non Payroll reimbursements will be deposited into your primary account.</p>
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-6"><font color="red">Financial Institution Name</font><$client.env.FormField.Account1_Fin.HTML></div>
+    <div class="col-xs-12 col-md-4"><font color="red">Type of Account</font><$client.env.FormField.Accounting1_type.HTML></div>
+  </div>
+ <div class="row">
+    <div class="col-xs-12 col-md-4"><font color="red">Branch Transit Number</font><$client.env.FormField.Account1_Routing_Number.HTML></div>
+    <div class="col-xs-12 col-md-4"><font color="red">Financial Institution Number</font><$client.env.FormField.Account1_Account_Number.HTML></div>
+    <div class="col-xs-12 col-md-4"><font color="red">Account Number</font><$client.env.FormField.ACT_1.HTML></div>
+  </div> 
+  <div class="row">
+    <div class="col-xs-12 col-md-2">Amount of Deposit:</div>
+    <div class="col-xs-12 col-md-5">Partial Amount $<$client.env.FormField.Account1_Partial_Amount.HTML></div>
+    <div class="col-xs-12 col-md-5">Percentage %:<$client.env.FormField.Account1_Percentage.HTML></div>
+  </div>  
+ 
+<p><strong>Account No. 2</strong></p>
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-6">Financial Institution Name<$client.env.FormField.Account2_Fin.HTML></div>
+    <div class="col-xs-12 col-md-4">Type of Account<$client.env.FormField.Account2_Type_Of_Account.HTML></div>
+  </div>
+ <div class="row">
+    <div class="col-xs-12 col-md-4">Branch Transit Number<$client.env.FormField.Account2_Routing_Number.HTML></div>
+    <div class="col-xs-12 col-md-4">Financial Institution Number<$client.env.FormField.Account2_Account_Number.HTML></div>
+    <div class="col-xs-12 col-md-4">Account Number<$client.env.FormField.ACT_2.HTML></div>
+  </div> 
+  <div class="row">
+    <div class="col-xs-12 col-md-2">Amount of Deposit:</div>
+    <div class="col-xs-12 col-md-5">Partial Amount $<$client.env.FormField.Account2_Partial_Amount.HTML></div>
+    <div class="col-xs-12 col-md-5">Percentage %:<$client.env.FormField.Account2_Percentage.HTML></div>
+  </div>  
+
+<p><strong>Account No. 3</strong></p>
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-6">Financial Institution Name<$client.env.FormField.Account3_Fin.HTML></div>
+    <div class="col-xs-12 col-md-4">Type of Account<$client.env.FormField.Account3_Type_Of_Account.HTML></div>
+  </div>
+ <div class="row">
+    <div class="col-xs-12 col-md-4">Branch Transit Number<$client.env.FormField.Account3_Routing_Number.HTML></div>
+    <div class="col-xs-12 col-md-4">Financial Institution Number<$client.env.FormField.Account3_Account_Number.HTML></div>
+    <div class="col-xs-12 col-md-4">Account Number<$client.env.FormField.ACT_3.HTML></div>
+  </div> 
+   <div class="row">
+    <div class="col-xs-12 col-md-2">Amount of Deposit:</div>
+    <div class="col-xs-12 col-md-5">Partial Amount $<$client.env.FormField.Account3_Partial_Amount.HTML></div>
+    <div class="col-xs-12 col-md-5">Percentage %:<$client.env.FormField.Account3_Percentage.HTML></div>
+  </div>  
+
+<p><strong>Account No. 4</strong></p>
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-6">Financial Institution Name<$client.env.FormField.Account4_Fin.HTML></div>
+    <div class="col-xs-12 col-md-4">Type of Account<$client.env.FormField.Account4_Type_Of_Account.HTML></div>
+  </div>
+ <div class="row">
+    <div class="col-xs-12 col-md-4">Branch Transit Number<$client.env.FormField.Account4_Routing_Number.HTML></div>
+    <div class="col-xs-12 col-md-4">Financial Institution Number</font><$client.env.FormField.Account4_Account_Number.HTML></div>
+    <div class="col-xs-12 col-md-4">Account Number<$client.env.FormField.ACT_4.HTML></div>
+  </div> 
+    <div class="row">
+    <div class="col-xs-12 col-md-2">Amount of Deposit:</div>
+    <div class="col-xs-12 col-md-5">Partial Amount $<$client.env.FormField.Account4_Partial_Amount.HTML></div>
+    <div class="col-xs-12 col-md-5">Percentage %:<$client.env.FormField.Account4_Percentage.HTML></div>
+  </div>  
+
+<p><strong>Account No. 5</strong></p>
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-6">Financial Institution Name<$client.env.FormField.Account5_Fin.HTML></div>
+    <div class="col-xs-12 col-md-4">Type of Account<$client.env.FormField.Account5_Type_Of_Account.HTML></div>
+  </div>
+ <div class="row">
+    <div class="col-xs-12 col-md-4">Branch Transit Number<$client.env.FormField.Account5_Routing_Number.HTML></div>
+    <div class="col-xs-12 col-md-4">Financial Institution  Number<$client.env.FormField.Account5_Account_Number.HTML></div>
+    <div class="col-xs-12 col-md-4">Account Number<$client.env.FormField.ACT_5.HTML></div>
+  </div> 
+  <div class="row">
+    <div class="col-xs-12 col-md-2">Amount of Deposit:</div>
+    <div class="col-xs-12 col-md-5">Partial Amount $<$client.env.FormField.Account5_Partial_Amount.HTML></div>
+    <div class="col-xs-12 col-md-5">Percentage %:<$client.env.FormField.Account5_Percentage.HTML></div>
+  </div>  
+<br>
+<div class="row">
+    <div class="col-lg-12"><h4><strong>Authorization</strong></h4></div>
+ </div>       
+<br>
+</p>I hereby voluntarily authorize Wood, either directly or through its payroll service provider, to deposit any amounts owed me, by initiating credit entries to my account(s) at the financial institution(s) of my choice indicated on this form. Further, I authorize the financial institution(s) to accept and to credit any credit entries indicated by Wood, either directly or through its payroll service provider, to my account. To the extent permitted by law, in the event that Wood or its payroll service provider deposits funds erroneously into my account (s), I authorize Wood, either directly or through its payroll service provider, to debit my account for an amount not to exceed the original amount of the erroneous credit.
+To the extent permitted by law, I understand that I have the right to refuse consent or revoke authorization of direct deposit at any time without fear of retaliation, and I have the right to receive any payment owed to me by other means. This authorization is to remain in full force and effect until Wood and the financial institution(s) have received written notice from me of its termination in such time and manner as to afford Wood and the financial institution(s) reasonable opportunity to act on it.</p>
+<br>
+<br>
+ <div class="row">
+     <div class="col-sm-12 col-md-6"><$client.env.FormField.signature.HTML>Electronic Signature</div>
+     <div class="col-sm-12 col-md-6"><$client.env.FormField.Date.HTML>Date (mm/dd/yyyy)</div>
+</div>
+                     
+</div>
+</div>     
+</div>
+
+           <br><hr class="lifesuite__hr"> 
+                  <div class="row" id="formButtons" style="display: none;"> 
+                      <div class="lifesuite__clearfix lifesuite__float-right">                
+                              <$client.env.FormButtons> 
+                       </div>              
+                  </div> 
+           </div>  
+      </div>  
+</div>
+<div style="display:none">
+     <$client.env.FormField.SignatureVerification.HTML>
+     <$client.env.FormField.FullName.HTML>
+</div>
+</form>
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');		 
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+</SCRIPT>

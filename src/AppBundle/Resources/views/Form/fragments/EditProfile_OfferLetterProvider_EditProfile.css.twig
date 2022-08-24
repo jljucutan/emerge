@@ -1,0 +1,137 @@
+<LINK href="<$link;/main/RedCarpet/FormTemplates/FormSupport/FormStyles.css>" rel="stylesheet" type="text/css">
+<LINK href="<$link;/main/SiteGen/Onboarding/Admin/Skins/kirkland_kelli_theme.css>" rel="stylesheet" type="text/css">
+<style>
+    #EditProfile_wrapper, #ps_btm_container {display:none;}
+    #box_col_center_no_col{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;}
+    #box_col_center_no_col{}
+    #EditProfile{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-align:center;-ms-flex-align:center;align-items:center; font-size:14px;}
+    #EditProfile{background-color:#f6f7f9;}
+    #box_col_center_no_col{font-family: Arial, sans-serif;}
+    input, select{width:100%;box-sizing:border-box !important;border:1px solid #ccc !important;outline:none !important;color:#1C1C1C; font-family: Arial, sans-serif; font-size:14px !important;font-weight:600 !important;line-height:17px !important;padding-top:20px !important;padding-bottom:5px !important;padding-left:20px !important;padding-right:20px !important;margin-bottom:5px !important;}
+    select{-webkit-appearance:menulist;-moz-appearance:menulist;appearance:menulist;}
+    input:focus, select:focus{border:1px solid #2354E8 !important;}
+    input::-webkit-input-placeholder{opacity:0.7;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";color:#888888;}
+    input::-moz-placeholder{opacity:0.7;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";color:#888888;}
+    .merge {display:-webkit-box;display:-ms-flexbox;display:flex;width:100%;}
+    .merge > input:first-child{margin-right:5px;width:30%;}
+    .merge > input:nth-child(3){width:70%;}
+    .merge > .input_wrapper:nth-child(1){margin-right:5px;width:50%;}
+    .hr-sect{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-preferred-size:100%;flex-basis:100%;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin:10px 0px;width:100%;padding-top:15px;color:#1C1C1C;font-family:Arial, sans-serif;font-size:14px;line-height:17px;}
+    .hr-sect:after{content:"";-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;background:rgba(0, 0, 0, 0.10);height:2px;font-size:0px;line-height:0px;margin:0px 0px 0px 5px;}
+    #box_col_center_title{display:none;}
+    .button_group{width:100%;}
+    #TaskSummary_ButtonCancel, #TaskSummary_ButtonSave{background:none !important;border:none !important;box-shadow:none !important;background-color:#2354E8 !important;color:#ffffff !important;width:100%;border-radius:20px !important;font-family:"Open Sans", Helvetica, Arial, sans-serif;font-size:18px;line-height:22px;text-align:center;}
+    #EUPDefaultSaveButton{background-color:transparent;box-shadow:unset;text-decoration:underline;float:right;padding:0px !important;font-size:18px;}
+    #TaskSummary_ButtonCancel{background-color:#E1E7EB !important;color:#333333 !important;}
+    #TaskSummary_ButtonCancel:hover{background-color:#D2DBE1 !important;}
+    #EUPDefaultSaveButton:hover{background-color:transparent !important;color:#2354E8 !important;}
+    body, #body_container{background-color:#f6f7f9 !important;}
+    #body_container{width:100%;padding:0px !important;margin:0px !important;}
+    #box_col_center_no_col{padding:0px !important;width:100% !important;margin:0px !important;}
+    form{width:100%;}
+    #EditProfile_container{width:calc(100% - 0px);margin:0 auto;background-color:#f6f7f9;padding:30px 0px;}
+    #EditProfile_wrapper{width:calc(100% - 60px);max-width:540px;margin:0 auto;}
+    #cancel, #save, #saveandcomplete{width:100%;}
+    .lifesuite__button.primary:hover, .lifesuite__ag-grid .ag-paging-button:hover{background-color:unset;-webkit-animation-name:unset;animation-name:unset;-webkit-animation-duration:unset;animation-duration:unset;}
+    /*** Floating Labels ***/
+    .input_wrapper{width:100%;}
+    .input_wrapper{position:relative;}
+    .input_wrapper .inputText{width:100%;}
+    .input_wrapper .inputText:invalid{box-shadow:none !important;}
+    .input_wrapper .floating-label{position:absolute;pointer-events:none;top:11px;left:20px;-webkit-transition:0.2s ease all;transition:0.2s ease all;opacity:0.5;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";font-family:"Open Sans", Helvetica, Arial, sans-serif;color:#1C1C1C;}
+    .date-label-focus,.input_wrapper input:focus ~ .floating-label, .input_wrapper select:focus ~ .floating-label, .input_wrapper input:not(:focus):valid ~ .floating-label, .input_wrapper select:not(:focus):valid ~ .floating-label{top:5px !important;left:20px;font-size:12px;opacity:0.5;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";color:#2354E8;font-weight:600;}
+    .input_wrapper input:not(:focus):valid ~ .floating-label, .input_wrapper select:not(:focus):valid ~ .floating-label{color:#1C1C1C;}
+    .datepicker_button{padding:12px 20px !important;}
+    .ui-datepicker-month, .ui-datepicker-year{display:inline-block;padding:unset !important;}
+    .hasDatepicker{color:#1C1C1C !important;}
+    .pButtonLink{min-width:337px !important;width:337px;padding:7px 20px;font-size:14px !important;font-weight:300 !important;background-color:#2354E8 !important;color:#ffffff !important;border-radius:25px !important;font-family: "Open Sans", Helvetica, Arial, sans-serif;}
+    .pButtonLink:hover{background-color:#4868C8 !important;}
+
+  /* Custm styles */
+    .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0;}
+    * html .clearfix { zoom: 1; }
+    *:first-child+html .clearfix { zoom: 1; }
+    body {color: #444;}
+    input.dateField[required] {box-shadow: none;}
+    select.lifesuite__select-input, input.lifesuite__select-input--small, input.lifesuite__select-input--large, input.lifesuite__text-input, input.lifesuite__textarea-input {margin: 0 !important; width: 100%; max-height: 40px; height: 100%;}
+    select.lifesuite__select-input, select.lifesuite__select-input--small, select.lifesuite__select-input--large {padding: 0.8em; height: 145pt;}
+    .lifesuite__text-input, .lifesuite__textarea-input {padding: 0.959em;}
+    .input-error, .input-error:focus {outline: none; border: 1px solid rgb(255, 77, 77); border-radius: none !important; box-shadow: none !important; margin-bottom: -2px !important;}
+    .input-error, .input-error:focus {outline: none; border: 1px solid rgba(255, 77, 77, 0.6) !important;box-shadow: none;}
+    #EditProfile {text-align: left;}
+    #EditProfile h2 {margin-bottom: 5px; color: #2354E8; font-family: Georgia, Arial, sans-serif; font-size: 25px; font-weight: 500; line-height: 50px;}
+    .date-label-focus, .input_wrapper input:focus ~ .floating-label, .input_wrapper select:focus ~ .floating-label, .input_wrapper input:not(:focus):valid ~ .floating-label, .input_wrapper select:not(:focus):valid ~ .floating-label {top: 5px !important; left: 20px; font-size: 12px; opacity: 0.5; font-weight: 600; font-size: 14px; font-weight: normal;}
+    .input_wrapper .floating-label {position: absolute; pointer-events: none; transition: 0.2s ease all; font-family: Arial, sans-serif; z-index: 1;}
+    input, select {font-family: Arial, sans-serif !important; background-color: #ffffff; line-height: normal !important;}
+    #EUPDefaultSaveButton {font-size: 14px;}
+    #TaskSummary_ButtonSave:hover {background-color: #4868C8 !important;}
+    .lifesuite__button.primary:hover, .lifesuite__ag-grid .ag-paging-button:hover {background-color: unset !important; -webkit-animation-name: unset !important; animation-name: unset !important; -webkit-animation-duration: unset !important; animation-duration: unset !important;}
+    .red{ color: red!important;}
+    .ui-datepicker .ui-datepicker-title select{padding: 0;}
+    .ui-datepicker .ui-datepicker-header{position: relative; padding: 1em 0;}
+    .ui-datepicker-month, .ui-datepicker-year {display: inline; padding: 1px !important; }
+    body {color: #444;}
+    input.dateField[required] {box-shadow: none;}
+    select.lifesuite__select-input, input.lifesuite__select-input--small, input.lifesuite__select-input--large, input.lifesuite__text-input, input.lifesuite__textarea-input {margin: 0 !important; width: 100%; max-height: 40px; height: 100%;}
+    select.lifesuite__select-input, select.lifesuite__select-input--small, select.lifesuite__select-input--large {padding: 0.8em; height: 145pt;}
+    .lifesuite__text-input, .lifesuite__textarea-input {padding: 0.959em;}
+    .input-error, .input-error:focus {outline: none; border: 1px solid rgb(255, 77, 77); border-radius: none !important; box-shadow: none !important; margin-bottom: -2px; !important;}
+    .input-error, .input-error:focus {outline: none; border: 1px solid rgba(255, 77, 77, 0.6) !important;box-shadow: none;}
+    .floating-label.label-focus {font-size: 12px !important; font-weight: 600 !important; top: 5px;}
+    #TaskSummary_ButtonCancel, #TaskSummary_ButtonSave, #EUPDefaultSaveButton {display: none;}
+    #EditProfile {align-items: stretch !important; color: #1C1C1C;}
+    #EditProfile .lifesuite__button {margin: 0 !important;}
+    #EditProfile input[type="checkbox"], #EditProfile input[type="radio"] {width: auto;}
+    #EditProfile .horizontal_checkbox_group, #EditProfile .horizontal_radio_group {margin-bottom: 5px;}
+    #EditProfile .horizontal_checkbox_group label, #EditProfile .horizontal_radio_group label {margin: 0 1em 0 0.5em;}
+    #EditProfile ul.text-error li span {color: #fff !important;}
+    #EditProfile h4 {margin-bottom: 2em; font-size: 18px; font-weight: 300; color: #1C1C1C; font-family: Georgia, Arial, sans-serif !important;}
+    #EditProfile .hr-sect, #EditProfile .heading {margin-bottom: 7px; margin-top: 0; padding-top: 0;}
+    #EditProfile .heading {background: url("<$link;/RedCarpet/Onboarding/Uploads/Images/skin/header-bg.jpg>") repeat-x;}
+    #EditProfile .heading .heading-inner {font-family: Georgia, Arial, sans-serif; padding-right: 5px; background: #f6f7f9; color: #FF5C39; font-weight: 600;}
+    #EditProfile .cal_and_button {width: 100%;}
+    #EditProfile .cal_and_button > tbody > tr > td > input:nth-child(1) {width: 100%; margin-right: 0;}
+    #EditProfile .cal_and_button > tbody > tr > td > input:nth-child(3) {opacity: 0; width: 100%; position: absolute; top: 0; left: 0; right: 0;}
+    #EditProfile .datepicker_button {max-height: 45px;}
+    #EditProfile input[type="text"], #EditProfile select, #EditProfile textarea {margin-bottom: -2px !important; max-height: 44px; height: 44px; display: block; padding-top: 18px !important; padding-bottom: 0px !important;}
+    #EditProfile .input_wrapper {margin-bottom: 7px;}
+    #EditProfile .merge.equal > .input_wrapper:nth-child(1) {width: 100%;}
+    #EditProfile .hidden-error, #EditProfile #add-employment-section, #EditProfile #add-clerkship-section, [data-form-group] {display: none;}
+    #EditProfile .v-middle {margin-top: 0.7em; display: block;}
+    #EditProfile .label-has-error .hidden-error {display: block;}
+    #EditProfile .mb-0 {margin-bottom: 0;}
+    #EditProfile .mb-5 {margin-bottom: 5px;}
+    #EditProfile .mb-10 {margin-bottom: 10px;}
+    #EditProfile .mb-13 {margin-bottom: 13px;}
+    #EditProfile .mb-15 {margin-bottom: 15px;}
+    #EditProfile .mb-18 {margin-bottom: 18px;}
+    #EditProfile .mb-28 {margin-bottom: 28px;}
+    #EditProfile .mb-25 {margin-bottom: 25px;}
+    #EditProfile .mb-30 {margin-bottom: 30px;}
+    #EditProfile .lead {color: #909090;}
+    #EditProfile ul.text-error {margin-bottom: -2px !important; margin-top: 0; padding-left: 0; font-size: 12px; font-family: Arial, sans-serif;}
+    #EditProfile .horizontal_radio_item {margin-right: 0.8em; min-width: 4em; display: inline-block !important;}
+    #EditProfile .lifesuite__textarea-input {width: 100%; resize: vertical; border-radius: 0;}
+    #EditProfile .lifesuite__textarea-input {width: 100%; resize: vertical; border-radius: 0;}
+    #EditProfile button.bg-blue, #EditProfile button.bg-charcoal, #EditProfile button.bg-sterling, #EditProfile button.bg-jade, #EditProfile button.bg-midnight, #EditProfile button.bg-ignite, #EditProfile button.bg-velvet, #EditProfile button.bg-zest, #EditProfile button.bg-zest {color: #fff;}
+    #EditProfile [data-add-section], #EditProfile [data-remove-section] {min-width: 205px;}
+    #EUPDefaultSaveButton {margin-top: 25px;}
+    select {-webkit-appearance: none; -moz-appearance: none;-ms-appearance: none; -o-appearance: none; appearance: none;}
+
+    @media only screen and (max-width: 767px) {
+        #EditProfile .merge {display: block; margin-bottom: 0;}
+        #EditProfile .mb-0 {margin-bottom: 7px;}
+        .hidden-xs {display: none;}
+        #EditProfile .merge, #EditProfile .merge.equal {display: block;}
+    }
+</style>
+<link href="<$link;/main/RedCarpet/FormTemplates/FormSupport/css/front_validator.css>" rel="stylesheet" type="text/css">
+
+<!--[if gt IE 9 | !IE ]><!-->
+<style>
+    select {background: #ffffff url("<$link;/RedCarpet/Onboarding/Uploads/Images/skin/drop-down-arrow.png>"); background-repeat: no-repeat; background-position: 98% 50%;}
+    select::-ms-expand {display: none;}
+</style>
+<![endif]-->
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/FormScript_Calendar.js>"></script>

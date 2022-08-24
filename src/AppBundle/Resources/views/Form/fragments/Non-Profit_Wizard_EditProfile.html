@@ -1,0 +1,250 @@
+<div id="task_summary_outer">
+    <div id="bg-image">.</div>
+    <div id="EditProfile_container">
+        <div id="EditProfile_wrapper">
+            <div id="EditProfile">
+
+                <div id="EditProfile_Title">
+                  <h4>
+                    <strong>Non-Profit Wizard</strong>
+                  </h4>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Extended Separation Date</span>
+                    <input type="text" id="Extended_Separation_Date_pseudo" name="Extended_Separation_Date_pseudo" value="<$client.tForWhomUserInfo.Extended_Separation_Date>" data-validation="required" data-title="Extended Separation Date" data-date-enabled="false" data-target-date="Extended_Separation_Date" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Transition Period Date</span>
+                    <input type="text" id="Transition_Period_Date_pseudo" name="Transition_Period_Date_pseudo" data-validation="required" data-title="Transition Period Date" value="" data-date-enabled="false" data-target-date="Transition_Period_Date" readonly>
+                </div>
+                <p>
+                  The employee has chosen to participate in the Non-Profit Experience Program.
+                  <br>
+                  Please enter an Extended Separation Date.
+                </p>
+                <div class="mb-18"></div>
+
+                <div class="button_group">
+                    <div id="save"></div>
+                    <div id="saveandcomplete"></div>
+                    <div id="cancel"></div>
+                </div>
+
+                <div hidden>
+                    <$client.env.inputEvent_Name>
+                    <$client.env.inputEvt_Location_Code>
+                    <$client.env.inputExtended_Separation_Date>
+                    <$client.env.inputTransition_Period_Date>
+                    <input type="text" id="Site_Name" name="Site_Name" value="<$client.env.index.site_name>" />
+                    <input type="text" id="Notification_Date" name="Notification_Date" data-date-enabled="false" readonly>
+                    <input type="text" id="Separation_Date" name="Separation_Date" data-date-enabled="false" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="<$link;/main/RedCarpet/FormTemplates/FormSupport/css/front_validator.css>" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/country.js"></script>
+<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/custom-paypal.js"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>" defer></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>" defer></script>
+
+<script type="text/javascript">
+    /**
+     * SERVICES-41436 | jjucutan | PayPal - RC - Offboarding - Additional Provider Page (Non-Profit)
+     * Define here functions that can be reused
+     */
+    const EVENT_NOTIFICATION_DATE = '<$client.tEventDates_Date_10.Value>';
+    const providerContext = $('#EditProfile');
+    const focusInputLabel = function(el, isFocused) {
+        "use strict";
+        try {
+            let label = el.closest('.input_wrapper')
+                .find('span.floating-label')
+                .removeClass('label-focus')
+                .css({"color": "#666666"});
+            if (el.val().trim().length > 0 || isFocused) {
+                label.addClass('label-focus');
+            }
+            if (isFocused === true) {
+                label.css({"color": "#0070BA"});
+            }
+        }
+        catch(err) {
+            console.log(el)
+            console.log(err);
+        }
+    }
+    const fieldHasVal = function(el) {
+        "use strict";
+        let hasVal = false;
+        $.each(el, function(k, v) {
+            if ($(v).val().length) {
+                hasVal = true;
+            }
+        });
+        return hasVal;
+    }
+    const isCheckboxChecked = function(el) {
+        "use strict";
+        let hasChecked = false;
+        $.each(el, function(k,v){
+            if ($(v).is(':checked')) {
+                hasChecked = true;
+            }
+        });
+        return hasChecked;
+    }
+    const setDefaultValue = function(el, defaultValue) {
+        "use strict";
+        if (el.is('input[type="checkbox"]') || el.is('input[type="radio"]')) {
+            if (isCheckboxChecked(el) === false) {
+                $.each(el, function(k,v) {
+                    if ($(v).val() === defaultValue) {
+                        $(v).prop('checked', 'checked');
+                    }
+                });
+            }
+        }
+        if (el.is('select') && el.val().length < 1 && el.find('option[value="' + defaultValue + '"]').length > 0) {
+            el.val(defaultValue);
+        }
+        if (el.is('select') && el.val().length < 1 && el.find('option:contains(' + defaultValue + ')').length > 0) {
+            el.val(el.find('option:contains(' + defaultValue + ')').prop('value'));
+        }
+        if (el.is('input[type="text"]') && el.val().trim().length < 1) {
+            el.val(defaultValue);
+        }
+    }
+
+    const populateTransition = function(eventDate) {
+        "use strict";
+        const d = moment(eventDate).add(14, 'd');
+        $('[name$=".Transition_Period_Date"]').val(d.format('YYYY-MM-DD'));
+        $('#Transition_Period_Date_pseudo, [name$=".Transition_Period_Date_display"]').datepicker('setDate', new Date(d.format('YYYY-MM-DD')));
+    }
+
+    <$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>
+    $(window).on('load', function() {
+        $('.floating-label span').css('color', 'rgb(102, 102, 102)');
+        $('.cal_and_button').prop('cellpadding', 0).prop('cellspacing', 0);
+        let isProfileCompleted = sTaskComplete;
+        // replace default submit button with paypal styled
+        $('#TaskSummary_ButtonCancel').detach().appendTo('#cancel').show();
+        if (!isProfileCompleted) {
+            $('#TaskSummary_ButtonSave').prop('onclick', null).unbind('click').detach().appendTo('#saveandcomplete').show().text('Continue');
+            $('#EUPDefaultSaveButton').prop('onclick', null).unbind('click').detach().appendTo('#save').show();
+        }
+
+        // load form when all set
+        $('#EditProfile_wrapper').fadeIn();
+
+        // datepickers
+        $('#Extended_Separation_Date_pseudo, #Transition_Period_Date_pseudo')
+          .formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>")
+          .datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+100",
+            onSelect: function(dateText, instance) {
+              validateField($(this)); 
+              focusInputLabel($(this));
+            }
+          });
+        if ('<$client.tForWhomUserInfo.Extended_Separation_Date>'.length) {
+            $('#Extended_Separation_Date_pseudo').datepicker('setDate', new Date('<$client.tForWhomUserInfo.Extended_Separation_Date>'));
+        }
+
+        $('#Extended_Separation_Date_pseudo, #Transition_Period_Date_pseudo').datepicker("option", "onSelect", function(dateText, instance) {
+            validateField($(this)); 
+            focusInputLabel($(this));
+            if ($(this).data('target-date')) {
+                const target = $('[name$=".' + $(this).data('target-date') + '_display"]');
+                if (!$(this).datepicker('getDate')) {
+                    target.datepicker('setDate', null);
+                    return;
+                }
+                target.datepicker('setDate', $(this).datepicker('getDate'));
+            } 
+        });
+
+        $('#Transition_Period_Date_pseudo').datepicker('setDate', $('[name$=".Transition_Period_Date_display"]').datepicker('getDate'));
+        if (!$('#Transition_Period_Date_pseudo').datepicker('getDate')) {
+            populateTransition(EVENT_NOTIFICATION_DATE);
+        }
+
+        // focus style text and select fields
+        $('form').on('focus', 'input[type="text"]:visible, select:visible, textarea:visible', function() {
+            focusInputLabel($(this), true);
+        }).on('blur', 'input[type="text"], select, textarea', function() {
+            focusInputLabel($(this));
+        });
+        // focus style date fields
+        $('form').on('focus change', 'input.hasDatepicker', function() {
+            focusInputLabel($(this), true);
+        }).on('blur change', 'input.hasDatepicker', function() {
+            focusInputLabel($(this));
+        });
+        $('form').on('focus change', '.datepicker_button', function() {
+            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'), true);
+        }).on('blur change', '.datepicker_button', function() {
+            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'));
+            $(this).parent().find('.hasDatepicker').trigger('change'); 
+        });
+
+        // focus field labels
+        $.each($('form input[type="text"], form select:visible'),function(k,v) {
+            focusInputLabel($(v));
+        });
+        // validate each field
+        providerContext.on('blur click paste keyup', 'input[type="text"]:not(".hasDatepicker"), select', function() {
+          if ($(this).prop('id') == 'Employee_HRISID' && this.value.length > 0) {
+            validateField($(this), false, employeeIDValidator);
+            return;
+          }
+          if($(this).is(':visible') && !validateField($(this))) {
+            $(this).parent().find('.text-error').css({'display': 'inline-block', 'margin-bottom': '-2px'}); 
+          }
+        });
+
+        // validate each date fields
+        providerContext.on('change blur paste', 'input[name$="_display"]:not(":hidden"), input.hasDatepicker:not(:hidden)', function() {
+          validateField($(this)); 
+        });
+
+        // save and complete later
+        providerContext.on('click', '#EUPDefaultSaveButton', function(e) {
+            e.preventDefault();
+            DisableValidation();doSave_Custom('refer-Save');
+        });
+
+        // submit the form if no errors
+        providerContext.on('click', '#TaskSummary_ButtonSave', function(e) {
+            e.preventDefault();
+            let formIsValid = true;
+            $.each($('input:visible, select:visible', providerContext), function(k,v) {
+              // all other fields
+              if($(v).is(':visible') && !validateField($(v))) {
+                formIsValid = false;
+              }
+              // employee id validation
+              if ($(v).is(':visible') && $(v).prop('name') == 'Employee_HRISID' && !validateField($('#Employee_HRISID'), false, employeeIDValidator)) {
+                formIsValid = false;
+              }
+            })
+            if (formIsValid) {
+                doSave_Custom('refer-Complete');
+            }
+            else {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        });
+
+        if (isProfileCompleted) {
+          $('input, select', providerContext).prop('disabled', true);
+        }
+
+    });
+</script>

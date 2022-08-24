@@ -1,0 +1,63 @@
+{
+    "sections": {
+        "permanent_resident-container": {
+            "and": [
+                {"citizenship_status": "No"}
+            ]
+        },
+        "rtw_status-container": {
+            "and": [
+                {"citizenship_status": "No"}
+            ]
+        },
+        "rtw_restrictions-container": {
+            "and": [
+                {"citizenship_status": "No"}
+            ]
+        },
+        "nid_status-container": {
+            "and": [
+                {"citizenship_status": "No"}
+            ],
+            "toggleByEventLocation": {
+                "POL": {
+                    "or": [
+                        {"EventLocation": ["POL"]}
+                    ]
+                }
+            }
+        },
+        "rtw_support-container": {
+            "and": [
+                {"citizenship_status": "No"}
+            ]
+        },
+        "national-identification-container": {
+            "or": [
+                {"citizenship_status": "Yes"},
+                {"permanent_resident": "Yes"},
+                {"nid_status": "Yes"}
+            ],
+            "toggleByEventLocation": {
+                "POL": {
+                    "or": [
+                        {"citizenship_status": "Yes"},
+                        {"nid_status": "Yes"}
+                    ]
+                }
+            }
+        },
+        "passport-information-container": {
+            "or": [
+                {"passport_available": "National"},
+                {"passport_available": "Foreign"}
+            ]
+        },
+        "visa-identification-container": {
+            "and": [
+                {"citizenship_status": "No"},
+                {"permanent_resident": "No"}
+            ]
+        }
+    }
+}

@@ -1,0 +1,3886 @@
+<style type="text/css">
+.enormaltable,
+.eborderedtable
+{
+    width: 650px;
+    COLOR: black;
+    FONT-FAMILY: Arial, Tahoma, Helvetica, Sans-Serif;
+    FONT-SIZE: 12px;
+}
+TD{font-family:  Arial, Tahoma, Helvetica, Sans-Serif; font-size: 10pt;}
+.enormalfont
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, Tahoma, Helvetica, Sans-Serif;
+    FONT-SIZE: 12px;
+}
+.eborderedtable
+{
+	border-collapse: collapse;
+	border: 1px solid #000000;
+}
+.eborderedtable td 
+{
+	border: 1px solid #000000;
+	padding: 2px;
+}
+.eheader
+{
+    color: "Black";
+	background-color: "White";
+	FONT-FAMILY: Arial, Tahoma, Helvetica, Sans-Serif;
+	font-weight: bold;
+	font-size: 16px;
+}
+.eheader2
+{
+    color: "Black";
+	background-color: "White";
+	FONT-FAMILY: Arial, Tahoma, Helvetica, Sans-Serif;
+	FONT-SIZE: 14px;
+	font-weight: bold;
+	text-align: left;
+}
+.eheader3
+{
+    color: "Black";
+	background-color: "White";
+	FONT-FAMILY: Arial, Tahoma, Helvetica, Sans-Serif;
+	FONT-SIZE: 12px;
+	font-weight: bold;
+	text-align: left;
+}
+.esmalltext
+{
+	FONT-FAMILY: FONT-FAMILY: Arial, Tahoma, Helvetica, Sans-Serif;
+	FONT-SIZE: 10px;
+	font-weight: normal;
+}
+.eboldtext
+{
+	FONT-FAMILY: FONT-FAMILY: Arial, Tahoma, Helvetica, Sans-Serif;
+	FONT-SIZE: 12px;
+	font-weight: bold;
+}
+select.cssApplyFormSelect
+{
+	width:46%;
+}
+textarea
+{
+	FONT-FAMILY: Arial, Tahoma, Helvetica, Sans-Serif;
+	FONT-SIZE: 12px;
+}
+.eitalictext
+{	FONT-FAMILY: FONT-FAMILY: Arial, Tahoma, Helvetica, Sans-Serif;
+	FONT-SIZE: 12px;
+	font-style: italic; 
+}
+
+.stage0 {	display:none;}
+.stage1 {	display:none;}
+.stage2 {	display:none;}
+.stage3 {	display:none;}
+.stage4 {	display:none;}
+.stage5 {	display:none;}
+.stage6 {	display:none;}
+.stage7 {	display:none;}
+.stage8 {	display:none;}
+
+
+</style>
+
+<script type="text/javascript">
+var travelPercentages = new Array("0%","10%","20%","30%","40%","50%","60%","70%","80%","90%","100%");
+var payIntervals = new Array("Hourly","Weekly","Monthly","Quarterly","Semi-Monthly","Bi-Weekly","Annually");
+var states = new Array("AK","AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","PR","RI","SC","SD","TN","TX","UT","VA","VT","WA","WI","WV","WY");
+var countries = new Array(	["Afghanistan","AF"],["Albania","AL"],["Algeria","DZ"],["Andorra","AD"],	
+				["Angola","AO"],["Antigua and Barbuda","AG"],["Argentina","AR"],["Armenia","AM"],	
+				["Australia","AU"],["Austria","AT"],["Azerbaijan","AZ"],["Bahamas","BS"],["Bahrain","BH"],
+				["Bangladesh","BD"],["Barbados","BB"],["Belarus","BY"],["Belgium","BE"],["Belize","BZ"],
+				["Benin","BJ"],["Bhutan","BT"],["Bolivia","BO"],["Bosnia and Herzegovina","BA"],	
+				["Botswana","BW"],["Brazil","BR"],["Brunei","BN"],["Bulgaria","BG"],["Burkina Faso","BF"],	
+				["Burundi","BI"],["Cambodia","KH"],["Cameroon","CM"],["Canada","CA"],["Cape Verde","CV"],	
+				["Central African Republic","CF"],["Chad","TD"],["Chile","CL"],["China","CN"],["Colombia","CO"],	
+				["Comoros","KM"],["Congo - Brazzaville","CG"],["Congo - Kinshasa","CD"],["Costa Rica","CR"],	
+				["Croatia","HR"],["Cuba","CU"],["Cyprus","CY"],["Czech Republic","CZ"],["Denmark","DK"],	
+				["Djibouti","DJ"],["Dominica","DM"],["Dominican Republic","DO"],["Ecuador","EC"],["Egypt","EG"],	
+				["El Salvador","SV"],["Equatorial Guinea","GQ"],["Eritrea","ER"],["Estonia","EE"],["Ethiopia","ET"],	
+				["Fiji","FJ"],["Finland","FI"],["France","FR"],["Gabon","GA"],["Gambia","GM"],["Georgia","GE"],["Germany","DE"],	
+				["Ghana","GH"],["Greece","GR"],["Greenland","GL"],["Grenada","GD"],["Guatemala","GT"],["Guinea","GN"],	
+				["Guinea-Bissau","GW"],["Guyana","GY"],["Haiti","HT"],["Honduras","HN"],["Hungary","HU"],["Iceland","IS"],	
+				["India","IN"],["Indonesia","ID"],["Iran","IR"],["Iraq","IQ"],["Ireland","IE"],["Israel","IL"],["Italy","IT"],	
+				["Ivory Coast","CI"],["Jamaica","JM"],["Japan","JP"],["Jordan","JO"],["Kazakhstan","KZ"],["Kenya","KE"],	
+				["Kiribati","KI"],["Kuwait","KW"],["Kyrgyzstan","KG"],["Laos","LA"],["Latvia","LV"],["Lebanon","LB"],	
+				["Lesotho","LS"],["Liberia","LR"],["Libya","LY"],["Liechtenstein","LI"],["Lithuania","LT"],["Luxembourg","LU"],	
+				["Macao SAR China","MO"],["Macedonia","MK"],["Madagascar","MG"],["Malawi","MW"],["Malaysia","MY"],["Maldives","MV"],	
+				["Mali","ML"],["Malta","MT"],["Marshall Islands","MH"],["Mauritania","MR"],["Mauritius","MU"],["Mexico","MX"],	
+				["Micronesia","FM"],["Moldova","MD"],["Monaco","MC"],["Mongolia","MN"],["Morocco","MA"],["Mozambique","MZ"],	
+				["Myanmar","MM"],["Namibia","NA"],["Nauru","NR"],["Nepal","NP"],["Netherlands","NL"],["New Zealand","NZ"],	
+				["Nicaragua","NI"],["Niger","NE"],["Nigeria","NG"],["North Korea","KP"],["Norway","NO"],["Oman","OM"],	
+				["Pakistan","PK"],["Palau","PW"],["Palestinian Territory","PS"],["Panama","PA"],["Papua New Guinea","PG"],	
+				["Paraguay","PY"],["Peru","PE"],["Philippines","PH"],["Poland","PL"],["Portugal","PT"],["Qatar","QA"],["Romania","RO"],	
+				["Russia","RU"],["Rwanda","RW"],["Saint Helena","SH"],["Saint Kitts and Nevis","KN"],["Saint Lucia","LC"],
+				["Saint Vincent and the Grenadines","VC"],["Samoa","WS"],["San Marino","SM"],["Sao Tome and Principe","ST"],	
+				["Saudi Arabia","SA"],["Senegal","SN"],["Serbia","RS"],["Seychelles","SC"],["Sierra Leone","SL"],	
+				["Singapore","SG"],["Slovakia","SK"],["Slovenia","SI"],["Solomon Islands","SB"],["Somalia","SO"],	
+				["South Africa","ZA"],["South Korea","KR"],["Spain","ES"],["Sri Lanka","LK"],["Sudan","SD"],["Suriname","SR"],	
+				["Swaziland","SZ"],["Sweden","SE"],["Switzerland","CH"],["Syria","SY"],	["Taiwan","TW"],["Tajikistan","TJ"],	
+				["Tanzania","TZ"],["Thailand","TH"],["Togo","TG"],["Tonga","TO"],["Trinidad and Tobago","TT"],["Tunisia","TN"],	
+				["Turkey","TR"],["Turkmenistan","TM"],["Tuvalu","TV"],["Uganda","UG"],["Ukraine","UA"],["United Arab Emirates","AE"],	
+				["United Kingdom","GB"],["United States Minor Outlying Islands","UM"],["United States","US"],["Uruguay","UY"],	
+				["Uzbekistan","UZ"],["Vanuatu","VU"],["Venezuela","VE"],["Vietnam","VN"],["Yemen","YE"],["Zambia","ZM"],["Zimbabwe","ZW"]
+
+		);
+
+function createArrayDropDown(selectArray, selectName, optionSelected, targetDiv) {
+	sObj = document.createElement("select");
+	sObj.name = selectName;
+	sObj.id   = selectName;
+	sObj.options[sObj.options.length] = new Option("--",""); 
+	sObj.selectedIndex = 0;
+	
+	for (i=0; i < selectArray.length; i++) {	
+		sObj.options[sObj.options.length] = new Option( ((selectArray[i] instanceof Array) ? selectArray[i][0] : selectArray[i]), ((selectArray[i] instanceof Array) ? selectArray[i][1] : selectArray[i]) ); 
+		if (((selectArray[i] instanceof Array) ? selectArray[i][1] : selectArray[i]) == optionSelected) { sObj.selectedIndex = (sObj.options.length - 1); }
+	}
+
+	targetDiv.appendChild(sObj);
+}
+</script>
+
+<script type="text/javascript">
+
+function ismaxlength(obj)
+{
+  //KS 6/13/2013  MAINT-1605 modified function to read >= instead of > to prevent "An invalid form control name=xxxx is not focusable" in Chrome & IE. 
+  var mlength=obj.getAttribute? parseInt(obj.getAttribute("maxlength")) : ""
+  mlength = (mlength - 10);
+  if ((obj.getAttribute) && (obj.value.length >= mlength)) 
+  {
+    obj.value=obj.value.substring(0, mlength);
+  }
+}
+
+ 
+</script>
+
+<script language="JavaScript" type="text/javascript">
+var IDS_M;
+var IDS_N;
+var IDS_P;
+var IDS_O;
+var IDS_ALL;
+var IDS_NA;
+var IDS = '';
+var sel;
+var elename;
+
+function SetArrVal(shift)
+{
+ 
+  var IDS = '';
+  var sel = document.getElementsByTagName('input');
+  var elename;
+  var s;
+  
+  for (i = 0; i<sel.length; i++) {
+  IDS = sel[i].id;
+  if ((sel[i].type == 'checkbox') && (IDS.length != 0)){
+        
+    elename = document.getElementById(IDS).name;
+    s = elename.substring(elename.indexOf("y")+1,elename.length);
+	  
+    if (elename == shift+s) 
+    { 
+      if (s.substring(0,3)=="All")
+      {
+	 IDS_ALL = sel[i].id;
+      }
+      else if (s.substring(0,2)=="NA")
+      {
+	 IDS_NA = sel[i].id;
+      }
+      else if (s.substring(0,1)=="M")
+      {
+	 IDS_M = sel[i].id;
+      }
+      else if (s.substring(0,1)=="N")
+      {
+	 IDS_N = sel[i].id;
+      }
+      else if (s.substring(0,1)=="P")
+      {
+	 IDS_P = sel[i].id;
+      }
+      else if (s.substring(0,1)=="O")
+      {
+	 IDS_O = sel[i].id;
+      }
+   }
+	 
+  }
+} 
+  
+}
+
+
+function fill(type, shift)
+{
+  var IDS = '';
+  var sel1 = document.getElementsByTagName('input');
+
+  for (i = 0; i<sel1.length; i++) {
+  IDS = sel1[i].id
+  if (IDS.length != 0) 
+  {
+     elename = document.getElementById(IDS).name;
+     s = elename.substring(elename.indexOf("y")+1,elename.length);
+		  
+     if ((type == "All") && (elename == shift+s))
+     {
+       if ((s.substring(0,2) == "NA") && (type == "All")) 
+	 {
+	    document.getElementById(IDS).disabled = true;
+	    document.getElementById(IDS).checked = false;
+	 }
+	 else if(elename == shift+s) 
+	 {
+	    document.getElementById(IDS).checked = true;
+	 }
+     }
+     else if ((type== "NA")  && (elename == shift+s))
+     {
+	 if (s.substring(0,2) == "NA") 
+	 {
+	    document.getElementById(IDS).disabled = false;
+	    document.getElementById(IDS).checked = true;
+	 }
+	 else if(elename == shift+s)
+	 {
+	    document.getElementById(IDS).checked = false;
+	    document.getElementById(IDS).disabled = true;
+	 }
+     }
+     else if ((type== "RES_ALL") && (elename == shift+s))
+     {
+	 if (s.substring(0,2) == "NA") 
+	 {
+	    document.getElementById(IDS).disabled = true;
+	    document.getElementById(IDS).checked = false;
+         }
+	 else if(elename == shift+s)
+	 {
+	    document.getElementById(IDS).checked = true;
+	 }
+     }
+     else if ((type== "OTH") && (elename == shift+s))
+     {
+	  document.getElementById(IDS).checked = false;
+	  document.getElementById(IDS).disabled = false;
+     }
+  }
+ }
+}
+function checkAll(shift) {
+
+  SetArrVal (shift);
+	
+  val = document.getElementById(IDS_ALL).checked;
+  elename = document.getElementById(IDS_ALL).name;
+  s = elename.substring(elename.indexOf("y")+1,elename.length);
+
+  if ((val==true) && (s.substring(0,3)=="All") && (elename == shift+s))
+  {
+    fill('All', shift);
+
+  }
+  else if (document.getElementById(IDS_NA).checked==true) 
+  {
+    fill('NA', shift);
+  }
+  else
+  { 
+    fill("OTH", shift);
+	
+  }
+
+}
+
+function ResShift(shift)
+{
+
+ SetArrVal (shift);
+
+ 
+ if ((document.getElementById(IDS_M).checked==true) && (document.getElementById(IDS_N).checked==true)  &&
+ (document.getElementById(IDS_P).checked==true) &&  (document.getElementById(IDS_O).checked==true))
+ {
+  
+   fill("RES_ALL",shift);
+
+ }
+ else 
+{ 
+  
+   document.getElementById(IDS_ALL).checked=false;
+   document.getElementById(IDS_NA).disabled=false;
+
+}
+
+}
+
+</script>
+
+<SCRIPT type="text/javascript">
+function toggleLayer(whichLayer)
+{
+if (document.getElementById)
+{
+// this is the way the standards work
+var style2 = document.getElementById(whichLayer).style;
+style2.display = style2.display? "":"block";
+}
+else if (document.all)
+{
+// this is the way old msie versions work
+var style2 = document.all[whichLayer].style;
+style2.display = style2.display? "":"block";
+}
+else if (document.layers)
+{
+// this is the way nn4 works
+var style2 = document.layers[whichLayer].style;
+style2.display = style2.display? "":"block";
+}
+location.href = "#top";
+}
+function toggleLayerandcheck(currentLayer,nextLayer)
+{
+
+	switch (currentLayer)
+	{
+	
+/*  Module: Personal Information  */
+	
+	case "stage0":
+  		var valid = true;
+		var msg = "The following errors occurred:  \n\n";
+
+		if(document.ResumeForm.candFname.value=="")
+		{
+			msg = msg + "- 'First Name' is a required field\n\n";
+			valid = false;		
+		}
+		if(document.ResumeForm.candLname.value=="")
+		{
+			msg = msg + "- 'Last Name' is a required field\n\n";
+			valid = false;		
+		}
+		if((document.ResumeForm.countrydrpdwn.value=="|") || (document.ResumeForm.countrydrpdwn.value==""))
+		{
+			msg = msg + "- 'Country of residence' is a required field\n\n";
+			valid = false;		
+		}
+		if(document.ResumeForm.candAddr1.value=="")
+		{
+			msg = msg + "- 'Address' is a required field\n\n";
+			valid = false;		
+		}
+				if(document.ResumeForm.candCity.value=="")
+		{
+			msg = msg + "- 'City' is a required field\n\n";
+			valid = false;		
+		}
+		if(document.ResumeForm.state.value=="")
+		{
+			msg = msg + "- 'State/Location' is a required field\n\n";
+			valid = false;		
+		}		
+		if(document.ResumeForm.candZip.value=="")
+		{
+			msg = msg + "- 'Postal Code' is a required field\n\n";
+			valid = false;		
+		}
+		if(document.ResumeForm.candPphone.value=="")
+		{
+			msg = msg + "- 'Primary Phone' is a required field\n\n";
+			valid = false;		
+		}
+		
+		if (validEmail(document.ResumeForm.candEmail.value)==false)
+		{
+			msg = msg + "- 'Email Address' is required in standard email address format (e.g., emailname@acme.com)\n\n";
+			valid = false;		
+		}
+
+		// valid = true;
+		if (valid) 
+		{
+			toggleLayer(currentLayer);
+			toggleLayer(nextLayer);
+
+			var thedate = document.ResumeForm.systemdate.value;
+			var theyear = thedate.substr(0,4);
+			var themonth = thedate.substr(5,2);
+			var theday = thedate.substr(8,2);
+	
+
+		} else {
+			alert(msg);
+		}
+		break;
+		
+/*  End Module: Personal Information  */
+
+/*  Module: Background Information  */
+	
+	case "stage1":
+  		var valid = true;
+		var msg = "The following errors occurred:  \n\n";
+
+		if(!(document.ResumeForm.Alias_8510[0].checked || document.ResumeForm.Alias_8510[1].checked))
+		{
+			msg = msg + "- 'Are your former employment references or education listed under a name other than that stated above?' is a required field\n\n";
+			valid = false;		
+		}
+		if(document.ResumeForm.Alias_8510[0].checked)
+		{
+			if(document.ResumeForm.AliasName_8511.value=="")
+			{
+				msg = msg + "- 'If yes, please indicate former name' is a required field\n\n";
+				document.ResumeForm.AliasName_8511.focus();
+				valid = false;		
+			}		
+		}		
+		if(!(document.ResumeForm.Over18_8512[0].checked || document.ResumeForm.Over18_8512[1].checked))
+		{
+			msg = msg + "- 'Are you at least 18 years of age?' is a required field\n\n";
+			valid = false;		
+		}
+		if(!(document.ResumeForm.EligibleWorkUS_8513[0].checked || document.ResumeForm.EligibleWorkUS_8513[1].checked))
+		{
+			msg = msg + "- 'Are you eligible to work legally in the United States?' is a required field\n\n";
+			valid = false;		
+		}
+		if(!(document.ResumeForm.WkAuthorization_8514[0].checked || document.ResumeForm.WkAuthorization_8514[1].checked))
+		{
+			msg = msg + "- 'Will you at any time require any form of work authorization, visa, or other immigration sponsorship?' is a required field\n\n";
+			valid = false;		
+		}
+		if(!(document.ResumeForm.EmployHere_8515[0].checked || document.ResumeForm.EmployHere_8515[1].checked))
+		{
+			msg = msg + "- 'Have you ever been employed with our organization?' is a required field\n\n";
+			valid = false;		
+		}
+		if(document.ResumeForm.EmployHere_8515[0].checked)
+		{
+			if(document.ResumeForm.JobHere_8516.value=="")
+			{
+				msg = msg + "- 'If yes, in what capacity' is a required field\n\n";
+				document.ResumeForm.JobHere_8516.focus();
+				valid = false;		
+			}		
+		}		
+		if(!(document.ResumeForm.KnowEmpHere_8517[0].checked || document.ResumeForm.KnowEmpHere_8517[1].checked))
+		{
+			msg = msg + "- 'Do you know anyone who has been or is still employed by our organization?' is a required field\n\n";
+			valid = false;		
+		}	
+		if(document.ResumeForm.KnowEmpHere_8517[0].checked)
+		{
+			if(document.ResumeForm.RelationName1_8518.value=="")
+			{
+				msg = msg + "- 'Name' is a required field\n\n";
+				document.ResumeForm.RelationName1_8518.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Relationship1_8519.value=="")
+			{
+				msg = msg + "- 'Relationship' is a required field\n\n";
+				document.ResumeForm.Relationship1_8519.focus();
+				valid = false;		
+			}		
+		}		
+		// if(!(document.ResumeForm.Felony_8522[0].checked || document.ResumeForm.Felony_8522[1].checked))
+		// {
+			// msg = msg + "- 'Have you within the past seven years been convicted of a felony?' is a required field\n\n";
+			// valid = false;		
+		// }		
+		// if(document.ResumeForm.Felony_8522[0].checked)
+		// {
+			/*
+			if(document.ResumeForm.FelonyExp_8523.value=="")
+			{
+				msg = msg + "- 'Explain if you have at any time in your life, been convicted of a crime of any type, including a misdemeanor or felony?' is a required field\n\n";
+				document.ResumeForm.FelonyExp_8523.focus();
+				valid = false;		
+			}
+			*/
+			// if(document.ResumeForm.CountyConvicted_8524.value=="")
+			// {
+				// msg = msg + "- 'If yes, in which county(ies) were you convicted?' is a required field\n\n";
+				// document.ResumeForm.CountyConvicted_8524.focus();
+				// valid = false;		
+			// }
+			// if(document.ResumeForm.StateConvicted_8525.value=="")
+			// {
+				// msg = msg + "- 'If yes, in which state were you convicted?' is a required field\n\n";
+				// document.ResumeForm.StateConvicted_8525.focus();
+				// valid = false;		
+			// }
+		// }	
+
+		// valid = true;
+		if (valid) 
+		{
+			toggleLayer(currentLayer);
+			toggleLayer(nextLayer);
+
+			var thedate = document.ResumeForm.systemdate.value;
+			var theyear = thedate.substr(0,4);
+			var themonth = thedate.substr(5,2);
+			var theday = thedate.substr(8,2);
+	
+
+		} else {
+			alert(msg);
+		}
+		break;
+
+/*  End Module: Background Information  */		
+		
+/*  Module: Employment Preferences  */
+
+	case "stage2":
+  		var valid = true;
+		var msg = "The following errors occurred:  \n\n";
+
+		var currentDt = new Date();
+		var mm = currentDt.getMonth() + 1;
+		var dd = currentDt.getDate();
+		var yyyy = currentDt.getFullYear();
+		var date = mm + '/' + dd + '/' + yyyy;
+		if(document.ResumeForm.PositionDesired_8526.value=="")
+		{
+			msg = msg + "- 'Position Desired' is a required field\n\n";
+			document.ResumeForm.PositionDesired_8526.focus();
+			valid = false;		
+		}
+		if(isDate(document.ResumeForm.AvailBeginWkDt_8527.value) == false)
+		{
+			msg = msg + "- 'Date available to begin work?' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+			document.ResumeForm.AvailBeginWkDt_8527.focus();
+			valid = false;		
+		}
+		if(isDate(document.ResumeForm.AvailBeginWkDt_8527.value) == true) 
+		{
+			if(Date.parse(date) <= Date.parse(document.ResumeForm.AvailBeginWkDt_8527.value) == false) 
+			{
+				msg = msg + "- 'Date availabe to begin work must be greater or equal to today's date.\n\n";
+				document.ResumeForm.AvailBeginWkDt_8527.focus();
+				valid = false;
+			}
+			
+		}
+		if(isInteger(document.ResumeForm.PayDesired_8528.value) == false || (document.ResumeForm.PayDesired_8528.value)=="")
+		{
+			if(isNumeric(document.ResumeForm.PayDesired_8528.value) == false)
+			{
+				msg = msg + "- 'Pay Desired' is a required numeric field\n\n";
+				document.ResumeForm.PayDesired_8528.focus();
+				valid = false;
+			}	
+		}
+		if(document.ResumeForm.PayInterval_8529.value=="")
+		{
+			msg = msg + "- 'Pay Interval' is a required field\n\n";
+			document.ResumeForm.PayInterval_8529.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.HowMuchTravel_8530.value=="")
+		{
+			msg = msg + "- 'How much are you willing to travel?' is a required field\n\n";
+			document.ResumeForm.HowMuchTravel_8530.focus();
+			valid = false;		
+		}
+		if(!(document.ResumeForm.SundayM_8531[0].checked || document.ResumeForm.SundayN_8532[0].checked  || 
+		document.ResumeForm.SundayP_8533[0].checked || document.ResumeForm.SundayO_8534[0].checked   || 
+		document.ResumeForm.SundayNA_8535[0].checked || document.ResumeForm.SundayAll_8536[0].checked || 
+		document.ResumeForm.MondayM_8537[0].checked   || document.ResumeForm.MondayN_8538[0].checked  || 
+		document.ResumeForm.MondayP_8539[0].checked || document.ResumeForm.MondayO_8540[0].checked   || 
+		document.ResumeForm.MondayNA_8541[0].checked || document.ResumeForm.MondayAll_8542[0].checked || 
+		document.ResumeForm.TuesdayM_8543[0].checked  || document.ResumeForm.TuesdayN_8544[0].checked || 
+		document.ResumeForm.TuesdayP_8545[0].checked || document.ResumeForm.TuesdayO_8546[0].checked  || 
+		document.ResumeForm.TuesdayNA_8547[0].checked || document.ResumeForm.TuesdayAll_8548[0].checked || 
+		document.ResumeForm.WednesdayM_8265[0].checked  || document.ResumeForm.WednesdayN_8266[0].checked || 
+		document.ResumeForm.WednesdayP_8267[0].checked || document.ResumeForm.WednesdayO_8268[0].checked  || 
+		document.ResumeForm.WednesdayNA_8269[0].checked || document.ResumeForm.WednesdayAll_8270[0].checked || 
+		document.ResumeForm.ThursdayM_8271[0].checked || document.ResumeForm.ThursdayN_8272[0].checked || 
+		document.ResumeForm.ThursdayP_8273[0].checked || document.ResumeForm.ThursdayO_8274[0].checked || 
+		document.ResumeForm.ThursdayNA_8275[0].checked || document.ResumeForm.ThursdayAll_8276[0].checked || 
+		document.ResumeForm.FridayM_8277[0].checked   || document.ResumeForm.FridayN_8278[0].checked || 
+		document.ResumeForm.FridayP_8279[0].checked || document.ResumeForm.FridayO_8280[0].checked   || 
+		document.ResumeForm.FridayNA_8281[0].checked || document.ResumeForm.FridayAll_8282[0].checked || 
+		document.ResumeForm.SaturdayM_8283[0].checked || document.ResumeForm.SaturdayN_8284[0].checked || 
+		document.ResumeForm.SaturdayP_8285[0].checked || document.ResumeForm.SaturdayO_8286[0].checked || 
+		document.ResumeForm.SaturdayNA_8287[0].checked || document.ResumeForm.SaturdayAll_8288[0].checked))
+		{
+			msg = msg + "- Please indicate your availability is a required field\n\n";
+			valid = false;		
+		}
+		if(!(document.ResumeForm.WorkHoliday_8289[0].checked || document.ResumeForm.WorkHoliday_8289[1].checked))
+		{
+			msg = msg + "- 'Are you willing to work weekends and holidays?' is a required field\n\n";
+			valid = false;		
+		}
+		if(!(document.ResumeForm.OverTime_8290[0].checked || document.ResumeForm.OverTime_8290[1].checked))
+		{
+			msg = msg + "- 'Are you willing to work overtime?' is a required field\n\n";
+			valid = false;		
+		}
+		if(!(document.ResumeForm.RotateShifts_8291[0].checked || document.ResumeForm.RotateShifts_8291[1].checked))
+		{
+			msg = msg + "- 'Are you willing to rotate shifts?' is a required field\n\n";
+			valid = false;		
+		}
+
+		// valid = true;
+		if (valid) 
+		{
+			toggleLayer(currentLayer);
+			toggleLayer(nextLayer);
+
+			var thedate = document.ResumeForm.systemdate.value;
+			var theyear = thedate.substr(0,4);
+			var themonth = thedate.substr(5,2);
+			var theday = thedate.substr(8,2);
+	
+
+		} else {
+			alert(msg);
+		}
+		break;
+
+/*  End Module: Employment Preferences  */
+
+/*  Module: Educational Background  */
+
+	case "stage3":
+  		var valid = true;
+		var msg = "The following errors occurred:  \n\n";
+
+		if(document.ResumeForm.CurrentDegree_8549.value=="")
+		{
+			msg = msg + "- Current Degree is a required field\n\n";
+			document.ResumeForm.CurrentDegree_8549.focus();
+			valid = false;		
+		}
+		if(document.ResumeForm.InstitutionName_8550.value=="")
+		{
+			msg = msg + "- School/Institution Name is a required field\n\n";
+			document.ResumeForm.InstitutionName_8550.focus();
+			valid = false;		
+		}
+		if(document.ResumeForm.Graduationdate_8551.value=="")
+		{
+			msg = msg + "- Graduation date is a required field\n\n";
+			document.ResumeForm.Graduationdate_8551.focus();
+			valid = false;		
+		}		
+        if(document.ResumeForm.Graduationdate_8551.value!="")
+		{
+			if(isDate(document.ResumeForm.Graduationdate_8551.value) == false)
+			{
+				msg = msg + "- Graduation date is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.Graduationdate_8551.focus();
+				valid = false;		
+			}
+		}
+
+
+		if(document.ResumeForm.HighSchoolName_8292.value=="")
+		{
+			msg = msg + "- High School 'School Name' is a required field\n\n";
+			document.ResumeForm.HighSchoolName_8292.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.HighSchoolMunicipality_8293.value=="")
+		{
+			msg = msg + "- High School 'School City' is a required field\n\n";
+			document.ResumeForm.HighSchoolMunicipality_8293.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.HSCountryDrpdwn_8295.value=="")
+		{
+			msg = msg + "- High School 'School Country' is a required field\n\n";
+			document.ResumeForm.HSCountryDrpdwn_8295.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.HighSchoolRegion_8296.value=="")
+		{
+			msg = msg + "- High School 'School State/Region' is a required field\n\n";
+			document.ResumeForm.HighSchoolRegion_8296.focus();
+			valid = false;		
+		}		
+		if(!(document.ResumeForm.Sch1Grad_8297[0].checked || document.ResumeForm.Sch1Grad_8297[1].checked))
+		{
+			msg = msg + "- High School 'Did you graduate?' is a required field\n\n";
+			valid = false;		
+		}
+		if(document.ResumeForm.Sch1Grad_8297[0].checked)
+		{
+			if(document.ResumeForm.HighSchoolDegreeName_8298.value=="")
+			{
+				msg = msg + "- High School 'Diploma/Degree or Equivalent' is a required field\n\n";
+				document.ResumeForm.HighSchoolDegreeName_8298.focus();
+				valid = false;		
+			}
+		}		
+		if(document.ResumeForm.CollegeName_8300.value!="")
+		{
+			if(document.ResumeForm.CollegeMunicipality_8301.value=="")
+			{
+				msg = msg + "- College/University 'School City' is a required field\n\n";
+				document.ResumeForm.CollegeMunicipality_8301.focus();
+				valid = false;		
+			}	
+			if(document.ResumeForm.CollegeCountryDrpdwn_8303.value=="")
+			{
+				msg = msg + "- College/University 'School Country' is a required field\n\n";
+				document.ResumeForm.CollegeCountryDrpdwn_8303.focus();
+				valid = false;		
+			}					
+			if(document.ResumeForm.CollegeRegion_8304.value=="")
+			{
+				msg = msg + "- College/University 'School State/Region' is a required field\n\n";
+				document.ResumeForm.CollegeRegion_8304.focus();
+				valid = false;		
+			}		
+			if(!(document.ResumeForm.Sch2Grad_8307[0].checked || document.ResumeForm.Sch2Grad_8307[1].checked))
+			{
+				msg = msg + "- College/University 'Did you graduate?' is a required field\n\n";
+				valid = false;		
+			}
+			if(document.ResumeForm.Sch2Grad_8307[0].checked)
+			{
+				
+				if(document.ResumeForm.CollegeDegreeName_8309.value=="")
+				{
+					msg = msg + "- College/University 'Diploma/Degree or Equivalent' is a required field\n\n";
+					document.ResumeForm.CollegeDegreeName_8309.focus();
+					valid = false;		
+				}		
+			}
+			
+			if(document.ResumeForm.CollegeMajor_8310.value=="")
+			{
+				msg = msg + "- College/University 'Course of study' is a required field\n\n";
+				document.ResumeForm.CollegeMajor_8310.focus();
+				valid = false;		
+			}
+		}
+		if(document.ResumeForm.GradSchoolName_8312.value!="")
+		{
+			if(document.ResumeForm.GradSchoolMunicipality_8313.value=="")
+			{
+				msg = msg + "- Graduate/Professional 'School City' is a required field\n\n";
+				document.ResumeForm.GradSchoolMunicipality_8313.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.GradCountryDrpdwn_8315.value=="")
+			{
+				msg = msg + "- Graduate/Professional 'School Country' is a required field\n\n";
+				document.ResumeForm.GradCountryDrpdwn_8315.focus();
+				valid = false;		
+			}								
+			if(document.ResumeForm.GradSchoolRegion_8316.value=="")
+			{
+				msg = msg + "- Graduate/Professional 'School State/Region' is a required field\n\n";
+				document.ResumeForm.GradSchoolRegion_8316.focus();
+				valid = false;		
+			}		
+			if(!(document.ResumeForm.Sch3Grad_8319[0].checked || document.ResumeForm.Sch3Grad_8319[1].checked))
+			{
+				msg = msg + "- Graduate/Professional 'Did you graduate?' is a required field\n\n";
+				valid = false;		
+			}
+			if(document.ResumeForm.Sch3Grad_8319[0].checked)
+			{
+				/* MAINT-4180 KSorce 20140101 removed
+				if(isValidDateAlt((document.ResumeForm.GradSchoolStartDate_8317.value), (document.ResumeForm.GradGradDate_8320.value)) == false) 
+				{
+					msg = msg + "- Graduate/Professional 'Invalid Date Range' Graduation date must be greater than the Start date.\n\n";
+					document.ResumeForm.GradGradDate_8320.focus();
+					valid = false;
+				}*/
+				if(document.ResumeForm.GradSchoolDegreeName_8321.value=="")
+				{
+					msg = msg + "- Graduate/Professional 'Diploma/Degree or Equivalent' is a required field\n\n";
+					document.ResumeForm.GradSchoolDegreeName_8321.focus();
+					valid = false;		
+				}		
+			}
+			if(document.ResumeForm.GradSchoolMajor_8322.value=="")
+			{
+				msg = msg + "- Graduate/Professional 'Course of study' is a required field\n\n";
+				document.ResumeForm.GradSchoolMajor_8322.focus();
+				valid = false;		
+			}
+		}
+		if((document.ResumeForm.ProfLic1St_8329.value!="") || (document.ResumeForm.ProfLic1No_8328.value!="") || (isDate(document.ResumeForm.ProfLic1ExpDt_8330.value) == true))
+		{
+			if(document.ResumeForm.ProfLic1Name_8327.value=="")
+			{
+				msg = msg + "- Professional Licenses/Certifications 1 'License Name' is a required field\n\n";
+				document.ResumeForm.ProfLic1Name_8327.focus();
+				valid = false;		
+			}
+							
+		}
+		if(document.ResumeForm.ProfLic1ExpDt_8330.value!="")
+		{
+			if(isDate(document.ResumeForm.ProfLic1ExpDt_8330.value) == false)
+			{
+				msg = msg + "- Professional Licenses/Certifications 1 'License Expiration Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.ProfLic1ExpDt_8330.focus();
+				valid = false;		
+			}
+		}	
+		if((document.ResumeForm.ProfLic2St_8333.value!="") || (document.ResumeForm.ProfLic2No_8332.value!="") || (isDate(document.ResumeForm.ProfLic2ExpDt_8334.value) == true))
+		{
+			if(document.ResumeForm.ProfLic2Name_8331.value=="")
+			{
+				msg = msg + "- Professional Licenses/Certifications 2 'License Name' is a required field\n\n";
+				document.ResumeForm.ProfLic2Name_8331.focus();
+				valid = false;		
+			}
+							
+		}
+		if(document.ResumeForm.ProfLic2ExpDt_8334.value!="")
+		{
+			if(isDate(document.ResumeForm.ProfLic2ExpDt_8334.value) == false)
+			{
+				msg = msg + "- Professional Licenses/Certifications 2 'License Expiration Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.ProfLic2ExpDt_8334.focus();
+				valid = false;		
+			}
+		}
+		
+		if((document.ResumeForm.ProfLic3St_8337.value!="") || (document.ResumeForm.ProfLic3No_8336.value!="") || (isDate(document.ResumeForm.ProfLic3ExpDt_8338.value) == true))
+		{
+			if(document.ResumeForm.ProfLic3Name_8335.value=="")
+			{
+				msg = msg + "- Professional Licenses/Certifications 3 'License Name' is a required field\n\n";
+				document.ResumeForm.ProfLic3Name_8335.focus();
+				valid = false;		
+			}
+							
+		}
+		if(document.ResumeForm.ProfLic3ExpDt_8338.value!="")
+		{
+			if(isDate(document.ResumeForm.ProfLic3ExpDt_8338.value) == false)
+			{
+				msg = msg + "- Professional Licenses/Certifications 3 'License Expiration Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.ProfLic3ExpDt_8338.focus();
+				valid = false;		
+			}
+		}
+			
+		// valid = true;
+		if (valid) 
+		{
+			toggleLayer(currentLayer);
+			toggleLayer(nextLayer);
+
+			var thedate = document.ResumeForm.systemdate.value;
+			var theyear = thedate.substr(0,4);
+			var themonth = thedate.substr(5,2);
+			var theday = thedate.substr(8,2);
+	
+
+		} else {
+			alert(msg);
+		}
+		break;
+
+/*  End Module: Educational Background  */
+
+/*  Module: Employment History  */
+
+	case "stage4":
+  		var valid = true;
+		var msg = "The following errors occurred:  \n\n";
+
+		if(document.ResumeForm.EmployerOrgName1_8339.value=="")
+		{
+			msg = msg + "- 1st Employer 'Employer Name' is a required field\n\n";
+			document.ResumeForm.EmployerOrgName1_8339.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.Emp1Bus_8340.value=="")
+		{
+			msg = msg + "- 1st Employer 'Type of Business' is a required field\n\n";
+			document.ResumeForm.Emp1Bus_8340.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.EmployerMunicipality1_8342.value=="")
+		{
+			msg = msg + "- 1st Employer 'City' is a required field\n\n";
+			document.ResumeForm.EmployerMunicipality1_8342.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.Emp1CountryDrpdwn_8344.value=="")
+		{
+			msg = msg + "- 1st Employer 'Country' is a required field\n\n";
+			document.ResumeForm.Emp1CountryDrpdwn_8344.focus();
+			valid = false;		
+		}								
+		if(document.ResumeForm.EmployerRegion1_8345.value=="")
+		{
+			msg = msg + "- 1st Employer 'State/Region' is a required field\n\n";
+			document.ResumeForm.EmployerRegion1_8345.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.EmployerPostalCode1_8346.value=="")
+		{
+			msg = msg + "- 1st Employer 'Postal Code' is a required field\n\n";
+			document.ResumeForm.EmployerPostalCode1_8346.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.EmployerTelephone1_8347.value=="")
+		{
+			msg = msg + "- 1st Employer 'Phone Number' is a required field\n\n";
+			document.ResumeForm.EmployerTelephone1_8347.focus();
+			valid = false;		
+		}		
+		if(!(document.ResumeForm.Emp1Contact_8348[0].checked || document.ResumeForm.Emp1Contact_8348[1].checked))
+		{
+			msg = msg + "- 1st Employer 'May we contact this employer?' is a required field\n\n";
+			valid = false;		
+		}
+		if(document.ResumeForm.JobTitle1_8349.value=="")
+		{
+			msg = msg + "- 1st Employer 'Job Title' is a required field\n\n";
+			document.ResumeForm.JobTitle1_8349.focus();
+			valid = false;		
+		}		
+		if(!(document.ResumeForm.Emp1CurrentEmploy_8350[0].checked || document.ResumeForm.Emp1CurrentEmploy_8350[1].checked))
+		{
+			msg = msg + "- 1st Employer 'Are you currently employed with this organization?' is a required field\n\n";
+			valid = false;		
+		}
+		if(isDate(document.ResumeForm.StartDate1_8351.value) == false)
+		{
+			msg = msg + "- 1st Employer 'Starting Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+			document.ResumeForm.StartDate1_8351.focus();
+			valid = false;		
+		}
+		if(isDate(document.ResumeForm.EndDate1_8352.value) == false)
+		{
+			msg = msg + "- 1st Employer 'Ending Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+			document.ResumeForm.EndDate1_8352.focus();
+			valid = false;		
+		}
+		if((isDate(document.ResumeForm.StartDate1_8351.value) == true) && (isDate(document.ResumeForm.EndDate1_8352.value) == true))
+			{
+				if(Date.parse(document.ResumeForm.StartDate1_8351.value) <= Date.parse(document.ResumeForm.EndDate1_8352.value) == false) 
+				{
+					msg = msg + "- 1st Employer  'Invalid Date Range' Start date must be less than the End date!\n\n";
+					valid = false;
+				}
+			}
+
+		/*	
+		if(isInteger(document.ResumeForm.Emp1StartPay_8353.value) == false || (document.ResumeForm.Emp1StartPay_8353.value)=="") 
+		{
+			if(isNumeric(document.ResumeForm.Emp1StartPay_8353.value) == false)
+			{
+				msg = msg + "- 1st Employer 'Starting Pay' is a required numeric field\n\n";
+				document.ResumeForm.Emp1StartPay_8353.focus();
+				valid = false;
+			}	
+		}		
+		if(document.ResumeForm.Emp1StartPayInt_8354.value=="")
+		{
+			msg = msg + "- 1st Employer 'Starting Pay Interval' is a required field\n\n";
+			document.ResumeForm.Emp1StartPayInt_8354.focus();
+			valid = false;		
+		}	
+		if(isInteger(document.ResumeForm.Compensation1_8355.value) == false || (document.ResumeForm.Compensation1_8355.value)=="") 
+		{
+			if(isNumeric(document.ResumeForm.Compensation1_8355.value) == false)
+			{
+				msg = msg + "- 1st Employer 'Ending Pay' is a required numeric field\n\n";
+				document.ResumeForm.Compensation1_8355.focus();
+				valid = false;
+			}	
+		}		
+		if(document.ResumeForm.CompensationInterval1_8356.value=="")
+		{
+			msg = msg + "- 1st Employer 'Ending Pay Interval' is a required field\n\n";
+			document.ResumeForm.CompensationInterval1_8356.focus();
+			valid = false;		
+		}		
+		*/	
+
+		if(document.ResumeForm.Emp1SuprName_8357.value=="")
+		{
+			msg = msg + "- 1st Employer 'Supervisor's Name' is a required field\n\n";
+			document.ResumeForm.Emp1SuprName_8357.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.Emp1SuprTitle_8358.value=="")
+		{
+			msg = msg + "- 1st Employer 'Supervisor's Title' is a required field\n\n";
+			document.ResumeForm.Emp1SuprTitle_8358.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.Emp1Reas4Leave_8359.value=="")
+		{
+			msg = msg + "- 1st Employer 'Reason for leaving' is a required field\n\n";
+			document.ResumeForm.Emp1Reas4Leave_8359.focus();
+			valid = false;		
+		}		
+		if(document.ResumeForm.Emp1JobDesc_8360.value=="")
+		{
+			msg = msg + "- 1st Employer 'Brief description of job duties and responsibilities' is a required field\n\n";
+			document.ResumeForm.Emp1JobDesc_8360.focus();
+			valid = false;		
+		}
+		
+		if(document.ResumeForm.EmployerOrgName2_8361.value!="")
+		{
+			if(document.ResumeForm.Emp2Bus_8362.value=="")
+			{
+				msg = msg + "- 2nd Employer 'Type of Business' is a required field\n\n";
+				document.ResumeForm.Emp2Bus_8362.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerMunicipality2_8364.value=="")
+			{
+				msg = msg + "- 2nd Employer 'City' is a required field\n\n";
+				document.ResumeForm.EmployerMunicipality2_8364.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp2CountryDrpdwn_8366.value=="")
+			{
+				msg = msg + "- 2nd Employer 'Country' is a required field\n\n";
+				document.ResumeForm.Emp2CountryDrpdwn_8366.focus();
+				valid = false;		
+			}								
+			if(document.ResumeForm.EmployerRegion2_8367.value=="")
+			{
+				msg = msg + "- 2nd Employer 'State/Region' is a required field\n\n";
+				document.ResumeForm.EmployerRegion2_8367.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerPostalCode2_8368.value=="")
+			{
+				msg = msg + "- 2nd Employer 'Postal Code' is a required field\n\n";
+				document.ResumeForm.EmployerPostalCode2_8368.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerTelephone2_8369.value=="")
+			{
+				msg = msg + "- 2nd Employer 'Phone Number' is a required field\n\n";
+				document.ResumeForm.EmployerTelephone2_8369.focus();
+				valid = false;		
+			}		
+			if(!(document.ResumeForm.Emp2Contact_8370[0].checked || document.ResumeForm.Emp2Contact_8370[1].checked))
+			{
+				msg = msg + "- 2nd Employer 'May we contact this employer?' is a required field\n\n";
+				valid = false;		
+			}
+			if(document.ResumeForm.JobTitle2_8371.value=="")
+			{
+				msg = msg + "- 2nd Employer 'Job Title' is a required field\n\n";
+				document.ResumeForm.JobTitle2_8371.focus();
+				valid = false;		
+			}		
+			if(!(document.ResumeForm.Emp2CurrentEmploy_8372[0].checked || document.ResumeForm.Emp2CurrentEmploy_8372[1].checked))
+			{
+				msg = msg + "- 2nd Employer 'Are you currently employed with this organization?' is a required field\n\n";
+				valid = false;		
+			}
+			if(isDate(document.ResumeForm.StartDate2_8373.value) == false)
+			{
+				msg = msg + "- 2nd Employer 'Starting Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.StartDate2_8373.focus();
+				valid = false;		
+			}
+			if(isDate(document.ResumeForm.EndDate2_8374.value) == false)
+			{
+				msg = msg + "- 2nd Employer 'Ending Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.EndDate2_8374.focus();
+				valid = false;		
+			}
+			if((isDate(document.ResumeForm.StartDate2_8373.value) == true) && (isDate(document.ResumeForm.EndDate2_8374.value) == true))
+			{
+				if(Date.parse(document.ResumeForm.StartDate2_8373.value) <= Date.parse(document.ResumeForm.EndDate2_8374.value) == false) 
+				{
+					msg = msg + "- 2nd Employer  'Invalid Date Range' Start date must be less than the End date!\n\n";
+					valid = false;
+				}
+			}
+
+			/*
+			if(isInteger(document.ResumeForm.Emp2StartPay_8375.value) == false || (document.ResumeForm.Emp2StartPay_8375.value)=="")
+			{
+				if(isNumeric(document.ResumeForm.Emp2StartPay_8375.value) == false)
+				{
+					msg = msg + "- 2nd Employer 'Starting Pay' is a required numeric field\n\n";
+					document.ResumeForm.Emp2StartPay_8375.focus();
+					valid = false;
+				}	
+			}		
+			if(document.ResumeForm.Emp2StartPayInt_8376.value=="")
+			{
+				msg = msg + "- 2nd Employer 'Starting Pay Interval' is a required field\n\n";
+				document.ResumeForm.Emp2StartPayInt_8376.focus();
+				valid = false;		
+			}		
+			if(isInteger(document.ResumeForm.Compensation2_8377.value) == false || (document.ResumeForm.Compensation2_8377.value)=="")
+			{
+				if(isNumeric(document.ResumeForm.Compensation2_8377.value) == false)
+				{
+					msg = msg + "- 2nd Employer 'Ending Pay' is a required numeric field\n\n";
+					document.ResumeForm.Compensation2_8377.focus();
+					valid = false;
+				}	
+			}		
+			if(document.ResumeForm.CompensationInterval2_8378.value=="")
+			{
+				msg = msg + "-2nd Employer 'Ending Pay Interval' is a required field\n\n";
+				document.ResumeForm.CompensationInterval2_8378.focus();
+				valid = false;		
+			}	
+			*/
+
+			if(document.ResumeForm.Emp2SuprName_8379.value=="")
+			{
+				msg = msg + "-2nd Employer 'Supervisor's Name' is a required field\n\n";
+				document.ResumeForm.Emp2SuprName_8379.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp2SuprTitle_8380.value=="")
+			{
+				msg = msg + "-2nd Employer 'Supervisor's Title' is a required field\n\n";
+				document.ResumeForm.Emp2SuprTitle_8380.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp2Reas4Leave_8381.value=="")
+			{
+				msg = msg + "-2nd Employer 'Reason for leaving' is a required field\n\n";
+				document.ResumeForm.Emp2Reas4Leave_8381.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp2JobDesc_8382.value=="")
+			{
+				msg = msg + "-2nd Employer 'Brief description of job duties and responsibilities' is a required field\n\n";
+				document.ResumeForm.Emp2JobDesc_8382.focus();
+				valid = false;		
+			}		
+		}
+		
+		if(document.ResumeForm.EmployerOrgName3_8383.value!="")
+		{
+			if(document.ResumeForm.Emp3Bus_8384.value=="")
+			{
+				msg = msg + "- 3rd Employer 'Type of Business' is a required field\n\n";
+				document.ResumeForm.Emp3Bus_8384.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerMunicipality3_8386.value=="")
+			{
+				msg = msg + "- 3rd Employer 'City' is a required field\n\n";
+				document.ResumeForm.EmployerMunicipality3_8386.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp3CountryDrpdwn_8388.value=="")
+			{
+				msg = msg + "- 3rd Employer 'Country' is a required field\n\n";
+				document.ResumeForm.Emp3CountryDrpdwn_8388.focus();
+				valid = false;		
+			}								
+			if(document.ResumeForm.EmployerRegion3_8389.value=="")
+			{
+				msg = msg + "- 3rd Employer 'State/Region' is a required field\n\n";
+				document.ResumeForm.EmployerRegion3_8389.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerPostalCode3_8390.value=="")
+			{
+				msg = msg + "- 3rd Employer 'Postal Code' is a required field\n\n";
+				document.ResumeForm.EmployerPostalCode3_8390.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerTelephone3_8391.value=="")
+			{
+				msg = msg + "- 3rd Employer 'Phone Number' is a required field\n\n";
+				document.ResumeForm.EmployerTelephone3_8391.focus();
+				valid = false;		
+			}		
+			if(!(document.ResumeForm.Emp3Contact_8392[0].checked || document.ResumeForm.Emp3Contact_8392[1].checked))
+			{
+				msg = msg + "- 3rd Employer 'May we contact this employer?' is a required field\n\n";
+				valid = false;		
+			}
+			if(document.ResumeForm.JobTitle3_8393.value=="")
+			{
+				msg = msg + "- 3rd Employer 'Job Title' is a required field\n\n";
+				document.ResumeForm.JobTitle3_8393.focus();
+				valid = false;		
+			}		
+			if(!(document.ResumeForm.Emp3CurrentEmploy_8394[0].checked || document.ResumeForm.Emp3CurrentEmploy_8394[1].checked))
+			{
+				msg = msg + "- 3rd Employer 'Are you currently employed with this organization?' is a required field\n\n";
+				valid = false;		
+			}
+			if(isDate(document.ResumeForm.StartDate3_8395.value) == false)
+			{
+				msg = msg + "- 3rd Employer 'Starting Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.StartDate2_8373.focus();
+				valid = false;		
+			}
+			if(isDate(document.ResumeForm.EndDate3_8396.value) == false)
+			{
+				msg = msg + "- 3rd Employer 'Ending Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.EndDate3_8396.focus();
+				valid = false;		
+			}
+			if((isDate(document.ResumeForm.StartDate3_8395.value) == true) && (isDate(document.ResumeForm.EndDate3_8396.value) == true))
+			{
+				if(Date.parse(document.ResumeForm.StartDate3_8395.value) <= Date.parse(document.ResumeForm.EndDate3_8396.value) == false) 
+				{
+					msg = msg + "- 3rd Employer  'Invalid Date Range' Start date must be less than the End date!\n\n";
+					valid = false;
+				}
+			}
+
+			/*
+			if(isInteger(document.ResumeForm.Emp3StartPay_8397.value) == false || (document.ResumeForm.Emp3StartPay_8397.value)=="")
+			{
+				if(isNumeric(document.ResumeForm.Emp3StartPay_8397.value) == false)
+				{
+					msg = msg + "- 3rd Employer 'Starting Pay' is a required numeric field\n\n";
+					document.ResumeForm.Emp3StartPay_8397.focus();
+					valid = false;
+				}	
+			}		
+			if(document.ResumeForm.Emp3StartPayInt_8398.value=="")
+			{
+				msg = msg + "- 3rd Employer 'Starting Pay Interval' is a required field\n\n";
+				document.ResumeForm.Emp3StartPayInt_8398.focus();
+				valid = false;		
+			}		
+			if(isInteger(document.ResumeForm.Compensation3_8399.value) == false || (document.ResumeForm.Compensation3_8399.value)=="") 
+			{
+				if(isNumeric(document.ResumeForm.Compensation3_8399.value) == false)
+				{
+					msg = msg + "- 3rd Employer 'Ending Pay' is a required numeric field\n\n";
+					document.ResumeForm.Compensation3_8399.focus();
+					valid = false;
+				}	
+			}		
+			if(document.ResumeForm.CompensationInterval3_8400.value=="")
+			{
+				msg = msg + "- 3rd Employer 'Ending Pay Interval' is a required field\n\n";
+				document.ResumeForm.CompensationInterval3_8400.focus();
+				valid = false;		
+			}	
+			*/
+
+			if(document.ResumeForm.Emp3SuprName_8401.value=="")
+			{
+				msg = msg + "- 3rd Employer 'Supervisor's Name' is a required field\n\n";
+				document.ResumeForm.Emp3SuprName_8401.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp3SuprTitle_8402.value=="")
+			{
+				msg = msg + "- 3rd Employer 'Supervisor's Title' is a required field\n\n";
+				document.ResumeForm.Emp3SuprTitle_8402.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp3Reas4Leave_8403.value=="")
+			{
+				msg = msg + "- 3rd Employer 'Reason for leaving' is a required field\n\n";
+				document.ResumeForm.Emp3Reas4Leave_8403.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp3JobDesc_8404.value=="")
+			{
+				msg = msg + "- 3rd Employer 'Brief description of job duties and responsibilities' is a required field\n\n";
+				document.ResumeForm.Emp3JobDesc_8404.focus();
+				valid = false;		
+			}		
+		}		
+		if(document.ResumeForm.EmployerOrgName4_8405.value!="")
+		{
+			if(document.ResumeForm.Emp4Bus_8406.value=="")
+			{
+				msg = msg + "- 4th Employer 'Type of Business' is a required field\n\n";
+				document.ResumeForm.Emp4Bus_8406.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerMunicipality4_8408.value=="")
+			{
+				msg = msg + "- 4th Employer 'City' is a required field\n\n";
+				document.ResumeForm.EmployerMunicipality4_8408.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp4CountryDrpdwn_8410.value=="")
+			{
+				msg = msg + "- 4th Employer 'Country' is a required field\n\n";
+				document.ResumeForm.Emp4CountryDrpdwn_8410.focus();
+				valid = false;		
+			}								
+			if(document.ResumeForm.EmployerRegion4_8411.value=="")
+			{
+				msg = msg + "- 4th Employer 'State/Region' is a required field\n\n";
+				document.ResumeForm.EmployerRegion4_8411.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerPostalCode4_8412.value=="")
+			{
+				msg = msg + "- 4th Employer 'Postal Code' is a required field\n\n";
+				document.ResumeForm.EmployerPostalCode4_8412.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerTelephone4_8413.value=="")
+			{
+				msg = msg + "- 4th Employer 'Phone Number' is a required field\n\n";
+				document.ResumeForm.EmployerTelephone4_8413.focus();
+				valid = false;		
+			}		
+			if(!(document.ResumeForm.Emp4Contact_8414[0].checked || document.ResumeForm.Emp4Contact_8414[1].checked))
+			{
+				msg = msg + "- 4th Employer 'May we contact this employer?' is a required field\n\n";
+				valid = false;		
+			}
+			if(document.ResumeForm.JobTitle4_8415.value=="")
+			{
+				msg = msg + "- 4th Employer 'Job Title' is a required field\n\n";
+				document.ResumeForm.JobTitle4_8415.focus();
+				valid = false;		
+			}		
+			if(!(document.ResumeForm.Emp4CurrentEmploy_8416[0].checked || document.ResumeForm.Emp4CurrentEmploy_8416[1].checked))
+			{
+				msg = msg + "- 4th Employer 'Are you currently employed with this organization?' is a required field\n\n";
+				valid = false;		
+			}
+			if(isDate(document.ResumeForm.StartDate4_8417.value) == false)
+			{
+				msg = msg + "- 4th Employer 'Starting Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.StartDate4_8417.focus();
+				valid = false;		
+			}
+			if(isDate(document.ResumeForm.EndDate4_8418.value) == false)
+			{
+				msg = msg + "- 4th Employer 'Ending Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.EndDate4_8418.focus();
+				valid = false;		
+			}
+			if((isDate(document.ResumeForm.StartDate4_8417.value) == true) && (isDate(document.ResumeForm.EndDate4_8418.value) == true))
+			{
+				if(Date.parse(document.ResumeForm.StartDate4_8417.value) <= Date.parse(document.ResumeForm.EndDate4_8418.value) == false) 
+				{
+					msg = msg + "- 4th Employer  'Invalid Date Range' Start date must be less than the End date!\n\n";
+					valid = false;
+				}
+			}
+
+			/*
+			if(isInteger(document.ResumeForm.Emp4StartPay_8419.value) == false || (document.ResumeForm.Emp4StartPay_8419.value)=="")
+			{
+				if(isNumeric(document.ResumeForm.Emp4StartPay_8419.value) == false)
+				{
+					msg = msg + "- 4th Employer 'Starting Pay' is a required numeric field\n\n";
+					document.ResumeForm.Emp4StartPay_8419.focus();
+					valid = false;
+				}	
+			}		
+			if(document.ResumeForm.Emp4StartPayInt_8420.value=="")
+			{
+				msg = msg + "- 4th Employer 'Starting Pay Interval' is a required field\n\n";
+				document.ResumeForm.Emp4StartPayInt_8420.focus();
+				valid = false;		
+			}		
+			if(isInteger(document.ResumeForm.Compensation4_8421.value) == false || (document.ResumeForm.Compensation4_8421.value)=="") 
+			{
+				if(isNumeric(document.ResumeForm.Compensation4_8421.value) == false)
+				{
+					msg = msg + "- 4th Employer 'Ending Pay' is a required numeric field\n\n";
+					document.ResumeForm.Compensation4_8421.focus();
+					valid = false;
+				}	
+			}		
+			if(document.ResumeForm.CompensationInterval4_8422.value=="")
+			{
+				msg = msg + "- 4th Employer 'Ending Pay Interval' is a required field\n\n";
+				document.ResumeForm.CompensationInterval4_8422.focus();
+				valid = false;		
+			}	
+			*/
+
+			if(document.ResumeForm.Emp4SuprName_8423.value=="")
+			{
+				msg = msg + "- 4th Employer 'Supervisor's Name' is a required field\n\n";
+				document.ResumeForm.Emp4SuprName_8423.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp4SuprTitle_8424.value=="")
+			{
+				msg = msg + "- 4th Employer 'Supervisor's Title' is a required field\n\n";
+				document.ResumeForm.Emp4SuprTitle_8424.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp4Reas4Leave_8425.value=="")
+			{
+				msg = msg + "- 4th Employer 'Reason for leaving' is a required field\n\n";
+				document.ResumeForm.Emp4Reas4Leave_8425.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp4JobDesc_8426.value=="")
+			{
+				msg = msg + "- 4th Employer 'Brief description of job duties and responsibilities' is a required field\n\n";
+				document.ResumeForm.Emp4JobDesc_8426.focus();
+				valid = false;		
+			}		
+		}		
+		if(document.ResumeForm.EmployerOrgName5_8427.value!="")
+		{
+			if(document.ResumeForm.Emp5Bus_8428.value=="")
+			{
+				msg = msg + "- 5th Employer 'Type of Business' is a required field\n\n";
+				document.ResumeForm.Emp5Bus_8428.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerMunicipality5_8430.value=="")
+			{
+				msg = msg + "- 5th Employer 'City' is a required field\n\n";
+				document.ResumeForm.EmployerMunicipality5_8430.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp5CountryDrpdwn_8432.value=="")
+			{
+				msg = msg + "- 5th Employer 'Country' is a required field\n\n";
+				document.ResumeForm.Emp5CountryDrpdwn_8432.focus();
+				valid = false;		
+			}								
+			if(document.ResumeForm.EmployerRegion5_8433.value=="")
+			{
+				msg = msg + "- 5th Employer 'State/Region' is a required field\n\n";
+				document.ResumeForm.EmployerRegion5_8433.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerPostalCode5_8434.value=="")
+			{
+				msg = msg + "- 5th Employer 'Postal Code' is a required field\n\n";
+				document.ResumeForm.EmployerPostalCode5_8434.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.EmployerTelephone5_8435.value=="")
+			{
+				msg = msg + "- 5th Employer 'Phone Number' is a required field\n\n";
+				document.ResumeForm.EmployerTelephone5_8435.focus();
+				valid = false;		
+			}		
+			if(!(document.ResumeForm.Emp5Contact_8436[0].checked || document.ResumeForm.Emp5Contact_8436[1].checked))
+			{
+				msg = msg + "- 5th Employer 'May we contact this employer?' is a required field\n\n";
+				valid = false;		
+			}
+			if(document.ResumeForm.JobTitle5_8437.value=="")
+			{
+				msg = msg + "- 5th Employer 'Job Title' is a required field\n\n";
+				document.ResumeForm.JobTitle5_8437.focus();
+				valid = false;		
+			}		
+			if(!(document.ResumeForm.Emp5CurrentEmploy_8438[0].checked || document.ResumeForm.Emp5CurrentEmploy_8438[1].checked))
+			{
+				msg = msg + "- 5th Employer 'Are you currently employed with this organization?' is a required field\n\n";
+				valid = false;		
+			}
+			if(isDate(document.ResumeForm.StartDate5_8439.value) == false)
+			{
+				msg = msg + "- 5th Employer 'Starting Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.StartDate5_8439.focus();
+				valid = false;		
+			}
+			if(isDate(document.ResumeForm.EndDate5_8440.value) == false)
+			{
+				msg = msg + "- 5th Employer 'Ending Date' is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+				document.ResumeForm.EndDate5_8440.focus();
+				valid = false;		
+			}
+			if((isDate(document.ResumeForm.StartDate5_8439.value) == true) && (isDate(document.ResumeForm.EndDate5_8440.value) == true))
+			{
+				if(Date.parse(document.ResumeForm.StartDate5_8439.value) <= Date.parse(document.ResumeForm.EndDate5_8440.value) == false) 
+				{
+					msg = msg + "- 5th Employer  'Invalid Date Range' Start date must be less than the End date!\n\n";
+					valid = false;
+				}
+			}
+
+			/*
+			if(isInteger(document.ResumeForm.Emp5StartPay_8441.value) == false || (document.ResumeForm.Emp5StartPay_8441.value)=="") 
+			{
+				if(isNumeric(document.ResumeForm.Emp5StartPay_8441.value) == false)
+				{
+					msg = msg + "- 5th Employer 'Starting Pay' is a required numeric field\n\n";
+					document.ResumeForm.Emp5StartPay_8441.focus();
+					valid = false;
+				}	
+			}		
+			if(document.ResumeForm.Emp5StartPayInt_8442.value=="")
+			{
+				msg = msg + "- 5th Employer 'Starting Pay Interval' is a required field\n\n";
+				document.ResumeForm.Emp5StartPayInt_8442.focus();
+				valid = false;		
+			}		
+			if(isInteger(document.ResumeForm.Compensation5_8443.value) == false || (document.ResumeForm.Compensation5_8443.value)=="")
+			{
+				if(isNumeric(document.ResumeForm.Compensation5_8443.value) == false)
+				{
+					msg = msg + "- 5th Employer 'Ending Pay' is a required numeric field\n\n";
+					document.ResumeForm.Compensation5_8443.focus();
+					valid = false;
+				}	
+			}		
+			if(document.ResumeForm.CompensationInterval5_8444.value=="")
+			{
+				msg = msg + "- 5th Employer 'Ending Pay Interval' is a required field\n\n";
+				document.ResumeForm.CompensationInterval5_8444.focus();
+				valid = false;		
+			}
+			*/
+
+			if(document.ResumeForm.Emp5SuprName_8445.value=="")
+			{
+				msg = msg + "- 5th Employer 'Supervisor's Name' is a required field\n\n";
+				document.ResumeForm.Emp5SuprName_8445.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp5SuprTitle_8446.value=="")
+			{
+				msg = msg + "- 5th Employer 'Supervisor's Title' is a required field\n\n";
+				document.ResumeForm.Emp5SuprTitle_8446.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp5Reas4Leave_8447.value=="")
+			{
+				msg = msg + "- 5th Employer 'Reason for leaving' is a required field\n\n";
+				document.ResumeForm.Emp5Reas4Leave_8447.focus();
+				valid = false;		
+			}		
+			if(document.ResumeForm.Emp5JobDesc_8448.value=="")
+			{
+				msg = msg + "- 5th Employer 'Brief description of job duties and responsibilities' is a required field\n\n";
+				document.ResumeForm.Emp5JobDesc_8448.focus();
+				valid = false;		
+			}		
+		}
+		
+		// valid = true;
+		if (valid) 
+		{
+			toggleLayer(currentLayer);
+			toggleLayer(nextLayer);
+
+			var thedate = document.ResumeForm.systemdate.value;
+			var theyear = thedate.substr(0,4);
+			var themonth = thedate.substr(5,2);
+			var theday = thedate.substr(8,2);
+	
+
+		} else {
+			alert(msg);
+		}
+		break;
+
+/*  End Module: Employment History  */
+
+/*  Module: References  */
+
+	case "stage5":
+  		var valid = true;
+		var msg = "The following errors occurred:  \n\n";
+
+		if(document.ResumeForm.ReferenceName1_8449.value=="")
+		{
+			msg = msg + "- 1st Reference 'Name' is a required field\n\n";
+			document.ResumeForm.ReferenceName1_8449.focus();
+			valid = false;		
+		}	
+		if(document.ResumeForm.Ref1CName_8450.value=="")
+		{
+			msg = msg + "- 1st Reference 'Company Name' is a required field\n\n";
+			document.ResumeForm.Ref1CName_8450.focus();
+			valid = false;		
+		}	
+		if(document.ResumeForm.Ref1JTitle_8451.value=="")
+		{
+			msg = msg + "- 1st Reference 'Job Title' is a required field\n\n";
+			document.ResumeForm.Ref1JTitle_8451.focus();
+			valid = false;		
+		}	
+		if(document.ResumeForm.Ref1Relation_8452.value=="")
+		{
+			msg = msg + "- 1st Reference 'Relationship' is a required field\n\n";
+			document.ResumeForm.Ref1Relation_8452.focus();
+			valid = false;		
+		}
+		if(document.ResumeForm.ReferenceEmail1_8453.value!="")
+		{		
+			if(validEmail(document.ResumeForm.ReferenceEmail1_8453.value)==false)
+			{
+				msg = msg + "- 1st Reference 'Email Address' is a required field and is required in standard email address format (e.g., emailname@acme.com)\n\n";
+				document.ResumeForm.ReferenceEmail1_8453.focus();
+				valid = false;		
+			}
+		}		
+		if(document.ResumeForm.ReferencePhone1_8454.value=="") 
+		{
+			msg = msg + "- 1st Reference 'Phone Number' is a required field\n\n";
+			document.ResumeForm.ReferencePhone1_8454.focus();
+			valid = false;		
+		}
+
+		if(document.ResumeForm.ReferenceName2_8455.value!="")
+		{
+			if(document.ResumeForm.Ref2cname_8456.value=="")
+			{
+				msg = msg + "- 2nd Reference 'Company Name' is a required field\n\n";
+				document.ResumeForm.Ref2cname_8456.focus();
+				valid = false;		
+			}	
+			if(document.ResumeForm.Ref2JTitle_8457.value=="")
+			{
+				msg = msg + "- 2nd Reference 'Job Title' is a required field\n\n";
+				document.ResumeForm.Ref2JTitle_8457.focus();
+				valid = false;		
+			}	
+			if(document.ResumeForm.Ref2relation_8458.value=="")
+			{
+				msg = msg + "- 2nd Reference 'Relationship' is a required field\n\n";
+				document.ResumeForm.Ref2relation_8458.focus();
+				valid = false;		
+			}
+			if(document.ResumeForm.ReferenceEmail2_8459.value!="")
+			{	
+				if (validEmail(document.ResumeForm.ReferenceEmail2_8459.value)==false)
+				{
+					msg = msg + "- 2nd Reference 'Email Address' is a required field and is required in standard email address format (e.g., emailname@acme.com)\n\n";
+					document.ResumeForm.ReferenceEmail2_8459.focus();
+					valid = false;		
+				}
+			}		
+			if (document.ResumeForm.ReferencePhone2_8460.value=="")
+			{
+				msg = msg + "- 2nd Reference 'Phone Number' is a required field\n\n";
+				document.ResumeForm.ReferencePhone2_8460.focus();
+				valid = false;		
+			}
+		}
+		if(document.ResumeForm.ReferenceName3_8461.value!="")
+		{
+			if(document.ResumeForm.Ref3CName_8462.value=="")
+			{
+				msg = msg + "- 3rd Reference 'Company Name' is a required field\n\n";
+				document.ResumeForm.Ref3CName_8462.focus();
+				valid = false;		
+			}	
+			if(document.ResumeForm.Ref3JTitle_8463.value=="")
+			{
+				msg = msg + "- 3rd Reference 'Job Title' is a required field\n\n";
+				document.ResumeForm.Ref3JTitle_8463.focus();
+				valid = false;		
+			}	
+			if(document.ResumeForm.Ref3Relation_8464.value=="")
+			{
+				msg = msg + "- 3rd Reference 'Relationship' is a required field\n\n";
+				document.ResumeForm.Ref3Relation_8464.focus();
+				valid = false;		
+			}
+			if(document.ResumeForm.ReferenceEmail3_8465.value!="")
+			{		
+				if (validEmail(document.ResumeForm.ReferenceEmail3_8465.value)==false)
+				{
+					msg = msg + "- 3rd Reference 'Email Address' is a required field and is required in standard email address format (e.g., emailname@acme.com)\n\n";
+					document.ResumeForm.ReferenceEmail3_8465.focus();
+					valid = false;		
+				}
+			}		
+			if(document.ResumeForm.ReferencePhone3_8466.value=="") 
+			{
+				msg = msg + "- 3rd Reference 'Phone Number' is a required field\n\n";
+				document.ResumeForm.ReferencePhone3_8466.focus();
+				valid = false;		
+			}
+		}
+
+		// valid = true;
+		if (valid) 
+		{
+			toggleLayer(currentLayer);
+			toggleLayer(nextLayer);
+
+			var thedate = document.ResumeForm.systemdate.value;
+			var theyear = thedate.substr(0,4);
+			var themonth = thedate.substr(5,2);
+			var theday = thedate.substr(8,2);
+	
+
+		} else {
+			alert(msg);
+		}
+		break;
+
+/*  End Module: References  */
+
+
+/*  Module: Conditions of Application and Employment  */
+
+	case "stage6":
+  		var valid = true;
+		var msg = "The following errors occurred:  \n\n";
+
+			
+		/*if(!(document.ResumeForm.CondOfAppAgreeAuth_8467[0].checked))
+		{
+			msg = msg + "- You must agree to the statements of the authorization above\n\n";
+			valid = false;		
+		}
+		if(!(document.ResumeForm.CondOfAppElecSign_8468[0].checked))
+		{
+			msg = msg + "- You must authorize this electronic signature submittal to serve as your legal signature\n\n";
+			valid = false;		
+		}
+		if(document.ResumeForm.CondOfAppSignature_8469.value=="")
+		{
+			msg = msg + "- Signature is a required field\n\n";
+			document.ResumeForm.CondOfAppSignature_8469.focus();
+			valid = false;		
+		}	
+		if(isDate(document.ResumeForm.CondOfAppDate_8470.value) == false)
+		{
+			msg = msg + "- Date is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+			document.ResumeForm.CondOfAppDate_8470.focus();
+			valid = false;		
+		}*/
+
+		// valid = true;
+		if (valid) 
+		{
+			toggleLayer(currentLayer);
+			toggleLayer(nextLayer);
+
+			var thedate = document.ResumeForm.systemdate.value;
+			var theyear = thedate.substr(0,4);
+			var themonth = thedate.substr(5,2);
+			var theday = thedate.substr(8,2);
+			document.ResumeForm.PreDate_8476.value = (themonth + "/" + theday + "/" + theyear);
+	
+		} else {
+			alert(msg);
+		}
+		break;
+
+/*  End Module: Additional Information  */
+	
+
+	}
+
+
+	
+}
+
+
+
+/**
+ * DHTML date validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+ */
+// Declaring valid date character, minimum year and maximum year
+var dtCh= "/";
+var minYear=1900;
+var maxYear=2100;
+
+function isInteger(s){
+	var i;
+    for (i = 0; i < s.length; i++){   
+        // Check that current character is number.
+        var c = s.charAt(i);
+        if (((c < "0") || (c > "9"))) return false;
+    }
+    // All characters are numbers.
+    return true;
+}
+
+function stripCharsInBag(s, bag){
+	var i;
+    var returnString = "";
+    // Search through string's characters one by one.
+    // If character is not in bag, append to returnString.
+    for (i = 0; i < s.length; i++){   
+        var c = s.charAt(i);
+        if (bag.indexOf(c) == -1) returnString += c;
+    }
+    return returnString;
+}
+
+function daysInFebruary (year){
+	// February has 29 days in any year evenly divisible by four,
+    // EXCEPT for centurial years which are not also divisible by 400.
+    return (((year % 4 == 0) && ( (!(year % 100 == 0)) || (year % 400 == 0))) ? 29 : 28 );
+}
+function DaysArray(n) {
+	for (var i = 1; i <= n; i++) {
+		this[i] = 31
+		if (i==4 || i==6 || i==9 || i==11) {this[i] = 30}
+		if (i==2) {this[i] = 29}
+   } 
+   return this
+}
+
+
+/**
+ * DHTML email validation script. Courtesy of SmartWebby.com (http://www.smartwebby.com/dhtml/)
+ */
+
+function echeck(str) {
+
+		var at="@"
+		var dot="."
+		var lat=str.indexOf(at)
+		var lstr=str.length
+		var ldot=str.indexOf(dot)
+		if (str.indexOf(at)==-1){
+		   
+		   return false
+		}
+
+		if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr){
+		   
+		   return false
+		}
+
+		if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr){
+		    
+		    return false
+		}
+
+		 if (str.indexOf(at,(lat+1))!=-1){
+		    
+		    return false
+		 }
+
+		 if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot){
+		    
+		    return false
+		 }
+
+		 if (str.indexOf(dot,(lat+2))==-1){
+		    
+		    return false
+		 }
+		
+		 if (str.indexOf(" ")!=-1){
+		    
+		    return false
+		 }
+
+ 		 return true					
+	}
+var reFloat = /^((\d+(\.\d*)?)|((\d*\.)?\d+))$/
+	
+function isFloat (s)
+
+{   if (isEmpty(s)) 
+       if (isFloat.arguments.length == 1) return false
+       else return (isFloat.arguments[1] == true);
+
+    return reFloat.test(s)
+}
+
+function isEmpty(s)
+{   return ((s == null) || (s.length == 0))
+}
+
+function ValidDate(y, m, d) { // m = 0..11 ; y m d integers, y!=0
+with (new Date(y, m, d)) return (getMonth()==m && getDate()==d) }
+
+
+function ValidPhoneNumber(PhoneNumber){	
+	
+	var PNum = new String(PhoneNumber);		
+	var regex = /^[2-9]\d{2}-\d{3}-\d{4}$/;	
+	return regex.test(PNum);
+}
+
+function SSNValidation(ssn) {
+var matchArr = ssn.match(/^(\d{3})-?\d{2}-?\d{4}$/);
+var numDashes = ssn.split('-').length - 1;
+if (matchArr == null || numDashes == 1 || numDashes == 0) {
+	return false
+}
+else 
+if (parseInt(matchArr[1],10)==0) {
+return false;
+}
+else {
+return true;
+   }
+}
+
+function isNumeric(value) {
+  if (!value.toString().match(/^(0|[1-9])\d*\.\d\d$/)) return false;
+  return true;
+}
+
+function validEmail(vEmail) {
+  var Email = new String(vEmail);
+  var regex = (/^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.(([0-9]{1,3})|([a-zA-Z]{2,3})|(aero|coop|info|museum|name))$/);
+  return regex.test(Email);
+}
+
+function isDate(vDate) {
+var uDate = new String(vDate);
+var datePat = /^(\d{1,2})(\/|-)(\d{1,2})\2(\d{4})$/;
+var matchArray = uDate.match(datePat); 
+
+if ((matchArray == null) || (vDate.length != 10)) {
+return false;
+}
+month = matchArray[1]; 
+day = matchArray[3];
+year = matchArray[4];
+if (month < 1 || month > 12) { 
+return false;
+}
+if (day < 1 || day > 31) {
+return false;
+}
+if ((month==4 || month==6 || month==9 || month==11) && day==31) {
+return false
+}
+if (month == 2) { 
+var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+if (day>29 || (day==29 && !isleap)) {
+return false;
+   }
+}
+if (year < 1901 || year > 2199) {
+    return false;
+} 
+return true;  
+}
+
+function isDateAltFormat(xDate) {
+  var wDate = new String(xDate);
+  var altregex = /^(((0[123456789]|10|11|12)([/])(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))))/;
+  return altregex.test(wDate);
+}
+
+function isValidDateAlt(dtStart, dtEnd){
+		
+	
+	var intMonth1= parseInt(dtStart.substring(0,2),10);
+	var intYear1= parseInt(dtStart.substring(3,7),10);
+	
+	 
+	var intMonth2=parseInt(dtEnd.substring(0,2),10);
+	var intYear2=parseInt(dtEnd.substring(3,7),10);
+	
+	if((intYear1 < intYear2) == true)
+	{
+		
+		return true;
+	}
+	else if ((intYear1 == intYear2) && (intMonth1 <= intMonth2) == true)
+	{
+		return true;
+	}
+	else 
+	{
+		return false;
+	}
+}	
+	
+function valeApp() {
+  var valid = true;
+  var msg = "The following errors occurred:  \n\n";
+  
+  if(!(document.ResumeForm.CondOfAppAgreeAuth_8467[0].checked))
+		{
+			msg = msg + "- You must agree to the statements of the authorization above\n\n";
+			valid = false;		
+		}
+		if(!(document.ResumeForm.CondOfAppElecSign_8468[0].checked))
+		{
+			msg = msg + "- You must authorize this electronic signature submittal to serve as your legal signature\n\n";
+			valid = false;		
+		}
+		if(document.ResumeForm.CondOfAppSignature_8469.value=="")
+		{
+			msg = msg + "- Signature is a required field\n\n";
+			document.ResumeForm.CondOfAppSignature_8469.focus();
+			valid = false;		
+		}	
+		if(isDate(document.ResumeForm.CondOfAppDate_8470.value) == false)
+		{
+			msg = msg + "- Date is a required field\n  FORMAT: (mm/dd/yyyy)\n\n";
+			document.ResumeForm.CondOfAppDate_8470.focus();
+			valid = false;		
+		}
+  
+  /*if(!(document.ResumeForm.PreAgreeAuth_8473[0].checked))
+  {
+	msg = msg + "- You must agree to the statements of the authorization above.\n\n";
+	valid = false;		
+  }
+  if(!(document.ResumeForm.PreElecSign_8474[0].checked))
+  {
+	msg = msg + "- You must authorize this electronic signature submittal to serve as your legal signature.\n\n";
+	valid = false;		
+  }
+  if(document.ResumeForm.PreSignature_8475.value=="")
+  {
+	msg = msg + "- Signature is a required field.\n\n";
+	document.ResumeForm.PreSignature_8475.focus();
+	valid = false;		
+  }	
+  if(isDate(document.ResumeForm.PreDate_8476.value) == false)
+  {
+	msg = msg + "- Date is a required field.\n  FORMAT: (mm/dd/yyyy)\n\n";
+	document.ResumeForm.PreDate_8476.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.PrePhone_8477.value=="")
+  {
+	msg = msg + "-'Present Phone Number' is a required field.\n\n";
+	document.ResumeForm.PrePhone_8477.focus();
+	valid = false;		
+  }
+  if(SSNValidation(document.ResumeForm.SSN_8478.value) == false)
+  {
+	msg = msg + "- 'Social Security Number' is a required field.\n FORMAT: (###-##-####)\n\n";
+	document.ResumeForm.SSN_8478.focus();
+	valid = false;		
+  }
+  if(isDate(document.ResumeForm.DateOfBirth_8479.value) == false || (document.ResumeForm.DateOfBirth_8479.value < document.ResumeForm.systemdate.value) == false)
+  {
+	msg = msg + "-'Date of Birth' is a required field. - Please use the MM/DD/YYYY format.\n\n";
+	document.ResumeForm.DateOfBirth_8479.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.DriversLicenseNumber_8480.value=="")
+  {
+	msg = msg + "- 'Driver's License Number' is a required field.\n\n";
+	document.ResumeForm.DriversLicenseNumber_8480.focus();
+	valid = false;		
+  }	
+  if(document.ResumeForm.DriversLicenseState_8481.value=="")
+  {
+	msg = msg + "- 'Driver's License State' is a required field.\n\n";
+	document.ResumeForm.DriversLicenseState_8481.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.CurrentStreet_8482.value=="")
+  {
+	msg = msg + "- Current 'Street' is a required field.\n\n";
+	document.ResumeForm.CurrentStreet_8482.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.CurrentCity_8483.value=="")
+  {
+	msg = msg + "- Current 'City' is a required field.\n\n";
+	document.ResumeForm.CurrentCity_8483.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.CurrentCounty_8484.value=="")
+  {
+	msg = msg + "- Current 'County' is a required field.\n\n";
+	document.ResumeForm.CurrentCounty_8484.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.CurrentCountryDrpdwn_8486.value=="")
+  {
+	msg = msg + "- Current 'Country' is a required field.\n\n";
+	document.ResumeForm.CurrentCountryDrpdwn_8486.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.CurrentRegion_8487.value=="")
+  {
+	msg = msg + "- Current 'State/Region' is a required field.\n\n";
+	document.ResumeForm.CurrentRegion_8487.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.CurrentHowLong_8488.value=="")
+  {
+	msg = msg + "- Current 'How Long' is a required field.\n\n";
+	document.ResumeForm.CurrentHowLong_8488.focus();
+	valid = false;		
+  }
+ if(document.ResumeForm.Prior1Street_8489.value!="" || document.ResumeForm.Prior1City_8490.value!="" || document.ResumeForm.Prior1County_8491.value!="" || document.ResumeForm.Prior1CountryDrpdwn_8493.value!="" || document.ResumeForm.Prior1Region_8494.value!="" || document.ResumeForm.Prior1HowLong_8495.value!="")
+ {
+
+  if(document.ResumeForm.Prior1Street_8489.value=="")
+  {
+	msg = msg + "- Prior 1 'Street' is a required field.\n\n";
+	document.ResumeForm.Prior1Street_8489.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior1City_8490.value=="")
+  {
+	msg = msg + "- Prior 1 'City' is a required field.\n\n";
+	document.ResumeForm.Prior1City_8490.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior1County_8491.value=="")
+  {
+	msg = msg + "- Prior 1 'County' is a required field.\n\n";
+	document.ResumeForm.Prior1County_8491.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior1CountryDrpdwn_8493.value=="")
+  {
+	msg = msg + "- Prior 1 'Country' is a required field.\n\n";
+	document.ResumeForm.Prior1CountryDrpdwn_8493.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior1Region_8494.value=="")
+  {
+	msg = msg + "- Prior 1 'State/Region' is a required field.\n\n";
+	document.ResumeForm.Prior1Region_8494.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior1HowLong_8495.value=="")
+  {
+	msg = msg + "- Prior 1 'How Long' is a required field.\n\n";
+	document.ResumeForm.Prior1HowLong_8495.focus();
+	valid = false;		
+  }
+
+}
+
+if(document.ResumeForm.Prior2Street_8496.value!="" || document.ResumeForm.Prior2City_8497.value!="" || document.ResumeForm.Prior2County_8498.value!="" || document.ResumeForm.Prior2CountryDrpdwn_8500.value!="" || document.ResumeForm.Prior2Region_8501.value!="" || document.ResumeForm.Prior2HowLong_8502.value!="")
+{
+
+  if(document.ResumeForm.Prior2Street_8496.value=="")
+  {
+	msg = msg + "- Prior 2 'Street' is a required field.\n\n";
+	document.ResumeForm.Prior2Street_8496.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior2City_8497.value=="")
+  {
+	msg = msg + "- Prior 2 'City' is a required field.\n\n";
+	document.ResumeForm.Prior2City_8497.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior2County_8498.value=="")
+  {
+	msg = msg + "- Prior 2 'County' is a required field.\n\n";
+	document.ResumeForm.Prior2County_8498.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior2CountryDrpdwn_8500.value=="")
+  {
+	msg = msg + "- Prior 2 'Country' is a required field.\n\n";
+	document.ResumeForm.Prior2CountryDrpdwn_8500.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior2Region_8501.value=="")
+  {
+	msg = msg + "- Prior 2 'State/Region' is a required field.\n\n";
+	document.ResumeForm.Prior2Region_8501.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior2HowLong_8502.value=="")
+  {
+	msg = msg + "- Prior 2 'How Long' is a required field.\n\n";
+	document.ResumeForm.Prior2HowLong_8502.focus();
+	valid = false;		
+  }
+
+}
+ if(document.ResumeForm.Prior3Street_8503.value!="" || document.ResumeForm.Prior3City_8504.value!="" || document.ResumeForm.Prior3County_8505.value!="" || document.ResumeForm.Prior3CountryDrpdwn_8507.value!="" || document.ResumeForm.Prior3Region_8508.value!="" || document.ResumeForm.Prior3HowLong_8509.value!="")
+ {
+
+  if(document.ResumeForm.Prior3Street_8503.value=="")
+  {
+	msg = msg + "- Prior 3 'Street' is a required field.\n\n";
+	document.ResumeForm.Prior3Street_8503.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior3City_8504.value=="")
+  {
+	msg = msg + "- Prior 3 'City' is a required field.\n\n";
+	document.ResumeForm.Prior3City_8504.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior3County_8505.value=="")
+  {
+	msg = msg + "- Prior 3 'County' is a required field.\n\n";
+	document.ResumeForm.Prior3County_8505.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior3CountryDrpdwn_8507.value=="")
+  {
+	msg = msg + "- Prior 3 'Country' is a required field.\n\n";
+	document.ResumeForm.Prior3CountryDrpdwn_8507.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior3Region_8508.value=="")
+  {
+	msg = msg + "- Prior 3 'State/Region' is a required field.\n\n";
+	document.ResumeForm.Prior3Region_8508.focus();
+	valid = false;		
+  }
+  if(document.ResumeForm.Prior3HowLong_8509.value=="")
+  {
+	msg = msg + "- Prior 3 'How Long' is a required field.\n\n";
+	document.ResumeForm.Prior3HowLong_8509.focus();
+	valid = false;		
+  }
+ }*/
+
+  if (valid) 
+  {
+	return true;			
+  }
+  else 
+  {
+	alert(msg);
+	return false;
+   }
+}
+
+function setCurrEmpDate(optSelected,txtObjName){
+ var thedate = document.ResumeForm.systemdate.value;
+ var theyear = thedate.substr(0,4);
+ var themonth = thedate.substr(5,2);
+ var theday = thedate.substr(8,2);
+
+  if(optSelected == "Yes")
+  {
+     document.getElementById(txtObjName).value = (themonth + "/" + theday + "/" + theyear);
+  }
+  else
+  {
+     document.getElementById(txtObjName).value = ""
+  }
+}
+
+
+
+</SCRIPT>
+
+<!-- Module: Personal Information -->
+<div id="stage0" class="stage0">
+<span class="eheader">Personal Information</span><BR>
+<span class="cssApplyHighlight">Required fields are marked with an asterisk (*).</span><BR>
+<table cellspacing="1" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR><TD>$displayCandidateFormInfo$</TD></TR>
+</table>
+<div align="left">
+<input type="button" name="continue1" id ="continue1" class="cssFormButton" value = "Continue" onclick="toggleLayerandcheck('stage0','stage1');"></div>
+</div>
+<!-- End Module: Personal Information -->
+
+
+<!-- Module: Background Information -->
+<div id="stage1" class="stage1">
+<span class="eheader">Background Information</span><BR>
+<p>
+We consider applicants for all positions without regard to race, color, religion, sex, sexual orientation, gender identify, pregnancy, age, national origin, ancestry, physical or mental disability, militaty or veteran status, and any other legally protected category (as described further below).
+</p>
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD width="55%">Are your former employment references or education listed under a name other than that stated above?<span class="cssApplyHighlight">*</span></TD>
+<TD><input type="radio" id="Alias_8510" name="Alias_8510" value="Yes">Yes <input type="radio" id="Alias_8510" name="Alias_8510" value="No">No</TD>
+</TR>
+<TR>
+<TD>If yes, please indicate former name.</TD>
+<TD><input type="text" id="AliasName_8511" name="AliasName_8511" size="20" maxlength="100" value="#attributes.AliasName_8511#"></TD>
+</TR>
+<TR>
+<TD>Are you at least 18 years of age?<span class="cssApplyHighlight">*</span></TD>
+<TD><input type="radio" id="Over18_8512" name="Over18_8512" value="Yes">Yes <input type="radio" id="Over18_8512" name="Over18_8512" value="No">No</TD>
+</TR>
+<TR>
+<TD>Are you eligible to work legally in the United States?<span class="cssApplyHighlight">*</span></TD>
+<TD><input type="radio" id="EligibleWorkUS_8513" name="EligibleWorkUS_8513" value="Yes">Yes <input type="radio" id="EligibleWorkUS_8513" name="EligibleWorkUS_8513" value="No">No</TD>
+</TR>
+<TR>
+<TD>Will you at any time require any form of work authorization, visa, or other immigration sponsorship?<span class="cssApplyHighlight">*</span></TD> 
+<TD><input type="radio" id="WkAuthorization_8514" name="WkAuthorization_8514" value="Yes">Yes <input type="radio" id="WkAuthorization_8514" name="WkAuthorization_8514" value="No">No</TD>
+</TR>
+<TR>
+<TD>Have you ever been employed with our organization? <span class="cssApplyHighlight">*</span></TD>
+<TD><input type="radio" id="EmployHere_8515" name="EmployHere_8515" value="Yes">Yes <input type="radio" id="EmployHere_8515" name="EmployHere_8515" value="No">No</TD>
+</TR>
+<TR>
+<TD>If yes, in what capacity? </TD><TD><input type="text" id="JobHere_8516" name="JobHere_8516" size="20" maxlength="100" value="#attributes.JobHere_8516#"></TD>
+</TR>
+<TR>
+<TD>Do you know anyone who has been or is still employed by our organization?<span class="cssApplyHighlight">*</span></TD>
+<TD><input type="radio" id="KnowEmpHere_8517" name="KnowEmpHere_8517" value="Yes">Yes <input type="radio" id="KnowEmpHere_8517" name="KnowEmpHere_8517" value="No">No</TD>
+</TR>
+<TR>
+<TD colspan="2">If yes, then whom?</TD>
+</TR>
+<TR>
+<TD colspan="2" align="left">Name <input type="text" id="RelationName1_8518" name="RelationName1_8518" maxlength="100" value="#attributes.RelationName1_8518#">&nbsp;&nbsp;&nbsp; Relationship <input type="text" id="Relationship1_8519" name="Relationship1_8519" maxlength="100" value="#attributes.Relationship1_8519#"></TD>
+</TR>
+<TR>
+<TD colspan="2" align="left">Name <input type="text" id="RelationName2_8520" name="RelationName2_8520" maxlength="100" value="#attributes.RelationName2_8520#">&nbsp;&nbsp;&nbsp; Relationship <input type="text" id="Relationship2_8521" name="Relationship2_8521" maxlength="100" value="#attributes.Relationship2_8521#"></TD>
+</TR>
+<!-- TR>
+<TD>Have you within the past seven years been convicted of a felony? <span class="cssApplyHighlight">*</span></TD>
+<TD><input type="radio" id="Felony_8522" name="Felony_8522" value="Yes">Yes <input type="radio" id="Felony_8522" name="Felony_8522" value="No">No</TD>
+</TR -->
+
+<!--TR>
+<TD colspan="2">If yes, please list details regarding your conviction, to include date and name of the charge(s) for which you were convicted. (Conviction(s) will not necessarily disqualify an applicant from employment).
+<BR>
+<BR>
+CALIFORNIA APPLICANTS ONLY: Applicant may omit any convictions for the possession of marijuana (except for convictions for the possessions of marijuana on school
+grounds or possession of concentrated cannabis that are more than two(2) years old, and any information concerning a referral to, and participation in, any pretrial or post
+trial diversion program).
+<BR>
+<BR>
+MASSACHUSETTS APPLICANTS ONLY: It is unlawful in Massachusetts to require or administer a lie detector test as a condition of employment or continued employment.
+An employer who violates this law shall be subject to criminal penalties and civil liability.<BR><BR>(maximum of 500 characters)<BR><textarea cols="55" rows="3" id="FelonyExp_8523" name="FelonyExp_8523" maxlength="510" onchange="return ismaxlength(this)">#attributes.FelonyExp_8523#</textarea></TD>
+</TR-->
+
+<!-- TR>
+<TD>If yes, in which county(ies) were you convicted?</TD>
+<TD><input type="text" id="CountyConvicted_8524" name="CountyConvicted_8524" maxlength="100" value="#attributes.CountyConvicted_8524#"></TD>
+</TR-->
+<!-- TR>
+<TD>If yes, in which state were you convicted? </TD>
+<TD id="StateConvictedCell">
+	<script type="text/javascript">createArrayDropDown(states, "StateConvicted_8525","#attributes.StateConvicted_8525#",document.getElementById("StateConvictedCell"));</script>
+</TD>
+</TR -->
+</table>
+<div align="left">
+<input type="button" name="previous1" id="previous1" class="cssFormButton" value="Previous" onclick="toggleLayer('stage1');toggleLayer('stage0');">
+<input type="button" name="continue2" id ="continue2" class="cssFormButton" value = "Continue" onclick="toggleLayerandcheck('stage1','stage2');"></div>
+</div>
+
+
+<script type="text/javascript">
+
+if ("#attributes.Alias_8510#" == "No") {
+    document.ResumeForm.Alias_8510[1].checked = true;
+}
+if ("#attributes.Alias_8510#" == "Yes") {
+    document.ResumeForm.Alias_8510[0].checked = true;
+}
+
+if ("#attributes.Over18_8512#" == "No") {
+    document.ResumeForm.Over18_8512[1].checked = true;
+}
+if ("#attributes.Over18_8512#" == "Yes") {
+    document.ResumeForm.Over18_8512[0].checked = true;
+}
+if ("#attributes.EligibleWorkUS_8513#" == "No") {
+    document.ResumeForm.EligibleWorkUS_8513[1].checked = true;
+}
+if ("#attributes.EligibleWorkUS_8513#" == "Yes") {
+    document.ResumeForm.EligibleWorkUS_8513[0].checked = true;
+}
+if ("#attributes.WkAuthorization_8514#" == "No") {
+    document.ResumeForm.WkAuthorization_8514[1].checked = true;
+}
+if ("#attributes.WkAuthorization_8514#" == "Yes") {
+    document.ResumeForm.WkAuthorization_8514[0].checked = true;
+}
+if ("#attributes.EmployHere_8515#" == "No") {
+    document.ResumeForm.EmployHere_8515[1].checked = true;
+}
+if ("#attributes.EmployHere_8515#" == "Yes") {
+    document.ResumeForm.EmployHere_8515[0].checked = true;
+}
+
+if ("#attributes.KnowEmpHere_8517#" == "No") {
+    document.ResumeForm.KnowEmpHere_8517[1].checked = true;
+}
+if ("#attributes.KnowEmpHere_8517#" == "Yes") {
+    document.ResumeForm.KnowEmpHere_8517[0].checked = true;
+}
+
+// if ("#attributes.Felony_8522#" == "No") {
+    // document.ResumeForm.Felony_8522[1].checked = true;
+// }
+// if ("#attributes.Felony_8522#" == "Yes") {
+    // document.ResumeForm.Felony_8522[0].checked = true;
+// }
+</script>
+<!-- End Module: Background Information -->
+
+<!-- Module: Employment Preferences -->
+<div id="stage2" class="stage2">
+<span class="eheader">Employment Preferences</span><BR>
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD width="50%">Position Desired <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.PositionDesired_8526#" id="PositionDesired_8526" name="PositionDesired_8526" maxlength="150"></TD>
+<TD>Date available to begin work? <span class="cssApplyHighlight">*</span>(mm/dd/yyyy) <BR><input type="text" value="#attributes.AvailBeginWkDt_8527#" id="AvailBeginWkDt_8527" name="AvailBeginWkDt_8527" maxlength="10"></TD>
+</TR>
+<TR>
+<TD>Pay Desired <span class="cssApplyHighlight">*</span> <BR><input type="text" value="#attributes.PayDesired_8528#" id="PayDesired_8528" name="PayDesired_8528" size="11" maxlength="11"></TD>
+<TD id="PayIntervalCell">Pay Interval <span class="cssApplyHighlight">*</span><BR>
+	<script type="text/javascript">createArrayDropDown(payIntervals, "PayInterval_8529","#attributes.PayInterval_8529#",document.getElementById("PayIntervalCell"));</script>
+</TD>
+</TR>
+<TR>
+<TD id="TravelCell">How much are you willing to travel?  <span class="cssApplyHighlight">*</span><BR>
+	<script type="text/javascript">createArrayDropDown(travelPercentages, "HowMuchTravel_8530","#attributes.HowMuchTravel_8530#",document.getElementById("TravelCell"));</script>
+</TD>
+<TD>&nbsp;</TD>
+</TR>
+<TR>
+<TD colspan="2">Please indicate your availability below.  <span class="cssApplyHighlight">*</span></TD>
+</TR>
+<TR>
+<TD colspan="7">
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD></TD>
+<TD><center>Morning</center></TD>
+<TD><center>Afternoon</center></TD>
+<TD><center>Evening</center></TD>
+<TD><center>Night</center></TD>
+<TD><center>Not Available</center></TD>
+<TD><center>All</center></TD>
+</TR>
+<TR>
+<TD>Sunday</TD>
+<TD><center><input type="checkbox" id="SundayM_8531" name="SundayM_8531" value="X" onclick="ResShift('Sunday')"><input type="hidden" name="SundayM_8531" value=""></center></TD>
+<TD><center><input type="checkbox" id="SundayN_8532" name="SundayN_8532" value="X" onclick="ResShift('Sunday')"><input type="hidden" name="SundayN_8532" value=""></center></TD>
+<TD><center><input type="checkbox" id="SundayP_8533" name="SundayP_8533" value="X" onclick="ResShift('Sunday')"><input type="hidden" name="SundayP_8533" value=""></center></TD>
+<TD><center><input type="checkbox" id="SundayO_8534" name="SundayO_8534" value="X" onclick="ResShift('Sunday')"><input type="hidden" name="SundayO_8534" value=""></center></TD>
+<TD><center><input type="checkbox" id="SundayNA_8535" name="SundayNA_8535" value="X" onclick="checkAll('Sunday')"><input type="hidden" name="SundayNA_8535" value=""></center></TD>
+<TD><center><input type="checkbox" id="SundayAll_8536" name="SundayAll_8536" value="X" onclick="checkAll('Sunday')"><input type="hidden" name="SundayAll_8536" value=""></center></TD>
+</TR>
+
+<TR>
+<TD>Monday</TD>
+<TD><center><input type="checkbox" id="MondayM_8537" name="MondayM_8537" value="X" onclick="ResShift('Monday')"><input type="hidden" name="MondayM_8537" value=""></center></TD>
+<TD><center><input type="checkbox" id="MondayN_8538" name="MondayN_8538" value="X" onclick="ResShift('Monday')"><input type="hidden" name="MondayN_8538" value=""></center></TD>
+<TD><center><input type="checkbox" id="MondayP_8539" name="MondayP_8539" value="X" onclick="ResShift('Monday')"><input type="hidden" name="MondayP_8539" value=""></center></TD>
+<TD><center><input type="checkbox" id="MondayO_8540" name="MondayO_8540" value="X" onclick="ResShift('Monday')"><input type="hidden" name="MondayO_8540" value=""></center></TD>
+<TD><center><input type="checkbox" id="MondayNA_8541" name="MondayNA_8541" value="X" onclick="checkAll('Monday')"><input type="hidden" name="MondayNA_8541" value=""></center></TD>
+<TD><center><input type="checkbox" id="MondayAll_8542" name="MondayAll_8542" value="X" onclick="checkAll('Monday')"><input type="hidden" name="MondayAll_8542" value=""></center></TD>
+</TR>
+
+<TR>
+<TD>Tuesday</TD>
+<TD><center><input type="checkbox" id="TuesdayM_8543" name="TuesdayM_8543" value="X" onclick="ResShift('Tuesday')"><input type="hidden" name="TuesdayM_8543" value=""></center></TD>
+<TD><center><input type="checkbox" id="TuesdayN_8544" name="TuesdayN_8544" value="X" onclick="ResShift('Tuesday')"><input type="hidden" name="TuesdayN_8544" value=""></center></TD>
+<TD><center><input type="checkbox" id="TuesdayP_8545" name="TuesdayP_8545" value="X" onclick="ResShift('Tuesday')"><input type="hidden" name="TuesdayP_8545" value=""></center></TD>
+<TD><center><input type="checkbox" id="TuesdayO_8546" name="TuesdayO_8546" value="X" onclick="ResShift('Tuesday')"><input type="hidden" name="TuesdayO_8546" value=""></center></TD>
+<TD><center><input type="checkbox" id="TuesdayNA_8547" name="TuesdayNA_8547" value="X" onclick="checkAll('Tuesday')"><input type="hidden" name="TuesdayNA_8547" value=""></center></TD>
+<TD><center><input type="checkbox" id="TuesdayAll_8548" name="TuesdayAll_8548" value="X" onclick="checkAll('Tuesday')"><input type="hidden" name="TuesdayAll_8548" value=""></center></TD>
+</TR>
+
+<TR>
+<TD>Wednesday</TD>
+<TD><center><input type="checkbox" id="WednesdayM_8265" name="WednesdayM_8265" value="X" onclick="ResShift('Wednesday')"><input type="hidden" name="WednesdayM_8265" value=""></center></TD>
+<TD><center><input type="checkbox" id="WednesdayN_8266" name="WednesdayN_8266" value="X" onclick="ResShift('Wednesday')"><input type="hidden" name="WednesdayN_8266" value=""></center></TD>
+<TD><center><input type="checkbox" id="WednesdayP_8267" name="WednesdayP_8267" value="X" onclick="ResShift('Wednesday')"><input type="hidden" name="WednesdayP_8267" value=""></center></TD>
+<TD><center><input type="checkbox" id="WednesdayO_8268" name="WednesdayO_8268" value="X" onclick="ResShift('Wednesday')"><input type="hidden" name="WednesdayO_8268" value=""></center></TD>
+<TD><center><input type="checkbox" id="WednesdayNA_8269" name="WednesdayNA_8269" value="X" onclick="checkAll('Wednesday')"><input type="hidden" name="WednesdayNA_8269" value=""></center></TD>
+<TD><center><input type="checkbox" id="WednesdayAll_8270" name="WednesdayAll_8270" value="X" onclick="checkAll('Wednesday')"><input type="hidden" name="WednesdayAll_8270" value=""></center></TD>
+</TR>
+
+
+<TR>
+<TD>Thursday</TD>
+<TD><center><input type="checkbox" id="ThursdayM_8271" name="ThursdayM_8271" value="X" onclick="ResShift('Thursday')"><input type="hidden" name="ThursdayM_8271" value=""></center></TD>
+<TD><center><input type="checkbox" id="ThursdayN_8272" name="ThursdayN_8272" value="X" onclick="ResShift('Thursday')"><input type="hidden" name="ThursdayN_8272" value=""></center></TD>
+<TD><center><input type="checkbox" id="ThursdayP_8273" name="ThursdayP_8273" value="X" onclick="ResShift('Thursday')"><input type="hidden" name="ThursdayP_8273" value=""></center></TD>
+<TD><center><input type="checkbox" id="ThursdayO_8274" name="ThursdayO_8274" value="X" onclick="ResShift('Thursday')"><input type="hidden" name="ThursdayO_8274" value=""></center></TD>
+<TD><center><input type="checkbox" id="ThursdayNA_8275" name="ThursdayNA_8275" value="X" onclick="checkAll('Thursday')"><input type="hidden" name="ThursdayNA_8275" value=""></center></TD>
+<TD><center><input type="checkbox" id="ThursdayAll_8276" name="ThursdayAll_8276" value="X" onclick="checkAll('Thursday')"><input type="hidden" name="ThursdayAll_8276" value=""></center></TD>
+</TR>
+
+<TR>
+<TD>Friday</TD>
+<TD><center><input type="checkbox" id="FridayM_8277" name="FridayM_8277" value="X" onclick="ResShift('Friday')"><input type="hidden" name="FridayM_8277" value=""></center></TD>
+<TD><center><input type="checkbox" id="FridayN_8278" name="FridayN_8278" value="X" onclick="ResShift('Friday')"><input type="hidden" name="FridayN_8278" value=""></center></TD>
+<TD><center><input type="checkbox" id="FridayP_8279" name="FridayP_8279" value="X" onclick="ResShift('Friday')"><input type="hidden" name="FridayP_8279" value=""></center></TD>
+<TD><center><input type="checkbox" id="FridayO_8280" name="FridayO_8280" value="X" onclick="ResShift('Friday')"><input type="hidden" name="FridayO_8280" value=""></center></TD>
+<TD><center><input type="checkbox" id="FridayNA_8281" name="FridayNA_8281" value="X" onclick="checkAll('Friday')"><input type="hidden" name="FridayNA_8281" value=""></center></TD>
+<TD><center><input type="checkbox" id="FridayAll_8282" name="FridayAll_8282" value="X" onclick="checkAll('Friday')"><input type="hidden" name="FridayAll_8282" value=""></center></TD>
+</TR>
+
+<TR>
+<TD>Saturday</TD>
+<TD><center><input type="checkbox" id="SaturdayM_8283" name="SaturdayM_8283" value="X" onclick="ResShift('Saturday')"><input type="hidden" name="SaturdayM_8283" value=""></center></TD>
+<TD><center><input type="checkbox" id="SaturdayN_8284" name="SaturdayN_8284" value="X" onclick="ResShift('Saturday')"><input type="hidden" name="SaturdayN_8284" value=""></center></TD>
+<TD><center><input type="checkbox" id="SaturdayP_8285" name="SaturdayP_8285" value="X" onclick="ResShift('Saturday')"><input type="hidden" name="SaturdayP_8285" value=""></center></TD>
+<TD><center><input type="checkbox" id="SaturdayO_8286" name="SaturdayO_8286" value="X" onclick="ResShift('Saturday')"><input type="hidden" name="SaturdayO_8286" value=""></center></TD>
+<TD><center><input type="checkbox" id="SaturdayNA_8287" name="SaturdayNA_8287" value="X" onclick="checkAll('Saturday')"><input type="hidden" name="SaturdayNA_8287" value=""></center></TD>
+<TD><center><input type="checkbox" id="SaturdayAll_8288" name="SaturdayAll_8288" value="X" onclick="checkAll('Saturday')"><input type="hidden" name="SaturdayAll_8288" value=""></center></TD>
+</TR>
+</table>
+</TD>
+</TR>
+<TR>
+<TD>Are you willing to work weekends and holidays? <span class="cssApplyHighlight">*</span><BR><input type="radio" id="WorkHoliday_8289" name="WorkHoliday_8289" value="Yes">Yes <input type="radio" id="WorkHoliday_8289" name="WorkHoliday_8289" value="No">No</TD>
+<TD>Are you willing to work overtime? <span class="cssApplyHighlight">*</span><BR><input type="radio" id="OverTime_8290" name="OverTime_8290" value="Yes">Yes <input type="radio" id="OverTime_8290" name="OverTime_8290" value="No">No</TD>
+</TR>
+<TR>
+<TD>Are you willing to rotate shifts? <span class="cssApplyHighlight">*</span><BR><input type="radio" id="RotateShifts_8291" name="RotateShifts_8291" value="Yes">Yes <input type="radio" id="RotateShifts_8291" name="RotateShifts_8291" value="No">No</TD>
+<TD>&nbsp;</TD>
+</TR>
+</table>
+<div align="left">
+<input type="button" name="previous1" id="previous1" class="cssFormButton" value="Previous" onclick="toggleLayer('stage2');toggleLayer('stage1');">
+<input type="button" name="continue2" id ="continue2" class="cssFormButton" value = "Continue" onclick="toggleLayerandcheck('stage2','stage3');"></div>
+</div>
+
+
+<script type="text/javascript">
+
+if ("#attributes.SundayM_8531#" == "X") {
+    document.ResumeForm.SundayM_8531[0].checked = true;
+}
+if ("#attributes.SundayN_8532#" == "X") {
+    document.ResumeForm.SundayN_8532[0].checked = true;
+}
+if ("#attributes.SundayP_8533#" == "X") {
+    document.ResumeForm.SundayP_8533[0].checked = true;
+}
+if ("#attributes.SundayO_8534#" == "X") {
+    document.ResumeForm.SundayO_8534[0].checked = true;
+}
+if ("#attributes.SundayNA_8535#" == "X") {
+    document.ResumeForm.SundayNA_8535[0].checked = true;
+	checkAll('Sunday');
+}
+if ("#attributes.SundayAll_8536#" == "X") {
+    document.ResumeForm.SundayAll_8536[0].checked = true;
+	checkAll('Sunday');
+}
+
+if ("#attributes.MondayM_8537#" == "X") {
+    document.ResumeForm.MondayM_8537[0].checked = true;
+}
+if ("#attributes.MondayN_8538#" == "X") {
+    document.ResumeForm.MondayN_8538[0].checked = true;
+}
+if ("#attributes.MondayP_8539#" == "X") {
+    document.ResumeForm.MondayP_8539[0].checked = true;
+}
+if ("#attributes.MondayO_8540#" == "X") {
+    document.ResumeForm.MondayO_8540[0].checked = true;
+}
+if ("#attributes.MondayNA_8541#" == "X") {
+    document.ResumeForm.MondayNA_8541[0].checked = true;
+	checkAll('Monday');
+}
+if ("#attributes.MondayAll_8542#" == "X") {
+    document.ResumeForm.MondayAll_8542[0].checked = true;
+	checkAll('Monday');
+}
+
+if ("#attributes.TuesdayM_8543#" == "X") {
+    document.ResumeForm.TuesdayM_8543[0].checked = true;
+}
+if ("#attributes.TuesdayN_8544#" == "X") {
+    document.ResumeForm.TuesdayN_8544[0].checked = true;
+}
+if ("#attributes.TuesdayP_8545#" == "X") {
+    document.ResumeForm.TuesdayP_8545[0].checked = true;
+}
+if ("#attributes.TuesdayO_8546#" == "X") {
+    document.ResumeForm.TuesdayO_8546[0].checked = true;
+}
+if ("#attributes.TuesdayNA_8547#" == "X") {
+    document.ResumeForm.TuesdayNA_8547[0].checked = true;
+	checkAll('Tuesday');
+}
+if ("#attributes.TuesdayAll_8548#" == "X") {
+    document.ResumeForm.TuesdayAll_8548[0].checked = true;
+	checkAll('Tuesday');
+}
+
+if ("#attributes.WednesdayM_8265#" == "X") {
+    document.ResumeForm.WednesdayM_8265[0].checked = true;
+}
+if ("#attributes.WednesdayN_8266#" == "X") {
+    document.ResumeForm.WednesdayN_8266[0].checked = true;
+}
+if ("#attributes.WednesdayP_8267#" == "X") {
+    document.ResumeForm.WednesdayP_8267[0].checked = true;
+}
+if ("#attributes.WednesdayO_8268#" == "X") {
+    document.ResumeForm.WednesdayO_8268[0].checked = true;
+}
+if ("#attributes.WednesdayNA_8269#" == "X") {
+    document.ResumeForm.WednesdayNA_8269[0].checked = true;
+	checkAll('Wednesday');
+}
+if ("#attributes.WednesdayAll_8270#" == "X") {
+    document.ResumeForm.WednesdayAll_8270[0].checked = true;
+	checkAll('Wednesday');
+}
+
+if ("#attributes.ThursdayM_8271#" == "X") {
+    document.ResumeForm.ThursdayM_8271[0].checked = true;
+}
+if ("#attributes.ThursdayN_8272#" == "X") {
+    document.ResumeForm.ThursdayN_8272[0].checked = true;
+}
+if ("#attributes.ThursdayP_8273#" == "X") {
+    document.ResumeForm.ThursdayP_8273[0].checked = true;
+}
+if ("#attributes.ThursdayO_8274#" == "X") {
+    document.ResumeForm.ThursdayO_8274[0].checked = true;
+}
+if ("#attributes.ThursdayNA_8275#" == "X") {
+    document.ResumeForm.ThursdayNA_8275[0].checked = true;
+	checkAll('Thursday');
+}
+if ("#attributes.ThursdayAll_8276#" == "X") {
+    document.ResumeForm.ThursdayAll_8276[0].checked = true;
+	checkAll('Thursday');
+}
+
+
+if ("#attributes.FridayM_8277#" == "X") {
+    document.ResumeForm.FridayM_8277[0].checked = true;
+}
+if ("#attributes.FridayN_8278#" == "X") {
+    document.ResumeForm.FridayN_8278[0].checked = true;
+}
+if ("#attributes.FridayP_8279#" == "X") {
+    document.ResumeForm.FridayP_8279[0].checked = true;
+}
+if ("#attributes.FridayO_8280#" == "X") {
+    document.ResumeForm.FridayO_8280[0].checked = true;
+}
+if ("#attributes.FridayNA_8281#" == "X") {
+    document.ResumeForm.FridayNA_8281[0].checked = true;
+	checkAll('Friday');
+}
+if ("#attributes.FridayAll_8282#" == "X") {
+    document.ResumeForm.FridayAll_8282[0].checked = true;
+	checkAll('Friday');
+}
+
+if ("#attributes.SaturdayM_8283#" == "X") {
+    document.ResumeForm.SaturdayM_8283[0].checked = true;
+}
+if ("#attributes.SaturdayN_8284#" == "X") {
+    document.ResumeForm.SaturdayN_8284[0].checked = true;
+}
+if ("#attributes.SaturdayP_8285#" == "X") {
+    document.ResumeForm.SaturdayP_8285[0].checked = true;
+}
+if ("#attributes.SaturdayO_8286#" == "X") {
+    document.ResumeForm.SaturdayO_8286[0].checked = true;
+}
+if ("#attributes.SaturdayNA_8287#" == "X") {
+    document.ResumeForm.SaturdayNA_8287[0].checked = true;
+	checkAll('Saturday');
+}
+if ("#attributes.SaturdayAll_8288#" == "X") {
+    document.ResumeForm.SaturdayAll_8288[0].checked = true;
+	checkAll('Saturday');
+}
+
+if ("#attributes.WorkHoliday_8289#" == "No") {
+    document.ResumeForm.WorkHoliday_8289[1].checked = true;
+}
+if ("#attributes.WorkHoliday_8289#" == "Yes") {
+    document.ResumeForm.WorkHoliday_8289[0].checked = true;
+}
+
+if ("#attributes.OverTime_8290#" == "No") {
+    document.ResumeForm.OverTime_8290[1].checked = true;
+}
+if ("#attributes.OverTime_8290#" == "Yes") {
+    document.ResumeForm.OverTime_8290[0].checked = true;
+}
+
+if ("#attributes.RotateShifts_8291#" == "No") {
+    document.ResumeForm.RotateShifts_8291[1].checked = true;
+}
+if ("#attributes.RotateShifts_8291#" == "Yes") {
+    document.ResumeForm.RotateShifts_8291[0].checked = true;
+}
+</script>
+<!-- End Module: Employment Preferences -->
+
+<!-- Module: Educational Background -->
+<div id="stage3" class="stage3">
+<span class="eheader">Education Summary</span><BR>
+<table cellspacing="1" cellpadding="2" border="0" frame="box" rules="all" class="eborderedtable">
+	<tr>
+		<td>
+			Current Degree: <span class="cssApplyHighlight">*</span><br><input type="text" value="#attributes.CurrentDegree_8549#" id="CurrentDegree_8549" name="CurrentDegree_8549" maxlength="100">
+		</td>
+		<td>
+			School/Institution Name: <span class="cssApplyHighlight">*</span><br><input type="text" value="#attributes.InstitutionName_8550#" id="InstitutionName_8550" name="InstitutionName_8550" maxlength="100">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			Graduation date <span class="cssApplyHighlight">*</span><br><input type="text" value="#attributes.Graduationdate_8551#" id="Graduationdate_8551" name="Graduationdate_8551" maxlength="10">
+		</td>
+	</tr>
+</table>			
+<br>	
+<span class="eheader">Educational Background</span><BR>
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD colspan="2" class="eheader3">High School</TD>
+</TR>
+<TR>
+<TD>School Name <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.HighSchoolName_8292#" id="HighSchoolName_8292" name="HighSchoolName_8292" maxlength="100"></TD>
+<TD>School City <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.HighSchoolMunicipality_8293#" id="HighSchoolMunicipality_8293" name="HighSchoolMunicipality_8293" maxlength="50"></TD>
+</TR>
+<TR>
+<TD id="HSCountryDrpdwnCell">
+<input type="hidden" name="HSCountry_8294" value="#attributes.HSCountry_8294#">
+School Country <span class="cssApplyHighlight">*</span><BR>
+<script type="text/javascript">
+	createArrayDropDown(countries, "HSCountryDrpdwn_8295","#attributes.HSCountryDrpdwn_8295#",document.getElementById("HSCountryDrpdwnCell"));
+</script>
+
+</TD>
+<TD>School State/Region <span class="cssApplyHighlight">*</span><BR>
+		<select size="1" id="HighSchoolRegion_8296" name="HighSchoolRegion_8296"  class="cssApplyFormSelect">
+			<option value="" selected="selected">--</option>
+		</select></TD>
+</TR>
+<TR>
+<TD>Did you graduate? <span class="cssApplyHighlight">*</span><BR><input type="radio" id="Sch1Grad_8297" name="Sch1Grad_8297" value="Yes">Yes <input type="radio" id="Sch1Grad_8297" name="Sch1Grad_8297" value="No">No</TD>
+<TD>Diploma/Degree or Equivalent <BR> <input type="text" value="#attributes.HighSchoolDegreeName_8298#" id="HighSchoolDegreeName_8298" name="HighSchoolDegreeName_8298" maxlength="100"></TD>
+</TR>
+<TR>
+<TD colspan="2">Describe any specialized training, apprenticeships, etc. <BR>(maximum of 500 characters)<BR><textarea cols="55" rows="3" id="Sch1Desc_8299" name="Sch1Desc_8299" maxlength="510" onchange="return ismaxlength(this)">#attributes.Sch1Desc_8299#</textarea></TD>
+</TR>
+<TR>
+<TD colspan="2" class="eheader3">College/University</span>
+<BR><span style="font-style:italic;">Please note that entering any information in the School Name field below will result in all remaining fields in this section being required</span></TD>
+</TR>
+<TR>
+<TD>School Name <BR><input type="text" value="#attributes.CollegeName_8300#" id="CollegeName_8300" name="CollegeName_8300" maxlength="100"></TD>
+<TD>School City <BR><input type="text" value="#attributes.CollegeMunicipality_8301#" id="CollegeMunicipality_8301" name="CollegeMunicipality_8301" maxlength="50"></TD>
+</TR>
+
+<TR>
+<TD id="CollegeCountryDrpdwnCell">
+<input type="hidden" name="CollegeCountry_8302" value="#attributes.CollegeCountry_8302#">
+School Country <BR>
+<script type="text/javascript">
+	createArrayDropDown(countries, "CollegeCountryDrpdwn_8303","#attributes.CollegeCountryDrpdwn_8303#",document.getElementById("CollegeCountryDrpdwnCell"));
+</script>
+</TD>
+
+<TD>School State/Region <BR>
+		<select size="1" id="CollegeRegion_8304" name="CollegeRegion_8304" class="cssApplyFormSelect">
+			<option value="" selected="selected">--</option>
+		</select></TD>
+</TR>
+<TR>
+<TR>
+<TD>Did you graduate? <BR><input type="radio" id="Sch2Grad_8307" name="Sch2Grad_8307" value="Yes">Yes <input type="radio" id="Sch2Grad_8307" name="Sch2Grad_8307" value="No">No</TD><input type="hidden" id="Sch2Grad_8307" name="Sch2Grad_8307" value="">
+<TD>&nbsp;</TD>
+</TR>
+<TR>
+<TD>Diploma/Degree or Equivalent <BR> <input type="text" value="#attributes.CollegeDegreeName_8309#" id="CollegeDegreeName_8309" name="CollegeDegreeName_8309" maxlength="100"></TD>
+<TD>Course of study <BR><input type="text" value="#attributes.CollegeMajor_8310#" id="CollegeMajor_8310" name="CollegeMajor_8310" maxlength="100"></TD>
+</TR>
+<TR>
+<TD colspan="2">Describe any specialized training, apprenticeships, etc. <BR>(maximum of 500 characters)<BR><textarea cols="55" rows="3" id="Sch2Desc_8311" name="Sch2Desc_8311" maxlength="510" onchange="return ismaxlength(this)">#attributes.Sch2Desc_8311#</textarea></TD>
+</TR>
+<TR>
+<TD colspan="2" class="eheader3">Graduate/Professional</span>
+<BR><span style="font-style:italic;">Please note that entering any information in the School Name field below will result in all remaining fields in this section being required</span></TD>
+</TR>
+<TR>
+<TD>School Name <BR><input type="text" value="#attributes.GradSchoolName_8312#" id="GradSchoolName_8312" name="GradSchoolName_8312" maxlength="100"></TD>
+<TD>School City <BR><input type="text" value="#attributes.GradSchoolMunicipality_8313#" id="GradSchoolMunicipality_8313" name="GradSchoolMunicipality_8313" maxlength="50"></TD>
+</TR>
+<TR>
+<TD id="GradCountryDrpdwnCell">
+<input type="hidden" name="GradCountry_8314" value="#attributes.GradCountry_8314#">
+School Country <BR>
+<script type="text/javascript">
+	createArrayDropDown(countries, "GradCountryDrpdwn_8315","#attributes.GradCountryDrpdwn_8315#",document.getElementById("GradCountryDrpdwnCell"));
+</script>
+</TD>
+<TD>School State/Region <BR>
+		<select size="1" id="GradSchoolRegion_8316" name="GradSchoolRegion_8316" class="cssApplyFormSelect">
+			<option value="" selected="selected">--</option>
+		</select></TD>
+</TR>
+<TR>
+<TD>Did you graduate? <BR><input type="radio" id="Sch3Grad_8319" name="Sch3Grad_8319" value="Yes">Yes <input type="radio" id="Sch3Grad_8319" name="Sch3Grad_8319" value="No">No</TD><input type="hidden" id="Sch3Grad_8319" name="Sch3Grad_8319" value="">
+<TD>&nbsp;</TD>
+</TR>
+<TR>
+<TD>Diploma/Degree or Equivalent <BR> <input type="text" value="#attributes.GradSchoolDegreeName_8321#" id="GradSchoolDegreeName_8321" name="GradSchoolDegreeName_8321" maxlength="100"></TD>
+<TD>Course of study <BR><input type="text" value="#attributes.GradSchoolMajor_8322#" id="GradSchoolMajor_8322" name="GradSchoolMajor_8322" maxlength="100"></TD>
+</TR>
+<TR>
+<TD colspan="2">Describe any specialized training, apprenticeships, etc. <BR>(maximum of 500 characters)<BR><textarea cols="55" rows="3" id="Sch3Desc_8323" name="Sch3Desc_8323" maxlength="510" onchange="return ismaxlength(this)">#attributes.Sch3Desc_8323#</textarea></TD>
+</TR>
+<TR>
+<TD colspan="2" class="eheader3">Other Information</TD>
+</TR>
+<TR>
+<TD colspan="2">Languages Spoken <BR>(maximum of 300 characters)<BR><textarea cols="55" rows="3" id="LanguagesSpoken_8324" name="LanguagesSpoken_8324" maxlength="300" onkeyup="return ismaxlength(this)">#attributes.LanguagesSpoken_8324#</textarea></TD>
+</TR>
+<TR>
+<TD colspan="2">Languages Written <BR>(maximum of 300 characters)<BR><textarea cols="55" rows="3" id="LanguagesWritten_8325" name="LanguagesWritten_8325" maxlength="300" onkeyup="return ismaxlength(this)">#attributes.LanguagesWritten_8325#</textarea></TD>
+</TR>
+<TR>
+<TD colspan="2">Other professional training or education received<BR>(maximum of 500 characters)<BR><textarea cols="55" rows="3" id="OtherTraining_8326" name="OtherTraining_8326" maxlength="510" onchange="return ismaxlength(this)">#attributes.OtherTraining_8326#</textarea></TD>
+</TR>
+</table>
+<br>
+<span class="eheader">Professional Licenses / Certifications</span><BR>
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD>License Name</TD>
+<TD>License Number</TD>
+<TD>License State</TD>
+<TD>License Expiration Date (mm/dd/yyyy)</TD>
+</TR>
+<TR>
+<TD><input type="text" value="#attributes.ProfLic1Name_8327#" id="ProfLic1Name_8327" name="ProfLic1Name_8327" maxlength="100"></TD>
+<TD><input type="text" value="#attributes.ProfLic1No_8328#" id="ProfLic1No_8328" name="ProfLic1No_8328" maxlength="100"></TD>
+<TD id="ProfLic1StCell">
+<script type="text/javascript">createArrayDropDown(states, "ProfLic1St_8329","#attributes.ProfLic1St_8329#",document.getElementById("ProfLic1StCell"));</script>
+</TD>
+<TD><input type="text" value="#attributes.ProfLic1ExpDt_8330#" id="ProfLic1ExpDt_8330" name="ProfLic1ExpDt_8330" maxlength="10"></TD>
+</TR>
+<TR>
+<TD><input type="text" value="#attributes.ProfLic2Name_8331#" id="ProfLic2Name_8331" name="ProfLic2Name_8331" maxlength="100"></TD>
+<TD><input type="text" value="#attributes.ProfLic2No_8332#" id="ProfLic2No_8332" name="ProfLic2No_8332" maxlength="100"></TD>
+<TD id="ProfLic2StCell">
+<script type="text/javascript">createArrayDropDown(states, "ProfLic2St_8333","#attributes.ProfLic2St_8333#",document.getElementById("ProfLic2StCell"));</script>
+</TD>
+<TD><input type="text" value="#attributes.ProfLic2ExpDt_8334#" id="ProfLic2ExpDt_8334" name="ProfLic2ExpDt_8334" maxlength="10"></TD>
+</TR>
+<TR>
+<TD><input type="text" value="#attributes.ProfLic3Name_8335#" id="ProfLic3Name_8335" name="ProfLic3Name_8335" maxlength="100"></TD>
+<TD><input type="text" value="#attributes.ProfLic3No_8336#" id="ProfLic3No_8336" name="ProfLic3No_8336" maxlength="100"></TD>
+<TD id="ProfLic3StCell">
+<script type="text/javascript">createArrayDropDown(states, "ProfLic3St_8337","#attributes.ProfLic3St_8337#",document.getElementById("ProfLic3StCell"));</script>
+</TD>
+<TD><input type="text" value="#attributes.ProfLic3ExpDt_8338#" id="ProfLic3ExpDt_8338" name="ProfLic3ExpDt_8338" maxlength="10"></TD>
+</TR>
+</table>
+<div align="left">
+<input type="button" name="previous1" id="previous1" class="cssFormButton" value="Previous" onclick="toggleLayer('stage3');toggleLayer('stage2');">
+<input type="button" name="continue2" id ="continue2" class="cssFormButton" value = "Continue" onclick="toggleLayerandcheck('stage3','stage4');"></div>
+</div>
+
+<script type="text/javascript">
+
+if ("#attributes.Sch1Grad_8297#" == "No") {
+    document.ResumeForm.Sch1Grad_8297[1].checked = true;
+}
+if ("#attributes.Sch1Grad_8297#" == "Yes") {
+    document.ResumeForm.Sch1Grad_8297[0].checked = true;
+}
+
+if ("#attributes.Sch2Grad_8307#" == "No") {
+    document.ResumeForm.Sch2Grad_8307[1].checked = true;
+}
+if ("#attributes.Sch2Grad_8307#" == "Yes") {
+    document.ResumeForm.Sch2Grad_8307[0].checked = true;
+}
+
+if ("#attributes.Sch3Grad_8319#" == "No") {
+    document.ResumeForm.Sch3Grad_8319[1].checked = true;
+}
+if ("#attributes.Sch3Grad_8319#" == "Yes") {
+    document.ResumeForm.Sch3Grad_8319[0].checked = true;
+}
+</script>
+
+<!-- End Module: Educational Background -->
+
+<!-- Module: Employment History -->
+<div id="stage4" class="stage4">
+<span class="eheader">Employment History</span><BR>
+<span class="eheader2">Please list your most recent employer first.
+<BR>
+<!--font color="red">California, Delaware, Puerto Rico, Oregon, Massachusetts, New York City, and Philadelphia applicants: Please omit any information concerning current and previous salary.</font></span><BR-->
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD colspan="2" class="eheader3">Employer 1</TD>
+</TR>
+<TR>
+<TD width="50%">Employer Name <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.EmployerOrgName1_8339#" id="EmployerOrgName1_8339" name="EmployerOrgName1_8339" maxlength="100"></TD>
+<TD>Type of Business <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.Emp1Bus_8340#" id="Emp1Bus_8340" name="Emp1Bus_8340" maxlength="100"></TD>
+</TR>
+<TR>
+<TD>Employer's Address <BR><input type="text" value="#attributes.Emp1Address_8341#" id="Emp1Address_8341" name="Emp1Address_8341" maxlength="100"></TD>
+<TD>City <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.EmployerMunicipality1_8342#" id="EmployerMunicipality1_8342" name="EmployerMunicipality1_8342" maxlength="50"></TD>
+</TR>
+<TR>
+<TD colspan="2" id="Emp1CountryDrpdwnCell">
+<input type="hidden" name="Emp1Country_8343" value="#attributes.Emp1Country_8343#">
+Country <span class="cssApplyHighlight">*</span><BR>
+<script type="text/javascript">
+	createArrayDropDown(countries, "Emp1CountryDrpdwn_8344","#attributes.Emp1CountryDrpdwn_8344#",document.getElementById("Emp1CountryDrpdwnCell"));
+</script>
+</TD>
+</TR>
+
+<TR>
+<TD>State/Region <span class="cssApplyHighlight">*</span><BR>
+		<select size="1" id="EmployerRegion1_8345" name="EmployerRegion1_8345" class="cssApplyFormSelect">
+			<option value="" selected="selected">--</option>
+		</select>
+</TD>
+<TD>Postal Code <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.EmployerPostalCode1_8346#" id="EmployerPostalCode1_8346" name="EmployerPostalCode1_8346" maxlength="10"></TD>
+</TR>
+
+<TR>
+<TD>Phone Number<span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.EmployerTelephone1_8347#" id="EmployerTelephone1_8347" name="EmployerTelephone1_8347" maxlength="20"></TD>
+<TD>May we contact this employer? <span class="cssApplyHighlight">*</span><BR><input type="radio" id="Emp1Contact_8348" name="Emp1Contact_8348" value="Yes">Yes<input type="radio" id="Emp1Contact_8348" name="Emp1Contact_8348" value="No">No</TD>
+</TR>
+<TR>
+<TD>Job Title <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.JobTitle1_8349#" id="JobTitle1_8349" name="JobTitle1_8349" maxlength="100"></TD>
+<TD>Are you currently employed with this organization? <span class="cssApplyHighlight">*</span><BR><input type="radio" id="Emp1CurrentEmploy_8350" name="Emp1CurrentEmploy_8350"  value="Yes" onClick="setCurrEmpDate('Yes','EndDate1_8352')">Yes<input type="radio" id="Emp1CurrentEmploy_8350" name="Emp1CurrentEmploy_8350" value="No" onClick="setCurrEmpDate('No','EndDate1_8352')">No</TD>
+</TR>
+<TR>
+<TD valign="bottom">Starting Date <span class="cssApplyHighlight">*</span>(mm/dd/yyyy)<BR><input type="text" value="#attributes.StartDate1_8351#" id="StartDate1_8351" name="StartDate1_8351" maxlength="10"></TD>
+<TD>Ending Date <span class="cssApplyHighlight">*</span>(mm/dd/yyyy) <BR>If currently employed enter today's date.<BR> <input type="text" value="#attributes.EndDate1_8352#" id="EndDate1_8352" name="EndDate1_8352"  maxlength="10"></TD>
+</TR>
+
+<!--TR>
+<TD>Starting Pay <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.Emp1StartPay_8353#" id="Emp1StartPay_8353" name="Emp1StartPay_8353" maxlength="10"></TD>
+<TD valign="bottom" id="Emp1StartPayIntCell">Starting Pay Interval <span class="cssApplyHighlight">*</span><BR>
+	<script type="text/javascript">createArrayDropDown(payIntervals, "Emp1StartPayInt_8354","#attributes.Emp1StartPayInt_8354#",document.getElementById("Emp1StartPayIntCell"));</script>
+</TD>
+</TR>
+<TR>
+<TD>Ending Pay <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.Compensation1_8355#" id="Compensation1_8355" name="Compensation1_8355" maxlength="10"></TD>
+<TD valign="bottom" id="CompensationInterval1Cell">Ending Pay Interval <span class="cssApplyHighlight">*</span><BR>
+	<script type="text/javascript">createArrayDropDown(payIntervals, "CompensationInterval1_8356","#attributes.CompensationInterval1_8356#",document.getElementById("CompensationInterval1Cell"));</script>
+</TD>
+</TR-->
+
+<TR>
+<TD>Supervisor's Name <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.Emp1SuprName_8357#" id="Emp1SuprName_8357" name="Emp1SuprName_8357" maxlength="100"></TD>
+<TD>Supervisor's Title <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.Emp1SuprTitle_8358#" id="Emp1SuprTitle_8358" name="Emp1SuprTitle_8358" maxlength="100"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+Reason for leaving or seeking other employment? <span class="cssApplyHighlight">*</span><BR>(maximum of 500 characters)<BR>
+<textarea cols="55" rows="3" id="Emp1Reas4Leave_8359" name="Emp1Reas4Leave_8359" maxlength="510" onchange="return ismaxlength(this)">#attributes.Emp1Reas4Leave_8359#</textarea>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+Brief description of job duties and responsibilities <span class="cssApplyHighlight">*</span><BR>(maximum of 500 characters)<BR>
+<textarea cols="55" rows="3" id="Emp1JobDesc_8360" name="Emp1JobDesc_8360" maxlength="510" onchange="return ismaxlength(this)">#attributes.Emp1JobDesc_8360#</textarea>
+</TD>
+</TR>
+</table>
+<BR><BR>
+
+
+
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD colspan="2"><SPAN class="eheader3">Employer 2</SPAN> <i>Please note that entering any information in the Employer Name field below will result in all remaining fields in this section being required</i></TD>
+</TR>
+<TR>
+<TD width="50%">Employer Name <BR><input type="text" value="#attributes.EmployerOrgName2_8361#" id="EmployerOrgName2_8361" name="EmployerOrgName2_8361" maxlength="100"></TD>
+<TD>Type of Business <BR><input type="text" value="#attributes.Emp2Bus_8362#" id="Emp2Bus_8362" name="Emp2Bus_8362" maxlength="100"></TD>
+</TR>
+<TR>
+<TD>Employer's Address <BR><input type="text" value="#attributes.Emp2Address_8363#" id="Emp2Address_8363" name="Emp2Address_8363" maxlength="100"></TD>
+<TD>City <BR><input type="text" value="#attributes.EmployerMunicipality2_8364#" id="EmployerMunicipality2_8364" name="EmployerMunicipality2_8364" maxlength="50"></TD>
+</TR>
+
+<TR>
+<TD colspan="2" id="Emp2CountryDrpdwnCell">
+<input type="hidden" name="Emp2Country_8365" value="#attributes.Emp2Country_8365#">
+Country <BR>
+<script type="text/javascript">
+	createArrayDropDown(countries, "Emp2CountryDrpdwn_8366","#attributes.Emp2CountryDrpdwn_8366#",document.getElementById("Emp2CountryDrpdwnCell"));
+</script>
+</TD>
+</TR>
+<TR>
+<TD>State/Region <BR>
+		<select size="1" id="EmployerRegion2_8367" name="EmployerRegion2_8367" class="cssApplyFormSelect">
+			<option value="" selected="selected">--</option>
+		</select>
+</TD>
+<TD>Postal Code <BR><input type="text" value="#attributes.EmployerPostalCode2_8368#" id="EmployerPostalCode2_8368" name="EmployerPostalCode2_8368" maxlength="10"></TD>
+</TR>
+
+<TR>
+<TD>Phone Number<BR><input type="text" value="#attributes.EmployerTelephone2_8369#" id="EmployerTelephone2_8369" name="EmployerTelephone2_8369" maxlength="20"></TD>
+<TD>May we contact this employer? <BR><input type="radio" id="Emp2Contact_8370" name="Emp2Contact_8370" value="Yes">Yes<input type="radio" id="Emp2Contact_8370" name="Emp2Contact_8370" value="No">No</TD><input type="hidden" id="Emp2Contact_8370" name="Emp2Contact_8370" value="">
+</TR>
+<TR>
+<TD>Job Title <BR><input type="text" value="#attributes.JobTitle2_8371#" id="JobTitle2_8371" name="JobTitle2_8371" maxlength="100"></TD>
+<TD>Are you currently employed with this organization? <BR><input type="radio" id="Emp2CurrentEmploy_8372" name="Emp2CurrentEmploy_8372" value="Yes" onClick="setCurrEmpDate('Yes','EndDate2_8374')">Yes<input type="radio" name="Emp2CurrentEmploy_8372" id="Emp2CurrentEmploy_8372" value="No" onClick="setCurrEmpDate('No','EndDate2_8374')">No</TD><input type="hidden" name="Emp2CurrentEmploy_8372" id="Emp2CurrentEmploy_8372" value="">
+</TR>
+<TR>
+<TD valign="bottom">Starting Date (mm/dd/yyyy)<BR><input type="text" value="#attributes.StartDate2_8373#" id="StartDate2_8373" name="StartDate2_8373" maxlength="10"></TD>
+<TD>Ending Date (mm/dd/yyyy) <BR>If currently employed enter today's date.<BR> <input type="text" value="#attributes.EndDate2_8374#" id="EndDate2_8374" name="EndDate2_8374"  maxlength="10"></TD>
+</TR>
+
+<!--TR>
+<TD>Starting Pay <BR> <input type="text" value="#attributes.Emp2StartPay_8375#" name="Emp2StartPay_8375" name="Emp2StartPay_8375" maxlength="10"></TD>
+<TD valign="bottom" id="Emp2StartPayIntCell">Starting Pay Interval <BR>
+	<script type="text/javascript">createArrayDropDown(payIntervals, "Emp2StartPayInt_8376","#attributes.Emp2StartPayInt_8376#",document.getElementById("Emp2StartPayIntCell"));</script>
+</TD>
+</TR>
+<TR>
+<TD>Ending Pay <BR> <input type="text" value="#attributes.Compensation2_8377#" id="Compensation2_8377" name="Compensation2_8377" maxlength="10"></TD>
+<TD valign="bottom" id="CompensationInterval2Cell">Ending Pay Interval<BR>
+	<script type="text/javascript">createArrayDropDown(payIntervals, "CompensationInterval2_8378","#attributes.CompensationInterval2_8378#",document.getElementById("CompensationInterval2Cell"));</script>
+</TD>
+</TR-->
+
+<TR>
+<TD>Supervisor's Name<BR><input type="text" value="#attributes.Emp2SuprName_8379#" id="Emp2SuprName_8379" name="Emp2SuprName_8379" maxlength="100"></TD>
+<TD>Supervisor's Title<BR><input type="text" value="#attributes.Emp2SuprTitle_8380#" id="Emp2SuprTitle_8380" name="Emp2SuprTitle_8380" maxlength="100"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+Reason for leaving or seeking other employment?<BR>(maximum of 500 characters)<BR>
+<textarea cols="55" rows="3" id="Emp2Reas4Leave_8381" name="Emp2Reas4Leave_8381" maxlength="510" onchange="return ismaxlength(this)">#attributes.Emp2Reas4Leave_8381#</textarea>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+Brief description of job duties and responsibilities<BR>(maximum of 500 characters)<BR>
+<textarea cols="55" rows="3" id="Emp2JobDesc_8382" name="Emp2JobDesc_8382" maxlength="510" onchange="return ismaxlength(this)">#attributes.Emp2JobDesc_8382#</textarea>
+</TD>
+</TR>
+</table>
+<BR><BR>
+
+
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD colspan="2"><SPAN class="eheader3">Employer 3</SPAN> <i>Please note that entering any information in the Employer Name field below will result in all remaining fields in this section being required</i></TD>
+</TR>
+<TR>
+<TD width="50%">Employer Name <BR><input type="text" value="#attributes.EmployerOrgName3_8383#" id="EmployerOrgName3_8383" name="EmployerOrgName3_8383" maxlength="100"></TD>
+<TD>Type of Business <BR><input type="text" value="#attributes.Emp3Bus_8384#" id="Emp3Bus_8384" name="Emp3Bus_8384" maxlength="100"></TD>
+</TR>
+<TR>
+<TD>Employer's Address <BR><input type="text" value="#attributes.Emp3Address_8385#" id="Emp3Address_8385" name="Emp3Address_8385" maxlength="100"></TD>
+<TD>City <BR><input type="text" value="#attributes.EmployerMunicipality3_8386#" id="EmployerMunicipality3_8386" name="EmployerMunicipality3_8386" maxlength="50"></TD>
+</TR>
+
+<TR>
+<TD colspan="2" id="Emp3CountryDrpdwnCell">
+<input type="hidden" name="Emp3Country_8387" value="#attributes.Emp3Country_8387#">
+Country <BR>
+<script type="text/javascript">
+	createArrayDropDown(countries, "Emp3CountryDrpdwn_8388","#attributes.Emp3CountryDrpdwn_8388#",document.getElementById("Emp3CountryDrpdwnCell"));
+</script>	
+</TD>
+</TR>
+<TR>
+<TD>State/Region <BR>
+		<select size="1" id="EmployerRegion3_8389" name="EmployerRegion3_8389" class="cssApplyFormSelect">
+			<option value="" selected="selected">--</option>
+		</select>
+</TD>
+<TD>Postal Code <BR><input type="text" value="#attributes.EmployerPostalCode3_8390#" id="EmployerPostalCode3_8390" name="EmployerPostalCode3_8390" maxlength="10"></TD>
+</TR>
+<TR>
+<TD>Phone Number<BR><input type="text" value="#attributes.EmployerTelephone3_8391#" id="EmployerTelephone3_8391" name="EmployerTelephone3_8391" maxlength="20"></TD>
+<TD>May we contact this employer? <BR><input type="radio" id="Emp3Contact_8392" name="Emp3Contact_8392" value="Yes">Yes<input type="radio" id="Emp3Contact_8392" name="Emp3Contact_8392" value="No">No</TD><input type="hidden" id="Emp3Contact_8392" name="Emp3Contact_8392" value="">
+</TR>
+<TR>
+<TD>Job Title <BR><input type="text" value="#attributes.JobTitle3_8393#" id="JobTitle3_8393" name="JobTitle3_8393" maxlength="100"></TD>
+<TD>Are you currently employed with this organization? <BR><input type="radio" id="Emp3CurrentEmploy_8394" name="Emp3CurrentEmploy_8394" value="Yes" onClick="setCurrEmpDate('Yes','EndDate3_8396')">Yes<input type="radio" id="Emp3CurrentEmploy_8394" name="Emp3CurrentEmploy_8394" value="No" onClick="setCurrEmpDate('No','EndDate3_8396')">No</TD><input type="hidden" id="Emp3CurrentEmploy_8394" name="Emp3CurrentEmploy_8394" value="">
+</TR>
+<TR>
+<TD valign="bottom">Starting Date (mm/dd/yyyy)<BR><input type="text" value="#attributes.StartDate3_8395#" id="StartDate3_8395" name="StartDate3_8395" maxlength="10"></TD>
+<TD>Ending Date (mm/dd/yyyy) <BR>If currently employed enter today's date.<BR> <input type="text" value="#attributes.EndDate3_8396#" id="EndDate3_8396" name="EndDate3_8396"  maxlength="10"></TD>
+</TR>
+
+<!--TR>
+<TD>Starting Pay <BR> <input type="text" value="#attributes.Emp3StartPay_8397#" id="Emp3StartPay_8397" name="Emp3StartPay_8397" maxlength="10"></TD>
+<TD valign="bottom" id="Emp3StartPayIntCell">Starting Pay Interval <BR>
+	<script type="text/javascript">createArrayDropDown(payIntervals, "Emp3StartPayInt_8398","#attributes.Emp3StartPayInt_8398#",document.getElementById("Emp3StartPayIntCell"));</script>
+</TD>
+</TR>
+<TR>
+<TD>Ending Pay <BR> <input type="text" value="#attributes.Compensation3_8399#" id="Compensation3_8399" name="Compensation3_8399" maxlength="10"></TD>
+<TD valign="bottom" id="CompensationInterval3Cell">Ending Pay Interval<BR>
+	<script type="text/javascript">createArrayDropDown(payIntervals, "CompensationInterval3_8400","#attributes.CompensationInterval3_8400#",document.getElementById("CompensationInterval3Cell"));</script>
+</TD>
+</TR-->
+
+<TR>
+<TD>Supervisor's Name<BR><input type="text" value="#attributes.Emp3SuprName_8401#" id="Emp3SuprName_8401" name="Emp3SuprName_8401" maxlength="100"></TD>
+<TD>Supervisor's Title<BR><input type="text" value="#attributes.Emp3SuprTitle_8402#" id="Emp3SuprTitle_8402" name="Emp3SuprTitle_8402" maxlength="100"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+Reason for leaving or seeking other employment?<BR>(maximum of 500 characters)<BR>
+<textarea cols="55" rows="3" id="Emp3Reas4Leave_8403" name="Emp3Reas4Leave_8403" maxlength="510" onchange="return ismaxlength(this)">#attributes.Emp3Reas4Leave_8403#</textarea>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+Brief description of job duties and responsibilities<BR>(maximum of 500 characters)<BR>
+<textarea cols="55" rows="3" id="Emp3JobDesc_8404" name="Emp3JobDesc_8404" maxlength="510" onchange="return ismaxlength(this)">#attributes.Emp3JobDesc_8404#</textarea>
+</TD>
+</TR>
+</table>
+<BR><BR>
+
+
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD colspan="2"><SPAN class="eheader3">Employer 4</SPAN> <i>Please note that entering any information in the Employer Name field below will result in all remaining fields in this section being required</i></TD>
+</TR>
+<TR>
+<TD width="50%">Employer Name <BR><input type="text" value="#attributes.EmployerOrgName4_8405#" id="EmployerOrgName4_8405" name="EmployerOrgName4_8405" maxlength="100"></TD>
+<TD>Type of Business <BR><input type="text" value="#attributes.Emp4Bus_8406#" id="Emp4Bus_8406" name="Emp4Bus_8406" maxlength="100"></TD>
+</TR>
+<TR>
+<TD>Employer's Address <BR><input type="text" value="#attributes.Emp4Address_8407#" id="Emp4Address_8407" name="Emp4Address_8407" maxlength="100"></TD>
+<TD>City <BR><input type="text" value="#attributes.EmployerMunicipality4_8408#" id="EmployerMunicipality4_8408" name="EmployerMunicipality4_8408" maxlength="50"></TD>
+</TR>
+
+<TR>
+<TD colspan="2" id="Emp4CountryDrpdwnCell">
+<input type="hidden" name="Emp4Country_8409" value="#attributes.Emp4Country_8409#">
+Country <BR>
+<script type="text/javascript">
+	createArrayDropDown(countries, "Emp4CountryDrpdwn_8410","#attributes.Emp4CountryDrpdwn_8410#",document.getElementById("Emp4CountryDrpdwnCell"));
+</script>		
+</TD>
+</TR>
+<TR>
+<TD>State/Region<BR>
+		<select size="1" id="EmployerRegion4_8411" name="EmployerRegion4_8411" class="cssApplyFormSelect">
+			<option value="" selected="selected">--</option>
+		</select>
+</TD>
+<TD>Postal Code <BR><input type="text" value="#attributes.EmployerPostalCode4_8412#" id="EmployerPostalCode4_8412" name="EmployerPostalCode4_8412" maxlength="10"></TD>
+</TR>
+
+<TR>
+<TD>Phone Number <BR><input type="text" value="#attributes.EmployerTelephone4_8413#" id="EmployerTelephone4_8413" name="EmployerTelephone4_8413" maxlength="20"></TD>
+<TD>May we contact this employer? <BR><input type="radio" id="Emp4Contact_8414" name="Emp4Contact_8414" value="Yes">Yes<input type="radio" id="Emp4Contact_8414" name="Emp4Contact_8414" value="No">No</TD><input type="hidden" id="Emp4Contact_8414" name="Emp4Contact_8414" value="">
+</TR>
+<TR>
+<TD>Job Title <BR><input type="text" value="#attributes.JobTitle4_8415#" id="JobTitle4_8415" name="JobTitle4_8415" maxlength="100"></TD>
+<TD>Are you currently employed with this organization? <BR><input type="radio" id="Emp4CurrentEmploy_8416" name="Emp4CurrentEmploy_8416" value="Yes" onClick="setCurrEmpDate('Yes','EndDate4_8418')">Yes<input type="radio" id="Emp4CurrentEmploy_8416" name="Emp4CurrentEmploy_8416" value="No" onClick="setCurrEmpDate('No','EndDate4_8418')">No</TD><input type="hidden" id="Emp4CurrentEmploy_8416" name="Emp4CurrentEmploy_8416" value="">
+</TR>
+<TR>
+<TD valign="bottom">Starting Date (mm/dd/yyyy)<BR><input type="text" value="#attributes.StartDate4_8417#" name="StartDate4_8417" maxlength="10"></TD>
+<TD>Ending Date (mm/dd/yyyy) <BR>If currently employed enter today's date.<BR> <input type="text" value="#attributes.EndDate4_8418#" id="EndDate4_8418" name="EndDate4_8418" maxlength="10"></TD>
+</TR>
+
+<!--TR>
+<TD>Starting Pay <BR> <input type="text" value="#attributes.Emp4StartPay_8419#" id="Emp4StartPay_8419" name="Emp4StartPay_8419" maxlength="10"></TD>
+<TD valign="bottom" id="Emp4StartPayIntCell">Starting Pay Interval <BR>
+	<script type="text/javascript">createArrayDropDown(payIntervals, "Emp4StartPayInt_8420","#attributes.Emp4StartPayInt_8420#",document.getElementById("Emp4StartPayIntCell"));</script>
+</TD>
+</TR>
+<TR>
+<TD>Ending Pay <BR> <input type="text" value="#attributes.Compensation4_8421#" id="Compensation4_8421" name="Compensation4_8421" maxlength="10"></TD>
+<TD valign="bottom" id="CompensationInterval4Cell">Ending Pay Interval<BR>
+	<script type="text/javascript">createArrayDropDown(payIntervals, "CompensationInterval4_8422","#attributes.CompensationInterval4_8422#",document.getElementById("CompensationInterval4Cell"));</script>
+</TD>
+</TR-->
+
+<TR>
+<TD>Supervisor's Name<BR><input type="text" value="#attributes.Emp4SuprName_8423#" id="Emp4SuprName_8423" name="Emp4SuprName_8423" maxlength="100"></TD>
+<TD>Supervisor's Title<BR><input type="text" value="#attributes.Emp4SuprTitle_8424#" id="Emp4SuprTitle_8424" name="Emp4SuprTitle_8424" maxlength="100"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+Reason for leaving or seeking other employment?<BR>(maximum of 500 characters)<BR>
+<textarea cols="55" rows="3" id="Emp4Reas4Leave_8425" name="Emp4Reas4Leave_8425" maxlength="510" onchange="return ismaxlength(this)">#attributes.Emp4Reas4Leave_8425#</textarea>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+Brief description of job duties and responsibilities<BR>(maximum of 500 characters)<BR>
+<textarea cols="55" rows="3" id="Emp4JobDesc_8426" name="Emp4JobDesc_8426" maxlength="510" onchange="return ismaxlength(this)">#attributes.Emp4JobDesc_8426#</textarea>
+</TD>
+</TR>
+</table>
+<BR><BR>
+
+
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD colspan="2"><SPAN class="eheader3">Employer 5</SPAN> <i>Please note that entering any information in the Employer Name field below will result in all remaining fields in this section being required</i></TD>
+</TR>
+<TR>
+<TD width="50%">Employer Name <BR><input type="text" value="#attributes.EmployerOrgName5_8427#" id="EmployerOrgName5_8427" name="EmployerOrgName5_8427" maxlength="100"></TD>
+<TD>Type of Business <BR><input type="text" value="#attributes.Emp5Bus_8428#" name="Emp5Bus_8428" maxlength="100"></TD>
+</TR>
+<TR>
+<TD>Employer's Address <BR><input type="text" value="#attributes.Emp5Address_8429#" id="Emp5Address_8429" name="Emp5Address_8429" maxlength="100"></TD>
+<TD>City <BR><input type="text" value="#attributes.EmployerMunicipality5_8430#" id="EmployerMunicipality5_8430" name="EmployerMunicipality5_8430" maxlength="50"></TD>
+</TR>
+
+<TR>
+<TD colspan="2" id="Emp5CountryDrpdwnCell">
+<input type="hidden" name="Emp5Country_8431" value="#attributes.Emp5Country_8431#">
+Country <BR>
+<script type="text/javascript">
+	createArrayDropDown(countries, "Emp5CountryDrpdwn_8432","#attributes.Emp5CountryDrpdwn_8432#",document.getElementById("Emp5CountryDrpdwnCell"));
+</script>	
+</TD>
+</TR>
+<TR>
+<TD>State/Region<BR>
+		<select size="1" id="EmployerRegion5_8433" name="EmployerRegion5_8433" class="cssApplyFormSelect">
+			<option value="" selected="selected">--</option>
+		</select>
+</TD>
+<TD>Postal Code <BR><input type="text" value="#attributes.EmployerPostalCode5_8434#" id="EmployerPostalCode5_8434" name="EmployerPostalCode5_8434" maxlength="10"></TD>
+</TR>
+
+<TR>
+<TD>Phone Number <BR><input type="text" value="#attributes.EmployerTelephone5_8435#" id="EmployerTelephone5_8435" name="EmployerTelephone5_8435" maxlength="20"></TD>
+<TD>May we contact this employer? <BR><input type="radio" id="Emp5Contact_8436" name="Emp5Contact_8436" value="Yes">Yes<input type="radio" id="Emp5Contact_8436" name="Emp5Contact_8436" value="No">No</TD><input type="hidden" id="Emp5Contact_8436" name="Emp5Contact_8436" value="">
+</TR>
+<TR>
+<TD>Job Title <BR><input type="text" value="#attributes.JobTitle5_8437#" id="JobTitle5_8437" name="JobTitle5_8437" maxlength="100"></TD>
+<TD>Are you currently employed with this organization? <BR><input type="radio" id="Emp5CurrentEmploy_8438" name="Emp5CurrentEmploy_8438" value="Yes" onClick="setCurrEmpDate('Yes','EndDate5_8440')">Yes<input type="radio" id="Emp5CurrentEmploy_8438" name="Emp5CurrentEmploy_8438" value="No" onClick="setCurrEmpDate('No','EndDate5_8440')">No</TD><input type="hidden" id="Emp5CurrentEmploy_8438" name="Emp5CurrentEmploy_8438" value="">
+</TR>
+<TR>
+<TD valign="bottom">Starting Date (mm/dd/yyyy)<BR><input type="text" value="#attributes.StartDate5_8439#" id="StartDate5_8439" name="StartDate5_8439" maxlength="10"></TD>
+<TD>Ending Date (mm/dd/yyyy) <BR>If currently employed enter today's date.<BR> <input type="text" value="#attributes.EndDate5_8440#" id="EndDate5_8440" name="EndDate5_8440"  maxlength="10"></TD>
+</TR>
+
+<!--TR>
+<TD>Starting Pay <BR> <input type="text" value="#attributes.Emp5StartPay_8441#" id="Emp5StartPay_8441" name="Emp5StartPay_8441" maxlength="10"></TD>
+<TD valign="bottom" id="Emp5StartPayIntCell">Starting Pay Interval <BR>
+	<script type="text/javascript">createArrayDropDown(payIntervals, "Emp5StartPayInt_8442","#attributes.Emp5StartPayInt_8442#",document.getElementById("Emp5StartPayIntCell"));</script>
+</TD>
+</TR>
+<TR>
+<TD>Ending Pay <BR> <input type="text" value="#attributes.Compensation5_8443#" id="Compensation5_8443" name="Compensation5_8443" maxlength="10"></TD>
+<TD valign="bottom" id="CompensationInterval5Cell">Ending Pay Interval<BR>
+	<script type="text/javascript">createArrayDropDown(payIntervals, "CompensationInterval5_8444","#attributes.CompensationInterval5_8444#",document.getElementById("CompensationInterval5Cell"));</script>
+</TD>
+</TR-->
+
+<TR>
+<TD>Supervisor's Name<BR><input type="text" value="#attributes.Emp5SuprName_8445#" id="Emp5SuprName_8445" name="Emp5SuprName_8445" maxlength="100"></TD>
+<TD>Supervisor's Title<BR><input type="text" value="#attributes.Emp5SuprTitle_8446#" id="Emp5SuprTitle_8446" name="Emp5SuprTitle_8446" maxlength="100"></TD>
+</TR>
+<TR>
+<TD colspan="2">
+Reason for leaving or seeking other employment?<BR>(maximum of 500 characters)<BR>
+<textarea cols="55" rows="3" id="Emp5Reas4Leave_8447" name="Emp5Reas4Leave_8447" maxlength="510" onchange="return ismaxlength(this)">#attributes.Emp5Reas4Leave_8447#</textarea>
+</TD>
+</TR>
+<TR>
+<TD colspan="2">
+Brief description of job duties and responsibilities<BR>(maximum of 500 characters)<BR>
+<textarea cols="55" rows="3" id="Emp5JobDesc_8448" name="Emp5JobDesc_8448" maxlength="510" onchange="return ismaxlength(this)">#attributes.Emp5JobDesc_8448#</textarea>
+</TD>
+</TR>
+</table>
+<div align="left">
+<input type="button" name="previous1" id="previous1" class="cssFormButton" value="Previous" onclick="toggleLayer('stage4');toggleLayer('stage3');">
+<input type="button" name="continue2" id ="continue2" class="cssFormButton" value = "Continue" onclick="toggleLayerandcheck('stage4','stage5');"></div>
+</div>
+
+
+
+<script type="text/javascript">
+
+if ("#attributes.Emp1Contact_8348#" == "No") {
+    document.ResumeForm.Emp1Contact_8348[1].checked = true;
+}
+if ("#attributes.Emp1Contact_8348#" == "Yes") {
+    document.ResumeForm.Emp1Contact_8348[0].checked = true;
+}
+if ("#attributes.Emp1CurrentEmploy_8350#" == "No") {
+    document.ResumeForm.Emp1CurrentEmploy_8350[1].checked = true;
+}
+if ("#attributes.Emp1CurrentEmploy_8350#" == "Yes") {
+    document.ResumeForm.Emp1CurrentEmploy_8350[0].checked = true;
+}
+
+if ("#attributes.Emp2Contact_8370#" == "No") {
+    document.ResumeForm.Emp2Contact_8370[1].checked = true;
+}
+if ("#attributes.Emp2Contact_8370#" == "Yes") {
+    document.ResumeForm.Emp2Contact_8370[0].checked = true;
+}
+
+if ("#attributes.Emp2CurrentEmploy_8372#" == "No") {
+    document.ResumeForm.Emp2CurrentEmploy_8372[1].checked = true;
+}
+if ("#attributes.Emp2CurrentEmploy_8372#" == "Yes") {
+    document.ResumeForm.Emp2CurrentEmploy_8372[0].checked = true;
+}
+
+if ("#attributes.Emp3Contact_8392#" == "No") {
+    document.ResumeForm.Emp3Contact_8392[1].checked = true;
+}
+if ("#attributes.Emp3Contact_8392#" == "Yes") {
+    document.ResumeForm.Emp3Contact_8392[0].checked = true;
+}
+
+if ("#attributes.Emp3CurrentEmploy_8394#" == "No") {
+    document.ResumeForm.Emp3CurrentEmploy_8394[1].checked = true;
+}
+if ("#attributes.Emp3CurrentEmploy_8394#" == "Yes") {
+    document.ResumeForm.Emp3CurrentEmploy_8394[0].checked = true;
+}
+
+if ("#attributes.Emp4Contact_8414#" == "No") {
+    document.ResumeForm.Emp4Contact_8414[1].checked = true;
+}
+if ("#attributes.Emp4Contact_8414#" == "Yes") {
+    document.ResumeForm.Emp4Contact_8414[0].checked = true;
+}
+
+if ("#attributes.Emp4CurrentEmploy_8416#" == "No") {
+    document.ResumeForm.Emp4CurrentEmploy_8416[1].checked = true;
+}
+if ("#attributes.Emp4CurrentEmploy_8416#" == "Yes") {
+    document.ResumeForm.Emp4CurrentEmploy_8416[0].checked = true;
+}
+if ("#attributes.Emp5Contact_8436#" == "No") {
+    document.ResumeForm.Emp5Contact_8436[1].checked = true;
+}
+if ("#attributes.Emp5Contact_8436#" == "Yes") {
+    document.ResumeForm.Emp5Contact_8436[0].checked = true;
+}
+
+if ("#attributes.Emp5CurrentEmploy_8438#" == "No") {
+    document.ResumeForm.Emp5CurrentEmploy_8438[1].checked = true;
+}
+if ("#attributes.Emp5CurrentEmploy_8438#" == "Yes") {
+    document.ResumeForm.Emp5CurrentEmploy_8438[0].checked = true;
+}
+</script>
+<!-- End Module: Employment History -->
+
+<!-- Module: References -->
+<div id="stage5" class="stage5">
+<span class="eheader">References</span><BR>
+<span class="eheader2">Please list references which you have worked with in a professional or academic setting. 
+<BR>We request you refrain from listing personal acquaintances or relatives in this section.</span><BR>
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<tr>
+<TD colspan="2" class="eheader3">Reference 1</TD>
+</tr>
+<TR>
+<TD width="50%">Name <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.ReferenceName1_8449#" id="ReferenceName1_8449" name="ReferenceName1_8449" maxlength="100"></TD>
+<TD>Company Name <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.Ref1CName_8450#" id="Ref1CName_8450" name="Ref1CName_8450" maxlength="100"></TD>
+</TR>
+<TR>
+<TD>Job Title <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.Ref1JTitle_8451#" id="Ref1JTitle_8451" name="Ref1JTitle_8451" maxlength="100"></TD>
+<TD>Relationship <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.Ref1Relation_8452#" id="Ref1Relation_8452" name="Ref1Relation_8452" maxlength="100"></TD>
+</TR>
+<TR>
+<TD>Email Address <BR><input type="text" value="#attributes.ReferenceEmail1_8453#" id="ReferenceEmail1_8453" name="ReferenceEmail1_8453" maxlength="100"></TD>
+<TD>Phone Number <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.ReferencePhone1_8454#" id="ReferencePhone1_8454" name="ReferencePhone1_8454" maxlength="20"></TD>
+</TR>
+</table>
+<BR><BR>
+
+
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<tr>
+<TD colspan="2" class="eheader3">Reference 2</TD>
+</tr>
+<TR>
+<TD width="50%">Name<BR><input type="text" value="#attributes.ReferenceName2_8455#" id="ReferenceName2_8455" name="ReferenceName2_8455" maxlength="100"></TD>
+<TD>Company Name<BR><input type="text" value="#attributes.Ref2cname_8456#" id="Ref2cname_8456" name="Ref2cname_8456" maxlength="100"></TD>
+</TR>
+<TR>
+<TD>Job Title<BR><input type="text" value="#attributes.Ref2JTitle_8457#" id="Ref2JTitle_8457" name="Ref2JTitle_8457" maxlength="100"></TD>
+<TD>Relationship<BR><input type="text" value="#attributes.Ref2relation_8458#" id="Ref2relation_8458" name="Ref2relation_8458" maxlength="100"></TD>
+</TR>
+<TR>
+<TD>Email Address<BR><input type="text" value="#attributes.ReferenceEmail2_8459#" id="ReferenceEmail2_8459" name="ReferenceEmail2_8459" maxlength="100"></TD>
+<TD>Phone Number <BR><input type="text" value="#attributes.ReferencePhone2_8460#" id="ReferencePhone2_8460" name="ReferencePhone2_8460" maxlength="20"></TD>
+</TR>
+</table>
+<BR><BR>
+
+
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<tr>
+<TD colspan="2" class="eheader3">Reference 3</TD>
+</tr>
+<TR>
+<TD width="50%">Name<BR><input type="text" value="#attributes.ReferenceName3_8461#" id="ReferenceName3_8461" name="ReferenceName3_8461" maxlength="100"></TD>
+<TD>Company Name<BR><input type="text" value="#attributes.Ref3CName_8462#" id="Ref3CName_8462" name="Ref3CName_8462" maxlength="100"></TD>
+</TR>
+<TR>
+<TD>Job Title<BR><input type="text" value="#attributes.Ref3JTitle_8463#" id="Ref3JTitle_8463" name="Ref3JTitle_8463" maxlength="100"></TD>
+<TD>Relationship<BR><input type="text" value="#attributes.Ref3Relation_8464#" id="Ref3Relation_8464" name="Ref3Relation_8464" maxlength="100"></TD>
+</TR>
+<TR>
+<TD>Email Address<BR><input type="text" value="#attributes.ReferenceEmail3_8465#" id="ReferenceEmail3_8465" name="ReferenceEmail3_8465" maxlength="100"></TD>
+<TD>Phone Number <BR><input type="text" value="#attributes.ReferencePhone3_8466#" id="ReferencePhone3_8466" name="ReferencePhone3_8466" maxlength="20"></TD>
+</TR>
+</table>
+<div align="left">
+<input type="button" name="previous1" id="previous1" class="cssFormButton" value="Previous" onclick="toggleLayer('stage5');toggleLayer('stage4');">
+<input type="button" name="continue2" id ="continue2" class="cssFormButton" value = "Continue" onclick="toggleLayerandcheck('stage5','stage6');"></div>
+</div>
+
+<!-- End Module: References -->
+
+
+<!-- Module: Conditions of Application and Employment -->
+<div id="stage6" class="stage6">
+<span class="eheader">Conditions of Application and Employment</span><BR>
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD colspan="2">
+	<!--I understand that any false statements in this application may be cause for rejection or termination of my employment with Mitsubishi Electric Automation, Inc. I also grant permission to Mitsubishi Electric Automation, Inc. to investigate my former employment and references, and to my former employers and references to release information about me to Mitsubishi Electric Automation, Inc. In consideration of my potential employment with Mitsubishi Electric Automation, Inc., I release Mitsubishi Electric Automation, Inc., former employers, and references from any liability with respect to providing information about me, including my employment and attendance records and reasons for termination. I understand that neither this document nor any offer of employment from the employer constitutes an employment contract, unless a specific document to that effect is executed by Mitsubishi Electric Automation, Inc. and myself in writing.-->
+I understand that any false statements in this application may be cause for rejection or termination of my employment with Mitsubishi Electric Automation, Inc. I also grant permission to Mitsubishi Electric Automation, Inc. to investigate my former employment and references, and to my former employers and references to release information about me to Mitsubishi Electric Automation, Inc through a 3^rd^ party vendor. In consideration of my potential employment with Mitsubishi Electric Automation, Inc., I release Mitsubishi Electric Automation, Inc., former employers, and references from any liability with respect to providing information about me, including my employment and attendance records and reasons for termination. I understand that neither this document nor any offer of employment from the employer constitutes an employment contract or will affect my status as an at-will employee which means that either Mitsubishi Electric Automation, Inc. or I can end the employment relationship at any time with or without notice and with or without cause.
+</TD>
+</TR>
+<TR>
+<TD width="50%">  <input type="checkbox" id="CondOfAppAgreeAuth_8467" name="CondOfAppAgreeAuth_8467" value="X"> I agree to the statements of the authorization <BR>above. <span class="cssApplyHighlight">*</span><BR><input type="hidden" name="CondOfAppAgreeAuth_8467" value=""></TD>
+<TD><input type="checkbox" id="CondOfAppElecSign_8468" name="CondOfAppElecSign_8468" value="X"> I hereby Authorize this electronic signature submittal to serve as my legal signature <span class="cssApplyHighlight">*</span><BR><input type="hidden" name="CondOfAppElecSign_8468" value=""></TD>
+</TR>
+<TR>
+<TD>Signature <span class="cssApplyHighlight">*</span>(enter full legal name)<BR><input type="text" value="#attributes.CondOfAppSignature_8469#" id="CondOfAppSignature_8469" name="CondOfAppSignature_8469" maxlength="150"></TD>
+<TD>Date <span class="cssApplyHighlight">*</span>(mm/dd/yyyy)<BR><input type="text" value="#attributes.CondOfAppDate_8470#" id="CondOfAppDate_8470" name="CondOfAppDate_8470" readonly></TD>
+</TR>
+</table>
+<!--<div align="left">
+<input type="button" name="previous1" id="previous1" class="cssFormButton" value="Previous" onclick="toggleLayer('stage6');toggleLayer('stage5');">
+<input type="button" name="continue2" id ="continue2" class="cssFormButton" value = "Continue" onclick="toggleLayerandcheck('stage6','stage7');"></div>
+</div>-->
+
+<div align="left" id="finalbutton">
+<input type="button" name="previous1" id="previous1" class="cssFormButton" value="Previous" onclick="toggleLayer('stage6');toggleLayer('stage5');">
+</div>
+
+
+<script type="text/javascript">
+if ("#attributes.CondOfAppAgreeAuth_8467#" == "X") {
+    document.ResumeForm.CondOfAppAgreeAuth_8467[0].checked = true;
+}
+if ("#attributes.CondOfAppElecSign_8468#" == "X") {
+    document.ResumeForm.CondOfAppElecSign_8468[0].checked = true;
+}
+</script>
+<!-- End Module: Conditions of Application and Employment -->
+
+<!-- Module: Pre-employment Authorization and Consent for Release of Personal Information -->
+<!--<div id="stage7" class="stage7">
+<span class="eheader">Pre-employment Authorization and Consent for Release of Personal Information</span><BR>
+<table cellspacing="0" cellpadding="2" border="1" frame="box" rules="all" class="eborderedtable">
+<TR>
+<TD colspan="2">
+Mitsubishi Electric Automation, Inc. may obtain information about you from a consumer reporting agency for employment purposes. Thus, you may be the subject of a "consumer report" and/or an "investigative consumer report" which may include information about your character, general reputation, personal characteristics, and/or mode of living and which can involve personal interviews with sources such as your neighbors, friends, or associates. These reports may contain information regarding your credit history, criminal history, social security verification, motor vehicle records ("driving records"), verification of your education or employment history, or other background checks. You have the right, upon written request made within a reasonable time after receipt of this notice, to request disclosure of the nature and scope of any investigative consumer report. Please be advised that the nature and scope of the most common form of investigative consumer report obtained with regard to applicants for employment is an investigation into your education and/or employment history conducted by Aurico Client Services, 116 W. Eastman Street, Arlington Heights, IL 60004 and (847) 255-1852 or another outside organization. The scope of this notice and authorization is all-encompassing, however, allowing Mitsubishi Electric Automation, Inc. to obtain from any outside organization all manner of consumer reports and investigative consumer reports now and throughout the course of your employment to the extent permitted by law. As a result, you should carefully consider whether to exercise your right to request disclosure of the nature and scope of any investigative consumer report.
+<BR><BR>
+New York applicants or employees only: You have the right to inspect and receive a copy of any investigative consumer report requested by Mitsubishi Electric Automation, Inc. by contacting the consumer reporting agency identified above directly.
+<BR><BR>
+<span class="eboldtext">Acknowledgement and Authorization</span>
+<BR><BR>
+I acknowledge receipt of the NOTICE REGARDING BACKGROUND INVESTIGATION and <a href=http://www.consumer.ftc.gov/articles/pdf-0096-fair-credit-reporting-act.pdf target="_new">A SUMMARY OF YOUR RIGHTS UNDER THE FAIR CREDIT REPORTING ACT</a> and certify that I have read and understand both of those documents. I hereby authorize the obtaining of "consumer reports" and/or "investigative consumer reports" by Mitsubishi Electric Automation, Inc. at any time after receipt of this authorization and throughout my employment, if applicable. To this end, I hereby authorize, without reservation, any law enforcement agency, administrator, state or federal agency, institution, school or university (public or private), information service bureau, employer, or insurance company to furnish any and all background information requested by Aurico Client Services, 116 W. Eastman Street, Arlington Heights, IL 60004 and (847) 255-1852, another outside organization acting on behalf of Mitsubishi Electric Automation, Inc., and/or Mitsubishi Electric Automation, Inc. itself. I agree that a facsimile ("fax"), electronic or photographic copy of this Authorization shall be as valid as the original.
+<BR><BR>
+Minnesota and Oklahoma applicants or employees only: Please check this box if you would like to receive a copy of a consumer report if one is obtained by Mitsubishi Electric Automation, Inc. <input type="checkbox" name="CopyOfReport_8471" value="X">
+<BR><BR><input type="hidden" id="CopyOfReport_8471" name="CopyOfReport_8471" value="">
+California applicants or employees only: By signing below, you also acknowledge receipt of the NOTICE REGARDING BACKGROUND INVESTIGATION PURSUANT TO CALIFORNIA LAW. Please check this box if you would like to receive a copy of an investigative consumer report or consumer credit report at no charge if one is obtained by Mitsubishi Electric Automation, Inc. whenever you have a right to receive such a copy under California law. <input type="checkbox" name="CopyOfReport2_8472" value="X">
+<BR><BR><input type="hidden" id="CopyOfReport2_8472" name="CopyOfReport2_8472" value="">
+<BR><BR>
+</TD>
+</TR>
+<TR>
+<TD width="50%"> <input type="checkbox" id="PreAgreeAuth_8473" name="PreAgreeAuth_8473" value="X"> I agree to the statements of the authorization <BR>above. <span class="cssApplyHighlight">*</span><BR></TD><input type="hidden" name="PreAgreeAuth_8473" value="">
+<TD><input type="checkbox" ide="PreElecSign_8474" name="PreElecSign_8474" value="X" > I hereby authorize this electronic signature submittal to serve as my legal signature <span class="cssApplyHighlight">*</span><BR></TD><input type="hidden" name="PreElecSign_8474" value="">
+</TR>
+<TR>
+<TD>Signature <span class="cssApplyHighlight">*</span>(enter full legal name)<BR><input type="text" value="#attributes.PreSignature_8475#" id="PreSignature_8475" name="PreSignature_8475" maxlength="150" ></TD>
+<TD>Date <span class="cssApplyHighlight">*</span>(mm/dd/yyyy)<BR><input type="text" value="#attributes.PreDate_8476#" id="PreDate_8476" name="PreDate_8476" readonly></TD>
+</TR>
+<TR>
+<TD>Present Phone Number <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.PrePhone_8477#" id="PrePhone_8477" name="PrePhone_8477" maxlength="20" ></TD>
+<TD>&nbsp;</TD>
+</TR>
+<TR>
+<TD>Social Security Number <span class="cssApplyHighlight">*</span>(###-##-####)<BR><input type="text" value="#attributes.SSN_8478#" id="SSN_8478" name="SSN_8478" maxlength="11" ></TD>
+<TD>Date of Birth <span class="cssApplyHighlight">*</span>(mm/dd/yyyy)<BR><input type="text" value="#attributes.DateOfBirth_8479#" id="DateOfBirth_8479" name="DateOfBirth_8479" maxlength="10" ></TD>
+</TR>
+<TR>
+<TD colspan="2"><span class="eboldtext">Driver's License</span><BR>If you do not have a Driver's License enter the word <span class="eitalictext">'none'</span> for Driver's License Number and
+<BR>your <span class="eitalictext">'current state of residence'</span> for Driver's License State.</TD>
+</TR>
+<TR>
+<TD>Driver's License Number <span class="cssApplyHighlight">*</span><BR><input type="text" value="#attributes.DriversLicenseNumber_8480#" id="DriversLicenseNumber_8480" name="DriversLicenseNumber_8480" maxlength="20" ></TD>
+<TD id="DriversLicenseStateCell">
+	Driver's License State <span class="cssApplyHighlight">*</span><BR>
+	<script type="text/javascript">createArrayDropDown(states, "DriversLicenseState_8481","#attributes.DriversLicenseState_8481#",document.getElementById("DriversLicenseStateCell"));</script>
+</TD>
+</TR>
+<TR>
+<TD colspan="2"><BR><span class="eboldtext">List all cities and states where you have lived in the past 7 years.</span></TD>
+</TR>
+<TR>
+<TD colspan="2">Current</TD>
+</TR>
+<TR>
+<TD align="right">Street <span class="cssApplyHighlight">*</span></TD>
+<TD><input type="text" value="#attributes.CurrentStreet_8482#" id="CurrentStreet_8482" name="CurrentStreet_8482" maxlength="100" ></TD>
+</TR>
+<TR>
+<TD align="right">City <span class="cssApplyHighlight">*</span></TD>
+<TD><input type="text" value="#attributes.CurrentCity_8483#" id="CurrentCity_8483" name="CurrentCity_8483" maxlength="50" ></TD>
+</TR>
+<TR>
+<TD align="right">County <span class="cssApplyHighlight">*</span></TD>
+<TD><input type="text" value="#attributes.CurrentCounty_8484#" id="CurrentCounty_8484" name="CurrentCounty_8484" maxlength="25"></TD>
+</TR>
+<TR>
+<input type="hidden" name="CurrentCountry_8485" value="#attributes.CurrentCountry_8485#">
+<TD align="right">Country <span class="cssApplyHighlight">*</span></TD>
+<TD id="CurrentCountryDrpdwnCell">
+<script type="text/javascript">
+	createArrayDropDown(countries, "CurrentCountryDrpdwn_8486","#attributes.CurrentCountryDrpdwn_8486#",document.getElementById("CurrentCountryDrpdwnCell"));
+</script>
+</TD>
+</TR>
+<TR>
+<TD align="right">State/Region <span class="cssApplyHighlight">*</span></TD>
+<TD><select size="1" id="CurrentRegion_8487" name="CurrentRegion_8487">
+		<option value="" selected="selected">--</option>
+	</select>
+</TD>
+</TR>
+<TR>
+<TD align="right">How Long? <span class="cssApplyHighlight">*</span></TD>
+<TD><input type="text" value="#attributes.CurrentHowLong_8488#" id="CurrentHowLong_8488" name="CurrentHowLong_8488" maxlength="15"></TD>
+</TR>
+<TR>
+<TD colspan="2">Prior 1</TD>
+</TR>
+<TR>
+<TD align="right">Street</TD>
+<TD><input type="text" value="#attributes.Prior1Street_8489#" id="Prior1Street_8489" name="Prior1Street_8489" maxlength="100"></TD>
+</TR>
+<TR>
+<TD align="right">City</TD>
+<TD><input type="text" value="#attributes.Prior1City_8490#" id="Prior1City_8490" name="Prior1City_8490" maxlength="50"></TD>
+</TR>
+<TR>
+<TD align="right">County</TD>
+<TD><input type="text" value="#attributes.Prior1County_8491#" id="Prior1County_8491" name="Prior1County_8491" maxlength="25"></TD>
+</TR>
+<TR>
+<input type="hidden" name="Prior1Country_8492" value="#attributes.Prior1Country_8492#">
+<TD align="right">Country</TD>
+<TD id="Prior1CountryDrpdwnCell">
+<script type="text/javascript">
+	createArrayDropDown(countries, "Prior1CountryDrpdwn_8493","#attributes.Prior1CountryDrpdwn_8493#",document.getElementById("Prior1CountryDrpdwnCell"));
+</script>
+</TD>
+</TR>
+<TR>
+<TD align="right">State/Region</TD>
+<TD><select size="1" id="Prior1Region_8494" name="Prior1Region_8494" class="cssApplyFormSelect">
+	<option value="" selected="selected">--</option>
+    </select>
+</TD>
+</TR>
+<TR>
+<TD align="right">How Long?</TD>
+<TD><input type="text" value="#attributes.Prior1HowLong_8495#" id="Prior1HowLong_8495" name="Prior1HowLong_8495" maxlength="15">
+</TR>
+<TR>
+<TD colspan="2">Prior 2</TD>
+</TR>
+<TR>
+<TD align="right">Street</TD>
+<TD><input type="text" value="#attributes.Prior2Street_8496#" id="Prior2Street_8496" name="Prior2Street_8496" maxlength="100"></TD>
+</TR>
+<TR>
+<TD align="right">City</TD>
+<TD><input type="text" value="#attributes.Prior2City_8497#" id="Prior2City_8497" name="Prior2City_8497" maxlength="50"></TD>
+</TR>
+<TR>
+<TD align="right">County</TD>
+<TD><input type="text" value="#attributes.Prior2County_8498#" id="Prior2County_8498" name="Prior2County_8498" maxlength="25"></TD>
+</TR>
+<TR>
+<input type="hidden" name="Prior2Country_8499" value="#attributes.Prior2Country_8499#">
+<TD align="right">Country</TD>
+<TD id="Prior2CountryDrpdwnCell">
+<script type="text/javascript">
+	createArrayDropDown(countries, "Prior2CountryDrpdwn_8500","#attributes.Prior2CountryDrpdwn_8500#",document.getElementById("Prior2CountryDrpdwnCell"));
+</script>	
+</TD>
+</TR>
+<TR>
+<TD align="right">State/Region</TD>
+<TD><select size="1" id="Prior2Region_8501" name="Prior2Region_8501"  class="cssApplyFormSelect">
+		<option value="" selected="selected">--</option>
+	</select>
+</TD>
+</TR>
+<TR>
+<TD align="right">How Long?</TD>
+<TD><input type="text" value="#attributes.Prior2HowLong_8502#" id="Prior2HowLong_8502" name="Prior2HowLong_8502" maxlength="15">
+</TR>
+<TR>
+<TD colspan="2">Prior 3</TD>
+</TR>
+<TR>
+<TD align="right">Street</TD>
+<TD><input type="text" value="#attributes.Prior3Street_8503#" id="Prior3Street_8503" name="Prior3Street_8503" maxlength="100"></TD>
+</TR>
+<TR>
+<TD align="right">City</TD>
+<TD><input type="text" value="#attributes.Prior3City_8504#" id="Prior3City_8504" name="Prior3City_8504" maxlength="50"></TD>
+</TR>
+<TR>
+<TD align="right">County</TD>
+<TD><input type="text" value="#attributes.Prior3County_8505#" id="Prior3County_8505" name="Prior3County_8505" maxlength="25"></TD>
+</TR>
+<TR>
+<input type="hidden" name="Prior3Country_8506" value="#attributes.Prior3Country_8506#">
+<TD align="right">Country </TD>
+<TD id="Prior3CountryDrpdwnCell">
+<script type="text/javascript">
+	createArrayDropDown(countries, "Prior3CountryDrpdwn_8507","#attributes.Prior3CountryDrpdwn_8507#",document.getElementById("Prior3CountryDrpdwnCell"));
+</script>	
+</TD>
+</TR>
+<TR>
+<TD align="right">State/Region</TD>
+<TD><select size="1" id="Prior3Region_8508" name="Prior3Region_8508" class="cssApplyFormSelect">
+		<option value="" selected="selected">--</option>
+	</select>
+</TD>
+</TR>
+<TR>
+<TD align="right">How Long?</TD>
+<TD><input type="text" value="#attributes.Prior3HowLong_8509#" id="Prior3HowLong_8509" name="Prior3HowLong_8509" maxlength="15">
+</TR>
+</table>
+
+<div align="left" id="finalbutton">
+<input type="button" name="previous1" id="previous1" class="cssFormButton" value="Previous" onclick="toggleLayer('stage7');toggleLayer('stage6');">
+</div>-->
+
+</div>
+
+<script type="text/javascript">
+
+/*if ("#attributes.CopyOfReport_8471#" == "X") {
+    document.ResumeForm.CopyOfReport_8471[0].checked = true;
+}
+if ("#attributes.CopyOfReport2_8472#" == "X") {
+    document.ResumeForm.CopyOfReport2_8472[0].checked = true;
+}
+if ("#attributes.PreAgreeAuth_8473#" == "X") {
+    document.ResumeForm.PreAgreeAuth_8473[0].checked = true;
+}
+if ("#attributes.PreElecSign_8474#" == "X") {
+    document.ResumeForm.PreElecSign_8474[0].checked = true;
+}
+*/
+
+</script>
+
+<!-- End Module: Pre-employment Authorization and Consent for Release of Personal Information -->
+
+<script type="text/javascript">
+var thedate = document.ResumeForm.systemdate.value;
+var theyear = thedate.substr(0,4);
+var themonth = thedate.substr(5,2);
+var theday = thedate.substr(8,2);
+document.ResumeForm.CondOfAppDate_8470.value = (themonth + "/" + theday + "/" + theyear);
+/*document.ResumeForm.PreDate_8476.value = (themonth + "/" + theday + "/" + theyear);*/
+
+
+/*Works with Prefill for the drop down and region combo boxes*/
+function loadCountryRegion() {
+	
+	if (document.getElementById('HSCountryDrpdwn_8295').value) {
+		document.getElementById('HighSchoolRegion_8296').value = "#attributes.HighSchoolRegion_8296#";
+	}
+	if (document.getElementById('CollegeCountryDrpdwn_8303').value) {
+		document.getElementById('CollegeRegion_8304').value = "#attributes.CollegeRegion_8304#";
+	}
+	if (document.getElementById('GradCountryDrpdwn_8315').value) {
+		document.getElementById('GradSchoolRegion_8316').value = "#attributes.GradSchoolRegion_8316#";
+	}
+	if (document.getElementById('Emp1CountryDrpdwn_8344').value) {
+		document.getElementById('EmployerRegion1_8345').value = "#attributes.EmployerRegion1_8345#";
+	}
+	if (document.getElementById('Emp2CountryDrpdwn_8366').value) {
+		document.getElementById('EmployerRegion2_8367').value = "#attributes.EmployerRegion2_8367#";
+	}
+	if (document.getElementById('Emp3CountryDrpdwn_8388').value) {
+		document.getElementById('EmployerRegion3_8389').value = "#attributes.EmployerRegion3_8389#";
+	}
+	if (document.getElementById('Emp4CountryDrpdwn_8410').value) {
+		document.getElementById('EmployerRegion4_8411').value = "#attributes.EmployerRegion4_8411#";
+	}
+	if (document.getElementById('Emp5CountryDrpdwn_8432').value) {
+		document.getElementById('EmployerRegion5_8433').value = "#attributes.EmployerRegion5_8433#";
+	}
+	/*
+	if (document.getElementById('CurrentCountryDrpdwn_8486').value) {
+		document.getElementById('CurrentRegion_8487').value = "#attributes.CurrentRegion_8487#";
+	}
+	if (document.getElementById('Prior1CountryDrpdwn_8493').value) {
+		document.getElementById('Prior1Region_8494').value = "#attributes.Prior1Region_8494#";
+	}
+	if (document.getElementById('Prior2CountryDrpdwn_8500').value) {
+		document.getElementById('Prior2Region_8501').value = "#attributes.Prior2Region_8501#";
+	}
+	if (document.getElementById('Prior3CountryDrpdwn_8507').value) {
+		document.getElementById('Prior3Region_8508').value = "#attributes.Prior3Region_8508#";
+	}
+	*/
+}
+
+
+if(navigator.userAgent.indexOf("Firefox")!=-1){
+var versionindex=navigator.userAgent.indexOf("Firefox")+8
+if (parseInt(navigator.userAgent.charAt(versionindex))>=1)
+	onload = function() {
+		toggleLayer('stage0');
+		loadCountryRegion();
+
+		}
+}
+
+else if(navigator.userAgent.indexOf("Netscape")!=-1){
+	onload = function() {
+	document.getElementById('stage0').style.display =  "block";
+	loadCountryRegion();
+	}
+} else {
+	onload = function() {
+	stage0.style.display =  "block";
+	loadCountryRegion();
+}
+}
+
+(function($) {
+     $(function() {
+        $("#ResumeForm").bind("submit", function() {
+		if (valeApp()==false)
+		{
+		   $('input[type=submit]', $("#ResumeForm")).removeAttr("disabled");
+		  return false;   		 
+    		}
+    
+});
+
+                });
+})(jQuery);
+
+!function($){
+	$(function(){
+		$("#finalbutton").append($("input[type=submit][name=submit]"));
+	});
+}(window.jQuery);
+
+//LM 4/29/2013 Retreive Region Information
+!function($) {
+         $(function() {
+			function getCountryData(ctryDrpDown, regionDrpDwn){
+			var elm = $(regionDrpDwn);
+			if (elm.length) {
+			// AJAX to retrieve this country data
+				$.getJSON('index.cfm?fuseaction=app.ajaxRegionList', {
+				 id: $(ctryDrpDown).val()
+			}, function(data){
+				var options = '';
+                   
+				// empty default option
+				options = '<option value ="">[Select State/Region]</option>';
+				 // loop over regions to create options
+					for (var i = 0, len = data.Regions.length; i < len; i++) {
+						options += '<option value="' + data.Regions[i]['value'] + '">' + data.Regions[i]['label'] + '</option>';
+					}
+                           	// replace Region options
+				   elm.find('option').remove();
+					elm.append(options);
+						                             
+				// set the pattern for this country postalCode
+				$('#postalcode').webfield('pattern',data.PostalCodeRegEx);
+                       });
+                     }
+              }
+
+// bind event to retrieve country data when country changes and on page load
+
+$('select#HSCountryDrpdwn_8295').bind('change', function(){
+	getCountryData(document.ResumeForm.HSCountryDrpdwn_8295, document.ResumeForm.HighSchoolRegion_8296);}).trigger('change');
+       
+$('select#CollegeCountryDrpdwn_8303').bind('change', function() {
+         getCountryData(document.ResumeForm.CollegeCountryDrpdwn_8303, document.ResumeForm.CollegeRegion_8304);}).trigger('change');
+
+$('select#GradCountryDrpdwn_8315').bind('change', function() {
+                     getCountryData(document.ResumeForm.GradCountryDrpdwn_8315, document.ResumeForm.GradSchoolRegion_8316);
+              }).trigger('change');	 
+			  
+$('select#Emp1CountryDrpdwn_8344').bind('change', function() {
+                     getCountryData(document.ResumeForm.Emp1CountryDrpdwn_8344, document.ResumeForm.EmployerRegion1_8345);
+              }).trigger('change');
+
+$('select#Emp2CountryDrpdwn_8366').bind('change', function() {
+                     getCountryData(document.ResumeForm.Emp2CountryDrpdwn_8366, document.ResumeForm.EmployerRegion2_8367);
+              }).trigger('change');
+
+$('select#Emp3CountryDrpdwn_8388').bind('change', function() {
+                     getCountryData(document.ResumeForm.Emp3CountryDrpdwn_8388, document.ResumeForm.EmployerRegion3_8389);
+              }).trigger('change');
+
+$('select#Emp4CountryDrpdwn_8410').bind('change', function() {
+                     getCountryData(document.ResumeForm.Emp4CountryDrpdwn_8410, document.ResumeForm.EmployerRegion4_8411);
+              }).trigger('change');
+
+$('select#Emp5CountryDrpdwn_8432').bind('change', function() {
+                     getCountryData(document.ResumeForm.Emp5CountryDrpdwn_8432, document.ResumeForm.EmployerRegion5_8433);
+              }).trigger('change');
+ /*              
+$('select#CurrentCountryDrpdwn_8486').bind('change', function() {
+                     getCountryData(document.ResumeForm.CurrentCountryDrpdwn_8486, document.ResumeForm.CurrentRegion_8487);
+              }).trigger('change');
+
+$('select#Prior1CountryDrpdwn_8493').bind('change', function() {
+                     getCountryData(document.ResumeForm.Prior1CountryDrpdwn_8493, document.ResumeForm.Prior1Region_8494);
+              }).trigger('change');
+
+$('select#Prior2CountryDrpdwn_8500').bind('change', function() {
+                     getCountryData(document.ResumeForm.Prior2CountryDrpdwn_8500, document.ResumeForm.Prior2Region_8501);
+              }).trigger('change');
+
+$('select#Prior3CountryDrpdwn_8507').bind('change', function() {
+                     getCountryData(document.ResumeForm.Prior3CountryDrpdwn_8507, document.ResumeForm.Prior3Region_8508);
+              }).trigger('change');				
+*/				
+				
+				});
+}(window.jQuery);
+
+</script>

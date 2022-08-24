@@ -1,0 +1,86 @@
+<table border="0">
+                
+                 <tr><td>Your first and last name must match the name shown on your government-issued ID.</td></tr>
+<tr><td>&nbsp</td></tr>
+</table>
+<table border="0">
+          <tr>
+            <td id='First_Name_prompt'>Legal First Name</td>
+            <td colspan="3"><input type="text" name="First_Name" value="<$client.tForWhomUserInfo.First_Name>" /></td>
+        </tr>
+        <tr>
+            <td id='Middle_Name_prompt'>Middle Name</td>
+            <td colspan="3"><input type="text" name="Middle_Name" value="<$client.tForWhomUserInfo.Middle_Name>" /></td>
+        </tr>
+        <tr>
+            <td id='Last_Name_prompt'>Legal Last Name</td>
+            <td colspan="3"><input type="text" name="Last_Name" value="<$client.tForWhomUserInfo.Last_Name>" /></td>
+          </tr>
+        <tr>
+            <td id='Preferred_Name_prompt'><$client.env.promptPreferred_Name></td>
+            <td colspan="3"><$client.env.inputPreferred_Name></td>
+        </tr>
+                <tr>
+            <td><$client.env.promptIndia_FatherHusband_Name></td>
+               <td colspan="3"><$client.env.inputIndia_FatherHusband_Name>  </td>
+        </tr>
+                <tr>
+            <td><$client.env.promptDOB></td>
+            <td colspan="3"><$client.env.inputDOB></td>
+          </tr>
+        <tr>
+            <td id='Phone_prompt'><$client.env.promptPhone></td>
+            <td colspan="3"><$client.env.inputPhone></td>
+        </tr>
+          <tr>
+            <td  id='Email_prompt'>Email Address</td>
+            <td colspan="3"><input type="text" name="Email" value="<$client.tForWhomUserInfo.Email>"  size="40"/>   </td>
+          </tr>
+          <tr>
+            <td><$client.env.promptAddress1></td>
+            <td colspan="3"><$client.env.inputAddress1> </td>
+          </tr>
+          <tr>
+            <td><$client.env.promptAddress2></td>
+            <td colspan="3"><$client.env.inputAddress2> </td>
+          </tr>
+          <tr>
+            <td><$client.env.promptCity></td>
+               <td colspan="3"><$client.env.inputCity>  </td>
+        </tr>
+        <tr>
+            <td>State</td>
+                <td><$client.env.inputState></td></tr>
+                <tr>
+            <td><$client.env.promptZip></td>
+                <td><$client.env.inputZip></td>
+          </tr>
+          <tr>
+            <td><$client.env.promptCountry></td>
+            <td colspan="3"><$client.env.inputCountry></td>
+          </tr>
+
+</table>
+
+
+<div style="display:none">
+  <$client.env.inputFull_Name>
+</div>
+
+<!-- Format Dates on load -->
+<script type="text/javascript">
+   if(self.LoadCallback) {
+      LoadCallback(document.forms['frmExtendedUserProfile']);
+   }
+
+//ndugang | 12/02/2020 | SERVICES-42134 | populate hidden Full_Name Field.
+$('[name$="First_Name"],[name$="Middle_Name"],[name$="Last_Name"]').blur(function(){
+    populateFullNameField();
+});
+
+function populateFullNameField() {
+  var fullName = $('[name$="First_Name"]').val() + ($('[name$="Middle_Name"]').val().length ? " ": "") + $('[name$="Middle_Name"]').val() + ($('[name$="Last_Name"]').val().length ? " ": "") + $('[name$="Last_Name"]').val();
+  $('[name$="Full_Name"]').val(fullName.trim());
+}
+populateFullNameField();
+</script>

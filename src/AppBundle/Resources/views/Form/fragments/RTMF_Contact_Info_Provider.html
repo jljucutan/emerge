@@ -1,0 +1,358 @@
+<div id="task_summary_outer">
+    <div id="bg-image">.</div>
+    <div id="EditProfile_container">
+        <div id="EditProfile_wrapper">
+            <div id="EditProfile">
+                <h2>Update Contact Information</h2>
+                <div class="mb-13"></div>
+                <div class="heading">
+                    <span class="heading-inner">
+                        CONTACT INFORMATION
+                    </span>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="Legal First Name" data-fieldgroup-validation="required">
+                    <span class="floating-label">Legal First Name</span>
+                    <input id="First_Name" name="First_Name" type="text" value="<$client.tForWhomUserInfo.First_Name>" readonly>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="Legal Last Name" data-fieldgroup-validation="required">
+                    <span class="floating-label">Legal Last Name</span>
+                    <input id="Last_Name" name="Last_Name" type="text" value="<$client.tForWhomUserInfo.Last_Name>" readonly>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="Address Line 1" data-fieldgroup-validation="required">
+                    <span class="floating-label">Address Line 1</span>
+                    <$client.env.inputAddress1>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="Address Line 2">
+                    <span class="floating-label">Address Line 2</span>
+                    <$client.env.inputAddress2>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="Country" data-fieldgroup-validation="required">
+                    <span class="floating-label">Country</span>
+                    <$client.env.inputCountry>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="City" data-fieldgroup-validation="required">
+                    <span class="floating-label">City</span>
+                    <$client.env.inputCity>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="State/County" data-fieldgroup-validation="required">
+                    <span class="floating-label">State/County</span>
+                    <$client.env.inputState>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="Postal Code" data-fieldgroup-validation="required">
+                    <span class="floating-label">Postal Code</span>
+                    <$client.env.inputZip>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="Personal Email Address" data-fieldgroup-validation="required">
+                    <span class="floating-label">Personal Email Address</span>
+                    <input id="Email" name="Email" type="text" value="<$client.tForWhomUserInfo.Email>">
+                </div>
+                <div class="mb-18"></div>
+                <p>
+                    HRBP declares employee gave verbal authorization for PayPal to disclose their name and personal email to transition support vendor, RiseSmart
+                </p>
+                <div class="input_wrapper" data-fieldgroup-title="I Agree" data-fieldgroup-targetlabel="#RTMF_EmployeeConsented_label" data-section-group="bonus">
+                    <div id="RTMF_EmployeeConsented_label">
+                        <$client.env.inputRTMF_EmployeeConsented>
+                    </div>
+                </div>
+
+                <div class="button_group">
+                    <div class="clearfix" id="save"></div>
+                    <div id="saveandcomplete">
+                        <button id="launch-confirmation" type="button" class="lifesuite__button primary">
+                            Confirm Ready to Move Forward
+                        </button>
+                    </div>
+                    <div id="cancel"></div>
+                </div>
+
+                <div hidden>
+                    <$client.env.inputEvt_Location_Code>
+                    <input type="text" id="Site_Name" name="Site_Name" value="<$client.env.index.site_name>" />
+                    <input type="text" id="event-location" name="Evt_Location" value="<$client.tEventCategories_Category_11.Value>" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="confirmation-dialog" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-center">
+                    Are you sure you would like to move forward?
+                </h5>
+            </div>
+            <div class="modal-footer">
+                <span>
+                    <button id="confirm-cancel" type="button" class="lifesuite__button" data-dismiss="modal">No</button>
+                </span>
+                <span id="confirm"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<link href="<$link;/main/RedCarpet/FormTemplates/FormSupport/css/front_validator.css>" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/country.js"></script>
+<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/custom-paypal.js"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>" defer></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator_V2.js>" defer></script>
+<script type="text/javascript" src="<$link;/main/SiteGen/Offboarding/Content/UnplacedPages/js/vex.min.js>"></script>
+
+<script type="text/javascript">
+    /**
+     * SERVICES-40607 | jjucutan | PayPal - Offboarding additional Provider Page
+     * Define here functions that can be reused
+     */
+    const providerContext = $('#EditProfile');
+    const GLOBAL_STATES = new Map();
+    const US_STATES_LIST = ['USA-AL', 'USA-AK', 'USA-AZ', 'USA-AR', 'USA-CA', 'USA-CO', 'USA-CT', 'USA-DE', 'USA-DC', 'USA-FL', 'USA-GA', 'USA-HI', 'USA-ID', 'USA-IL', 'USA-IN', 'USA-IA', 'USA-KS', 'USA-KY', 'USA-LA', 'USA-ME', 'USA-MD', 'USA-MA', 'USA-MI', 'USA-MN', 'USA-MS', 'USA-MO', 'USA-MT', 'USA-NE', 'USA-NV', 'USA-NH', 'USA-NJ', 'USA-NM', 'USA-NY', 'USA-NC', 'USA-ND', 'USA-OH', 'USA-OK', 'USA-OR', 'USA-PA', 'USA-RI', 'USA-SC', 'USA-SD', 'USA-TN', 'USA-TX', 'USA-UT', 'USA-VT', 'USA-VA', 'USA-WA', 'USA-WV', 'USA-WI', 'USA-WY'];
+    const focusInputLabel = function(el, isFocused) {
+        "use strict";
+        let label = el.closest('.input_wrapper')
+            .find('span.floating-label')
+            .removeClass('label-focus')
+            .css({"color": "#666666"});
+        if (el.val().trim().length > 0 || isFocused) {
+            label.addClass('label-focus');
+        }
+        if (isFocused === true) {
+            label.css({"color": "#0070BA"});
+        }
+    }
+
+    const updateStatesList = function(country, stateField) {
+        "use strict";
+        let stateValue = stateField.val();
+        stateField.html('');
+        GLOBAL_STATES.forEach(function(v,k) {
+            // no country selected at all
+            if (country.length < 1) {
+                (stateField.find('option').length < 1) && stateField.append($('<option value="" selected/>'));
+                validateField(stateField, true);
+                return;
+            }
+            // populate states
+            if (k == "" || k.indexOf(country) == 0) {
+                stateField.append($('<option/>').val(k).text(v));
+            }
+            // if no state, make optional
+            if (stateField.find('option').length <= 1) {
+                stateField.data('validation', null);
+                return;
+            }
+            // retrieve value or populate blank
+            stateField.val(stateValue);
+            if (stateField.val() == null) {
+                stateField.find('option').first().prop('selected', 'selected')
+            }
+            stateField.data('validation', 'required');
+        });
+    }
+
+    // email validator
+    const EMAIL_REG = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const PAYPAL_EMAIL_REG = /@PayPal\.com/i;
+    const emailValidator = function() {
+      "use strict";
+      let isValid = true;
+      let message = '';
+      if (!EMAIL_REG.test($('#Email').val())) {
+        isValid = false;
+        message = 'Please enter a valid email address.';
+      }
+      if (PAYPAL_EMAIL_REG.test($('#Email').val())) {
+        isValid = false;
+        message = 'Personal Email address cannot end with @PayPal.com';
+      }
+      return {
+        "isValid": isValid,
+        "message": message
+      }
+    }
+    vex.defaultOptions.className = 'vex-theme-default';
+    <$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>
+    $(window).on('load', function() {
+        $('.floating-label span').css('color', 'rgb(102, 102, 102)');
+        $('.cal_and_button').prop('cellpadding', 0).prop('cellspacing', 0);
+        // replace default submit button with paypal styled
+        $('#TaskSummary_ButtonCancel').appendTo('#cancel').show();
+        if (!sTaskComplete) {
+            $('#TaskSummary_ButtonSave').appendTo('#confirm').prop('onclick', null).show().text('Yes');
+            $('#EUPDefaultSaveButton').prop('onclick', null).appendTo('#save').show();
+        }
+
+        // keep state options
+        $('[name$="State"] option').each(function(k, v) {
+            if (k == 0) {
+                GLOBAL_STATES.set("", "");
+            }
+            if ( $(this).val().indexOf('USA') >= 0 && US_STATES_LIST.indexOf($(this).val()) < 0 ) {
+                return;
+            }
+            if (k == "N/A") {
+                return;
+            }
+          GLOBAL_STATES.set(v.value, v.innerText);
+        });
+        // filter state by country
+        $('[name$=".Country"]').on('change', function() {
+            const currentState = $('#EditProfile [name$=".State"]');
+            updateStatesList($(this).val(), currentState);
+            focusInputLabel(currentState);
+        });
+        $('[name$=".Country"]').trigger('change');
+
+        // focus style text and select fields
+        $('form').on('focus', 'input[type="text"], select', function() {
+            focusInputLabel($(this), true);
+        }).on('blur', 'input[type="text"], select', function() {
+            focusInputLabel($(this));
+        });
+        // focus style date fields
+        $('form').on('focus change', 'input.hasDatepicker', function() {
+            focusInputLabel($(this), true);
+        }).on('blur change', 'input.hasDatepicker', function() {
+            focusInputLabel($(this));
+        });
+        $('form').on('focus change', '.datepicker_button', function() {
+            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'), true);
+        }).on('blur change', '.datepicker_button', function() {
+            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'));
+            $(this).parent().find('.hasDatepicker').trigger('change'); 
+        });
+
+        // hide sections not on event location
+        $.each($('[data-location-group]'), function(k,v) {
+            if($(v).data('location-group') !== $('#Evt_Location_Code').val().substring(0,3)) {
+                $(v).hide().find('input[type="text"]').val("");
+            }
+        });
+
+        // pass validation data to each fields
+        $.each($('[data-fieldgroup-validation]'), function(k,v) {
+            $(v).find('input, select').data('validation', $(v).data('fieldgroup-validation'));
+        });
+        // pass regex data to each fields
+        $.each($('[data-fieldgroup-regex]'), function(k,v) {
+            $(v).find('input').data('regex', $(v).data('fieldgroup-regex'));
+        });
+        // pass regex message to each fields
+        $.each($('[data-fieldgroup-message]'), function(k,v) {
+            $(v).find('input').data('message', $(v).data('fieldgroup-message'));
+        });
+
+        // pass validation data length to each fields
+        $.each($('[data-fieldgroup-minlength]'), function(k,v) {
+            $(v).find('input').data('minlength', $(v).data('fieldgroup-minlength'));
+        });
+        $.each($('[data-fieldgroup-maxlength]'), function(k,v) {
+            $(v).find('input').data('maxlength', $(v).data('fieldgroup-maxlength'));
+        });
+        
+        // pass target label to each radio or checkbox fields
+        $.each($('[data-fieldgroup-targetlabel]'), function(k,v) {
+            $(v).find('input[type="checkbox"], input[type="radio"]').data('label', $(v).data('fieldgroup-targetlabel'));
+        });
+
+        // pass title data to each fields
+        $.each($('[data-fieldgroup-title]'), function(k,v) {
+            $(v).find('input, select').data('title', $(v).data('fieldgroup-title'));
+        });
+
+        // focus field labels
+        $.each($('form input[type="text"], form select'),function(k,v) {
+            focusInputLabel($(v));
+        });
+
+        // validate each field
+        $('form').on('blur click', 'input[type="text"]:not(".dateField"), select', function() {
+            if ($(this).prop('name') == 'Email' && this.value.length > 0) {
+                validateField($(this), false, emailValidator);
+                return;
+            }
+            if($(this).is(':visible') && !validateField($(this))) {
+                $(this).parent().find('.text-error').css({'display': 'inline-block', 'margin-bottom': '-2px'}); // style hack since IE is such a reliable browser ;-) // changed block to inline-block
+            }
+        });
+        // checkboxes
+        $('form').on('change', 'input[type="checkbox"]', function() {
+            validateField($(this));
+        });
+
+        // validate each date fields
+        $('form').on('change', 'input[name$="_display"]:not(":hidden")', function() {
+            validateField($(this)); 
+        });
+
+        // save and complete laters
+        $('#EUPDefaultSaveButton').on('click', function(e) {
+            e.preventDefault();
+            if ($('#First_Name').val().length < 1) {
+                focusInputLabel($('#First_Name').val('<$htmlencode;client.tForWhomUserInfo.First_Name>'));
+            }
+            if ($('#Last_Name').val().length < 1) {
+                focusInputLabel($('#Last_Name').val('<$htmlencode;client.tForWhomUserInfo.Last_Name>'));
+            }
+            // if blank restore old value
+            if ($('#Email').val().length < 1) {
+                focusInputLabel($('#Email').val('<$htmlencode;client.tForWhomUserInfo.Email>'));
+            }
+            // if invalid or paypal email restore old value
+            if (!EMAIL_REG.test($('#Email').val()) || PAYPAL_EMAIL_REG.test($('#Email').val())) {
+                focusInputLabel($('#Email').val('<$htmlencode;client.tForWhomUserInfo.Email>'));
+            }
+            DisableValidation();doSave_Custom('refer-Save');
+        });
+
+        // submit the form if no errors
+        $('form').on('click', '#launch-confirmation', function(e) {
+            e.preventDefault();
+            let formIsValid = true;
+            $.each($('form input[type="text"], form input[type="checkbox"], form select'), function(k,v) {
+                if($(v).is(':visible') && !validateField($(v))) {
+                    formIsValid = false;
+                }
+                if ($(v).prop('name') == 'Email' && $(v).val().length > 0 && !validateField($(v), false, emailValidator)) {
+                    formIsValid = false;
+                }
+            })
+            if (!formIsValid) {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                return;
+            }
+            vex.dialog.buttons.YES.text = 'Yes';
+            vex.dialog.buttons.NO.text = 'No';
+            vex.dialog.confirm({
+                message: 'Are you sure you would like to move forward?',
+                contentClassName: 'paypal',
+                callback: function(proceed) {
+                    if (!!proceed) {
+                        doSave_Custom('refer-Complete');
+                    }
+                }
+            });
+        });
+        $('form').on('click', '#TaskSummary_ButtonSave', function(e) {
+            doSave_Custom('refer-Complete');
+        });
+
+        if (sTaskComplete.length) {
+            $('#launch-confirmation').hide();
+            $('input, select', '.input_wrapper').prop('disabled', 'disabled');
+        }
+        // load form when all set
+        $('#EditProfile_wrapper').fadeIn();
+
+    });
+</script>

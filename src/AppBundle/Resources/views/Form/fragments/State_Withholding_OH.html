@@ -1,0 +1,364 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+      <$client.env.FormField.Form_Name.prompt>
+      <$client.env.FormField.Form_Name.HTML>
+      <$client.env.FormField.Form_Type.prompt>
+      <$client.env.FormField.Form_Type.HTML>
+      <$client.env.FormField.Form_Owner.prompt>
+      <$client.env.FormField.Form_Owner.HTML>
+      <$client.env.FormField.Form_CreateDate.prompt>
+      <$client.env.FormField.Form_CreateDate.HTML>
+      <$client.env.FormField.Form_Completed.prompt>
+      <$client.env.FormField.Form_Completed.HTML>
+      <$client.env.FormField.Form_Delivered.prompt>
+      <$client.env.FormField.Form_Delivered.HTML>
+      <$client.env.FormField.Form_TaskId.prompt>
+      <$client.env.FormField.Form_TaskId.HTML>
+      <$client.env.FormField.display_version.HTML>
+
+      <$client.env.FormField.AdditionalWithholding.prompt>
+      <$client.env.FormField.Address.prompt>
+      <$client.env.FormField.DateSigned.prompt>
+      <$client.env.FormField.Exempt1.prompt>
+      <$client.env.FormField.Exempt2.prompt>
+      <$client.env.FormField.Dependents.prompt>
+      <$client.env.FormField.Exemptions.prompt>
+      <$client.env.FormField.FullName.prompt>
+      <$client.env.FormField.SSN.prompt>
+      <$client.env.FormField.SchoolDistrict.prompt>
+      <$client.env.FormField.SchoolDistrictNumber.prompt>
+      <$client.env.FormField.Signature.prompt>
+      <$client.env.FormField.Zip.prompt>
+      <$client.env.FormField.IKMPWV_full_year_resident.prompt>
+      <$client.env.FormField.Military_servicemen_resident.prompt>
+      <$client.env.FormField.Nonresident_military_servicemen.prompt>
+      <$client.env.FormField.Nonresident_military_servicemen_spouse.prompt>
+      <$client.env.FormField.Ohio_witholding_exempt.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+
+  <div class="row mb-4">
+    <div class="col-sm-10">
+      <div style="max-width: 300px;">
+        <img src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_OH/images/ohio_logo.jpg>" alt="OHIO Logo" class="img-fluid">
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <strong class="h3">IT 4</strong>
+      <br class="d-none d-sm-block">
+      Rev. 12/20
+    </div>  
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h4 class="text-center mb-4">
+        <strong>Employee's Withholding Exemption Certificate</strong>
+      </h4>
+      <p>Submit form IT 4 to your employer on or before the start date of employment so your employer will withhold and remit Ohio income tax from your compensation. If applicable, your employer will also withhold school district income tax. You must file an updated IT 4 when any of the information listed below changes (including your marital status or number of dependents). You should contact your employer for instructions on how to complete an updated IT 4. <strong>Your employer may require you to complete this form electronically.</strong></p>
+      <p>
+        <strong>Section I: Personal Information</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="border-dark border">
+        <div class="d-sm-flex">
+          <div class="border-dark border-bottom border-dark border-end flex-grow-1 p-1">
+            Employee Name:
+            <$client.env.FormField.FullName.HTML>
+          </div>
+          <div class="border-dark border-bottom p-1">
+            Employee SSN:
+            <$client.env.FormField.SSN.HTML>
+          </div>
+        </div>
+        <div class="d-sm-flex">
+          <div class="border-dark border-bottom flex-grow-1 p-1">
+            Address, city, state, ZIP code:
+            <$client.env.FormField.Address.HTML>
+          </div>
+          <div class="border-dark border-bottom flex-grow-0 p-1">
+            <br>
+            <$client.env.FormField.Zip.HTML>
+          </div>
+        </div>
+        <div class="d-sm-flex">
+          <div class="border-dark border-end flex-fill p-1">
+      School district of residence (See <em>The Finder</em> at <a href="https://thefinder.tax.ohio.gov/StreamlineSalesTaxWeb/default_schooldistrict.aspx" target="_blank">tax.ohio.gov</a>):
+            <$client.env.FormField.SchoolDistrict.HTML>
+          </div>
+          <div class="p-1">
+            School district number (####):
+            <$client.env.FormField.SchoolDistrictNumber.HTML>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <p>
+        <strong>Section II: Claiming Withholding Exemptions</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="row mb-1">
+    <div class="col-sm-9 pt-1">
+      1. Enter “0“ if you are a dependent on another individual’s Ohio return; otherwise enter “1”
+    </div>
+    <div class="col-sm-3">
+      <$client.env.FormField.Exempt1.HTML>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-sm-9 pt-1">
+      2. Enter “0” if single or if your spouse files a separate Ohio return; otherwise enter “1“
+    </div>
+    <div class="col-sm-3">
+      <$client.env.FormField.Exempt2.HTML>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-sm-9 pt-1">
+      3. Number of dependents
+    </div>
+    <div class="col-sm-3">
+      <$client.env.FormField.Dependents.HTML>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-sm-9 pt-1">
+      4. Total withholding exemptions (sum of line 1, 2, and 3)
+    </div>
+    <div class="col-sm-3">
+      <$client.env.FormField.Exemptions.HTML>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col-sm-9 pt-1">
+      5. Additional Ohio income tax withholding per pay period (optional).
+    </div>
+    <div class="col-sm-3">
+      <$client.env.FormField.AdditionalWithholding.HTML>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-12">
+      <p>
+        <strong>Section III: Withholding Waiver</strong>
+      </p>
+      <p>I am not subject to Ohio or school district income tax withholding because (check all that apply):</p>
+      <div class="mb-1">
+        <$client.env.FormField.IKMPWV_full_year_resident.HTML>
+      </div>
+      <div class="mb-1">
+        <$client.env.FormField.Military_servicemen_resident.HTML>
+      </div>
+      <div class="mb-1">
+        <$client.env.FormField.Nonresident_military_servicemen.HTML>
+      </div>
+      <div class="mb-1">
+        <$client.env.FormField.Nonresident_military_servicemen_spouse.HTML>
+      </div>
+      <div class="mb-1">
+        <$client.env.FormField.Ohio_witholding_exempt.HTML>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-5">
+    <div class="col-12">
+      <p><strong>Section IV: Signature</strong> (required)</p>
+      <p>Under penalties of perjury, I declare that, to the best of my knowledge and belief, the information is true, correct and complete.</p>
+      <$client.env.FormField.Signer.HTML>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h4 class="text-center">
+        <strong>IT 4 Instructions</strong>
+      </h4>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-sm-6">
+      <p class="text-justify">Most individuals are subject to Ohio income tax on their wages, salaries, or other compensation. To ensure this tax is paid, employers maintaining an office or transacting business in Ohio must withhold Ohio income tax, and school district income tax if applicable, from each individual who is an employee.</p>
+      <p class="text-justify">Such employees who are subject to Ohio income tax (and school district income tax, if applicable) should complete sections I, II, and IV of the IT 4 to have their employer withhold the appropriate Ohio taxes from their compensation. If the employee does not complete the IT 4 and return it to his/her employer, the employer:</p>
+      <ul>
+        <li>Will withhold Ohio tax based on the employee claiming <strong><u>zero exemptions</u></strong>, and</li>
+        <li><strong><u>Will not</u></strong> withhold school district income tax, even if the employee lives in a taxing school district.</li>
+      </ul>
+      <p class="text-justify">An individual may be subject to an interest penalty for underpayment of estimated taxes (on form IT/SD 2210) based on under-withholding.</p>
+      <p class="text-justify">Certain employees may be <strong><u>exempt</u></strong> from Ohio withholding because their income is not subject to Ohio tax. Such employees should complete sections I, III, and IV of the IT 4 <strong><u>only</u></strong>.</p>
+      <p class="text-justify"><strong>The IT 4 does <u>not</u> need to be filed with the Department of Taxation.</strong> Your employer must maintain a copy as part of its records.</p>
+      <p class="text-justify">R.C. 5747.06(A) and Ohio Adm.Code 5703-7-10.</p>
+      <p class="text-center">
+        <strong>
+          <u>Section I</u>
+        </strong>
+      </p>
+      <p class="text-justify">Enter the four-digit school district number of your primary address. If you do not know your school district of residence or its school district number, use <em>The Finder</em> at <strong>tax.ohio.gov</strong>. You can also verify your school district by contacting your county auditor or county board of elections.</p>
+      <p class="text-justify">If you move during the tax year, complete an updated IT 4 immediately reflecting your new address and/ or school district of residence.</p>
+      <p class="text-center">
+        <strong>
+          <u>Section II</u>
+        </strong>
+      </p>
+      <p class="text-justify"><u>Line 1:</u> If you can be claimed on someone else’s Ohio income tax return as a dependent, then you are to enter “0” on this line. Everyone else may enter “1”.</p>
+      <p class="text-justify"><u>Line 2:</u> If you are single, enter “0” on this line. If you are married and you and your spouse file separate Ohio Income tax returns as “Married filing Separately” then enter “0” on this line.</p>
+      <p class="text-justify"><u>Line 3:</u> You are allowed one exemption for each dependent. Your dependents for Ohio income tax purposes are the same as your dependents for federal income tax purposes. See R.C. 5747.01(O).</p>
+      <p class="text-justify"><u>Line 5:</u> If you expect to owe more Ohio income tax than the amount withheld from your compensation, you can request that your employer withhold an additional amount of Ohio income tax. This amount should be reported in whole dollars.</p>
+      <p class="text-justify"><strong>Note:</strong> If you do not request additional withholding from your compensation, you may need to make estimated income tax payments using form IT 1040ES or estimated school district income tax payments using the SD 100ES. Individuals who commonly owe more in Ohio income taxes than what is withheld from their compensation include:</p>
+      <ul>
+        <li>Spouses who file a joint Ohio income tax return and both report income, and</li>
+        <li>Individuals who have multiple jobs, all of which are subject to Ohio withholding.</li>
+      </ul>
+      <p class="text-center">
+        <strong>
+          <u>Section III</u>
+        </strong>
+      </p>
+      <p class="text-justify">This section is for individuals whose income is deductible or excludable from Ohio income tax, and thus employer withholding is not required. Such employee should check the appropriate box to indicate which exemption applies to him/her. Checking the box will cause your employer to not withhold Ohio income tax and/or school district income tax. The exemptions include:</p>
+    </div>
+    
+    <div class="col-sm-6">
+      <ul>
+        <li><u>Reciprocity Exemption:</u> If you are a resident of Indiana, Kentucky, Pennsylvania, Michigan or West Virginia and you work in Ohio, you do not owe Ohio income tax on your compensation. Instead, you should have your employer withhold income tax for your resident state. R.C. 5747.05(A)(2).</li>
+        <li><u>Resident Military Servicemember Exemption:</u> If you are an Ohio resident and a member of the United States Army, Air Force, Navy, Marine Corps, or Coast Guard (or the reserve components of these branches of the military) or a member of the National Guard, you do not owe Ohio income tax or school district income tax on your active duty military pay and allowances received while stationed outside of Ohio.</li>
+      </ul>
+      <p class="text-justify">This exemption does not apply to compensation for nonactive duty status or received while you are stationed in Ohio.</p>
+      <p class="text-justify">R.C. 5747.01(A)(21).</p>
+      <ul>
+        <li><u>Nonresident Military Servicemember Exemption:</u> If you are a nonresident of Ohio and a member of the uniformed services (as defined in 10 U.S.C. §101), you do not owe Ohio income tax or school district income tax on your military pay and allowances.</li>
+        <li>
+          <u>Nonresident Civilian Spouse of a Military Servicemember Exemption:</u> If you are the civilian spouse of a military servicemember, your pay may be exempt from Ohio income tax and school district income tax if all of the following are true:
+          <ul>
+            <li>Your spouse is a nonresident of Ohio;</li>
+            <li>You and your spouse are residents of the same state;</li>
+            <li>Your spouse is stationed in Ohio on military orders; and</li>
+            <li>You are present in Ohio solely to be with your spouse.</li>
+          </ul>
+        </li>
+      </ul>
+      <p class="text-justify">You <u>must</u> provide a copy of the employee’s spousal military identification card issued to the employee by the Department of Defense when completing the IT 4.</p>
+      <p class="text-justify">Note: For more information on taxation of military servicemembers and their civilian spouses, see 50a U.S.C. §571.</p>
+      <ul>
+        <li><u>Statutory Withholding Exemptions:</u> Compensation earned in any of the following circumstances is not subject to Ohio income tax or school district income tax withholding:</li>
+        <ul>
+          <li>Agricultural labor (as defined in 26 U.S.C. §3121(g));</li>
+          <li>Domestic service in a private home, local college club, or local chapter of a college fraternity or sorority;</li>
+          <li>Services performed by an employee who is regularly employed by an employer to perform such service if she or he earns less than $300 during a calendar quarter;</li>
+          <li>Newspaper or shopping news delivery or distribution directly to a consumer, performed by an individual under the age of 18;</li>
+          <li>Services performed for a foreign government or an international organization; and</li>
+          <li>Services performed outside the employer’s trade or business if paid in any medium other than cash.</li>
+        </ul>
+      </ul>
+      <p class="text-justify">*These exemptions are not common.</p>
+      <p class="text-justify">Note: While the employer is not required to withhold on these amounts, the income is still subject to Ohio income tax and school district income tax (if applicable). As such, you may need to make estimated income tax payments using form IT 1040ES and/or estimated school district income tax payments using form SD 100ES.</p>
+      <p class="text-justify">See R.C. 5747.06(A)(1) through (6).</p>
+    </div>
+  </div>
+
+  <hr class="lifesuite__hr">
+  <div class="row" id="formButtons" style="display: none;">
+    <div class="sign-btn-group">
+      <$client.env.FormButtons>
+    </div>
+  </div>
+</main>
+
+<div hidden>
+  <$client.env.FormField.SignatureVerification.HTML>
+  <$client.env.FormField.Login_ID.HTML>
+  <$client.env.FormField.Auth_Param.HTML>
+  <$client.env.FormField.EmployeeID.HTML>
+  <$client.env.FormField.Signature.HTML>
+  <$client.env.FormField.DateSigned.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_OH/js/bootstrap.bundle.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+//SERVICES-43166 fix client site
+/*const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}*/
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+
+angular.element(window).ready(function() {
+    angular.element('#divLoader').hide();    
+    // SERVICES-40329 | jjucutan | add keyboard sign
+    angular.element('[id^="btnSigTypedSign"]').click(function() {
+        setTimeout(function() {
+            angular.element('#sv').val(angular.element('[ng-bind="signatureStatement"]').text());
+        }, 1000);
+    });
+});
+</script>

@@ -1,0 +1,359 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col-lg-12">
+        <p class="h6"><strong>Electronic Signature</strong></p>
+        <p>
+        <$client.env.eval(client.env.param.verbiage.length()==0? 'Ik begrijp dat door dit document elektronisch te ondertekenen door mijn volledige naam hieronder te typen, ik erken, ermee instem en bevestig dat de door mij verstrekte informatie waar en correct is en dat ik vrijelijk van plan ben om een wettelijk bindende elektronische handtekening te creëren en als mijn eigen handtekening aan te nemen die heeft hetzelfde juridische effect en dezelfde uitvoerbaarheid als mijn handgeschreven.':client.env.param.verbiage)>
+        </p>
+        <strong>Type your Name:</strong> 
+        <input type=text id="eSignature0" class="lifesuite__text-input ng-invalid">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature0','fullName','modal','over','sv', 'a10_Datum');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature0').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a10_Datum');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature0').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #001E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-3x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.a00_Naam.prompt>
+        <$client.env.FormField.a01_Adres.prompt>
+        <$client.env.FormField.a02_Postcode.prompt>
+        <$client.env.FormField.a02_Woonplaats.prompt>
+        <$client.env.FormField.a03_Land.prompt>
+        <$client.env.FormField.a04_Regio.prompt>
+        <$client.env.FormField.a05_Geboortedatum.prompt>
+        <$client.env.FormField.a06_BSN.prompt>
+        <$client.env.FormField.a7_Ja_check.prompt>
+        <$client.env.FormField.a7_Ja_text.prompt>
+        <$client.env.FormField.a8_Nee_check.prompt>
+        <$client.env.FormField.a8_Nee_text.prompt>
+        <$client.env.FormField.a9_Datum.prompt>
+        <$client.env.FormField.a10_Handtekening.prompt>
+        <$client.env.FormField.a10_Datum.prompt>
+        <$client.env.FormField.a11_Handtekening.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row mb-5">
+        <div class="col-sm-7 col-sm-offset-5">
+            <div style="max-width: 300px;">
+                <img src="<$link;/main/RedCarpet/FormTemplates/Model_opgaaf_gegevens_voor_de_loonheffingen/img/belastingdienst.png>" alt="Belastingdienst Logo" class="img-fluid">
+            </div>
+            <div class="line-shape border-top border-end border-dark border-2 mt-5 position-absolute top-0 end-0">&nbsp;</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-6">
+            <p class="h5">
+                <strong>Model</strong><br>
+                Opgaaf gegevens voor de loonheffingen
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1 col-sm-1">
+            <p class="bg-dark pt-1 pb-1 border-light border-end border-2">&nbsp;</p>
+        </div>
+        <div class="col-11 col-sm-11">
+            <p class="bg-dark text-white p-1">
+                <strong>Waarom dit formulier?</strong>
+            </p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>Uw werkgever of uitkeringsinstantie moet loonheffingen inhouden op uw loon of uitkering. Daarvoor heeft hij uw gegevens nodig.  Vul deze in op dit formulier. Geef ook aan of u loonheffingskorting wilt. Door deze korting betaalt u minder loonbelasting/premie volksverzekeringen.</p>
+                    <p>Als u uw persoonlijke gegevens niet – of fout – opgeeft, moet uw werkgever of uitkeringsinstantie 52% loonbelasting/premie volksverzekeringen inhouden. Ook uw bijdrage Zorgverzekeringswet wordt dan meestal hoger. Dit hoge tarief geldt ook als u zich niet bij uw werkgever legitimeert.</p>
+                    <p><strong>Invullen en inleveren</strong><br> Lever dit formulier ingevuld en ondertekend in bij uw werkgever. Doe dat vóór uw 1e werkdag. Gaat u werken op dezelfde dag waarop uw werkgever u aanneemt? Dan moet u deze opgaaf inleveren vóór u gaat werken. Als u een uitkering krijgt, moet u deze opgaaf inleveren voor de 1e betaling.</p>
+                </div>
+                <div class="col-sm-6">
+                    <p>Bij het inleveren van dit formulier moet u een geldig identiteitsbewijs laten zien. Uw werkgever of uitkeringsinstantie moet daar een kopie van maken.</p>
+                    <p class="ms-2"><strong>Let op!</strong><br> Als er iets in uw gegevens verandert nadat u dit formulier hebt ingeleverd, moet u dit schriftelijk aan uw werkgever of uitkeringsinstantie doorgeven. Lever dit formulier dan opnieuw in bij uw werkgever of uitkeringsinstantie.</p>
+                    <p><strong>Meer informatie</strong><br> Kijk voor meer informatie op <a href="http://belastingdienst.nl" target="_blank" class="text-dark">belastingdienst.nl</a> en zoek op ‘heffingskortingen’.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1 col-sm-1">
+            <p class="bg-dark pt-1 pb-1 border-light border-end border-2 p-1 text-white">
+                <strong>1</strong>
+            </p>
+        </div>
+        <div class="col-11 col-sm-11">
+            <p class="bg-dark text-white p-1">
+                <strong>Uw gegevens</strong>
+            </p>
+            <p>
+                <em>Heeft uw werkgever of uitkeringsinstantie uw gegevens al ingevuld? Controleer ze dan en verbeter ze als ze fout zijn.</em>
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-1 col-1 pt-2">1a</div>
+        <div class="col-sm-3 col-11 pt-2">Achternaam en voorletter(s)</div>
+        <div class="col-sm-8 col-12">
+            <$client.env.FormField.a01_Naam.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-1 col-1 pt-2">1b</div>
+        <div class="col-sm-3 col-11 pt-2">Burgerservicenummer (BSN)</div>
+        <div class="col-sm-8 col-12">
+            <$client.env.FormField.a07_BSN.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-1 col-1 pt-2">1c</div>
+        <div class="col-sm-3 col-11 pt-2">Straat en huisnummer</div>
+        <div class="col-sm-8 col-12">
+            <$client.env.FormField.a02_Adres.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-offset-1 col-sm-11">
+            <em><strong>Let op!</strong> Hebt u een adres in Nederland én in het buitenland? Lees dan de toelichting onderaan.</em>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-1 col-1 pt-2">1d</div>
+        <div class="col-sm-3 col-11 pt-2">Postcode en woonplaats</div>
+        <div class="col-sm-4">
+            <$client.env.FormField.a03_Postcode.HTML>
+        </div>
+        <div class="col-sm-4">
+            <$client.env.FormField.a03_Woonplaats.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-1 col-1 pt-2">1e</div>
+        <div class="col-sm-3 col-11 pt-2">
+            Land en regio <br>
+            <em>Alleen invullen als u in het buitenland woont.</em>
+        </div>
+        <div class="col-sm-8">
+            <$client.env.FormField.a04_Land.HTML>
+            <$client.env.FormField.a05_Regio.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-1 col-1 pt-2">1f</div>
+        <div class="col-sm-3 col-11 pt-2">Geboortedatum (dd-mm-jjjj)</div>
+        <div class="col-sm-8">
+            <$client.env.FormField.a06_Geboortedatum.HTML>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1 col-sm-1">
+            <p class="bg-dark pt-1 pb-1 border-light border-end border-2 p-1 text-white">
+                <strong>2</strong>
+            </p>
+        </div>
+        <div class="col-11 col-sm-11">
+            <p class="bg-dark text-white p-1">
+                <strong>Loonheffingskorting toepassen</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-offset-1 col-sm-11">
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>Wilt u dat deze werkgever of uitkeringsinstantie de loonheffingskorting toepast? <em>U kunt de loonheffingskorting maar door 1 werkgever of uitkeringsinstantie tegelijkertijd laten toepassen. Zie ook de toelichting onderaan.</em></p>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col">
+                            <$client.env.FormField.a08_Ja_check.HTML>
+                        </div>
+                        <div class="col">
+                            <$client.env.FormField.a08_Ja_text.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <$client.env.FormField.a09_Nee_check.HTML>
+                        </div>
+                        <div class="col">
+                            <$client.env.FormField.a09_Nee_text.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-1 col-sm-1">
+            <p class="bg-dark pt-1 pb-1 border-light border-end border-2 p-1 text-white">
+                <strong>3</strong>
+            </p>
+        </div>
+        <div class="col-11 col-sm-11">
+            <p class="bg-dark text-white p-1">
+                <strong>Ondertekening</strong>
+            </p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-offset-1 col-sm-8">
+            <p>
+                <em>Onderteken het formulier en lever het daarna in bij uw werkgever of uitkeringsinstantie.</em>
+            </p>
+            <div class="row mb-2">
+                <div class="col-sm-3 pt-2">Datum (dd-mm-jjjj)</div>
+                <div class="col-sm-5">
+                    <$client.env.FormField.a10_Datum.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-3 pt-2">
+                    Handtekening <br>
+                    Schrijf binnen het vak.
+                </div>
+                <div class="col-sm-7">
+                    <$client.env.FormField.a11_Handtekening.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mb-5">
+        <div class="col-1 col-sm-1">
+            <p class="bg-dark pt-1 pb-1 border-light border-end border-2 p-1 text-white">&nbsp;</p>
+        </div>
+        <div class="col-11 col-sm-11">
+            <p class="bg-dark text-white p-1">
+                <strong>Toelichting bij de vragen</strong>
+            </p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <p>
+                        <strong>Bij vraag 1c</strong><br>
+                        Als u in Nederland én in het buitenland woont, geeft u uw Nederlandse adres op als u inwoner bent van Nederland.  In de volgende situaties bent u inwoner van Nederland en vult u uw Nederlandse adres in: <br>
+                        – Uw sociale en economische leven speelt zich af in Nederland.  U woont hier bijvoorbeeld met uw gezin. <br>
+                        – U hebt geen gezin, u woont in Nederland en u bent van plan om hier langere tijd te blijven wonen.
+                    </p>
+                    <p>
+                        In de volgende situaties bent u géén inwoner van Nederland en vult u uw buitenlandse adres in: <br>
+                        – Uw sociale en economische leven speelt zich af in het buitenland.  Dat is zo als bijvoorbeeld uw gezin daar woont en uw kinderen daar naar school gaan. <br>
+                        – U hebt geen gezin en u woont in Nederland voor uw werk, maar u bent niet van plan zich hier te vestigen.
+                    </p>
+                    <p><strong>Bij vraag 2</strong> Iedere werknemer en uitkeringsgerechtigde heeft recht op korting op de belasting, de zogenoemde loonheffingskorting. Uw werkgever of uitkeringsinstantie berekent automatisch de korting die voor u geldt. U krijgt deze korting maar bij 1 werkgever of uitkeringsinstantie tegelijkertijd. Geef aan of u de loonheffingskorting door deze werkgever of uitkeringsinstantie wilt laten toepassen.</p>
+                    <p class="ms-2">
+                        <strong>Let op!</strong> <br> Krijgt u 2 of meer uitkeringen bij dezelfde uitkeringsinstantie?  Vraag dan uw uitkeringsinstantie op welke uitkering u het beste de heffingskorting kunt laten toepassen.
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    <p><strong>Loonheffingskorting en voorlopige aanslag</strong> <br> Gaat u werken en krijgt u de algemene heffingskorting maandelijks van ons in de vorm van een voorlopige aanslag? En laat u de loonheffingskorting door uw werkgever toepassen? Dan moet u deze voorlopige aanslag direct wijzigen of stopzetten. Anders krijgt u misschien te veel heffingskorting, want uw werkgever verrekent ook al (een deel van) de algemene heffingskorting met uw loon.  Als u te veel hebt gekregen, moet u dit bedrag aan ons terugbetalen.</p>
+                    <p><strong>Loonheffingskorting en AOW-uitkering</strong> <br> Bent u alleenstaande en krijgt u een AOW-uitkering? Dan hebt u misschien recht op de alleenstaande-ouderenkorting. Alleen de Sociale Verzekeringsbank (SVB) kan bepalen of u recht hebt op die alleenstaande-ouderenkorting. Daarom kunt u de loonheffingskorting het beste laten toepassen door de SVB.</p>
+                    <p><strong>Loonheffingskorting en bijstandsuitkering</strong> <br> Gaat u werken naast uw bijstandsuitkering? Vraag dan uw werkgever om de loonheffingskorting toe te passen. De gemeente houdt dan rekening met de loonheffingskorting die uw werkgever toepast.</p>
+                    <p class="ms-2"><strong>Let op!</strong> <br> Als u nu geen gebruik maakt van de loonheffingskorting, dan kunt u de eventueel te veel betaalde belasting na afloop van het kalenderjaar terugvragen via uw aangifte inkomstenbelasting/premie volksverzekeringen.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12 position-relative">
+            <div class="line-shape border-top border-start border-dark position-absolute border-2 top-0 start-0"></div>
+            <div class="line-shape border-top border-end border-dark border-2 position-absolute top-0 end-0"></div>
+            <div class="ps-4 col-8 col-sm-3 pt-1">
+                <img src="<$link;/main/RedCarpet/FormTemplates/Model_opgaaf_gegevens_voor_de_loonheffingen/img/model_barcode.png>" alt="Belastingdienst Barcode" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.FullName.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Model_opgaaf_gegevens_voor_de_loonheffingen/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 799);
+});
+</script>

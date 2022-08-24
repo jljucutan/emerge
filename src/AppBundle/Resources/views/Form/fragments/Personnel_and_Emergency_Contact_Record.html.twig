@@ -1,0 +1,605 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;">
+  <div id="box">
+    <b>Electronic Signature</b>
+    <p style="fontweight:normal;padding:0px">
+      <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <b>Type your Name:</b>
+    <input type=text id="eSignature1">&nbsp;
+    <input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','Name','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+    <input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+    <input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Date_Start.prompt>
+        <$client.env.FormField.hireReason.prompt>
+        <$client.env.FormField.Address1.prompt>
+        <$client.env.FormField.Address2.prompt>
+        <$client.env.FormField.Ethnicity.prompt>
+        <$client.env.FormField.Annual_Bonus_Potential.prompt>
+        <$client.env.FormField.Assignment_JobTitle.prompt>
+        <$client.env.FormField.BargainingUnit.prompt>
+        <$client.env.FormField.City.prompt>
+        <$client.env.FormField.Country.prompt>
+        <$client.env.FormField.County.prompt>
+        <$client.env.FormField.DOB.prompt>
+        <$client.env.FormField.Government_Reporting_Entity.prompt>
+        <$client.env.FormField.DirectReport1.prompt>
+        <$client.env.FormField.DirectReport2.prompt>
+        <$client.env.FormField.DirectReport3.prompt>
+        <$client.env.FormField.DirectReport4.prompt>
+        <$client.env.FormField.DirectReport5.prompt>
+        <$client.env.FormField.DirectReport6.prompt>
+        <$client.env.FormField.DirectReport7.prompt>
+        <$client.env.FormField.DirectReport8.prompt>
+        <$client.env.FormField.Disability_Status.prompt>
+        <$client.env.FormField.Email.prompt>
+        <$client.env.FormField.EmployeeClass.prompt>
+        <$client.env.FormField.Exceeds_Bonus_Potential.prompt>
+        <$client.env.FormField.FLSA_Status.prompt>
+        <$client.env.FormField.First_Name.prompt>
+        <$client.env.FormField.Gender.prompt>
+        <$client.env.FormField.Group.prompt>
+        <$client.env.FormField.Hire_Custom_Field1.prompt>
+        <$client.env.FormField.Hire_Offer_Custom_Field10.prompt>
+        <$client.env.FormField.Hire_Offer_Custom_Field27.prompt>
+        <$client.env.FormField.LastName.prompt>
+        <$client.env.FormField.Ledger.prompt>
+        <$client.env.FormField.MaritalStatus.prompt>
+        <$client.env.FormField.Middle_Initial.prompt>
+        <$client.env.FormField.Oracle_Work_Schedule.prompt>
+        <$client.env.FormField.Organization.prompt>
+        <$client.env.FormField.Phone_Type.prompt>
+        <$client.env.FormField.Preferred_Name.prompt>
+        <$client.env.FormField.Prefix.prompt>
+        <$client.env.FormField.Primary_Phone.prompt>
+        <$client.env.FormField.SSNO.prompt>
+        <$client.env.FormField.Salary_Amount.prompt>
+        <$client.env.FormField.Salary_Type.prompt>
+        <$client.env.FormField.Secondary_Phone.prompt>
+        <$client.env.FormField.Secondary_PhoneType.prompt>
+        <$client.env.FormField.Sign_on_Bonus.prompt>
+        <$client.env.FormField.State.prompt>
+        <$client.env.FormField.Suffix.prompt>
+        <$client.env.FormField.Supervisor.prompt>
+        <$client.env.FormField.Supervisory_Position.prompt>
+        <$client.env.FormField.TimecardApprover.prompt>
+        <$client.env.FormField.University_Employee.prompt>
+        <$client.env.FormField.Work_Phone.prompt>
+        <$client.env.FormField.Work_at_Home.prompt>
+        <$client.env.FormField.WorkingHours.prompt>
+        <$client.env.FormField.Zip.prompt>
+        <$client.env.FormField.businessManager.prompt>
+        <$client.env.FormField.concurSupervisor.prompt>
+        <$client.env.FormField.submitPurchasingRequisitions.prompt>
+        <$client.env.FormField.MC_guarantee.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main>
+  <header class="text-center">
+    <p>PERSONNEL RECORD FORM</p>
+    <p class="mb-10">
+      Please review &amp; complete the below information to begin the process of creating the personnel and payroll record form for the employee
+    </p>
+  </header>
+  <hr>
+  <section class="mb-20">
+    <p class="mb-10">
+      <strong>Section 1: Identification</strong>
+    </p>
+    <div class="mb-10">
+      <div class="col-30">
+        <div class="inline-block">
+          <strong>Hire Date</strong>
+        </div>
+        <div class="inline-block">
+          <$client.env.FormField.Date_Start.HTML>
+        </div>
+      </div>
+      <div class="col-60">
+        <div class="inline-block">
+          <strong>Hire Reason</strong>
+        </div>
+        <div class="inline-block">
+          <$client.env.FormField.hireReason.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block">
+        <strong>Legal Employer</strong>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.Government_Reporting_Entity.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="mb-10">
+        <div class="col-5 vertical-top">
+          <strong>Name</strong>
+        </div>
+        <div class="col-95 vertical-top">
+          <div class="col-15 vertical-top">
+            <$client.env.FormField.Prefix.HTML>
+            Title
+          </div>
+          <div class="col-30 vertical-top">
+            <$client.env.FormField.First_Name.HTML>
+            First
+          </div>
+          <div class="col-10 vertical-top">
+            <$client.env.FormField.Middle_Initial.HTML>
+            MI
+          </div>
+          <div class="col-30 vertical-top">
+            <$client.env.FormField.LastName.HTML>
+            Last
+          </div>
+          <div class="col-20 vertical-top">
+            <$client.env.FormField.Suffix.HTML>
+            SUFFIX
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block">
+        <strong>PREFERRED NAME</strong>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.preferredName.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="col-25">
+        <div class="inline-block vertical-middle">
+          <strong>GENDER:</strong>
+        </div>
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.Gender.HTML>
+        </div>
+      </div>
+      <div class="col-40">
+        <div class="inline-block">
+          <strong>DATE OF BIRTH:</strong>
+        </div>
+        <div class="inline-block">
+          <$client.env.FormField.DOB.HTML>
+        </div>
+      </div>
+      <div class="col-30">
+        <div class="inline-block">
+          <strong>SS#:</strong>
+        </div>
+        <div class="inline-block">
+          <$client.env.FormField.SSNO.HTML>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr>
+  <section class="mb-20">
+    <p class="mb-10">
+      <strong>Section 2: Person Information</strong>
+    </p>
+    <div class="mb-10">
+      <div class="col-15 vertical-top">
+        <strong>ADDRESS:</strong>
+      </div>
+      <div class="col-85 vertical-top">
+        <div class="mb-10">
+          <div class="col-80 vertical-top">
+            <$client.env.FormField.Address1.HTML>
+            NUMBER STREET
+          </div>
+          <div class="col-20 vertical-top">
+            <$client.env.FormField.Address2.HTML>
+            APT / OTHER
+          </div>
+        </div>
+        <div class="mb-10">
+          <div class="col-20 vertical-top">
+            <$client.env.FormField.City.HTML>
+            CITY
+          </div>
+          <div class="col-25 vertical-top">
+            <$client.env.FormField.State.HTML>
+            STATE
+          </div>
+          <div class="col-15 vertical-top">
+            <$client.env.FormField.Zip.HTML>
+            ZIP
+          </div>
+          <div class="col-20 vertical-top">
+            <$client.env.FormField.County.HTML>
+            COUNTY
+          </div>
+          <div class="col-20 vertical-top">
+            <$client.env.FormField.Country.HTML>
+            COUNTRY
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block">
+        <strong>SBG PHONE:</strong>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.Work_Phone.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="col-50">
+        <div class="inline-block">
+          <strong>PRIMARY PHONE #:</strong>
+        </div>
+        <div class="inline-block">
+          <$client.env.FormField.Primary_Phone.HTML>
+        </div>
+      </div>
+      <div class="col-50">
+        <div class="inline-block">
+          <strong>OTHER PHONE #:</strong>
+        </div>
+        <div class="inline-block">
+          <$client.env.FormField.Secondary_Phone.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="col-50">
+        <div class="inline-block">
+          <strong>PRIMARY PHONETYPE:</strong>
+        </div>
+        <div class="inline-block">
+          <$client.env.FormField.Phone_Type.HTML>
+        </div>
+      </div>
+      <div class="col-50">
+        <div class="inline-block">
+          <strong>OTHER PHONETYPE:</strong>
+        </div>
+        <div class="inline-block">
+          <$client.env.FormField.Secondary_PhoneType.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="col-50">
+        <div class="inline-block">
+          <strong>SBG EMAIL:</strong>
+        </div>
+        <div class="inline-block">
+          <$client.env.FormField.Email.HTML>
+        </div>
+      </div>
+      <div class="col-50">
+        <div class="inline-block">
+          <strong>MARITAL STATUS:</strong>
+        </div>
+        <div class="inline-block">
+          <$client.env.FormField.MaritalStatus.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="col-50 vertical-middle">
+        <div class="inline-block">
+          <strong>ETHNICITY:</strong>
+        </div>
+        <div class="inline-block">
+          <$client.env.FormField.Ethnicity.HTML>
+        </div>
+      </div>
+      <div class="col-50 vertical-middle">
+        <div class="inline-block vertical-middle">
+          <strong>DISABLED:</strong>
+        </div>
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.Disability_Status.HTML>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr>
+  <section class="mb-20">
+    <p class="mb-10">
+      <strong>Section 3: Employment Information</strong>
+    </p>
+    <div class="mb-10">
+      <div class="inline-block">
+        <strong>BUSINESS UNIT:</strong>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.Ledger.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block">
+        <strong>ORACLE JOB TITLE:</strong>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.Hire_Custom_Field1.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block">
+        <strong>ASSIGNMENT (JOB) TITLE:</strong>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.Assignment_JobTitle.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block">
+        <strong>ORGANIZATION/DEPARTMENT:</strong>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.Organization.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block">
+        <strong>WORK LOCATION/CALL LETTERS:</strong>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.Hire_Offer_Custom_Field10.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block vertical-middle">
+        <strong>IS THIS EMPLOYEE WORKING AT HOME?</strong>
+      </div>
+      <div class="inline-block vertical-middle">
+        <$client.env.FormField.Work_at_Home.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block">
+        <strong>ASSIGNMENT CATEGORY/BARGAINING UNIT (if applicable):</strong>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.BargainingUnit.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block">
+        <strong>JOB TYPE:</strong>
+      </div>
+      <div class="inline-block">
+        <$client.env.FormField.Hire_Offer_Custom_Field27.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block vertical-middle">
+        <strong>IS THIS EMPLOYEE WORKING AS A MANAGER?</strong>
+      </div>
+      <div class="inline-block vertical-middle">
+        <$client.env.FormField.Supervisory_Position.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="col-50">
+        <div class="inline-block vertical-middle">
+          <strong>PAY TYPE:</strong>
+        </div>
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.Salary_Type.HTML>
+        </div>
+      </div>
+      <div class="col-50">
+        <div class="inline-block vertical-middle">
+          <strong>HOURS WORKED PER WEEK:</strong>
+        </div>
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.WorkingHours.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block vertical-middle">
+        <strong>ORACLE WORK SCHEDULE#:</strong>
+      </div>
+      <div class="inline-block vertical-middle">
+        <$client.env.FormField.Oracle_Work_Schedule.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block vertical-middle">
+        <strong>EMPLOYEE CLASSIFICATION:</strong>
+      </div>
+      <div class="inline-block vertical-middle">
+        <$client.env.FormField.EmployeeClass.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block vertical-middle">
+        <strong>WILL THIS EMPLOYEE DRIVE A COMPANY VEHICLE, OR DRIVE A MINIMUM OF 50% OF THE TIME TO WORK?</strong>
+      </div>
+      <div class="inline-block vertical-middle">
+        <$client.env.FormField.University_Employee.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="col-50">
+        <div class="inline-block vertical-middle">
+          <strong>ANNUAL BONUS POTENTIAL:</strong>
+        </div>
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.Annual_Bonus_Potential.HTML>
+        </div>
+      </div>
+      <div class="col-50">
+        <div class="inline-block vertical-middle">
+          <strong>EXCEEDS BONUS POTENTIAL:</strong>
+        </div>
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.Exceeds_Bonus_Potential.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="col-50">
+        <div class="inline-block vertical-middle">
+          <strong>PEOPLE GROUP:</strong>
+        </div>
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.Group.HTML>
+        </div>
+      </div>
+      <div class="col-50">
+        <div class="inline-block vertical-middle">
+          <strong>SUPERVISOR'S NAME:</strong>
+        </div>
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.Supervisor.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="col-50">
+        <div class="inline-block vertical-middle">
+          <strong>TIMECARD APPROVER:</strong>
+        </div>
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.TimecardApprover.HTML>
+        </div>
+      </div>
+      <div class="col-50">
+        <div class="inline-block vertical-middle">
+          <strong>BUSINESS MANAGER:</strong>
+        </div>
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.businessManager.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block vertical-middle">
+        <strong>CONCUR SUPERVISOR:</strong>
+      </div>
+      <div class="inline-block vertical-middle">
+        <$client.env.FormField.concurSupervisor.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="inline-block vertical-middle">
+        <strong>IF THIS EMPLOYEE WILL SUBMIT PURCHASING REQUISITIONS, THEN PLEASE ENTER THE REGIONAL CONTROLLER ON THE EMPLOYEE'S RECORD:</strong>
+        <$client.env.FormField.submitPurchasingRequisitions.HTML>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="col-20 vertical-top">
+        <div class="inline-block vertical-middle">
+          <strong>DIRECT REPORTS:</strong>
+        </div>
+      </div>
+      <div class="col-80 vertical-top">
+        <div class="mb-10">
+          <div class="col-50">
+            <$client.env.FormField.DirectReport1.HTML>
+          </div>
+          <div class="col-50">
+            <$client.env.FormField.DirectReport5.HTML>
+          </div>
+        </div>
+        <div class="mb-10">
+          <div class="col-50">
+            <$client.env.FormField.DirectReport2.HTML>
+          </div>
+          <div class="col-50">
+            <$client.env.FormField.DirectReport6.HTML>
+          </div>
+        </div>
+        <div class="mb-10">
+          <div class="col-50">
+            <$client.env.FormField.DirectReport3.HTML>
+          </div>
+          <div class="col-50">
+            <$client.env.FormField.DirectReport7.HTML>
+          </div>
+        </div>
+        <div class="mb-10">
+          <div class="col-50">
+            <$client.env.FormField.DirectReport4.HTML>
+          </div>
+          <div class="col-50">
+            <$client.env.FormField.DirectReport8.HTML>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr>
+  <section class="mb-20">
+    <p class="mb-10">
+      <strong>Section 4: Compensation and Other Information</strong>
+    </p>
+    <div class="mb-10">
+      <div class="col-50">
+        <div class="inline-block vertical-middle">
+          <strong>FLSA STATUS:</strong>
+        </div>
+        <div class="inline-block vertical-middle">
+          <$client.env.FormField.FLSA_Status.HTML>
+        </div>
+      </div>
+      <div class="col-50">
+        <div class="col-40 vertical-middle">
+          <strong>SALARY AMOUNT:</strong>
+        </div>
+        <div class="col-60 vertical-middle">
+          <$client.env.FormField.Salary_Amount.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="mb-10">
+      <div class="col-50 vertical-middle">
+        <div class="col-55 vertical-middle">
+          <strong>SIGN ON BONUS (If applicable):</strong>
+        </div>
+        <div class="col-45 vertical-middle">
+          <$client.env.FormField.Sign_on_Bonus.HTML>
+        </div>
+      </div>
+      <div class="col-50 vertical-middle">
+        <div class="col-40 vertical-middle">
+          <strong>MC GUARANTEE:</strong>
+        </div>
+        <div class="col-60 vertical-middle">
+          <$client.env.FormField.MC_guarantee.HTML>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<$client.env.FormButtons>
+</form>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+</script>

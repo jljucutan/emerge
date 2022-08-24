@@ -1,0 +1,469 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 100%; min-width: auto;">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+      	<div class="sign-btn-group">
+	        <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'a17_Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+	        <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a17_Date');}">&nbsp;
+	        <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+      	</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+		<$client.env.FormField.Form_Name.prompt>
+		<$client.env.FormField.Form_Name.HTML>
+		<$client.env.FormField.Form_Type.prompt>
+		<$client.env.FormField.Form_Type.HTML>
+		<$client.env.FormField.Form_Owner.prompt>
+		<$client.env.FormField.Form_Owner.HTML>
+		<$client.env.FormField.Form_CreateDate.prompt>
+		<$client.env.FormField.Form_CreateDate.HTML>
+		<$client.env.FormField.Form_Completed.prompt>
+		<$client.env.FormField.Form_Completed.HTML>
+		<$client.env.FormField.Form_Delivered.prompt>
+		<$client.env.FormField.Form_Delivered.HTML>
+		<$client.env.FormField.Form_TaskId.prompt>
+		<$client.env.FormField.Form_TaskId.HTML>
+		<$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+		<$client.env.FormField.SignatureVerification.prompt>
+		<$client.env.FormField.a01_Violation.prompt>
+		<$client.env.FormField.a02_Violation_Explanation.prompt>
+		<$client.env.FormField.a03_Sued.prompt>
+		<$client.env.FormField.a04_Sued_Explanation.prompt>
+		<$client.env.FormField.a05_Not_Hired.prompt>
+		<$client.env.FormField.a06_Conviction.prompt>
+		<$client.env.FormField.a07_Incident_Explanation.prompt>
+		<$client.env.FormField.a08_Terminated_Last_10_Years.prompt>
+		<$client.env.FormField.a09_Termination_Explanation.prompt>
+		<$client.env.FormField.a10_Accused_of_Discrimination.prompt>
+		<$client.env.FormField.a11_Accusation_Explanation.prompt>
+		<$client.env.FormField.a12_Fiduciary_Director_Positions_list.prompt>
+		<$client.env.FormField.a13_Outside_Business_Activities.prompt>
+		<$client.env.FormField.a14_Outside_Business_Activities_that_may_bring_notoriety_to_the_firm.prompt>
+		<$client.env.FormField.a15_Printed_Name.prompt>
+		<$client.env.FormField.a16_Signature.prompt>
+		<$client.env.FormField.a17_Date.prompt>
+		<$client.env.FormField.Initial.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+	<div class="row my-20">
+		<div class="col-lg-12">
+			<div class="img-header-wrapper center-block">
+				<img src="<$link;/main/RedCarpet/FormTemplates/Lateral_and_New_Attorney_Background_Questionnaire/img/kirkland_logo500.jpg>" alt="Kirkland &amp; Ellis Logo" class="img-responsive">
+			</div>
+		</div>
+	</div>
+	<h4 class="text-heading text-center mb-20">
+		<strong>ATTORNEY BACKGROUND QUESTIONNAIRE</strong>
+	</h4>
+	<div class="row mb-10">
+		<div class="col-lg-12">
+			<ol>
+				<li>
+					<p class="text-justify">
+						<span class="tabbed-after">(a)</span> Have you ever been found in violation (or are there any pending complaints, accusations or investigations relating to potential violations) of any rules of professional responsibility, professional conduct, or an applicable ethics code?
+					</p>
+					<div class="mb-10">
+						<$client.env.FormField.a01_Violation.HTML>
+					</div>
+					<p class="indented">
+						If yes, for each such accusation, investigation and/or violation, please explain the respective circumstances and outcomes.
+					</p>
+					<div class="mb-10">
+						<$client.env.FormField.a02_Violation_Explanation.HTML>
+					</div>
+					<p class="indented">
+						<span class="tabbed-after">(b)</span> Have you or a law firm with which you are or were affiliated ever been sued in connection with any legal services rendered by you?
+					</p>
+					<div class="mb-10">
+						<$client.env.FormField.a03_Sued.HTML>
+					</div>
+					<p class="indented">
+						If yes, for each incident, please explain the respective circumstances and outcomes.
+					</p>
+					<div class="row">
+						<div class="col-lg-12">
+							<$client.env.FormField.a04_Sued_Explanation.HTML>
+						</div>
+					</div>
+				</li>
+				<li>
+					<p class="text-justify">
+						Have you ever been convicted of, plead guilty, no contest or nolo contendere, to a misdemeanor or felony (or indictable offense in New Jersey)?*
+					</p>
+					<div class="ml-2">
+						<p class="text-justify">
+							<em>*Before answering question 2, you must review all instructions below.</em>
+						</p>
+						<p class="text-justify">
+							Do not report any conviction that has been sealed, expunged, statutorily eradicated, annulled impounded, erased, dismissed under a first offender’s law, pardoned by the Governor or which state law allows you to lawfully deny as set forth below. Do not report a record of any arrest, charge or detention that did not result in a conviction. You also are not required to report any arrest, detention, process, diversion, supervision, adjudication or court disposition that was subject to the process and jurisdiction of a juvenile court. You are also not required to disclose violations, infractions, petty misdemeanors or summary offenses. Please see additional instructions below.
+						</p>
+
+						<p class="text-justify">
+							A conviction will not necessarily be a bar to employment/contractual relationship. This information will only be used for job-related purposes consistent with applicable law and is only relevant in determining whether the conviction is related to the job for which you are applying. Factors such as age at the time of the offense(s), recentness of the offense(s), seriousness of the offense(s), nature of the violation(s), its relation, if any, to the job you are seeking, and rehabilitation will be taken into account. Failure to honestly answer these questions will result in discontinued consideration of your application of employment.
+						</p>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover table-kirkland">
+									<thead>
+										<tr>
+											<th>
+												<strong>By State</strong>
+											</th>
+											<th>
+												<strong>Instructions</strong>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<strong>California</strong>
+											</td>
+											<td>
+												<p class="text-justify">
+													<strong>California applicant/residents:</strong> You need not disclose any referral to, and participation in, any pre-trial or post-trial diversion program, or any misdemeanor convictions for which probation has been successfully completed and discharged. Do not list any non-felony marijuana-related convictions over two years old.
+												</p>
+												<p class="text-justify">
+													<strong>San Francisco, CA applicants:</strong> You may exclude convictions that occurred over seven (7) years ago, measured from date of sentencing.  You also may exclude convictions that arise out of conduct that has been decriminalized since the date of the conviction, measured from the date of sentencing.
+												</p>
+												<p class="text-red">
+													<strong>California applicants/residents should also read and acknowledge, by initialing, the following statement:</strong>
+												</p>
+												<p id="not-hired-container" class="text-justify">
+													If the Firm obtains public records (e.g., records of arrest, conviction, civil rights, tax lien, or outstanding judgment) itself without using a third party, then I am entitled to a copy of such records, unless I check the box.  If I am not hired or other adverse action is taken because of the records, then I will receive a copy even if I do check the box.  
+												</p>
+												<div class="i-block">
+													Please Initial:
+												</div>
+												<div class="i-block">
+													<$client.env.FormField.Initial.HTML>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>Connecticut</strong>
+											</td>
+											<td>
+												<p class="text-justify">
+													<strong>Connecticut applicants/residents:</strong> You need not disclose any conviction record that has been erased pursuant to sections 46b-146, 54-76o or 54-142a of the Connecticut General Statutes. Records subject to erasure under these sections are records pertaining to a finding of delinquency or that a child was a member of a family with service needs, an adjudication as a youthful offender, a criminal charge that was dismissed or nulled, or a criminal charge for which the person was found not guilty or received an absolute pardoned conviction.  Any person whose records were erased within the meaning of these three sections may consider such events to have never occurred and may so swear under oath.
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>Hawaii</strong>
+											</td>
+											<td>
+												<p class="text-justify">
+													<strong>Hawaii applicants/residents:</strong> You may exclude convictions that occurred over ten (10) years ago.
+	                                            </p>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>Massachusetts</strong>
+											</td>
+											<td>
+												<p class="text-justify">
+													<strong>Massachusetts applicants/residents:</strong> An applicant for employment with a sealed record on file with the commissioner of probation may answer “no” to the above with respect to an inquiry herein relative to prior arrests, criminal court appearances or convictions. In addition, any applicant for employment may answer “no” to the above with respect to any inquiry relative to prior arrests, court appearances and adjudications in all cases of delinquency or as a child in need of services which did not result in a complaint transferred to the superior court for criminal prosecution. An applicant for employment with a record expunged pursuant to section 100F, section 100G, section 100H or section 100K of chapter 276 of the General Laws may answer ‘no record’ with respect to an inquiry herein relative to prior arrests, criminal court appearances or convictions. An applicant for employment with a record expunged pursuant to section 100F, section 100G, section 100H or section 100K of chapter 276 of the General Laws may answer ‘no record’ to an inquiry herein relative to prior arrests, criminal court appearances, juvenile court appearances, adjudications or convictions.
+												</p>
+												<p class="text-justify">
+													You may exclude information regarding first convictions for the following misdemeanors: drunkenness, simple assault, speeding, minor traffic violations, affray, or disturbance of the peace, or a conviction for any misdemeanor where the conviction occurred or any prison sentence ended three (3) or more years ago whichever date is later, unless you have been convicted of another offense within the last three (3) years.
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>New York</strong>
+											</td>
+											<td>
+												<strong>New York applicants/residents:</strong>  You may exclude Dismissals in Contemplation of Adjournment.
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>Pennsylvania</strong>
+											</td>
+											<td>
+												<p class="text-justify">
+													<strong>Philadelphia, PA applicants:</strong> You may exclude convictions that occurred more than seven (7) years from the date of the inquiry.  Any period of incarceration should not be included in the calculation of the seven (7) year period.
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>Washington</strong>
+											</td>
+											<td>
+												<p class="text-justify">
+													<strong>Washington applicants/residents:</strong> You may exclude convictions that occurred over ten years ago.
+												</p>
+												<p class="text-justify">
+													<strong>Seattle, WA applicants/residents:</strong> You may exclude a criminal conviction that has been the subject of a certificate of rehabilitation or other equivalent procedure based on a finding of the rehabilitation.
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<strong>Wisconsin</strong>
+											</td>
+											<td>
+												<p class="text-justify">
+													<strong>Madison, WI applicants:</strong>  You may exclude offenses that are more than three years from the date of (i) the placement on probation; (ii) parole; (iii) release from incarceration; or (iv) payment of a fine.
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="mb-10">
+						<$client.env.FormField.a06_Conviction.HTML>
+					</div>
+					<p class="indented">
+						If yes, for each incident, please explain the respective circumstances and outcomes.
+					</p>
+					<div class="row">
+						<div class="col-lg-12">
+							<$client.env.FormField.a07_Incident_Explanation.HTML>
+						</div>
+					</div>
+				</li>
+				<li>
+					<p class="text-justify">
+						Within the last ten (10) years, has your employment been terminated for reasons related to your job performance or conduct, or have you been asked to leave or resign for reasons related to your job performance or conduct?
+					</p>
+					<div class="mb-10">
+						<$client.env.FormField.a08_Terminated_Last_10_Years.HTML>
+					</div>
+					<p class="indented">
+						If yes, please describe the circumstances behind any such termination, request to leave and/or resignation.
+					</p>
+					<div class="row">
+						<div class="col-lg-12">
+							<$client.env.FormField.a09_Termination_Explanation.HTML>
+						</div>
+					</div>
+				</li>
+				<li>
+					<p class="text-justify">
+						Have you ever been accused of or found in violation of employment discrimination laws, including, but not limited to, discrimination, harassment or retaliation?
+					</p>
+					<div class="mb-10">
+						<$client.env.FormField.a10_Accused_of_Discrimination.HTML>
+					</div>
+					<p class="indented">
+						If Yes, for each such accusation and/or violation, please explain the respective circumstances and outcomes, including whether you have ever been named as a defendant or respondent in any action or proceeding brought by a plaintiff(s) the EEOC, or any other federal, state or local agency.
+					</p>
+					<div class="row">
+						<div class="col-lg-12">
+							<$client.env.FormField.a11_Accusation_Explanation.HTML>
+						</div>
+					</div>
+				</li>
+				<li>
+					<p class="text-justify">
+						Please list any and all fiduciary and/or director positions you presently hold or have held within the last five (5) years.
+					</p>
+					<div class="row">
+						<div class="col-lg-12">
+							<$client.env.FormField.a12_Fiduciary_Director_Positions_list.HTML>
+						</div>
+					</div>
+				</li>
+				<li>
+					<p class="text-justify">
+						Please list any outside business activities for which you are a founder, sponsor, promoter or significant investor.
+					</p>
+					<div class="row">
+						<div class="col-lg-12">
+							<$client.env.FormField.a13_Outside_Business_Activities.HTML>
+						</div>
+					</div>
+				</li>
+				<li>
+					<p class="text-justify">
+						Please list any outside activities or pursuits that may bring publicity or notoriety to the Firm.
+					</p>
+					<div class="row">
+						<div class="col-lg-12">
+							<$client.env.FormField.a14_Outside_Business_Activities_that_may_bring_notoriety_to_the_firm.HTML>
+						</div>
+					</div>
+				</li>
+			</ol>
+		</div>
+	</div>
+
+	<div class="row mb-20">
+		<div class="col-lg-12">
+			<p>
+				<strong>I hereby certify that the facts and information I have provided in response to this questionnaire are true and complete to the best of my knowledge. I understand that falsified statements in my answers to this questionnaire may result in denial of employment or dismissal.</strong>
+			</p>
+		</div>
+	</div>
+
+	<div class="box mb-20 sig-wrapper center-block form-horizontal row">
+		<div class="col-lg-12">
+			<div class="row table-heading mb-10">
+				<div class="col-lg-12">
+					<strong>APPLICANT</strong>
+				</div>
+			</div>
+			<div class="sig-wrapper-inner">
+				<div class="row">
+					<label for="fullName" class="col-lg-3 col-sm-3 col-xs-12 control-label table-cell control-label">
+						Printed Name:
+					</label>
+					<div class="col-lg-9 col-sm-9 col-xs-12 form-group">
+						<$client.env.FormField.a15_Printed_Name.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<label for="signature" class="col-lg-3 col-sm-3 col-xs-12 control-label table-cell control-label">
+						Signature:
+					</label>
+					<div class="col-lg-9 col-sm-9 col-xs-12 form-group">
+						<$client.env.FormField.a16_Signature.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<label class="col-lg-3 col-sm-3 col-xs-12 control-label table-cell control-label">
+						Date:
+					</label>
+					<div class="col-lg-9 col-sm-9 col-xs-12 form-group">
+						<$client.env.FormField.a17_Date.HTML>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+    	<div class="col-lg-12">
+	        <div class="sign-btn-group">
+	            <$client.env.FormButtons>
+	        </div>
+    	</div>
+    </div>
+    
+</main>
+
+<div hidden>
+	<$client.env.FormField.a05_Not_Hired.HTML>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+jQuery(window).on('load', function() {
+    jQuery(".modal").hide();
+});
+(function () {
+	// for each poly
+	if (window.NodeList && !NodeList.prototype.forEach) {
+	    NodeList.prototype.forEach = function (callback, thisArg) {
+	        thisArg = thisArg || window;
+	        for (var i = 0; i < this.length; i++) {
+	            callback.call(thisArg, this[i], i, this);
+	        }
+	    };
+	}
+	// event poly
+	if ( typeof window.CustomEvent === "function" ) return false;
+	function CustomEvent ( event, params ) {
+		params = params || { bubbles: false, cancelable: false, detail: null };
+		var evt = document.createEvent( 'CustomEvent' );
+		evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+		return evt;
+	}
+	window.CustomEvent = CustomEvent;
+})();
+// toggle require textfields
+let onChangeEvt = new CustomEvent('change');
+thisForm.querySelectorAll('[data-radio-group]').forEach(function(entry) {
+	entry.addEventListener('change', function() {
+		const targetField = thisForm.querySelector('[data-depends-on="' + entry.dataset.radioGroup + '"]');
+		if (targetField == null) {
+			return false;
+		}
+		if (entry.checked && entry.value == 'Y') {
+			targetField.classList.add('ng-invalid');
+			targetField.disabled = false;
+		}
+		if (entry.checked && entry.value == 'N') {
+			targetField.value = '';
+			targetField.classList.remove('ng-invalid');
+			targetField.disabled = true;
+		}
+	});
+	entry.dispatchEvent(onChangeEvt);
+});
+// move to aligned checkbox text
+thisForm.querySelector('#not-hired-container').appendChild(thisForm.querySelector('[name$=".a05_Not_Hired"]'));
+
+angular.element('window').ready(function() {
+	setTimeout(function() {
+		angular.element('#divLoader').hide();
+	}, 800);
+});
+</script>

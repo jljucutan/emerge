@@ -1,0 +1,405 @@
+<!-- Main QA Area --> 
+ <!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px"> 
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+        </p>
+        <br> 
+        <div class="row">
+            <div class="lifesuite__clearfix"> 
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                <input id='SignA' type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','printed-employee-name','modal','over','sv','SignatureDate');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','SignatureDate');}">&nbsp; 
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+            </div>
+        </div>
+    </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px"> 
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+        </p>
+        <br> 
+        <div class="row">
+            <div class="lifesuite__clearfix"> 
+                <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                <input id='SignB' type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','printed-signatory-name','modal2','over','sv2','CompanySignatureDate');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp; 
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','CompanySignatureDate');}">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+            </div>
+        </div>
+    </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<div id="over" style="display:none;"></div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+<div class="modal" style="display:block; background: #002E6D;"> 
+    <div class="fb-spinner"> 
+        <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+    </div> 
+</div> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+ 
+<form id="Canada_Employment_Agreement" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form"> 
+
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+<!-- Your Required/Validated Form Fields -->
+
+<$client.env.formfield.CompanySignature.prompt>
+<$client.env.formfield.CompanySignatureDate.prompt>
+<$client.env.formfield.PrintedSignatoryName.prompt>
+<$client.env.formfield.Signature.prompt>
+<$client.env.formfield.SignatureDate.prompt>
+<$client.env.formfield.PrintedEmployeeName.prompt>
+</div>
+
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<!-- Begin HTML Content -->
+<main id="container" class="container-fluid">
+   <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgr mb-20">
+         <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" class="img-responsive" style="max-width: 120px;">
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="center-block inner-wrapper">
+         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <div id="incomplete"> 
+                    <div id="markup"></div>
+               </div>
+               <div id="complete"></div>
+         </div>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="center-block inner-wrapper">
+         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <div id="incomplete2"> 
+                    <div id="markup2"></div>
+               </div>
+               <div id="complete2"></div>
+         </div>
+      </div>
+   </div>
+
+   <!--Employee Signature Area -->
+   <div class="row">
+      <div class="col-lg-12 offerClause2"><p class="signature-section-title mb-20">IN WITNESS WHEREOF the parties hereto have duly executed this agreement as of the date(s) written below.</p><p class="signature-section-title mb-20"><strong>Employee:</strong></p></div>
+   </div>
+
+   <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+         <label class="control-label">Signature: <span class="font-red">*</span></label> 
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <$client.env.FormField.Signature.html>
+        </div>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><label class="control-label">Date: </label></div>
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <$client.env.FormField.SignatureDate.html>
+        </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+         <label class="control-label">Name:</label> 
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 mb-60">
+        <div class="form-group">
+            <$client.env.FormField.PrintedEmployeeName.html>
+        </div>
+      </div>
+   </div>
+
+   <!--Employer Signature Area -->
+   <div class="row">
+      <div class="col-lg-12 offerClause3"><p class="signature-section-title mb-20"><strong>Employer:</strong></p></div>
+   </div>
+
+   <div class="row">
+      <div class="center-block inner-wrapper">
+         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <div id="incomplete3"> 
+                    <div id="markup3"></div>
+               </div>
+               <div id="complete3"></div>
+         </div>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+         <label class="control-label">Signature: <span class="font-red">*</span></label> 
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <$client.env.FormField.CompanySignature.html>
+        </div>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><label class="control-label">Date: </label></div>
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <$client.env.FormField.CompanySignatureDate.html>
+        </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+         <label class="control-label">Name:</label> 
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 mb-60">
+        <div class="form-group">
+            <$client.env.FormField.PrintedSignatoryName.html>
+        </div>
+      </div>
+   </div>
+
+   <hr class="lifesuite__hr">
+   <div class="row" id="formButtons" style="display: none;">
+      <div class="lifesuite__clearfix lifesuite__float-right">                
+         <$client.env.FormButtons> 
+      </div>
+   </div>
+</main>
+
+<div class="hide">
+   <$client.env.formfield.headerpg1.html>
+   <$client.env.formfield.hidden_pg.html>
+   <$client.env.formfield.hidden_pg2.html>
+   <$client.env.formfield.hidden_pg3.html>
+   <$client.env.formfield.SignatureVerification.html>
+   <$client.env.formfield.SignatureVerification2.html>
+   <$client.env.formfield.State.html>
+   <$client.env.FormField.recruiter_signature.html>
+   <$client.env.FormField.recruiter_name.html>
+   <$client.env.FormField.SignatoryStamp.html>
+   <$client.env.FormField.EmployeeStamp.html>
+   <$client.env.FormField.CurrentDate.html>
+   <span id="evtRecruiter"><$client.tEventManagers_16.First_Name> <$client.tEventManagers_16.Last_Name></span>
+   <span id="assignee"><$client.account.username_first> <$client.account.username></span>
+</div>
+
+</form>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Canada_Employment_Agreement/js/script_Version_6.js>"></script>
+<script type="text/javascript">
+ChangeCalendarIcons(); //for popup calendar  
+/* RESPONSIVE eFORM BUTTONS STYLE */ 
+$(document).on('ready', function() { 
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+$(window).on('load', function() {
+  var assignee = "<$client.env.eval((client.role.rc_canada_company_signatory==1)?'<$client.account.username_first>':'')><$client.env.eval((client.role.rc_canada_company_signatory==1)?' ':'')><$client.env.eval((client.role.rc_canada_company_signatory==1)?'<$client.account.username>':'')>";
+  var recruiter = "<$client.tEventManagers_16.First_Name> <$client.tEventManagers_16.Last_Name>";
+  var recruiter_signature = document.getElementById('recruiter_signature');
+  var recruiter_name = document.getElementById('recruiter_name');
+  var rec_name =  document.getElementById('printed-signatory-name');
+
+  if($('#signature2').val().length < 1) {
+    recruiter_name.value = <$client.env.eval((client.role.rc_canada_company_signatory==1)?'assignee':'null')>;
+    rec_name.value = <$client.env.eval((client.role.rc_canada_company_signatory==1)?'assignee':'null')>;
+  }
+  var isSignatory = <$client.env.eval((client.role.rc_canada_company_signatory==1)?'true':'false')>;
+  var isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+  var init = function() {
+    if($('#SignatoryStamp').prop('readonly')) {
+      $('#signature, #signature2, .startDate').prop('onfocus',null).css('background','#ccc');
+      return false;
+    }
+
+    if (isSignatory && parseInt($('#SignatoryStamp').val()) === 0) { /* Fix client issue (When the company signatory signs or employee signs, the company signatory completed signature information is not captured. ) - 2018-09-07*/
+      $('#signature2, #sv2, #signature, #sv, #printed-employee-name').val('');
+      $('#SignatoryStamp,#EmployeeStamp').val(1);
+      setTimeout(function() {
+        $('.signDate,.signDate2').val('');
+      }, 400);
+    }
+
+
+    if (isEmployee &&  parseInt($('#EmployeeStamp').val()) === 0) {
+      $('#signature, #sv').val('');
+      $('#EmployeeStamp').val(1);
+      setTimeout(function() {
+        $('.signDate').val('');
+      }, 400);
+    }
+    if(!isEmployee && !isSignatory) {
+      $('#signature2, #signature, #printed-signatory-name,#printed-employee-name, #sv, #sv2').val('');
+      setTimeout(function() {
+        $('.signDate, .signDate2').val('');
+      }, 400);
+    }
+  }
+  setTimeout(init(),400);
+
+  var isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+
+  if (isNewhire) { 
+    $('#tablePopup').addClass('deactivate-highlight'); 
+  }
+
+  var loadFriendlyTexts = function() { 
+
+  if (!isNewhire) { 
+    setTimeout(function() { 
+      $('.marked').popover({ 
+        'trigger': 'manual' 
+        }).popover('show'); 
+        $('.popover-content').addClass('text-uppercase');
+      }, 500);  
+    } 
+  } 
+
+  loadFriendlyTexts(); 
+
+  $(window).on('resize', function() { 
+    loadFriendlyTexts(); 
+  }); 
+  
+  // remove friendly text from print
+  $('#ButtonPrint').prop('onclick', null);
+  $('#Canada_Employment_Agreement').on('click', '#ButtonPrint', function() {
+    $('.marked').popover('hide');
+    $('.popover').remove();
+    void(funcPrint());
+  });
+
+  // When the field is not populated, the form should display a highlighted blank space. 
+  $('mark').each(function(x){ 
+    if($('mark').eq(x).html().length <= 0){ 
+      $('mark').eq(x).html('&nbsp;'); 
+    } 
+  });
+
+  $('.disableDate')
+    .parent()
+    .find('input')
+    .prop('disabled', 'disabled');
+
+  // frontend validation
+  $('#Canada_Employment_Agreement').on('change', 'input:visible:not(#signature):not(:button):not(disabled):not(readonly)', function() {
+    validateField($(this));
+  });
+
+  $('#modal').on('click', 'input.lifesuite__button', function() {
+    validateField($('#signature'));
+  });
+
+  $('#modal2').on('click', 'input.lifesuite__button', function() {
+    validateField($('#signature2'));
+  });
+
+  $('#Canada_Employment_Agreement').on('click', '#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete', function(e) {
+    let formIsValid = true;
+    let btn = $(this);
+    e.preventDefault();
+    $.each($('#Canada_Employment_Agreement input:visible:not(:button)'), function(k, v) {
+      if (!$("input.calendar_button").length) formIsValid = true;
+      else{
+        if(false == validateField($(v)) && $(v).is(':visible')) {
+          formIsValid = false;
+        }
+      }
+    });
+    if (formIsValid) {
+      switch (btn.attr('id')) {
+        case 'ButtonPrint':
+          // remove friendly text from print
+          $('.marked').popover('hide');
+          $('.popover').remove();
+          funcPrint();
+
+        break;
+        case 'ButtonSaveAndComplete':
+          completeStamp("<$client.env.eval((client.tEventManagers_16.UserGuid==account.userguid)?'SignatoryStamp':'')>");
+          completeStamp("<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>");
+          $('.marked').popover('hide');
+          $('.popover').remove();
+          funcSaveAndComplete();
+        break;
+      }
+    }
+    else {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    }
+  });
+
+  // display when all ready is ready
+  $(".modal").hide();
+
+});
+
+/* Modal Fix - START - 2018-09-07*/
+$( window ).resize(function() { 
+  document.getElementById('over').style.width=''; 
+});
+
+// signature modal focus fix
+var myVar = setInterval(function() {
+    if (document.getElementById('modal2').style.display == 'block') {
+        document.getElementById('SignB').focus();
+        document.getElementById('eSignature2').focus();
+        clearInterval(myVar);
+    }
+}, 500);
+
+var myVar2 = setInterval(function() {
+    if (document.getElementById('modal').style.display == 'block') {
+        document.getElementById('SignA').focus();
+        document.getElementById('eSignature1').focus();
+        clearInterval(myVar2);
+    }
+}, 500);
+</script>

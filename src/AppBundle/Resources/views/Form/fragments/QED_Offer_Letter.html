@@ -1,0 +1,179 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal1" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                    </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature1','eSignature1','name','modal1','over','sv1');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature1').value='';showHide('modal1');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal1');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'>
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+ 
+        <$client.env.FormField.Name.prompt>
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+    <div id="container" class="container-fluid"> 
+        <div class="form-group">
+            <div id="incomplete">
+                <div id="markup"></div>
+            </div>
+            <div id="complete"></div>
+            <div id="fields">
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-1 lifesuite__clearfix text">
+                        Name:
+                    </div>
+                    <div class="col-xs-12 col-md-5 lifesuite__clearfix text">
+                        <$client.env.FormField.Signature.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-1 lifesuite__clearfix text">
+                        &nbsp;
+                    </div>
+                    <div class="col-xs-12 col-md-1 lifesuite__clearfix text">
+                        Date:
+                    </div>
+                    <div class="col-xs-12 col-md-4 lifesuite__clearfix text">
+                        <$client.env.FormField.Date.HTML>
+                    </div>
+                </div>
+            </div>
+            <hr class="lifesuite__hr">
+            <div class="row" id="formButtons" style="display: none;">
+                <div class="lifesuite__clearfix lifesuite__float-right">               
+                    <$client.env.FormButtons>
+                </div>             
+            </div>
+        </div>
+    </div>
+    <div style="display:none;">
+        <$client.env.FormField.Name.HTML>
+        <$client.env.FormField.headerpg1.HTML>
+        <$client.env.FormField.signaturepg1.HTML>
+        <$client.env.FormField.hidden_pg.HTML>
+        <$client.env.FormField.SignatureVerification.HTML>
+    </div>
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/QED_Offer_Letter/js/script_Version_1.js>"></script>
+<script>  
+    // Show populated form if already completed
+    var strCompletedForm = FORM_COMPLETED;
+    if (strCompletedForm != "") {
+        // Gather the fields that need to be displayed
+        // For images we need to setup the image tag.
+        var imgHeader = "<img src='<$client.env.formfield.headerpg1.value>' />";
+        var imgVPSignature = "<img src='<$client.env.formfield.signaturepg1.value>' />";
+        // Create an array of info to pass to complete the offer letter
+        // 0 for images sending an image tag, 1 for sections of text sneding the ID of the field that holds the HTML.
+        var arrParts = [
+          //[0, imgHeader],
+          [1, 'hidden_pg'],
+          //[0, imgVPSignature]
+        ];
+        // Send (ID of the div to hide,ID of the div to show,Parts to get the offer letter)
+        showCompletedOfferLetter('incomplete', 'complete', arrParts);
+    }
+    else {
+        // If the offer letter is not complete set up the logos and link field values.
+        //pickDivisionLogo();
+        //SetImageOnOfferLetter('headerpg1');
+        //SetImageOnOfferLetter('signaturepg1');
+    }
+</script>
+<SCRIPT>
+      ChangeCalendarIcons(); //for popup calendar
+      <$client.env.eval((url.forWhom!=account.userguid)?'disableCalButton(\'date\');':'')> 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$(function() {
+    
+});
+</SCRIPT>

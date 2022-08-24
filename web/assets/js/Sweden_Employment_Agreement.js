@@ -1,5 +1,13 @@
-// Sweden Employment Agreement
-function fnView() {
+/**
+ * SERVICES-35977 | Sweden Employment Agreement
+ * CHANGE LOGS
+ * Add dynamic fields marking
+ * 04.16.2019 | jjucutan | Remove parenthesis on article 3 wrapped on salary words; moved comma next to prorated
+ * 04.22.2019 | jjucutan | Remove highlighing on prorated condition
+ * 02.11.2022 | jjucutan | created offer letter version 4
+ * 08.09.2022 | jjucutan | created offer letter version 7
+ */
+const fnView = function() {
     $("#markup").html("").append(
         // OfferClause 1
         $('<div class="offerClause"/>').append(
@@ -7,132 +15,189 @@ function fnView() {
                 $('<strong/>').append('EMPLOYMENT AGREEMENT')
             ),
             $('<p class="hide"/>').text('&nbsp;'),
-            $('<p/>').append(employee.Current_Date),
+            (employee.EntityName == 'PayPal PLC, Filial Sweden') &&
             $('<p class="mb-20"/>').append(
-                $('<strong/>').append('<u>THE UNDERSIGNED:</u><br>'),
-                (employee.EntityName == 'Tradera Sweden AB' ? 'Tradera Sweden AB, 556569-4642' : ''),
-                (employee.EntityName != 'Tradera Sweden AB' ? 'PayPal SE, UK, Filial Sweden, 516405-8264' : ''),
-                ', St Eriksgatan 117, 113 43 Stockholm, a company incorporated under the laws of Sweden, hereinafter to be referred to as the ‘Employer’;'
+                $('<strong/>').append(
+                    'PayPal PLC, Filial Sweden'
+                ),
+                ' acting through its branch registered under the laws of Sweden with registration number 516405-8264 and whose registered address is at St Eriksgatan 117, 113 43 Stockholm',
+                (employee.EntityAddress == 'Regeringsgatan 65, 111 56 Stockholm, Sweden') &&
+                ', with its place of work at Regeringsgatan 65, 111 56 Stockholm, Sweden',
+                ', hereinafter to be referred to as ',
+                $('<strong/>').append(
+                    '“Employer”'
+                ),
+                ';'
+            ),
+            (employee.EntityName == 'Tradera Sweden AB') &&
+            $('<p class="mb-20"/>').append(
+                $('<strong/>').append(
+                    'Tradera Sweden AB'
+                ),
+                ', registered under the laws of Sweden with registration number 556569-4642 and whose registered address is at St Eriksgatan 117, 113 43 Stockholm hereinafter to be referred to as ',
+                $('<strong/>').append(
+                    '“Employer”'
+                ),
+                ';'
             ),
             $('<p class="mb-20"/>').append('and'),
             $('<p/>').append(
-                'Mr/Mrs ' + employee.Full_Legal_Name + ', residing at: ' + employee.Address1 + ' ' + employee.Address2 + ' ' + employee.City + ', ' + employee.State + ', ' + employee.Postal_Code + ', hereinafter to be referred to as the “Employee”;'
-            ),
-            $('<p/>').append(
-                $('<strong/>').append('<u>WHEREAS:</u><br>'),
-                'The Employer wishes to employ the Employee, and the Employee has agreed to accept the employment subject to the terms and conditions as set forth below;'
-            ),
-            $('<p class="mb-30"/>').append(
-                $('<strong/>').append('<u>HAVE AGREED AS FOLLOWS:</u>')
+                $('<mark/>').append(
+                    employee.Title
+                ),
+                ' ',
+                $('<mark/>').append(
+                    employee.Full_Legal_Name
+                ),
+                ', residing at: ',
+                $('<mark/>').append(
+                    employee.Address1
+                ),
+                ' ',
+                (employee.Address2.length > 0) && $('<mark/>').append(
+                    employee.Address2
+                ).append('&nbsp;'),
+                ' ',
+                $('<mark/>').append(
+                    employee.City
+                ),
+                ', ',
+                $('<mark/>').append(
+                    employee.State
+                ),
+                ', ',
+                $('<mark/>').append(
+                    employee.Postal_Code
+                ),
+                ', hereinafter to be referred to as the “Employee”;'
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<p/>').append(
-                $('<strong/>').append('<u>Article 1. Commencement and duration</u>')
+                'The Employer and the Employee are jointly referred to as the Parties.'
+            ),
+            $('<p/>').append(
+                $('<strong/>').append('<u>Article 1. The Employment in General </u>')
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<ol class="list-indented mb-30"/>').append(
                 $('<li/>').append(
-                    'The Employee will enter into ' + employee.JobType + ' employment commencing on ' + employee.event_start_date + '.<p class="hide">&nbsp;</p>'
+                    'The Employee will enter into full-time employment in the role of ',
+                    $('<mark/>').append(
+                        employee.JobTitle
+                    ),
+                    ' effective as of ',
+                    $('<mark/>').append(
+                        employee.event_start_date
+                    ),
+                    ' (the “Employment”); subject to the satisfactory completion of relevant background checks.<p class="hide">&nbsp;</p>'
                 ),
-                $('<li/>').append(
-                    (employee.ProbationPeriodRequired == 'yes') &&
-                    'The Employment shall be subject to a probationary period during an initial period of ' + employee.ProbationPeriodTime + ' months. If not terminated at the latest at the expiry of the probationary period, the employment shall be for an indefinite term.<p class="hide">&nbsp;</p>',
-                    (employee.ProbationPeriodRequired != 'yes') &&
+                (employee.ProbationPeriodRequired === "yes") && 
+                $('<li class="marked" data-toggle="popover" data-placement="top" data-content="Probation Period Required"/>').append(
+                    'The Employment shall be subject to a probationary period for an initial period of ',
+                    $('<mark/>').append(
+                        employee.ProbationPeriodTime
+                    ),
+                    ' months. If not terminated at the latest at the expiry of the probationary period, the employment shall be converted to an indefinite employment.<p class="hide">&nbsp;</p>'
+                ),
+                (employee.ProbationPeriodRequired === "no") && 
+                $('<li class="marked" data-toggle="popover" data-placement="top" data-content="Probation Period Required"/>').append(
                     'Not applicable to employee.<p class="hide">&nbsp;</p>'
                 ),
                 $('<li/>').append(
-                    'Either party may terminate the Employment Agreement by giving prior notice of 3 months until the employment has lasted for six years. Thereafter the Employer will follow the notice period legally required in the Swedish Employment Protection Act (1982:80) (“EPA”). <p class="hide">&nbsp;</p>'
+                    'This Agreement supersedes all other written or oral agreements between the Employer, or any associated company, and the Employee. For the purposes of this Agreement, “associated company” means a legal entity directly or indirectly controlling or controlled by or under common control with the Employer, irrespective of the country of registration of such legal entity.<p class="hide">&nbsp;</p>'
                 ),
-                $('<li/>').append(
-                    'The employee\’s employment shall, if not otherwise agreed, terminate with immediate effect at the age of 67.<p class="hide">&nbsp;</p>'
+                (employee.Continuous_Service === "Yes") && 
+                $('<li class="marked" data-toggle="popover" data-placement="top" data-content="Continuous Serivce"/>').append(
+                    'This Agreement follows on from and replaces the employment contract concluded with ',
+                    $('<mark/>').append(
+                        employee.EntityName
+                    ),
+                    ' since ',
+                    $('<mark/>').append(
+                        moment(employee.Continuous_Service_Date).format('D MMMM YYYY')
+                    ),
+                    '.'
                 ),
-                $('<li/>').append(
-                    'As from ' + employee.event_start_date + ' (‘the Start Date’), this Agreement supersedes all other written or oral agreements between the Employer, or any associated company, and the Employee. For the purposes of this Agreement, “associated company” means a legal entity directly or indirectly controlling or controlled by or under common control with the Employer, irrespective of the country of registration of such legal entity.<p class="hide">&nbsp;</p>'
+                (employee.Continuous_Service != "Yes") && 
+                $('<li class="marked" data-toggle="popover" data-placement="top" data-content="Continuous Serivce"/>').append(
+                    'Not applicable to employee.<p class="hide">&nbsp;</p>'
                 ),
-                $('<li/>').append(
+                $('<li class="marked" data-toggle="popover" data-placement="top" data-content="Work Permit Required"/>').append(
                     (employee.WorkPermitRequired == 'yes') &&
-                    'The employment of the Employee under this agreement is subject always to the Employee having obtained a valid Swedish work permit before the Start Date. For the avoidance of doubt, this agreement will be automatically invalidated without any compensation if the Employee has not obtained a valid Swedish work permit before the Start Date.<p class="hide">&nbsp;</p>',
+                    'The employment of the Employee under this agreement is subject always to the Employee having obtained a valid Swedish work permit before the start of the Employment. For the avoidance of doubt, this agreement will be automatically invalidated without any compensation if the Employee has not obtained a valid Swedish work permit before the start of the Employment.<p class="hide">&nbsp;</p>',
                     (employee.WorkPermitRequired != 'yes') &&
                     'Not applicable for employee.<p class="hide">&nbsp;</p>'
+                ),
+                $('<li/>').append(
+                    'To the best of his/her abilities, the Employee shall perform all tasks and duties in accordance with the instructions of the Employer and in accordance with the Employer’s Code of Business Conduct as applicable from time to time. The Employer reserves the right to give further instructions regarding the Employee’s tasks and duties from time to time. It is understood that the Employee’s work responsibility will include the task of creating products, designs, or other creations that result in intellectual property or other rights which the Employer or its affiliated companies may use in pursuing their business, corporate, or other purposes, initiatives, or objectives.'
+                ),
+                (employee.Workplace_Model == 'In-Office') &&
+                $('<li class="marked" data-toggle="popover" data-placement="top" data-content="In Office"/>').append(
+                    'The Employee’s usual place of work will be ',
+                    $('<mark/>').append(
+                        employee.Location,
+                    ),
+                    ',  however, the Employee’s usual place of work may change, as directed by the Employer, in line with the business requirements of the Employer. The Employee may also be required to travel within Stockholm, Sweden, and/or abroad for the performance of their duties. The Employee will not be required to reside anywhere outside of Stockholm, Sweden for a total period of more than [one month] at any one time, other than by mutual consent.'
+                ),
+                (employee.Workplace_Model == 'Virtual Flex') &&
+                $('<li class="marked" data-toggle="popover" data-placement="top" data-content="Virtual Flex"/>').append(
+                    'The Employee’s role may be performed either at the PayPal office in ',
+                    $('<mark/>').append(
+                        employee.Location
+                    ),
+                    'or remotely with the use of virtual working tools the Company provides. If the Employee choose to work remotely, he/she must do so from a location near to the Stockholm PayPal office within Sweden. In addition to any in-person working, the Employee may also be required to attend a PayPal office from time to time for in-person collaboration or as per business needs.  The Company may amend or end the location of the Employee’s role or remove the ability to work virtually at any time and will give the Employee notice (but will not provide any compensation) if the Company does so.  The Employee may find more details, including the Company’s expectations of the Employee, within its Offsite Working Policy and associated policies.'
+                ),
+                (employee.Workplace_Model == 'Virtual') &&
+                $('<li class="marked" data-toggle="popover" data-placement="top" data-content="Virtual"/>').append(
+                    'The Employee’s role is performed remotely within Sweden with the use of virtual working tools the Company provides. The Employee may, however, be required to attend a PayPal office from time to time for in-person collaboration or as per business needs. The Employee may find more details, including the Company’s expectations of the Employee, within its Offsite Working Policy and associated policies.'
+                ),
+                $('<li/>').append(
+                    'The working hours comprise 40 hours per week from Monday to Friday. The Employee is expected to work additional hours if and to the extent that the smooth conduct of business would require so.'
+                ),
+                $('<li/>').append(
+                    'The Employee is not allowed to undertake other professional activities during the term of the Employment, except with the prior written consent of the Employer, irrespective of whether or not the Employee receives financial compensation for these activities.'
                 )
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<p/>').append(
-                $('<strong/>').append('<u>Article 2. Function and Scope of Duties</u>')
+                $('<strong/>').append('<u>Article 2. Salary and Benefits</u>')
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<ol class="list-indented mb-30"/>').append(
                 $('<li/>').append(
-                    'The Employee will be employed as ' + employee.Business_Title + '. The Employee shall perform to the best of his/her abilities all tasks and duties in accordance with the instructions of the Employer and in accordance with the Employer’s Code of Business Conduct as applicable from time to time. The Employer reserves the right to give further instructions as regards to the Employee’s task and duties from time to time. It is understood that the Employee’s work responsibility will include the task of creating products, designs, or other creations that results in intellectual property or other rights which the Employer or its affiliated companies may use in pursuing their business, corporate, or other purposes, initiatives, or objectives.<p class="hide">&nbsp;</p>'
+                    'The Employee will for the purposes of this Employment receive a gross annual base salary of ',
+                    $('<mark/>').append(
+                        employee.Salary_Currency
+                    ),
+                    ' ',
+                    $('<mark/>').append(
+                        employee.Salary_Amount
+                    ),
+                    $('<mark/>').append(
+                        employee.SalaryWords
+                    ),
+                    '. The salary is paid monthly in arrears in twelve (12) equal installments and in accordance with the Employer\’s policy. <p class="hide">&nbsp;</p>'
                 ),
                 $('<li/>').append(
-                    'The Employee will perform his/her duties at the Employer\'s offices in Stockholm. In order to perform his\/her duties, the Employee may have to travel both within Sweden and to European locations as well as to the affiliated offices in California, USA, and elsewhere.<p class="hide">&nbsp;</p>'
+                    'The salary is subject to revision on a yearly basis in accordance with the Employer’s policy. The Employer is however under no obligation to increase the salary at such revision.'
                 ),
                 $('<li/>').append(
-                    'The working hours comprise 40 hours per week from Monday to Friday. The Employee is expected to work additional hours if and to the extent that the smooth conduct of business would require so.<p class="hide">&nbsp;</p>'
+                    'The Employee is not entitled to any additional compensation for any overtime, travel time or similar under the Employment.'
+                ),
+                $('<li/>').append(
+                    'The Employee is entitled to pension benefits in accordance with the Employer’s pension policy in force from time to time.'
+                ),
+                $('<li/>').append(
+                    'The Employee shall be covered by employment related insurances such as occupational life and health insurance in accordance with the Employer’s policy in force from time to time.'
+                ),
+                $('<li/>').append(
+                    'Any bonus or incentive plan eligibility will be confirmed separately to the Employee by means of a side letter to this Agreement at the Employer’s full discretion.'
                 )
             ),
             $('<p class="hide"/>').append('&nbsp;'),
+            
             $('<p/>').append(
-                $('<strong/>').append('<u>Article 3. Salary</u>')
-            ),
-            $('<p class="hide"/>').append('&nbsp;'),
-            $('<ol class="list-indented mb-30"/>').append(
-                $('<li/>').append(
-                    'The Employee will receive a gross annual base salary of ' + employee.Salary_Currency + ' ' + employee.Salary_Amount + '. The salary is ',
-                    (employee.EntityName == 'Tradera Sweden AB') && 'prorated, ',
-                    'paid monthly in arrears in twelve equal installments and in accordance with the Employer\’s policy. <p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    'The Employee\’s own salary or the salary of other employees is to be kept strictly confidential.<p class="hide">&nbsp;</p>'
-                )
-            ),
-            $('<p class="hide"/>').append('&nbsp;'),
-            $('<p/>').append(
-                $('<strong/>').append('<u>Article 4. Bonus and Other Incentives</u>')
-            ),
-            $('<p class="hide"/>').append('&nbsp;'),
-            $('<ol class="list-indented mb-30"/>').append(
-                $('<li/>').append(
-                    (employee.AIP == 'Yes') &&
-                    'You will be eligible to participate in the PayPal Holdings, Inc. Annual Incentive Plan for a specified fiscal year (AIP) with an annual bonus based on individual achievement as well as company performance. The annual bonus period is from January 1 through December 31. Your target bonus for the AIP is ' + employee.eIP_Target_Pct + '% of your annual base salary, pro-rated based on your hire date and days of service during the AIP bonus period. There is no guarantee any AIP bonus will be awarded or received, and any actual bonus will be determined after the end of the annual bonus period. Any AIP bonus, even if it is made repeatedly or regularly and whatever its amount, can never lead to a vested right for you, the employee.<p class="hide">&nbsp;</p>',
-                    (employee.AIP != 'Yes') &&
-                    'Section not applicable to employee.<p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    (employee.AIP == 'Yes') &&
-                    'To be eligible to receive any AIP bonus, you must be employed on or before the first business day of the fourth quarter and you must be in continuous employment on the date the bonus is received, subject to applicable laws. If your employment start date with a PayPal company commences on or after the first U.S. business day in the final quarter of the calendar year, your eligibility to participate in the AIP will begin on January 1st of the following calendar year. Any bonus is at PayPal\’s sole and absolute discretion and subject to the terms and conditions of the AIP. PayPal reserves the right, in its sole discretion, to amend, change or cancel the AIP at any time. Further, the bonus plan that you are eligible to participate in may change over time. You acknowledge and agree that PayPal may substitute the plan referenced in this letter and any contract of employment or any offer documentation, as it determines in its sole discretion from time to time.<p class="hide">&nbsp;</p>',
-                    (employee.AIP != 'Yes') &&
-                    'Section not applicable to employee.<p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    (employee.Eligible_Sales_Incentive  == 'Yes') &&
-                    'The Employee is eligible to participate in a PayPal Sales Incentive Plan (the “Incentive Plan”). The full terms and conditions of the Incentive Plan shall be provided to the Employee separately. <p class="hide">&nbsp;</p>',
-                    (employee.Eligible_Sales_Incentive  != 'Yes') &&
-                    'Section not applicable to employee.<p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    (employee.Eligible_Sales_Incentive  == 'Yes' && employee.Sales_Manager == 'Yes') &&
-                    'During the first ' + employee.Sales_Pay_Schedule + ' of your employment you will be paid quarterly a non-recoverable draw equivalent to one-quarter of your annual Target Incentive amount in accordance with the Incentive Plan. After ' + employee.Sales_Pay_Schedule + ', the amount of any incentive payment will be dependent on your performance against pre-defined targets in the Incentive Plan.<p class="hide">&nbsp;</p>',
-                    (employee.Eligible_Sales_Incentive  != 'Yes' || employee.Sales_Manager != 'Yes') &&
-                    'Section not applicable to employee.<p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    (employee.Eligible_Sales_Incentive  == 'Yes') &&
-                    'Any bonus or payment or award under the Incentive Plan shall be determined by the Company in its sole and absolute discretion, subject to the terms and conditions of the Incentive Plan and of such amount, in such form, at such intervals and subject to such conditions as the Company may in its absolute discretion determine from time to time.<p class="hide">&nbsp;</p>',
-                    (employee.Eligible_Sales_Incentive  != 'Yes') &&
-                    'Section not applicable to employee.<p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    (employee.Eligible_Sales_Incentive  == 'Yes') &&
-                    'The Company reserves the right, in its sole discretion, to amend, change, withdraw or cancel the Incentive Plan at any time. Further, the incentive plan that the Employee is eligible to participate in may change over time. The Employee acknowledges and agrees that the Company may substitute or cancel the Incentive Plan referenced in this addendum or any offer documentation, as it determines in its sole discretion from time to time.<p class="hide">&nbsp;</p>',
-                    (employee.Eligible_Sales_Incentive  != 'Yes') &&
-                    'Section not applicable to employee.<p class="hide">&nbsp;</p>'
-                )
-            ),
-            $('<p class="hide"/>').append('&nbsp;'),
-            $('<p/>').append(
-                $('<strong/>').append('<u>Article 5. Expenses</u>')
+                $('<strong/>').append('<u>Article 3. Expenses</u>')
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<ol class="list-indented mb-30"/>').append(
@@ -145,20 +210,20 @@ function fnView() {
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<p/>').append(
-                $('<strong/>').append('<u>Article 6. Holidays</u>')
+                $('<strong/>').append('<u>Article 4. Holidays</u>')
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<ol class="list-indented mb-30"/>').append(
                 $('<li/>').append(
-                    'The Employer’s policy applies to vacation, which inter alia means that the qualifying year, the vacation year and the calendar year coincides and that vacation pay is paid in accordance with the general principles on the labour market. At the expiry of the employment the Employer shall have the right to deduct from the final salary any vacation that has been taken but not yet earned.<p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    'The Employee is proportionally entitled to 30 days’ holiday per each yearly period of service. <p class="hide">&nbsp;</p>'
+                    $('<p/>').append(
+                        'The Employee is entitled to 30 days of annual holiday. '
+                    ),
+                    'The Employer’s policy inter alia means that the qualifying year, the vacation year and the calendar year coincide, and that vacation pay is paid in accordance with the Annual Leave Act (Sw. semesterlagen (1977:480)). Upon termination of employment, the Employer shall have the right to deduct from the final salary any vacation that has been taken but not yet earned.<p class="hide">&nbsp;</p>'
                 )
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<p/>').append(
-                $('<strong/>').append('<u>Article 7. Sick Pay</u>')
+                $('<strong/>').append('<u>Article 5. Sick Pay</u>')
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<ol class="list-indented mb-30"/>').append(
@@ -168,76 +233,50 @@ function fnView() {
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<p/>').append(
-                $('<strong/>').append('<u>Article 8. Pension</u>')
+                $('<strong/>').append('<u>Article 6. Confidentiality</u>')
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<ol class="list-indented mb-30"/>').append(
                 $('<li/>').append(
-                    'The Contributions to social security will be paid as required by law. The Employee is entitled to Pension benefits on successful completion of the probation period, in accordance with the company policy as applicable from time to time.<p class="hide">&nbsp;</p>'
+                    'Throughout the Employment, the Employee will gain access to confidential and commercial information and processes which pertain to the Employer’s and group companies’ businesses, customers, services and products (',
+                    $('<strong/>').append(
+                        '“Trade Secrets”'
+                    ),
+                    '). The term Trade Secrets also comprises such information which the Employee compiles and develops himself/herself. Trade Secrets can be oral as well as written.'
+                ),
+                $('<li/>').append(
+                    'The Employee may not, neither during the Employment nor after its termination (however arising), use or disclose to any person, company or other organization whatsoever and shall use his/her best endeavors to prevent the publication or disclosure of any Trade Secrets. This shall not apply to:<br><br>',
+                    $('<p class="hide"/>').append('&nbsp;'),
+                    $('<ul>').append(
+                        $('<li/>').append(
+                            '(a) Any use or disclosure authorized by the Employer or required by law; or'
+                        ),
+                        $('<li/>').append(
+                            '(b)	Any information which is already in, or comes into, the public domain other than through the Employee’s unauthorized disclosure.'
+                        )
+                    )
+                ),
+                $('<li/>').append(
+                    'The Employee agrees to take all reasonable steps to safeguard Trade Secrets in accordance with the confidentiality requirements in order to protect them from unauthorized access or amendment.'
+                ),
+                $('<li/>').append(
+                    'All written and other records and all tangibles concerning the Employer or any of its affiliated companies and their business which are in the possession of the Employee shall be carefully kept and immediately immediately returned to the Employer upon its request, and in any case upon the termination of the employment. The Employee shall not be entitled to keep any copies of those records and tangibles. '
                 )
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<p/>').append(
-                $('<strong/>').append('<u>Article 9. Other Professional Obligations</u>')
+                $('<strong/>').append('<u>Article 7. Intellectual Property Rights</u>')
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<ol class="list-indented mb-30"/>').append(
                 $('<li/>').append(
-                    'The Employee is not allowed to undertake other professional activities during the term of the Employment Agreement, except with the prior written consent of the Employer, irrespective of whether or not the Employee receives financial compensation for these activities.<p class="hide">&nbsp;</p>'
+                    'All intellectual property rights, including but not limited to patent rights, design rights, copyrights and related rights, database rights, trademark rights and chip rights, ensuing, in Sweden and abroad, from the work performed by the Employee under during the Employment is transferred by the Employee to and exclusively vested in the Employer. The Employee may not independently disclose, multiply, use, manufacture, bring on the market or sell, lease, deliver or otherwise trade, offer on behalf of any third party, or commission the registration of the results of his work <p class="hide">&nbsp;</p>'
                 ),
                 $('<li/>').append(
-                    'The Employee shall not be permitted to accept or negotiate, whether directly or indirectly, for his/her personal benefits any commission, advantage or gain, in any form or under any name whatsoever, from customers or suppliers of the Employer or its subsidiaries or affiliated companies.<p class="hide">&nbsp;</p>'
+                    'Insofar as the rights specified hereinafter are not vested in the Employer by operation of law or on the grounds of this Agreement, the Employee covenants that he/she will transfer and, insofar as possible, hereby transfers to the Employer any intellectual property rights of any nature in or arising from work performed by the Employee in the discharge of his/her duties, both in Sweden and abroad, at the Employer’s costs.<p class="hide">&nbsp;</p>'
                 ),
                 $('<li/>').append(
-                    'Neither during the term of the Employment Agreement nor during a period of 12 months after the termination thereof may the Employee, without the Employer’s prior written consent, directly or indirectly induce employees of the Employer or of a company affiliated with the Employer to terminate their employment contracts, offer them a job, or have them offered a job.<p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    'The Employee gives his/her unambiguous and explicit consent to the Employer processing (including the collection, use, disclosure and transfer) of personal data inside and outside of Sweden, including processing in the European Union and the United States, by Recipients for personal administration, employee, work, and business management purposes. In particular, personal data relating to the Employee will be transferred to PayPal, Inc., in the United States and may be transferred to other affiliated companies and their locations as required for personal administration, employee, work, and business management purposes on a case by case basis.<p class="hide">&nbsp;</p>'
-                )
-            ),
-            $('<p class="hide"/>').append('&nbsp;'),
-            $('<p/>').append(
-                $('<strong/>').append('<u>Article 10. Confidentiality</u>')
-            ),
-            $('<p class="hide"/>').append('&nbsp;'),
-            $('<ol class="list-indented mb-30"/>').append(
-                $('<li/>').append(
-                    'The Employee shall not, during the term of the Employment Agreement and after the termination of the Employment Agreement, disclose to any third party or use for his/her own benefit any information concerning the business of the Employer or any of its affiliated companies which have become known to the Employee. “Information concerning the business” includes, without limitation, all business, organizational and technical knowledge, know-how, proprietary or confidential information, names or addresses of customers of the Employer or any of its affiliated companies and any other information which is known only to a limited number of persons and which is not intended to become known outside of the Employer or any of its affiliated companies. <p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    'All written and other records and all tangibles concerning the Employer or any of its affiliated companies and their business which are in the possession of the Employee shall be carefully kept and shall be immediately returned to the Employer upon its request, and in any case upon the termination of the employment. The Employee shall not be entitled to keep any copies of those records and tangibles. The Employee hereby waives any right to retention in respect of records or tangibles mentioned herein. The Employee shall, furthermore, destroy on his/her own data processing equipment all electronically stored confidential data belonging to the Employer or a company affiliated to the Employer upon the Employer’s request after having submitted a copy thereof to the Employer.<p class="hide">&nbsp;</p>'
-                )
-            ),
-            $('<p class="hide"/>').append('&nbsp;'),
-            $('<p/>').append(
-                $('<strong/>').append('<u>Article 11. Non-Competition</u>')
-            ),
-            $('<p class="hide"/>').append('&nbsp;'),
-            $('<ol class="list-indented mb-30"/>').append(
-                $('<li/>').append(
-                    'For a period of 12 months after the termination of the employment, the Employee shall not, without the prior written consent of the Employer, engage in any activities that compete, directly or indirectly, with the Employer or its affiliates ("Competitive Activities") worldwide, and the Employee shall not establish, conduct or cause the conduct of any business engaged in Competitive Activities, or take any interest in more than five percent of the total issued share capital in any company whose shares are quoted or dealt in on a recognized stock exchange or be employed in any way whatsoever, whether or not for consideration, by such business engaged in Competitive Activities.  For the purpose of this Article 11, "Competitive Activities" shall mean internet based business to consumer and consumer to consumer trading, including auction and fixed price formats.<p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    'The Employer shall – with the exception of the cases mentioned below – as compensation for the inconvenience that the existing non-competition article causes the Employee pay the Employee per month the difference between the salary paid by the Employer at the time of termination of the employment and the (lower) salary which the Employee earns from any new employment. However, the compensation payable from the Employer shall not exceed sixty (60) percent of the Employee’s monthly salary at the time of the termination of the employment nor be paid during a period which exceeds the period of this competition article. To enable the Employer to calculate the appropriate compensation, the Employee is obliged to inform the Employer of the level of the current salary from any new employment.<br><br><p class="hide">&nbsp;</p>Compensation according to this article shall not be paid during any period for which the Employee receives severance pay from the Employer or when the employment is terminated because of i) the Employee’s retirement ii) the Employer’s termination of the employment due to the Employee’s substantial breach of the obligations under this Employment Agreement.<p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    'The Employer may release the Employee from the non-competition obligation. If so, the Employer is no longer obliged to pay compensation in accordance with article 11.2 above. Should the Employee, when the employment is terminated by either party, request in writing whether the non-compete obligation in article 11.1 shall apply, the Employer shall give such answer within two (2) weeks, otherwise the non-compete obligation shall not apply. <p class="hide">&nbsp;</p>'
-                )
-            ),
-            $('<p class="hide"/>').append('&nbsp;'),
-            $('<p/>').append(
-                $('<strong/>').append('<u>Article 12. Intellectual Property Rights</u>')
-            ),
-            $('<p class="hide"/>').append('&nbsp;'),
-            $('<ol class="list-indented mb-30"/>').append(
-                $('<li/>').append(
-                    'All intellectual property rights, including but not limited to patent rights, design rights, copyrights and related rights, database rights, trademark rights and chip rights, ensuing, in Sweden and abroad, from the work performed by the Employee under his/her employment contract, will be exclusively vested in the Employer. The Employee may not independently disclose, multiply, use, manufacture, bring on the market or sell, lease, deliver or otherwise trade, offer on behalf of any third party, or commission the registration of the results of his work <p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    'Insofar as the rights specified hereinafter are not vested in the Employer by operation of law or on the grounds of the Employment Agreement, the Employee covenants that he/she will transfer and, insofar as possible, hereby transfers to the Employer any intellectual property rights of any nature in or arising from work performed by the Employee in the discharge of his/her duties, both in Sweden and abroad, at the Employer’s costs.<p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    'The Employee acknowledges that his/her salary includes reasonable compensation for the loss of intellectual property rights.<p class="hide">&nbsp;</p>'
+                    'The Employee acknowledges that his/her salary includes reasonable compensation for any loss of intellectual property rights.<p class="hide">&nbsp;</p>'
                 ),
                 $('<li/>').append(
                     'Insofar as the intellectual property rights are not capable of being transferred and insofar as permitted by law, the Employee hereby waives any intellectual property rights, including the moral rights that may be waived (such as the right to have one’s name stated).<p class="hide">&nbsp;</p>'
@@ -245,31 +284,140 @@ function fnView() {
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<p/>').append(
-                $('<strong/>').append('<u>Article 13. Liquidated damages</u>')
+                $('<strong/>').append('<u>Article 8. Non-Solicitation Restrictions</u>')
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<ol class="list-indented mb-30"/>').append(
                 $('<li/>').append(
-                    'If the Employee fails to comply with the provisions under article 9.3 (Non-Solicitation), article 10 (Confidentiality), article 11 (Non-Competition) and article 12 (Intellectual Property Rights), the Employee shall, in respect of every breach pay to the Employer a penalty amounting to six (6) times the Employee’s average monthly gross salary with the Employer during the six months preceding the breach or, if the employment has expired, immediately prior to the expiry of the employment. Should the actual loss caused to the Employer exceed this amount, the Employer shall be entitled to damages in respect of such excess amount and/or to take other legal measures.<p class="hide">&nbsp;</p>'
+                    'The Employee undertakes to, neither during the Employment, nor within a period of six (6) months after the effective date of termination, neither directly nor indirectly, i.e. neither as an employee, contractor, owner, director nor in any other way:<br><br>',
+                    $('<p class="hide"/>').append('&nbsp;'),
+                    $('<ul/>').append(
+                        $('<li/>').append(
+                            '(a) induce or endeavor to induce B2B customers or other business partners of the Employer, or anyone who has been a customer/partner of the Employer during the past twelve (12) months, to terminate or not to prolong an agreement with the Employer, or assist in any such action; or'
+                        ),
+                        $('<li/>').append(
+                            '(b) induce or endeavor to induce an employee of the Employer, or an individual who has been employed by the Employer during the past twelve (12) months, and who the Employee used to work with, to leave the employment, or assist in any such action.'
+                        )
+                    )
+                ),
+                $('<li/>').append(
+                    'In the event of a breach of the non-solicitation restrictions above, the Employee shall, in respect of each and every breach, pay a fine to the Employer corresponding to an amount of six (6) monthly incomes. Should the breach be of an ongoing nature, the Employee shall pay the fine for each week he/she is in breach. The monthly income shall be calculated as the average of the compensation which the Employee has received (fixed and variable compensation) during the previous twelve-month period; but only taking into account those months when the Employee was working full time. In the event the breach has occurred after the Employment had ceased, the monthly income shall be calculated as per the effective date of termination of Employment. '
+                ),
+                $('<li/>').append(
+                    'Should the Employer suffer a loss exceeding the abovementioned fine, additional damages shall be payable, corresponding to an amount which (together with the fine) equals the actual loss. The Employer may also seek a court decision in order to obtain an interim prohibition under penalty of a fine.'
+                )
+            ),
+            $('<p class="hide"/>').append('&nbsp;'),
+            // TODO if not complete restrictions
+            $('<p/>').append(
+                $('<strong/>').append('<u>Article 9. Non-Compete Restrictions</u>')
+            ),
+            $('<p class="hide"/>').append('&nbsp;'),
+            (employee.Non_Compete == 'Y') &&
+            $('<ol  class="marked" data-toggle="popover" data-placement="top" data-content="Non-Compete Restrictions"/>').append(
+                $('<li/>').append(
+                    'The Employee will as a natural part of the Employment gain access to company-specific know-how and trade secrets of a high value to the Employer. It would cause the Employer significant damage if such information were to be used in a competing business. Such trade secrets, which have a long life-span, include (but are not limited to) customer lists, pricing models and expansion plans. A condition for the Employment is accordingly that the Employer can disclose such information to the Employee under the assurance that the information will not be used in any competing business.'
+                ),
+                $('<li/>').append(
+                    'In light of the above, the Employee undertakes not to, neither during the Employment nor for a period of nine (9) months following the termination of Employment, neither directly nor indirectly, i.e., not as an employee, consultant, owner, director or otherwise:',
+                    $('<ul/>').append(
+                        $('<li/>').append(
+                            '(a) provide products or services similar to those provided by the Employer for a party other than the Employer;'
+                        ),
+                        $('<li/>').append(
+                            '(b) represent a party other than the Employer in negotiations regarding the provision of products or services similar to those provided by the Employer;'
+                        ),
+                        $('<li/>').append(
+                            '(c) assist in the breach of contract or alteration of contract or other custom, in a situation where the Employer takes part in or otherwise benefits from; or'
+                        ),
+                        $('<li/>').append(
+                            '(d) take initiative to what might lead to any of the situations outlined in the above sections (a), (b) and/or (c).'
+                        )
+                    )
+                ),
+                $('<li/>').append(
+                    'The Employee will be entitled to compensation in case the non-competition restrictions outlined above in this article section 2 (a) – (d) (the “',
+                    $('<strong/>').append(
+                        'Non-Compete Restrictions'
+                    ),
+                    '”) are in force after the effective date of termination of Employment and are being observed by the Employee. However, no compensation will be paid if the Employment was terminated due to retirement or a termination without notice (Sw. avsked). '
+                ),
+                $('<li/>').append(
+                    'The compensation according to this article section 3 shall be paid on a monthly basis and shall correspond to the monthly income received by the Employee after deduction of other income which the Employee has received, or with reasonably demanding effort would have received during the same period of time considering his/her education and experience. However, the compensation shall not in any case exceed sixty (60) percent of the Employee’s monthly income. Monthly income means the average of the compensation which the Employee has received (fixed and variable compensation) during the previous twelve-month period; but only taking into account those months when the Employee has worked to a normal extent. '
+                ),
+                $('<li/>').append(
+                    'However, no compensation according to this article section 3 will be paid in case the lower income is not related to the fact that the Non-Compete Restrictions apply.'
+                ),
+                $('<li/>').append(
+                    'Should the Employee wish to be compensated in accordance with this article section 3, he/she shall inform the Employer of this in writing and continuously keep the Employer informed of any income and other relevant information as the Employer requires.'
+                ),
+                $('<li/>').append(
+                    'The Employer may at any time and at its sole discretion release the Employee from the Non-Compete Restrictions by means of a written notification. The Employee’s entitlement to compensation will then cease one (1) month after the receipt of the notification. The Employee is also entitled to demand a notification in writing regarding whether or not the Employer aims to invoke the Non-Compete Restrictions; and whether the Employer considers the Non-Compete Restrictions to interfere with a specific potential employment or business operation. Upon such request, Employer shall revert within two (2) weeks of receiving the request.'
+                ),
+                $('<li/>').append(
+                    'In the event of a breach of the Non-Compete Restrictions, the Employee shall, in respect of each and every breach, pay a fine and/or damages to the Employer as outlined in article 8 section 3.'
+                ),
+                $('<li/>').append(
+                    'The Non-Compete Restrictions shall not apply in the situation where the Employee has been dismissed due to redundancy reasons (Sw. arbetsbrist).'
+                ),
+                $('<li/>').append(
+                    'Should an action constitute a breach of both the non-solicitation restriction in the above article 9 and the Non-Compete Restrictions in this article section 2, the Employer can only claim compensation in accordance with one of the provisions, i.e. either according to article 8 section 3. or this article section 8.'
+                )
+            ),
+            (employee.Non_Compete != 'Y') &&
+            $('<ol class="marked" data-toggle="popover" data-placement="top" data-content="Non-Compete Restrictions"/>').append(
+                $('<li/>').append(
+                    'Not applicable for employee.'
+                )
+            ),
+            $('<p/>').append(
+                $('<strong/>').append('<u>Article 10. Termination</u>')
+            ),
+            $('<p class="hide"/>').append('&nbsp;'),
+            $('<ol class="list-indented mb-30"/>').append(
+                $('<li/>').append(
+                    'Either party may terminate the Employment by giving prior notice of three (3) months until the employment has lasted for six (6) years. Thereafter, the Employer will follow the longer notice period legally required as set forth in the Swedish Employment Protection Act (',
+                    $('<en/>').append(
+                        'Sw. lagen om anställningsskydd (1982:80)'
+                    ),
+                    '). '
+                ),
+                $('<li/>').append(
+                    'In case the Employee acts fraudulently or grossly neglects his/her obligations towards the Employer, the Employment may be terminated with immediate effect. '
                 )
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<p/>').append(
-                $('<strong/>').append('<u>Article 14. Applicable Law</u>')
+                $('<strong/>').append('<u>Article 11. Processing of Personal Data</u>')
+            ),
+            $('<p class="hide"/>').append('&nbsp;'),
+            $('<ul class="list-indented mb-40"/>').append(
+                $('<p/>').append(
+                    'The Employer respects the privacy of all employees and will comply with all applicable laws regarding processing of  personal information. All such personal  information is processed in accordance with the PayPal Employee Privacy Statement, a copy of which has been given  to the Employee in connection with this Agreement. The Employee acknowledges that he/she has reviewed and understands the Employee Privacy Statement.'
+                )
+            ),
+            $('<p class="hide"/>').append('&nbsp;'),
+            $('<p/>').append(
+                $('<strong/>').append('<u>Article 12. No Misrepresentation</u>')
+            ),
+            $('<p class="hide"/>').append('&nbsp;'),
+            $('<ul class="list-indented mb-40"/>').append(
+                'The Employee shall at all times during and after the term of the Employment Agreement accurately represent his/her position, title, role description and duties under the Employment Agreement, including in any dealings with PayPal customers and suppliers and in his/her resume, social media profiles and pages (including without limitation any LinkedIn or Facebook profile), website, email signature and business card.'
+            ),
+            $('<p class="hide"/>').append('&nbsp;'),
+            $('<p/>').append(
+                $('<strong/>').append('<u>Article 13. Applicable Law</u>')
             ),
             $('<p class="hide"/>').append('&nbsp;'),
             $('<ol class="list-indented mb-40"/>').append(
                 $('<li/>').append(
-                    'Any amendments or additions to the Employment Agreement shall be in writing providing, however, that the notice of termination shall not require the written form. <p class="hide">&nbsp;</p>'
+                    'Any amendments or additions to this Agreement shall be made in writing. This Agreement may only be amended by an instrument in writing duly executed by all Parties.'
                 ),
                 $('<li/>').append(
-                    'The Employment Agreement may only be amended by an instrument in writing duly executed by the parties. <p class="hide">&nbsp;</p>'
+                    'Should any provision of this Employment Agreement be or become invalid, the validity of the other provision(s) shall not be affected, and the invalid clause shall be replaced by such other valid clause that best meets the parties’ common intention when agreeing on the invalid clause.'
                 ),
                 $('<li/>').append(
-                    'Should any provision of the Employment Agreement be or become invalid, the validity of the other provision(s) shall not be affected, and the invalid clause shall be replaced by such other valid clause that best meets the parties’ common intention when agreeing on the invalid clause.<p class="hide">&nbsp;</p>'
-                ),
-                $('<li/>').append(
-                    'The Employment Agreement is subject to the laws of Sweden.<p class="hide">&nbsp;</p>'
+                    'The Employment Agreement is subject to the laws of Sweden. Any dispute, controversy or claim that may arise regarding the origin, interpretation or application of this Agreement or derogating from this Agreement, shall, if not settled through consultations between the Parties, be solved by general court.'
                 )
             ),
             $('<p class="hide"/>').append('&nbsp;'),
@@ -278,11 +426,11 @@ function fnView() {
             ),
             $('<p class="mb-60"/>').append(
                 'For and on behalf of ',
-                (employee.EntityName == 'Tradera Sweden AB') &&
-                'Tradera Sweden AB',
-                (employee.EntityName != 'Tradera Sweden AB') &&
-                'PayPal SE, UK, Filial Sweden<br>',
-                $('<span id="company-signatory-complementary" /><br>'),
+                $('<mark/>').append(
+                    employee.EntityName
+                ),
+                '<br/>',
+                // $('<mark id="company-signatory-complementary" /><br>'),
                 'Company Signatory'
             ),
             $('<p class="hide"/>').append('&nbsp;'),
@@ -327,14 +475,13 @@ $(function() {
         $("#ButtonSaveAndComplete").remove();
         $("input[type=text]").removeAttr('onfocus').attr("disabled", "disabled");
 
-        var arrParts = [
+        let arrParts = [
             [1, 'hidden_pg']
         ];
-
-        var arrParts2 = [
+        let arrParts2 = [
             [1, 'hidden_pg5']
         ];
-
-        showCompletedOfferLetter('incomplete2', 'complete2', arrParts2);
+        showCompletedOfferLetter('incomplete','complete',arrParts);
+        showCompletedOfferLetter('incomplete2','complete2',arrParts2);
     }
 });

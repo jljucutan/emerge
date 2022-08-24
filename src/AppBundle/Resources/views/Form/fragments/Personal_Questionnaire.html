@@ -1,0 +1,540 @@
+<div class="modal" id="modal" style="display:none;"> 
+ <div class="modal-content"> 
+  <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+  <p style="fontweight:normal;padding:0px"> 
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+  </label> 
+  <br> 
+  <div class="row"> 
+   <div class="lifesuite__clearfix"> 
+    <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+  </div> 
+</div> 
+<div class="row"> 
+  <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+   <input id="signature-submit" type="button" class="lifesuite__button primary" value="Sign">&nbsp; 
+   <input  id="signature-clear" type="button" class="lifesuite__button" value="Clear">&nbsp;
+   <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+ </div> 
+</div> 
+</div> 
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+  showScreen('over');
+</SCRIPT> 
+
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+ <div class="fb-spinner"> 
+  <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+</div> 
+</div> 
+
+
+<form id="personal-questionnaire" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form"> 
+
+  <div style="display:none;"> 
+
+    <$client.env.FormField.Form_Name.prompt> 
+    <$client.env.FormField.Form_Name.HTML> 
+    <$client.env.FormField.Form_Type.prompt> 
+    <$client.env.FormField.Form_Type.HTML> 
+    <$client.env.FormField.Form_Owner.prompt> 
+    <$client.env.FormField.Form_Owner.HTML> 
+    <$client.env.FormField.Form_CreateDate.prompt> 
+    <$client.env.FormField.Form_CreateDate.HTML> 
+    <$client.env.FormField.Form_Completed.prompt> 
+    <$client.env.FormField.Form_Completed.HTML> 
+    <$client.env.FormField.Form_Delivered.prompt> 
+    <$client.env.FormField.Form_Delivered.HTML> 
+    <$client.env.FormField.Form_TaskId.prompt> 
+    <$client.env.FormField.Form_TaskId.HTML> 
+    <$client.env.FormField.display_version.HTML> 
+
+
+  </div> 
+
+  <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 imgr">
+        <img src="img/logo.png" class="img-responsive" style="max-width: 120px;">
+      </div>
+    </div>
+    <div class="row margin-bottom">
+      <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+        <h3>Personal Questionnaire / Personalfragebogen</h3>
+        <br><br>
+      </div>
+    </div>
+    <section class="margin-bottom">
+      <div class="row margin-bottom">
+        <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+          <h5 class="margin-bottom form-heading" style="margin-top:0px!important;"><span>GENERAL</span></h5>
+          <div class="row">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">Religion: <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.Religion.HTML>
+              </div>
+            </div>
+          </div>
+          <div id="other-container" class="row margin-bottom hide">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">Other: <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.Other.HTML>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">Country of Birth: <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.CountryOfBirth.HTML>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">City of Birth: <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.CityOfBirth.HTML>
+              </div>
+            </div>
+          </div>
+          <br><br>
+          <h5 class="margin-bottom form-heading" style="margin-top:0px!important;"><span>SOCIAL SECURITY INFORMATION</span></h5>
+          <div class="row">
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">German Health Insurance (in case it’s BKK, please indicate the exact address): <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.GermanHealthInsurance.HTML>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">Type of Health Insurance: <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.TypeOfHealthInsurance.HTML>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-bottom hide private-health-container">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">Privately insured since: <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.PrivatelyInsuredSince.HTML>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-bottom hide private-health-container">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">Previous compulsory health insurance company before moving to a private insurance: <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.PreviousHealthInsurance.HTML>
+              </div>
+            </div>
+          </div>
+          <br><br>
+
+          <h5 class="margin-bottom form-heading" style="margin-top:0px!important;"><span>DISABILITY</span></h5>
+          <div class="row">
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">Are you severely disabled? <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.Disabled.HTML>
+              </div>
+            </div>
+          </div>
+          <div id="degree-container" class="row margin-bottom hide">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">Degree of disability: <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.DegreeOfDisability.HTML>
+              </div>
+            </div>
+          </div>
+          <br><br>
+
+          <h5 class="margin-bottom form-heading" style="margin-top:0px!important;"><span>WAGE GARNISHMENTS</span></h5>
+          <div class="row">
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">Wage Garnishments exist? <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.WageGarnishments.HTML>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-bottom hide garnishment-container">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">Since: <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.Since.HTML>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-bottom hide garnishment-container">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">In amount of: <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.Amount.HTML>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-bottom hide garnishment-container">
+            <div class="col-md-4 col-xs-12 padding-top">
+              <label class="control-label">Receiver: <span class="font-red">*</span></label>
+            </div>
+            <div class="col-md-8 col-xs-12">
+              <div class="form-group">
+                <$client.env.FormField.Receiver.HTML>
+              </div>
+            </div>
+          </div>
+          <br><br>
+
+
+        </div>
+      </div>
+    </section>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+       <label class="control-label">Signature: <span class="font-red">*</span> </label> 
+     </div>
+     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <div class="form-group">
+        <$client.env.FormField.signature.html>
+      </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><label class="control-label">Date: </label></div>
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+      <div class="form-group">
+        <$client.env.FormField.date_mapped.html>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+  </div>
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+     <label class="control-label">Name: </label>
+   </div>
+   <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12"><$client.env.FormField.name.html></div>
+ </div>
+ <hr class="lifesuite__hr">
+ <div class="row" id="formButtons" style="display: none;">
+  <div class="lifesuite__clearfix lifesuite__float-right">                
+   <$client.env.FormButtons> 
+ </div>
+</div>
+</main>
+
+<div class="hide">
+  <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator_V2.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+<script type="text/javascript"> 
+  ChangeCalendarIcons(); 
+  const thisForm = $('#personal-questionnaire');
+  $(document).on('ready', function() {
+    $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue"); 
+    $("#buttonSave").addClass("lifesuite__button primary"); 
+    $('#buttonSave').attr('id','ButtonSave'); 
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonSave', 'onclick': null});
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonSaveAndComplete', 'onclick': null});
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonPrint', 'onclick': null});
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonComplete', 'onclick': null});
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  });
+
+  const getInstance = function() {
+    "use strict";
+    return $('[name$=".display_version"]').prop('name').split('.')[0];
+  }
+
+  const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+  }
+
+//const MAX_EXPENSES = 14;
+//const MIN_EXPENSES = 1;
+
+
+const makeid = function() {
+  "use strict";
+  const CHAR_LENGTH = 16;
+  let result           = '';
+  let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let charactersLength = characters.length;
+  for ( var i = 0; i < CHAR_LENGTH; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+const iterateFields = function(sectionID) {
+  "use strict";
+  return function(field) {
+    const realField = thisForm.find('[name$=".' + field.name + '"]').attr('data-title', field.prompt).detach();
+    if (field.validation) {
+      realField.attr('data-validation', field.validation);
+    }
+    if (field.fieldType && field.fieldType == 'date') {
+      realField.formatDatePicker(dateConfig, "USA").attr('readonly', 'readonly');
+    }
+    let row = $('<div class="row mb-15" />').append(
+      $('<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top"/>').append(
+        $('<label class="control-label lifesuite__input-label lifesuite__input—block"/>').append(field.prompt)
+        ),
+      $('<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"/>').append(realField)
+      );
+    if (field.displayParent) {
+      row.attr('data-display-parent', field.displayParent);
+    }
+    sectionsRoot.find('[data-expense-section="' + sectionID + '"]').append(row);
+  }
+}
+
+
+$(window).on('load', function() {
+  $('#personal-questionnaire').on('change', 'input.hasDatepicker:visible', function() {
+    $("[data-id='"+$(this).data('date-mapped')+"']").val($(this).data("realdate"));
+  });
+
+  if ($('#countryofbirth').val().length < 1) {
+    $('#countryofbirth').val('<$client.env.eval(client.tForWhomUserInfo.National_ID_IssuedBy.subString(0,1))>')
+  }
+
+  $('#personal-questionnaire').on('change', 'input.dateField:visible', function() {
+    $($(this).data('date-mapped')).val($(this).val());
+    if (!strFormCompleted) {
+      validateField($(this));
+    }
+  });
+
+  $('#personal-questionnaire').on('change', 'input.hasDatepicker:visible', function() {
+    $("[data-id='"+$(this).data('date-mapped')+"']").val($(this).data("realdate"));
+  });
+
+  $('#modal').on('click', '#signature-submit', function() {
+    if (validateSignature('signature','eSignature1','fullName','modal','over','sv')) {
+        $('#date_mapped').setFormattedDate(new Date());
+        $("[data-id='date']").val($('#date_mapped').data("realdate"));
+    }
+    xbObj('eSignature1').value='';
+    validateField($('#signature'));
+    document.getElementById('eSignature1').focus();
+  });
+  $('#modal').on('click', '#signature-clear', function() {
+    xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';
+    if (typeof targetdatecheckCLEAR == 'function' ){$('#date_mapped').setFormattedDate(null);$("[data-id='date']").val("");}
+    validateField($('#signature'));
+  });
+
+
+    // regular fields
+    thisForm.on('blur change', 'input:visible:not([type=button]), select:visible, textarea:visible', function() {
+      validateField($(this));
+    });
+    /*// datepicker fields
+    thisForm.on('change click', 'input.hasDatepicker', function() {
+        validateField($(this));
+      });*/
+/*
+    // show or hide fields for specific roles
+    $("[data-display-only-for='EmployeeAdvocacy']").each(function(k, v) {
+      if (<$client.env.eval((client.role.rc_offboarding_employee_advocacy>0)?'true':'false')>) {
+        $(v).show();
+      }
+      else {
+        $(v).hide();
+      }
+    });
+*/
+    thisForm.on('click', '#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete', function(e) {
+      let formIsValid = true; 
+      e.preventDefault();
+      $.each($('input:visible:not(:button), select:visible, textarea:visible', thisForm), function(k, v) {
+        if(strFormCompleted != "") {
+          return;
+        }
+        if(false == validateField($(v)) && $(v).is(':visible')) {
+          formIsValid = false;
+        }
+      });
+
+      if (formIsValid) {
+        const btn = $(this);
+        switch (btn.attr('id')) {
+          case 'ButtonPrint':
+          funcPrint();
+          break;
+          case 'ButtonSaveAndComplete':
+          funcSaveAndComplete();
+          break;
+        }
+        return;
+      }
+      $("html, body").animate({ scrollTop: 0 }, "slow");
+    });
+    <$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js> 
+    if (!$("#sv").prop('readonly')) {
+      $('.livedates')
+      .wrap('<div class="date-wrapper"></div>')
+      .parent()
+      .append('<span class="calendar-btn-container formDate"><i class="fa fa-calendar"></i></span>');  
+    }
+
+
+
+    setTimeout(function() {
+      if($('#other-container').hasClass('hide')) {
+        $('#other-container').find('input:radio:checked').prop('checked', false);
+        $('#other-container').find('input').val('');
+      }
+      if($('.private-health-container').hasClass('hide')) {
+        $('.private-health-container').find('input:radio:checked').prop('checked', false);
+        $('.private-health-container').find('input').val('');
+      }
+      if($('.garnishment-container').hasClass('hide')) {
+        $('.garnishment-container').find('input:radio:checked').prop('checked', false);
+        $('.garnishment-container').find('input').val('');
+      }
+      if($('#degree-container').hasClass('hide')) {
+        $('#degree-container').find('input:radio:checked').prop('checked', false);
+        $('#degree-container').find('input').val('');
+      }
+
+    }, 1000);
+
+    $('[name$=".Religion"]').on("change", function() {
+      if ($('[name$=".Religion"]').val() == "Other") {
+        $('#other-container').removeClass('hide');
+      }else{
+        $('#other-container').addClass('hide');
+        $('#other-container').find('input').val('');
+      }
+    });
+    ($('[name$=".Religion"]').val() != "") ? $('[name$=".Religion"]').change() : '';
+
+    $('[name$=".TypeOfHealthInsurance"]').on("change", function() {
+      if ($('[name$=".TypeOfHealthInsurance"]').val() == "Privately insured") {
+        $('.private-health-container').removeClass('hide');
+      }else{
+        $('.private-health-container').addClass('hide');
+        $('.private-health-container').find('input').val('');
+      }
+    });
+    ($('[name$=".TypeOfHealthInsurance"]').val() != "") ? $('[name$=".TypeOfHealthInsurance"]').change() : '';
+
+    $('[name$=".Disabled"]').on("change", function() {
+      if ($('[name$=".Disabled"]:checked').val() == "Yes") {
+        $('#degree-container').removeClass('hide');
+      }else{
+        $('#degree-container').addClass('hide');
+        $('#degree-container').find('input').val('');
+      }
+    });
+    ($('[name$=".Disabled"]:checked').val() != "") ? $('[name$=".Disabled"]:checked').change() : '';
+
+    $('[name$=".WageGarnishments"]').on("change", function() {
+      if ($('[name$=".WageGarnishments"]:checked').val() == "Yes") {
+        $('.garnishment-container').removeClass('hide');
+      }else{
+        $('.garnishment-container').addClass('hide');
+        $('.garnishment-container').find('input').val('');
+      }
+    });
+    ($('[name$=".WageGarnishments"]:checked').val() != "") ? $('[name$=".WageGarnishments"]:checked').change() : '';
+
+
+    if (!$("#sv").prop('readonly')) {
+
+$('.livedates')
+                .wrap('<div class="date-wrapper"></div>')
+                .parent()
+                .append('<span class="calendar-btn-container formDate"><i class="fa fa-calendar"></i></span>');  
+
+  }
+    //$('#date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); following specs for now
+    $('#date_mapped').formatDatePicker(dateConfig, "USA"); 
+
+    $('#personal-questionnaire').on('blur change', 'input:visible:not(#signature):not(:button):not(.dateField):not([data-must-match]), select:visible', function() {
+    // Modifies validation and error message
+      $('#degreeofdisability').data('validation', 'required,regex');
+  $('#degreeofdisability').data('regex', '^[1-9][0-9]?$|^100$');
+      $('#degreeofdisability').data('message', 'digits only between 1 and 100');
+      
+      $('#amount').data('validation', 'required,regex');// $('#amount').data('regex', '^[\\$,€]?[0-9.,]+$');
+      const updateAmtReg = function() {
+        if (/\$/g.test($('#amount').val()) && /€/g.test($('#amount').val())) {
+        $('#amount').data('regex', '(?=.*?\\d)^(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$');
+        }
+        else {
+        $('#amount').data('regex', '(?=.*?\\d)^[\\$]?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?(€)?$');
+        }
+      }
+      $('#amount').on('blur keyup focus', updateAmtReg);
+      updateAmtReg()
+      $('#amount').data('message', 'numeric with optional currency symbols, commas and periods');
+    
+    if (!strFormCompleted) {
+      validateField($(this));
+    }
+  });
+
+  });
+</script>

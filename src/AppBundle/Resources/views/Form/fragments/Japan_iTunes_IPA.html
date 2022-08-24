@@ -1,0 +1,995 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+  <div class="modal-content"> 
+   <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+   <p style="fontweight:normal;padding:0px"> 
+     <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+   </p> 
+   <br> 
+   <div class="row"> 
+     <div class="lifesuite__clearfix"> 
+      <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+    </div> 
+  </div> 
+  <div class="row"> 
+   <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px;"> 
+     <input type="button" class="lifesuite__button btn-sign" value="Sign" onClick="validateSignature('signature','eSignature1','PrintName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+     <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+     <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+   </div> 
+ </div> 
+</div> 
+</div> 
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+  showScreen('over');
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+  <div class="fb-spinner"> 
+   <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+ </div> 
+</div> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);"> 
+
+  <div style="display:none;">
+    <$client.env.FormField.Form_Name.prompt>
+    <$client.env.FormField.Form_Name.HTML>
+    <$client.env.FormField.Form_Type.prompt>
+    <$client.env.FormField.Form_Type.HTML>
+    <$client.env.FormField.Form_Owner.prompt>
+    <$client.env.FormField.Form_Owner.HTML>
+    <$client.env.FormField.Form_CreateDate.prompt>
+    <$client.env.FormField.Form_CreateDate.HTML>
+    <$client.env.FormField.Form_Completed.prompt>
+    <$client.env.FormField.Form_Completed.HTML>
+    <$client.env.FormField.Form_Delivered.prompt>
+    <$client.env.FormField.Form_Delivered.HTML>
+    <$client.env.FormField.Form_TaskId.prompt>
+    <$client.env.FormField.Form_TaskId.HTML>
+    <$client.env.FormField.display_version.HTML>
+    <!-- Your Required/Validated Form Fields -->
+
+    <$client.env.formfield.English_Prior_Inventions.prompt>
+    
+
+  </div>
+
+  <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+  <!-- Begin HTML Content -->
+
+  <div id='container'  >
+
+    <div class="container-fluid">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right logo-padding" style="margin-bottom:20px!important;">
+           <img src="<$link;/main/RedCarpet/FormTemplates/Japan_IPA/apple_logo.png>" alt="Apple Logo" style="max-width:80px;">
+         </div>
+       </div>  
+       <div class="row">
+        <div class="col-lg-6 col-md-6 col=sm-12 col-xs-12 mid-padding"> 
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom">
+            <h2>
+              Confidentiality and Intellectual 
+            </h2>
+            <h2>
+              Property Agreement 
+            </h2>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom-25">
+            <p>
+              This Confidentiality and Intellectual Property Agreement (“Agreement” or “IPA Agreement”) is entered into between you (also referred to as “Employee”) and iTunes K.K.., a Japanese corporation having its principal place of business at Roppongi Hills, 6-10-1 Roppongi, Minato-ku, Tokyo 106-6140, Japan (collectively and severally with its affiliates and subsidiaries, “iTunes”) (Employee and iTunes collectively, the “parties”). iTunes has agreed to employ you (or continue to employ you if this Agreement is signed after you have already been employed by iTunes) on the condition that you agree to and abide by all of the following terms and conditions for the duration of your employment by iTunes, including but not limited to during any leave of absence or other time off, and thereafter.
+            </p>
+            <p>
+              iTunes’s business includes the research & development, design, engineering, programming, assembly, manufacture, distribution, retail, and sale of electronic goods, software, content, and services. As a full-time or part-time employee, intern, or temporary or contingent worker employed by iTunes, you will have, access to various types of confidential information that is owned by iTunes or to which iTunes has separately committed to one or more third parties to maintain as  confidential.
+              Therefore, to protect iTunes's intellectual property rights and business and technical secrets and safeguard both parties’ interests, the parties hereby agree as follows in consideration of the above premises, the mutual promises contained herein, and the compensation paid to you in connection with your employment by  iTunes.
+            </p>
+            <div style="margin-bottom: 11px!important;">&nbsp;</div>
+            <h4><span class="roman-inline">I.</span><span class="subsub">CONFIDENTIAL AND PROPRIETARY INFORMATION</span></h4>
+            <p class="margin-bottom">
+              You understand that your employment by iTunes creates a relationship of confidence and trust with respect to any confidential, proprietary, or non-public information that  may be disclosed to you or otherwise learned by you in  the course of employment at iTunes, including but not limited to any confidential information of third parties disclosed to iTunes. As referred to herein, “Proprietary Information” means all information not generally known outside iTunes and/or kept confidential by iTunes, including for example but not limited to (a) trade secrets, R&D records, reports, samples, manuals, plans, specifications, inventions, ideas, designs, prototypes, software, source code, or any other materials or information relating to  past, existing, and future products and services whether  or not developed, marketed, used, or rejected by iTunes or persons or companies dealing with iTunes; (b) sales, profits, organization, customer lists, pricing, sources of material, supply, costs, manufacturing, financials, forecasts, market research, or any other information relating to the business operations or affairs of iTunes or persons or companies dealing with iTunes; and (c) the employment and personnel information of iTunes, such as compensation, training, recruiting, and other human resource information.<sup>1</sup>
+            </p>
+
+            <ol class="ol-custom margin-bottom-25">
+              <li>
+                <span class="li-span">
+                  <strong>Treatment of Proprietary Information. </strong>You understand and agree that your employment by iTunes prohibits you, during or after employment, from using or disclosing, or permitting any  other
+                  person or entity to use or disclose, any Proprietary Information without the written consent of iTunes, except as necessary to perform your duties as an employee of iTunes.  You understand and agree to
+                  strictly comply with all of iTunes’s rules and policies regarding Proprietary Information and use best
+                  efforts to safeguard such Proprietary Information  and protect it against disclosure, misuse, loss, or theft. Upon termination of employment with iTunes, you will promptly deliver to iTunes all documents and materials of any kind pertaining to your work  at
+                  iTunes, and you agree that you will not take with you any documents, materials, or copies thereof,
+                  whether on paper or any other medium, containing any Proprietary Information.
+
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>Information of Others. </strong>You agree that you have not brought, and during your employment  with
+                  iTunes will not bring, any confidential, proprietary, or secret information or intellectual property of your former employer(s) or any other person(s) or
+                  entity(ties) onto iTunes property. You further agree you have not improperly used or disclosed (or induced the same), and during your employment
+                  with iTunes will not improperly use or disclose (or induce the same), any confidential, proprietary, or secret information or intellectual property of your former employer(s) or any other person(s) or
+                  entity(ties).
+                </span>
+              </li>
+            </ol>
+            <h4><span class="roman-inline">II.</span><span class="subsub">INVENTIONS</span></h4>
+            <ol class="ol-custom margin-bottom-25">
+              <li>
+                <span class="li-span">
+                  <strong>Definition of Invention. </strong>As used in this Agreement, “Inventions” means any and all inventions, ideas, and discoveries, including improvements, original works of authorship, designs, formulas, processes, specifications, technology, computer programs or portions thereof, databases, mask works, results, know-how, trade secrets and proprietary information, documentation, and materials made, created, conceived, or reduced to practice   by
+                  you, alone or jointly with others.
+
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>Prior Inventions. </strong>In a separate form associated with this Agreement, you may list all Inventions   that you made prior to  your  employment with  iTunes and that you claim an ownership or any other legal right or title in (“Prior Inventions”).  If you do   not claim an ownership or other legal right or title   in a Prior Invention  because you assigned all rights to a previous employer, then you should not list the Prior Invention. You should not include any information that is subject to  a
+                  confidentiality obligation to a third party.
+                  You agree that you will not incorporate, or permit to be incorporated, any Prior Inventions in any iTunes product, service, process, or method of doing business  (collectively “iTunes  Product”) without
+                  iTunes's prior written consent. You further agree to grant and do hereby grant to iTunes a non-exclusive, royalty-free,  irrevocable,  perpetual, worldwide
+                  license without any additional compensation to make, have made, use, offer to sell, sell, import, export, reproduce, modify, display,  perform,
+                  transmit, and otherwise distribute and exploit  any
+                  listed Prior Invention(s) that is incorporated or used in or for an iTunes Product, (i) with your knowledge, involvement, acquiescence, or permission, (ii) if you were involved in the development or implementation of the relevant part of the iTunes Product, or (iii) if  you do not promptly object to the public use   or
+                  commercialization of the relevant part of the iTunes Product in a written notice to an iTunes Vice President, or equivalent for your region. 
+                </span>
+                <div style="margin-bottom: 14px!important;"></div>
+                <span class="li-span">
+                  If you do not list a Prior Invention, you acknowledge and agree that no such Prior Inventions exist, and, to the extent such Prior Inventions do exist, you waive any and all past, present, and future claims against iTunes relating to such Prior Inventions. You understand that your listing of any Prior Inventions
+                  here does not constitute an acknowledgment by iTunes of the existence or extent of such Prior Inventions, nor of any ownership of such Prior
+                  Inventions. Please do not use this space to disclose an ongoing business or project, or a product that you are developing and/or distributing; such
+                  ongoing activity must be disclosed and presented to your manager in writing, and approved in advance  by your iTunes Vice President, or equivalent for your region.
+                </span>
+                <div style="margin-bottom: 14px!important;"></div>
+                <span class="li-span">
+                  <strong>Prior Inventions</strong> <span style="color: red"> * </span>
+                </span>
+                <div></div>
+                <span class="li-span">
+                  <$client.env.formfield.English_Prior_Inventions.html>
+                </span>
+                <p class="req-notif">Required information is missing.</p>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>iTunes Ownership of Inventions. </strong>You confirm and agree that all Inventions that (a) are developed using any equipment, supplies, facilities or Proprietary Information provided by iTunes; (b) result from or are suggested by work performed by you for iTunes or Proprietary Information provided by iTunes; or (c) are conceived of or reduced to practice during the time you are employed by iTunes and relate to any aspect of iTunes’s business or products, or iTunes’s actual or anticipated research and development (collectively “iTunes Inventions”) are the sole and exclusive property of iTunes. You agree to make a full written disclosure promptly to iTunes of any and all iTunes Inventions.  Other than a reasonable compensation as required by Article 35 of the Japan Patent  Law,
+                  Article 11.3 of the Utility Model Act, and Article 15.3 of the Design Act, you agree that no  additional
+                  compensation or remuneration is or will become due to you in consideration for iTunes’s ownership of the iTunes Inventions, and that any award or bonus provided to you (for example pursuant to a patent award program) will be at iTunes’s sole discretion  and is not a condition for iTunes’s ownership of any Inventions.  You acknowledge and agree that you
+                  have no right to, and will not directly or indirectly   use iTunes Inventions except as authorized by iTunes for your work at iTunes. For example, you agree not to: (a) reproduce, manufacture, market, publish, distribute, sell, license, or sublicense, transfer, rent, lease, transmit, broadcast, display, or use the iTunes Inventions, or any portion or copy thereof, in any form; (b) apply for, or apply to register, any patent, copyright, trademark, mask work, or other industrial property right or intellectual property right in or related to the iTunes Inventions, anywhere in the
+                  world; or (c) cause other persons, companies, or organizations to do any of the  above.
+
+                </span>
+                <div style="margin-bottom: 14px!important;"></div>
+                <span class="li-span">
+                  <strong>Assignment, License, and/or Waiver of Rights to iTunes Inventions. </strong>If any applicable laws and
+                  regulations provide that certain rights in any iTunes Inventions vest in Employee and/or do not permit the parties contractually to agree otherwise with respect to such vesting, you hereby agree to assign and do hereby assign such rights to iTunes to the fullest extent legally permitted, including any
+                  “moral” rights that you may have in any iTunes Invention(s) under the copyright or other  law,
+                  whether U.S. or foreign, as well as rights set out under Articles 27 and 28 of the Copyright Act of Japan, and iTunes hereby accepts such assignment (the “Assigned Inventions”). You acknowledge that all original works of authorship that are made by you (solely or jointly with others) within the scope of your employment by iTunes, and that are protectable by copyright, are works made for hire, as that term is defined in the United States Copyright Act (17
+                  U.S.C. §101). In the event that any rights to an iTunes Invention are not effectively assigned to iTunes, then you hereby grant iTunes a license to make, have made, use, offer to sell, sell, import, export, reproduce, modify, display,  perform,
+                  transmit and otherwise distribute and exploit, in its sole discretion, the iTunes Inventions (and modified and derivative works thereof). The license rights under this clause shall be free of charge, perpetual, irrevocable, exclusive (you shall not use or
+                  otherwise exploit the iTunes Inventions nor appoint other licensees), worldwide, and transferable, and iTunes shall have the right to sublicense.  In  the
+                  event that there are any rights to an iTunes Invention that are not effectively assigned or licensed to
+                  iTunes pursuant to the foregoing provisions, then you irrevocably waive and agree not to exercise or
+                  assert any rights to any such iTunes Inventions worldwide, including but not limited to all moral rights, rights of attribution, identification of
+                  authorship, limitation on subsequent modification or other “personal rights” in the iTunes Inventions, during or after the termination of your employment by iTunes. You agree that iTunes and its licensees are not required to designate you as the author of any
+                  iTunes Inventions when distributed.
+
+
+                </span>
+                <div style="margin-bottom: 14px!important;"></div>
+                <span class="li-span">
+                  <strong>Protection of iTunes Inventions. </strong>You agree, during and after termination of  employment,
+                  whether voluntary or involuntary, to assist iTunes or any party designated by iTunes (at iTunes’s expense) in every proper way to obtain, perfect, confirm, realize rights in, and/or enforce all of iTunes’s
+                  ownership and other rights to iTunes Inventions in any and all countries.  This includes promptly
+                  executing any documents that iTunes may reasonably request for use in obtaining or enforcing such patents, copyrights, and other legal protections.
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>Excluded Employee Inventions. </strong>iTunes acknowledges and agrees, in accordance with any applicable law, that any Inventions (a) that you develop entirely on your own time; and (b) that you develop without using iTunes’s equipment, supplies, facilities, or trade secret information; and (c) that do not result from any work performed by you  for
+                  iTunes; and (d) that do not relate, at the time of conception or reduction to practice, to iTunes’s business or products, or to iTunes’s actual or
+                  demonstrably anticipated research or development, will be owned entirely by you, even if developed by you during the time period in which you are
+                  employed by iTunes.
+                </span>
+              </li>
+            </ol>
+            <h4><span class="roman-inline">III.</span><span class="subsub">NO CONFLICTING OBLIGATIONS</span></h4>
+            <ol class="ol-custom margin-bottom-25">
+              <li>
+                <span class="li-span">
+                  <strong>No Conflicting Outside Interests. </strong>You agree that during your employment by iTunes, you will not plan or engage in any other employment, occupations,
+                  consulting, or other business activities or
+                  commitments competitive with or directly related to iTunes’s business or products, or to its actual or demonstrably anticipated research or development, nor will you engage in any other activities that
+                  conflict with any employment obligations to iTunes. Activities and commitments as used herein do not include passive investments in stocks or other
+                  financial instruments.
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>No Conflicting Agreements. </strong>You represent to iTunes that you have no other commitments  that
+                  would hinder or prevent the full performance of your duties as an iTunes employee or your obligations under this Agreement, and you agree not to enter into any such conflicting agreement during the  tenure of employment by iTunes.
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>Disclosure of Agreement. </strong>You hereby authorize
+                  iTunes to notify others, including customers of iTunes, and any future employers you may have, of the  terms of this Agreement and your responsibilities under this Agreement.
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>No Solicitation. </strong>To the fullest extent permitted by applicable law, during your employment and for a period of one (1) year following your termination (whether voluntary or involuntary), you will not, directly or indirectly, on your own behalf or on   behalf of any person or entity, solicit, recruit, or take any action intended to induce iTunes employees or
+                  contractors to terminate their relationship with iTunes.
+                </span>
+              </li>
+            </ol>
+            <h4><span class="roman-inline">IV.</span><span class="subsub">NON-COMPLIANCE</span></h4>
+            <p>
+              You acknowledge and agree that the limitations set forth herein are reasonable with respect to scope and duration, and are properly required for the protection of  the
+              legitimate interest of iTunes. If you breach any part of this Agreement, iTunes is entitled to take any action to the
+              extent permissible under applicable laws and this Agreement, including but not limited to terminating employment, initiating a legal proceeding, filing  a
+              complaint to relevant administrative departments, and assisting the relevant judicial authorities to pursue your liabilities in case that your breach of this Agreement has violated any criminal laws.
+            </p>
+            <p>
+              In case any dispute or claim arises under or from this
+              Agreement, you and iTunes will try to settle the dispute or claim through friendly consultation. To the fullest extent permitted by law, if settlement of such dispute or claims fails, either you or iTunes shall submit the dispute to
+              mandatory binding arbitration by a reputable arbitration organization or tribunal under the International Chamber of Commerce (“ICC”) Rules of Arbitration then in force when such claim is submitted.  The  arbitration
+              organization or tribunal will be selected by mutual agreement of the parties. The language to be used in the arbitral proceedings shall be English, and the arbitral award shall be final and binding upon the parties and shall be enforceable in accordance with its terms.  During the
+              course of any arbitration proceedings, all provisions of this Agreement shall be implemented continuously by the parties.
+            </p>
+            <p>
+              Notwithstanding the foregoing, you acknowledge and agree that any breach of this Agreement could give rise to irreparable harm to iTunes for which money damages may not be an adequate remedy.  Because such harm and injury may not be compensable by damages, you agree that iTunes will have the right to enforce this  Agreement by injunction, specific performance, or other equitable relief without posting of a bond or security and without prejudice of any other rights and remedies  available.
+              Accordingly, iTunes may apply to any court of competent jurisdiction for any interim or conservatory measures, including temporary or permanent injunctive relief or to compel arbitration.
+            </p>
+            <div style="margin-bottom: 11px!important;">&nbsp;</div>
+            <h4><span class="roman-inline">V.</span><span class="subsub">NO IMPLIED EMPLOYMENT RIGHTS</span></h4>
+            <p>
+              You understand and agree that no term or provision of   this Agreement confers upon you any rights to continued employment by iTunes and that no term or provision of this Agreement obligates iTunes to employ you for any specific period of time or interferes with or restricts your right or,   to the fullest extent permitted by applicable law, iTunes’s right to terminate your employment, at any time for any reason with or without cause or prior notice.
+            </p>
+            <div style="margin-bottom: 11px!important;">&nbsp;</div>
+            <h4><span class="roman-inline">VI.</span><span class="subsub">GENERAL PROVISIONS</span></h4>
+            <ol class="ol-custom margin-bottom-25">
+              <li>
+                <span class="li-span">
+                  <strong>Severability. </strong>If one or more of the provisions of this Agreement are deemed void or unenforceable by law, then the remaining provisions will continue in full force and effect  and the Parties or a tribunal of competent jurisdiction shall substitute suitable  provisions
+                  having like effect.
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>Governing Law. </strong>This agreement will be governed in accordance with the laws of Japan. This Agreement is made and executed in both the Japanese and English languages. The
+                  English version of this Agreement shall govern in the event of any dispute or claim between iTunes and you with respect to the interpretation of the provisions of this Agreement.
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>Successors and Assigns. </strong>This Agreement will be binding upon your heirs, executors, administrators, and other legal representatives, and will be for the benefit of iTunes, its successors, and assigns. You may not assign or transfer this Agreement, in whole or in part, to any other person or entity.
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>Entire Agreement. </strong>This Agreement and any other iTunes employment agreements are
+                  coterminous and set forth the entire agreement between you and iTunes relating to the subject matter of this Agreement. To the extent there are any contrary provisions, understandings, or representations, whether written or oral, that pertain to the subject matter of this Agreement, any such contradictions are expressly
+                  superseded by this Agreement. No modification to or amendment of this Agreement, nor any
+                  waiver of any rights under this Agreement, will be effective unless in writing signed by  both you  and an iTunes Vice President, or equivalent in  your region. Any subsequent changes in your duties, salary, or compensation will not affect the validity or scope of this Agreement.
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>Compliance with Laws. </strong>You agree that you will comply, and do all things necessary for iTunes to comply, with the laws and regulations of all governments where iTunes do business, and with provisions of contracts between any such government or its contractors and iTunes.
+                </span>
+              </li>
+            </ol>
+            <h4><span class="roman-inline">VII.</span><span class="subsub">VOLUNTARY AGREEMENT</span></h4>
+            <p>
+              You acknowledge that you have read this Agreement carefully, that you understand all of its terms, that all agreements between you and iTunes relating to  the
+              subjects covered in this Agreement are contained in it, and that you have entered into this Agreement voluntarily and not in reliance upon any promises or representations other than those contained in this Agreement  itself.
+            </p>
+            <p>
+              You further acknowledge that you have had the
+              opportunity to discuss this Agreement with private legal counsel.
+            </p>
+            <p>
+              This Agreement is and will be effective on and after the first day of your employment.
+            </p>
+          </div>
+        </div>
+
+        <!-- japanese start -->
+
+        <div class="col-lg-6 col-md-6 col=sm-12 col-xs-12 mid-padding"> 
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom">
+            <h2>
+              秘密保持および知的財産に関す<br/>る契約
+            </h2>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom-25">
+            <p>
+              この秘密保持および知的財産に関する契約 ( 以 下
+              「本契約」または「本知的財産契約」といいます)
+              は、貴殿(以下「従業員」ともいいます)と、日本の
+              〒106-6140 東京都港区六本木 6 丁目 10 番 1 号
+              に本社を置く日本法人の iTunes Japan 合同会社(関
+              係会社および子会社と総称して、また個別にも、以
+              下 「 iTunes 」といいます ) との間で締結されるもの
+              で す ( 従業員と iTunes を総称して、以下「両当事
+              者」といいます)。iTunes は、貴殿が休暇または不
+              在の期間中および期間後を含むがこれらに限定され
+              ない iTunes の雇用期間中、以下のすべての規約お
+              よび条件を順守することに同意するという条件で貴
+              殿を雇用する(または貴殿が既に iTunes に勤務して
+              いるなら、この契約書に署名することにより、継続
+              して貴殿を雇用する)ことに同意しています。
+
+            </p>
+            <p>
+              iTunes は、電子製品、ソフトウェア、コンテンツ、
+              サービスの研究開発、デザイン、エンジニアリン
+              グ、プログラミング、アセンブリ、製造、配布、小
+              売り、販売などの事業を行っています。貴殿は、
+              iTunes に勤務するフルタイム／パートタイム社員、
+              インターン、または派遣／臨時社員として、様々な
+              種類の秘密情報(iTunes が所有しているものもあれ
+              ば、単独または複数の第三者に対して iTunes が 秘
+              密情報として扱うことを別途約束しているものもあ
+              ります )にアクセスすることになります。したがっ
+              て、両当事者は、本契約により、iTunes の知的財産
+              権と営業／技術秘密を保護し、両当事者の利益を守
+              るために、上記の事項を約因として、以下の通り、
+              本契約に定める相互約束および iTunes での勤務に
+              関して貴殿に支払われる報酬に合意します。
+            </p>
+            <div style="margin-bottom: 11px!important;">&nbsp;</div>
+            <h4><span class="roman-inline">I.</span><span class="subsub">秘密情報および占有情報</span></h4>
+            <p class="margin-bottom">
+              貴殿は、iTunes と雇用契約を結ぶことにより、貴
+              殿が iTunes で勤務する中で開示を受けるなどの方
+              法で知った秘密情報、占有情報または非公開情報
+              (iTunes に対して開示された第三者の秘密情報など
+              を含む)に関して、信頼関係が生じることを理解し
+              ているものとします。本契約において「占有情報」
+              とは、iTunes 社外で一般公開されていない情報ま
+              たは iTunes が秘密性を保持している情報のすべて
+              を意味し、例として次の情報などがあります。(a)
+              iTunes や同社取引先の個人／法人が開発、市販、
+              使用、却下したかを問わず過去、現在、将来の製品
+              とサービスに関する営業秘密、研究開発記録、レポ
+              ート、サンプル、マニュアル、計画、仕様、発明、
+              発案、デザイン、プロトタイプ、ソフトウェア、ソ
+              ースコード、その他の資料または情報。(b)iTunes
+              や同社取引先の個人／法人の事業活動と業務に関す
+              る販売、利益、組織、顧客リスト、価格設定、材料
+              調達元、供給、コスト、製造、財務、予測、市場調
+              査、その他の情報。(c)報酬、研修、採用、その他 の人事情報など、iTunes の雇用／人事情報。<sup>1</sup>
+            </p>
+            
+            <ol class="ol-custom margin-bottom-25">
+              <li>
+                <span class="li-span">
+                  <strong>占有情報の取り扱い。 </strong>貴殿は、iTunes と雇用
+                  契約を結ぶことにより、在職中か退職後かを
+                  問わず、iTunes の社員として業務を行うため
+                  に必要な場合を除き、iTunes の書面による同
+                  意なく占有情報を開示することも、他の個人
+                  ／法人にその使用や開示を認めることも禁止
+                  されることを理解し、これに同意するものと
+                  します。貴殿は、占有情報に関する iTunes の
+                  あらゆる規則と方針に厳格に従うこと、占有
+                  情報を保護するために最善の努力を払うこ
+                  と、その占有情報を開示、誤用、紛失または
+                  盗難から守ることを理解し、これに同意する
+                  ものとします。貴殿は、iTunes との雇用契約
+                  が終了した場合、iTunes での業務に関するあ
+                  らゆる書類や資料をすべて iTunes に直ちに提
+                  出するものとします。また、貴殿は、紙であ
+                  れ他の形態であれ、占有情報が含まれている
+                  書類や資料、またはそのコピーを持ち出さな
+                  いことに同意するものとします。
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>他者の情報。 </strong>貴殿は、前雇用主その他の個人
+                  ／法人の秘密情報、占有情報、機密情報、ま
+                  たは知的財産を iTunes の敷地内に持ち込んだ
+                  ことがなく、iTunes での雇用期間中にもこれ
+                  を持ち込まないことに同意するものとしま
+                  す。さらに貴殿は、前雇用主その他の個人／
+                  法人の秘密情報、占有情報、機密情報、また
+                  は知的財産について、不正な使用や開示(また
+                  はその誘導)を行ったことがなく、iTunes での
+                  雇用期間中にも不正な使用や開示(またはその
+                  誘導)を行わないことに同意するものとしま
+                  す。
+                </span>
+              </li>
+            </ol>
+            <h4><span class="roman-inline">II.</span><span class="subsub">発明</span></h4>
+            <ol class="ol-custom margin-bottom-25">
+              <li>
+                <span class="li-span">
+                  <strong>発明の定義。</strong>本契約において「発明」とは、
+                  あらゆる発明、発案、発見を意味し、貴殿が
+                  単独または他者と共同で作成、創造、着想ま
+                  たは実用化した改良、原著作物、デザイン、
+                  式、プロセス、仕様、技術、コンピュータプ
+                  ログラムまたはその一部、データベース、マ
+                  スクワーク、結果、ノウハウ、営業秘密、占
+                  有情報、文書、資料を含みます。
+                </span>
+              </li>
+              <li>
+                <span class="li-span">
+                  <strong>先行発明。 </strong>貴殿が iTunes と雇用契約を結ぶ前
+                  に行った発明で、所有権その他の法的権利／
+                  権原を主張するもの(以下「先行発明」といい
+                  ます)があれば、下の空欄または本契約書に添
+                  付の別紙に、その発明をすべて記載してくだ
+                  さい。前雇用主にすべての権利を譲渡してい
+                  るために、その先行発明について所有権その
+                  他の法的権利／権原を主張しない場合は、記
+                  載しないでください。第三者に対して守秘義 務のある情報は含めないでください。
+                  貴殿は、iTunes の書面による事前の同意な
+                  く、iTunes の製品、サービス、プロセス、ま
+                  たはビジネス手法(以下総称して「iTunes 製
+                  品」といいます)に先行発明を採り入れること
+                  も、それを認めることも行わないことに同意
+                  するものとします。さらに貴殿は、記載した
+                  先行発明で iTunes 製品に採り入れられたもの
+                  や使用されたものがあれば、(i)貴殿の認識、
+                  関与、黙認、または許可により、(ii)貴殿がそ
+                  の iTunes 製品の該当部分の開発や実装に関与
+                  した場合に、または(iii)貴殿が iTunes のバイ
+                  スプレジデントかそれに相当する地域担当者
+                  に書面にて通知し、その iTunes 製品の該当部
+                  分を公に使用し商業化することについて直ち
+                  に異議申し立てを行わなかった場合に、その
+                  先行発明を作成し、作成させ、使用し、販売
+                  に供し、また販売、輸入、輸出、複製、変
+                  更、表示、実行、伝送を行い、または他の方
+                  法で配布、利用するための、非独占的、ロイ
+                  ヤリティ無料、取り消し不能、永続的、世界
+                  的なライセンスを、追加報酬なしで iTunes に
+                  与えることに同意し、本契約によってこれを
+                  iTunes に与えるものとします。
+                </span>
+                <div style="margin-bottom: 14px!important;"></div>
+                <span class="li-span">
+                  貴殿は、ある先行発明について、記載がない
+                  場合は存在しないものとすることを認め、こ
+                  れに同意するとともに、その先行発明が実際
+                  に存在する範囲において、その先行発明に関
+                  して iTunes に対する過去、現在、および将来
+                  の請求権をすべて放棄するものとします。貴
+                  殿は、ここに先行発明を記載したとしても、
+                  iTunes がその先行発明の存在や範囲を認める
+                  ことにも、その先行発明の所有権を認めるこ
+                  とにもならないことを理解しているものとし
+                  ます。この空欄には現行の事業やプロジェク
+                  ト、貴殿が開発中または配布中の製品の開示
+                  情報を記載しないでください。そのような現
+                  行の活動については、貴殿の上司に書面にて
+                  開示、提出し、iTunes のバイスプレジデント
+                  かそれに相当する地域担当者が事前に承認す
+                  る必要があります。
+                </span>
+                <div style="margin-bottom: 14px!important;"></div>
+                <span class="li-span">
+                  <strong>先行発明</strong> <span style="color: red"> * </span>
+                </span>
+                <div></div>
+                <span class="li-span">
+                  <$client.env.formfield.Japan_Prior_Inventions.html>
+                </span>
+                <p class="req-notif">必須フィールド。</p>
+                </li>
+                <li>
+                  <span class="li-span">
+                    <strong>発明に対する iTunes の所有権。 </strong>貴殿は、次の
+                    発明(総称して「iTunes の発明」といいます)
+                    についてはすべて iTunes の単独かつ独占的な
+                    財産であることを認め、これに同意します。
+                    (a) iTunes が提供する装置、支給品、設備、ま
+                    たは占有情報を使用して行われた発明。(b)貴
+                    殿が iTunes のために行なった業務や iTunes が
+                    提供する占有情報の結果として、あるいはこ れに示唆を受けて得られた発明。(c)貴殿が
+                    iTunes での在職中に着想または実用化した発
+                    明で、iTunes の事業や製品、または iTunes の
+                    実際の研究開発や予定している研究開発に何
+                    らかの点で関連している発明。貴殿は、iTunes
+                    の発明についてはすべて書面にて直ちに
+                    iTunes に完全に開示することに同意するもの
+                    とします。日本国特許法第 35 条、実用新案法
+                    第 11 条第 3 項、意匠法第 1 5 条第 3 項の規定
+                    による合理的な報酬以外、貴殿は、iTunes の
+                    発明を iTunes が所有する対価として現在も今
+                    後も貴殿に対する追加の報酬や報償は支払わ
+                    れないこと、および貴殿に(例えば特許取得プ
+                    ログラムに従って)賞や賞与が支給される場合
+                    は iTunes の単独の判断によるものであり、
+                    iTunes が発明を所有するための条件ではない
+                    ことに同意するものとします。貴殿は、iTunes
+                    の発明に対する権利を持たず、iTunes の業務
+                    のために iTunes が権限を与える場合を除き、
+                    現在も今後も直接または間接を問わず iTunes
+                    の発明を使用しないことを認め、これに同意
+                    するものとします。例えば、貴殿は、(a)
+                    iTunes の発明またはその一部や複製を、どの
+                    ようなかたちであれ、再現、製造、市販、発
+                    行、配布、販売、ライセンス、サブライセン
+                    ス、譲渡、賃借、リース、伝送、放送、掲
+                    示、使用しないこと、(b)世界のどの地域で
+                    も、iTunes の発明を対象として、またはそれ
+                    に関連して、特許、著作権、商標、マスクワ
+                    ーク、その他の工業所有権または知的財産権
+                    の出願や登録申請を行わないこと、または(c)
+                    他の個人、法人、組織に上記のいずれも行わ
+                    せないことに同意するものとします。
+                  </span>
+                  <div style="margin-bottom: 14px!important;"></div>
+                  <span class="li-span">
+                    <strong>iTunes の発明に対する権利の譲渡、ライセン
+                    ス、放棄。 </strong>適用される法規則に、iTunes の発
+                    明に対する一定の権利を従業員に付与する規
+                    定や、その権利付与に関して両当事者が契約
+                    により別途合意することを認めない規定があ
+                    る場合、貴殿は、米国法か外国法かを問わ
+                    ず、著作権法その他の法に基づいて貴殿が
+                    iTunes の発明に対して持つ「著作者人格権」
+                    と、日本国著作権法第 2 7 条および第 2 8 条の
+                    規定による権利を含め、そのような権利を法
+                    的に認められる最大限の範囲まで iTunes に譲
+                    渡することに同意し、これを本契約により譲
+                    渡するものとし、iTunes は、その譲渡を本契
+                    約により受諾するものとします(以下「譲渡さ
+                    れた発明」といいます)。貴殿は、iTunes に勤
+                    務する中で貴殿が(単独または他者と共同で)作
+                    成した原著作物で、著作権が保護されている
+                    ものはすべて、米国著作権法(17 U.S.C.
+                    §101)に定義される職務著作物であることを認
+                    めるものとします。iTunes の発明に対する何
+                    らかの権利が有効に iTunes に譲渡されなかっ
+                    た場合、貴殿は、iTunes の発明(およびその修
+                    正物と派生物)を iTunes 単独の判断で作成し、
+                    作成させ、使用し、販売に供し、また販売、
+                    輸入、輸出、複製、変更、表示、実行、伝送
+                    を行い、または他の方法で配布、利用するた
+                    めのライセンスを本契約により iTunes に与え
+                    るものとします。本条に基づくライセンス権
+                    は、無料、永続的、取り消し不能、独占的(貴 殿は iTunes の発明を使用するなどの方法で利
+                    用することも、他のライセンシーを指名する
+                    こともできません)、世界的、かつ譲渡可能な
+                    ものであり、iTunes はサブライセンス権を有
+                    するものとします。iTunes の発明に対する権
+                    利のうち、上記の規定の通り iTunes に対して
+                    有効に譲渡またはライセンスされなかったも
+                    のがある場合、貴殿は、世界中でその iTunes
+                    の発明に対する権利を取り消し不能なかたち
+                    で放棄し、この権利の行使も主張も行わない
+                    ことに同意するものとします。この権利に
+                    は、貴殿の iTunes 在職中または退職後の、
+                    iTunes の発明に対するあらゆる著作者人格
+                    権、氏名表示権、同一性保持権、改ざん制
+                    限、その他の「人格権」などが含まれますが
+                    これらに限定されません。貴殿は、iTunes と
+                    そのライセンシーが iTunes の発明の配布時
+                    に、貴殿をその著作者として示す義務がない
+                    ことに同意するものとします。
+                  </span>
+                  <div style="margin-bottom: 14px!important;"></div>
+                  <span class="li-span">
+                    <strong>iTunes の発明の保護。 </strong>貴殿は、在職中および
+                    退職後も、自発的か強制的かを問わず、iTunes
+                    および同社が(同社の費用負担で)指名した者を
+                    支援し、あらゆる国において、あらゆる適正
+                    な方法で、iTunes の発明に対する iTunes の所
+                    有権その他の権利すべてを取得、完全化、確
+                    認、実現、または行使するために助力するこ
+                    とに同意するものとします。この支援には、
+                    そのような特許、著作権、その他の法的保護
+                    の取得や行使に使用するため、iTunes が合理
+                    的に要請する文書を直ちに作成することが含
+                    まれます。
+                  </span>
+                </li>
+                <li>
+                  <span class="li-span">
+                    <strong>除外される従業員の発明。 </strong>iTunes は、適用さ
+                    れる法に従い、次のすべてに該当する発明に
+                    ついては、貴殿が iTunes 在職中に発明したも
+                    のだとしても、完全に貴殿の所有となること
+                    を認め、これに同意します。(a)貴殿が完全に
+                    個人的な時間に行った発明。(b)貴殿が iTunes
+                    の装置、支給品、設備、または営業秘密情報
+                    を使用せずに行った発明。(c)貴殿が iTunes の
+                    ために行った業務の結果として得られたもの
+                    ではない発明。(d)着想や実用化の時点で、
+                    iTunes の事業や製品、または iTunes の実際の
+                    研究開発や明らかに予定されている研究開発
+                    に関連したものではない発明。
+                  </span>
+                </li>
+              </ol>
+              <h4><span class="roman-inline">III.</span><span class="subsub">相反義務の禁止</span></h4>
+              <ol class="ol-custom margin-bottom-25">
+                <li>
+                  <span class="li-span">
+                    <strong>社外の利益相反行為の禁止。 </strong>貴殿は、 iTunes
+                    の事業や製品または iTunes の実際の研究開発
+                    や明らかに予定されている研究開発と競合ま
+                    たは直接関係する他の雇用、職業、顧問業、
+                    その他の事業活動や取り組みについては、
+                    iTunes 在職中に、これを計画することも、こ
+                    れに従事することもなく、また iTunes に対す
+                    る従業員の義務に抵触する他の活動にも従事
+                    しないことに同意するものとします。本契約
+                    において、活動や取り組みという用語には、
+                    株その他の金融商品への受動的投資は含まれ
+                    ません。
+                  </span>
+                </li>
+                <li>
+                  <span class="li-span">
+                    <strong>相反する契約の禁止。 </strong>貴殿は iTunes に対し、
+                    iTunes の従業員としての義務や本契約に基づ
+                    く義務を完全に履行することを妨げるような
+                    他の約束を結んでいないことを表明するもの
+                    とします。また、貴殿は、 iTunes 在職中にそ
+                    のような相反する契約を締結しないことに同
+                    意するものとします。
+                  </span>
+                </li>
+                <li>
+                  <span class="li-span">
+                    <strong>本契約の開示。 </strong>貴殿は iTunes に対し、iTunes
+                    の 顧 客や貴殿の将来の雇用主などの他者に、
+                    本契約の条件と本契約に基づく貴殿の責任を
+                    知らせる権限を本契約により与えるものとし
+                    ます。
+                  </span>
+                </li>
+                <li>
+                  <span class="li-span">
+                    <strong>勧誘の禁止。 </strong>適用される法で許可されている
+                    最大限の範囲で、貴殿は、在職中および( 自己
+                    理由か会社理由かを問わず)退職後 1 年間、直
+                    接または間接を問わず、自己のためであれ他
+                    の個人／法人のためであれ、iTunes の社員や
+                    契約者に iTunes との関係を解消させることを
+                    意図した勧誘、募集、その他の行為を行わな
+                    いものとします。
+                  </span>
+                </li>
+              </ol>
+              <h4><span class="roman-inline">IV.</span><span class="subsub">本契約の違反</span></h4>
+              <p>
+                貴殿は、本契約に規定する制限が範囲と期間に関し
+                て合理的であり、iTunes の正当な利益を守るために
+                しかるべく必要であることを認め、これに同意する
+                ものとします。貴殿が本契約のいずれかの部分に違
+                反した場合、iTunes は、適用される法と本契約で許
+                可されている範囲で、解雇、法的手続きの開始、関
+                連行政機関への提訴、貴殿の本契約違反が刑法に違
+                反している場合は貴殿の責任追及のため関連司法当
+                局に協力するなどの措置を講じる権利を有します。
+              </p>
+              <p>
+                本契約の下で、または本契約に起因する紛争や請
+                求が発生した場合、貴殿と iTunes は、友好的な話
+                し合いを通じて、その紛争や請求の解決に努めるも
+                のとします。法で許可されている最大限の範囲で、
+                その紛争や請求が解決できなかった場合、貴殿また
+                は iTunes のいずれかが、定評のある仲裁機関が執
+                り行う強制的拘束力のある仲裁、またはその請求が
+                提起された時点で有効な国際商工会議所(ICC)の 仲
+                裁規定に基づく法廷に、その紛争を委ねるものとし
+                ます。 仲裁機関や仲裁法廷は、両当事者双方の合
+                意によって選択するものとします。仲裁手続きに使
+                用する言語は英語とし、最終決定として両当事者に
+                拘束力を持つものとし、その条件に従って執行され
+                るものとします。仲裁手続き中も、本契約の規定は
+                すべて、両当事者が継続して履行するものとしま
+                す。
+              </p>
+              <p>
+                上記にかかわらず、貴殿は、本契約の違反によって
+                iTunes が回復不能な損害を被り、金銭的賠償だけ
+                では救済措置として不十分な場合があり得ることを
+                認め、これに同意するものとします。こうした損害
+                や傷害は賠償金では補償できない可能性があるた
+                め、貴殿は、iTunes が保証や担保を差し入れるこ
+                となく、また利用可能な他の権利や救済手段を損な
+                うことなく、差止命令、特定履行、または他の衡平 法上の救済手段によって、本契約を強制的に執行す
+                る権利を持つことに同意するものとします。したが
+                って、iTunes は、正当な管轄権を有する裁判所
+                に、一時的／恒久的な差止救済などの短期的／中長
+                期的に有効な勧告や仲裁の強制を申請できるものと
+                します。
+              </p>
+              <div style="margin-bottom: 11px!important;">&nbsp;</div>
+              <h4><span class="roman-inline">V.</span><span class="subsub">黙示的な従業員の権利の除外</span></h4>
+              <p>
+                貴殿は、本契約のいかなる条件や規定も、iTunes に
+                継続して雇用される権利を貴殿に与えるものではな
+                いこと、貴殿を特定期間雇用する義務を iTunes に
+                負わせるものではないこと、貴殿の権利を妨害また
+                は制限するものでも、また適用される法で許可され
+                る最大限の範囲で、iTunes がいつでも、いかなる理
+                由でも、理由や事前通知の有無を問わず、貴殿を解
+                雇する権利を妨害または制限するものでもないこと
+                を理解し、これに同意するものとします。
+              </p>
+              <div style="margin-bottom: 11px!important;">&nbsp;</div>
+              <h4><span class="roman-inline">VI.</span><span class="subsub">一般条項</span></h4>
+              <ol class="ol-custom margin-bottom-25">
+                <li>
+                  <span class="li-span">
+                    <strong>契約分離性。 </strong>本契約の一部または複数の規定
+                    が無効または法的強制力がないとみなされた
+                    場合も、残る規定は完全に有効に存続し、両
+                    当事者または正当な管轄権を有する法廷は、
+                    同様の効果を有する適切な規定で代替するも
+                    のとします。
+                  </span>
+                </li>
+                <li>
+                  <span class="li-span">
+                    <strong>準拠法。 </strong>本契約は、日本の法律に準拠するも
+                    のとします。本契約書は、日本語と英語の両
+                    方で作成され署名されるものとします。本契
+                    約の規定の解釈に関して iTunes と貴殿の間で
+                    紛争や請求が生じた場合は、本契約書の英語
+                    版に服するものとします。
+                  </span>
+                </li>
+                <li>
+                  <span class="li-span">
+                    <strong>承継人および譲渡人。 </strong>本契約は、貴殿の相続
+                    人、遺言執行者、管財人、その他の法的代理
+                    人を拘束するものであり、iTunes、同社の承継
+                    人、および譲渡人のためのものです。貴殿
+                    は、全体であれ一部であれ、本契約を他の個
+                    人／法人に譲渡または移転することはできま
+                    せん。
+                  </span>
+                </li>
+                <li>
+                  <span class="li-span">
+                    <strong>完全合意。 </strong>本契約書および他の iTunes 雇用契
+                    約書は、範囲を同じくするものであり、本契
+                    約の主体に関し貴殿と iTunes の間の完全な合
+                    意を記載したものです。書面か口頭かを問わ
+                    ず、本契約の主体に関して相反する規定、了
+                    解事項、または表明が存在する限り、その矛
+                    盾は明示的に本契約で置き換えられるものと
+                    します。本契約の変更や修正も、本契約に基
+                    づく権利の放棄も、書面にて行い、貴殿と
+                    iTunes のバイスプレジデントかそれに相当す
+                    る地域担当者の両方が署名しない限り、効力
+                    を発しないものとします。今後、貴殿の義
+                    務、給与または報酬に変更があったとして
+                    も、それが本契約の効力や範囲に影響するこ
+                    とはないものとします。
+                  </span>
+                </li>
+                <li>
+                  <span class="li-span">
+                    <strong>法律の順守。 </strong>貴殿は、iTunes が事業展開する
+                    地域のあらゆる行政機関の法規則、および当
+                    該行政機関やその受託業者と iTunes との契約
+                    の規定を順守するとともに、これを iTunes が
+                    順守するために必要なあらゆる事柄を行うこ
+                    とに同意するものとします。
+                  </span>
+                </li>
+              </ol>
+              <h4><span class="roman-inline">VII.</span><span class="subsub">自発的契約。</span></h4>
+              <p>
+                貴殿は、本契約書をよく読んだこと、本契約条件を
+                すべて理解していること、本契約の対象に関して貴
+                殿と iTunes との合意事項がすべて本契約書に記載
+                されていること、および貴殿が本契約を自発的に締
+                結し、本契約書そのものに記載されている以外の約
+                束や表明に依拠していないことを認めるものとしま
+                す。
+              </p>
+              <p>
+                さらに貴殿は、顧問弁護士と本契約について話し合
+                う機会を持ったことを認めるものとします。
+              </p>
+              <p>
+                本契約は、貴殿の入社日から効力を発するものとし
+                ます。
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="padding-left: 40px; padding-right: 40px;">
+            <p>
+              Understood and agreed by /以上を了解し、同意します: 
+            </p>
+          </div>
+        </div><br/>
+        <div id='fields' class="mid-padding">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 srt_eform_module">
+
+              <!-- end srt_eform_text_inner  -->
+            </div>
+            <!--end 8 -->
+
+          </div>
+          <!--end row  -->
+
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 srt_eform_module">
+
+
+             <$client.env.formfield.Signer.html><br><br>
+
+
+           </div>
+           <!--end 8 -->
+
+         </div>
+         <!--end row  -->
+         <div class="row">
+          <p class="margin-bottom">
+
+            <small><sup>1</sup>Nothing in this Agreement should be interpreted as restricting your rights to speak freely about your wages, hours, or working conditions as permitted.</small>
+          </p>
+        </div>
+        <div class="row">
+          <p class="margin-bottom">
+            <small><sup>1</sup> 本契約のいかなる規定も、賃金、労働時間、労働条件について自由に発言する貴殿の認められた権利を制限すると解釈されるもので はありません。</small>
+          </p>
+        </div>
+
+        <!--end row  -->
+        <p>
+          <br/>
+          Please make and retain a copy of this agreement for your records.  <br/>
+          本契約書のコピーを 1 部作成し、控えとして保管してください。
+        </p>
+        <br>
+        <p>iTunes K.K. IPA 2015.1</p>
+      </div>
+      <!-- end fields-->
+    </div>
+  </div>
+
+
+
+</div> 
+
+
+<div style="display:none;">
+
+</div>
+
+
+<div class="clearfix">
+  <div id="formButtons" class="row" style="display: none;">
+    <div class="lifesuite__clearfix">
+      <div class="srt_eform_section">
+        <div id="srt_form_btn_wrapper" style="background-color: #eee!important;">
+          <div class="srt_eform_row">
+            <div class="col-lg-12 srt_eform_module">
+              <$client.env.FormButtons>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div style="display:none;">
+
+</div>
+
+
+
+
+
+</div>
+</div>
+<!--end form-buttons  -->
+
+
+
+</form>
+
+
+
+
+<script type="text/javascript">  
+  $(function(){
+    $("#buttonCancel")
+    .removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue")
+    .addClass("lifesuite__button");
+
+    $('#buttonCancel').attr('id', 'ButtonCancel');
+
+    $("#buttonSave")
+    .removeClass("appInputButton RCappInputButtonBlue")
+    .addClass("lifesuite__button");
+
+    $('#buttonSave').attr('id', 'ButtonSave');
+
+    $("#buttonSaveAndComplete")
+    .removeClass("appInputButton RCappInputButtonBlue")
+    .addClass("lifesuite__button");
+
+    $('#buttonSaveAndComplete').attr('id', 'ButtonSaveAndComplete');
+
+    $("#buttonPrint")
+    .removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue")
+    .addClass("lifesuite__button");
+
+    $('#buttonPrint').attr('id', 'ButtonPrint');
+
+    $("#buttonPreviewDelete")
+    .removeClass("appInputButton RCappInputButtonRed")
+    .addClass("lifesuite__button");
+
+    $('#buttonPreviewDelete').attr('id', 'ButtonPreviewDelete');
+
+    $("#buttonPreviewSave")
+    .removeClass("appInputButton RCappInputButtonBlue")
+    .addClass("lifesuite__button");
+
+    $('#buttonPreviewSave').attr('id', 'ButtonPreviewSave');
+
+    document.getElementById('formButtons').style.display = "block";
+
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $('.inputprompt').addClass('lifesuite__input-label lifesuite__input—block');
+
+    $("body").addClass("apple_custom_theme");
+
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $('.inputprompt').addClass('lifesuite__input-label lifesuite__input—block');
+    
+    function adjustHeight() {
+      $winHeight = $(window).height();
+
+      $btn_container = $("#formButtons").height();
+      $body_padding = parseFloat($('body').css('padding-top')) * 2;
+      $srt_form_container_margin = parseFloat($('#container').css('margin-top')) * 2;
+
+      $("#container").css({
+        'height': $winHeight - ($btn_container + $body_padding + $srt_form_container_margin),
+        'display': 'block',
+      });
+    }
+
+    if($(".eng-pi:checked").length > 0 || $(".jpn-pi:checked").length > 0){
+      $(".req-notif").hide();
+    }
+    
+    $('.jpn-pi, .eng-pi').on('change', function() {
+      var $radios = $('.jpn-pi, .eng-pi');
+      $radios.filter('[value="' + $(this).val() + '"]').prop('checked', true)
+      $(".req-notif").hide();
+    });
+
+    /*Hide Compensation and Benefits lines when employee is intern and below 19 work hours*/
+    if(("<$client.tEventCategories_23.Code>" == 'INT') && ("<$client.tForWhomUserInfo.Weekly_Hours>" < 19)){
+      setTimeout(function(){ $('.InternLess').hide(); }, 1000);
+    }
+  });
+  disableCalButton('disableDate');
+</script>

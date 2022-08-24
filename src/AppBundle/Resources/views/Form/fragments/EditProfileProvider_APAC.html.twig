@@ -42,16 +42,24 @@
                     <span class="floating-label">Entity Name</span>
                     <$client.env.inputEnityName>
                 </div>
-                <div class="input_wrapper mb-18" data-fieldgroup-title="Entity Address (Office Location)" data-fieldgroup-validation="required">
-                    <span class="floating-label">Entity Address (Office Location)</span>
+                <div class="input_wrapper" data-fieldgroup-title="Entity Address" data-fieldgroup-validation="required">
+                    <span class="floating-label">Entity Address</span>
                     <$client.env.inputEntityAddress>
                 </div>
-                <div class="input_wrapper mb-30" data-fieldgroup-title="<$client.env.promptManager>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Manager_label">
-                    <label id="Manager_label">
-                        <strong>Is this employee in a position of trust (Manager or Supervisor)?</strong>
-                    </label>
-                    <$client.env.inputManager>
+                <div class="merge" data-location-group="SGP-HKG">
+                    <div class="input_wrapper" data-fieldgroup-title="Contract End Date" data-fieldgroup-validation="required,future-date" data-fieldgroup-targetlabel="#ContractEndDate_label">
+                        <span class="floating-label">Contract End Date</span>
+                        <$client.env.inputContractEndDate>
+                    </div>
                 </div>
+                <div class="input_wrapper mb-18" data-fieldgroup-title="Building Address (Work Location)" data-fieldgroup-validation="required" data-location-group="IND">
+                    <span class="floating-label">Building Address (Work Location)</span>
+                    <$client.env.inputBuildingAddress>
+                </div>
+                <!--<div class="input_wrapper mb-18" data-fieldgroup-title="Building Address (Work Location)" data-fieldgroup-validation="required">
+                    <span class="floating-label">Building Address (Work Location)</span>
+                    <$client.env.inputBuildingAddress>
+                </div-->
 
                 <div class="heading">
                     <span class="heading-inner">
@@ -63,23 +71,30 @@
                         <span class="floating-label">Currency Code</span>
                         <$client.env.inputCurrency_Code_new>
                     </div>
-                    <div class="input_wrapper" data-fieldgroup-title="Annual Salary" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                    <div class="input_wrapper" data-fieldgroup-title="Annual Salary" data-fieldgroup-validation="required,regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
                         <span class="floating-label">Annual Salary</span>
                         <$client.env.inputSalary_Amount>
                     </div>
                 </div>
                 <div class="merge">
                     <div class="input_wrapper mb-0 hidden-xs"></div>
-                    <div class="input_wrapper" data-fieldgroup-title="Monthly Pay Rate Amount" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                    <div class="input_wrapper" data-fieldgroup-title="Monthly Pay Rate Amount" data-fieldgroup-validation="required,regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
                         <span class="floating-label">Monthly Pay Rate Amount</span>
                         <$client.env.inputSalaryOffered>
                     </div>
                 </div>
-                <div class="input_wrapper" data-fieldgroup-title="Annual Incentive Plan Percentage (AIP)" data-fieldgroup-maxlength="3" data-fieldgroup-validation="regex"  data-fieldgroup-regex="^[0-9]+$" data-fieldgroup-message="consisting of numbers only">
+
+                <div class="input_wrapper" data-fieldgroup-title="Annual Incentive Plan Percentage (AIP)" data-fieldgroup-maxlength="3" data-fieldgroup-validation="regex-optional"  data-fieldgroup-regex="^[0-9]+$" data-fieldgroup-message="consisting of numbers only">
                     <span class="floating-label">Annual Incentive Plan Percentage (AIP)</span>
                     <$client.env.inputeIP_Target_Pct>
                 </div>
-                <div class="input_wrapper mb-30" data-fieldgroup-title="Restricted Stock Units (USD $ Amount)" data-fieldgroup-validation="regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+
+                <div class="input_wrapper" data-fieldgroup-title="Sales Incentive Plan Amount (SIP)" data-fieldgroup-validation="regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                    <span class="floating-label">Sales Incentive Plan Amount (SIP)</span>
+                    <$client.env.inputSIP_Amount>
+                </div>
+
+                <div class="input_wrapper mb-30" data-fieldgroup-title="Restricted Stock Units (USD $ Amount)" data-fieldgroup-validation="regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
                     <span class="floating-label">Restricted Stock Units (USD $ Amount)</span>
                     <$client.env.inputNEW_HIRE_REST_STOCK_UNITS>
                 </div>
@@ -91,82 +106,143 @@
                 </div>
                 <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptHire_on_Bonus_Eligible>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Hire_on_Bonus_Eligible_label">
                     <label id="Hire_on_Bonus_Eligible_label">
-                        <strong>Is this employee eligible for a sign-on/hire-on bonus?</strong>
+                        <strong>Is this employee eligible for a sign-on bonus?</strong>
                     </label>
                     <$client.env.inputHire_on_Bonus_Eligible>
                 </div>
                 <div class="merge bonus-section">
                     <div class="input_wrapper" data-fieldgroup-title="Currency Code" data-fieldgroup-validation="required">
                         <span class="floating-label">Currency Code</span>
-                        <select name="HIRE_ON_BONUS_CRNCY_CD_pseudo" id="HIRE_ON_BONUS_CRNCY_CD_pseudo">
-                        </select>
+                        <select name="HIRE_ON_BONUS_CRNCY_CD_pseudo" id="HIRE_ON_BONUS_CRNCY_CD_pseudo"></select>
                     </div>
-                    <div class="input_wrapper" data-fieldgroup-title="Bonus Amount" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                    <div class="input_wrapper" data-fieldgroup-title="Bonus Amount" data-fieldgroup-validation="required,regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
                         <span class="floating-label">Bonus Amount</span>
                         <$client.env.inputHIRE_ON_BONUS_AMOUNT>
                     </div>
                 </div>
-                <div class="merge mb-30 bonus-section">
+                <div class="merge" data-location-exclude="CHN">
                     <div class="input_wrapper mb-0 hidden-xs"></div>
-                    <div class="input_wrapper" data-fieldgroup-title="Installment Amount" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                    <div class="input_wrapper" data-fieldgroup-title="Installment Amount" data-fieldgroup-validation="regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
                         <span class="floating-label">Installment Amount</span>
                         <$client.env.inputInstallment_Amount>
                     </div>
                 </div>
-                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptVariable_Bonus>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Variable_Bonus_label">
+                <div class="merge" data-location-group="IND,CHN">
+                    <div class="input_wrapper mb-0 hidden-xs"></div>
+                    <div class="input_wrapper" data-fieldgroup-title="Installment Amount 1" data-fieldgroup-validation="regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Installment Amount 1</span>
+                        <$client.env.inputInstallment_Amount_1>
+                    </div>
+                </div>
+                <div class="merge" data-location-group="IND,CHN">
+                    <div class="input_wrapper mb-0 hidden-xs"></div>
+                    <div class="input_wrapper" data-fieldgroup-title="Installment Amount 2 <$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2)=='IND'?'(RCG Only)':'')>" data-fieldgroup-validation="regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Installment Amount 2 <$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2)=='IND'?'(RCG Only)':'')></span>
+                        <$client.env.inputInstallment_Amount_2>
+                    </div>
+                </div>
+                <div class="merge mb-30" data-location-group="IND">
+                    <div class="input_wrapper mb-0 hidden-xs"></div>
+                    <div class="input_wrapper" data-fieldgroup-title="Installment Amount 3 (RCG Only)" data-fieldgroup-validation="regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Installment Amount 3 (RCG Only)</span>
+                        <$client.env.inputInstallment_Amount_3>
+                    </div>
+                </div>
+                <div class="input_wrapper mb-13" data-fieldgroup-title="Is this employee eligible for a variable or incentive bonus?" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Variable_Bonus_label" data-section-group="bonus" data-location-exclude="AUS,HKG,JPN,THA,KOR,SGP,CHN">
                     <label id="Variable_Bonus_label">
                         <strong>Is this employee eligible for a variable or incentive bonus?</strong>
                     </label>
                     <$client.env.inputVariable_Bonus>
                 </div>
-                <div class="variable-bonus-section merge">
+                <div class="variable-bonus-section merge" data-section-group="bonus" data-location-exclude="AUS,HKG,JPN,THA,KOR,SGP,CHN">
                     <div class="input_wrapper" data-fieldgroup-title="Currency Code" data-fieldgroup-validation="required">
                         <span class="floating-label">Currency Code</span>
                         <select name="Comp_Currency_pseudo" id="Comp_Currency_pseudo"></select>
                     </div>
-                    <div class="input_wrapper" data-fieldgroup-title="Target Amount" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                    <div class="input_wrapper" data-fieldgroup-title="Target Amount" data-fieldgroup-validation="required,regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
                         <span class="floating-label">Target Amount</span>
                         <$client.env.inputComp_Target_Amount>
                     </div>
                 </div>
-                <div class="variable-bonus-section merge mb-30">
+
+                <div class="variable-bonus-section merge" data-section-group="bonus" data-location-exclude="AUS,HKG,JPN,THA,KOR,SGP,CHN">
                     <div class="input_wrapper mb-0 hidden-xs"></div>
-                    <div class="input_wrapper" data-fieldgroup-title="Target Percentage" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="^^\d(\d)?(\d)?$$" data-fieldgroup-message="valid 3 digit number.">
+                    <div class="input_wrapper" data-fieldgroup-title="Target Percentage" data-fieldgroup-validation="required,regex-optional"  data-fieldgroup-regex="^^\d(\d)?(\d)?$$" data-fieldgroup-message="valid 3 digit number.">
                         <span class="floating-label">Target Percentage</span>
                         <$client.env.inputCompensation_Target_Percentage>
                     </div>
                 </div>
-
-                <div class="heading">
-                    <span class="heading-inner">
-                        PROBATION
-                    </span>
-                </div>
-                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptProbationPeriodRequired>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#ProbationPeriodRequired_label">
-                    <label id="ProbationPeriodRequired_label">
-                        <strong>Is a probation period required for this employee?</strong>
+                
+                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptRepayment_Agreement_Eligible>" data-location-group-2="HKG-JPN-THA-KOR" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Repayment_Agreement_Eligible_label">
+                    <label id="Repayment_Agreement_Eligible_label">
+                        <strong>Is this employee eligible for a Repayment Agreement?</strong>
                     </label>
-                    <$client.env.inputProbationPeriodRequired>
-                </div>
-                <div id="probation-timeframe" class="input_wrapper mb-30 hide" data-fieldgroup-title="<$client.env.promptProbationPeriodTime>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#ProbationPeriodTime_label">
-                    <label id="ProbationPeriodTime_label">
-                        <strong>If yes, select the probation period timeframe (in months).</strong>
-                    </label>
-                    <$client.env.inputProbationPeriodTime>
+                    <$client.env.inputRepayment_Agreement_Eligible>
                 </div>
 
-                <div class="heading">
+                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptIntroductory_RampUp_Period_Eligible>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Introductory_RampUp_Period_Eligible_label" data-location-group="HKG,JPN,SGP,AUS">
+                    <label id="Introductory_RampUp_Period_Eligible_label">
+                        <strong>Is this employee eligible for a Ramp up Period Guarantee Amount?</strong>
+                    </label>
+                    <$client.env.inputIntroductory_RampUp_Period_Eligible>
+                </div>
+
+                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptEligible_Sales_Incentive_label>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Eligible_Sales_Incentive_label" data-location-exclude="AUS,HKG,JPN,KOR,SGP,THA,CHN">
+                    <label id="Eligible_Sales_Incentive_label">
+                        <strong>Is this employee eligible for a Sales Incentive Plan (SIP)?</strong>
+                    </label>
+                    <$client.env.inputEligible_Sales_Incentive>
+                </div>
+                <!-- div class="merge sales-incentive-section" data-location-group="AUS">
+                    <div class="input_wrapper" data-fieldgroup-title="Currency Code" data-fieldgroup-validation="required">
+                        <span class="floating-label">Currency Code</span>
+                        <select name="SalesTargetCurrency_pseudo"></select>
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="Target Amount" data-fieldgroup-validation="required,regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Target Amount</span>
+                        <$client.env.inputSalesTargetAmt>
+                    </div>
+                </div -->
+                <div class="mb-30"></div>
+
+                <section id="probation-section" data-location-exclude="THA,KOR">
+                    <div class="heading" data-section-group="probation">
+                        <span class="heading-inner">
+                            PROBATION
+                        </span>
+                    </div>
+                    <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptProbationPeriodRequired>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#ProbationPeriodRequired_label" data-section-group="probation">
+                        <label id="ProbationPeriodRequired_label">
+                            <strong>Is a probation period required for this employee?</strong>
+                        </label>
+                        <$client.env.inputProbationPeriodRequired>
+                    </div>
+                    <div id="probation-timeframe" class="merge hide" data-section-group="probation">
+                        <div class="input_wrapper" data-fieldgroup-title="Probation Period" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#ProbationPeriodTime_label">
+                            <span class="floating-label">Probation Period</span>
+                            <$client.env.inputProbationPeriodTime>
+                        </div>
+                        <div class="input_wrapper">
+                            <label class="v-middle">
+                                Month(s)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-30"></div>
+                </section>
+
+                <div class="heading" data-section-group="relocation" data-location-exclude="SGP,CHN,HKG,JPN,THA,KOR">
                     <span class="heading-inner">
                         RELOCATION
                     </span>
                 </div>
-                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptRelocation>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Relocation_label">
+                <div class="input_wrapper mb-13" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Relocation_label" data-section-group="relocation" data-location-exclude="HKG,JPN,THA,KOR,SGP,CHN">
                     <label id="Relocation_label">
                         <strong>Is this employee relocating for this role?</strong>
                     </label>
                     <$client.env.inputRelocation>
                 </div>
-                <div class="relocation-section merge equal">
+                <div class="relocation-section merge equal" data-section-group="relocation" data-location-exclude="HKG,JPN,THA,KOR,SGP,CHN">
                     <div class="input_wrapper" data-fieldgroup-title="From City (or State)" data-fieldgroup-validation="required">
                         <span class="floating-label">From City (or State)</span>
                         <input type="text" name="from-city-state" id="from-city-state">
@@ -177,7 +253,7 @@
                         <input type="text" name="from-state-country" id="from-state-country">
                     </div>
                 </div>
-                <div class="relocation-section merge equal mb-18">
+                <div class="relocation-section merge equal mb-18" data-section-group="relocation" data-location-exclude="HKG,JPN,THA,KOR,SGP,CHN">
                     <div class="input_wrapper" data-fieldgroup-title="To City (or State)" data-fieldgroup-validation="required">
                         <span class="floating-label">To City (or State)</span>
                         <input type="text" name="to-city-state" id="to-city-state">
@@ -187,93 +263,172 @@
                         <input type="text" name="to-state-country" id="to-state-country">
                     </div>
                 </div>
-                <div class="relocation-section input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptRelo_Bonus>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Relo_Bonus_label">
+                <div class="relocation-section input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptRelo_Bonus>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Relo_Bonus_label" data-section-group="relocation" data-location-exclude="HKG,JPN,THA,KOR,SGP,CHN">
                     <label id="Relo_Bonus_label">
                         <strong>Will this be a relocation bonus only? (one-time miscellaneous lump sum)</strong>
                     </label>
                     <$client.env.inputRelo_Bonus>
                 </div>
-                <div class="relocation-bonus-section merge">
-                    <div class="input_wrapper" data-fieldgroup-title="Currency Code" data-fieldgroup-validation="required,regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                <div class="relocation-bonus-section merge" data-section-group="relocation" data-location-exclude="HKG,JPN,THA,KOR,SGP,CHN">
+                    <div class="input_wrapper" data-fieldgroup-title="Currency Code" data-fieldgroup-validation="required,regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
                         <span class="floating-label">Currency Code</span>
                         <select name="ESTIMATED_RELO_COST_CRNCY_CD_pseudo" id="ESTIMATED_RELO_COST_CRNCY_CD_pseudo"></select>
                     </div>
-                    <div class="input_wrapper" data-fieldgroup-title="Relocation Bonus Amount" data-fieldgroup-validation="required,regex" data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                    <div class="input_wrapper" data-fieldgroup-title="Relocation Bonus Amount" data-fieldgroup-validation="required,regex-optional" data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
                         <span class="floating-label">Relocation Bonus Amount</span>
                         <$client.env.inputESTIMATED_RELO_COST>
                     </div>
                 </div>
-                <div class="relocation-bonus-section merge">
+                <div class="relocation-bonus-section merge" data-section-group="relocation" data-location-exclude="HKG,JPN,THA,KOR,SGP,CHN">
                     <div class="input_wrapper mb-0"></div>
-                    <div class="input_wrapper mb-30" data-fieldgroup-title="Additional Cash Bonus" data-fieldgroup-validation="required,regex" data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                    <div class="input_wrapper mb-30" data-fieldgroup-title="Additional Cash Bonus" data-fieldgroup-validation="required,regex-optional" data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
                         <span class="floating-label">Additional Cash Bonus</span>
                         <$client.env.inputCashBonus>
                     </div>
                 </div>
 
+                <!-- div class="heading" data-location-group="CHN_disabled">
+                    <span class="heading-inner">
+                        CHINA: CITIZENSHIP
+                    </span>
+                </div -->
+                <div class="input_wrapper mb-13" data-location-group="CHN_disabled" data-fieldgroup-title="Citizenship_Status" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Citizenship_Status_label" data-location-exclude="CHN">
+                    <label id="Citizenship_Status_label">
+                        <strong>Is this employee a citizen of China?</strong>
+                    </label>
+                    <$client.env.inputCitizenship_Status>
+                </div>
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="<$client.env.promptNationality>" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label"><$client.env.promptNationality></span>
+                    <$client.env.inputNationality>
+                </div>
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="Passport Number" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label">Passport Number</span>
+                    <$client.env.inputPassportNo>
+                </div>
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="<$client.env.promptChina_ID_Card_Number>" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label"><$client.env.promptChina_ID_Card_Number></span>
+                    <$client.env.inputChina_ID_Card_Number>
+                </div>
+                <div class="input_wrapper mb-18" data-location-group="CHN_disabled"></div>
+
+                <!-- div data-location-group="CHN_disabled">
+                    <span class="heading-inner">
+                        Please translate the following fields to Chinese:
+                    </span>
+                </div -->
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="<$client.env.promptChina_Entity_Name>" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label"><$client.env.promptChina_Entity_Name></span>
+                    <$client.env.inputChina_Entity_Name>
+                </div>
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="<$client.env.promptChina_Entity_Address>" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label"><$client.env.promptChina_Entity_Address></span>
+                    <$client.env.inputChina_Entity_Address>
+                </div>
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="<$client.env.promptChina_Event_Location>" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label"><$client.env.promptChina_Event_Location></span>
+                    <$client.env.inputChina_Event_Location>
+                </div>
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="<$client.env.promptChina_Nationality>" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label"><$client.env.promptChina_Nationality></span>
+                    <$client.env.inputChina_Nationality>
+                </div>
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="<$client.env.promptChina_Business_Card_Title>" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label"><$client.env.promptChina_Business_Card_Title></span>
+                    <$client.env.inputChina_Business_Card_Title>
+                </div>
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="<$client.env.promptChina_Job_Type>" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label"><$client.env.promptChina_Job_Type></span>
+                    <$client.env.inputChina_Job_Type>
+                </div>
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="Current Date (d mmmm yyyy)" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label">Current Date (d mmmm yyyy)</span>
+                    <$client.env.inputChina_Current_Date>
+                </div>
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="Start Date (d mmmm yyyy)" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label">Start Date (d mmmm yyyy)</span>
+                    <$client.env.inputChina_Start_Date>
+                </div>
+                <div class="input_wrapper" data-location-group="CHN_disabled" data-fieldgroup-title="Start Date + 3 Years (d mmmm yyyy)" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label">Start Date + 3 Years (d mmmm yyyy)</span>
+                    <$client.env.inputChina_Start_Date_Plus>
+                </div>
+                <div class="input_wrapper mb-18" data-location-group="CHN_disabled" data-fieldgroup-title="Probation End Date (d mmmm yyyy)" data-fieldgroup-validation="required" data-location-exclude="CHN">
+                    <span class="floating-label">Probation End Date (d mmmm yyyy)</span>
+                    <$client.env.inputChina_Probation_End_Date>
+                </div>
+
                 <div class="heading" data-location-group="CHN">
                     <span class="heading-inner">
-                        CHINA-SPECIFIC SECTION
+                        CHINA: BONUS
                     </span>
                 </div>
-                <div class="input_wrapper mb-13" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptAnnualOneMonthBonus>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#AnnualOneMonthBonus_label">
-                    <label id="AnnualOneMonthBonus_label">
-                        <strong>Is this employee eligible for an annual bonus (equals one-month salary)?</strong>
-                    </label>
-                    <$client.env.inputAnnualOneMonthBonus>
-                </div>
-                <div class="input_wrapper mb-13" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptLanguage_Allowance>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Language_Allowance_label">
+                <div class="input_wrapper mb-13" data-location-group="CHN" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Language_Allowance_label">
                     <label id="Language_Allowance_label">
                         <strong>Does this employee qualify for a language allowance?</strong>
                     </label>
                     <$client.env.inputLanguage_Allowance>
                 </div>
-                <div class="input_wrapper" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptLanguage_Allowance_Amount>" data-fieldgroup-validation="regex"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
-                    <span class="floating-label"><$client.env.promptLanguage_Allowance_Amount></span>
-                    <$client.env.inputLanguage_Allowance_Amount>
+                <div class="merge" data-location-group="CHN">
+                    <div class="input_wrapper">
+                        <span class="floating-label">Currency Code</span>
+                        <select name="China_Currency_Code_new_pseudo" id="China_Currency_Code_new_pseudo" data-title="Currency Code" data-validation="required"></select>
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="Language Allowance Amount" data-fieldgroup-validation="required,regex-optional" data-fieldgroup-regex="^[0-9]+$" data-fieldgroup-message="numbers only">
+                        <span class="floating-label">Language Allowance Amount</span>
+                        <$client.env.inputLanguage_Allowance_Amount>
+                    </div>
                 </div>
-                <div class="input_wrapper" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptNationality>" data-fieldgroup-validation="required">
-                    <span class="floating-label"><$client.env.promptNationality></span>
-                    <$client.env.inputNationality>
-                </div>
-                <div class="input_wrapper" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptChina_ID_Card_Number>">
-                    <span class="floating-label"><$client.env.promptChina_ID_Card_Number></span>
-                    <$client.env.inputChina_ID_Card_Number>
-                </div>
-                <div class="input_wrapper mb-30" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptPassport_Number_Foreigner>">
-                    <span class="floating-label"><$client.env.promptPassport_Number_Foreigner></span>
-                    <$client.env.inputPassport_Number_Foreigner>
+                <div class="input_wrapper mb-13" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Foreign_Exchange_Employee_label" data-location-group="CHN">
+                    <label id="Foreign_Exchange_Employee_label">
+                        <strong>Is this employee a "Foreign Exchange" employee?</strong>
+                    </label>
+                    <$client.env.inputForeign_Exchange_Employee>
                 </div>
 
                 <div class="heading" data-location-group="CHN">
                     <span class="heading-inner">
-                        TRANSLATE TO CHINESE
+                        CHINA SPECIFIC SECTION
                     </span>
                 </div>
-                <div class="input_wrapper" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptChina_Entity_Name>" data-fieldgroup-validation="required">
-                    <span class="floating-label"><$client.env.promptChina_Entity_Name></span>
-                    <$client.env.inputChina_Entity_Name>
+                <div class="input_wrapper" data-location-group="CHN">
+                    <span class="floating-label">Job Description</span>
+                    <textarea name="CHN_Job_Description" id="CHN_Job_Description" data-title="Job Description" data-validation="required" data-regex="^[\u3000\u3400-\u4DBF\u4E00-\u9FFF 。，、：；（）？！「『』」(IX|IV|V?I{0,3})]*$" data-message="Chinese characters only"></textarea>
                 </div>
-                <div class="input_wrapper" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptChina_Entity_Address>" data-fieldgroup-validation="required">
-                    <span class="floating-label"><$client.env.promptChina_Entity_Address></span>
-                    <$client.env.inputChina_Entity_Address>
+                <div class="input_wrapper" data-fieldgroup-title="Chinese Job Title" data-location-group="CHN" data-fieldgroup-validation="required,regex-optional" data-fieldgroup-regex="^[\u3000\u3400-\u4DBF\u4E00-\u9FFF 。，、：；（）？！「『』」(IX|IV|V?I{0,3})]*$" data-fieldgroup-message="Chinese characters only">
+                    <span class="floating-label">Chinese Job Title</span>
+                    <$client.env.inputChinese_Business_Title>
                 </div>
-                <div class="input_wrapper" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptChina_Event_Location>" data-fieldgroup-validation="required">
-                    <span class="floating-label"><$client.env.promptChina_Event_Location></span>
-                    <$client.env.inputChina_Event_Location>
+                <div class="input_wrapper" data-fieldgroup-title="Chinese Entity Name" data-fieldgroup-validation="required" data-location-group="CHN">
+                    <div class="coverlay"></div>
+                    <span class="floating-label">Chinese Entity Name</span>
+                    <$client.env.inputChinese_Entity_Name>
                 </div>
-                <div class="input_wrapper" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptChina_Nationality>" data-fieldgroup-validation="required">
-                    <span class="floating-label"><$client.env.promptChina_Nationality></span>
-                    <$client.env.inputChina_Nationality>
+
+
+                <div class="heading" data-location-group="KOR">
+                    <span class="heading-inner">
+                        SOUTH KOREA-SPECIFIC SECTION
+                    </span>
                 </div>
-                <div class="input_wrapper" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptChina_Business_Card_Title>" data-fieldgroup-validation="required">
-                    <span class="floating-label"><$client.env.promptChina_Business_Card_Title></span>
-                    <$client.env.inputChina_Business_Card_Title>
+                <div class="heading" data-location-group="THA">
+                    <span class="heading-inner">
+                        THAILAND-SPECIFIC SECTION
+                    </span>
                 </div>
-                <div class="input_wrapper mb-18" data-location-group="CHN" data-fieldgroup-title="<$client.env.promptChina_Job_Type>" data-fieldgroup-validation="required">
-                    <span class="floating-label"><$client.env.promptChina_Job_Type></span>
-                    <$client.env.inputChina_Job_Type>
+
+                <div class="input_wrapper" data-location-group="THA" data-fieldgroup-title="Salary in Words (English)" data-fieldgroup-validation="required">
+                    <span class="floating-label">Salary in Words (English)</span>
+                    <$client.env.inputSalary_Words_English>
                 </div>
+
+                <div class="input_wrapper mb-13" data-location-group="THA" data-fieldgroup-title="Should this employee have a non-compete clause?" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Non_Compete_Clause_Required_label">
+                    <label id="Non_Compete_Clause_Required_label">
+                        <strong>Should this employee have a non-compete clause?</strong>
+                    </label>
+                    <$client.env.inputNon_Compete_Clause_Required>
+                </div>
+
 
                 <div class="heading" data-location-group="PHL">
                     <span class="heading-inner">
@@ -284,7 +439,7 @@
                     <span class="floating-label">Nationality (Country of Birth)</span>
                     <select name="Nationality_pseudo" id="Nationality_pseudo"></select>
                 </div>
-                <div class="input_wrapper" data-location-group="PHL" data-fieldgroup-title="Hiring Manager's Name" data-fieldgroup-validation="required">
+                <div class="input_wrapper" style="display: <$client.env.eval((client.tEventCategories_Category_11.Code.subString(0,2)=='PHL')?'block':'none')>;" data-fieldgroup-title="Hiring Manager's Name" data-fieldgroup-validation="required">
                     <span class="floating-label">Hiring Manager's Name</span>
                     <$client.env.inputHiring_Manager>
                 </div>
@@ -296,11 +451,85 @@
                     <span class="floating-label">Working Hours (9AM - 5PM PST)</span>
                     <$client.env.inputPH_Working_Hours>
                 </div>
-                <div class="input_wrapper" data-location-group="PHL" data-fieldgroup-title="Employee's Job Description" data-fieldgroup-validation="required">
-                    <span class="floating-label">Employee's Job Description</span>
-                    <$client.env.inputJob_Description>
+                <div class="input_wrapper" data-location-group-2="PHL-KOR" data-fieldgroup-title="Job Description (bullet points)" data-fieldgroup-validation="required">
+                    <span class="floating-label">Job Description (bullet points)</span>
+                    <input name="PHL_Job_Description" id="PHL_Job_Description" type="text">
                 </div>
-                
+
+                <div class="heading" data-location-group="SGP">
+                    <span class="heading-inner">
+                        SINGAPORE: RELOCATION
+                    </span>
+                </div>
+                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptRelocation>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#SGPRelocation_label" data-location-group="SGP">
+                    <label id="SGPRelocation_label">
+                        <strong>Is this employee relocating for this role?</strong>
+                    </label>
+                    <div id="sgp-relocation"></div>
+                </div>
+                <div class="sgp-relocation-section merge equal mb-13" data-location-group="SGP">
+                    <div class="input_wrapper" data-fieldgroup-title="From" data-fieldgroup-validation="required">
+                        <span class="floating-label">From</span>
+                        <div id="sgp-relocation-from"></div>
+                    </div>
+                    <div class="input_wrapper" data-fieldgroup-title="To" data-fieldgroup-validation="required">
+                        <span class="floating-label">To</span>
+                        <div id="sgp-relocation-to"></div>
+                    </div>
+                </div>
+                <div class="sgp-relocation-section input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptRelo_Bonus>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Relo_Bonus_label" data-location-group="SGP">
+                    <label id="Relo_Bonus_label">
+                        <strong>Does this employee qualify for a monthly housing allowance?</strong>
+                    </label>
+                    <div id="sgp-relocation-bonus"></div>
+                </div>
+                <div class="sgp-relocation-bonus-section merge mb-13" data-location-group="SGP">
+                    <div class="input_wrapper" data-fieldgroup-title="Currency Code" data-fieldgroup-validation="required,regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                        <span class="floating-label">Currency Code</span>
+                        <div id="sgp-currency-code"></div>
+                    </div>
+                    <div class="input_wrapper" id="sgp-relocation-cost" data-fieldgroup-title="Monthly Amount" data-fieldgroup-validation="required,regex-optional" data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods."></div>
+                </div>
+                <div class="sgp-relocation-section input_wrapper" data-fieldgroup-title="Is this Employee receiving a lump sum cash allowance?" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#Relo_Lump_Sum_Eligible_label">
+                    <label id="Relo_Lump_Sum_Eligible_label">
+                        <strong>Is this Employee receiving a lump sum cash allowance?</strong>
+                    </label>
+                    <$client.env.inputRelo_Lump_Sum_Eligible>
+                </div>
+                <div class="input_wrapper mb-13 sgp-relocation-section" data-location-group="SGP" data-fieldgroup-title="Cash Allowance Amount" data-fieldgroup-validation="required,regex-optional"  data-fieldgroup-regex="(?=.*?\d)^\$?(([1-9]\d{0,2}(,\d{3})*)|\d+)?(\.\d{1,2})?$" data-fieldgroup-message="valid currency consisting of numbers, commas and/or periods.">
+                    <span class="floating-label">Cash Allowance Amount</span>
+                    <$client.env.inputCashAllowance>
+                </div>
+
+                <div class="heading" data-location-group="SGP">
+                    <span class="heading-inner">
+                        SINGAPORE: BONUS
+                    </span>
+                </div>
+                <div class="input_wrapper mb-13" data-fieldgroup-title="<$client.env.promptRelocation>" data-fieldgroup-validation="required" data-fieldgroup-targetlabel="#good_payment_eligible_label" data-location-group="SGP">
+                    <label id="good_payment_eligible_label">
+                        <strong>Is this employee eligible for a Make Good Payment?</strong>
+                    </label>
+                    <div class="horizontal_radio_group">
+                        <div class="horizontal_radio_item">
+                            <input id="good_payment_eligible.0" name="good_payment_eligible" type="radio" value="Yes">
+                            <label for="good_payment_eligible.0">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="horizontal_radio_item">
+                            <input id="good_payment_eligible.1" name="good_payment_eligible" type="radio" value="No">
+                            <label for="good_payment_eligible.1">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="input_wrapper mb-13 sgp-good-payment" data-location-group="SGP" data-fieldgroup-title="Make Good Payment Amount" data-fieldgroup-validation="required">
+                    <span class="floating-label">Make Good Payment Amount</span>
+                    <$client.env.inputpaymentAmount1>
+                </div>
+
                 <div class="button_group">
                     <div id="save"></div>
                     <div id="saveandcomplete"></div>
@@ -312,44 +541,50 @@
     </div>
 </div>
 
-<div style="display: none;">
+<div hidden>
     <$client.env.inputSALARY_CURRENCY>
     <$client.env.inputHIRE_ON_BONUS_CRNCY_CD>
+    <$client.env.inputCHINA_CRNCY_CD>
     <$client.env.inputPayAreaCity>
     <$client.env.inputRelocationFrom>
     <$client.env.inputCountry>
     <$client.env.inputESTIMATED_RELO_COST_CRNCY_CD>
     <$client.env.inputComp_Currency>
+    <$client.env.inputSalesTargetCurrency>
+    <$client.env.inputJob_Description>
+    <input type="text" id="Site_Name" name="Site_Name" value="<$client.env.index.site_name>" />
+    <input type="text" id="Evt_Location_Code" name="Evt_Location_Code" value="<$client.tEventCategories_Category_11.Code>" />
+    <input type="text" id="Evt_Location" name="Evt_Location" value="<$client.tEventCategories_Category_11.Value>" />
+    <input type="text" id="Evt_Category" name="Evt_Category" value="<$client.tEventCategories_40.Value>" />
+    <input type="text" id="employee-group-x" name="employee-group" value="<$client.tEventCategories_Category_13.Code>" />
+    
 </div>
 
-<input type="hidden" id="Site_Name" name="Site_Name" value="<$client.env.index.site_name>" />
-<input type="hidden" id="Evt_Location_Code" name="Evt_Location_Code" value="<$client.tEventCategories_Category_11.Code>" />
-<input type="hidden" id="Evt_Location" name="Evt_Location" value="<$client.tEventCategories_Category_11.Value>" />
-
 <link href="<$link;/main/RedCarpet/FormTemplates/FormSupport/css/front_validator.css>" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/country.js"></script>
-<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/custom-paypal.js"></script>
-<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script>
-<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>" defer></script>
-
-<script type="text/javascript">
+<script src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/country.js"></script>
+<script src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/custom-paypal.js"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator_V3.js>" defer></script>
+<script>
+const SIP = '<$client.tEventCategories_Category_51.Code>';
+const EVENT_LOCATION = '<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>';
     /**
      * SERVICES-36314 | jjucutan | PayPal - Create APAC Provider Page
      * Define here functions that can be reused
      */
-    var focusInputLabel = function(el, isFocused) {
-        var label = el.closest('.input_wrapper')
-            .find('span.floating-label')
-            .removeClass('label-focus')
-            .css({"color": "#666666"});
-        if (el.val().trim().length > 0 || isFocused) {
+     const focusInputLabel = function(el, isFocused) {
+        let label = el.closest('.input_wrapper')
+        .find('span.floating-label')
+        .removeClass('label-focus')
+        .css({"color": "#666666"});
+        if (el && (el.val().trim().length > 0 || isFocused)) {
             label.addClass('label-focus');
         }
         if (isFocused === true) {
             label.css({"color": "#0070BA"});
         }
     }
-    var updateTargetOnChange = function(origin, target) {
+    const updateTargetOnChange = function(origin, target) {
         origin.on('change', function() {
             target.val(origin.val());
             if (origin.is(':checked')) {
@@ -360,8 +595,8 @@
             }
         });
     }
-    var fieldHasVal = function(el) {
-        var hasVal = false;
+    const fieldHasVal = function(el) {
+        let hasVal = false;
         $.each(el, function(k, v) {
             if ($(v).val().length) {
                 hasVal = true;
@@ -369,8 +604,8 @@
         });
         return hasVal;
     }
-    var isCheckboxChecked = function(el) {
-        var hasChecked = false;
+    const isCheckboxChecked = function(el) {
+        let hasChecked = false;
         $.each(el, function(k,v){
             if ($(v).is(':checked')) {
                 hasChecked = true;
@@ -378,7 +613,7 @@
         });
         return hasChecked;
     }
-    var setDefaultValue = function(el, defaultValue) {
+    const setDefaultValue = function(el, defaultValue) {
         if (el.is('input[type="checkbox"]') || el.is('input[type="radio"]')) {
             if (isCheckboxChecked(el) === false) {
                 $.each(el, function(k,v) {
@@ -398,7 +633,7 @@
             el.val(defaultValue);
         }
     }
-    var toggleDisplayTarget = function(el, target, requiredVal, callback) {
+    const toggleDisplayTarget = function(el, target, requiredVal, callback) {
         target.hide();
         if (!isCheckboxChecked(el)) {
             return false;
@@ -412,10 +647,42 @@
             }
         })
     }
-    var checkNationalID = function() {return null;}; // deactivate useless functions from portal
+    const toggleCashAllowance = function(v) {
+        "use strict";
+        if (v == 'Yes') {
+            $('[name$=".CashAllowance"]').closest('.input_wrapper').show();
+            return;
+        }
+        const cashAllowance = $('[name$=".CashAllowance"]');
+        cashAllowance.val('').closest('.input_wrapper').hide();
+        validateField(cashAllowance, true)
+        focusInputLabel(cashAllowance);
+    }
+    const showByEventLocation = function(evtLoc, sections, containerStr) {
+        'use strict';
+        if (EVENT_LOCATION == evtLoc) {
+            sections.closest(containerStr).show();
+            return;
+        }
+        sections.val('').closest(containerStr).hide();
+    }
+    checkNationalID = function() {return null;}; // deactivate useless functions from portal
     $(window).on('load', function() {
-        var months = ["January","February","March","April","May","June","July", "August","September","October","November","December"];
-        var isProfileCompleted = sTaskComplete;
+        let months = ["January","February","March","April","May","June","July", "August","September","October","November","December"];
+        let today = new Date();
+        let eventDate = new Date("<$client.tEventDates_Date_2.Value>");
+        eventDate.setMinutes(eventDate.getMinutes() + eventDate.getTimezoneOffset());
+
+        let eventDatePlus = new Date("<$client.tEventDates_Date_2.Value>");
+        eventDatePlus.setMinutes(eventDatePlus.getMinutes() + eventDatePlus.getTimezoneOffset());
+        eventDatePlus.setFullYear(eventDatePlus.getFullYear() + 3);
+
+        let probationPeriodTime = parseInt($('[name$="ProbationPeriodTime"]').val()) ? parseInt($('[name$="ProbationPeriodTime"]').val()) : 0;
+        let probationEndDate = new Date("<$client.tEventDates_Date_2.Value>");
+        probationEndDate.setMinutes(probationEndDate.getMinutes() + probationEndDate.getTimezoneOffset());
+        probationEndDate.setMonth(eventDate.getMonth() + probationPeriodTime);
+
+        let isProfileCompleted = sTaskComplete;
         $('.floating-label span').css('color', 'rgb(102, 102, 102)');
         $('.cal_and_button').prop('cellpadding', 0).prop('cellspacing', 0);
         // replace default submit button with paypal styled
@@ -427,8 +694,10 @@
 
         // fill pseudo selects with real options
         $('#HIRE_ON_BONUS_CRNCY_CD_pseudo').append($('[name$="Currency_Code_new"]').find('option').clone()).val("");
+        $('#China_Currency_Code_new_pseudo').append($('[name$="Currency_Code_new"]').find('option').clone()).val("");
         $('#Comp_Currency_pseudo').append($('[name$="Currency_Code_new"]').find('option').clone()).val("");
-        $('#ESTIMATED_RELO_COST_CRNCY_CD_pseudo').append($('[name$="Currency_Code_new"]').find('option').clone()).val("");
+        $('[name="ESTIMATED_RELO_COST_CRNCY_CD_pseudo"').append($('[name$="Currency_Code_new"]').find('option').clone()).val("");
+        // $('[name="SalesTargetCurrency_pseudo"').append($('[name$="Currency_Code_new"]').find('option').clone()).val("");
         $('#RepNationality_pseudo').append($('[name$=".Country"]').find('option').clone()).val("");
         $('#Nationality_pseudo').append($('[name$=".Nationality"]').find('option').clone());
 
@@ -439,37 +708,119 @@
         if ($('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"] option[value="' + $('input[name$="HIRE_ON_BONUS_CRNCY_CD"]').val() + '"]').length > 0) {
             $('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]').val($('input[name$="HIRE_ON_BONUS_CRNCY_CD"]').val());
         }
+        
+        // set default values for CHINA_CRNCY_CD
+        if ($('select[name$="China_Currency_Code_new_pseudo"] option[value="' + $('input[name$="CHINA_CRNCY_CD"]').val() + '"]').length > 0) {
+            $('select[name$="China_Currency_Code_new_pseudo"]').val($('input[name$="CHINA_CRNCY_CD"]').val());
+        }
+        
+        // employee type toggle validation
+        // pre-pop once
+        var employee_category_val = "<$client.tEventCategories_Category_13.Code>".substring(0,1);
+        if ($('[name$="EMPLOYEE_GROUP_CD"]').val() == "") {
+            $('[name$="EMPLOYEE_GROUP_CD"]').val(employee_category_val); 
+        }
         setDefaultValue($('[name$="Relo_Bonus"]'), "No");
         setDefaultValue($('#RepNationality_pseudo'), $('[name$="RepNationality"]').val());
         setDefaultValue($('#Nationality_pseudo'), $('[name$="Nationality"]').val());
-        setDefaultValue($('[name$="ProbationPeriodRequired"]'), "no");
+        setDefaultValue($('[name$="ProbationPeriodRequired"]'), "yes");
         setDefaultValue($('[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]'), $('[name$="HIRE_ON_BONUS_CRNCY_CD"]').val());
+        setDefaultValue($('[name$="China_Currency_Code_new_pseudo"]'), $('[name$="CHINA_CRNCY_CD"]').val());
         setDefaultValue($('[name$="Comp_Currency_pseudo"]'), $('[name$="Comp_Currency"]').val());
         setDefaultValue($('[name$="ESTIMATED_RELO_COST_CRNCY_CD_pseudo"]'), $('[name$="ESTIMATED_RELO_COST_CRNCY_CD"]').val());
+        // setDefaultValue($('[name$="SalesTargetCurrency_pseudo"]'), $('[name$=".SalesTargetCurrency"]').val());
         setDefaultValue($('[name$="Manager"]'), "No");
         setDefaultValue($('[name$=".Relocation"]'), "N");
         setDefaultValue($('[name$="Variable_Bonus"]'), "No");
         setDefaultValue($('[name$="China_Entity_Name"]'), "<$client.tForWhomUserInfo.EnityName>");
         setDefaultValue($('[name$="China_Entity_Address"]'), "<$client.tForWhomUserInfo.EntityAddress>");
         setDefaultValue($('[name$="China_Event_Location"]'), "<$client.tEventCategories_Category_11.Value>");
+        setDefaultValue($('[name$=".China_Nationality"]'), $('#Emp_Nationality').find(':selected').text());
         setDefaultValue($('[name$="China_Business_Card_Title"]'), "<$client.tForWhomUserInfo.Business_Title>");
         setDefaultValue($('[name$="China_Job_Type"]'), "<$client.tForWhomUserInfo.JobType>");
+        setDefaultValue($('[name$="China_Current_Date"]'), today.getDate() + " " + months[today.getMonth()] + " " + today.getFullYear());
+        setDefaultValue($('[name$="China_Start_Date"]'), eventDate.getDate() + " " + months[eventDate.getMonth()] + " " + eventDate.getFullYear());
+        setDefaultValue($('[name$="China_Start_Date_Plus"]'), eventDatePlus.getDate() + " " + months[eventDatePlus.getMonth()] + " " + eventDatePlus.getFullYear());
+        setDefaultValue($('[name$="China_Probation_End_Date"]'), probationEndDate.getDate() + " " + months[probationEndDate.getMonth()] + " " + probationEndDate.getFullYear());
+        setDefaultValue($('[name$=".Eligible_Sales_Incentive"]'), "No");
+        //2021-04-30 | SERVICES-36314
+        if (EVENT_LOCATION === "JPN"){
+            setDefaultValue($('[name$="EnityName"]'), "PayPal Pte. Ltd. Tokyo Branch");
+        }
+        if (EVENT_LOCATION === "THA"){
+            setDefaultValue($('[name$="EnityName"]'), "PayPal (Thailand) Limited");
+        }
+        if (EVENT_LOCATION === "KOR"){
+            setDefaultValue($('[name$="EnityName"]'), "PayPal Korea Services LLC");
+        }
+
+        //2021-05-24 | SERVICES-36314
+        if (EVENT_LOCATION == "THA"){
+            setDefaultValue($('[name$="EnityName"]'), "PayPal (Thailand) Limited");
+        }
+        //2021-05-24 | SERVICES-36314
+        if (EVENT_LOCATION === "KOR"){
+            setDefaultValue($('[name$="EnityName"]'), "PayPal Korea Services LLC");
+        }
+
+        const updateChineseEntity = function(entityName){
+            'use strict'
+            switch(entityName) {
+            case 'PayPal Information Technologies (Shanghai) Co., Ltd.':
+            $('[name$=".Chinese_Entity_Name"]').val('美银宝信息技术（上海）有限公司');
+            break;
+            case 'PayPal Network Information Services (Shanghai) Co., Ltd.':
+            $('[name$=".Chinese_Entity_Name"]').val('美银宝网络信息服务（上海）有限公司');
+            break;
+            case 'Guofubao Information Technology Co., Ltd. Shanghai Branch':
+            $('[name$=".Chinese_Entity_Name"]').val('国付宝信息科技有限公司上海分公司');
+            break;
+            case 'Guofubao Information Technology Co., Ltd.':
+            $('[name$=".Chinese_Entity_Name"]').val('国付宝信息科技有限公司');
+            break;
+            case 'Shanghai An Jie Bao Tong Network Technologies Co., Ltd.':
+            $('[name$=".Chinese_Entity_Name"]').val('上海安捷宝通网络科技有限公司');
+            break;
+            case 'Guofubao Information Technology Co., Ltd. Hainan Branch':
+            $('[name$=".Chinese_Entity_Name"]').val('国付宝信息科技有限公司海南分公司');
+            break;
+            }
+        }
+
+        const EnityNameField = $('[name$=".EnityName"]').on('change', function() {
+            updateChineseEntity(this.value)
+        });
+        updateChineseEntity(EnityNameField.val())
+
         if ($('[name$=".RelocationFrom"]').val().length > 0) {
-            var relocationFromArr = $('[name$=".RelocationFrom"]').val().replace(/\s*,\s*/g, ",").split(',');
+            let relocationFromArr = $('[name$=".RelocationFrom"]').val().replace(/\s*,\s*/g, ",").split(',');
             $('#from-city-state').val(relocationFromArr[0]);
             (typeof relocationFromArr[1] !== 'undefined') && $('#from-state-country').val(relocationFromArr[1]);
         }
         if ($('[name$=".PayAreaCity"]').val().length > 0) {
-            var relocationToArr = $('[name$=".PayAreaCity"]').val().replace(/\s*,\s*/g, ",").split(',');
+            let relocationToArr = $('[name$=".PayAreaCity"]').val().replace(/\s*,\s*/g, ",").split(',');
             $('#to-city-state').val(relocationToArr[0]);
             (typeof relocationToArr[1] !== 'undefined') && $('#to-state-country').val(relocationToArr[1]);
         }
+        if ($('[name$=".paymentAmount1"]').val().length > 0) {
+            $('[name="good_payment_eligible"][value="Yes"]').prop('checked', true);
+        }
+        setDefaultValue($('[name="good_payment_eligible"]'), "No");
+        // if ($('[name$=".CSIncentivePlan"]').val().length > 0) {
+        //     $('[name="PayPal_Ops_Incentive_Plan"][value="Yes"]').prop('checked', true);
+        // }
+        setDefaultValue($('[name="PayPal_Ops_Incentive_Plan"]'), "No");
 
         // update fields with dependets
         updateTargetOnChange($('select[name$="Currency_Code_new"]'), $('input[name$="SALARY_CURRENCY"]'));
+        updateTargetOnChange($('select[name$="Currency_Code_new"]'), $('input[name$="SALARY_CURRENCY"]'));
         updateTargetOnChange($('select[name$="HIRE_ON_BONUS_CRNCY_CD_pseudo"]'), $('input[name$="HIRE_ON_BONUS_CRNCY_CD"]'));
+        updateTargetOnChange($('select[name$="China_Currency_Code_new_pseudo"]'), $('input[name$="CHINA_CRNCY_CD"]'));
         updateTargetOnChange($('#Nationality_pseudo'), $('[name$="Nationality"]'));
+        updateTargetOnChange($('#CHN_Job_Description'), $('[name$=".Job_Description"]'));
+        updateTargetOnChange($('#PHL_Job_Description'), $('[name$=".Job_Description"]'));
         updateTargetOnChange($('[name$="ESTIMATED_RELO_COST_CRNCY_CD_pseudo"]'), $('[name$="ESTIMATED_RELO_COST_CRNCY_CD"]'));
+        // updateTargetOnChange($('[name$="SalesTargetCurrency_pseudo"]'), $('[name$=".SalesTargetCurrency"]'));
         updateTargetOnChange($('[name$="Comp_Currency_pseudo"]'), $('[name$="Comp_Currency"]'));
         $('form').on('keyup change paste', '#from-city-state, #from-state-country', function() {
             $('[name$=".RelocationFrom"]').val($('#from-city-state').val() + ', ' + $('#from-state-country').val());
@@ -477,6 +828,9 @@
         $('form').on('keyup change paste', '#to-city-state, #to-state-country', function() {
             $('[name$=".PayAreaCity"]').val($('#to-city-state').val() + ', ' + $('#to-state-country').val());
         });
+
+        $('#CHN_Job_Description').val($('[name$=".Job_Description"]').val())
+        $('#PHL_Job_Description').val($('[name$=".Job_Description"]').val())
         
         // focus style text and select fields
         $('form').on('focus', 'input[type="text"], select, textarea', function() {
@@ -497,91 +851,406 @@
             $(this).parent().find('.hasDatepicker').trigger('change'); 
         });
 
+        // date fields
+        $('[name$="China_Current_Date"], [name$="China_Start_Date"], [name$="China_Start_Date_Plus"], [name$="China_Probation_End_Date"]').datepicker({
+            dateFormat: 'd MM yy',
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+100"
+        });
+
+        // transfer fields to event country that has to use it
+        // singapore
+        if (EVENT_LOCATION === "SGP") {
+            $('[name$=".Relocation"]').closest('.horizontal_radio_group').appendTo('#sgp-relocation');
+            $('[name$=".Relo_Bonus"]').closest('.horizontal_radio_group').appendTo('#sgp-relocation-bonus');
+            $('[name$="ESTIMATED_RELO_COST_CRNCY_CD_pseudo"]').appendTo('#sgp-currency-code');
+            $('[name$=".ESTIMATED_RELO_COST"]').closest('.input_wrapper').children().appendTo('#sgp-relocation-cost');
+            $('#sgp-relocation-cost').find('.floating-label').text('Monthly Amount');
+            $('[name$=".RelocationFrom"]').appendTo('#sgp-relocation-from').find('input');
+            $('[name$=".PayAreaCity"]').appendTo('#sgp-relocation-to').find('input');
+            focusInputLabel($('[name$=".RelocationFrom"]'));
+            focusInputLabel($('[name$=".PayAreaCity"]'));
+        }
+
         // pass validation data to each fields
-        $.each($('[data-fieldgroup-validation]'), function(k,v) {
+        $.each($('#EditProfile [data-fieldgroup-validation]'), function(k,v) {
             $(v).find('input, select, textarea').data('validation', $(v).data('fieldgroup-validation'));
         });
         // pass regex data to each fields
-        $.each($('[data-fieldgroup-regex]'), function(k,v) {
+        $.each($('#EditProfile [data-fieldgroup-regex]'), function(k,v) {
             $(v).find('input').data('regex', $(v).data('fieldgroup-regex'));
         });
         // pass regex message to each fields
-        $.each($('[data-fieldgroup-message]'), function(k,v) {
+        $.each($('#EditProfile [data-fieldgroup-message]'), function(k,v) {
             $(v).find('input').data('message', $(v).data('fieldgroup-message'));
         });
         // pass validation data length to each fields
-        $.each($('[data-fieldgroup-minlength]'), function(k,v) {
+        $.each($('#EditProfile [data-fieldgroup-minlength]'), function(k,v) {
             $(v).find('input').data('minlength', $(v).data('fieldgroup-minlength'));
         });
-        $.each($('[data-fieldgroup-maxlength]'), function(k,v) {
+        $.each($('#EditProfile [data-fieldgroup-maxlength]'), function(k,v) {
             $(v).find('input').data('maxlength', $(v).data('fieldgroup-maxlength'));
         });
         // pass target label to each radio or checkbox fields
-        $.each($('[data-fieldgroup-targetlabel]'), function(k,v) {
+        $.each($('#EditProfile [data-fieldgroup-targetlabel]'), function(k,v) {
             $(v).find('input[type="checkbox"], input[type="radio"]').data('label', $(v).data('fieldgroup-targetlabel'));
         });
         // pass title data to each fields
-        $.each($('[data-fieldgroup-title]'), function(k,v) {
+        $.each($('#EditProfile [data-fieldgroup-title]'), function(k,v) {
             $(v).find('input, select, textarea').data('title', $(v).data('fieldgroup-title'));
         });
 
         // focus field labels
-        $.each($('form input[type="text"], form select, textarea'),function(k,v) {
+        $.each($('#EditProfile input[type="text"], form select, textarea'),function(k,v) {
             focusInputLabel($(v));
         });
 
         // hide sections not on event location
         $.each($('[data-location-group]'), function(k,v) {
-            if($(v).data('location-group') !== $('#Evt_Location_Code').val().substring(0,3)) {
+            let hideSection = false;
+            if($(v).data('location-group').indexOf(EVENT_LOCATION) < 0) {
+                hideSection = true;
+            }
+            if (hideSection) {
                 $(v).hide().find('input[type="text"]').val("");
             }
         });
+        // hide sections not on event location
+        $.each($('[data-location-exclude]'), function(k,v) {
+            let hideSection = false;
+            if($(v).data('location-exclude').indexOf(EVENT_LOCATION) >= 0) {
+                hideSection = true;
+            }
+            if (hideSection) {
+                $(v).hide().find('input[type="text"], select').val('');
+            }
+        });
 
+        if (!String.prototype.includes) {
+            String.prototype.includes = function(search, start) {
+                'use strict';
+
+                if (search instanceof RegExp) {
+                    throw TypeError('first argument must not be a RegExp');
+                }
+                if (start === undefined) { start = 0; }
+                return this.indexOf(search, start) !== -1;
+            };
+        }
+
+        $.each($('[data-location-group-2]'), function(k,v) {
+            let hideSection = false;
+            if(!$(v).data('location-group-2').includes(EVENT_LOCATION)) {
+                hideSection = true;
+            }
+            if (hideSection) {
+                $(v).hide().find('input[type="text"]').val("");
+            }
+        });
         // hide sections based on dependent value
+        // hide based on location
+        // thailand, south korya
+        if (['THA','KOR'].indexOf(EVENT_LOCATION) >= 0) {
+            $('#probation-section').hide();
+        }
         // hire on bonus eligible
         $('form').on('change', '[name$="Hire_on_Bonus_Eligible"]', function() {
-            $('.bonus-section').hide();
+            // make installment 1 optional for india
             if ($('[name$="Hire_on_Bonus_Eligible"]:checked').val() === 'Yes'){
-                $('.bonus-section').show();
+                if (EVENT_LOCATION != 'CHN') {
+                    $('[name$=".Installment_Amount"]').closest('.merge').show();
+                }
+                if (EVENT_LOCATION == 'IND') {
+                    $('[name$=".Installment_Amount"]').data('validation', 'regex-optional');
+                    showByEventLocation('IND', $('[name$=".Installment_Amount_1"], [name$=".Installment_Amount_2"], [name$=".Installment_Amount_3"]'), '.merge')
+                }
+                if (EVENT_LOCATION == 'CHN') {
+                    showByEventLocation('CHN', $('[name$=".Installment_Amount_1"], [name$=".Installment_Amount_2"]'), '.merge')
+                }
+                $('.bonus-section:not([data-section-group])').each(function(_, bonusSection) {
+                    $(bonusSection).show().find('input,select').each(function() {
+                        focusInputLabel($(this));
+                    });
+                });
+                return;
+            }
+            $('.bonus-section:not([data-section-group]')
+            .hide()
+            .each(function() {
+                $(this).find('input[type="text"],select').val('');
+            });
+            $('[name$=".HIRE_ON_BONUS_CRNCY_CD"]').val('');
+            $('[name$=".Installment_Amount"]').val('').closest('.merge').hide();
+            if (EVENT_LOCATION == 'IND') {
+                $('[name$=".Installment_Amount_1"], [name$=".Installment_Amount_2"], [name$=".Installment_Amount_3"]').val('').closest('.merge').hide();
+                focusInputLabel($('[name$=".Installment_Amount_1"],[name$=".Installment_Amount_2"],[name$=".Installment_Amount_3"]'));
+            }
+            if (EVENT_LOCATION == 'CHN') {
+                $('[name$=".Installment_Amount_1"], [name$=".Installment_Amount_2"]').val('').closest('.merge').hide();
+                focusInputLabel($('[name$=".Installment_Amount_1"],[name$=".Installment_Amount_2"]'));
             }
         });
         $('[name$="Hire_on_Bonus_Eligible"]').trigger('change');
         // variable bonus
-        $('form').on('change', '[name$="Variable_Bonus"]', function() {
-            $('.variable-bonus-section').hide();
-            if ($('[name$="Variable_Bonus"]:checked').val() === 'Yes'){
-                $('.variable-bonus-section').show();
-            }
-        });
-        $('[name$="Variable_Bonus"]').trigger('change');
+        const toggleVariableBonus = function() {
+            'use strict';
+            const variableBonus = $('[name$="Variable_Bonus"]:checked').val();
+            $('.variable-bonus-section').each(function() {
+                if (variableBonus == 'Yes' && $(this).data('location-exclude').indexOf(EVENT_LOCATION) < 0){
+                    $(this).show();
+                    return;
+                }
+                $(this).hide().each(function() {
+                    $(this).find('input[type="text"],select').each(function() {
+                        focusInputLabel($(this).val(''));
+                        validateField($(this), true);
+                    });
+                });
+                $('[name$=".Comp_Currency"]').val('');
+            });
+        }
+        toggleVariableBonus();
+        $('form').on('change', '[name$="Variable_Bonus"]', toggleVariableBonus);
         // relocation bonus
-        $('form').on('change', '[name$="Relo_Bonus"]', function() {
-            $('.relocation-bonus-section').hide();
-            if ($('[name$="Relo_Bonus"]:visible') && $('[name$="Relo_Bonus"]:checked').val() === 'Yes'){
+        $('[data-section-group="relocation"]').on('change', '[name$=".Relo_Bonus"]', function() {
+            if (['HKG','JPN','THA','KOR','CHN','SGP'].indexOf(EVENT_LOCATION) < 0 && $('[name$="Relo_Bonus"]:checked').val() === 'Yes'){
                 $('.relocation-bonus-section').show();
+                return;
             }
-        });
-        $('[name$="Relo_Bonus"]').trigger('change');
-        // relocation
-        $('form').on('change', '[name$="Relocation"]', function() {
-            $('.relocation-bonus-section, .relocation-section').hide();
-            if ($('[name$="Relocation"]:checked').val() === 'Y'){
+            $('.relocation-bonus-section')
+            .hide()
+            .each(function() {
+                $(this).find('input[type="text"],select').val('');
+            });
+            $('[name$=".ESTIMATED_RELO_COST_CRNCY_CD"]').val('');
+            validateField($('#EditProfile [name="ESTIMATED_RELO_COST_CRNCY_CD_pseudo"]').val(''), true);
+            validateField($('#EditProfile [name$=".ESTIMATED_RELO_COST"]').val(''), true);
+        })
+        $('[data-section-group="relocation"] [name$=".Relo_Bonus"]').trigger('change');
+        // relocation for all
+        $('[data-section-group="relocation"]').on('change', '[name$=".Relocation"]', function() {
+            if (['HKG','JPN','THA','KOR','CHN','SGP'].indexOf(EVENT_LOCATION) < 0 && $('[name$="Relocation"]:checked').val() === 'Y'){
                 $('.relocation-bonus-section, .relocation-section').show();
                 $('[name$="Relo_Bonus"]').trigger('change');
+                return;
             }
+            $('.relocation-bonus-section, .relocation-section')
+            .hide()
+            .each(function() {
+                $(this).find('input[type="text"],select').val('');
+            });
+            $('[name$=".RelocationFrom"], [name$=".PayAreaCity"]').val('');
+        })
+        $('[data-section-group="relocation"] [name$=".Relocation"]').trigger('change');
+
+        // singapore contract end date should only display if employee group is intern
+        /*
+        if (!/^I+/.test($('#employee-group').val())) {
+            $('[name$=".ContractEndDate"]').closest('.input_wrapper')
+                .hide()
+                .each(function() {
+                    $(this).find('input[type="text"],select').val('');
+                });
+        }
+        */
+        //hide show contract end date SGP
+        if (EVENT_LOCATION == "SGP") {
+            if ($('#employee-group-x').val().substring(0,1) != 'I') {
+                $('[name$=".ContractEndDate"]').closest('.input_wrapper')
+                .hide()
+                .each(function() {
+                    $(this).find('input[type="text"],select').val('');
+                });
+            }
+        }
+        //hide show contract end date HKG
+        if (EVENT_LOCATION == "HKG") {
+            if (($('#employee-group-x').val().substring(0,1) != 'I') && ($('#employee-group-x').val().substring(0,1) != 'T')) {
+                $('[name$=".ContractEndDate"]').closest('.input_wrapper')
+                .hide()
+                .each(function() {
+                    $(this).find('input[type="text"],select').val('');
+                });
+            }
+        }
+
+        //hide show contract end date != HKG AND != SGP
+        if ((EVENT_LOCATION != "HKG") && (EVENT_LOCATION != "SGP")) {
+            $('[name$=".ContractEndDate"]').closest('.input_wrapper')
+                .hide()
+                .each(function() {
+                    $(this).find('input[type="text"],select').val('');
+                });
+        }
+
+        //hide show sip amount
+        //hide show ramp up period
+        if (SIP != 'SIP-Y' || ['AUS','HKG','JPN','THA','SGP'].indexOf(EVENT_LOCATION) < 0) {
+            $('[name$=".SIP_Amount"], [name$=".Introductory_RampUp_Period_Eligible"]').val('').closest('.input_wrapper').hide();
+        }
+        if (SIP == 'SIP-Y' && EVENT_LOCATION == 'CHN') {
+            $('[name$=".SIP_Amount"]').closest('.input_wrapper').show();
+        }
+
+        //hide show building address HKG - THA - JPN - KOR
+        if (EVENT_LOCATION == "HKG" || EVENT_LOCATION == "THA" || EVENT_LOCATION == "JPN" || EVENT_LOCATION == "KOR") {
+            
+                $('[name$=".BuildingAddress"]').closest('.input_wrapper')
+                .hide()
+                .each(function() {
+                    $(this).find('input[type="text"],select').val('');
+                });
+            
+        }
+
+        // singapore relocation
+        $('#sgp-relocation').on('change', '[name$=".Relocation"]', function() {
+            if ($('[name$=".Relocation"]:checked').val() === 'Y'){
+                $('.sgp-relocation-section:not(.merge)').css('display', 'block');
+                $('.sgp-relocation-section.merge').css('display', 'flex');
+                $('.sgp-relocation-section [name$=".Relo_Bonus"]').trigger('change');
+                toggleCashAllowance($('[name$=".Relo_Lump_Sum_Eligible"]:checked').val());
+                return;
+            }
+            $('.sgp-relocation-bonus-section, .sgp-relocation-section')
+            .hide()
+            .each(function() {
+                $(this).find('input[type="text"],select').val('');
+            });
+            $('[name$=".Relo_Lump_Sum_Eligible"]').prop('checked', false);
+            validateField($('[name$=".RelocationFrom"]').val(''), true);
+            validateField($('[name$=".PayAreaCity"]').val(''), true);
+            validateField($('[name$=".Relo_Lump_Sum_Eligible"]'), true);
+            toggleCashAllowance($('[name$=".Relo_Lump_Sum_Eligible"]:checked').val());
         });
-        $('[name$="Relocation"]').trigger('change');
+        $('#sgp-relocation [name$=".Relocation"]').trigger('change');
+        $('[name$=".Relo_Lump_Sum_Eligible"]').on('change', function() {
+            toggleCashAllowance($(this).val());
+        });
+        if (EVENT_LOCATION == "SGP") {
+            toggleCashAllowance($('[name$=".Relo_Lump_Sum_Eligible"]:checked').val());
+        }
+        // singapore bonus
+        $('form').on('change', '[name$="good_payment_eligible"]', function() {
+            if ($('[name$="good_payment_eligible"][value="Yes"]').prop('checked') && EVENT_LOCATION === "SGP") {
+                $('.sgp-good-payment').show();
+                return;
+            }
+            $('.sgp-good-payment')
+            .hide()
+            .each(function() {
+                $(this).find('input[type="text"],select').val('');
+            });
+            validateField($('[name$=".paymentAmount1"]').val(''), true);
+        });
+        $('form [name$="good_payment_eligible"]').trigger('change');
+        // singapore sales incentive plan
+        // $('#EditProfile').on('change', '[data-location-group="AUS"] [name$=".Eligible_Sales_Incentive"]', function() {
+        //     if($('[name$=".Eligible_Sales_Incentive"]:checked').val() === 'Yes' && EVENT_LOCATION === "AUS") {
+        //         let salesIncentiveSection = $('[data-location-group="AUS"].sales-incentive-section').show();
+        //         $.each(salesIncentiveSection.find('input,select'), function(k, v) {
+        //             validateField($(v), true)
+        //         });
+        //         return;
+        //     }
+        //     let salesIncentiveSection = $('[data-location-group="AUS"].sales-incentive-section').hide();
+        //     $.each(salesIncentiveSection.find('input,select'), function(k, v) {
+        //         $(v).val('');
+        //         focusInputLabel($(v));
+        //         validateField($(v), true);
+        //     });
+        //     $('[name$=".SalesTargetCurrency"]').val('');
+        // })
+        $('form [name$=".Eligible_Sales_Incentive"]').trigger('change');
+        // singapore relocation bonus
+        $('#sgp-relocation-bonus').on('change', '[name$=".Relo_Bonus"]', function() {
+            if($('[name$=".Relo_Bonus"]:checked').val() === 'Yes') {
+                $('.sgp-relocation-bonus-section:not(.merge)').css('display', 'block'); //2020-10-30 | SERVICES-36314 | CDY | SHOW SECTION WHEN YES CHECKED
+                $('.sgp-relocation-bonus-section.merge').css('display', 'flex');//2020-10-30 | SERVICES-36314 | CDY | SHOW SECTION WHEN YES CHECKED
+                $('[name="ESTIMATED_RELO_COST_CRNCY_CD_pseudo"]').data('validation', 'required');
+                $('[name$=".ESTIMATED_RELO_COST"]').data('validation', 'required,regex');
+                return;
+            }
+            $('.sgp-relocation-bonus-section')
+                .hide()//2020-10-30 | SERVICES-36314 | CDY | HIDE SECTION WHEN NOT/NO CHECKED
+                .each(function() {
+                    $(this).find('input[type="text"],select').val('');
+                });
+            validateField($('[name$="ESTIMATED_RELO_COST_CRNCY_CD_pseudo"]').val(''), true);//2020-10-30 | SERVICES-36314 | CDY | CLEAR VALUE WHEN NOT/NO CHECKED
+            validateField($('[name$=".ESTIMATED_RELO_COST"]').val(''), true);//2020-10-30 | SERVICES-36314 | CDY | CLEAR VALUE WHEN NOT/NO CHECKED
+            validateField($('[name="ESTIMATED_RELO_COST_CRNCY_CD_pseudo"]').data('validation', null), true);
+            validateField($('[name$=".ESTIMATED_RELO_COST"]').data('validation', 'regex'), true);
+        });
+        $('#sgp-relocation-bonus [name$=".Relo_Bonus"]').trigger('change');
         // probations required
         $('form').on('change', '[name$="ProbationPeriodRequired"]', function() {
-            $('#probation-timeframe').hide();
-            if ($('[name$="ProbationPeriodRequired"]:checked').val() === 'yes'){
+            if ($('[name$="ProbationPeriodRequired"]:checked').val() === 'yes' && (EVENT_LOCATION != "HKG") && EVENT_LOCATION != "JPN"){
                 $('#probation-timeframe').show();
+            }
+            else {
+                $('[name$="ProbationPeriodTime"]').val("");
+                $('#probation-timeframe')
+                .hide()
+                .each(function() {
+                    $(this).find('input[type="text"],select').val('');
+                });
             }
         });
         $('[name$="ProbationPeriodRequired"]').trigger('change');
+        // update china probation end date on change
+        $('form').on('change', '[name$="ProbationPeriodTime"]', function() {
+            $('[name$="China_Probation_End_Date"]').val("");
+            probationPeriodTime = parseInt($('[name$="ProbationPeriodTime"]').val()) ? parseInt($('[name$="ProbationPeriodTime"]').val()) : 0;
+            probationEndDate = new Date("<$client.tEventDates_Date_2.Value>");
+            probationEndDate.setMinutes(probationEndDate.getMinutes() + probationEndDate.getTimezoneOffset());
+            probationEndDate.setMonth(eventDate.getMonth() + probationPeriodTime);
+            setDefaultValue($('[name$="China_Probation_End_Date"]'), probationEndDate.getDate() + " " + months[probationEndDate.getMonth()] + " " + probationEndDate.getFullYear());
+        });
+        $('[name$="ProbationPeriodTime"]').trigger('change');
+
+        // china citizenship section
+        $('#EditProfile').on('change', '[name$=".Citizenship_Status"]', function() {
+            if (EVENT_LOCATION != "CHN") {
+                return;
+            }
+            if ($('#EditProfile input[name$=".Citizenship_Status"]:checked').val() === "Yes") {
+                $('.chn-citizen').show();
+                $('.non-chn-citizen')
+                .hide()
+                .each(function() {
+                    $(this).find('input[type="text"],select').val('');
+                });
+                return;
+            }
+            $('.chn-citizen')
+            .hide()
+            .each(function() {
+                $(this).find('input[type="text"],select').val('');
+            });
+            $('.non-chn-citizen').show();
+            $.each($('.chn-citizen input, .chn-citizen select'), function(k, v) {
+                validateField($(v), true);
+            });
+        });
+        $('#EditProfile input[name$=".Citizenship_Status"]').trigger('change');
+        
+        $('#EditProfile').on('change', '[name="PayPal_Ops_Incentive_Plan"]', function() {
+            if ($('[name="PayPal_Ops_Incentive_Plan"][value="Yes"]').prop('checked') && EVENT_LOCATION === "CHN") {
+                $('#yearly-target-percentage').show();
+                return;
+            }
+            $('#yearly-target-percentage')
+            .hide()
+            .each(function() {
+                $(this).find('input[type="text"],select').val('');
+            });
+            // validateField($('[name$=".CSIncentivePlan"]').val(''), true);
+        });
+        $('#EditProfile [name="PayPal_Ops_Incentive_Plan"]').trigger('change');
 
         // validate each field
-        $('form').on('blur click', 'input[type="text"]:not(":hidden"), select, textarea', function() {
+        $('form').on('blur click', 'input[type="text"]:not(":hidden"), select:not(":hidden"), textarea', function() {
             if(!validateField($(this))) {
                 $(this).parent().find('.text-error').css({'display': 'inline-block', 'margin-bottom': '-2px'}); // style hack since IE is such a reliable browser ;-) // changed block to inline-block
             }
@@ -592,15 +1261,40 @@
             validateField($(this)); 
         });
 
+        const toggleLangAllow = function(languageAllowance) {
+            $('#China_Currency_Code_new_pseudo, [name$=".Language_Allowance_Amount"]').each(function() {
+                const languageAllowanceSibling = $(this);
+                if (languageAllowance == 'Yes' && languageAllowanceSibling.closest('.merge').data('location-group').indexOf(EVENT_LOCATION) >= 0) {
+                    languageAllowanceSibling.closest('[data-location-group]').show();
+                } else {
+                    languageAllowanceSibling.closest('[data-location-group]').hide().find('input, select').val('');
+                }
+            });
+        }
+        $('[name$=".Language_Allowance"]').on('change', function() {
+            toggleLangAllow(this.value)
+        });
+        
+        $('[name$=".Language_Allowance"]').each(function() {
+            if ($(this).closest('.input_wrapper').data('location-group').indexOf(EVENT_LOCATION) >= 0 &&  $(this).is(':checked')) {
+                toggleLangAllow($(this).val())
+            }
+        });
+        
+        if ($('[name$=".Language_Allowance"]').closest('.input_wrapper').data('location-group').indexOf(EVENT_LOCATION) >= 0) {
+            if(!$("input[name*='.Language_Allowance'][value='Yes']").prop('checked') && !$("input[name*='.Language_Allowance'][value='No']").prop('checked'))
+                toggleLangAllow('')
+        }
+
         // submit the form if no errors
         $('form').on('click', '#TaskSummary_ButtonSave', function(e) {
             e.preventDefault();
-            var formIsValid = true;
+            let formIsValid = true;
             $.each($('form input:not(".datepicker_button"):visible, form select:visible, textarea:visible'), function(k,v) {
                 if(!validateField($(v))) {
                     formIsValid = false;
                 }
-            })
+            });
             if (formIsValid) {
                 doSave_Custom('refer-Complete');
             }
@@ -608,6 +1302,9 @@
                 $("html, body").animate({ scrollTop: 0 }, "slow");
             }
         });
+        if (!!sTaskComplete) {
+            $('input, textarea, select', '.input_wrapper').prop('disabled', 'disabled');
+        }
 
     });
 </script>

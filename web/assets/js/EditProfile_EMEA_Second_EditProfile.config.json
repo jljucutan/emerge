@@ -1,0 +1,495 @@
+{
+  "fields": [
+    {
+      "name": "National_ID_IssuedBy",
+      "validation": "required",
+      "title": "National ID Issued By",
+      "readonly": true,
+      "validateByCountry": {
+        "DEU": {
+          "fixedValue": "DEU",
+          "readonly": true
+        },
+        "HKG": {
+          "fixedValue": "HKD"
+        },
+        "JPN": {
+          "fixedValue": "JPN"
+        },
+        "KOR": {
+          "fixedValue": "KOR"
+        },
+        "NLD": {
+          "defaultValue": "NLD",
+          "readonly": true
+        },
+        "ESP": {
+          "defaultValue": "ESP",
+          "readonly": false
+        },
+        "ITA": {
+          "defaultValue": "ITA",
+          "readonly": false
+        },
+        "BEL": {
+          "defaultValue": "BEL",
+          "readonly": true
+        },
+        "LUX": {
+          "defaultValue": "LUX",
+          "readonly": true
+        },
+        "POL": {
+          "fixedValue": "POL",
+          "readonly": true
+        },
+        "GBR": {
+          "defaultValue": "GBR",
+          "readonly": false
+        },
+        "SWE": {
+          "defaultValue": "SWE",
+          "readonly": false
+        },
+        "FRA": {
+          "defaultValue": "FRA",
+          "readonly": false
+        }
+      }
+    },
+    {
+      "name": "National_ID_Type",
+      "validation": "required",
+      "title": "National ID Type",
+      "readonly": true,
+      "validateByCountry": {
+        "DEU": {
+          "fixedValue": "DEU-TAX"
+        },
+        "HKG": {
+          "fixedValue": "HKD-ID"
+        },
+        "JPN": {
+          "fixedValue": "JPN-SSN"
+        },
+        "KOR": {
+          "fixedValue": "KOR-RRN"
+        },
+        "NLD": {
+          "fixedValue": "NLD-BSN"
+        },
+        "ESP": {
+          "defaultValue": "ESP-NIF",
+          "readonly": false
+        },
+        "GBR": {
+          "defaultValue": "",
+          "readonly": false
+        },
+        "SWE": {
+          "defaultValue": "",
+          "readonly": false
+        },
+        "FRA": {
+          "defaultValue": "",
+          "readonly": false
+        }
+      },
+      "eventBasedValidation": {
+          "validateByValueOf": [
+            {
+              "field": "National_ID_IssuedBy",
+              "values": {
+                "NLD": {
+                  "readonly": true
+                },
+                "ESP": {
+                  "readonly": false,
+                  "defaultValue": "ESP-NIF"
+                },
+                "DEU": {
+                  "readonly": true,
+                  "defaultValue": "DEU-SVNR"
+                },
+                "BEL": {
+                  "readonly": true,
+                  "defaultValue": "BEL-NN"
+                },
+                "POL": {
+                  "readonly": true,
+                  "defaultValue": "POL-PESEL"
+                },
+                "LUX": {
+                  "defaultValue": "LUX-CCSS",
+                  "readonly": true
+                }
+              }
+            }
+          ]
+      }
+    },
+    {
+      "name": "SSNO",
+      "validation": "required",
+      "readonly": false,
+      "title": "National ID/SSN",
+      "validateByCountry": {
+        "ESP": {
+          "validation": "required,regex-optional",
+          "regex": "^[A-Za-z0-9]{8,9}$",
+          "message": "8-9 alphanumeric characters"
+        },
+        "NLD": {
+          "validation": "required,regex-optional",
+          "regex": "^[0-9]{9}$",
+          "message": "9 digits"
+        }
+      },
+      "eventBasedValidation": {
+          "validateByValueOf": [
+            {
+              "field": "National_ID_Type",
+              "values": {
+                "ESP-NIF": {
+                  "validation": "regex-optional,required",
+                  "regex": "^[A-Za-z0-9]{8,9}$",
+                  "message": "8-9 alphanumeric characters"
+                },
+                "ESP-NSS": {
+                  "validation": "regex-optional,required",
+                  "regex": "^[0-9]{12}$",
+                  "message": "12 digits"
+                },
+                "NLD-BSN": {
+                  "validation": "regex-optional,required",
+                  "regex": "^[0-9]{9}$",
+                  "message": "9 digits"
+                },
+                "BEL-NN": {
+                  "validation": "regex-optional,required",
+                  "regex": "^[0-9]{11}$",
+                  "message": "11 digits"
+                },
+                "LUX-CCSS": {
+                  "validation": "regex-optional,required",
+                  "regex": "^[0-9]{13}$",
+                  "message": "13 digits"
+                },
+                "POL-PESEL": {
+                  "validation": "regex-optional,required",
+                  "regex": "^[0-9]{11}$",
+                  "message": "11 digits"
+                },
+                  "DEU-TAX": {
+                  "validation": "regex-optional,required",
+                  "regex": "^[0-9]{11}$",
+                  "message": "11 digits"
+                }
+              }
+            }
+          ]
+      }
+    },
+    {
+      "name": "National_ID_IssuedBy2",
+      "validation": "required",
+      "title": "Second National ID Issued By",
+      "readonly": false,
+      "validateByCountry": {
+        "DEU": {
+          "defaultValue": "DEU",
+          "readonly": true
+        },
+        "POL": {
+          "defaultValue": "POL",
+          "readonly": true
+        },
+        "ESP": {
+          "defaultValue": "ESP",
+          "readonly": true
+        }
+      }
+    },
+    {
+      "name": "National_ID_Type2",
+      "validation": "required",
+      "title": "Second National ID Type",
+      "readonly": false,
+      "validateByCountry": {
+        "DEU": {
+          "defaultValue": "DEU-SVNR",
+          "readonly": true
+        },
+        "ESP": {
+          "defaultValue": "ESP-NSS",
+          "readonly": true
+        },
+        "POL": {
+          "defaultValue": "POL-NIP",
+          "readonly": true
+        }
+      }
+    },
+    {
+      "name": "National_ID2",
+      "validation": "required,regex-optional",
+      "title": "Second National ID/SSN",
+      "readonly": false,
+      "regex": "^[A-Za-z0-9]{12}$",
+      "message": "12 alphanumeric characters",
+      "validateByCountry": {
+        "POL": {
+          "regex": "^[0-9]{10}$",
+          "message": "10 digits"
+        }
+      },
+      "eventBasedValidation": {
+          "validateByValueOf": [
+            {
+              "field": "National_ID_Type2",
+              "values": {
+                "DEU-SVNR": {
+                  "regex": "^[A-Za-z0-9]{12}$",
+                  "message": "12 alphanumeric characters"
+                },
+                "DEU-SID": {
+                  "regex": "^[0-9]{11}$",
+                  "message": "11 digits"
+                },
+                "DEU-TAX": {
+                  "regex": "^[0-9]{10,11}$",
+                  "message": "10-11 digits"
+                },
+                "ESP-NIF": {
+                  "regex": "^[A-Za-z0-9]{8,9}$",
+                  "message": "8-9 alphanumeric characters"
+                },
+                "ESP-NSS": {
+                  "regex": "^[0-9]{12}$",
+                  "message": "12 digits"
+                }
+              }
+            }
+          ]
+      }
+    },
+    {
+      "name": "Series_Number",
+      "validation": "required",
+      "title": "Series Number"
+    },
+    {
+      "name": "Issuing_Agency",
+      "validation": "required",
+      "title": "Issuing Agency"
+    },
+    {
+      "name": "MaritalStatus",
+      "validation": "required",
+      "title": "Marital Status"
+    },
+    {
+      "name": "Nationality",
+      "validation": "required",
+      "title": "Nationality (Country of Birth)"
+    },
+    {
+      "name": "Ethnicity",
+      "title": "Ethnicity",
+      "validateByCountry": {
+        "HKG": {
+          "validation": "required"
+        },
+        "THA": {
+          "validation": "required"
+        }
+      }
+    },
+    {
+      "name": "Gender",
+      "validation": "required",
+      "title": "Gender"
+    },
+    {
+      "name": "CountryOfBirth",
+      "title": "Country of Birth",
+      "validation": "required"
+    },
+    {
+      "name": "CityOfBirth",
+      "validation": "required,regex-optional",
+      "title": "City of Birth",
+      "regex": "^[A-Za-z\\s]+$",
+      "message": "letters only"
+    },
+    {
+      "name": "EC_First_Name",
+      "validation": "required",
+      "title": "First Name",
+      "readonly": false
+    },
+    {
+      "name": "EC_Last_Name",
+      "validation": "required",
+      "title": "Last Name"
+    },
+    {
+      "name": "EC_Relationship",
+      "validation": "required",
+      "title": "Relationship"
+    },
+    {
+      "name": "EC_Address_Line1",
+      "validation": "required,regex-optional",
+      "title": "Address Line 1",
+      "regex": "^.{1,60}$",
+      "message": "up to 60 characters. Please use Address Line 2 to complete your address."
+    },
+    {
+      "name": "EC_Address_Line2",
+      "title": "Address Line 2"
+    },
+    {
+      "name": "EC_Country",
+      "validation": "required",
+      "title": "Country"
+    },
+    {
+      "name": "EC_City",
+      "validation": "required",
+      "title": "City"
+    },
+    {
+      "name": "EC_State",
+      "validation": "required",
+      "title": "State/County",
+      "eventBasedValidation": {
+          "validateByValueOf": [
+            {
+              "field": "EC_Country",
+              "values": {
+                "BEL": {
+                  "validation": " "
+                },
+                "POL": {
+                  "validation": " "
+                },
+                "LUX": {
+                  "validation": " "
+                }
+              },
+              "fallback": {
+                  "validation": "required"
+              }
+            }
+          ]
+      }
+    },
+    {
+      "name": "EC_Zip",
+      "validation": "required",
+      "title": "Postal Code"
+    },
+    {
+      "name": "EC_Primary_Country_Code",
+      "validation": "required",
+      "title": "Primary Country Phone Code"
+    },
+    {
+      "name": "EC_Primary_Phone_Number_Type",
+      "validation": "required",
+      "title": "Phone type"
+    },
+    {
+      "name": "EC_Primary_Phone_Number",
+      "validation": "required,regex-optional",
+      "title": "Primary Phone Number",
+      "regex": "^[0-9]{7,13}$",
+      "message": "7-13 digits",
+      "eventBasedValidation": {
+          "validateByValueOf": [
+            {
+              "field": "EC_Primary_Country_Code",
+              "values": {
+                "BEL|32": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{6,11}$",
+                  "message": "6-11 digits"
+                },
+                "POL|48": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{9,11}$",
+                  "message": "9-11 digits"
+                },
+                "LUX|352": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{5,10}$",
+                  "message": "5-10 digits"
+                }
+              }
+            }
+          ]
+      }
+    },
+    {
+      "name": "EC_Mobile_Country_Code",
+      "validation": "",
+      "title": "Secondary Country Phone Code",
+      "eventBasedValidation": {
+          "requiredBy": "EC_Mobile_Phone_Number"
+      }
+    },
+    {
+      "name": "EC_Secondary_phone_type",
+      "validation": "",
+      "title": "Secondary Phone Type",
+      "eventBasedValidation": {
+          "requiredBy": "EC_Mobile_Phone_Number"
+      }
+    },
+    {
+      "name": "EC_Mobile_Phone_Number",
+      "validation": "regex-optional",
+      "title": "Secondary Phone Number",
+      "regex": "^[0-9]{7,13}$",
+      "message": "7-13 digits",
+      "eventBasedValidation": {
+          "requiredByEitherOf": ["EC_Secondary_phone_type", "EC_Mobile_Country_Code"],
+          "validateByValueOf": [
+            {
+              "field": "EC_Mobile_Country_Code",
+              "values": {
+                "BEL|32": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{6,11}$",
+                  "message": "6-11 digits"
+                },
+                "POL|48": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{9,11}$",
+                  "message": "9-11 digits"
+                },
+                "LUX|352": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{5,10}$",
+                  "message": "5-10 digits"
+                }
+              },
+              "fallback": {
+                  "validation": "regex-optional",
+                  "title": "Secondary Phone Number",
+                  "regex": "^[0-9]{7,13}$",
+                  "message": "7-13 digits"
+              }
+            }
+          ]
+      }
+    },
+    {
+      "name": "license_plate_number"
+    },
+    {
+      "name": "abono_transport_zone"
+    }
+  ]
+}

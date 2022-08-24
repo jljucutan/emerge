@@ -1,0 +1,480 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                    </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullname','over','modal','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}"> &nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<div class="modal" style="display:block; background: #002E6D;"> 
+    <div class="fb-spinner"> 
+        <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+    </div> 
+</div>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form"> 
+
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+<!-- Your Required/Validated Form Fields -->
+
+<$client.env.FormField.AdditionalWithholding.prompt>
+<$client.env.FormField.Address.prompt>
+<$client.env.FormField.Allowances.prompt>
+<$client.env.FormField.City2.prompt>
+<$client.env.FormField.CityStateZip.prompt>
+<$client.env.FormField.Date2.prompt>
+<$client.env.FormField.DateSigned.prompt>
+<$client.env.FormField.EIN.prompt>
+<$client.env.FormField.EmployerAddress.prompt>
+<$client.env.FormField.EmployerName.prompt>
+<$client.env.FormField.FilingStatus.prompt>
+<$client.env.FormField.FullName.prompt>
+<$client.env.FormField.Line1.prompt>
+<$client.env.FormField.Line2.prompt>
+<$client.env.FormField.Line3.prompt>
+<$client.env.FormField.Line4.prompt>
+<$client.env.FormField.Line7.prompt>
+<$client.env.FormField.Line8.prompt>
+<$client.env.FormField.Line9.prompt>
+<$client.env.FormField.MoTaxID.prompt>
+<$client.env.FormField.SSN.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.State.prompt>
+<$client.env.FormField.State2.prompt>
+<$client.env.FormField.WorkingSpouse.prompt>
+<$client.env.FormField.Zip.prompt>
+<$client.env.FormField.Zip2.prompt>
+</div>
+
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <header class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <img src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_MO/img/mo_logo.jpg>" alt="" class="img-responsive">
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+            <h4>
+                Missouri Department of Revenue <br>
+                <strong>
+                    <u>Employee’s Withholding Certificate</u>
+                </strong><br>
+                <small>
+                    This certificate is for income tax withholding and child support enforcement purposes only. Type or print. 
+                </small>
+            </h4>
+        </div>
+    </header>
+    <div class="row mb-10">
+        <div class="col-lg-12">
+            <div class="bar-left bg-black pull-left text-center">
+                <div class="bar-inner">
+                    <div class="bar-content">
+                        <strong>Employee</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="content-right">
+                <div class="box mb-10">
+                    <div class="row b-bottom">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 b-right">
+                            Full name
+                            <div class="form-group">
+                                <$client.env.FormField.FullName.HTML>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            Social Security Number
+                            <div class="form-group">
+                                <$client.env.FormField.SSN.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 b-right">
+                            Home Address (Number and Street or Rural Route)
+                            <div class="form-group">
+                                <$client.env.FormField.Address.HTML>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 b-right">
+                            City or Town
+                            <div class="form-group">
+                                <$client.env.FormField.CityStateZip.HTML>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 b-right">
+                            State
+                            <div class="form-group">
+                                <$client.env.FormField.State.HTML>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 b-right">
+                            Zip Code
+                            <div class="form-group">
+                                <$client.env.FormField.Zip.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box mb-10">
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 pt-10 b-right">
+                            <ol>
+                                <li>
+                                    Filing Status: Check the appropriate filing status below.
+                                    <div class="ml-3p">
+                                        <$client.env.FormField.FilingStatus.HTML>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 copy-prev-height">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 b-right">
+                            <ol start="2">
+                                <li>
+                                    Additional withholding: If you expect to have a balance due (as a result of interest income, dividends, income from a part-time job, etc.) on your tax return, you may request your employer to withhold an additional amount of tax from each pay period. To calculate the amount needed, divide the amount of the expected tax by the number of pay periods in a year. Enter the additional amount to be withheld each pay period on line 2.
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 b-bottom copy-prev-height">
+                            <$client.env.FormField.AdditionalWithholding.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 b-right">
+                            <ol start="3">
+                                <li>
+                                    Reduced withholding: If you expect to receive a refund (as a result of itemized deductions, modifications of tax credits) on your tax return, you may direct your employer to only withhold the amount indicated on line 3. Your employer will not use the standard calculations for withholding. If your disignate an amount that is too low, it could result in ou being under withheld. To calculate the amount needed, divide the amount of your expected tax by the number of pay periods in a year. Enter the amount to be withheld instead of the standard calculation. If no amount is indicated on line 3, the standard calculations will be used.
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 b-bottom copy-prev-height">
+                            <$client.env.FormField.ReducedWithholding.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 b-right">
+                            <ol start="4">
+                                <li>
+                                    Exempt Status: Select the appropriate reason you are claiming an exemption from withholding below and indicate EXEMPT on line 4.
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 b-bottom copy-prev-height">
+                            <$client.env.FormField.ExemptStatus.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 pt-10 b-right">
+                            <div class="ml-3p mb-10">
+                                <$client.env.FormField.ExemptReason.HTML>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-10">
+        <div class="col-lg-12">
+            <div class="bar-left bg-black pull-left text-center">
+                <div class="bar-inner">
+                    <div class="bar-content">
+                        <strong>Signature</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="content-right">
+                <p>
+                    Under penalties of perjury, I certify that the information provided on this form if true and accurate.
+                </p>
+                <div class="row box">
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 b-right">
+                        <div class="form-group">
+                            Employee's Signature (Form is not valid unless you sign it)
+                            <$client.env.FormField.Signature.HTML>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <div class="form-group">
+                            Date (MM/DD/YYYY)
+                            <$client.env.FormField.DateSigned.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-20">
+        <div class="col-lg-12">
+            <div class="bar-left bg-black pull-left text-center">
+                <div class="bar-inner">
+                    <div class="bar-content">
+                        <strong>Employer</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="content-right">
+                <div class="box">
+                    <div class="row b-bottom">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 b-right">
+                            <div class="form-group">
+                                Employee's Name
+                                <$client.env.FormField.EmployerName.HTML>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                            <div class="form-group">
+                                Employee's Address
+                                <$client.env.FormField.EmployerAddress.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row b-bottom">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 b-right">
+                            <div class="form-group">
+                                City
+                                <$client.env.FormField.City2.HTML>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 b-right">
+                            <div class="form-group">
+                                State
+                                <$client.env.FormField.State2.HTML>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group">
+                                ZIP Code
+                                <$client.env.FormField.Zip2.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 b-right">
+                            <div class="form-group">
+                                Date Services for Pay First Performed by Employee (MM/DD/YYYY)
+                                <$client.env.FormField.Date2.HTML>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 b-right">
+                            <div class="form-group">
+                                Federal Employer I.D. Number
+                                <$client.env.FormField.EIN.HTML>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group">
+                                Missouri Tax Identification Number
+                                <$client.env.FormField.MoTaxID.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-10 b-top b-bottom">
+        <div class="col-lg-12 pt-10">
+            <p>
+                Notice To Employer: <br>
+                Within 20 days of hiring a new employee, send a copy of Form MO W-4 to the Missouri Department of Revenue, P.O. Box 3340, Jefferson City, MO <br>
+                65105-3340 or fax to (573) 526-8079 <br>
+                Please visit <a href="https://dss.mo.gov/child-support/employers/new-hire-reporting.htm" target="_blank">https://dss.mo.gov/child-support/employers/new-hire-reporting.htm</a> for additional information regarding new hire reporting.
+            </p>
+        </div>
+    </div>
+    <div class="row b-bottom mb-10">
+        <div class="col-lg-12">
+            <p class="text-center">
+                Employee Information <br>
+                Visit our online withholding calculator <a href="https://mytax.mo.gov/rptp/portal/home/withholding-calculator" target="_blank">https://mytax.mo.gov/rptp/portal/home/withholding-calculator</a>.
+            </p>
+            <p class="text-center">
+                Items to Remember:
+            </p>
+            <ul class="mb-10">
+                <li>
+                    Employees must complete a new form if their filing status changes or to adjust the amount of withholding.
+                </li>
+                <li>
+                    If you are claiming an "Exempt" status due to the Military Spouses Residency Relief Act you must provide one of the following to your employer: Leave and Earnings Statement of the non-resident military servicemember, Form W-2 issued to the nonresident military servicemember, a military identification card, or specific military orders received by the servicemember. You must also provide verification of residency such as a copy of your state income tax return filed in your state of residence, a property tax receipt from the state of residence, a current drivers license, vehicle registration or voter ID card.
+                </li>
+                <li>
+                    Additional information can be found at <a href="https://dor.mo.gov/business/" target="_blank">https://dor.mo.gov/business/</a>.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+            <strong>Mail to:</strong>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            Taxation Division <br>
+            P.O. Box 3340 <br>
+            Jefferson City, MO 65105-3340
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+            <strong>Phone:</strong><br>
+            <strong class="hidden-xs">Fax:</strong>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            (573) 751-8750 <br>
+            <strong class="visible-xs">Fax:<br></strong>
+            (573) 526-8079
+        </div>
+    </div>
+    <div class="row mb-20">
+        <div class="col-lg-12">
+            <p class="text-right">
+                Form MO W-4 (Revised12-2018)
+            </p>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div class="modal fade" role="dialog" tabindex="-1" id="terms">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content terms-bg">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-img-wrapper center-block">
+                            <img src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_MO/img/mo_revenue_logo.png>" alt="" class="img-responsive">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                
+                <p>
+                    <small>
+                        <strong>Important Changes Regarding 2019 Employers's Withholding Taxes</strong>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        In the 2018 legislative session. House Bill 2540 was passed and amended Section 143.171. RSMo, related to the federal tax deduction. Effective for tax year 2019, the federal income tax deduction taxpayers may claim is prorated based on the taxpayer's federal adjusted gross income. In an attempt to ease implementation of the new withholding formula, the Department of Revenue chose to remove the federal tax deduction from the withholding tax calculation. This change may result in a small increase to the amount withheld from employee's paychecks. Any withholding in excess of the tax owed will be refunded after the taxpayer files their individual income tax return. 
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        The Department of Revenue encourages all employees to review their W-4 and to make corresponding changes based on their filing status. There are no longer allowances in the Missouri withholding tables. Employees can no longer increase or decrease the amount withheld from their paychecks by claiming allowances that are not consistent with their specific filing situation. If the employee needs additional amounts withheld, they should add the additional amount on line 2 of the W-4. 
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        Visit <a href="https://mytax.mo.gov/rptp/portal/home/withholding-calculator" target="_blank">https://mytax.mo.gov/rptp/portal/home/withholding-calculator</a> to use our online calculator to estimate your withholdings.
+                    </small>
+                </p>
+            </div>
+            <div class="modal-footer text-center">
+                <div class="btn-terms-wrapper center-block">
+                    <a href="#" id="terms-dismiss" data-dismiss="modal">
+                        <img src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_MO/img/btn-terms.jpg>" alt="" class="img-responsive">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="hide">
+    <$client.env.FormField.signatureVerification.HTML>
+    <$client.env.formfield.Login_ID.html>
+    <$client.env.formfield.Auth_Param.html>
+    <$client.env.formfield.EmployeeID.html>
+</div>
+
+</form>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_MO/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+$(window).on('load', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    document.getElementById('formButtons').style.display = "block";
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $(".modal").hide();
+
+    if ($(window).width() > 767) {
+        $.each($('.copy-prev-height'), function() {
+            $(this).height($(this).prev().height());
+        });
+    }
+
+    var storage = window.localStorage;
+    if (storage.getItem("readTerms") === null || storage.getItem("readTerms") === "0") {
+        $('#terms').modal({
+            backdrop: 'static',
+            show: true,
+            keyboard: false
+        });
+        storage.setItem("readTerms", "0");
+    }
+    $('#terms').on('hide.bs.modal', function() {
+        storage.setItem("readTerms", "1");
+    });    
+});
+</script>

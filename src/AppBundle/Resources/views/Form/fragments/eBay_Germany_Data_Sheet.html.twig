@@ -1,0 +1,839 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+		<$client.env.FormField.Form_Name.prompt>
+		<$client.env.FormField.Form_Name.HTML>
+		<$client.env.FormField.Form_Type.prompt>
+		<$client.env.FormField.Form_Type.HTML>
+		<$client.env.FormField.Form_Owner.prompt>
+		<$client.env.FormField.Form_Owner.HTML>
+		<$client.env.FormField.Form_CreateDate.prompt>
+		<$client.env.FormField.Form_CreateDate.HTML>
+		<$client.env.FormField.Form_Completed.prompt>
+		<$client.env.FormField.Form_Completed.HTML>
+		<$client.env.FormField.Form_Delivered.prompt>
+		<$client.env.FormField.Form_Delivered.HTML>
+		<$client.env.FormField.Form_TaskId.prompt>
+		<$client.env.FormField.Form_TaskId.HTML>
+		<$client.env.FormField.display_version.HTML>
+		<!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+		<$client.env.FormField.AcctHolder.prompt>
+		<$client.env.FormField.AddressCity.prompt>
+		<$client.env.FormField.AddressRegion.prompt>
+		<$client.env.FormField.AddressStreet.prompt>
+		<$client.env.FormField.AddressZip.prompt>
+		<$client.env.FormField.Bank_Name.prompt>
+		<$client.env.FormField.BirthCity.prompt>
+		<$client.env.FormField.BirthCountry.prompt>
+		<$client.env.FormField.Checklist_DisabledPass.prompt>
+		<$client.env.FormField.Checklist_HealthInsMembership.prompt>
+		<$client.env.FormField.Checklist_ResidencyPermit.prompt>
+		<$client.env.FormField.Checklist_SocialInsCard.prompt>
+		<$client.env.FormField.Checklist_WorkPermit.prompt>
+		<$client.env.FormField.Children.prompt>
+		<$client.env.FormField.CitizenshipCountry1.prompt>
+		<$client.env.FormField.CitizenshipCountry2.prompt>
+		<$client.env.FormField.CitizenshipCountry3.prompt>
+		<$client.env.FormField.CitizenshipCountry4.prompt>
+		<$client.env.FormField.CitizenshipStatus1.prompt>
+		<$client.env.FormField.CitizenshipStatus2.prompt>
+		<$client.env.FormField.CitizenshipStatus3.prompt>
+		<$client.env.FormField.CitizenshipStatus4.prompt>
+		<$client.env.FormField.CompHealthIns.prompt>
+		<$client.env.FormField.DOB.prompt>
+		<$client.env.FormField.Date.prompt>
+		<$client.env.FormField.Email.prompt>
+		<$client.env.FormField.EmerContactAddress.prompt>
+		<$client.env.FormField.EmerContactName.prompt>
+		<$client.env.FormField.EmerContactPhone.prompt>
+		<$client.env.FormField.EmerContactRelationship.prompt>
+		<$client.env.FormField.First_Name.prompt>
+		<$client.env.FormField.GEPensionScheme.prompt>
+		<$client.env.FormField.Gender.prompt>
+		<$client.env.FormField.HealthInsName.prompt>
+		<$client.env.FormField.HealthInsType.prompt>
+		<$client.env.FormField.HealthInsType2.prompt>
+		<$client.env.FormField.HealthInsType3.prompt>
+		<$client.env.FormField.HighestEducation.prompt>
+		<$client.env.FormField.HomePhone.prompt>
+		<$client.env.FormField.IBAN.prompt>
+		<$client.env.FormField.InsNo.prompt>
+		<$client.env.FormField.Last_Name.prompt>
+		<$client.env.FormField.MaritalStatus.prompt>
+		<$client.env.FormField.MobilePhone.prompt>
+		<$client.env.FormField.Nationality.prompt>
+		<$client.env.FormField.National_Insurance_Number.prompt>
+		<$client.env.FormField.PrivateInsSince.prompt>
+		<$client.env.FormField.Religion.prompt>
+		<$client.env.FormField.SignPlace.prompt>
+		<$client.env.FormField.Signature.prompt>
+		<$client.env.FormField.SignatureVerification.prompt>
+		<$client.env.FormField.SwiftCode.prompt>
+		<$client.env.FormField.TaxClass.prompt>
+		<$client.env.FormField.TaxID.prompt>
+		<$client.env.FormField.Title.prompt>
+		<$client.env.FormField.VocationalEducation.prompt>
+		<$client.env.FormField.checklist_parenthood.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+	<main class="container-fluid" style="max-width: 990px; margin: 0 auto;">
+		<div class="row">
+			<div class="col-lg-12">
+				<h4 class="text-center text-blue">
+					<strong>Personalfragebogen / Personal Data Form</strong>
+				</h4>
+				<p class="text-center">
+					Bitte ergänze die untenstehenden Informationen. / Please complete the following information.
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row hidden-xs">
+					<div class="col-lg-12">
+						<p class="text-blue pt-1">
+							<strong>Employee Information:</strong>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-sm-2 col-xs-12">
+						Anrede / Title:
+					</div>
+					<div class="col-lg-10 col-sm-10 col-xs-12">
+						<$client.env.FormField.Title.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Vorname / First Name:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.First_Name.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Nachname / Last Name:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.Last_Name.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Geschlecht / Gender:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.Gender.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Geburtsdatum / Date of Birth:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.DOB.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Geburtsort / City of Birth: <!-- 2020-11-12 | SERVICES-42057 | CDY | V2 | Corrected writing mistake to "Geburtsort"  -->
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.BirthCity.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-sm-4 col-xs-12">
+						Geburtsland / Country of Birth:
+					</div>
+					<div class="col-lg-8 col-sm-8 col-xs-12">
+						<$client.env.FormField.BirthCountry.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-5 col-sm-5 col-xs-12">
+						Deutsche Staatsbürgerschaft/ German Citizenship:
+					</div>
+					<div class="col-lg-7 col-sm-7 col-xs-12">
+						<$client.env.FormField.Nationality.HTML>
+					</div>
+				</div>
+				
+				<div id='nationalInsuranceContainer' class="row">
+					<div class="col-lg-5 col-sm-5 col-xs-12">
+						Personalausweisnr. / ID No.:
+					</div>
+					<div class="col-lg-7 col-sm-7 col-xs-12">
+						<$client.env.FormField.National_Insurance_Number.HTML>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						Zusätzliche Staatsbürgerschaften / Additional Citizenships:
+						<div class="row">
+							<div class="col-lg-offset-1 col-md-offset-1 col-lg-5 col-sm-5 col-xs-12">
+								<div class="clearfix">
+									Land / Country:
+									<div class="iblock">
+										<$client.env.FormField.CitizenshipCountry1.HTML>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-sm-6 col-xs-12">
+								<div class="clearfix">
+									Status / Status:
+									<div class="iblock">
+										<$client.env.FormField.CitizenshipStatus1.HTML>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-offset-1 col-md-offset-1 col-lg-5 col-sm-5 col-xs-12">
+								<div class="clearfix">
+									Land / Country:
+									<div class="iblock">
+										<$client.env.FormField.CitizenshipCountry2.HTML>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-sm-6 col-xs-12">
+								<div class="clearfix">
+									Status / Status:
+									<div class="iblock">
+										<$client.env.FormField.CitizenshipStatus2.HTML>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-offset-1 col-md-offset-1 col-lg-5 col-sm-5 col-xs-12">
+								<div class="clearfix">
+									Land / Country:
+									<div class="iblock">
+										<$client.env.FormField.CitizenshipCountry3.HTML>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-sm-6 col-xs-12">
+								<div class="clearfix">
+									Status / Status:
+									<div class="iblock">
+										<$client.env.FormField.CitizenshipStatus3.HTML>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-offset-1 col-md-offset-1 col-lg-5 col-sm-5 col-xs-12">
+								<div class="clearfix">
+									Land / Country:
+									<div class="iblock">
+										<$client.env.FormField.CitizenshipCountry4.HTML>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-sm-6 col-xs-12">
+								<div class="clearfix">
+									Status / Status:
+									<div class="iblock">
+										<$client.env.FormField.CitizenshipStatus4.HTML>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Familienstand / Marital Status:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.MaritalStatus.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Konfession / Religion:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.Religion.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Kinder / Children (optional):
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.Children.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Steuer-ID / Tax ID:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.TaxID.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Lohnsteuerklasse / Tax class:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.TaxClass.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-5 col-sm-5 col-xs-12">
+						Sozialversicherungsnummer / Social Insurance No:
+					</div>
+					<div class="col-lg-7 col-sm-7 col-xs-12">
+						<$client.env.FormField.InsNo.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-5 col-sm-5 col-xs-12">
+						Krankenkasse (Name) / Health Insurer (Name):
+					</div>
+					<div class="col-lg-7 col-sm-7 col-xs-12">
+						<$client.env.FormField.HealthInsName.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						Art der Krankenversicherung / Type of Health Insurance:
+						<div class="row">
+							<div class="col-lg-offset-1 col-lg-11">
+								<$client.env.FormField.HealthInsType.HTML>
+							</div>
+							<div class="col-lg-offset-1 col-lg-11">
+								<$client.env.FormField.HealthInsType2.HTML>
+							</div>
+							<div class="col-lg-offset-1 col-lg-11">
+								<div class="iblock"><$client.env.FormField.HealthInsType3.HTML></div>
+								<div class="iblock"><$client.env.FormField.PrivateInsSince.HTML></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-sm-6 col-xs-12">
+						<em><sup>*1</sup> Letzte gesetzl. Krankenkasse / Last Compulsory Health Insurer:</em>
+					</div>
+					<div class="col-lg-6 col-sm-6 col-xs-12">
+						<$client.env.FormField.CompHealthIns.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<em><sup>*2</sup> Bitte Beitragsnachweis beilegen / Please attach statement of contribution paid (&#167;257 SGB V ;&#167;10 EStG)</em>
+						<$client.env.FormField.GEPensionScheme.HTML>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<p class="text-blue pt-1">
+							<strong>Bank Details:</strong>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-sm-4 col-xs-12">
+						Kontoinhaber / Name of account holder:
+					</div>
+					<div class="col-lg-8 col-sm-8 col-xs-12">
+						<$client.env.FormField.AcctHolder.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Name der Bank / Bank Name:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.Bank_Name.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-1 col-sm-1 col-xs-12">
+						IBAN:
+					</div>
+					<div class="col-lg-10 col-sm-10 col-xs-12">
+						<$client.env.FormField.IBAN.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-sm-2 col-xs-12">
+						BIC/SWIFT-Code:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.SwiftCode.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<p>
+							<em>Note: Bank account must be in the country that you are employed.</em>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<p class="text-blue pt-1">
+							<strong>All your Contact Information:</strong>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-sm-4 col-xs-12">
+						Telefonnummer / Home phone number:
+					</div>
+					<div class="col-lg-8 col-sm-8 col-xs-12">
+						<$client.env.FormField.HomePhone.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-sm-4 col-xs-12">
+						Mobiltelefon / Mobile phone number:
+					</div>
+					<div class="col-lg-8 col-sm-8 col-xs-12">
+						<$client.env.FormField.MobilePhone.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						E-Mail / Email address:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.Email.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Straβe, Nr. / Street, No.:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.AddressStreet.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-sm-2 col-xs-12">
+						Wohnort / City:
+					</div>
+					<div class="col-lg-10 col-sm-10 col-xs-12">
+						<$client.env.FormField.AddressCity.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-sm-2 col-xs-12">
+						PLZ: / Postal Code:
+					</div>
+					<div class="col-lg-10 col-sm-10 col-xs-12">
+						<$client.env.FormField.AddressZip.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Bundesland / Region:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.AddressRegion.HTML>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<p class="text-blue pt-1">
+							<strong>Your Emergency Contact Information:</strong>
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-1 col-sm-1 col-xs-12">
+						Name:
+					</div>
+					<div class="col-lg-11 col-sm-11 col-xs-12">
+						<$client.env.FormField.EmerContactName.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Beziehung / Relationship:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.EmerContactRelationship.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3 col-sm-3 col-xs-12">
+						Telefonnummer / Phone number:
+					</div>
+					<div class="col-lg-9 col-sm-9 col-xs-12">
+						<$client.env.FormField.EmerContactPhone.HTML>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-sm-2 col-xs-12">
+						Anschrift / Address:
+					</div>
+					<div class="col-lg-10 col-sm-10 col-xs-12">
+						<$client.env.FormField.EmerContactAddress.HTML>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-11 col-sm-11 col-xs-12">
+				<p class="text-blue pt-1">
+					<strong>Additional Details:</strong>
+				</p>
+			</div>
+		</div>
+		<div class="row mb-20">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-2 col-sm-2 col-xs-12">
+				Schulbildung / Highest Education:
+			</div>
+			<div class="col-lg-9 col-sm-9 col-xs-12">
+				<$client.env.FormField.HighestEducation.HTML>
+			</div>
+		</div>
+		<div class="row mb-10">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-2 col-sm-2 col-xs-12">
+				Berufsausbildung / Vocational Education:
+			</div>
+			<div class="col-lg-9 col-sm-9 col-xs-12">
+				<$client.env.FormField.VocationalEducation.HTML>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-11 col-sm-11 col-xs-12">
+				<p class="text-blue pt-1">
+					<strong>Checklist:</strong>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-11 col-sm-11 col-xs-12">
+				Ja / Yes Folgt / To follow
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-1 col-sm-2 col-xs-3">
+				<$client.env.FormField.Checklist_HealthInsMembership.HTML>
+			</div>
+			<div class="col-lg-10 col-sm-9 col-xs-8">
+				Mitgliedsbescheinigung der Krankenkasse / Certificate of Health Ins. membership
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-1 col-sm-2 col-xs-3">
+				<$client.env.FormField.Checklist_SocialInsCard.HTML>
+			</div>
+			<div class="col-lg-10 col-sm-9 col-xs-8">
+				Kopie des Sozialversicherungsausweises / Copy of Social Insurance card
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-1 col-sm-2 col-xs-3">
+				<$client.env.FormField.checklist_parenthood.HTML>
+			</div>
+			<div class="col-lg-10 col-sm-9 col-xs-8">
+				Nachweis Elterneigenschaft (falls benötigt) / Evidence of parenthood (if applicable)
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-1 col-sm-2 col-xs-3">
+				<$client.env.FormField.Checklist_ResidencyPermit.HTML>
+			</div>
+			<div class="col-lg-10 col-sm-9 col-xs-8">
+				Kopie der Aufenthaltserlaubnis (falls benötigt) / Copy of residency permit (if applicable)
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-1 col-sm-2 col-xs-3">
+				<$client.env.FormField.Checklist_WorkPermit.HTML>
+			</div>
+			<div class="col-lg-10 col-sm-9 col-xs-8">
+				Kopie der Arbeitserlaubnis (falls benötigt) / Copy of work permit (if applicable)
+			</div>
+		</div>
+		<div class="row mb-20">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-1 col-sm-2 col-xs-3">
+				<$client.env.FormField.Checklist_DisabledPass.HTML>
+			</div>
+			<div class="col-lg-10 col-sm-9 col-xs-8">
+				Kopie des Schwerbehindertenausweises (falls benötigt) / Copy of disabled pass (if applicable)
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-offset-1 col-sm-offset-1 col-lg-11 col-sm-11 col-xs-12">
+				<div class="row">
+					<div class="col-lg-6 col-sm-6 col-xs-12">
+						<p class="text-blue">
+							<strong>Folgende Bedingungen erkenne ich als Mitarbeiter/-in mit meiner Unterschrift an:</strong>
+						</p>
+						<p class="text-justify">
+							1. Ich gehe keiner weiteren Nebenbeschäftigung nach bzw. verpflichte ich mich, die Aufnahme einer weiteren Beschäftigung sofort mitzuteilen.
+						</p>
+						<p class="text-justify">
+							2. Ich verpflichte mich, über alle technischen, kaufmännischen und persönlichen Vorgänge und Verhältnisse, die mir im Zusammenhang mit der Tätigkeit für die Gesellschaft bekannt geworden sind oder werden, sowohl während der Dauer der Tätigkeit wie auch nach ihrer Beendigung Stillschweigen zu bewahren.
+						</p>
+						<p id="Acknowledge_de_3" class="text-justify">
+							3. Meine im Personalerfassungsbogen genannten persönlichen Daten sowie die sich aus dem Arbeitsverhältnis ergebenden Daten (z. B. Gehalt, Boni) dürfen von <span class="business-unit"><$client.tEventCategories_Category_12.Value></span> zur Erfüllung ihrer geschäftsmäßigen Aufgaben erhoben, gespeichert, entsprechend dem Datenschutzgesetz verarbeitet und genutzt werden. <span class="business-unit"><$client.tEventCategories_Category_12.Value></span> hat sich verpflichtet, die gespeichert personenbezogen Daten vertraulich zu behandeln und vor Missbrauch, Offenlegung, unerlaubten Zugriff, Veränderungen oder Übermittlung an Dritte zu schützen.
+						</p>
+						<p class="text-justify">
+							Die von mir gemachten Angaben sind wahrheitsgemäß und Bestandteil des Arbeitsvertrages.
+						</p>
+						<p class="text-justify">
+							Änderungen in den o. g. Daten werde ich umgehend mitteilen.
+						</p>
+					</div>
+					<div class="col-lg-6 col-sm-6 col-xs-12">
+						<p class="text-blue">
+							<strong>I acknowledge the following conditions as an employee with my signature:</strong>
+						</p>
+						<p class="text-justify">
+							1. I don’t pursue any avocation.
+						</p>
+						<p class="text-justify">
+							2. I undertake that I would not disclose any technical, business and personal processes and conditions I got and get to know while working for the employer. This will count both while the employment period and after termination of the contract.
+						</p>
+						<p id="Acknowledge_en_3" class="text-justify">
+							3. <span class="business-unit"><$client.tEventCategories_Category_12.Value></span> is allowed to collect, store and process my personal data stated in the personnel questionnaire as well as that information needed to conduct the regular business activities according to the data privacy act. <span class="business-unit"><$client.tEventCategories_Category_12.Value></span> has agreed to keep all personal data in confidence and protect it against misuse, disclosure, unauthorized access, modifications as well as their transfer to third parties
+						</p>
+						<p class="text-justify">
+							4. I declare that the statements made are complete and true and are an integral part of the contract.
+						</p>
+						<p class="text-justify">
+							I undertake to give prompt notice of any future changes.
+						</p>
+					</div>
+				</div>
+				<div class="row mb-30">
+					<div class="col-lg-6 col-sm-6 col-xs-12">
+						<div class="clearfix">
+							<div class="iblock v-middle">
+								<$client.env.FormField.SignPlace.HTML>
+							</div>
+							<div class="iblock v-middle">
+								<$client.env.FormField.Date.HTML>
+							</div>
+						</div>
+						Ort &amp; Datum / Place &amp; Date
+					</div>
+					<div class="col-lg-6 col-sm-6 col-xs-12">
+						<$client.env.FormField.Signature.HTML>
+						Unterschrift / Signature
+					</div>
+				</div>
+				<div id="trademarks-container" class="row">
+					<div class="col-lg-12">
+						<p></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	    <hr class="lifesuite__hr">
+	    <div class="row" id="formButtons" style="display: none;">
+	        <div class="sign-btn-group">
+	            <$client.env.FormButtons>
+	        </div>
+	    </div>
+	    <div hidden>
+	        <$client.env.FormField.TrademarksVerbiage.HTML>
+	        <$client.env.FormField.Name.HTML>
+	        <$client.env.FormField.Acknowledge_de_3.HTML>
+	        <$client.env.FormField.Acknowledge_en_3.HTML>
+	        <$client.env.FormField.SignatureVerification.HTML>
+	        <$client.env.FormField.business_unit.HTML>
+	    </div>
+	</main>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/eBay_Germany_Data_Sheet/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+//Fixes to modal issue when viewing in mobile devices 
+
+$( window ).resize(function() { 
+
+document.getElementById('over').style.width=''; 
+
+}); 
+
+
+if (window.NodeList && !NodeList.prototype.forEach) {
+   NodeList.prototype.forEach = Array.prototype.forEach;
+}
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+const checkOne = function(cbox) {
+	"use strict";
+	let checked = cbox.checked;
+	const siblings = thisForm.querySelectorAll('[data-checkbox-group="' + cbox.dataset.checkboxGroup + '"]').forEach(function(c) {
+		c.checked = false;
+	});
+	cbox.checked = checked;
+}
+
+thisForm.querySelectorAll('[data-checkbox-group]').forEach(function(c) {
+	c.addEventListener('change', function() {
+		checkOne(this);
+	});
+});
+
+const BUSINESS_UNITS = [
+	{
+		businessUnit: 'eBay Classifieds Group',
+		children: ['eBay Kleinanzeigen GmbH', 'Gumtree.Ltd', 'mobile.de GmbH', 'Motors.co.uk Limited']
+	},
+	{
+		businessUnit: 'eBay Inc', 
+		children: ['BU001', 'eBay Commerce UK Ltd', 'eBay Customer Support GmbH', 'eBay GmbH', 'eBay Group Services GmbH', 'eBay UK Ltd.']
+	}
+];
+
+(function() {
+	const trademarksVerbiageContainer = document.getElementById('trademarks-container');
+	const trademarksVerbiageField = document.getElementById('trademarks-verbiage');
+  
+	// set business unit
+	if (!FORM_COMPLETED.length) {
+		thisForm.querySelector('[name$=".business_unit"]').value = "<$client.tEventCategories_Category_12.Code>";
+	}
+	// get parent business unit
+	let businessUnit = thisForm.querySelector('[name$=".business_unit"]').value;
+	let parentBusinessUnit = '';
+	BUSINESS_UNITS.forEach(function(bu) {
+		if (bu.children.indexOf(businessUnit) >= 0) {
+			parentBusinessUnit = bu.businessUnit;
+		}
+	});
+	// populate parent business unit
+	thisForm.querySelectorAll('.business-unit').forEach(function(bu) {
+		bu.innerText = parentBusinessUnit;
+	});
+
+	if (!FORM_COMPLETED.length) {
+		// populate acknowledgement paragraph for printing if still incomplete
+		// 3nd aknowledgment english
+		thisForm.querySelector('[name$=".Acknowledge_en_3"]').value = document.getElementById('Acknowledge_en_3').innerText;
+		// 3nd aknowledgment german
+		thisForm.querySelector('[name$=".Acknowledge_de_3"]').value = document.getElementById('Acknowledge_de_3').innerText;
+		// update logo based on business unit`
+		if (['eBay Kleinanzeigen GmbH','Gumtree','mobile.de GmbH','Motors.co.uk Limited'].indexOf('<$client.tEventCategories_Category_12.Code>') >= 0) {
+			trademarksVerbiageField.value = 'The eBay name and logos are trademarks of eBay Inc.';
+		}
+		else {
+			// don't display in the print
+			document.getElementById('trademarks-verbiage').value = '';
+			trademarksVerbiageField.value = '';
+		}
+	}
+	if (!!trademarksVerbiageField.value.length) {
+		// display trademarks verbiage at the bottom
+		trademarksVerbiageContainer.style.display = 'block';
+		// populate display
+		trademarksVerbiageContainer.querySelector('p').innerText = trademarksVerbiageField.value;
+	}
+})();
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+
+
+
+function showHideNationalInsuranceContainer(){
+	var nationalityField = document.getElementById('nationality');
+	var nationalInsuranceDiv = document.getElementById('nationalInsuranceContainer');
+	if(nationalityField.value == 'Citizen'){
+		nationalInsuranceDiv.style.display = 'block';
+	}else{
+		nationalInsuranceDiv.style.display = 'none';
+	}
+}
+
+showHideNationalInsuranceContainer();//run function on load
+</script>

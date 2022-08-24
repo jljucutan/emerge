@@ -1,0 +1,1521 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a01_last_name.prompt>
+        <$client.env.FormField.a02_first_name.prompt>
+        <$client.env.FormField.a03_middle_name.prompt>
+        <$client.env.FormField.a04_name_extension.prompt>
+        <$client.env.FormField.a05_preferred_time_of_day.prompt>
+        <$client.env.FormField.a06_primary_phone.prompt>
+        <$client.env.FormField.a07_preferred_time_of_day.prompt>
+        <$client.env.FormField.a08_primary_phone.prompt>
+        <$client.env.FormField.a09_email_address.prompt>
+        <$client.env.FormField.a10_from_month_year_date.prompt>
+        <$client.env.FormField.a11_to_month_year_date.prompt>
+        <$client.env.FormField.a12_Code.prompt>
+        <$client.env.FormField.a13_Employer.prompt>
+        <$client.env.FormField.a14_Position.prompt>
+        <$client.env.FormField.a15_Employers_Address.prompt>
+        <$client.env.FormField.a16_Employers_City.prompt>
+        <$client.env.FormField.a17_Employers_State.prompt>
+        <$client.env.FormField.a18_Employers_Zip.prompt>
+        <$client.env.FormField.a19_Telephone_Number.prompt>
+        <$client.env.FormField.a20_Employers_Address.prompt>
+        <$client.env.FormField.a21_Employers_City.prompt>
+        <$client.env.FormField.a22_Employers_State.prompt>
+        <$client.env.FormField.a23_Employers_Zip.prompt>
+        <$client.env.FormField.a24_Telephone_Number.prompt>
+        <$client.env.FormField.a25_Employers_Address.prompt>
+        <$client.env.FormField.a26_Employers_City.prompt>
+        <$client.env.FormField.a27_Employers_State.prompt>
+        <$client.env.FormField.a28_Employers_Zip.prompt>
+        <$client.env.FormField.a29_Telephone_Number.prompt>
+        <$client.env.FormField.a30_from_month_year_date.prompt>
+        <$client.env.FormField.a31_to_month_year_date.prompt>
+        <$client.env.FormField.a32_Position.prompt>
+        <$client.env.FormField.a33_Supervisor.prompt>
+        <$client.env.FormField.a34_from_month_year_date.prompt>
+        <$client.env.FormField.a35_to_month_year_date.prompt>
+        <$client.env.FormField.a36_Position.prompt>
+        <$client.env.FormField.a37_Supervisor.prompt>
+        <$client.env.FormField.a38_from_month_year_date.prompt>
+        <$client.env.FormField.a39_to_month_year_date.prompt>
+        <$client.env.FormField.a40_Position.prompt>
+        <$client.env.FormField.a41_Supervisor.prompt>
+        <$client.env.FormField.a42_from_month_year_date.prompt>
+        <$client.env.FormField.a43_to_month_year_date.prompt>
+        <$client.env.FormField.a44_Code.prompt>
+        <$client.env.FormField.a45_Employer.prompt>
+        <$client.env.FormField.a46_Position.prompt>
+        <$client.env.FormField.a47_Employers_Address.prompt>
+        <$client.env.FormField.a48_Employers_City.prompt>
+        <$client.env.FormField.a49_Employers_State.prompt>
+        <$client.env.FormField.a50_Employers_Zip.prompt>
+        <$client.env.FormField.a51_Telephone_Number.prompt>
+        <$client.env.FormField.a52_Employers_Address.prompt>
+        <$client.env.FormField.a53_Employers_City.prompt>
+        <$client.env.FormField.a54_Employers_State.prompt>
+        <$client.env.FormField.a55_Employers_Zip.prompt>
+        <$client.env.FormField.a56_Telephone_Number.prompt>
+        <$client.env.FormField.a57_Employers_Address.prompt>
+        <$client.env.FormField.a58_Employers_City.prompt>
+        <$client.env.FormField.a59_Employers_State.prompt>
+        <$client.env.FormField.a60_Employers_Zip.prompt>
+        <$client.env.FormField.a61_Telephone_Number.prompt>
+        <$client.env.FormField.a61_from_month_year_date.prompt>
+        <$client.env.FormField.a62_to_month_year_date.prompt>
+        <$client.env.FormField.a63_Position.prompt>
+        <$client.env.FormField.a64_Supervisor.prompt>
+        <$client.env.FormField.a65_from_month_year_date.prompt>
+        <$client.env.FormField.a66_to_month_year_date.prompt>
+        <$client.env.FormField.a67_Position.prompt>
+        <$client.env.FormField.a68_Supervisor.prompt>
+        <$client.env.FormField.a69_from_month_year_date.prompt>
+        <$client.env.FormField.a70_to_month_year_date.prompt>
+        <$client.env.FormField.a71_Position.prompt>
+        <$client.env.FormField.a73_from_month_year_date.prompt>
+        <$client.env.FormField.a74_to_month_year_date.prompt>
+        <$client.env.FormField.a75_Code.prompt>
+        <$client.env.FormField.a76_Employer.prompt>
+        <$client.env.FormField.a77_Position.prompt>
+        <$client.env.FormField.a78_Employers_Address.prompt>
+        <$client.env.FormField.a79_Employers_City.prompt>
+        <$client.env.FormField.a80_Employers_State.prompt>
+        <$client.env.FormField.a81_Employers_Zip.prompt>
+        <$client.env.FormField.a82_Telephone_Number.prompt>
+        <$client.env.FormField.a83_Employers_Address.prompt>
+        <$client.env.FormField.a84_Employers_City.prompt>
+        <$client.env.FormField.a85_Employers_State.prompt>
+        <$client.env.FormField.a86_Employers_Zip.prompt>
+        <$client.env.FormField.a87_Telephone_Number.prompt>
+        <$client.env.FormField.a88_Employers_Address.prompt>
+        <$client.env.FormField.a89_Employers_City.prompt>
+        <$client.env.FormField.a90_Employers_State.prompt>
+        <$client.env.FormField.a91_Employers_Zip.prompt>
+        <$client.env.FormField.a92_Telephone_Number.prompt>
+        <$client.env.FormField.a93_from_month_year_date.prompt>
+        <$client.env.FormField.a94_to_month_year_date.prompt>
+        <$client.env.FormField.a95_Position.prompt>
+        <$client.env.FormField.a96_Supervisor.prompt>
+        <$client.env.FormField.a97_from_month_year_date.prompt>
+        <$client.env.FormField.a98_to_month_year_date.prompt>
+        <$client.env.FormField.a99_Position.prompt>
+        <$client.env.FormField.b00_Supervisor.prompt>
+        <$client.env.FormField.b01_from_month_year_date.prompt>
+        <$client.env.FormField.b02_to_month_year_date.prompt>
+        <$client.env.FormField.b03_Position.prompt>
+        <$client.env.FormField.b04_Supervisor.prompt>
+        <$client.env.FormField.b05_from_month_year_date.prompt>
+        <$client.env.FormField.b06_to_month_year_date.prompt>
+        <$client.env.FormField.b07_Code.prompt>
+        <$client.env.FormField.b08_Employer.prompt>
+        <$client.env.FormField.b09_Position.prompt>
+        <$client.env.FormField.b10_Employers_Address.prompt>
+        <$client.env.FormField.b11_Employers_City.prompt>
+        <$client.env.FormField.b12_Employers_State.prompt>
+        <$client.env.FormField.b13_Employers_Zip.prompt>
+        <$client.env.FormField.b14_Telephone_Number.prompt>
+        <$client.env.FormField.b15_Employers_Address.prompt>
+        <$client.env.FormField.b16_Employers_City.prompt>
+        <$client.env.FormField.b17_Employers_State.prompt>
+        <$client.env.FormField.b18_Employers_Zip.prompt>
+        <$client.env.FormField.b19_Telephone_Number.prompt>
+        <$client.env.FormField.b20_Employers_Address.prompt>
+        <$client.env.FormField.b21_Employers_City.prompt>
+        <$client.env.FormField.b22_Employers_State.prompt>
+        <$client.env.FormField.b23_Employers_Zip.prompt>
+        <$client.env.FormField.b24_Telephone_Number.prompt>
+        <$client.env.FormField.b25_from_month_year_date.prompt>
+        <$client.env.FormField.b26_to_month_year_date.prompt>
+        <$client.env.FormField.b27_Position.prompt>
+        <$client.env.FormField.b28_Supervisor.prompt>
+        <$client.env.FormField.b29_from_month_year_date.prompt>
+        <$client.env.FormField.b30_to_month_year_date.prompt>
+        <$client.env.FormField.b31_Position.prompt>
+        <$client.env.FormField.b32_Supervisor.prompt>
+        <$client.env.FormField.b33_from_month_year_date.prompt>
+        <$client.env.FormField.b34_to_month_year_date.prompt>
+        <$client.env.FormField.b35_Position.prompt>
+        <$client.env.FormField.b36_Supervisor.prompt>
+        <$client.env.FormField.b37_from_month_year_date.prompt>
+        <$client.env.FormField.b38_to_month_year_date.prompt>
+        <$client.env.FormField.b39_Code.prompt>
+        <$client.env.FormField.b40_Employer.prompt>
+        <$client.env.FormField.b41_Position.prompt>
+        <$client.env.FormField.b42_Employers_Address.prompt>
+        <$client.env.FormField.b43_Employers_City.prompt>
+        <$client.env.FormField.b44_Employers_State.prompt>
+        <$client.env.FormField.b45_Employers_Zip.prompt>
+        <$client.env.FormField.b46_Telephone_Number.prompt>
+        <$client.env.FormField.b47_Employers_Address.prompt>
+        <$client.env.FormField.b48_Employers_City.prompt>
+        <$client.env.FormField.b49_Employers_State.prompt>
+        <$client.env.FormField.b50_Employers_Zip.prompt>
+        <$client.env.FormField.b51_Telephone_Number.prompt>
+        <$client.env.FormField.b52_Employers_Address.prompt>
+        <$client.env.FormField.b53_Employers_City.prompt>
+        <$client.env.FormField.b54_Employers_State.prompt>
+        <$client.env.FormField.b55_Employers_Zip.prompt>
+        <$client.env.FormField.b56_Telephone_Number.prompt>
+        <$client.env.FormField.b57_from_month_year_date.prompt>
+        <$client.env.FormField.b58_to_month_year_date.prompt>
+        <$client.env.FormField.b59_Position.prompt>
+        <$client.env.FormField.b60_Supervisor.prompt>
+        <$client.env.FormField.b61_from_month_year_date.prompt>
+        <$client.env.FormField.b62_to_month_year_date.prompt>
+        <$client.env.FormField.b63_Position.prompt>
+        <$client.env.FormField.b64_Supervisor.prompt>
+        <$client.env.FormField.b65_from_month_year_date.prompt>
+        <$client.env.FormField.b66_to_month_year_date.prompt>
+        <$client.env.FormField.b67_Position.prompt>
+        <$client.env.FormField.b68_Supervisor.prompt>
+        <$client.env.FormField.b69_Initial.prompt>
+        <$client.env.FormField.b70_Initial.prompt>
+        <$client.env.FormField.b71_Initial.prompt>
+        <$client.env.FormField.b72_Initial.prompt>
+        <$client.env.FormField.b73_Initial.prompt>
+        <$client.env.FormField.b74_Initial.prompt>
+        <$client.env.FormField.b75_Initial.prompt>
+        <$client.env.FormField.b76_Initial.prompt>
+        <$client.env.FormField.b77_Agreed_with_Terms.prompt>
+        <$client.env.FormField.b78_Signature.prompt>
+        <$client.env.FormField.b79_Date.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <header class="row mb-30">
+        <div class="col-lg-3 col-md-3 col-xs-5 col-sm-12 pull-right">
+            <img src="<$link;/main/RedCarpet/FormTemplates/GEO_Supplemental_Employment_Questionnaire/img/geo_group_logo.jpg>" alt="Geo Group Inc" class="img-responsive">
+        </div>
+    </header>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="text-center mb-20">
+                <strong>Supplemental Employment Questionnaire</strong>
+            </h4>
+            <p class="mb-20 lead">
+                Please answer all questions on this form. If no response is necessary or applicable, indicate this on the form (for example, enter "None" or "N/A"). If you have any questions, please contact Human Resources at the facility where you interviewed.
+            </p>
+            <p class="bg-black lead mb-0">
+                <strong>IDENTIFYING INFORMATION</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-12">
+            <strong>FULL NAME</strong>
+        </div>
+        <div class="col-lg-5 col-md-5 col-xs-5 col-sm-12">
+            <ul>
+                <li>If you have only initials in your name, use them and state (IO).</li>
+                <li>If you have no middle name, enter "NMN."</li>
+            </ul>
+        </div>
+        <div class="col-lg-5 col-md-5 col-xs-5 col-sm-12">
+            <ul>    
+                <li>If you are a "Jr.," "Sr.," "II," etc., enter this in the box after your middle name.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <small>Last Name</small>
+            <$client.env.FormField.a01_last_name.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            First Name
+            <$client.env.FormField.a02_first_name.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <small>Middle Name</small>
+            <$client.env.FormField.a03_middle_name.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+            <small>Jr., II, etc.</small>
+            <$client.env.FormField.a04_name_extension.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <label class="control-label">
+                <strong>TELEPHONE NUMBERS</strong>
+            </label>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 b-left">
+            <small>Primary (include Area Code and extension)</small>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-2 col-xs-12">
+                    <$client.env.FormField.a05_preferred_time_of_day.HTML>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-10 col-xs-12">
+                    <$client.env.FormField.a06_primary_phone.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 b-left">
+            <small>Secondary (include area code)</small>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-2 col-xs-12">
+                    <$client.env.FormField.a07_preferred_time_of_day.HTML>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-10 col-xs-12">
+                    <$client.env.FormField.a08_primary_phone.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom mb-30">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <label class="control-label">
+                <strong>EMAIL ADDRESS</strong>
+            </label>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 b-left">
+            <$client.env.FormField.a09_email_address.HTML>
+        </div>
+    </div>
+
+    <div class="row bg-black">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>YOUR EMPLOYMENT HISTORY</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="ml-10">
+                List your employment activities, beginning with the present (#1) and working back 10 years. You should list all full-time work, part-time work, military service, temporary military duty locations over 90 days, self-employment, other paid work, and all periods of unemployment. The entire 7-year period must be accounted for without breaks, but you need not list employments before your 16th birthday.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="ml-4">
+                <li class="mb-10">
+                    <strong>Code.</strong> Use one of the codes listed below to identify the type of employment:
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-12 col-xs-12">
+                            <strong>1 -</strong> Active military duty stations <br>
+                            <strong>2 -</strong> National Guard/Reserve <br>
+                            <strong>3 -</strong> U.S.P.H.S. Commissioned Corps <br>
+                            <strong>4 -</strong> Other Federal employment
+                        </div>
+                        <div class="col-lg-3 col-sm-12 col-xs-12">
+                            <strong>5 -</strong> State Government (Non-Federal employment) <br>
+                            <strong>6 -</strong> Self-employment (Include business name and/or name of person who can verify)
+                        </div>
+                        <div class="col-lg-3 col-sm-12 col-xs-12">
+                            <strong>7 -</strong> Unemployment (Include name of person who can verify) <br>
+                            <strong>8 -</strong> Federal Contractor (List Contractor, not Federal Agency)
+                        </div>
+                        <div class="col-lg-3 col-sm-12 col-xs-12">
+                           <strong>9 -</strong> Other 
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <p>
+                        <strong>Employer/Verifier Name.</strong> List the business name of your employer or the name of the person who can verify your self-employment or unemployment in this block. If military service is being listed, include your duty location or home port here as well as your branch of service. You should provide separate listings to reflect changes in your military duty locations or home ports.
+                    </p>
+                </li>
+                <li>
+                    <strong>Previous Periods of Activity.</strong> Complete these lines if you worked for an employer on more than one occasion at the same location. After entering the most recent period of employment in the initial numbered block, provide previous periods of employment at the same location on the additional lines provided. For example, if you worked at XY Plumbing in Denver, CO, during 3 separate periods of time, you would enter dates and information concerning the most recent period of employment first, and provide dates, position titles, and supervisors for the two previous periods of employment on the lines below that information.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row b-top b-bottom text-center">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 b-right cal_no_btn">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a10_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a11_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 b-right">
+            <small>Code</small>
+            <$client.env.FormField.a12_Code.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 b-right">
+            <small>Employer/Verifier Name/Military Duty Location</small>
+            <$client.env.FormField.a13_Employer.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12">
+            <small>Your Position Title/Military Rank</small>
+            <$client.env.FormField.a14_Position.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Employer’s/Verifier’s Street Address</small>
+            <$client.env.FormField.a15_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a16_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.a17_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.a18_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.a19_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Street Address of Job Location (if different than Employer’s Address)</small>
+            <$client.env.FormField.a20_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a21_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.a22_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.a23_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.a24_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Supervisor’s Name & Street Address (if different than Job Location)</small>
+            <$client.env.FormField.a25_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a26_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.a27_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.a28_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.a29_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-1 col-sm-12 col-xs-12">
+            <p class="text-center">
+                <strong>PREVIOUS PERIODS OF ACTIVITY</strong><br> (Block #1)
+            </p>
+        </div>
+        <div class="col-lg-11 col-sm-12 col-xs-12 b-left">
+            <div class="row b-bottom">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a30_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a31_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.a32_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.a33_Supervisor.HTML>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a34_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a35_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.a36_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.a37_Supervisor.HTML>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a38_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a39_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.a40_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.a41_Supervisor.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row b-bottom text-center">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 b-right cal_no_btn">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a42_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a43_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 b-right">
+            <small>Code</small>
+            <$client.env.FormField.a44_Code.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 b-right">
+            <small>Employer/Verifier Name/Military Duty Location</small>
+            <$client.env.FormField.a45_Employer.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12">
+            <small>Your Position Title/Military Rank</small>
+            <$client.env.FormField.a46_Position.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Employer’s/Verifier’s Street Address</small>
+            <$client.env.FormField.a47_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a48_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.a49_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.a50_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.a51_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Street Address of Job Location (if different than Employer’s Address)</small>
+            <$client.env.FormField.a52_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a53_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.a54_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.a55_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.a56_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Supervisor’s Name & Street Address (if different than Job Location)</small>
+            <$client.env.FormField.a57_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a58_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.a59_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.a60_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.a61_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row b-bottom">
+        <div class="col-lg-1 col-sm-12 col-xs-12">
+            <p class="text-center">
+                <strong>PREVIOUS PERIODS OF ACTIVITY</strong><br> (Block #2)
+            </p>
+        </div>
+        <div class="col-lg-11 col-sm-12 col-xs-12 b-left">
+            <div class="row b-bottom">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a61_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a62_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.a63_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.a64_Supervisor.HTML>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a65_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a66_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.a67_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.a68_Supervisor.HTML>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a69_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a70_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.a71_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.a41_Supervisor.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row b-bottom text-center">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 b-right cal_no_btn">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a73_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a74_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 b-right">
+            <small>Code</small>
+            <$client.env.FormField.a75_Code.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 b-right">
+            <small>Employer/Verifier Name/Military Duty Location</small>
+            <$client.env.FormField.a76_Employer.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12">
+            <small>Your Position Title/Military Rank</small>
+            <$client.env.FormField.a77_Position.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Employer’s/Verifier’s Street Address</small>
+            <$client.env.FormField.a78_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a79_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.a80_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.a81_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.a82_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Street Address of Job Location (if different than Employer’s Address)</small>
+            <$client.env.FormField.a83_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a84_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.a85_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.a86_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.a87_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Supervisor’s Name & Street Address (if different than Job Location)</small>
+            <$client.env.FormField.a88_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a89_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.a90_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.a91_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.a92_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row b-bottom">
+        <div class="col-lg-1 col-sm-12 col-xs-12">
+            <p class="text-center">
+                <strong>PREVIOUS PERIODS OF ACTIVITY</strong><br> (Block #3)
+            </p>
+        </div>
+        <div class="col-lg-11 col-sm-12 col-xs-12 b-left">
+            <div class="row b-bottom">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a93_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a94_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.a95_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.a96_Supervisor.HTML>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a97_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.a98_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.a99_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.b00_Supervisor.HTML>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b01_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b02_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.b03_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.b04_Supervisor.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row b-bottom text-center">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 b-right cal_no_btn">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.b05_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.b06_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 b-right">
+            <small>Code</small>
+            <$client.env.FormField.b07_Code.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 b-right">
+            <small>Employer/Verifier Name/Military Duty Location</small>
+            <$client.env.FormField.b08_Employer.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12">
+            <small>Your Position Title/Military Rank</small>
+            <$client.env.FormField.b09_Position.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Employer’s/Verifier’s Street Address</small>
+            <$client.env.FormField.b10_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.b11_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.b12_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.b13_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.b14_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Street Address of Job Location (if different than Employer’s Address)</small>
+            <$client.env.FormField.b15_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.b16_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.b17_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.b18_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.b19_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Supervisor’s Name & Street Address (if different than Job Location)</small>
+            <$client.env.FormField.b20_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.b21_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.b22_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.b23_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.b24_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row b-bottom">
+        <div class="col-lg-1 col-sm-12 col-xs-12">
+            <p class="text-center">
+                <strong>PREVIOUS PERIODS OF ACTIVITY</strong><br> (Block #4)
+            </p>
+        </div>
+        <div class="col-lg-11 col-sm-12 col-xs-12 b-left">
+            <div class="row b-bottom">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b25_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b26_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.b27_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.b28_Supervisor.HTML>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b29_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b30_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.b31_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.b32_Supervisor.HTML>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b33_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b34_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.b35_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.b36_Supervisor.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row b-bottom text-center">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 b-right cal_no_btn">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.b37_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.b38_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 b-right">
+            <small>Code</small>
+            <$client.env.FormField.b39_Code.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 b-right">
+            <small>Employer/Verifier Name/Military Duty Location</small>
+            <$client.env.FormField.b40_Employer.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12">
+            <small>Your Position Title/Military Rank</small>
+            <$client.env.FormField.b41_Position.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Employer’s/Verifier’s Street Address</small>
+            <$client.env.FormField.b42_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.b43_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.b44_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.b45_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.b46_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Street Address of Job Location (if different than Employer’s Address)</small>
+            <$client.env.FormField.b47_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.b48_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.b49_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.b50_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.b51_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-6 col-xs-12 b-right">
+            <small>Supervisor’s Name & Street Address (if different than Job Location)</small>
+            <$client.env.FormField.b52_Employers_Address.HTML>
+        </div>
+        <div class="col-lg-2 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.b53_Employers_City.HTML>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <div class="row">
+                <div class="col-lg-2 col-xs-12 b-right">
+                    <small>State</small>
+                    <$client.env.FormField.b54_Employers_State.HTML>
+                </div>
+                <div class="col-lg-4 col-xs-12 b-right">
+                    <small>ZIP Code</small>
+                    <$client.env.FormField.b55_Employers_Zip.HTML>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <small>Telephone Number</small>
+                    <$client.env.FormField.b56_Telephone_Number.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row b-bottom">
+        <div class="col-lg-1 col-sm-12 col-xs-12">
+            <p class="text-center">
+                <strong>PREVIOUS PERIODS OF ACTIVITY</strong><br> (Block #5)
+            </p>
+        </div>
+        <div class="col-lg-11 col-sm-12 col-xs-12 b-left">
+            <div class="row b-bottom">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b57_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b58_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.b59_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.b60_Supervisor.HTML>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b61_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b62_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.b63_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.b64_Supervisor.HTML>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b65_from_month_year_date.HTML>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <small>To</small>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 cal_no_btn">
+                            <small>Month/Year</small>
+                            <$client.env.FormField.b66_to_month_year_date.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12 b-right">
+                    <small>Position Title</small>
+                    <$client.env.FormField.b67_Position.HTML>
+                </div>
+                <div class="col-lg-4 col-sm-12 col-xs-12">
+                    <small>Supervisor</small>
+                    <$client.env.FormField.b68_Supervisor.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row bg-black mb-20">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>CANDIDATE ACKNOWLEDGEMENT AND AUTHORIZATION</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row mb-30">
+        <div class="col-lg-12">
+            <p>
+                This questionnaire is not complete until fully completed, signed, and all statements below have been read and initialed.
+            </p>
+            <p>
+                I hereby certify that all of the information I provided in this questionnaire (or any other accompanying or required documents) is correct, accurate and complete to the best of my knowledge. I understand that the falsification, misrepresentation or omission of any facts in this questionnaire or any other accompanying or required documents will be cause for denial of employment or immediate termination of employment regardless of the timing or circumstances of discovery.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.b69_Initial.HTML>
+            </div>
+            <p>
+                I understand that only the Chief Executive Officer of GEO or his authorized designee, and no manager, supervisor, or other representative of the Company, has the authority to enter into any agreement for employment for any specified period of time, or to make any agreement contrary to the at-will employment relationship, and with respect to any agreement entered into by the Chief Executive Officer, any such agreements must be in writing and signed by the Chief Executive Officer or his authorized designee and by me or my authorized representative.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.b70_Initial.HTML>
+            </div>
+            <p>
+                I understand that the submission of a questionnaire is not an offer of employment and does not guarantee employment.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.b71_Initial.HTML>
+            </div>
+            <p>
+                I further understand and agree that, except for employment-at-will status, if hired my wages, working conditions, job assignment(s), and compensation rate(s) will be subject to change by the Company.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.b72_Initial.HTML>
+            </div>
+            <p>
+                I understand that the Company may share the information contained in this questionnaire with other Company employees for employment and administrative purposes and hereby consent to such transfer.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.b73_Initial.HTML>
+            </div>
+            <p>
+                I understand and expressly agree that if employed by the Company, I have no expectation of privacy in any lockers or storage areas provided to me (locker, desk, etc.). Backpacks, purses or similar items are open to investigation by the Company without prior notice to me.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.b74_Initial.HTML>
+            </div>
+            <p>
+                I understand that, consistent with federal and state law, I may be required to submit to a pre-employment physical examination, psychological examination/evaluation and/or legally permissible drug testing. Further, I understand that if I am required to submit to a drug screen, any offer of employment is contingent upon my receiving a negative test result.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.b75_Initial.HTML>
+            </div>
+            <p>
+                I understand I have a right to receive any public record obtained directly by the Company as part of its investigation into my background in connection with this application or any public record obtained during any subsequent background investigation conducted should I become employed by the Company.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.b76_Initial.HTML>
+            </div>
+            <p>
+                I understand that by typing my name below, I am (a) indicating that I understand and agree to the terms set forth in this Employment Questionnaire which contains all the understandings between the Company and me concerning the topics addressed herein, and supersedes any prior inconsistent understandings between the Company and me on such issues; and (b) agreeing to use an electronic method of signature for this acknowledgement. I understand that my electronic signature is as legally binding as an ink signature.
+            </p>
+            <div class="i-block mb-10 v-middle">
+                Do you agree with the terms above:
+            </div>
+            <div class="i-block mb-10 v-middle">
+                <$client.env.FormField.b77_Agreed_with_Terms.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+            <label class="control-label">
+                Signature:
+            </label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <$client.env.FormField.b78_Signature.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+            <label class="control-label">
+                Date:
+            </label>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <$client.env.FormField.b79_Date.HTML>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div class="hide">
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.full_name.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+
+function disableCalButton(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+$(document).on('ready', function() {
+    "use strict";
+    $(".modal").hide();
+    $('[data-checkbox-group]').on('click', function() {
+        let groupId = $(this).data('checkbox-group');
+        let checked = $(this).prop('checked');
+        $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+        $(this).prop('checked', checked);
+    });
+    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $('.common-height').each(function() {
+            let height = $(this).height();
+            $.each($(this).children('div'), function(k,v) {
+                $(v).css({'height': height});
+            });
+        });
+    }
+    $('.phone-dashes').on('keyup paste', function() {
+        let num = $(this).val().replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
+        if (num) {
+            $(this).val(num[1] + '-' + num[2] + '-' + num[3]);
+        }
+    })
+});
+</script>

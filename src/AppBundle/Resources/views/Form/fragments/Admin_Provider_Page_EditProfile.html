@@ -1,0 +1,617 @@
+<style>
+@media only screen and (max-width: 768px) {
+  table.table-responsive tr { display: block; }
+  table.table-responsive tr td { display: block; }
+  table.table-responsive tr td { width: 100%; }
+}
+input[type=text]:not(.hasDatepicker), textarea, select { width: 100%; }
+table.table-responsive { width:100%; }
+.heading { background: #491840; color: #fff; font-weight: 600; }
+/*--Added by JWL 06.12.2020 - SERVICES-40859--*/
+input[type="checkbox"], input[type="radio"] { margin-right: 5px; }
+.hide {display: none;}
+.radio_item {display: inline-block;}
+</style>
+
+<div id="EditProfile_Title">
+  <h2>Admin Provider Page</h2>
+</div>
+
+<div class="container">
+  <table id="wilkins" class="table table-hover table-condensed table-striped table-responsive">
+    <tbody>
+      <!-- <tr>
+        <td colspan="4" class="heading">
+          Position Information
+        </td>
+      </tr> -->
+      <tr class="field-group">
+        <td id="Start_Date_prompt"><$client.env.promptStart_Date></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputStart_Date></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Hire_Type_prompt"><$client.env.promptHire_Type></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputHire_Type></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Practice_Area_Department_prompt"><$client.env.promptPractice_Area_Department></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputPractice_Area_Department></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Job_Title_prompt"><$client.env.promptJob_ID></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputJob_ID></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Job_Title_prompt"><$client.env.promptJob_Title></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputJob_Title></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Position_Type_prompt"><$client.env.promptPosition_Type></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputPosition_Type></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Business_Cards_Needed_prompt"><$client.env.promptBusiness_Cards_Needed></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputBusiness_Cards_Needed></td>
+      </tr>
+      <tr class="field-group business-card-info">
+        <td id="Business_Cards_-_Rush_Order_prompt"><$client.env.promptBusiness_Cards_-_Rush_Order></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputBusiness_Cards_-_Rush_Order></td>
+      </tr>
+      <tr class="field-group business-card-info">
+        <td id="Business_Card_Title_prompt"><$client.env.promptBusiness_Card_Title></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputBusiness_Card_Title></td>
+      </tr>
+      <tr class="field-group" data-only-display-for="Staff">
+        <td id="Mobile_Number_Business_Cards_prompt">Business Cards - Mobile Number?</td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputMobile_Number_Business_Cards></td>
+      </tr>
+      <tr class="field-group">
+        <td id="FLSA_Status_prompt"><$client.env.promptFLSA_Status></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputFLSA_Status></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Full_time_Part_time_prompt"><$client.env.promptFull_time_Part_time></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputFull_time_Part_time></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Benefits_Eligibility_Class_prompt"><$client.env.promptBenefits_Eligibility_Class></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputBenefits_Eligibility_Class></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Billing_Rate_prompt"><$client.env.promptBilling_Rate></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputBilling_Rate></td>
+      </tr>
+      <!-- <tr class="event-group-legal" data-only-display-for="Legal">
+        <td colspan="4" class="heading">
+          Legal Information
+        </td>
+      </tr> -->
+      <tr class="field-group" data-only-display-for="Legal">
+        <td id="State_Bar_Licenses_prompt"><$client.env.promptState_Bar_Licenses></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputState_Bar_Licenses></td>
+      </tr>
+      <tr class="field-group" data-only-display-for="Legal">
+        <td id="JD_Year_prompt"><$client.env.promptJD_Year></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputJD_Year></td>
+      </tr>
+      <tr class="field-group" data-only-display-for="Legal">
+        <td id="Class_Year_prompt"><$client.env.promptClass_Year></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputClass_Year></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Annual_Salary_prompt"><$client.env.promptAnnual_Salary></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputAnnual_Salary></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Semi_Monthly_Hourly_prompt"><$client.env.promptSemi_Monthly_Hourly></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputSemi_Monthly_Hourly></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Hourly_Rate_prompt"><$client.env.promptHourly_Rate></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputHourly_Rate></td>
+      </tr>
+      <tr class="field-group hide">
+          <td id="Overtime_Rate_of_Pay_prompt">Overtime Rate Amount</td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputOvertime_Rate_of_Pay></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Bonus_prompt"><$client.env.promptBonus></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputBonus></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Bonus_Amt_prompt"><$client.env.promptBonus_Amt></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputBonus_Amt></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Bonus_Select_prompt"><$client.env.promptBonus_Select></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputBonus_Select></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Bonus_Details_prompt"><$client.env.promptBonus_Details></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputBonus_Details></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Business_Unit_prompt"><$client.env.promptBusiness_Unit></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputBusiness_Unit></td>
+      </tr>
+      <tr class="field-group">
+          <td id="EEO_Job_Category_prompt"><$client.env.promptEEO_Job_Category></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputEEO_Job_Category></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Worker_Category_prompt"><$client.env.promptWorker_Category></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputWorker_Category></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Job_Function_prompt"><$client.env.promptJob_Function></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputJob_Function></td>
+      </tr>
+      <tr class="field-group">
+          <td id="Recruiter_prompt"><$client.env.promptRecruiter></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputRecruiter></td>
+      </tr>
+      <tr class="field-group" data-only-display-for="Staff">
+          <td id="Hiring_Manager_prompt"><$client.env.promptHiring_Manager></td>
+          <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputHiring_Manager></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Secretarial_Pairing_prompt"><$client.env.promptSecretarial_Pairing></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputSecretarial_Pairing></td>
+      </tr>
+      <tr class="field-group">
+        <td class="details-propertyvalue" colspan="4">
+          &nbsp;
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4" class="heading">
+          Employee Information
+        </td>
+      </tr>
+      <tr class="field-group">
+        <td class="details-propertyvalue" colspan="4">
+          &nbsp;
+        </td>
+      </tr>
+      <tr class="field-group">
+        <td id="User_Name_prompt"><$client.env.promptUser_Name></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputUser_Name></td>
+      </tr>
+      <tr class="field-group">
+        <td  id="User_Number_prompt"><$client.env.promptUser_Number></font></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputUser_Number></td>
+      </tr>
+      <tr class="field-group">
+        <td  id="Home_Phone_prompt"><$client.env.promptHome_Phone></font></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputHome_Phone></td>
+      </tr>
+      <tr class="field-group">
+        <td  id="WorkPhone2_prompt"><$client.env.promptWorkPhone2></font></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputWorkPhone2></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Personal_Email_Address_prompt"><$client.env.promptPersonal_Email_Address></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputPersonal_Email_Address></td>
+      </tr>
+      <tr class="field-group">
+        <td  id="WorkPhone1_prompt"><$client.env.promptWorkPhone1></font></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputWorkPhone1></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Email_Address_prompt"><$client.env.promptEmail_Address></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputEmail_Address></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Office_Location_prompt"><$client.env.promptOffice_Location></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputOffice_Location></td>
+      </tr>
+      <tr class="field-group" data-only-display-for="Staff">
+        <td id="Outlook_Mailboxes_prompt"><$client.env.promptOutlook_Mailboxes></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputOutlook_Mailboxes></td>
+      </tr>
+      <tr class="field-group" data-only-display-for="Staff">
+        <td id="Outlook_Calendars_prompt"><$client.env.promptOutlook_Calendars></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputOutlook_Calendars></td>
+      </tr>
+      <tr class="field-group" data-only-display-for="Staff">
+        <td id="Phone_Lines_Set-Up_on_Side_Car_prompt"><$client.env.promptPhone_Lines_Set-Up_on_Side_Car></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputPhone_Lines_Set-Up_on_Side_Car></td>
+      </tr>
+      <tr class="field-group" data-only-display-for="Staff">
+        <td id="N_Drive_Access_prompt"><$client.env.promptN_Drive_Access></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputN_Drive_Access></td>
+      </tr>
+      <tr class="field-group" data-only-display-for="Staff">
+        <td id="NetDocs_Access"><$client.env.promptNetDocs_Access></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputNetDocs_Access></td>
+      </tr>
+      <tr class="field-group" data-only-display-for="Staff">
+        <td id="Intranet_Access_prompt"><$client.env.promptIntranet_Access></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputIntranet_Access></td>
+      </tr>
+      <tr class="field-group" data-only-display-for="Staff">
+        <td id="Add_Printers_for_prompt"><$client.env.promptAdd_Printers_for></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputAdd_Printers_for></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Webex_Account_prompt"><$client.env.promptWebex_Account></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputWebex_Account></td>
+      </tr>
+      <tr class="field-group">
+        <td id="UPS_and_FedEx_Accounts_prompt"><$client.env.promptUPS_and_FedEx_Accounts></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputUPS_and_FedEx_Accounts></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Additional_IT_Setup_prompt"><$client.env.promptAdditional_IT_Setup></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputAdditional_IT_Setup></td>
+      </tr>
+      <tr class="field-group">
+        <td id="Email_Distribution_List_prompt"><$client.env.promptEmail_Distribution_List></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputEmail_Distribution_List></td>
+      </tr>
+      <tr>
+        <td colspan="4" class="heading staff-group">
+          Preferred Computer Setup
+        </td>
+      </tr>
+      <tr class="field-group staff-group">
+        <td class="details-propertyvalue" colspan="4">
+          &nbsp;
+        </td>
+      </tr>
+      <tr class="field-group staff-group">
+        <td id="Monitor_Setup_prompt"><$client.env.promptMonitor_Setup></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputMonitor_Setup></td>
+      </tr>
+      <tr class="field-group staff-group">
+        <td id="Preferred_Comp_Setup_prompt"><$client.env.promptPreferred_Comp_Setup></td>
+        <td width="60%" class="details-propertyvalue" colspan="3"><$client.env.inputPreferred_Comp_Setup></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+  const GROUP_MAP = [
+    {
+      "groupParent": "Legal",
+      "groupChild": "Advisor"
+    },
+    {
+      "groupParent": "Legal",
+      "groupChild": "Associate"
+    },
+    {
+      "groupParent": "Legal",
+      "groupChild": "Consultant Advisor"
+    },
+    {
+      "groupParent": "Legal",
+      "groupChild": "Consultant Attorney"
+    },
+    {
+      "groupParent": "Legal",
+      "groupChild": "Fall Associate"
+    },
+    {
+      "groupParent": "Legal",
+      "groupChild": "Law Clerk"
+    },
+    {
+      "groupParent": "Legal",
+      "groupChild": "Of Counsel"
+    },
+    {
+      "groupParent": "Legal",
+      "groupChild": "Partner"
+    },
+    {
+      "groupParent": "Legal",
+      "groupChild": "Senior Advisor"
+    },
+    {
+      "groupParent": "Legal",
+      "groupChild": "Special Counsel"
+    },
+    {
+      "groupParent": "Legal",
+      "groupChild": "Staff Attorney"
+    },
+    {
+      "groupParent": "Legal",
+      "groupChild": "Summer Associate"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Accounting and Finance"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Agency Temp"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "eDiscovery Consultant"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "IT Consultant"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Conference Services Contractor"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "IT Contractor"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Records Contractor"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Firm Administration"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Human Resources"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "IT General"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Technical Support Services"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "LS General"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "LS Trade"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Legal Talent"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Library"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Marketing"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Conference Services"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Facilities"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Office Services"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "eDiscovery"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "PS General"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Risk Management"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Secretarial Support Center"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Secretary"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Special Assistant"
+    },
+    {
+      "groupParent": "Staff",
+      "groupChild": "Team Assistant"
+    }
+  ];
+  var EVENT_GROUP = "";
+  
+  GROUP_MAP.forEach(function(v, k) {
+    if (v.groupChild == "<$client.tEventCategories_Category_23.Value>") {
+      EVENT_GROUP = v.groupParent;
+    }
+  });
+
+  const forceDefaultValue = function(el, val) {
+    if (el.is(':radio')) {
+      el.filter('[value="' + val + '"]').prop('checked', true);
+    }
+    else if (el.is(':checkbox')) {
+      el.filter('[value="' + val + '"]').prop('checked', true);
+    }
+    else if (el.is(':text')) {
+      el.val(val);
+    }
+    else if (el.is('select')) {
+      el.val(val);
+    }
+  }
+
+  const forceDefaultDateValue = function(el, val) {
+    el.datepicker("setDate", val);
+  }
+
+  const setDefaultValue = function(el, val) {
+    if (el.is(':radio') && !el.is(':checked')) {
+      el.filter('[value="' + val + '"]').prop('checked', true);
+    }
+    else if (el.is(':checkbox') && !el.is(':checked')) {
+      el.filter('[value="' + val + '"]').prop('checked', true);
+    }
+    else if (el.is(':text') && el.val().length < 1) {
+      el.val(val);
+    }
+    else if (el.is('select') && el.val().length < 1) {
+      el.val(val);
+    }
+  }
+
+  const setDefaultDateValue = function(el, val) {
+    if (el.val().length < 1) {
+      el.datepicker("setDate", val);
+    }
+  }
+
+  $(window).on('load', function() {
+    forceDefaultDateValue($('[name$=".Start_Date_display"]'), new Date("<$client.tEventDates_Date_2.Value>T00:00:00"));
+    setDefaultValue($('[name$=".Benefits_Eligibility_Class"]'), "<$client.tEventCategories_Category_24.Value>");
+
+    $('[data-only-display-for]').each(function() {
+      if ($(this).data('only-display-for').indexOf(EVENT_GROUP) < 0) {
+        $(this).hide();
+      }
+    });
+
+    $('[name$=".Business_Cards_Needed"]').change(function() {
+      if ($('[name$=".Business_Cards_Needed"][value="Y"]').prop("checked")) {
+        $('.business-card-info').show();
+      }
+      else {
+        $('.business-card-info').hide();
+      }
+    });
+    $('[name$=".Business_Cards_Needed"]').trigger("change");
+  });
+</script>
+
+<!-- Format Dates on load -->
+<script type="text/javascript">
+  
+if (self.LoadCallback) {
+  LoadCallback(document.forms['frmExtendedUserProfile']);
+}
+if (!Element.prototype.matches) {
+  Element.prototype.matches =
+    Element.prototype.msMatchesSelector || 
+    Element.prototype.webkitMatchesSelector;
+}
+
+if (!Element.prototype.closest) {
+  Element.prototype.closest = function(s) {
+    var el = this;
+
+    do {
+      if (Element.prototype.matches.call(el, s)) return el;
+      el = el.parentElement || el.parentNode;
+    } while (el !== null && el.nodeType === 1);
+    return null;
+  };
+}
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+        }
+    };
+}
+const tbl = document.getElementById('wilkins');
+tbl.querySelectorAll('.cal_and_button').forEach(function(dt) {
+  dt.setAttribute('cellpadding', 0);
+  dt.setAttribute('cellspacing', 0);
+});
+// for each poly
+
+const toggleBonuses = function(rdos) {
+    "use strict";
+    let checked = false;
+    let rdoVal = 'No';
+    rdos.forEach(function(rdo) {
+      if (rdo.checked) {
+        checked = true;
+        rdoVal = rdo.value;
+      }
+    });
+    const bonuses = tbl.querySelectorAll('[name$=".Bonus_Amt"], [name$=".Bonus_Select"], [name$=".Bonus_Details"]');
+    if (!checked || rdoVal != 'Yes') {
+      bonuses.forEach(function(bunos) {
+        bunos.value = '';
+        bunos.closest('.field-group').classList.add('hide');
+      });
+      return;
+    }
+    bonuses.forEach(function(bunos) {
+      bunos.closest('.field-group').classList.remove('hide');
+    });
+}
+
+const OFFICE = '<$client.tEventCategories_Category_23.Code>';
+const FLSA_STATUS = '<$client.tForWhomUserInfo.FLSA_Status>';
+const toggleFLSA = function(reqVal) {
+  "use strict";
+  let flsaStatus = FLSA_STATUS;
+  if (reqVal) {
+    flsaStatus = reqVal;
+  }
+  if (flsaStatus != 'Non-Exempt') {
+    const overtimePayField = tbl.querySelector('[name$=".Overtime_Rate_of_Pay"]');
+    overtimePayField.value = '';
+    overtimePayField.closest('.field-group').classList.add('hide');
+    return;
+  }
+  tbl.querySelector('[name$=".Overtime_Rate_of_Pay"]').closest('.field-group').classList.remove('hide');
+};
+
+(function() {
+  "use strict";
+  const xhttp = new XMLHttpRequest();
+  let cfg = {};
+  xhttp.overrideMimeType('application/json');
+  xhttp.open('GET', '<$link;/Onboarding/UnplacedPages/js/editprofile.json>', true);
+  xhttp.onload = function() {
+    let res = JSON.parse(xhttp.responseText)
+  }
+  xhttp.send(null);
+  const bonuses = tbl.querySelectorAll('[name$=".Bonus"]');
+  bonuses.forEach(function(rdo) {
+    rdo.addEventListener('change', function(){
+      toggleBonuses(bonuses);
+    });
+  });
+  toggleBonuses(bonuses);
+  document.querySelector('[name$=".FLSA_Status"]').addEventListener('change', function() {
+    toggleFLSA(this.value);
+  });
+  toggleFLSA();
+  // office license section heading
+  const legalGroups = ["Advisor", "Associate", "Consultant Advisor", "Consultant Attorney", "Fall Associate", "Law Clerk", "Of Counsel", "Partner", "Senior Advisor", "Special Counsel", "Staff Attorney", "Summer Associate"]
+  if (legalGroups.indexOf(OFFICE) >= 0) {
+    tbl.querySelectorAll('.legal-group').forEach(function(lg) {
+     lg.style.display = 'table-row'
+    })
+  }
+  if (legalGroups.indexOf(OFFICE) < 0) {
+    tbl.querySelectorAll('.staff-group').forEach(function(lg) {
+     lg.style.display = 'table-row'
+    })
+  }
+  // special case under legal group
+  if (["Consultant Advisor", "Consultant Attorney"].indexOf(OFFICE) >= 0) {
+    tbl.querySelectorAll('.consultant-group').forEach(function(lg) {
+     lg.style.display = 'none'
+    })
+  }
+})();
+</script>

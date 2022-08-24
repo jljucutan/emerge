@@ -1,0 +1,418 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal E-Signature box2: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','Line_Manager','modal2','over','sv2');xbObj('eSignature2').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal E-Signature box 4: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal4" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature4" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature4','eSignature4','HR_Manager','modal4','over','sv4');xbObj('eSignature4').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature4').value='';showHide('modal4');showHide('over');xbObj('eSignature4').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal4');showHide('over');xbObj('eSignature4').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+		<$client.env.FormField.SignatureVerification.prompt>
+		<$client.env.FormField.SignatureVerification2.prompt>
+		<$client.env.FormField.SignatureVerification4.prompt>
+		<$client.env.FormField.a04_Company_Country.prompt>
+		<$client.env.FormField.a05_Location.prompt>
+		<$client.env.FormField.a06_Date.prompt>
+		<$client.env.FormField.a07_Position.prompt>
+		<$client.env.FormField.a08_Department.prompt>
+		<$client.env.FormField.a09_Title.prompt>
+		<$client.env.FormField.a10_Name.prompt>
+		<$client.env.FormField.a11_Date_of_Birth.prompt>
+		<$client.env.FormField.a12_Associate_ID.prompt>
+		<$client.env.FormField.a13_Address.prompt>
+		<$client.env.FormField.a14_Nationality.prompt>
+		<$client.env.FormField.a15_Position_Grade.prompt>
+		<$client.env.FormField.a16_Credit_Charge_Start_Date.prompt>
+		<$client.env.FormField.a17_Business_Telephone_Number.prompt>
+		<$client.env.FormField.a18_Rationale_for_receiving_card.prompt>
+		<$client.env.FormField.a19_Credit_Limit.prompt>
+		<$client.env.FormField.a20_Line_Manager_Signature.prompt>
+		<$client.env.FormField.a21_Date.prompt>
+		<$client.env.FormField.a24_HR_Manager.prompt>
+		<$client.env.FormField.a24_Date.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+	<div class="row mb-3em credit-card-application-heading">
+		<div class="col-lg-12">
+			<div class="circle outer">
+				<div class="circle inner bg-green">&nbsp;</div>
+			</div>
+			<div class="row mt-2em">
+				<div class="col-lg-10 b-top b-bottom col-lg-offset-1">
+					<div class="ml-3em">
+						<h3 class="text-green">
+							CORPORATE CREDIT CARD APPLICATION FORM
+						</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="box mb-3em">
+		<div class="row b-bottom">
+			<div class="col-lg-12 bg-green">
+				Company Information:
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 padded">
+				<div class="box">
+					Company/Country:
+					<$client.env.FormField.a04_Company_Country.HTML>
+				</div>
+			</div>
+			<div class="col-md-4 col-md-4 col-sm-12 col-xs-12 padded">
+				<div class="box">
+					Location:
+					<$client.env.FormField.a05_Location.HTML>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 padded">
+				<div class="box">
+					Date:
+					<$client.env.FormField.a06_Date.HTML>
+				</div>
+			</div>
+		</div>
+		<div class="row bg-green">
+			<div class="col-lg-12">
+				General Information:
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padded">
+				<div class="box">
+					Position:
+					<$client.env.FormField.a07_Position.HTML>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padded">
+				<div class="box">
+					Department:
+					<$client.env.FormField.a08_Department.HTML>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 padded">
+				<div class="box">
+					Title:
+					<$client.env.FormField.a09_Title.HTML>
+				</div>
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 padded">
+				<div class="box">
+					Name:
+					<$client.env.FormField.a10_Name.HTML>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 padded">
+				<div class="box">
+					Date of birth:
+					<$client.env.FormField.a11_Date_of_Birth.HTML>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 padded">
+				<div class="box">
+					Associate ID:
+					<$client.env.FormField.a12_Associate_ID.HTML>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padded">
+				<div class="box">
+					Address:
+					<$client.env.FormField.a13_Address.HTML>
+				</div>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 padded">
+				<div class="box">
+					Nationality:
+					<$client.env.FormField.a14_Nationality.HTML>
+				</div>
+			</div>
+		</div>
+		<div class="row bg-green">
+			<div class="col-lg-12">
+				Employee Classification:
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 padded">
+				<div class="box">
+					<div class="row b-bottom">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							Position Grade &amp; Job Level (completed by HR):
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<$client.env.FormField.a15_Position_Grade.HTML>
+						</div>
+					</div>
+					<div class="row b-bottom">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							Date to start credit card/apply changes:
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<$client.env.FormField.a16_Credit_Charge_Start_Date.HTML>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							Business Telephone Number:
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<$client.env.FormField.a17_Business_Telephone_Number.HTML>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 padded">
+				<div class="box">
+					<div class="row b-bottom">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<strong>Rationale for receiving a credit card:</strong>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<$client.env.FormField.a18_Rationale_for_receiving_card.HTML>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<strong>Credit Limit to be applied/changed:</strong>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+							<$client.env.FormField.a19_Credit_Limit.HTML>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 padded">
+				<div class="box">
+					<div class="row b-bottom">
+						<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+							Requested By: <br>
+							(Line Manager)
+						</div>
+						<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+							<br class="hidden-xs">
+							<$client.env.FormField.a20_Line_Manager_Signature.HTML>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-left">
+							Date:
+							<$client.env.FormField.a21_Date.HTML>
+						</div>
+					</div>
+					<div class="row b-bottom">
+						<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+							Approved By: <br>
+							(HR Manager)
+						</div>
+						<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+							<br class="hidden-xs">
+							<$client.env.FormField.a24_HR_Manager.HTML>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-left">
+							Date:
+							<$client.env.FormField.a24_Date.HTML>
+						</div>
+					</div>
+					<div class="row b-bottom">
+						<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+							Approved By: <br>
+							(1 level up line manager)
+						</div>
+						<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+							<br class="hidden-xs">
+							<input type="text" class="input-readonly" disabled>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-left">
+							Date:
+							<input type="text" class="input-readonly" disabled>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+							Approved By: <br>
+							(Finance Manager)
+						</div>
+						<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+							<br class="hidden-xs">
+							<input type="text" class="input-readonly" disabled>
+						</div>
+						<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-left">
+							Date:
+							<input type="text" class="input-readonly" disabled>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row invisible">
+		<div class="col-lg-12">
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum itaque deleniti quaerat voluptates non, modi laudantium sit minus omnis molestiae nulla iure distinctio impedit at animi necessitatibus ab rerum corporis.
+			</p>
+		</div>
+	</div>
+	<footer class="row">
+		<div class="col-lg-12">
+			<p>
+				THE NATURE'S BOUNTY CO. Corporate Credit Card Policy
+			</p>
+		</div>
+	</footer>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div class="hide">
+    <$client.env.FormField.Line_Manager.HTML>
+    <$client.env.FormField.HR_Manager.HTML>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.SignatureVerification4.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+function disableCalButton(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+    "use strict";
+    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        $('.common-height').each(function() {
+            let height = $(this).height();
+            $.each($(this).children('div'), function(k,v) {
+                $(v).css({'height': height});
+            });
+        });
+    }
+    disableCalButton($(".disabled-date"));
+    $(".modal").hide();
+});
+</script>

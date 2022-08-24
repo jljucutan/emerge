@@ -1,0 +1,762 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+  <div class="modal-content"> 
+   <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+   <p style="fontweight:normal;padding:0px"> 
+     <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+ </p> 
+ <br> 
+ <div class="row"> 
+     <div class="lifesuite__clearfix"> 
+      <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+  </div> 
+</div> 
+<div class="row"> 
+ <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+   <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+   <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+   <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+</div> 
+</div> 
+</div> 
+</div> 
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+    showScreen('over') 
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+  <div class="fb-spinner"> 
+   <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+</div> 
+</div> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'> 
+    <div style="display:none;"> 
+        <$client.env.FormField.Form_Name.prompt> 
+        <$client.env.FormField.Form_Name.HTML> 
+        <$client.env.FormField.Form_Type.prompt> 
+        <$client.env.FormField.Form_Type.HTML> 
+        <$client.env.FormField.Form_Owner.prompt> 
+        <$client.env.FormField.Form_Owner.HTML> 
+        <$client.env.FormField.Form_CreateDate.prompt> 
+        <$client.env.FormField.Form_CreateDate.HTML> 
+        <$client.env.FormField.Form_Completed.prompt> 
+        <$client.env.FormField.Form_Completed.HTML> 
+        <$client.env.FormField.Form_Delivered.prompt> 
+        <$client.env.FormField.Form_Delivered.HTML> 
+        <$client.env.FormField.Form_TaskId.prompt> 
+        <$client.env.FormField.Form_TaskId.HTML> 
+        <$client.env.FormField.display_version.HTML> 
+
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+        <$client.env.FormField.a01_Work_Previously.prompt>
+        <$client.env.FormField.a01_Previous_Employee_Number.prompt>
+        <$client.env.FormField.a02_Eng_FirstName.prompt>
+        <$client.env.FormField.a03_Eng_LastName.prompt>
+        <$client.env.FormField.a04_Chinese_FullName.prompt>
+        <$client.env.FormField.a04_Phone_Device_Type.prompt>
+        <$client.env.FormField.a04_Phone_Country_Code.prompt>
+        <$client.env.FormField.a05_Eng_PrefName.prompt>
+        <$client.env.FormField.a05_Eng_PrefLast.prompt>
+        <$client.env.FormField.a06_MobilePhoneNo.prompt>
+        <$client.env.FormField.a07_Email.prompt>
+        <$client.env.FormField.a08_Address.prompt>
+        <$client.env.FormField.a09_City.prompt>
+        <$client.env.FormField.a10_State.prompt>
+        <$client.env.FormField.a11_PostalCode.prompt>
+        <$client.env.FormField.a12_Country.prompt>
+        <$client.env.FormField.a13_Dob.prompt>
+        <$client.env.FormField.a13_Country_of_Birth.prompt>
+        <$client.env.FormField.a14_Gender.prompt>
+        <$client.env.FormField.a15_MaritalStatus.prompt>
+        <$client.env.FormField.a16_Nationality.prompt>
+        <$client.env.FormField.a16_Citizenship.prompt>
+        <$client.env.FormField.a17_NationalID.prompt>
+        <$client.env.FormField.a18_PassportNo.prompt>
+        <$client.env.FormField.a19_Mainland_Travel_Permit_Type.prompt>
+        <$client.env.FormField.a20_Mainland_Travel_Permit_Number.prompt>
+        <$client.env.FormField.a21_WorkingExp.prompt>
+        <$client.env.FormField.a22_ECName.prompt>
+        <$client.env.FormField.a23_ECRelationship.prompt>
+        <$client.env.FormField.a24_ECMobile.prompt>
+        <$client.env.FormField.a25_HighestEducation.prompt>
+        <$client.env.FormField.a25_ExpGradDate.prompt>
+        <$client.env.FormField.a26_ChinaTaxResidentStatus.prompt>
+
+
+    </div> 
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+    <main id="container">
+      <div class="container-fluid inner-wrapper center-block">
+        <header class="row my-md">
+          <div class="col-sm-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="icontainer pull-right">
+                <img src="img/logo_black.png" alt="Apple Logo" class="img-responsive">
+            </div>
+        </div>
+    </header>
+
+
+
+    <div class="row">
+        <div class='col-sm-12'>
+            <h1><strong>个人资料表格 Personal Information Notice</strong></h1>
+
+            <p>请用英文完整填写此表格 (特殊标明的除外) 并交还给发放此表的招聘人员。<br>Complete all fields in English unless otherwise indicated and return to Recruiting.</p>
+        </div>      
+    </div>
+
+    <div class="row">
+        <div class='col-sm-12'>
+            <br>
+            <div class="row">
+                <div class='col-sm-12'>
+                    <strong><u>基本信息 General Information</u></strong>
+                </div>          
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-3">
+                    你之前是否曾受雇于苹果公司？<br>
+                    Have you worked for Apple previously?<span style="color: red"> * </span><span class="show-sm">&nbsp;</span>
+                </div>  
+
+                <div class='col-sm-2 WorkPrevious'>
+                    <$client.env.FormField.a01_Work_Previously.HTML>
+                    <p class="req-notif">Required information is missing.</p>
+                </div>  
+
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    &lt;Need translation&gt; :<br>
+                    Previous Employee Number:
+                    <$client.env.FormField.a01_Previous_Employee_Number.HTML>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    名(同护照/拼音 – 英文填写) :<br>
+                    English First Name:
+                    <$client.env.FormField.a02_Eng_FirstName.HTML>
+                </div>
+
+                <div class='col-sm-12 hide-large'>
+                    &nbsp;
+                </div>  
+
+                <div class="col-sm-6">
+                    姓氏(同护照/拼音 – 英文填写) :<br>
+                    English Last Name:
+                    <$client.env.FormField.a03_Eng_LastName.HTML>
+                </div>  
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    常用名（拼音 – 英文填写):<br>
+                    Preferred Given Name - Pinyin:
+                    <$client.env.FormField.a05_Eng_PrefName.HTML>
+                </div>  
+                <div class="col-sm-6">
+                    常用姓氏（拼音 – 英文填写):<br>
+                    Preferred Last Name - Pinyin:
+                    <$client.env.FormField.a05_Eng_PrefLast.HTML>
+                </div>  
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    姓氏(中文填写) : <br>
+                    Chinese Surname:
+                    <$client.env.FormField.a04_Chinese_FullName.HTML>
+                </div>  
+
+                <div class='col-sm-12 hide-large'>
+                    &nbsp;
+                </div>
+
+                <div class="col-sm-6">
+                    名 (中文填写) :<br>
+                    Chinese Given Name:
+                    <$client.env.FormField.txtChineseGivenName.HTML>
+                </div>  
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    电话设备: <br>
+                    Phone Device Type:
+                    <$client.env.FormField.a04_Phone_Device_Type.HTML>
+                    <div class="coverlay"></div>
+                </div>  
+
+                <div class='col-sm-12 hide-large'>
+                    &nbsp;
+                </div>
+
+                <div class="col-sm-6">
+                    国家/地区电话区号:<br>
+                    Phone Country Code:
+                    <$client.env.FormField.a04_Phone_Country_Code.HTML>
+                    <div class="coverlay"></div>
+                </div>  
+            </div>
+
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    手机号码 : <br>
+                    Mobile Phone Number:
+                    <$client.env.FormField.a06_MobilePhoneNo.HTML>
+                </div>  
+
+                <div class='col-sm-12 hide-large'>
+                    &nbsp;
+                </div>
+
+                <div class="col-sm-6">
+                    个人邮箱地址 :<br>
+                    Personal Email Address:
+                    <$client.env.FormField.a07_Email.HTML>
+                </div>  
+            </div>
+
+
+        </div>
+
+
+    </div>
+    <br>
+    <div class="row">
+        <div class='col-sm-12' style="padding-top: 24px;">
+            <strong><u>通讯地址 Mailing Address (Mandatory)</u></strong>
+        </div>          
+    </div>
+    <br>
+    <div class="row">
+        <div class='col-sm-1 col-md-2'>
+            英文地址 :<br>Address:
+        </div>  
+
+        <div class='col-sm-11'>
+            <$client.env.FormField.a08_Address.HTML>
+        </div>      
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-1">
+            城市<br>City:
+        </div>  
+
+        <div class="col-sm-5">
+            <$client.env.FormField.a09_City.HTML>
+        </div>  
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-1">
+            省份<br>State:
+        </div>  
+        <div class="col-sm-4">
+            <div class="coverlay"></div>
+            <$client.env.FormField.a10_State.HTML>
+        </div>   
+        <div class="col-sm-1">
+            &nbsp;
+        </div>  
+        <div class="col-sm-1">
+            邮编<br>Postal Code:
+        </div>  
+        <div class="col-sm-4">
+            <$client.env.FormField.a11_PostalCode.HTML>
+        </div>    
+        <div class="col-sm-1">
+            &nbsp;
+        </div>    
+    </div>
+    <br>
+    <div class="row">
+        <div class='col-sm-1 col-md-2'>
+            国家 :<br>Country:
+        </div>  
+
+        <div class='col-sm-11'>
+            <$client.env.FormField.a12_Country.HTML>
+        </div>      
+    </div>
+    <br>
+    <div class="row">
+        <div class='col-sm-12' style="padding-top: 24px;">
+            <strong><u>其他信息 Other Information</u></strong>
+        </div>          
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-2">
+            出生日期 (日/月/年) :<br>Date of Birth (DD/MM/YYYY):
+        </div>  
+
+        <div class="col-sm-2">
+            <div class="coverlay"></div>
+            <$client.env.FormField.a13_Dob.HTML>
+        </div>  
+
+        <div class="col-sm-1">
+            &nbsp;
+        </div>
+
+        <div class="col-sm-1">
+            出生国家/地区:<br>Country of Birth:
+        </div>
+
+        <div class="col-sm-5">
+            <div class="coverlay"></div>
+            <$client.env.FormField.a13_Country_of_Birth.HTML>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-sm-2">
+            婚姻状况 : <br>Marital Status: <span style="color: red"> * </span><span class="show-sm">&nbsp;</span>
+        </div>  
+
+        <div class='col-sm-2 MSDiv'>
+            <div class="coverlay"></div>
+            <$client.env.FormField.a15_MaritalStatus.HTML>
+        </div>
+
+        <div class="col-sm-1">
+            &nbsp;
+        </div>
+
+        <div class="col-sm-1">
+            性别 :<br>Gender: <span style="color: red"> * </span><span class="show-sm">&nbsp;</span>
+        </div>
+
+        <div class="col-sm-2 genderDiv">
+            <div class="coverlay"></div>
+            <$client.env.FormField.a14_Gender.HTML>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class='col-sm-12'>
+            <div class='col-sm-3 col-md-12 col-sm-12 col-xs-12' style="padding-bottom: 15px;">
+                最高学历 (仅用于R&D 员工):<br>Highest Education (Required for R&D hires only):
+            </div>
+            <div class='col-sm-9 col-md-12 col-sm-12 col-xs-12' style="padding-bottom: 15px;">
+                <$client.env.FormField.a25_HighestEducation.HTML>
+            </div>
+            <br>
+    <div class="row">
+        <div class='col-sm-12'>
+            <div class='col-sm-6 col-md-12 col-sm-12 col-xs-12' style="padding-bottom: 15px;">
+                *累计社会工龄 (月) (不包含在苹果的工作年限):<br>*Total Working Experience (# of Months) (Excluding work at Apple):
+                <$client.env.FormField.a21_WorkingExp.HTML>
+            </div>
+            <div class='col-sm-6 col-md-12 col-sm-12 col-xs-12' style="padding-bottom: 15px;">
+                预计毕业日期 (日/月/年) (在读学生):<br>Expected Graduation Date (DD/MM/YYYY) (Current Student):
+                <$client.env.FormField.a25_ExpGradDate.HTML>
+            </div>
+            <br>
+            <p>* 累计社会工龄包括你加入苹果之前的博士后研究工作，服兵役的时长，所有缴纳社会保险的全职和兼职工作。但是不包括实习，在校零工，全职硕士和博士的学习除非该博士课程是由公司资助且是所在单位本职工作的一部分。<br>* Total working experience includes your postdoctoral research employment, military service, full-time employment and part-time employment which contributes to social insurance and those working abroad prior to joining Apple. This excludes internships, temp job during studies, full-time studies including Masters and PhD unless your PhD is company sponsored and it constitutes as part of your employment with the company that you work for. </p>
+        </div>          
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-6" style="padding-bottom: 15px;">
+            <div class="coverlay"></div>
+            国籍 :<br>Nationality:
+            <$client.env.FormField.a16_Nationality.HTML>
+        </div>  
+        <div class="col-sm-6" style="padding-bottom: 15px;">
+            公民身份:<br>Citizenship Status:
+            <$client.env.FormField.a16_Citizenship.HTML>
+            <div class="coverlay"></div>
+        </div>  
+    </div> 
+    <div class="row">
+        <div class="col-sm-6" style="padding-bottom: 15px;">
+            身份证号码 (中国籍员工) :<br>National Identity Card Number (Local only):
+            <$client.env.FormField.a17_NationalID.HTML>
+        </div>  
+        <div class="col-sm-6" style="padding-bottom: 15px;">
+            <div class="coverlay"></div>
+            护照国家/地区:<br>Passport Country:
+            <$client.env.FormField.a17_Passport_Country.HTML>
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col-sm-4" style="padding-bottom: 15px;">
+            护照号码 (外籍员工) :<br>Passport Number (Foreigners only):<span class="show-lg">&nbsp;</span>
+            <$client.env.FormField.a18_PassportNo.HTML>
+        </div>  
+
+        <div class="col-sm-4" style="padding-bottom: 15px;">
+            内地/大陆通行证类型 (港澳或台湾居民）：<br>
+            Mainland Travel Permit Type<br>
+            (For Hong Kong and Macao Residents or Taiwan Residents only) 
+            <$client.env.FormField.a19_Mainland_Travel_Permit_Type.HTML>
+        </div>
+
+        <div class="col-sm-4">
+            内地/大陆通行证号码 (港澳或台湾居民）:<br>
+            Mainland Travel Permit Number<br>
+            (For Hong Kong and Macao Residents or Taiwan Residents only)
+            <$client.env.FormField.a20_Mainland_Travel_Permit_Number.HTML>
+        </div>  
+    </div>
+    <br>
+    <div class="row" id="ChinaTaxResidentStatus">
+        <div class='col-sm-12'>
+            <div class='col-sm-12 col-md-12 col-sm-12 col-xs-12 ChinaTaxResidentStatusDiv' style="padding-bottom: 15px;">
+                选择您中国大陆税务居民身份:<br>Select your China Tax Resident Status (For tax declaration purpose):
+                <$client.env.FormField.a26_ChinaTaxResidentStatus.HTML>
+                <p class="req-notif">Required information is missing.</p>
+            </div>
+            <br>
+            <p>如果您不确定在入职当年是否会在中国大陆实际停留超过183天，请点击<a href="<$link;/eprise/main/SiteGen/China/Content/Uploads/Unplaced_Documents/China_Tax_Residency_FAQs_JAN2019.pdf>" target="_blank">这里</a>查看常见的问题，并根据您实际情况做出最佳评估。<br>If you are not sure whether your length of physical stay in Mainland China of the current calendar in which you are hired will exceed 183 days, please click <a href="<$link;/eprise/main/SiteGen/China/Content/Uploads/Unplaced_Documents/China_Tax_Residency_FAQs_JAN2019.pdf>" target="_blank">here</a> to refer the FAQ and make the best estimate on your residency status that suits your situation.</p>
+        </div>          
+    </div>
+    <br>
+    <div class="row">
+        <div class='col-sm-12' style="padding-top: 24px;">
+            <strong><u>确认书 Acknowledgement </u></strong>
+        </div>          
+    </div>
+
+    <div class="row">
+        <div class='col-sm-12'>
+            <p>
+                通过填写本表格, 我声明, 就我所知, 我所提供的任何信息均真实、正确和完整, 我提供的信息若有任何虚假或不 实陈述, 可能受到纪律处分, 包括但不限于终止劳动关系。<br>
+                By completing this form, I declare that, to the best of my knowledge, any information that I have provided is true, correct
+                and complete and that any falsification or misrepresentation of information that I have provided may be subject to
+                disciplinary action including but not limited to termination of employment. 
+            </p>
+            <p>
+                本人确认并在必要时按照当地适用法律，同意 Apple 根据自身的隐私政策及相关法律所规定的员工权利，收集
+                和处理我的个人信息/数据。本人了解 Apple 处理这类信息是为了改善和维持有效的人事管理、用于一般业务管
+                理用途，以及遵守法律规定的一系列义务，包括保障工作权利和符合出口管制要求。Apple 已向我提供了一份
+                “Apple 员工隐私政策”的副本。<br>
+                I acknowledge and, where necessary, under applicable local law consent to Apple collecting and processing my Personal
+                Information/Data pursuant to Apple’s privacy policies and in accordance with the rights of workers enshrined in such
+                applicable laws. I am aware that Apple will process this information in order to improve and maintain effective
+                personnel administration, for general business management purposes, and to comply with obligations imposed by law
+                including right to work and export control requirements. I have been provided a copy of Apple’s Employee Privacy Policy.
+
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class='col-sm-12'>
+            <$client.env.FormField.Signer.HTML>
+        </div>          
+    </div>
+    <br>
+
+    <div class="row">
+        <div class='col-sm-12'>
+            <p>登录 myPage (<a class='apple-link' href='https://mypage.apple.com/' target='_blank'>https://mypage.apple.com/</a>):</p>
+
+            <ul class="arrowed">
+              <li>
+                在“我的信息”输入以下信息:
+                <ul style="list-style-type: disc!important;">
+                    <li>中文地址 (点击“编辑个人地址” -> “显示本地化的地址”)</li>
+                    <li>最高学历</li>
+                </ul>
+            </li>
+            <li>
+              在“我的收入”输入: 银行账户信息 (Bank Details)
+          </li>
+          <li>
+              确认 myPage 上所有信息是否正确
+          </li>
+      </ul>
+      <p>Log onto myPage (<a class='apple-link' href='https://mypage.apple.com/' target='_blank'>https://mypage.apple.com/</a>):</p>
+      <ul class="arrowed">
+          <li>
+            Go to myInfo and update the following information:
+            <ul style="list-style-type: disc!important;">
+                <li>Chinese Localized address (Click “Edit personal addresses” -> “Show localized addresses”)</li>
+                <li>Highest Education Information (Qualifications)</li>
+            </ul>
+        </li>
+        <li>
+          Go to “myMoney” and update: Bank Details
+      </li>
+      <li>
+          Review all data on myPage to ensure accuracy
+      </li>
+  </ul>
+  <br>
+  *倘若未能及时确认和更新以上信息, 工资可能会被延误发放<br>
+  *Failure to do so may result in delay of salary payment
+</div>          
+</div>
+<br>
+
+<br><br><br>
+<div class="row">
+  <div class="col-sm-12">
+     CHN/ver19.7
+ </div>
+</div>
+
+
+
+
+</div>
+
+</main>
+<div class="clearfix">
+    <div id="formButtons" class="row" style="display: none;">
+        <div class="lifesuite__clearfix">
+            <div class="srt_eform_section">
+                <div id="srt_form_btn_wrapper">
+                    <div class="srt_eform_row">
+                        <div class="col-sm-12 srt_eform_module">
+                            <$client.env.FormButtons>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style='display:none;'>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+<!-- End HTML -->
+</form> 
+<script type="text/javascript"> 
+    ChangeCalendarIcons(); //for popup calendar  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+/* RESPONSIVE eFORM BUTTONS STYLE */ 
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+        }
+    };
+}
+$(window).load(function() {
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button").prop('id','ButtonPrint');
+    document.getElementById('formButtons').style.display = "block";
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__text-input');
+    //$("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $(window).scrollTop(0); //2018-08-23 - #1
+
+
+  $("body").addClass("apple_custom_theme");
+
+  var lang = navigator.language || navigator.userLanguage;
+  lang = lang.substr(0, 2);
+  if ((lang == 'zh' || lang == 'zh-Hans' || lang == 'zh-Hant')){
+     $('input[type = text].a04_Chinese_FullName').attr("placeholder", "以简体中文输入");
+     $('input[type = text].txtChineseGivenName').attr("placeholder", "以简体中文输入");
+     $('input[type = text].Please_Enter').attr("placeholder", "以英文输入");
+     //alert(lang + " Language");
+  }
+  else{
+     $('input[type = text].a04_Chinese_FullName').attr("placeholder", "Please enter in Simplified Chinese"); 
+     $('input[type = text].txtChineseGivenName').attr("placeholder", "Please enter in Simplified Chinese"); 
+     $('input[type = text].Please_Enter').attr("placeholder", "Please enter in English");
+     //alert(lang + " Language");
+  }
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+/* Require radio button */
+function requireRadioWP(){
+    var radios = $('.WP');
+    for (var i = 0, length = radios.length; i < length; i++)
+    {
+        if (radios[i].checked && radios[i].value == 'Yes') {
+            $('[name$=".a01_Previous_Employee_Number"]').addClass('ng-invalid');
+        }
+        if (radios[i].checked && radios[i].value == 'No') {
+            $('[name$=".a01_Previous_Employee_Number"]').removeClass('ng-invalid');
+        } 
+        if (radios[i].checked){
+            $(".WorkPrevious > .req-notif").hide();
+            return;
+        }
+        $('[name$=".a01_Previous_Employee_Number"]').removeClass('ng-invalid');
+        $(".WorkPrevious > .req-notif").show();
+    }
+}
+
+function requireRadioGender(){
+    var radios = $('.gender');
+    for (var i = 0, length = radios.length; i < length; i++)
+    {
+        if (radios[i].checked){
+            $(".genderDiv > .req-notif").hide();
+            break;
+        }else{
+            $(".genderDiv > .req-notif").show();
+        }
+
+
+    }
+}
+
+
+function requireRadioMS(){
+    var radios = $('.MS');
+    for (var i = 0, length = radios.length; i < length; i++)
+    {
+        if (radios[i].checked){
+            $(".MSDiv > .req-notif").hide();
+            break;
+        }else{
+            $(".MSDiv > .req-notif").show();
+        }
+
+
+    }
+}
+
+function requireRadioChinaTaxResidentStatus() {
+    var radios = $('.ChinaTaxResidentStatus');
+    for (var i = 0, length = radios.length; i < length; i++) {
+        if (radios[i].checked) {
+            $(".ChinaTaxResidentStatusDiv > .req-notif").hide();
+            break;
+        }
+        else if ($("#nationality").val() == "CN" || $("#nationality").val() == "HK" || $("#nationality").val() == "TW" || $("#nationality").val() == "MO") {
+            $(".ChinaTaxResidentStatusDiv > .req-notif").hide();
+            break;
+        }
+        else {
+            $(".ChinaTaxResidentStatusDiv > .req-notif").show();
+        }
+    }
+}
+
+requireRadioWP();
+requireRadioGender();
+requireRadioMS();
+requireRadioChinaTaxResidentStatus();
+
+function requireBasedOnNationality(nationality){
+    switch (nationality){
+        case "CN" :
+        clearClass();
+        $("#national-id").addClass("ng-invalid");
+        break;
+        case "TW" :
+        clearClass();
+        $("#tw-compatriot").addClass("ng-invalid");
+        break;
+        case "HK" :
+        clearClass();
+        $("#hrcn").addClass("ng-invalid");
+        break;
+        case "MO" :
+        clearClass();
+        $("#hrcn").addClass("ng-invalid");
+        break;
+        default :
+        clearClass();
+    }
+    if(nationality != "CN" && nationality != ""){ 
+        $("#passport-no").addClass("ng-invalid");
+    }else{
+        $("#passport-no").removeClass("ng-invalid");
+    }
+}
+
+function clearClass(){
+    $("#hrcn").removeClass("ng-invalid");
+    $("#tw-compatriot").removeClass("ng-invalid");
+    $("#national-id").removeClass("ng-invalid");
+}
+
+requireBasedOnNationality($("#nationality").val());
+
+var Hire_Type = "<$client.tEventCategories_Category_97.Code>";
+var Offer_Type = "<$client.tEventCategories_Category_93.Code>";
+var Retail_Offer_Type = "<$client.tEventCategories_Category_98.Code>";
+
+function toggleChinaTaxResidentStatusSection() {
+    if (Hire_Type != "Local_PRC" && (Hire_Type == "HK M TW" || Hire_Type == "DFH")) {
+        $("#ChinaTaxResidentStatus").css("display", "block");
+    }
+    else {
+        $("#ChinaTaxResidentStatus").css("display", "none");
+        $(".ChinaTaxResidentStatus").prop("checked", false);
+    }
+}
+toggleChinaTaxResidentStatusSection();
+document.onreadystatechange = function() {
+  if (strFormCompleted == "") {
+    document.querySelector('[name$=".a02_Eng_FirstName"]').value = '<$client.tForWhomUserInfo.First_Name>'
+    document.querySelector('[name$=".a03_Eng_LastName"]').value = '<$client.tForWhomUserInfo.Last_Name>'
+    document.querySelector('[name$=".a04_Chinese_FullName"]').value = '<$client.tForWhomUserInfo.Chinese_Surname>'
+    document.querySelector('[name$=".txtChineseGivenName"]').value = '<$client.tForWhomUserInfo.Chinese_GivenName>'
+    document.querySelector('[name$=".a04_Phone_Device_Type"]').value = '<$client.tForWhomUserInfo.Phone_Device>'
+    document.querySelector('[name$=".a04_Phone_Country_Code"]').value = '<$client.tForWhomUserInfo.Phone_Country_Code>'
+    document.querySelector('[name$=".a05_Eng_PrefName"]').value = '<$client.tForWhomUserInfo.Preferred_Name>'
+    document.querySelector('[name$=".a05_Eng_PrefLast"]').value = '<$client.tForWhomUserInfo.Preferred_Last_Name>'
+    document.querySelector('[name$=".a06_MobilePhoneNo"]').value = ' <$client.tForWhomUserInfo.Phone>'
+    document.querySelector('[name$=".a07_Email"]').value = ' <$client.tForWhomUserInfo.Email>'
+    document.querySelector('[name$=".a08_Address"]').value = '<$client.tForWhomUserInfo.Address1>  <$client.tForWhomUserInfo.Address2>'
+    document.querySelector('[name$=".a09_City"]').value = ' <$client.tForWhomUserInfo.City>'
+    document.querySelector('[name$=".a10_State"]').value = '<$client.tForWhomUserInfo.CHN_Province>'
+    document.querySelector('[name$=".a11_PostalCode"]').value = '<$client.tForWhomUserInfo.Zip>'
+    document.querySelector('[name$=".a12_Country"]').value = '<$client.tForWhomUserInfo.Country>'
+    document.querySelector('[name$=".a13_Dob"]').value = '<$client.tForWhomUserInfo.DOB>'
+    document.querySelector('[name$=".a13_Country_of_Birth"]').value = '<$client.tForWhomUserInfo.Country_of_Birth>'
+    document.querySelector('[name$=".a14_Gender"]').value = '<$client.tForWhomUserInfo.WD_Gender_CHN>'
+    document.querySelector('[name$=".a15_MaritalStatus').value = '<$client.tForWhomUserInfo.Marital_Status_CHN>'
+    document.querySelector('[name$=".a16_Nationality"]').value = '<$client.tForWhomUserInfo.Nationality_Primary>'
+    document.querySelector('[name$=".a16_Citizenship"]').value = '<$client.tForWhomUserInfo.Citizenship_Status>'
+    document.querySelector('[name$=".a17_NationalID"]').value = '<$client.tForWhomUserInfo.National_ID_Number>'
+    document.querySelector('[name$=".a17_Passport_Country"]').value = '<$client.tForWhomUserInfo.Passport_Country>'
+    document.querySelector('[name$=".a18_PassportNo"]').value = '<$client.tForWhomUserInfo.Passport_ID_Number>'
+    document.querySelector('[name$=".a19_Mainland_Travel_Permit_Type"]').value = '<$client.tForWhomUserInfo.Addl_Govt_ID_Type_CHN_Description>'
+    document.querySelector('[name$=".a20_Mainland_Travel_Permit_Number"]').value = '<$client.tForWhomUserInfo.Addl_Govt_ID_Number>'
+    document.querySelector('[name$=".a21_WorkingExp"]').value = '<$client.tForWhomUserInfo.Months_Continuous_Prior_Employment>'
+  }
+  if (document.querySelector('[name$=".a16_Citizenship"]').value == 'CHN_Citizen') {
+    document.querySelector('[name$=".a17_NationalID"]').classList.add('ng-invalid');
+  }
+}
+</script>

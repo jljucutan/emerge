@@ -1,0 +1,242 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+	<div id="box">
+		<b>Electronic Signature</b>
+		<p style="fontweight:normal;padding:0px">
+			<$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+		</p>
+		<br>
+		<b>Type your Name:</b>
+		<input type=text id="eSignature1">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+
+<$client.env.FormField.Date2.prompt>
+<$client.env.FormField.Initial.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.hidden_pg1.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+        <!-- Replace With eForm Specific HTML -->
+
+<table class="tbl_style">
+	<tr>
+		<td colspan="4" align="right"><img src="<$link;/main/RedCarpet/FormTemplates/NEMG_Acquisition_Confirmation_Letter/img/ynh-logo.png>" border="0" /></td>
+	</tr>
+	<tr>
+	  <td colspan="4" style="padding: 3px 0px;">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4" style="padding: 3px 0px;"><$client.env.eval(client.tForWhomUserInfo.Offer_Date.subString(5,6))>/<$client.env.eval(client.tForWhomUserInfo.Offer_Date.subString(8,9))>/<$client.env.eval(client.tForWhomUserInfo.Offer_Date.subString(0,3))> </td>
+  </tr>
+	<tr>
+	  <td colspan="4" style="padding: 3px 0px;">&nbsp;</td>
+    </tr>
+	<tr>
+	  <td colspan="4" style="padding: 3px 0px;"><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Initial><$client.env.eval(client.tForWhomUserInfo.Middle_Initial.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></td>
+    </tr>
+	<tr>
+	  <td colspan="4" style="padding: 3px 0px;"><$client.tForWhomUserInfo.Address1> <$client.tForWhomUserInfo.Address2></td>
+  </tr>
+	<tr>
+	  <td colspan="4" style="padding: 3px 0px;"><$client.tForWhomUserInfo.City>, <$client.tForWhomUserInfo.State> <$client.tForWhomUserInfo.Zip></td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">Dear <$client.tForWhomUserInfo.First_Name>:</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">Congratulations on becoming a member of <$client.tEventCategories_1.Value> staff. You will be joining a world class health care team that takes pride in providing top notch care and services for our patients and their families. As a team member, your contribution will directly impact the quality of care and services we offer.</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">All information in this confirmation letter is contingent upon the closing of the agreement between <$client.tEventCategories_1.Value> and <$client.tForWhomUserInfo.Acquisitions_practice_name>. In addition, any offer of employment is contingent upon you being an active and present employee at <$client.tForWhomUserInfo.Acquisitions_practice_name> as of the date of the transition.</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">The following is information about your new position:</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">
+      	<table class="tbl_style" style="width: 100%">
+        	<tr>
+            	<td width="2%" style="padding: 5px 0px;">&nbsp;</td><td width="18%" style="font-weight: bold;">Position title:</td><td width="80%"><$client.tForWhomUserInfo.Position></td>
+            </tr>
+        	<tr>
+        	  <td style="padding: 5px 0px;">&nbsp;</td>
+        	  <td style="font-weight: bold">Department Name:</td>
+        	  <td><$client.tForWhomUserInfo.Department></td>
+      	  </tr>
+        	<tr>
+        	  <td style="padding: 5px 0px;">&nbsp;</td>
+        	  <td style="font-weight: bold">Department Head:</td>
+        	  <td><$client.tForWhomUserInfo.Hiring_Manager></td>
+      	  </tr>
+        	<tr>
+        	  <td style="padding: 5px 0px;">&nbsp;</td>
+        	  <td style="font-weight: bold">Status:</td>
+        	  <td><$client.tForWhomUserInfo.Status></td>
+      	  </tr>
+        	<tr>
+        	  <td style="padding: 5px 0px;">&nbsp;</td>
+        	  <td style="font-weight: bold">Hours per week:</td>
+        	  <td><$client.tForWhomUserInfo.HoursPerWeek></td>
+      	  </tr>
+        	<tr>
+        	  <td style="padding: 5px 0px;">&nbsp;</td>
+        	  <td style="font-weight: bold">Hourly rate of pay:</td>
+        	  <td><$client.tForWhomUserInfo.Rate></td>
+      	  </tr>
+        	<tr>
+        	  <td style="padding: 5px 0px;">&nbsp;</td>
+        	  <td style="font-weight: bold">Start date:</td>
+        	  <td><$client.env.eval(client.tForWhomUserInfo.Hire_DT.subString(5,6))>/<$client.env.eval(client.tForWhomUserInfo.Hire_DT.subString(8,9))>/<$client.env.eval(client.tForWhomUserInfo.Hire_DT.subString(0,3))> </td>
+      	  </tr>
+        </table>
+      </td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">Your employment at <$client.tEventCategories_1.Value> is contingent on the following conditions:</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">
+      	<ol class="numbered_list" style="padding-left: 2rem;">
+        	<li>your compliance with all required health screenings and immunizations, including COVID vaccination;</li>
+        	<li>by signing and submitting below you further agree that the information contained in your personnel file or related employment files, and any other information relating to your <$client.tForWhomUserInfo.Acquisitions_practice_name> employment, may be disclosed to <$client.tEventCategories_1.Value>;</li>
+        	<li>providing proper identification and proof of your legal right to work in the U.S. as required by Federal law; and,</li>
+        	<li>successful completion of our background check.</li>
+   	  </ol></td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">All employment at <$client.tEventCategories_1.Value> is at-will and for an indefinite period of time. Employees may resign, with or without notice, though resigning without notice may affect benefits and/or rehire status. <$client.tEventCategories_1.Value> may terminate an employee at any time, with or without notice in accordance with applicable laws.</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">Again, welcome to <$client.tEventCategories_1.Value>.</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">Sincerely,</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4" class="td_subtitle_left">Melissa B. Turner </td>
+  </tr>
+  </tr>
+	<tr>
+	  <td colspan="4" class="td_subtitle_left">Sr. Vice President-Chief Human Resources Officer</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td width="81" style="padding: 5px 0px;">Initial:</td>
+	  <td width="386"><$client.env.FormField.Initial.HTML></td>
+	  <td width="51">Date:</td>
+	  <td width="412"><$client.env.FormField.Date2.HTML></td>
+  </tr>
+	<tr>
+	  <td style="padding: 5px 0px;">Signature:</td>
+	  <td><$client.env.FormField.Signature.HTML></td>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+	<tr>
+	  <td colspan="4">&nbsp;</td>
+  </tr>
+</table>
+
+    <div style="display:none;">
+        <$client.env.FormField.SignatureVerification.HTML>
+        <$client.env.FormField.Name.HTML>
+        <$client.env.FormField.hidden_pg1.HTML>
+    </div>
+    <$client.env.FormButtons>
+</form>
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+	letter = "<$client.env.eval(date.now('%m/%d/%Y'))>\n\n<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Initial><$client.env.eval(client.tForWhomUserInfo.Middle_Initial.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>\n<$client.tForWhomUserInfo.Address1> <$client.tForWhomUserInfo.Address2>\n<$client.tForWhomUserInfo.City>, <$client.tForWhomUserInfo.State> <$client.tForWhomUserInfo.Zip>\n\n\nDear <$client.tForWhomUserInfo.First_Name>:\n\nCongratulations on becoming a member of <$client.tEventCategories_1.Value> staff. You will be joining a world class health care team that takes pride in providing top notch care and services for our patients and their families. As a team member, your contribution will directly impact the quality of care and services we offer.\n\nAll information in this confirmation letter is contingent upon the closing of the agreement between <$client.tEventCategories_1.Value> and <$client.tForWhomUserInfo.Acquisitions_practice_name>. In addition, any offer of employment is contingent upon you being an active and present employee at <$client.tForWhomUserInfo.Acquisitions_practice_name> as of the date of the transition.\n\nThe following is information about your new position:\n\n\ \ \ \ \ Position title: <$client.tForWhomUserInfo.Position>\n\ \ \ \ \ Department: <$client.tForWhomUserInfo.Department>\n\ \ \ \ \ Department Head: <$client.tForWhomUserInfo.Hiring_Manager>\n\ \ \ \ \ Status: <$client.tForWhomUserInfo.Status>\n\ \ \ \ \ Hours per week: <$client.tForWhomUserInfo.HoursPerWeek>\n\ \ \ \ \ Hourly rate of pay: <$client.tForWhomUserInfo.Rate>\n\ \ \ \ \ Start date: <$client.env.eval(client.tForWhomUserInfo.Hire_DT.subString(5,6))>/<$client.env.eval(client.tForWhomUserInfo.Hire_DT.subString(8,9))>/<$client.env.eval(client.tForWhomUserInfo.Hire_DT.subString(0,3))>\n\nYour employment at <$client.tEventCategories_1.Value> is contingent on the following conditions:\n\n\ \ \ \ \ 1. your compliance with all required health screenings and immunizations, including COVID vaccination;\n\ \ \ \ \ 2. by signing and submitting below you further agree that the information contained in your personnel file or related employment files, and any other information relating to your <$client.tForWhomUserInfo.Acquisitions_practice_name> employment, may be disclosed to <$client.tEventCategories_1.Value>;\n\ \ \ \ \ 3. providing proper identification and proof of your legal right to work in the U.S. as required by Federal law; and,\n\n4. successful completion of our background check.\n\nAll employment at <$client.tEventCategories_1.Value> is at-will and for an indefinite period of time. Employees may resign, with or without notice, though resigning without notice may affect benefits and/or rehire status. <$client.tEventCategories_1.Value> may terminate an employee at any time, with or without notice in accordance with applicable laws.\n\nAgain, welcome to <$client.tEventCategories_1.Value>.\n\nSincerely,\n\nMelissa B. Turner\nSr. Vice President-Chief Human Resources Officer";
+    document.getElementById('hidden_pg1').value = letter;
+</SCRIPT>

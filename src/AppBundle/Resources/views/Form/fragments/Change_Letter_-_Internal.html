@@ -1,0 +1,199 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Greeting.prompt>
+        <$client.env.FormField.List_Position.prompt>
+        <$client.env.FormField.List_Report.prompt>
+        <$client.env.FormField.List_Salary.prompt>
+        <$client.env.FormField.Paragraph_effective_date.prompt>
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.Signature_Name.prompt>
+        <$client.env.FormField.Todays_Date.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <header class="row mb-20">
+        <div class="col-lg-3 col-sm-4 col-xs-5 pull-right">
+            <img src="<$link;/main/RedCarpet/FormTemplates/Change_Letter_-_Internal/img/PreciseLogo.png>" alt="Precise Systems Logo" class="img-responsive">
+        </div>
+    </header>
+
+    <div class="row mb-20">
+        <div id="greeting" class="col-lg-6 col-sm-6 col-xs-12">
+            Dear <$client.tForWhomUserInfo.First_Name>,
+        </div>
+        <div id="todays-date" class="col-lg-6 col-sm-6 col-xs-12 text-right"></div>
+    </div>
+    <div class="row mb-20">
+        <div class="col-lg-12">
+            <p id="content-1">
+                It is my pleasure to extend you an offer for a new opportunity with Precise Systems, Inc. ("Precise Systems".) Upon your acceptance, the following changes will go into effect <span class="long-date"><$client.tEventDates_Date_2.Value></span>. 
+            </p>
+            <ul class="mb-10 bullet-list">
+                <li id="position">
+                    You will become <span class="article-content"><$client.tEventCategories_Category_16.Value></span>.
+                </li>
+                <li id="report-to">
+                    You will report to <$client.tEventManagers_Person_1.First_Name>.
+                </li>
+                <li id="salary">
+                    Your salary will be <span class="currency"><$client.tForWhomUserInfo.Pay_Period_Amount></span> per pay period, the equivalent of <span class="currency"><$client.tForWhomUserInfo.Salary_Amount></span> if calculated annually.
+                </li>
+                <li>
+                    Your other benefits will remain unchanged.
+                </li>
+            </ul>
+            <p>
+                This opportunity remains contingent upon government funding, your ability to qualify to work on our customers’ contract and maintaining the requisite DoD security clearances which will allow you to perform the duties for which you are being hired. 
+            </p>
+            <p>
+                We would appreciate the courtesy of your signature below to indicate your acceptance of this employment offer.  Once you have signed below, please return this letter to Julie Lipoff in our Recruiting Department.  You will remain an “at will” employee, which means that either you or Precise Systems is free to terminate your employment at any time, with or without cause and with or without notice.  
+            </p>
+            <p>
+                We look forward to your continued success as a member of the Precise Systems team.  We are certain that you will continue to enjoy a very long and successful career with Precise Systems, and that we will continue to benefit immensely from your service.
+            </p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-3 col-sm-4 col-xs-12">
+            Sincerely,
+            <img src="<$link;/main/RedCarpet/FormTemplates/Change_Letter_-_Internal/img/Christina_Signature.png>" alt="HR Signature" class="img-responsive" id="hr-signature">
+        </div>
+    </div>
+
+    <div class="row mb-20">
+        <div class="col-lg-12">
+            <p>
+                Christina Payne, SHRM-CP, PHR <br>
+                Vice President of Human Resources and Corporate Relations <br>
+                Precise Systems, Inc.
+            </p>
+            <p>
+                <strong>I have read and understand the provisions of this letter and intend to continue with Precise Systems Inc. as proposed.</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-10">
+        <div class="col-lg-7 col-sm-7 col-xs-12 mb-10">
+            <$client.env.FormField.Signature.HTML>
+            <div id="signature-name">
+                Signature: <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            <$client.env.FormField.Date.HTML>
+            Date:
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.Greeting.HTML>
+    <$client.env.FormField.List_Position.HTML>
+    <$client.env.FormField.List_Report.HTML>
+    <$client.env.FormField.List_Salary.HTML>
+    <$client.env.FormField.Paragraph_effective_date.HTML>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.Signature_Name.HTML>
+    <$client.env.FormField.Todays_Date.HTML>
+    <$client.env.FormField.today.HTML>
+    <$client.env.FormField.Full_Name.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Change_Letter_-_Internal/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Change_Letter_-_Internal/js/moment-with-locales.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Change_Letter_-_Internal/js/script_version_1.js>" defer></script>
+<script type="text/javascript">
+const CONFIG_PATH = '<$link;/main/RedCarpet/FormTemplates/Change_Letter_-_Internal/js/config_version_1.json>';
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

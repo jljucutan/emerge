@@ -1,0 +1,246 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+  <div class="row mb-20">
+    <div class="col-sm-3">
+      <img id="header-logo" src="<$link;/main/RedCarpet/FormTemplates/UK_Bonus_EIP_Letter/img/ebay_logo_web.jpg>" alt="ebay logo" class="img-responsive">
+    </div>
+    <div class="col-sm-3 pull-right">
+      <template id="fragment-4">
+        <% if (isEbayClassified) { %>
+        <small> <strong>eBay Classifieds Group</strong> <br class="hidden-xs">
+        2145 Hamilton Avenue <br class="hidden-xs">
+        San Jose, CA 95125</small>
+        <% } else { %>
+        <small> <strong>eBay Inc.</strong> <br class="hidden-xs">
+        2145 Hamilton Avenue <br class="hidden-xs">
+        San Jose, CA 95125</small>
+        <% } %>
+      </template>
+      <div id="incomplete4">
+        <div id="markup4"></div>
+      </div>
+      <div id="complete4" class="col-lg-12"></div>
+    </div>
+  </div>
+  <div class="row mb-20">
+
+
+  <template id="fragment-1">
+    <p><%= Full_Name %><br>
+      <%= Address1 %>&nbsp;<%= Address2 %><br>
+      <%= Zip %>&nbsp;<%= City %></p>
+    <p class="text-right"><%= date %></p>
+    <p>Dear <%= First_Name %>,</p>
+    <% if (!!isEbayClassified) { %>
+    <p><strong>Employee Incentive Plan </strong></p>
+    <% } else { %>
+    <p><strong>eBay Incentive Plan</strong></p>
+    <% } %>
+
+    <p>We are pleased to inform you that you are eligible to participate in the <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>Employee Incentive Plan (EIP)<% } else { %>eBay Inc. Incentive Plan (eIP)<% } %> discretionary bonus scheme, subject always to the terms of the plan as amended from time to time and subject to your signed acceptance of the terms below.</p> 
+    <p>Your overall <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>EIP<% } else { %>eIP<% } %> target bonus is <%= eIP_Target_Pct %>% of "eligible earnings" as determined under the <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>EIP<% } else { %>eIP<% } %> rules and subject to all usual statutory deductions. Entitlement to and payment of any <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>EIP<% } else { %>eIP<% } %> bonus and the amount of any bonus shall always be at the sole and absolute discretion of <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>eBay Classifieds Group<% } else { %>eBay Inc.<% } %> and may be based on <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>eBay Classifieds Group<% } else { %>eBay Inc.<% } %> performance,  your individual performance or any other factors at <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>eBay Classifieds Group<% } else { %>eBay Inc.<% } %> sole discretion. Your participation in the <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>EIP<% } else { %>eIP<% } %> does not mean you are an employee of <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>eBay Classifieds Group<% } else { %>eBay Inc.<% } %> or owed any obligation by eBay Inc. Any award you may receive is not part of your local compensation or an entitlement of your employment.</p>
+    <p>To be eligible for a bonus under the <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>EIP<% } else { %>eIP<% } %>, you must be actively employed by a relevant group company on or before the first business day of the final quarter of the <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>Employee Incentive Plan (EIP)<% } else { %>eBay Inc. Incentive Plan (eIP)<% } %> performance period (currently 1<sup>st</sup> October) and <% if (Location.indexOf('DE')==0) {%>until the end of the relevant performance period<% } %><% if (Location.indexOf('GB')==0) { %>until the date any bonus is due do be paid<% } %>. <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>Employee Incentive Plan (EIP)<% } else { %>eBay Inc. Incentive Plan (eIP)<% } %> bonus is intended to reward active contribution.  Subject to applicable law: earnings received while not actively working may not be treated as "eligible earnings" or the <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>EIP<% } else { %>eIP<% } %> bonus may otherwise be reduced pro rata to reflect any period while you are not actively working.</p>
+    <p>More details of the <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>Employee Incentive Plan (EIP)<% } else { %>eBay Inc. Incentive Plan (eIP)<% } %> for each plan year are available on the eBay Inc. intranet.</p>
+    <p>We are delighted to welcome you to <% if (isEbayClassified) { %>eBay Classifieds Group<% } %><% if (!isEbayClassified) { %>eBay Inc.<% } %> and look forward to you joining our team!</p>
+  </template>
+
+  <template id="fragment-2">
+    <p><strong>Andrew Sullivan<br>Senior Director, Total Rewards & Global Mobility, on behalf of eBay Inc.</strong></p>
+    <p><strong>I accept that my participation in the <% if (Business_Unit == 'eBay Kleinanzeigen GmbH' || Business_Unit == 'Gumtree.Ltd' || Business_Unit == 'mobile.de GmbH' || Business_Unit == 'Motors.co.uk Limited') { %>Employee Incentive Plan (EIP)<% } else { %>eBay Inc. Incentive Plan (eIP)<% } %> and eligibility for any bonus award is subject to the terms above and the relevant plan rules as amended at eBay Inc. sole discretion from time to time.</strong></p>
+  </template>
+
+  <div id="incomplete" class="row">
+    <div class="col-lg-12" id="markup1"></div>
+  </div>
+
+  <div class="row">
+    <div id="complete" class="col-lg-12"></div>
+  </div>
+
+  <div class="row mb-20">
+    <div class="col-lg-3 col-sm-3 col-xs-12">
+      <img src="<$link;/main/RedCarpet/FormTemplates/UK_Bonus_EIP_Letter/Andrew_Signature.png>" alt="Andrew Signature" class="img-responsive">
+    </div>
+  </div>
+
+  <div id="incomplete2" class="row">
+    <div class="col-lg-12" id="markup2"></div>
+  </div>
+
+  <div class="row">
+    <div id="complete2" class="col-lg-12"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-7">
+      Signed:
+      <$client.env.formfield.Signature.HTML>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-xs-12">
+      Date:
+      <$client.env.formfield.Date.HTML>
+    </div>
+  </div>
+
+  <template id="fragment-3">
+    <strong><%= Full_Name %></strong>
+  </template>
+
+  <div id="incomplete3" class="row">
+    <div class="col-lg-12" id="markup3"></div>
+  </div>
+
+  <div class="row">
+    <div id="complete3" class="col-lg-12"></div>
+  </div>
+
+  <hr class="lifesuite__hr">
+  <div class="row" id="formButtons" style="display: none;">
+      <div class="sign-btn-group">
+          <$client.env.FormButtons>
+      </div>
+  </div>
+</main>
+
+<div hidden>
+  <$client.env.FormField.fullname.HTML>
+  <$client.env.FormField.SignatureVerification.HTML>
+  <$client.env.FormField.HeaderLogo.HTML>
+  <$client.env.FormField.hidden_pg0.HTML>
+  <$client.env.FormField.hidden_pg1.HTML>
+  <$client.env.FormField.hidden_pg2.HTML>
+  <$client.env.FormField.hidden_pg3.HTML>
+  <$client.env.FormField.hidden_pg4.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/UK_Bonus_EIP_Letter/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/UK_Bonus_EIP_Letter/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/UK_Bonus_EIP_Letter/js/moment-with-locales.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/UK_Bonus_EIP_Letter/js/script_version_3.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+$( window ).resize(function() { 
+
+document.getElementById('over').style.width=''; 
+
+}); 
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+const data = {
+    date: moment().format('D MMMM, YYYY'),
+    Full_Name: "<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Initial><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>",
+    First_Name: "<$client.tForWhomUserInfo.First_Name>",
+    Middle_Name: "<$client.tForWhomUserInfo.Middle_Name>",
+    Last_Name: "<$client.tForWhomUserInfo.Last_Name>",
+    Address1: "<$client.tForWhomUserInfo.Address1>",
+    Address2: "<$client.tForWhomUserInfo.Address2>",
+    City: "<$client.tForWhomUserInfo.City>",
+    Zip: "<$client.tForWhomUserInfo.Postal_Code>",
+    eIP_Target_Pct: "<$client.tForWhomUserInfo.eIP_Target_Pct>",
+
+    // event vars
+    Business_Unit: '<$client.tEventCategories_Category_12.Code>',
+    Location: '<$client.tEventCategories_Category_11.Code>',
+
+    // other data
+    isEbayClassified: (['eBay Kleinanzeigen GmbH','Gumtree.Ltd','mobile.de GmbH','Motors.co.uk Limited'].indexOf('<$client.tEventCategories_Category_12.Code>') >= 0)
+};
+
+(function() {
+  // update logo based on business unit`
+  if (data.isEbayClassified) {
+    // web output
+    document.getElementById('header-logo').src = "<$link;/main/RedCarpet/FormTemplates/UK_Bonus_EIP_Letter/img/ebay_classifieds_web.jpg>";
+    // print output
+    document.getElementById('HeaderLogo').value = "<$link;/main/RedCarpet/FormTemplates/UK_Bonus_EIP_Letter/img/Ebay_Classifieds_Logo_Print.png>";
+  }
+  else {
+    // web output
+    document.getElementById('header-logo').src = "<$link;/main/RedCarpet/FormTemplates/UK_Bonus_EIP_Letter/img/ebay_logo_web.jpg>";
+    // print output
+    document.getElementById('HeaderLogo').value = "<$link;/main/RedCarpet/FormTemplates/UK_Bonus_EIP_Letter/img/ebay_logo_print_with_text2.png>";
+  }
+})();
+
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

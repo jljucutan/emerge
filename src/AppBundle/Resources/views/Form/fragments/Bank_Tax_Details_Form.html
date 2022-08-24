@@ -1,0 +1,527 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                    </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right sign-button" style="width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','name','modal','over','sv','Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form''>
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+
+
+ 
+<!--////////////INSERT PROMPTS HERE///////////-->
+
+<$client.env.FormField.BANK_ACCOUNT.prompt>
+<$client.env.FormField.iban_number.prompt>
+<$client.env.FormField.PPS_number.prompt>
+<$client.env.FormField.account_fullname.prompt>
+<$client.env.FormField.bank_name.prompt>
+
+<$client.env.FormField.bic_code.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.Date.prompt>
+<$client.env.FormField.Name.prompt>
+<$client.env.FormField.account_type.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<div class="container-fluid"> 
+    <div class="form-group"> 
+
+
+<!--/////////////////////////////////////////////////////////////////////////START HTML CODING HERE//////////////////////////////////////////////////////////////////////////////////////////////-->
+<div id="DefaultFont">
+
+<div class='row'>
+    <div class="col-sm-3"><img src="<$link;/main/RedCarpet/FormTemplates/PayPal_Electronic_Monitoring_Acknowledgement/paypal-logo.png>" width="200" height="100" border="0" /></div>
+    <div class="col-sm-9">&nbsp;</div>
+</div>
+
+<div class='row'>
+<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+<h3>Bank & Tax Details Form</h3> 
+<p style="font-size:14px">Direct deposit is a benefit available to all employees that will allow your payroll funds to be automatically deposited into your checking and/or savings account</p>
+</div>
+<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+</div>
+</div>
+<br>
+ <br>
+<br>
+<div class='row'>
+<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+<p style="width:100%; border-bottom: 1px solid #CCC; line-height:0.1em; margin:10px 0 20px;"><strong style="background:#eeeeee; padding:0 10px 0 0;font-size: 14px;">BANK INFORMATION</strong></p>
+
+<br>
+<div class='row' style="margin-bottom:10px"> 
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><label class="account_label">What is the account type? </label><span class="font-red"> * </span><$client.env.FormField.account_type.HTML></div>
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+</div>
+</div>
+
+<br>
+
+<div class='row'>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><label >Name on Account </label><span class="font-red"> * </span><$client.env.FormField.account_fullname.HTML><br>
+<span class='label-error'> Name on Account is required.</span>
+                        <span class="label-error letter-only-error"> Name on Account must be letters only and not contain special characters. </span>
+</div>
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+</div>
+</div>
+
+<br>
+
+<div class='row'>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><label >Country of Bank Account </label><span class="font-red"> * </span><$client.env.FormField.country_bank_account.HTML><br>
+<span class='label-error'> Country of Bank Account is required.</span>
+</div>
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+</div>
+</div>
+
+<br>
+
+
+<div class='row'>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><label>Bank Name </label><span class="font-red"> * </span>
+<$client.env.FormField.bank_name.HTML><br>
+<span class='label-error'> Bank Name is required.</span>
+                        <span class="label-error alphanumeric-error"> Bank Name must be alphanumeric characters only.</span>
+</div>
+  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+</div>
+</div>
+
+<br>
+
+<div class='row'>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><label>IBAN Number </label><span class="font-red"> * </span><$client.env.FormField.iban_number.HTML><br>
+<span class='label-error' id='IBAN_span'>Country code followed by 2 digits and then up to 35 characters.</span>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+</div>
+</div>
+
+<br>
+
+<div class='row'>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12"><label>SWIFT/BIC Code </label><span class="font-red"> * </span>
+<$client.env.FormField.bic_code.HTML><br>
+<!-- psaludares 06/07/2018 <span class='label-error'>8-11 characters made up of 4 letters then the bank code.</span> -->
+<span class='label-error'>Invalid SWIFT/BIC based on country of bank account</span>
+</div>
+  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+</div>
+</div>
+<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+</div>
+</div>
+</div>
+
+<br style="clear:both">
+ <br><hr class="lifesuite__hr"> 
+<div class='row'>
+    <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText text-right-2" style="white-space: nowrap;"><label>Signature: </label><span class="font-red"> * </span></div>
+    <div class="col-lg-5 col-sm-12 col-xs-12 padding_left"><$client.env.FormField.Signature.html><br style="clear:both">
+<span class='label-error' style='padding:0px;margin-bottom:10px;'>The signature is required.</span>
+</div>
+    <div class="col-lg-1 col-sm-12 col-xs-12 AlignMergeStringText text-right-2"><label>Date:</label></div>
+    <div class="col-lg-4 col-sm-12 col-xs-12 padding_left"><$client.env.FormField.Date.html>
+
+</div>
+
+</div>
+
+<div class='row'>
+    <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText text-right-2"><label>Name:</label></div>
+    <div class="col-lg-5 col-sm-12 col-xs-12 padding_left"><$client.env.FormField.Name.html></div>
+    <div class="col-lg-7 col-sm-12 col-xs-12">&nbsp;</div>
+</div>
+
+
+</div>
+</div>
+</div>     
+</div>
+
+
+
+
+          
+                  <div class="row" id="formButtons" style="display: none;"> 
+                      <div class="lifesuite__clearfix lifesuite__float-right">                
+                              <$client.env.FormButtons> 
+                       </div>              
+                  </div> 
+           </div>  
+      </div>  
+</div>
+<div style="display:none">
+<$client.env.FormField.SignatureVerification.HTML>
+</div>
+</form>
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+</SCRIPT>
+
+<script>
+disableCalButton("signDate");
+</script>
+<script>
+
+$('.toUpperAlphaNum').keyup(function () {
+    //console.log(this.value);
+    var str = $(this).val();
+
+   if (!this.value.match(/^([a-zA-Z0-9]*)$/)) {
+       str = str.replace(/[^[a-zA-Z0-9]/g, '');
+    }
+    this.value = str.toUpperCase();
+});
+
+
+</script>
+
+
+
+<script>
+function validateFormFields(em){
+    var i=0;
+    $(".require").each(function(){
+        var el_val=$(this).val();
+        if(el_val==''){
+            $(this).addClass('input-error');
+            $(this).siblings("span.label-error:first").css("display","block");
+            i++;
+        }else{
+            $(this).removeClass('input-error');
+            $(this).siblings("span.label-error:first").css("display","none");
+        }
+    });
+    $(":input.letter-only").each(function() {
+    var el_val=$(this).val();
+        if(!/^[a-zA-Z ]+$/.test(el_val) && el_val.length > 0){
+        $(this).addClass('input-error');
+        $(this).parent().children("span.letter-only-error:first").css("display","block");
+        }else{
+        $(this).removeClass('input-error');
+        $(this).parent().children("span.letter-only-error:first").css("display","none");
+        }
+    });
+    $(":input.alphanumeric").each(function() {
+    var el_val=$(this).val();
+        if(!/^[a-zA-Z0-9]+$/.test(el_val) && el_val.length > 0){
+        $(this).addClass('input-error');
+        $(this).parent().children("span.alphanumeric-error:first").css("display","block");
+        }else{
+        $(this).removeClass('input-error');
+        $(this).parent().children("span.alphanumeric-error:first").css("display","none");
+        }
+    });
+
+$("input.hasDatepicker").each(function(){
+        var date_regex = /^\d{2}\/\d{2}\/\d{4}$/ ;
+        if ($(this).val() != '' && date_regex.test($(this).val()) == false){
+        $(this).addClass('input-error');
+        i++
+        }
+        else{
+        $(this).removeClass('input-error');
+        }
+    });
+
+    $(".requireDate").each(function(){
+        var el_val=$(this).val();
+        if(el_val==''){
+            $(this).addClass('input-error');
+            $(this).parent().parent().parent().parent().siblings('span.label-error:first').css("display","block");
+            i++;
+        }else{
+            $(this).removeClass('input-error');
+            $(this).parent().parent().parent().parent().siblings('span.label-error:first').css("display","none");
+        }
+    });
+
+var el_val=$("#signature").val();
+if(el_val.length == 0){
+$("#signature").addClass('input-error');
+$("#signature").siblings("span.label-error:first").css("display","block");
+i++;
+}else{
+$("#signature").removeClass('input-error');
+$("#signature").siblings("span.label-error:first").css("display","none");
+}
+
+if(! $('.account_type').is(':checked')) { 
+$('label.account_label').css("color","#FF4D4D");
+i++;
+}
+else{
+$('label.account_label').css("color","#212121");
+}
+
+var country_val = $('select#countryDropdown option:selected').val();
+if(country_val.length!=0){
+if(IBAN_format[country_val].test($('input#IBANNumber').val()) == false){
+    $('input#IBANNumber').addClass('input-error');
+//$('#IBAN_span').text(IBAN_errormessage[country_val]); //psaludares 06/07/2018
+$('#IBAN_span').text('Invalid IBAN based on country of bank account');
+    $('input#IBANNumber').siblings("span.label-error:first").css("display","block");
+    i++;
+    }
+}
+
+var BIC_regex = /^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/ ;
+    if (BIC_regex.test($('input#BICNumber').val()) == false) {
+    $('input#BICNumber').addClass('input-error');
+    $('input#BICNumber').siblings("span.label-error:first").css("display","block");
+    i++;
+    }
+
+    console.log(i);
+if(i != 0){
+//$('.error-tab').addClass('show');
+$('body').scrollTop(0);
+}
+else{
+  if(em.id == 'ButtonPrint'){
+     funcPrint();
+   }
+   else if(em.id == 'ButtonSaveAndComplete'){
+     funcSaveAndComplete();
+   }
+   else if(em.id == 'ButtonSave'){
+     funcSave();
+   }
+   else{
+     return false;
+  }
+}
+}
+
+
+
+$(":input.require").on("blur", function() {
+var el_val=$(this).val();
+if(el_val.length == 0){
+$(this).addClass('input-error');
+$(this).siblings("span.label-error:first").css("display","block");
+}else{
+$(this).removeClass('input-error');
+$(this).siblings("span.label-error:first").css("display","none");
+}
+});
+$(":input.letter-only").on("blur", function() {
+var el_val=$(this).val();
+    if(!/^[a-zA-Z ]+$/.test(el_val) && el_val.length > 0){
+    $(this).addClass('input-error');
+    $(this).parent().children("span.letter-only-error:first").css("display","block");
+    }else{
+    $(this).removeClass('input-error');
+    $(this).parent().children("span.letter-only-error:first").css("display","none");
+    }
+});
+$(":input.alphanumeric").on("blur", function() {
+var el_val=$(this).val();
+    if(!/^[a-zA-Z0-9]+$/.test(el_val) && el_val.length > 0){
+    $(this).addClass('input-error');
+    $(this).parent().children("span.alphanumeric-error:first").css("display","block");
+    }else{
+    $(this).removeClass('input-error');
+    $(this).parent().children("span.alphanumeric-error:first").css("display","none");
+    }
+});
+
+$("select#countryDropdown").on("change", function() {
+var country_val=$(this).val();
+if(country_val.length == 0){
+$(this).addClass('input-error');
+$(this).siblings("span.label-error:first").css("display","block");
+}else{
+$(this).removeClass('input-error');
+$(this).siblings("span.label-error:first").css("display","none");
+var iban_val = $('input#IBANNumber').val();
+if(iban_val.length != 0 && country_val.length !=0){
+    if(IBAN_format[country_val].test(iban_val) == false){
+        $('input#IBANNumber').addClass('input-error');
+//$('#IBAN_span').text(IBAN_errormessage[country_val]); //psaludares 06/07/2018
+$('#IBAN_span').text('Invalid IBAN based on country of bank account');
+        $('input#IBANNumber').siblings("span.label-error:first").css("display","block");
+    }
+    else{
+        $('input#IBANNumber').removeClass('input-error');
+        $('input#IBANNumber').siblings("span.label-error:first").css("display","none");
+    }
+}
+}
+});
+
+
+$('input#IBANNumber').on("blur", function() {
+var country_val = $('select#countryDropdown option:selected').val();
+if(country_val.length != 0){
+if(IBAN_format[country_val].test($(this).val()) == false){
+$(this).addClass('input-error');
+//$('#IBAN_span').text(IBAN_errormessage[country_val]); //psaludares 06/07/2018
+$('#IBAN_span').text('Invalid IBAN based on country of bank account');
+$(this).siblings("span.label-error:first").css("display","block");
+}
+else{
+$(this).removeClass('input-error');
+$(this).siblings("span.label-error:first").css("display","none");
+}
+}
+});
+
+
+
+$('input#BICNumber').on("blur", function() {
+var IBAN_regex = /^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$/ ;
+if(IBAN_regex.test($(this).val()) == false){
+$(this).addClass('input-error');
+$(this).siblings("span.label-error:first").css("display","block");
+}
+else{
+$(this).removeClass('input-error');
+$(this).siblings("span.label-error:first").css("display","none");
+}
+});
+
+
+$(".lifesuite__button").on("click", function() {
+var el_val=$("#signature").val();
+if(el_val.length == 0){
+$("#signature").addClass('input-error');
+$("#signature").siblings("span.label-error:first").css("display","block");
+//$('.signDate').addClass('input-error');
+//$('.signDate').parent().parent().parent().parent().siblings('span.label-error:first').css("display","block");
+}else{
+$("#signature").removeClass('input-error');
+$("#signature").siblings("span.label-error:first").css("display","none");
+//$('.signDate').removeClass('input-error');
+//$('.signDate').parent().parent().parent().parent().siblings('span.label-error:first').css("display","none");
+}
+});
+
+
+$('input.account_type').change(function() {
+if ($(this).prop('checked')){
+$('label.account_label').css("color","#212121");
+}
+else{
+$('label.account_label').css("color","#FF4D4D");
+}
+});
+
+
+$('#buttonPrint').removeAttr('onclick');
+$('#buttonPrint').attr('onclick', 'validateFormFields(this)');
+
+$('#buttonSaveAndComplete').removeAttr('onclick');
+$('#buttonSaveAndComplete').attr('onclick', 'validateFormFields(this)');
+
+var myVar2 = setInterval(function(){ 
+if(document.getElementById('modal').style.display=='block') {
+document.getElementById('ButtonSaveAndComplete').focus()
+document.getElementById('eSignature1').focus()
+clearInterval(myVar2) 
+}}, 500);
+
+</script>

@@ -1,0 +1,407 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <p class="mb-1"><strong>Electronic Signature</strong></p>
+    <p>
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <div class="row">
+      <div class="col-lg-12">
+        <strong>Type your Name:</strong>
+        <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'DateSigned');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.DateSigned.prompt>
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a01_Financials.prompt>
+        <$client.env.FormField.a02_Financials.prompt>
+        <$client.env.FormField.a03_Financials.prompt>
+        <$client.env.FormField.a04_Financials.prompt>
+        <$client.env.FormField.a05_Financials.prompt>
+        <$client.env.FormField.b01_Misc.prompt>
+        <$client.env.FormField.b02_Misc.prompt>
+        <$client.env.FormField.b03_Misc.prompt>
+        <$client.env.FormField.b04_Misc.prompt>
+        <$client.env.FormField.b05_Misc.prompt>
+        <$client.env.FormField.b06_Misc.prompt>
+        <$client.env.FormField.b07_Misc.prompt>
+        <$client.env.FormField.b08_Misc.prompt>
+        <$client.env.FormField.b09_Misc.prompt>
+        <$client.env.FormField.b10_Misc.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<header class="position-relative py-3">
+    <div class="bg-orange py-2 px-4">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-7 col-sm-11">
+            <p class="heading-title border-bottom border-dark text-white">Salaried Personnel Last Day Checklist</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="position-absolute top-0 end-0 me-5" src="<$link;/main/RedCarpet/FormTemplates/Last_Day_Checklist/img/file-logo.png>" alt="File icon" style="max-width: 130px;">
+</header>
+<div class="px-4 py-2">
+  <main class="container-fluid">
+    <p>The following is a reminder of the items to be returned or completed with the employee on their last day.</p>
+
+    <div class="row border-top border-bottom border-dark border-2 d-none d-sm-flex">
+      <div class="col-sm-6 py-1 text-center">
+        <strong class="text-orange">Financials</strong>
+      </div>
+      <div class="col-sm-6 py-1 text-center">
+        <strong class="text-orange">WT Contact</strong>
+      </div>
+    </div>
+    <div class="row border-bottom border-dark border-2 d-sm-none">&nbsp;</div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Financials</strong>
+        </div>
+        <$client.env.FormField.a01_Financials.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Kevin Askine (75745) or Brian Rosser (410-337-5770)
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Financials</strong>
+        </div>
+        <$client.env.FormField.a02_Financials.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Kevin Askine (75745) or Brian Rosser (410-337-5770)
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Financials</strong>
+        </div>
+        <$client.env.FormField.a03_Financials.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Dan St. John (72185)
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Financials</strong>
+        </div>
+        <$client.env.FormField.a04_Financials.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Kevin Askine (75745) or Brian Rosser (410-337-5770)
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark mb-5">
+      <div class="col-sm-6 pt-1 pe-2">
+        <div class="d-sm-none">
+          <strong class="text-orange">Financials</strong>
+        </div>
+        <$client.env.FormField.a05_Financials.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Contact Employee Support for sample notice
+      </div>
+    </div>
+
+    <div class="row border-top border-bottom border-dark border-2 d-none d-sm-flex">
+      <div class="col-sm-6 py-1 text-center">
+        <strong class="text-orange">Miscellaneous</strong>
+      </div>
+      <div class="col-sm-6 py-1 text-center">
+        <strong class="text-orange">WT Contact</strong>
+      </div>
+    </div>
+    <div class="row border-bottom border-dark border-2 d-sm-none">&nbsp;</div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Miscellaneous</strong>
+        </div>
+        <$client.env.FormField.b01_Misc.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        N/A
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Miscellaneous</strong>
+        </div>
+        <$client.env.FormField.b02_Misc.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        N/A
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Miscellaneous</strong>
+        </div>
+        <$client.env.FormField.b03_Misc.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Dee Dewire (72266) or Cliff Rogers (74844)
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Miscellaneous</strong>
+        </div>
+        <$client.env.FormField.b04_Misc.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Return to I.T. Helpdesk (78100)
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Miscellaneous</strong>
+        </div>
+        <$client.env.FormField.b05_Misc.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        I.T. Helpdesk (78100)
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Miscellaneous</strong>
+        </div>
+        <$client.env.FormField.b06_Misc.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Employee Support (Towson Only)
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Miscellaneous</strong>
+        </div>
+        <$client.env.FormField.b07_Misc.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Employee Support (Towson Only)
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Miscellaneous</strong>
+        </div>
+        <$client.env.FormField.b08_Misc.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Hella Metzler (75814) or Jeff Bass (74503)
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Miscellaneous</strong>
+        </div>
+        <$client.env.FormField.b09_Misc.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Owner representation
+      </div>
+    </div>
+
+    <div class="row border-bottom border-dark mb-5">
+      <div class="col-sm-6 pt-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">Miscellaneous</strong>
+        </div>
+        <$client.env.FormField.b10_Misc.HTML>
+      </div>
+      <div class="col-sm-6 py-1">
+        <div class="d-sm-none">
+          <strong class="text-orange">WT Contact</strong>
+        </div>
+        Owner representation
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="d-sm-flex align-items-center">
+          <div class="pe-2">
+            VP Signature:
+          </div>
+          <div class="flex-grow-1 pe-2">
+            <$client.env.FormField.Signature.HTML>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="d-sm-flex align-items-center">
+          <div class="pe-2">
+            Date:
+          </div>
+          <div class="flex-grow-1">
+            <$client.env.FormField.DateSigned.HTML>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+  </main>
+</div>
+
+<div hidden>
+    <$client.env.FormField.FullName.HTML>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Last_Day_Checklist/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

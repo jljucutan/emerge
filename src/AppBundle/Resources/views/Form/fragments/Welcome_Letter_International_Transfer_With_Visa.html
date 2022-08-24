@@ -1,0 +1,276 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Green_Card_Renewal_Month.prompt>
+        <$client.env.FormField.Green_Card_Renewal_Year.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row mb-30">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-sm-12">
+            <img src="<$link;/main/RedCarpet/FormTemplates/Welcome_Letter_International_Transfer_With_Visa/img/santander_logo.jpg>" alt="Santander Logo" class="img-responsive">
+        </div>
+    </div>
+    <template id="fragment-1">
+        <p class="hide">&nbsp;</p>
+        <p>Hello <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>,</p>
+        <p>Congratulations on your offer to join us at U.S. <$client.tForWhomUserInfo.Entity_Employee_Description>. We are delighted that you will be working with us.</p>
+        <p>Below you will find the details of your one-time benefits per your offer.</p>
+        <p>
+            <strong><u>Visa Assistance</u></strong>
+        </p>
+        <p>Kramer Levin &amp; Naftalis is Santander’s appointed immigration firm.   The team will assist you to obtain the appropriate visa. Kramer Levin will be granting you access to “Immigration Tracker,” their case management solution technology. Kramer Levin will provide you a link to activate your account, and within the system you will complete the questionnaire and upload the required documents.</p>
+        <p>In regards to the Questionnaire, please do not complete pg. 5 “Current Employer Information” or pg. 7 “Proposed Work in the U.S.” as the immigration attorney already has this information. You will be required to provide the biographic (picture) page of your passport. Please ensure you have at least one year before your passport expires.</p>
+        <p>From the time you submit the required documents, the entire process can take at least 4-6 weeks. Please do not give notice to your current employer until you have the approval from the immigration attorney to do so.</p>
+        <p>Your start date with Santander will be subject to you obtaining the USA employment visa. Our immigration attorney will provide you with specific paperwork that you must take to the embassy appointment. We will send instructions on scheduling your embassy appointment in a separate email, once we have determined the correct employment visa for you.</p>
+        <p>If you have any upcoming travel plans abroad, please notify our team as there may be U.S. visa implications.</p>
+        <p>
+            <strong><u>Incorporation Travel</u></strong>
+        </p>
+        <p>The Recruiting Coordinator will schedule your initial flight to the U.S. upon your receipt of the visa approval. Before they may begin this process, we must ensure you have valid U.S. work authorization and that accompanying family member(s) have the required dependent visa(s). In addition, the R.C. will need a clear, scanned passport biographic (photo) page of you and all accompanying dependent family members.</p>
+        <p>All flights supported by Santander while an employee of <$client.tForWhomUserInfo.Entity_Employee_Description> must be booked through the designated travel company.</p>
+        <p>If your dependents are not joining you in the U.S. right away, please be sure when it is time for them to fly over, you reach out to  either the Mobility team or your Recruiting Coordinator to ensure that this is booked with our internal travel company.</p>
+        <% if (Shipping_Of_Household_Goods.length>0) { %>
+        <p>
+            <strong><u>Shipping of Household goods- OPTION </u></strong>
+        </p>
+        <p>Per your offer letter, you have the option of selecting a cash amount of either $<%= Shipping_Of_Household_Goods %> gross (USD, subject to applicable U.S. taxes and other withholdings), or we will arrange for Santander’s preferred shipping agent to move your household furniture in accordance with Santander’s shipping policy guidelines .  Please let me know which option you will be selecting by replying to this email.</p>
+        <% } %>
+        <% if (!!Has_Lump_Sum) { %>
+        <p>
+            <strong><u>Shipping of Household goods- lump sum</u></strong>
+        </p>
+        <p>Per your offer letter, you will receive $<$client.tForWhomUserInfo.Lump_Sum_Text> gross USD (subject to applicable U.S. taxes and other withholdings).  Please expect to receive this in your first pay check or within 30 days of hire.</p>
+        <% } %>
+        <% if (!!Temporary_Housing) { %>
+        <p>
+            <strong><u>Temporary Housing</u></strong>
+        </p>
+        <p><strong>AIReS Relocation</strong> Santander’s appointed external relocation vendor will assist you in booking the temporary accommodation as needed for <% if (officeDestination == 'Boston') { %>32<% } else { %>30<% } %> days. AIReS will strive to find accommodations as close to your work location as possible for your utmost convenience, pending availability.</p>
+        <% } %>
+        <% if (!!Renters_Assistance) { %>
+        <p>
+            <strong><u>Renter’s Assistance</u></strong>
+        </p>
+        <p>Per your offer letter, if there is a broker or realtor fee associated with your long term rental accommodation, you will be eligible to be reimbursed (per program guidelines). Please speak to your AIReS contact about this for more Information.</p>
+        <p>We strongly recommend that you use the AIRes Destination Services Provider (DSP) for finding your long term accommodation as they are trusted experts who can assist with other services as well, ie. lease review and assisting with applying for your U.S. drivers license.</p>
+        <p>If you choose to engage your own broker, you will need to pay the broker directly and then claim up to <% if (officeDestination == 'New York') { %>two months’<% } else { %>one month’s<% } %> rental on evidence of an invoice and a copy of the signed rental agreement with Mobility.</p>
+        <p>No broker’s fees are paid by Santander if you purchase a home.</p>
+        <% } %>
+        <% if (!!Two_Day_Home_Search) { %>
+        <p>
+            <strong><u>Two Day Home Search</u></strong>
+        </p>
+        <p>You are entitled to a 2 day home search though AIReS Relocation.</p>
+        <p>AIReS will introduce you to a local Destination Services Provider (DSP) in your new location. As is customary in the United States, the DSP will assign a Real Estate Agent (also known as a letting agent) whose primary role is to assist you with sourcing, viewing and securing a residence. The agent will be able to show you ALL available listings in the area. In the U.S., the agent has access to the Multiple Listing Service (MLS) which contains all available rental listings in your particular area regardless of what agency/broker/agent has the property listed, so you will not be assigned to or need to contact multiple agents.</p>
+        <p>Note that it is customary in the U.S. when signing a lease for a commission or “realtor fee” to be paid to the DSP/agent for their assistance;  in addition  a security deposit, and often times first and last month’s rent to the landlord will be due at this time as well. This commission is customary in many locations in the U.S. but does vary by location. Your DSP/agent will be familiar with the customs in your destination location as will discuss this fee with you. Be advised that Santander does not assist with either expense; you will be financially responsible to pay these expenses during the lease signing.</p>
+        <p>The DSP will also provide you with information relating to obtaining your State Driver’s License:  </p>
+        <ul>
+            <li>How to access the state’s Department of Motor Vehicles (DMV) website, which contains all required information relating to obtaining the driver’s license. The DSP will advise you on the timeframes necessary to obtain a driver’s license based on the state where you will be living, and when your lease commences.</li>
+            <li>In the event that you did not utilize the full 2 day home search time and have additional time remaining, the DSP may accompany you to the DMV office. Alternatively, you will be responsible for obtaining your driver’s license timely to ensure compliance with state regulations. </li>
+        </ul>
+        <% } %>
+        <% if (!!Has_Transition_Allowance) { %>
+        <p>
+            <strong><u>Transition Allowance</u></strong>
+        </p>
+        <p>We will ensure that the agreed transition allowance in your offer letter is paid to you through payroll within 30 days of starting with U.S. <$client.tForWhomUserInfo.Entity_Employee_Description>.</p>
+        <% } %>
+        <p>
+            <strong><u>Tax Assistance</u></strong>
+        </p>
+        <p>Per your offer letter, you are entitled up to one year of tax return preparation assistance with Santander’s external tax provider. We will initiate Santander’s external tax provider and they will then reach out to you within 30 days of sending this letter. If you need to speak to them prior to your arrival, please let us know and we will provide you with their contact details.</p>
+        <% if (!!Has_Green_Card_Citizenship) { %>
+        <p>We note that you hold a U.S. permanent residence <$client.tForWhomUserInfo.Green_Card_Citizenship> status.  If you have resided outside the U.S. for a number of years, before entering the U.S., please be sure that you have checked with your tax accountant for any IRS filing obligations that you have if you have not filed tax returns during your period outside the USA”.</p>
+        <% } %>
+        <% if (!!Contractor) { %>
+        <p>Any U.S. taxes you incurred while on assignment in 2020 due in 2021 is your own responsibility and not Santander’s. Please be sure that you have checked with your tax accountant for any IRS filing obligations that you have “.</p>
+        <% } %>
+        <% if (!!Is_Accompanying_Children) { %>
+        <p>
+            <strong>
+                <u>School Search Assistance</u>
+            </strong>
+        </p>
+        <p>In the event you find it necessary, Santander will provide you with the services of a company specializing in School Search in (<$client.tEventCategories_Category_21.Value>). This benefit needs to be claimed within 12 months of your start date with Santander. Your Relocation agent will speak to you about this.</p>
+        <% } %>
+        <p>
+            <strong><u>Social Security Number (SSN)</u></strong>
+        </p>
+        <p>If you do not already have a U.S. SSN, you will need to apply for SSN 10 days after you arrive in <$client.tForWhomUserInfo.Mobility_Destination_Description>. Upon your arrival, we will send you more details on what is needed to obtain your SSN timely, as this is a critical requirement for U.S. employment.</p>
+        <p>
+            <strong><u>U.S. Bank Account</u></strong>
+        </p>
+        <p>To open a Santander Checking account, please visit <strong><a class="text-decoration-none" href="https://www.santanderbank.com/us/accountsetup" target="_blank">https://www.santanderbank.com/us/accountsetup</a></strong>. To open an account without yet having a Social Security number, you will need to provide with you, your valid visa and passport and another form of ID, i.e. a foreign credit card.</p>
+        <p>
+            <strong><u>Expense Management Assistance</u></strong>
+        </p>
+        <p>Mobility partners with a 3<sup>rd</sup> party expense management provider, Ineo, to assist new international hires with visa reimbursements due, to ensure that they are correctly coded for tax purposes.  Once you have a Santander e-mail address, (which you will receive on your start date), we will have someone from Ineo, reach out to you.  They will provide you with a secure link for you to provide your contact details and bank account information for any sponsored visa reimbursements due.  Reimbursements are paid directly to your chosen Bank account.</p>
+        <p>
+            <strong><u>Relocation Guide</u></strong>
+        </p>
+        <p>We hope you find the relocation guide to <$client.tEventCategories_Category_21.Value> helpful as you embark on this new journey and learn all there is to know about your new home. This guide covers everything from housing, schools, where to eat and where to find a doctor. We hope you find it useful.</p>
+        <% if (['2', '3', '1', '6', '5'].indexOf('<$client.tForWhomUserInfo.Entity_Employee>') >= 0) { %>
+        <p>As you navigate Santander’s various technical websites/processes, I wanted to share with you that every employee has 2 distinct identification numbers.</p>
+        <p>The <strong>Payroll</strong> and <strong>Employee</strong> numbers is a <em><strong>6 digit number</strong></em> that is associated with your Human Resources database and Payroll records. This number is highly confidential and should not be shared with others. Your Employee and Payroll numbers are associated with the highest level of personal information.</p>
+        <p>Your <strong>Technology</strong> identification number begins with “<strong>N</strong>” followed by <strong>5 digits</strong>. This is the number that you would provide to Tech Support for services with any computer, telephone questions/tickets. The “N” has limited employee personal information associated with it.</p>
+        <p>Another item will you be dealing with is the various Passwords that are associated with various systems. Regarding your computer there are 2 passwords required. One for MacAfee and the other for Microsoft Windows. Try to keep them the same if you can. They tend to expire around the same time.</p>
+        <p>For ADP our work time recordkeeping on-line tool, you will use your Payroll/Employee number and have another separate password because this is an external payroll provider website (ADP is the vendor name).</p>
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.Entity_Employee>' == '4') { %>
+        <p>As you navigate Santander’s various technical websites/processes, I wanted to share with you that every employee has 2 distinct identification numbers.</p>
+        <p>The <strong>Employee</strong> number is a <em><strong>6 digit number</strong></em> that is associated with your Human Resources database and Payroll records. This number is highly confidential and should not be shared with others. Your Employee number is associated with the highest level of personal information.</p>
+        <p>Your <strong>Technology</strong> identification number begins with “<strong>N</strong>” followed by <strong>5 digits</strong>. This is the number that you would provide to Tech Support for services with any computer, telephone questions/tickets. The “N” has limited employee personal information associated with it. </p>
+        <p class="mb-40">Another item you will be dealing with is the various Passwords that are associated with various systems. Regarding your computer there are 2 passwords required. One for MacAfee and the other for Microsoft Windows. Try to keep them the same if you can. They tend to expire around the same time. </p>
+        <% } %>
+        <p class="hide">&nbsp;</p>
+        <p>Please let me know if you have any questions, and we look forward to working with you!</p>
+        <p>Kind Regards,</p>
+        <p>The U.S. Mobility Team</p>
+    </template>
+
+    <div class="row">
+        <div id="complete" class="col-lg-12"></div>
+    </div>
+
+    <div id="incomplete">
+        <div id="markup"></div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.Green_Card_Renewal.HTML>
+    <$client.env.FormField.Green_Card_Renewal_Month.HTML>
+    <$client.env.FormField.Green_Card_Renewal_Year.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Welcome_Letter_International_Transfer_With_Visa/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Welcome_Letter_International_Transfer_With_Visa/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Welcome_Letter_International_Transfer_With_Visa/js/script_version_1.js>" defer></script>
+<script>
+    showScreen('over');
+    ChangeCalendarIcons(); //for popup calendar
+    const IS_MOBILITY = <$client.env.eval((client.tEventManagers_Person_9.UserGuid==account.userguid)?'true':'false')>;
+    const GREEN_CARD_RENEWAL = "<$client.tForWhomUserInfo.Green_Card_Renewal>";
+    const thisForm = document.querySelector('[name="frmForm"]');
+    const CURRENT_DATE = new Date();
+       
+    let greedCardReadonly = true;
+    if (!!IS_MOBILITY && GREEN_CARD_RENEWAL == 'yes') {
+        greedCardReadonly = false;
+    }
+    const data = {
+        'Visa_Type': '<$client.tForWhomUserInfo.Visa_Type>',
+        'Shipping_Of_Household_Goods': '<$client.tForWhomUserInfo.Shipping_Of_Household_Goods>',
+        'Green_Card_Citizenship': '<$client.tForWhomUserInfo.Green_Card_Citizenship>',
+        'Temporary_Housing': ('<$client.tForWhomUserInfo.Temporary_Housing>'=='1'), // Temporary_Housing is checked
+        'Renters_Assistance': ('<$client.tForWhomUserInfo.Renters_Assistance>'=='1'), // Renters_Assistance is checked
+        'Two_Day_Home_Search': ('<$client.tForWhomUserInfo.Two_Day_Home_Search>'=='1'), // Two_Day_Home_Search is checked
+        'Tax_Assistance': ('<$client.tForWhomUserInfo.Tax_Assistance>'=='1'), // Tax_Assistance is checked
+        'Contractor': ('<$client.tForWhomUserInfo.Contractor>'=='Yes'), // Contractor is selected
+        'Is_Accompanying_Children': ('<$client.tForWhomUserInfo.Accompanying_Children>' == 'Yes'), // Is accompanying children in elementary through high school (to qualify for school search assistance benefit)  
+        'Has_Lump_Sum': '<$client.tForWhomUserInfo.Lump_Sum_Text>'.length, // Lump_Sum filled
+        'Has_Green_Card_Citizenship': ('<$client.tForWhomUserInfo.Green_Card_Citizenship>'.length > 0) && ('<$client.tForWhomUserInfo.Green_Card_Citizenship>'!='None'), // Green_Card_Citizenship selected
+        'Has_Transition_Allowance': '<$client.tForWhomUserInfo.Transition_Allowance>'.length, // Transition_Allowance filled
+        'RECRUITING_COORDINATOR_NAME': '<$client.tEventManagers_Person_10.First_Name>',
+        'Approx_Cost': 0,
+        'TIMING': '',
+        'Green_Card_Renewal': GREEN_CARD_RENEWAL,
+        'Green_Card_Renewal_Month': '<$client.env.FormField.Green_Card_Renewal_Month.Value>',
+        'Green_Card_Renewal_Year': '<$client.env.FormField.Green_Card_Renewal_Year.Value>',
+        'readonly': greedCardReadonly, // editable only for mobility team
+        'previousYear': CURRENT_DATE.getFullYear() - 1,
+        'currentYear': CURRENT_DATE.getFullYear(),
+        'officeDestination': '<$client.tEventCategories_Category_21.Code>'
+    }
+    /* RESPONSIVE eFORM BUTTONS STYLE */
+    $(document).on('ready', function() {
+        $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+        $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonSaveAndComplete',  onclick: null});
+        $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop({id:'ButtonPrint', onclick: null});
+        $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+        $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+        $('#formButtons').show();
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    });
+
+    const disableCalButton = function(el) {
+        "use strict";
+        el.parent().find('input').prop('disabled', 'disabled');
+    }
+
+    $(window).on('load', function() {
+        setTimeout(function() {
+            $(".modal").hide();
+        }, 1000);
+    });
+    angular.element(window).on('load', function() {
+        setTimeout(function() {
+            angular.element('#divLoader').hide();
+        }, 800);
+    });
+</script>

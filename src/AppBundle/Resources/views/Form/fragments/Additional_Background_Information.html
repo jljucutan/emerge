@@ -1,0 +1,1414 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal1" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature1','eSignature1','','modal1','over','sv1');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature1').value='';showHide('modal1');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal1');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'>
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+ 
+        <$client.env.FormField.A001_First_Name.prompt>
+        <$client.env.FormField.A002_Middle_Name.prompt>
+        <$client.env.FormField.A003_Last_Name.prompt>
+        <$client.env.FormField.A004_Home_Phone_Number.prompt>
+        <$client.env.FormField.A005_Mobile_Number.prompt>
+        <$client.env.FormField.A006_Date_of_Birth.prompt>
+        <$client.env.FormField.A007_SSN.prompt>
+        <$client.env.FormField.A008_Alias.prompt>
+        <$client.env.FormField.A009_Alias_First_Name.prompt>
+        <$client.env.FormField.A010_Alias_Middle_Name.prompt>
+        <$client.env.FormField.A011_Alias_Last_Name.prompt>
+        <$client.env.FormField.A012_Emergency_Contact_First_Name.prompt>
+        <$client.env.FormField.A013_Emergency_Contact_Last_Name.prompt>
+        <$client.env.FormField.A014_Emergency_Contact_Relationship.prompt>
+        <$client.env.FormField.A015_Emergency_Contact_Personal_Email.prompt>
+        <$client.env.FormField.A016_Emergency_Contact_Mobile_Phone_Number.prompt>
+        <$client.env.FormField.A017_Emergency_Contact_Home_Phone_Number.prompt>
+        <$client.env.FormField.B001_Degree_Attained1.prompt>
+        <$client.env.FormField.B001_Degree_Attained2.prompt>
+        <$client.env.FormField.B001_Degree_Attained3.prompt>
+        <$client.env.FormField.B002_Institute_Name1.prompt>
+        <$client.env.FormField.B002_Institute_Name2.prompt>
+        <$client.env.FormField.B002_Institute_Name3.prompt>
+        <$client.env.FormField.B003_Address1.prompt>
+        <$client.env.FormField.B003_Address2.prompt>
+        <$client.env.FormField.B003_Address3.prompt>
+        <$client.env.FormField.B003_Major1.prompt>
+        <$client.env.FormField.B003_Major2.prompt>
+        <$client.env.FormField.B003_Major3.prompt>
+        <$client.env.FormField.B004_Start_Date1.prompt>
+        <$client.env.FormField.B004_Start_Date2.prompt>
+        <$client.env.FormField.B004_Start_Date3.prompt>
+        <$client.env.FormField.B004_Till_Date1.prompt>
+        <$client.env.FormField.B004_Till_Date2.prompt>
+        <$client.env.FormField.B004_Till_Date3.prompt>
+        <$client.env.FormField.B005_Name_Enrolled1.prompt>
+        <$client.env.FormField.B005_Name_Enrolled2.prompt>
+        <$client.env.FormField.B005_Name_Enrolled3.prompt>
+        <$client.env.FormField.B006_Graduation_Date1.prompt>
+        <$client.env.FormField.B006_Graduation_Date2.prompt>
+        <$client.env.FormField.B006_Graduation_Date3.prompt>
+        <$client.env.FormField.B007_Grade_Point_Average1.prompt>
+        <$client.env.FormField.B007_Grade_Point_Average2.prompt>
+        <$client.env.FormField.B007_Grade_Point_Average3.prompt>
+        <$client.env.FormField.C001_Employer_Name1.prompt>
+        <$client.env.FormField.C001_Employer_Name2.prompt>
+        <$client.env.FormField.C001_Employer_Name3.prompt>
+        <$client.env.FormField.C001_Employer_Name4.prompt>
+        <$client.env.FormField.C001_Employer_Name5.prompt>
+        <$client.env.FormField.C001_Employer_Name6.prompt>
+        <$client.env.FormField.C001_Employer_Name7.prompt>
+        <$client.env.FormField.C002_Job_Title1.prompt>
+        <$client.env.FormField.C002_Job_Title2.prompt>
+        <$client.env.FormField.C002_Job_Title3.prompt>
+        <$client.env.FormField.C002_Job_Title4.prompt>
+        <$client.env.FormField.C002_Job_Title5.prompt>
+        <$client.env.FormField.C002_Job_Title6.prompt>
+        <$client.env.FormField.C002_Job_Title7.prompt>
+        <$client.env.FormField.C003_End_Client1.prompt>
+        <$client.env.FormField.C003_End_Client2.prompt>
+        <$client.env.FormField.C003_End_Client3.prompt>
+        <$client.env.FormField.C003_End_Client4.prompt>
+        <$client.env.FormField.C003_End_Client5.prompt>
+        <$client.env.FormField.C003_End_Client6.prompt>
+        <$client.env.FormField.C003_End_Client7.prompt>
+        <$client.env.FormField.C004_Physical_Work_Address1.prompt>
+        <$client.env.FormField.C004_Physical_Work_Address2.prompt>
+        <$client.env.FormField.C004_Physical_Work_Address3.prompt>
+        <$client.env.FormField.C004_Physical_Work_Address4.prompt>
+        <$client.env.FormField.C004_Physical_Work_Address5.prompt>
+        <$client.env.FormField.C004_Physical_Work_Address6.prompt>
+        <$client.env.FormField.C004_Physical_Work_Address7.prompt>
+        <$client.env.FormField.C005_Manager_Name1.prompt>
+        <$client.env.FormField.C005_Manager_Name2.prompt>
+        <$client.env.FormField.C005_Manager_Name3.prompt>
+        <$client.env.FormField.C005_Manager_Name4.prompt>
+        <$client.env.FormField.C005_Manager_Name5.prompt>
+        <$client.env.FormField.C005_Manager_Name6.prompt>
+        <$client.env.FormField.C005_Manager_Name7.prompt>
+        <$client.env.FormField.C006_Manager_Phone_Number1.prompt>
+        <$client.env.FormField.C006_Manager_Phone_Number2.prompt>
+        <$client.env.FormField.C006_Manager_Phone_Number3.prompt>
+        <$client.env.FormField.C006_Manager_Phone_Number4.prompt>
+        <$client.env.FormField.C006_Manager_Phone_Number5.prompt>
+        <$client.env.FormField.C006_Manager_Phone_Number6.prompt>
+        <$client.env.FormField.C006_Manager_Phone_Number7.prompt>
+        <$client.env.FormField.C007_Employment_Start_Date1.prompt>
+        <$client.env.FormField.C007_Employment_Start_Date2.prompt>
+        <$client.env.FormField.C007_Employment_Start_Date3.prompt>
+        <$client.env.FormField.C007_Employment_Start_Date4.prompt>
+        <$client.env.FormField.C007_Employment_Start_Date5.prompt>
+        <$client.env.FormField.C007_Employment_Start_Date6.prompt>
+        <$client.env.FormField.C007_Employment_Start_Date7.prompt>
+        <$client.env.FormField.C008_Employment_End_Date1.prompt>
+        <$client.env.FormField.C008_Employment_End_Date2.prompt>
+        <$client.env.FormField.C008_Employment_End_Date3.prompt>
+        <$client.env.FormField.C008_Employment_End_Date4.prompt>
+        <$client.env.FormField.C008_Employment_End_Date5.prompt>
+        <$client.env.FormField.C008_Employment_End_Date6.prompt>
+        <$client.env.FormField.C008_Employment_End_Date7.prompt>
+        <$client.env.FormField.C009_Employer_Address1.prompt>
+        <$client.env.FormField.C009_Employer_Address2.prompt>
+        <$client.env.FormField.C009_Employer_Address3.prompt>
+        <$client.env.FormField.C009_Employer_Address4.prompt>
+        <$client.env.FormField.C009_Employer_Address5.prompt>
+        <$client.env.FormField.C009_Employer_Address6.prompt>
+        <$client.env.FormField.C009_Employer_Address7.prompt>
+        <$client.env.FormField.C010_Contact_Current_Employer1.prompt>
+        <$client.env.FormField.C010_Contact_Current_Employer2.prompt>
+        <$client.env.FormField.C010_Contact_Current_Employer3.prompt>
+        <$client.env.FormField.C010_Contact_Current_Employer4.prompt>
+        <$client.env.FormField.C010_Contact_Current_Employer5.prompt>
+        <$client.env.FormField.C010_Contact_Current_Employer6.prompt>
+        <$client.env.FormField.C010_Contact_Current_Employer7.prompt>
+        <$client.env.FormField.C011_Brief_Note1.prompt>
+        <$client.env.FormField.C011_Brief_Note2.prompt>
+        <$client.env.FormField.C011_Brief_Note3.prompt>
+        <$client.env.FormField.C011_Brief_Note4.prompt>
+        <$client.env.FormField.C011_Brief_Note5.prompt>
+        <$client.env.FormField.C011_Brief_Note6.prompt>
+        <$client.env.FormField.C011_Brief_Note7.prompt>
+        <$client.env.FormField.D001_Address_Line_11.prompt>
+        <$client.env.FormField.D001_Address_Line_12.prompt>
+        <$client.env.FormField.D001_Address_Line_13.prompt>
+        <$client.env.FormField.D001_Address_Line_14.prompt>
+        <$client.env.FormField.D001_Address_Line_15.prompt>
+        <$client.env.FormField.D001_Address_Line_16.prompt>
+        <$client.env.FormField.D001_Address_Line_17.prompt>
+        <$client.env.FormField.D002_Address_Line_21.prompt>
+        <$client.env.FormField.D002_Address_Line_22.prompt>
+        <$client.env.FormField.D002_Address_Line_23.prompt>
+        <$client.env.FormField.D002_Address_Line_24.prompt>
+        <$client.env.FormField.D002_Address_Line_25.prompt>
+        <$client.env.FormField.D002_Address_Line_26.prompt>
+        <$client.env.FormField.D002_Address_Line_27.prompt>
+        <$client.env.FormField.D003_City1.prompt>
+        <$client.env.FormField.D003_City2.prompt>
+        <$client.env.FormField.D003_City3.prompt>
+        <$client.env.FormField.D003_City4.prompt>
+        <$client.env.FormField.D003_City5.prompt>
+        <$client.env.FormField.D003_City6.prompt>
+        <$client.env.FormField.D003_City7.prompt>
+        <$client.env.FormField.D004_State1.prompt>
+        <$client.env.FormField.D004_State2.prompt>
+        <$client.env.FormField.D004_State3.prompt>
+        <$client.env.FormField.D004_State4.prompt>
+        <$client.env.FormField.D004_State5.prompt>
+        <$client.env.FormField.D004_State6.prompt>
+        <$client.env.FormField.D004_State7.prompt>
+        <$client.env.FormField.D005_Country1.prompt>
+        <$client.env.FormField.D005_Country2.prompt>
+        <$client.env.FormField.D005_Country3.prompt>
+        <$client.env.FormField.D005_Country4.prompt>
+        <$client.env.FormField.D005_Country5.prompt>
+        <$client.env.FormField.D005_Country6.prompt>
+        <$client.env.FormField.D005_Country7.prompt>
+        <$client.env.FormField.D006_Postal_Code1.prompt>
+        <$client.env.FormField.D006_Postal_Code2.prompt>
+        <$client.env.FormField.D006_Postal_Code3.prompt>
+        <$client.env.FormField.D006_Postal_Code4.prompt>
+        <$client.env.FormField.D006_Postal_Code5.prompt>
+        <$client.env.FormField.D006_Postal_Code6.prompt>
+        <$client.env.FormField.D006_Postal_Code7.prompt>
+        <$client.env.FormField.D007_From1.prompt>
+        <$client.env.FormField.D007_From2.prompt>
+        <$client.env.FormField.D007_From3.prompt>
+        <$client.env.FormField.D007_From4.prompt>
+        <$client.env.FormField.D007_From5.prompt>
+        <$client.env.FormField.D007_From6.prompt>
+        <$client.env.FormField.D007_From7.prompt>
+        <$client.env.FormField.D008_To1.prompt>
+        <$client.env.FormField.D008_To2.prompt>
+        <$client.env.FormField.D008_To3.prompt>
+        <$client.env.FormField.D008_To4.prompt>
+        <$client.env.FormField.D008_To5.prompt>
+        <$client.env.FormField.D008_To6.prompt>
+        <$client.env.FormField.D008_To7.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+    <div class="container-fluid"> 
+        <div class="form-group">
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                    <div class="image-container">
+                        <img src="images/logo.png" class="img-responsive" height="50"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                    <div class="form-title center bold underlined">Additional Background Information</div>
+                </div>
+            </div>
+            <div class="section-container">
+                <div class="section-title bold">Personal Information</div>
+                <div class="section-content">
+                    <div class="row line-break">
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix">
+                                First Name
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A001_First_Name.HTML></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix right">
+                                Middle Name
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A002_Middle_Name.HTML></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix right">
+                                Last Name
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A003_Last_Name.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row line-break">
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix">
+                                Home Phone Number
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A004_Home_Phone_Number.HTML></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix right">
+                                Mobile Number
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A005_Mobile_Number.HTML></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix right">
+                                Date of Birth
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A006_Date_of_Birth.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row line-break">
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix">
+                                SSN
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A007_SSN.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row line-break">
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="bold">Have you used any alias or nick name in last 10 years?</div>
+                            </div>
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A008_Alias.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row line-break">
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix">
+                                First Name
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A009_Alias_First_Name.HTML></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix right">
+                                Middle Name
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A010_Alias_Middle_Name.HTML></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix right">
+                                Last Name
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A011_Alias_Last_Name.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row line-break">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                            <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                                <div class="bold">Emergency Contact</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row line-break">
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix">
+                                First Name
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A012_Emergency_Contact_First_Name.HTML></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix right">
+                                Last Name
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A013_Emergency_Contact_Last_Name.HTML></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix right">
+                                Relationship
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A014_Emergency_Contact_Relationship.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row line-break">
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix">
+                                Personal Email
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A015_Emergency_Contact_Personal_Email.HTML></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix right">
+                                Mobile Phone Number
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A016_Emergency_Contact_Mobile_Phone_Number.HTML></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                            <div class="col-xs-4 col-md-4 lifesuite__clearfix right">
+                                Home Phone Number
+                            </div>
+                            <div class="col-xs-8 col-md-8 lifesuite__clearfix">
+                                <div class="input-field"><$client.env.FormField.A017_Emergency_Contact_Home_Phone_Number.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-container">
+                <div class="section-title bold">Educational Information</div>
+                <div class="section-content">
+                    <div class="row line-break border-and-padding-bottom hide-on-smaller-screen">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Degree Attained
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            Full Name of University/Institute/ College 
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            Address (Street, City, State, Zip code & Country)
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Major
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Date Attended from
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Date Attended Till
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            Your Name when enrolled
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Graduation Date
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Registration Number
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Degree Attained</div>
+                            <$client.env.FormField.B001_Degree_Attained1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Full Name of University/Institute/ College </div>
+                            <$client.env.FormField.B002_Institute_Name1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address (Street, City, State, Zip code & Country)</div>
+                            <$client.env.FormField.B003_Address1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Major</div>
+                            <$client.env.FormField.B003_Major1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Date Attended from</div>
+                            <$client.env.FormField.B004_Start_Date1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Date Attended Till</div>
+                            <$client.env.FormField.B004_Till_Date1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Your Name when enrolled</div>
+                            <$client.env.FormField.B005_Name_Enrolled1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Graduation Date</div>
+                            <$client.env.FormField.B006_Graduation_Date1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Registration Number</div>
+                            <$client.env.FormField.B007_Grade_Point_Average1.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom educational-information">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Degree Attained</div>
+                            <$client.env.FormField.B001_Degree_Attained2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Full Name of University/Institute/ College </div>
+                            <$client.env.FormField.B002_Institute_Name2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address (Street, City, State, Zip code & Country)</div>
+                            <$client.env.FormField.B003_Address2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Major</div>
+                            <$client.env.FormField.B003_Major2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Date Attended from</div>
+                            <$client.env.FormField.B004_Start_Date2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Date Attended Till</div>
+                            <$client.env.FormField.B004_Till_Date2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Your Name when enrolled</div>
+                            <$client.env.FormField.B005_Name_Enrolled2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Graduation Date</div>
+                            <$client.env.FormField.B006_Graduation_Date2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Registration Number</div>
+                            <$client.env.FormField.B007_Grade_Point_Average2.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom educational-information">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Degree Attained</div>
+                            <$client.env.FormField.B001_Degree_Attained3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Full Name of University/Institute/ College </div>
+                            <$client.env.FormField.B002_Institute_Name3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address (Street, City, State, Zip code & Country)</div>
+                            <$client.env.FormField.B003_Address3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Major</div>
+                            <$client.env.FormField.B003_Major3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Date Attended From</div>
+                            <$client.env.FormField.B004_Start_Date3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Date Attended Till</div>
+                            <$client.env.FormField.B004_Till_Date3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Your Name when enrolled</div>
+                            <$client.env.FormField.B005_Name_Enrolled3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Graduation Date</div>
+                            <$client.env.FormField.B006_Graduation_Date3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Registration Number</div>
+                            <$client.env.FormField.B007_Grade_Point_Average3.HTML>
+                        </div>
+                    </div>
+                    <div class="lifesuite__clearfix">
+                        <input type="button" value="Remove" class="lifesuite__button pull-right" id="remove-educational-information"/>
+                        <input type="button" value="Add More" class="lifesuite__button pull-right primary" id="add-educational-information"/>
+                    </div>
+                </div>
+            </div>
+            <div class="section-container">
+                <div class="section-title"><span class="bold">Work Experience</span> (Please fill for last 7 years)</div>
+                <div class="section-content">
+                    <div class="row line-break border-and-padding-bottom hide-on-smaller-screen">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Employer Name
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Job Title 
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            End Client
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Physical Work Address
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Manager/Contact Name
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Manager/Contact Phone Number
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Employment Start Date
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Employment End Date
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Employer Address
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            May we contact your current Employer
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            Please provide a brief note why we should not contact your Employer(500 characters only)
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Name</div>
+                            <$client.env.FormField.C001_Employer_Name1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Job Title</div>
+                            <$client.env.FormField.C002_Job_Title1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">End Client</div>
+                            <$client.env.FormField.C003_End_Client1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Physical Work Address</div>
+                            <$client.env.FormField.C004_Physical_Work_Address1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Name</div>
+                            <$client.env.FormField.C005_Manager_Name1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Phone Number</div>
+                            <$client.env.FormField.C006_Manager_Phone_Number1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment Start Date</div>
+                            <$client.env.FormField.C007_Employment_Start_Date1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment End Date</div>
+                            <$client.env.FormField.C008_Employment_End_Date1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Address</div>
+                            <$client.env.FormField.C009_Employer_Address1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">May we contact your current Employer</div>
+                            <$client.env.FormField.C010_Contact_Current_Employer1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Please provide a brief note why we should not contact your Employer(500 characters only)</div>
+                            <$client.env.FormField.C011_Brief_Note1.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom work-experience">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Name</div>
+                            <$client.env.FormField.C001_Employer_Name2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Job Title</div>
+                            <$client.env.FormField.C002_Job_Title2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">End Client</div>
+                            <$client.env.FormField.C003_End_Client2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Physical Work Address</div>
+                            <$client.env.FormField.C004_Physical_Work_Address2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Name</div>
+                            <$client.env.FormField.C005_Manager_Name2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Phone Number</div>
+                            <$client.env.FormField.C006_Manager_Phone_Number2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment Start Date</div>
+                            <$client.env.FormField.C007_Employment_Start_Date2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment End Date</div>
+                            <$client.env.FormField.C008_Employment_End_Date2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Address</div>
+                            <$client.env.FormField.C009_Employer_Address2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">May we contact your current Employer</div>
+                            <$client.env.FormField.C010_Contact_Current_Employer2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Please provide a brief note why we should not contact your Employer(500 characters only)</div>
+                            <$client.env.FormField.C011_Brief_Note2.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom work-experience">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Name</div>
+                            <$client.env.FormField.C001_Employer_Name3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Job Title</div>
+                            <$client.env.FormField.C002_Job_Title3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">End Client</div>
+                            <$client.env.FormField.C003_End_Client3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Physical Work Address</div>
+                            <$client.env.FormField.C004_Physical_Work_Address3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Name</div>
+                            <$client.env.FormField.C005_Manager_Name3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Phone Number</div>
+                            <$client.env.FormField.C006_Manager_Phone_Number3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment Start Date</div>
+                            <$client.env.FormField.C007_Employment_Start_Date3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment End Date</div>
+                            <$client.env.FormField.C008_Employment_End_Date3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Address</div>
+                            <$client.env.FormField.C009_Employer_Address3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">May we contact your current Employer</div>
+                            <$client.env.FormField.C010_Contact_Current_Employer3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Please provide a brief note why we should not contact your Employer(500 characters only)</div>
+                            <$client.env.FormField.C011_Brief_Note3.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom work-experience">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Name</div>
+                            <$client.env.FormField.C001_Employer_Name4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Job Title</div>
+                            <$client.env.FormField.C002_Job_Title4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">End Client</div>
+                            <$client.env.FormField.C003_End_Client4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Physical Work Address</div>
+                            <$client.env.FormField.C004_Physical_Work_Address4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Name</div>
+                            <$client.env.FormField.C005_Manager_Name4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Phone Number</div>
+                            <$client.env.FormField.C006_Manager_Phone_Number4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment Start Date</div>
+                            <$client.env.FormField.C007_Employment_Start_Date4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment End Date</div>
+                            <$client.env.FormField.C008_Employment_End_Date4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Address</div>
+                            <$client.env.FormField.C009_Employer_Address4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">May we contact your current Employer</div>
+                            <$client.env.FormField.C010_Contact_Current_Employer4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Please provide a brief note why we should not contact your Employer(500 characters only)</div>
+                            <$client.env.FormField.C011_Brief_Note4.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom work-experience">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Name</div>
+                            <$client.env.FormField.C001_Employer_Name5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Job Title</div>
+                            <$client.env.FormField.C002_Job_Title5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">End Client</div>
+                            <$client.env.FormField.C003_End_Client5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Physical Work Address</div>
+                            <$client.env.FormField.C004_Physical_Work_Address5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Name</div>
+                            <$client.env.FormField.C005_Manager_Name5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Phone Number</div>
+                            <$client.env.FormField.C006_Manager_Phone_Number5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment Start Date</div>
+                            <$client.env.FormField.C007_Employment_Start_Date5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment End Date</div>
+                            <$client.env.FormField.C008_Employment_End_Date5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Address</div>
+                            <$client.env.FormField.C009_Employer_Address5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">May we contact your current Employer</div>
+                            <$client.env.FormField.C010_Contact_Current_Employer5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Please provide a brief note why we should not contact your Employer(500 characters only)</div>
+                            <$client.env.FormField.C011_Brief_Note5.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom work-experience">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Name</div>
+                            <$client.env.FormField.C001_Employer_Name6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Job Title</div>
+                            <$client.env.FormField.C002_Job_Title6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">End Client</div>
+                            <$client.env.FormField.C003_End_Client6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Physical Work Address</div>
+                            <$client.env.FormField.C004_Physical_Work_Address6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Name</div>
+                            <$client.env.FormField.C005_Manager_Name6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Phone Number</div>
+                            <$client.env.FormField.C006_Manager_Phone_Number6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment Start Date</div>
+                            <$client.env.FormField.C007_Employment_Start_Date6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment End Date</div>
+                            <$client.env.FormField.C008_Employment_End_Date6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Address</div>
+                            <$client.env.FormField.C009_Employer_Address6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">May we contact your current Employer</div>
+                            <$client.env.FormField.C010_Contact_Current_Employer6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Please provide a brief note why we should not contact your Employer(500 characters only)</div>
+                            <$client.env.FormField.C011_Brief_Note6.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom work-experience">
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Name</div>
+                            <$client.env.FormField.C001_Employer_Name7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Job Title</div>
+                            <$client.env.FormField.C002_Job_Title7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">End Client</div>
+                            <$client.env.FormField.C003_End_Client7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Physical Work Address</div>
+                            <$client.env.FormField.C004_Physical_Work_Address7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Name</div>
+                            <$client.env.FormField.C005_Manager_Name7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Manager/Contact Phone Number</div>
+                            <$client.env.FormField.C006_Manager_Phone_Number7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment Start Date</div>
+                            <$client.env.FormField.C007_Employment_Start_Date7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employment End Date</div>
+                            <$client.env.FormField.C008_Employment_End_Date7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Employer Address</div>
+                            <$client.env.FormField.C009_Employer_Address7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">May we contact your current Employer</div>
+                            <$client.env.FormField.C010_Contact_Current_Employer7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Please provide a brief note why we should not contact your Employer(500 characters only)</div>
+                            <$client.env.FormField.C011_Brief_Note7.HTML>
+                        </div>
+                    </div>
+                    <div class="lifesuite__clearfix">
+                        <input type="button" value="Remove" class="lifesuite__button pull-right" id="remove-work-experience"/>
+                        <input type="button" value="Add More" class="lifesuite__button pull-right primary" id="add-work-experience"/>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section-container">
+                <div class="section-title"><span class="bold">Home Addresses</span> (Please fill for last 7 years)</div>
+                <div class="section-content">
+                    <div class="row line-break border-and-padding-bottom hide-on-smaller-screen">
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            Address Line 1
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Address Line 2 
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            City
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            State
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            Country
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            Zip/Postal Code
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            From
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            To
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom">
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 1</div>
+                            <$client.env.FormField.D001_Address_Line_11.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 2</div>
+                            <$client.env.FormField.D002_Address_Line_21.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">City</div>
+                            <$client.env.FormField.D003_City1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">State</div>
+                            <$client.env.FormField.D004_State1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Country</div>
+                            <$client.env.FormField.D005_Country1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Zip/Postal Code</div>
+                            <$client.env.FormField.D006_Postal_Code1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">From</div>
+                            <$client.env.FormField.D007_From1.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">To</div>
+                            <$client.env.FormField.D008_To1.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom home-addresses">
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 1</div>
+                            <$client.env.FormField.D001_Address_Line_12.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 2</div>
+                            <$client.env.FormField.D002_Address_Line_22.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">City</div>
+                            <$client.env.FormField.D003_City2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">State</div>
+                            <$client.env.FormField.D004_State2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Country</div>
+                            <$client.env.FormField.D005_Country2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Zip/Postal Code</div>
+                            <$client.env.FormField.D006_Postal_Code2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">From</div>
+                            <$client.env.FormField.D007_From2.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">To</div>
+                            <$client.env.FormField.D008_To2.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom home-addresses">
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 1</div>
+                            <$client.env.FormField.D001_Address_Line_13.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 2</div>
+                            <$client.env.FormField.D002_Address_Line_23.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">City</div>
+                            <$client.env.FormField.D003_City3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">State</div>
+                            <$client.env.FormField.D004_State3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Country</div>
+                            <$client.env.FormField.D005_Country3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Zip/Postal Code</div>
+                            <$client.env.FormField.D006_Postal_Code3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">From</div>
+                            <$client.env.FormField.D007_From3.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">To</div>
+                            <$client.env.FormField.D008_To3.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom home-addresses">
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 1</div>
+                            <$client.env.FormField.D001_Address_Line_14.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 2</div>
+                            <$client.env.FormField.D002_Address_Line_24.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">City</div>
+                            <$client.env.FormField.D003_City4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">State</div>
+                            <$client.env.FormField.D004_State4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Country</div>
+                            <$client.env.FormField.D005_Country4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Zip/Postal Code</div>
+                            <$client.env.FormField.D006_Postal_Code4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">From</div>
+                            <$client.env.FormField.D007_From4.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">To</div>
+                            <$client.env.FormField.D008_To4.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom home-addresses">
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 1</div>
+                            <$client.env.FormField.D001_Address_Line_15.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 2</div>
+                            <$client.env.FormField.D002_Address_Line_25.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">City</div>
+                            <$client.env.FormField.D003_City5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">State</div>
+                            <$client.env.FormField.D004_State5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Country</div>
+                            <$client.env.FormField.D005_Country5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Zip/Postal Code</div>
+                            <$client.env.FormField.D006_Postal_Code5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">From</div>
+                            <$client.env.FormField.D007_From5.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">To</div>
+                            <$client.env.FormField.D008_To5.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom home-addresses">
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 1</div>
+                            <$client.env.FormField.D001_Address_Line_16.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 2</div>
+                            <$client.env.FormField.D002_Address_Line_26.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">City</div>
+                            <$client.env.FormField.D003_City6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">State</div>
+                            <$client.env.FormField.D004_State6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Country</div>
+                            <$client.env.FormField.D005_Country6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Zip/Postal Code</div>
+                            <$client.env.FormField.D006_Postal_Code6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">From</div>
+                            <$client.env.FormField.D007_From6.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">To</div>
+                            <$client.env.FormField.D008_To6.HTML>
+                        </div>
+                    </div>
+                    <div class="row line-break border-and-padding-bottom home-addresses">
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 1</div>
+                            <$client.env.FormField.D001_Address_Line_17.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Address Line 2</div>
+                            <$client.env.FormField.D002_Address_Line_27.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">City</div>
+                            <$client.env.FormField.D003_City7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">State</div>
+                            <$client.env.FormField.D004_State7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Country</div>
+                            <$client.env.FormField.D005_Country7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">Zip/Postal Code</div>
+                            <$client.env.FormField.D006_Postal_Code7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">From</div>
+                            <$client.env.FormField.D007_From7.HTML>
+                        </div>
+                        <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                            <div class="hide-on-larger-screen">To</div>
+                            <$client.env.FormField.D008_To7.HTML>
+                        </div>
+                    </div>
+                    <div class="lifesuite__clearfix">
+                        <input type="button" value="Remove" class="lifesuite__button pull-right" id="remove-home-addresses"/>
+                        <input type="button" value="Add More" class="lifesuite__button pull-right primary" id="add-home-addresses"/>
+                    </div>
+                </div>
+            </div>
+            <hr class="lifesuite__hr">
+            <div class="row" id="formButtons" style="display: none;">
+                <div class="lifesuite__clearfix lifesuite__float-right">               
+                    <$client.env.FormButtons>
+                </div>             
+            </div>
+        </div>
+    </div>
+    <div style="display:none;">
+        <$client.env.FormField.SignatureVerification1.HTML>
+    </div>
+</form>
+<SCRIPT>
+      ChangeCalendarIcons(); //for popup calendar
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$(function() {
+    disableCalButton("disabled-date");
+});
+
+$(window).load(function() {
+    // Function: Adjust height of bootstrap columns equal to the highest among siblings on larger screens
+    // Parameter 1: The class name of the highest element
+    function AdjustColumnHeight (group_class) {
+      $("." + group_class).each(function () {
+           if ($(window).width() > 971) {
+                $(this).siblings().height($(this).innerHeight());
+           }
+           else {
+                $(this).siblings().height("auto");
+           }
+      });
+    }
+
+    // Function: Checks if the element has value, has selection, or is checked
+    // Parameter 1: The element
+    const fieldHasVal = function(el) {
+        "use strict";
+        let hasVal = false;
+        $.each(el, function(k, v) {
+            if ($(v).val().length) {
+                hasVal = true;
+                return;
+            }
+        });
+        return hasVal;
+    }
+
+    // resize column height on window resize
+    $(window).resize(function() {
+        AdjustColumnHeight("column-height");
+    });
+    // resize column height on window load
+    AdjustColumnHeight("column-height");
+
+    // hide or show filled sections
+    // educational information
+    $('.educational-information input:not([type="hidden"]):not([type="button"])').each(function(k,v) {
+        if (fieldHasVal($(v))) {
+            $(v).closest('.educational-information').show();
+        }
+    });
+    const educationalInformation = $('.educational-information:visible');
+    if (educationalInformation.length < 1) {
+        $('#remove-educational-information').hide();
+    }
+    if (educationalInformation.length == 2) {
+        $('#add-educational-information').hide();
+    }
+    // work experience
+    $('.work-experience input:not([type="hidden"]):not([type="button"])').each(function(k,v) {
+        if (fieldHasVal($(v))) {
+            $(v).closest('.work-experience').show();
+        }
+    });
+    const workExperience = $('.work-experience:visible');
+    if (workExperience.length < 1) {
+        $('#remove-work-experience').hide();
+    }
+    if (workExperience.length == 6) {
+        $('#add-work-experience').hide();
+    }
+    // home addresses
+    $('.home-addresses input:not([type="hidden"]):not([type="button"])').each(function(k,v) {
+        if (fieldHasVal($(v))) {
+            $(v).closest('.home-addresses').show();
+        }
+    });
+    const homeAddresses = $('.home-addresses:visible');
+    if (homeAddresses.length < 1) {
+        $('#remove-home-addresses').hide();
+    }
+    if (homeAddresses.length == 6) {
+        $('#add-home-addresses').hide();
+    }
+
+    // add sections
+    // educational information
+    $("#add-educational-information").click(function() {
+        $('.educational-information:hidden').first().show();
+        if ($('.educational-information:hidden').length < 1) {
+            $(this).hide();
+            return;
+        }
+        $('#remove-educational-information').show();
+    });
+    // work experience
+    $("#add-work-experience").click(function() {
+        $('.work-experience:hidden').first().show();
+        if ($('.work-experience:hidden').length < 1) {
+            $(this).hide();
+            return;
+        }
+        $('#remove-work-experience').show();
+    });
+    // home addresses
+    $("#add-home-addresses").click(function() {
+        $('.home-addresses:hidden').first().show();
+        if ($('.home-addresses:hidden').length < 1) {
+            $(this).hide();
+            return;
+        }
+        $('#remove-home-addresses').show();
+    });
+
+    // remove sections
+    // educational information
+    $("#remove-educational-information").click(function() {
+        const section = $('.educational-information:visible').last().hide();
+        const hiddenFields = section.find('input:not([type="hidden"]), select');
+        section.find('input:not([type="hidden"]):not(:radio), select').val('');
+        if ($('.educational-information:visible').length < 1) {
+            $(this).hide();
+            return;
+        }
+        $('#add-educational-information').show();
+    });
+    // work experience
+    $("#remove-work-experience").click(function() {
+        const section = $('.work-experience:visible').last().hide();
+        const hiddenFields = section.find('input:not([type="hidden"]), select');
+        section.find('input:not([type="hidden"]):not(:radio), select').val('');
+        if ($('.work-experience:visible').length < 1) {
+            $(this).hide();
+            return;
+        }
+        $('#add-work-experience').show();
+    });
+    // home addresses
+    $("#remove-home-addresses").click(function() {
+        const section = $('.home-addresses:visible').last().hide();
+        const hiddenFields = section.find('input:not([type="hidden"]), select');
+        section.find('input:not([type="hidden"]):not(:radio), select').val('');
+        if ($('.home-addresses:visible').length < 1) {
+            $(this).hide();
+            return;
+        }
+        $('#add-home-addresses').show();
+    });
+    $('[name$=".A008_Alias"]').on('change', function() {
+        if (this.checked && this.value == "Yes") {
+            $('[name$=".A009_Alias_First_Name"], [name$=".A010_Alias_Middle_Name"], [name$=".A011_Alias_Last_Name"]')
+                .addClass('ng-invalid').prop('required', 'required');
+            return;
+        }
+        $('[name$=".A009_Alias_First_Name"], [name$=".A010_Alias_Middle_Name"], [name$=".A011_Alias_Last_Name"]')
+            .removeClass('ng-invalid').prop('required', null);
+    });
+    $('[name$=".A008_Alias"]').trigger('change');
+});
+</SCRIPT>

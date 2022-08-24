@@ -1,0 +1,390 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'a19_Date_Signed');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a19_Date_Signed');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('HR_Signature','eSignature2','HR_Name','modal2','over','sv2', 'HR_Date');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('HR_Signature').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('HR_Signature','HR_Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a01_Employee_Name.prompt>
+        <$client.env.FormField.a02_Employee_ID.prompt>
+        <$client.env.FormField.a03_Todays_Date.prompt>
+        <$client.env.FormField.a04_Job_Number.prompt>
+        <$client.env.FormField.a05_SSN_Last_Four.prompt>
+        <$client.env.FormField.a06_Hire_Type.prompt>
+        <$client.env.FormField.a07_Start_Date.prompt>
+        <$client.env.FormField.a08_Shift.prompt>
+        <$client.env.FormField.a09_Client_Site.prompt>
+        <$client.env.FormField.a10_Craft.prompt>
+        <$client.env.FormField.a11_Craft_Code.prompt>
+        <$client.env.FormField.a12_Pay_Rate.prompt>
+        <$client.env.FormField.a13_Per_Diem.prompt>
+        <$client.env.FormField.a14_Travel_In.prompt>
+        <$client.env.FormField.a15_Travel_Out.prompt>
+        <$client.env.FormField.a16_Miles.prompt>
+        <$client.env.FormField.a17_Employee_Name.prompt>
+        <$client.env.FormField.a18_Employee_Signature.prompt>
+        <$client.env.FormField.a19_Date_Signed.prompt>
+        <$client.env.FormField.HR_Signature.prompt>
+        <$client.env.FormField.HR_Name.prompt>
+        <$client.env.FormField.HR_Date.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+    <header class="row mb-20">
+        <div class="col-lg-12">
+            <div class="img-wrapper center-block">
+                <img src="<$link;/main/RedCarpet/FormTemplates/Employee_Dispatch_Form/img/logo.png>" alt="Ohmstead Logo" class="img-responsive">
+            </div>
+        </div>
+    </header>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                <strong>Employee Dispatch Form</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row grey-bar mb-10">
+        <div class="col-lg-12 text-center">
+            <strong>Employee Profile</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7 col-sm-7 col-xs-12 mb-10">
+            Employee Name:
+            <$client.env.FormField.a01_Employee_Name.HTML>
+        </div>
+        <div class="col-lg-5 col-sm-5 col-xs-12 mb-10">
+            Emp ID:
+            <$client.env.FormField.a02_Employee_ID.HTML>
+        </div>
+    </div>
+    <div class="row mb-20">
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            Today's Date:
+            <$client.env.FormField.a03_Todays_Date.HTML>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            Job #:
+            <$client.env.FormField.a04_Job_Number.HTML>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            Last Four of SSN:
+            <$client.env.FormField.a05_SSN_Last_Four.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-10">
+        <div class="col-lg-12 grey-bar text-center">
+            <strong>Employer Information</strong>
+        </div>
+    </div>
+    <div class="row mb-10">
+        <div class="col-lg-12">
+            Employer: <strong>Ohmstede Industrial Services, Inc</strong><br>
+            Physical Address: <strong>2450 South Shore Blvd, Suite 120 League City, TX  77573</strong>
+            Phone: <strong>(281) 867-3260</strong>
+        </div>
+    </div>
+
+    <div class="row mb-10">
+        <div class="col-lg-12 grey-bar text-center">
+            <strong>Incident Reporting</strong>
+        </div>
+    </div>
+    <div class="row mb-10">
+        <div class="col-lg-12">
+            <p>
+                Our first concern is to keep injuries or incidents from happening, however, in the event of any accident, injury to yourself or others, and/or any damage to Company or Client property, report the incident promptly to your Immediate Supervisor and/or the Safety Department. <strong>It</strong> is your <strong>responsibility</strong> to report <strong>any work-related injury</strong> to your Immediate Supervisor and/or the Safety Department as well as you can contact the HR Department at the main office.  Failure to promptly report an injury may affect the coverage that insurance provides.
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-10">
+        <div class="col-lg-12 grey-bar text-center">
+            <strong>Hire In Information</strong>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-3 col-xs-12 mb-10">
+            <$client.env.FormField.a06_Hire_Type.HTML>
+        </div>
+        <div class="col-lg-3 col-sm-3 col-xs-12 mb-10">
+            <div class="i-block">
+                Start Date:
+            </div>
+            <div class="i-block">
+                <$client.env.FormField.a07_Start_Date.HTML>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-3 col-xs-12 mb-10">
+            <div class="i-block">
+                Shift:
+            </div>
+            <div class="i-block">
+                <$client.env.FormField.a08_Shift.HTML>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-3 col-xs-12 mb-10">
+            <div class="i-block">
+                Client Site:
+            </div>
+            <div class="i-block">
+                <$client.env.FormField.a09_Client_Site.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            <div class="i-block">
+                Craft:
+            </div>
+            <div class="i-block">
+                <$client.env.FormField.a10_Craft.HTML>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            <div class="i-block">
+                Craft Code:
+            </div>
+            <div class="i-block">
+                <$client.env.FormField.a11_Craft_Code.HTML>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            <div class="i-block">
+                Pay rate:
+            </div>
+            <div class="i-block">
+                <$client.env.FormField.a12_Pay_Rate.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            <div class="i-block">
+                Per Diem:
+            </div>
+            <div class="i-block">
+                <$client.env.FormField.a13_Per_Diem.HTML>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            <div class="i-block">
+                Travel In:
+            </div>
+            <div class="i-block">
+                <$client.env.FormField.a14_Travel_In.HTML>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            <div class="i-block">
+                Travel Out:
+            </div>
+            <div class="i-block">
+                <$client.env.FormField.a15_Travel_Out.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-10">
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            <div class="i-block">
+                Miles:
+            </div>
+            <div class="i-block">
+                <$client.env.FormField.a16_Miles.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                Pay periods are calculated from the beginning of your assigned shift on Mondays and stops at the end of your shift on Sunday. Compensation checks will be distributed on the first Friday after completion of work week. Checks will be direct deposited to a designated account or put on the Money Network Pay day card, whichever the employee has preselected during the onboarding process.
+            </p>
+            <p>
+                <strong>
+                    <em>Employees of Ohmstede Industrial Services, Inc are employees "at will." As such, any individual may voluntarily leave employment with the Company at any time, for any reason or no reason, with or without notice, although two weeks' notice is requested. Similarly, the Company may terminate the employment of any employee at any time, for any reason or no reason, with or without notice. As such, your employment with the Company would be "at-will" and neither this processing form, nor any other oral or written representations, expressed or implied, between you and the Company may be considered a contract for any specific period of time.</em>
+                </strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-10">
+        <div class="col-lg-12 grey-bar text-center">
+            <strong>Acknowledgment</strong>
+        </div>
+    </div>
+
+    <div class="row mb-40">
+        <div class="col-lg-12">
+            <p>
+                Note: By signing the document below I am acknowledging that I have read the entire "Dispatch Form", including, <strong>Employee Profile, Employer Information, Hire In Information</strong>, and <strong>Acknowledgment</strong>. I understand that my employment with the Company is an <strong>"at-will relationship"</strong> and that this "Dispatch Form" <u><strong>IS NOT</strong></u> a contract of employment, expressed or implied, between me and the Company. I further acknowledge that this "Dispatch Form" may be rescinded and or modified at any time as necessary with or without notice and or cause.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-xs-12 mb-10">
+            Employee Name:
+        </div>
+    </div>
+    <div class="row mb-10">
+        <div class="col-lg-6 col-sm-6 col-xs-12 mb-10">
+            HR Signature:
+            <$client.env.FormField.HR_Signature.HTML>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-xs-12 mb-10">
+            Date Signed:
+            <$client.env.FormField.HR_Date.HTML>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-xs-12 mb-10">
+            Employee Name:
+            <$client.env.FormField.a17_Employee_Name.HTML>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-xs-12 mb-10">
+            Employee Signature:
+            <$client.env.FormField.a18_Employee_Signature.HTML>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-xs-12 mb-10">
+            Date Signed:
+            <$client.env.FormField.a19_Date_Signed.HTML>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.HR_Name.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Employee_Dispatch_Form/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    // override hr coordinator name
+    if (<$client.env.eval((client.role.HR_COORDINATORS>0)?'true':'false')> && jQuery('.cal_and_button').length) {
+        document.querySelector('[name$=".HR_Name"]').value = "<$client.account.username_first> <$client.account.username>";
+    }
+    disableCalButton($('.disable-date'));
+    if (!$('[name$=".a03_Todays_Date_display"]').datepicker('getDate')) {
+        $('[name$=".a03_Todays_Date_display"]').datepicker('setDate', new Date());
+    }
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

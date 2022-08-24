@@ -1,0 +1,749 @@
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+  <div id="box">
+    <b>Electronic Signature</b>
+    <p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+    <br>
+    <b>Type your Name:</b> 
+    <input type=text id="eSignature1">&nbsp;
+    <input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','over','modal','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+    <input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp;
+    <input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">    
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+  showScreen('over')
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>
+/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return
+SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML> 
+
+<!--START:  PROMPT -->
+<$client.env.FormField.ADR_FROM_DT.prompt>
+<$client.env.FormField.ADR_FROM_DT_2.prompt>
+<$client.env.FormField.ADR_FROM_DT_3.prompt>
+<$client.env.FormField.ADR_FROM_DT_4.prompt>
+<$client.env.FormField.ADR_FROM_DT_5.prompt>
+<$client.env.FormField.ADR_FROM_DT_6.prompt>
+<$client.env.FormField.ADR_FROM_DT_7.prompt>
+<$client.env.FormField.ADR_FROM_DT_8.prompt>
+<$client.env.FormField.ADR_LINE_1_TX.prompt>
+<$client.env.FormField.ADR_LINE_1_TX_2.prompt>
+<$client.env.FormField.ADR_LINE_1_TX_3.prompt>
+<$client.env.FormField.ADR_LINE_1_TX_4.prompt>
+<$client.env.FormField.ADR_LINE_1_TX_5.prompt>
+<$client.env.FormField.ADR_LINE_1_TX_6.prompt>
+<$client.env.FormField.ADR_LINE_1_TX_7.prompt>
+<$client.env.FormField.ADR_LINE_1_TX_8.prompt>
+<$client.env.FormField.ADR_LINE_2_TX.prompt>
+<$client.env.FormField.ADR_LINE_2_TX_2.prompt>
+<$client.env.FormField.ADR_LINE_2_TX_3.prompt>
+<$client.env.FormField.ADR_LINE_2_TX_4.prompt>
+<$client.env.FormField.ADR_LINE_2_TX_5.prompt>
+<$client.env.FormField.ADR_LINE_2_TX_6.prompt>
+<$client.env.FormField.ADR_LINE_2_TX_7.prompt>
+<$client.env.FormField.ADR_LINE_2_TX_8.prompt>
+<$client.env.FormField.ADR_LINE_3_TX.prompt>
+<$client.env.FormField.ADR_LINE_3_TX_2.prompt>
+<$client.env.FormField.ADR_LINE_3_TX_3.prompt>
+<$client.env.FormField.ADR_LINE_3_TX_4.prompt>
+<$client.env.FormField.ADR_LINE_3_TX_5.prompt>
+<$client.env.FormField.ADR_LINE_3_TX_6.prompt>
+<$client.env.FormField.ADR_LINE_3_TX_7.prompt>
+<$client.env.FormField.ADR_LINE_3_TX_8.prompt>
+<$client.env.FormField.ADR_TO_DT.prompt>
+<$client.env.FormField.ADR_TO_DT_2.prompt>
+<$client.env.FormField.ADR_TO_DT_3.prompt>
+<$client.env.FormField.ADR_TO_DT_4.prompt>
+<$client.env.FormField.ADR_TO_DT_5.prompt>
+<$client.env.FormField.ADR_TO_DT_6.prompt>
+<$client.env.FormField.ADR_TO_DT_7.prompt>
+<$client.env.FormField.ADR_TO_DT_8.prompt>
+<$client.env.FormField.BRTH_CITY_NM.prompt>
+<$client.env.FormField.BRTH_CTRY_CD.prompt>
+<$client.env.FormField.BRTH_ST_CD.prompt>
+<$client.env.FormField.CELL_PHN_COM_TX.prompt>
+<$client.env.FormField.CELL_PHN_PRIM_FL.prompt>
+<$client.env.FormField.CITY_NM.prompt>
+<$client.env.FormField.CITY_NM_2.prompt>
+<$client.env.FormField.CITY_NM_3.prompt>
+<$client.env.FormField.CITY_NM_4.prompt>
+<$client.env.FormField.CITY_NM_5.prompt>
+<$client.env.FormField.CITY_NM_6.prompt>
+<$client.env.FormField.CITY_NM_7.prompt>
+<$client.env.FormField.CITY_NM_8.prompt>
+<$client.env.FormField.COUNTY.prompt>
+<$client.env.FormField.COUNTY_2.prompt>
+<$client.env.FormField.COUNTY_3.prompt>
+<$client.env.FormField.COUNTY_4.prompt>
+<$client.env.FormField.COUNTY_5.prompt>
+<$client.env.FormField.COUNTY_6.prompt>
+<$client.env.FormField.COUNTY_7.prompt>
+<$client.env.FormField.COUNTY_8.prompt>
+<$client.env.FormField.CTRY_CD_2.prompt>
+<$client.env.FormField.CTRY_CD_3.prompt>
+<$client.env.FormField.CTRY_CD_4.prompt>
+<$client.env.FormField.CTRY_CD_5.prompt>
+<$client.env.FormField.CTRY_CD_6.prompt>
+<$client.env.FormField.CTRY_CD_7.prompt>
+<$client.env.FormField.CTRY_CD_8.prompt>
+<$client.env.FormField.CTRY_CD.prompt>
+<$client.env.FormField.CTZN_CTRY_CD.prompt>
+<$client.env.FormField.EMAIL_ADDR_TX_1.prompt>
+<$client.env.FormField.EMAIL_ADDR_TX_2.prompt>
+<$client.env.FormField.EMAIL_ch1.prompt>
+<$client.env.FormField.EMAIL_ch2.prompt>
+<$client.env.FormField.ETHNC_TYPE_CD.prompt>
+<$client.env.FormField.FRST_NM.prompt>
+<$client.env.FormField.FRST_NM_2.prompt>
+<$client.env.FormField.FRST_NM_3.prompt>
+<$client.env.FormField.GNDR_TYPE_CD.prompt>
+<$client.env.FormField.HOME_PHN_COM_TX.prompt>
+<$client.env.FormField.HOME_PHN_PRIM_FL.prompt>
+<$client.env.FormField.LAST_NM.prompt>
+<$client.env.FormField.LAST_NM_2.prompt>
+<$client.env.FormField.LAST_NM_3.prompt>
+<$client.env.FormField.MID_NM.prompt>
+<$client.env.FormField.MID_NM_2.prompt>
+<$client.env.FormField.MID_NM_3.prompt>
+<$client.env.FormField.PFD_FL.prompt>
+<$client.env.FormField.PSTL_CD.prompt>
+<$client.env.FormField.PSTL_CD_2.prompt>
+<$client.env.FormField.PSTL_CD_3.prompt>
+<$client.env.FormField.PSTL_CD_4.prompt>
+<$client.env.FormField.PSTL_CD_5.prompt>
+<$client.env.FormField.PSTL_CD_6.prompt>
+<$client.env.FormField.PSTL_CD_7.prompt>
+<$client.env.FormField.PSTL_CD_8.prompt>
+<$client.env.FormField.SFX_NM.prompt>
+<$client.env.FormField.SFX_NM_2.prompt>
+<$client.env.FormField.SFX_NM_3.prompt>
+<$client.env.FormField.ST_CD_2.prompt>
+<$client.env.FormField.ST_CD_3.prompt>
+<$client.env.FormField.ST_CD_4.prompt>
+<$client.env.FormField.ST_CD_5.prompt>
+<$client.env.FormField.ST_CD_6.prompt>
+<$client.env.FormField.ST_CD_7.prompt>
+<$client.env.FormField.ST_CD_8.prompt>
+<$client.env.FormField.ST_CD.prompt>
+<$client.env.FormField.sd1_present.prompt>
+<$client.env.FormField.sd2_present.prompt>
+<$client.env.FormField.sd3_present.prompt>
+<$client.env.FormField.sd4_present.prompt>
+<$client.env.FormField.sd5_present.prompt>
+<$client.env.FormField.sd6_present.prompt>
+<$client.env.FormField.sd7_present.prompt>
+<$client.env.FormField.sd8_present.prompt>
+
+
+
+<!--END:  PROMPT -->
+
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<!--START:  HTML PAGE -->
+  <table width="894" cellpadding=0 cellspacing=0 class="tbl_outer tbl_nonborder bold" >
+      <tr>
+          <td colspan=4 class='title center bg-title ' style='border-bottom: 3px solid #000 !important;'>
+              Additional Information: Demographics and Residential Address<br />
+      </td>
+        </tr>
+        <tr>
+          <td width="20%" class='padding_top'>City of birth:</td>
+            <td width="43%" class='padding_top'><$client.env.FormField.BRTH_CITY_NM.HTML></td>
+            <td width="15%" class='padding_top'>State of birth:</td>
+            <td width="22%" class='padding_top'><$client.env.FormField.BRTH_ST_CD.HTML></td>
+        </tr>
+        <tr>
+          <td>Country of birth:</td>
+            <td><$client.env.FormField.BRTH_CTRY_CD.HTML></td>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Country of citizenship:</td>
+            <td><$client.env.FormField.CTZN_CTRY_CD.HTML></td>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+          <td>Ethnicity:</td>
+          <td><$client.env.FormField.ETHNC_TYPE_CD.HTML></td>
+            <td>Gender:</td>
+            <td><$client.env.FormField.GNDR_TYPE_CD.HTML></td>
+        </tr>
+        <tr>
+          <td colspan=4 class='padding_top'>
+              <p>Enter all other names that you have used or are using, or by which you are known or have been known, other than your legal name, since the age of 18. (Ex. Aliases, names used before/after marriage, short/abbreviated first name):</p>
+            </td>
+        </tr>
+        <tr>
+          <td class='underlined' colspan=4>Check if preferred name:</td>
+        </tr>
+        <tr>
+          <td colspan=4>
+              <table width=100% cellspacing=3 cellpadding="0">
+                  <tr>
+                      <td width="13%">&nbsp;</td>
+                        <td width="16%" class='center bg-title'>First Name</td>
+                        <td width="35%" class='center bg-title'>Middle Name</td>
+                        <td width="26%" class='center bg-title'>Last Name</td>
+                        <td width="10%" class='center bg-title'>Suffix</td>
+                    </tr>
+                    <tr>
+                      <td rowspan=3><$client.env.FormField.PFD_FL.HTML></td>
+                        <td><$client.env.FormField.FRST_NM.HTML></td>
+                        <td><$client.env.FormField.MID_NM.HTML></td>
+                      <td><$client.env.FormField.LAST_NM.HTML></td>
+                        <td><$client.env.FormField.SFX_NM.HTML></td>
+                    </tr>
+                    <tr>
+                        <td><$client.env.FormField.FRST_NM_2.HTML></td>
+                        <td><$client.env.FormField.MID_NM_2.HTML></td>
+                      <td><$client.env.FormField.LAST_NM_2.HTML></td>
+                      <td><$client.env.FormField.SFX_NM_2.HTML></td>
+                    </tr>
+                     <tr>
+                        <td><$client.env.FormField.FRST_NM_3.HTML></td>
+                        <td><$client.env.FormField.MID_NM_3.HTML></td>
+                      <td><$client.env.FormField.LAST_NM_3.HTML></td>
+                        <td><$client.env.FormField.SFX_NM_3.HTML></td>
+                    </tr>
+                    <tr>
+                      <td>Primary Contact</td>
+                        <td class='center bg-title'>Phone Type</td>
+                        <td class='center bg-title'>Phone Number (XXX-XXX-XXXX)</td>
+                      <td colspan=2>&nbsp;</td>
+                    </tr>
+                     <tr>
+                      <td><$client.env.FormField.HOME_PHN_PRIM_FL.HTML></td>
+                        <td class='center'>Home</td>
+                        <td><$client.env.FormField.HOME_PHN_COM_TX.HTML></td>
+                      <td colspan=2>&nbsp;</td>
+                    </tr>
+                     <tr>
+                      <td><$client.env.FormField.CELL_PHN_PRIM_FL.HTML></td>
+                        <td class='center'>Cell</td>
+                        <td><$client.env.FormField.CELL_PHN_COM_TX.HTML></td>
+                      <td colspan=2>&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td>Primary Contact</td>
+                        <td class='center bg-title' colspan=2>Email Address(es)</td>
+                        <td colspan=2>&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td><$client.env.FormField.EMAIL_ch1.HTML></td>
+                        <td colspan=2><$client.env.FormField.EMAIL_ADDR_TX_1.HTML></td>
+                        <td colspan=2>&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td><$client.env.FormField.EMAIL_ch2.HTML></td>
+                        <td colspan=2><$client.env.FormField.EMAIL_ADDR_TX_2.HTML></td>
+                        <td colspan=2>&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+          <td colspan=4>Physical Residential Address:</td>
+        </tr>
+        <tr>
+          <td colspan=4>
+              <ul>
+                <li>Answer the following questions completely</li>
+                  <li>Start with current residence</li>
+                        <li>Can only have 1 "to present" residence</li>
+                  <li>Must go back full 5 years - no gaps</li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+          <td colspan=4>
+              <table width='100%' cellspacing=0 cellpadding="0">
+                     <tr class='part_1 active'  >
+                      <td width="16%">From Month/Year:</td>
+                        <td width="37%"><$client.env.FormField.ADR_FROM_DT.HTML></td>
+                        <td width="2%">&nbsp;</td>
+                        <td width="13%">To Month/Year:</td>
+                        <td width="32%">
+                                     <table class='inner_td' width=100% cellpadding="0" cellspacing="0"><tr class='part_1'><td width="45%"><$client.env.FormField.ADR_TO_DT.HTML></td><td width="55%"><div class='radio-field'><$client.env.FormField.sd1_present.HTML></div></td></tr></table>
+                        </td>
+                    </tr>
+                    <tr class='part_1 active'>
+                      <td>Street Line 1:</td>
+                        <td><$client.env.FormField.ADR_LINE_1_TX.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>City:</td>
+                        <td><$client.env.FormField.CITY_NM.HTML></td>
+                    </tr>
+                    <tr class='part_1 active'>
+                      <td>Street Line 2:</td>
+                        <td><$client.env.FormField.ADR_LINE_2_TX.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>State:</td>
+                        <td><$client.env.FormField.ST_CD.HTML></td>
+                    </tr>
+
+                    <tr class='part_1 active'>
+                      <td>Street Line 3:</td>
+                        <td><$client.env.FormField.ADR_LINE_3_TX.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>Zip:</td>
+                        <td><$client.env.FormField.PSTL_CD.HTML></td>
+                    </tr>
+                    <tr class='part_1 active'>
+                      <td>Country:</td>
+                        <td><$client.env.FormField.CTRY_CD.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>County:</td>
+                        <td><$client.env.FormField.COUNTY.HTML></td>
+                    </tr>
+          <!-- ****************************************************************************** -->
+                    <tr class='part_2'><td colspan=4>&nbsp;</td></tr>
+                    <tr class='part_2'>
+                      <td>From Month/Year:</td>
+                        <td><$client.env.FormField.ADR_FROM_DT_2.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                      <td>To Month/Year:</td>
+                        <td>
+                            <table class='inner_td' width=100% cellpadding="0" cellspacing="0"><tr class='part_2'><td width="45%"><$client.env.FormField.ADR_TO_DT_2.HTML></td><td width="55%"><div class='radio-field'><$client.env.FormField.sd2_present.HTML></div></td></tr></table>
+                        </td>
+                    </tr>
+                    <tr class='part_2'>
+                      <td>Street Line 1:</td>
+                        <td><$client.env.FormField.ADR_LINE_1_TX_2.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>City:</td>
+                        <td><$client.env.FormField.CITY_NM_2.HTML></td>
+                    </tr>
+                    <tr class='part_2'>
+                      <td>Street Line 2:</td>
+                        <td><$client.env.FormField.ADR_LINE_2_TX_2.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>State:</td>
+                        <td><$client.env.FormField.ST_CD_2.HTML></td>
+                    </tr>
+
+                    <tr class='part_2'>
+                      <td>Street Line 3:</td>
+                        <td><$client.env.FormField.ADR_LINE_3_TX_2.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>Zip:</td>
+                       <td><$client.env.FormField.PSTL_CD_2.HTML></td>
+                    </tr>
+                    <tr class='part_2'>
+                      <td>Country:</td>
+                        <td><$client.env.FormField.CTRY_CD_2.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>County:</td>
+                        <td><$client.env.FormField.COUNTY_2.HTML></td>
+                    </tr>
+                    <!-- ****************************************************************************** -->
+                    <tr class='part_3'><td colspan=4>&nbsp;</td></tr>
+                     <tr class='part_3'>
+                      <td>From Month/Year:</td>
+                        <td><$client.env.FormField.ADR_FROM_DT_3.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                      <td>To Month/Year:</td>
+                        <td>
+                           <table class='inner_td' width=100% cellpadding="0" cellspacing="0"><tr class='part_3'><td width="45%"><$client.env.FormField.ADR_TO_DT_3.HTML></td><td width="55%"><div class='radio-field'><$client.env.FormField.sd3_present.HTML></div></td></tr></table>
+                        </td>
+                    </tr>
+                    <tr class='part_3'>
+                      <td>Street Line 1:</td>
+                        <td><$client.env.FormField.ADR_LINE_1_TX_3.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>City:</td>
+                        <td><$client.env.FormField.CITY_NM_3.HTML></td>
+                    </tr>
+                    <tr class='part_3'>
+                      <td>Street Line 2:</td>
+                        <td><$client.env.FormField.ADR_LINE_2_TX_3.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>State:</td>
+                        <td><$client.env.FormField.ST_CD_3.HTML></td>
+                    </tr>
+
+                    <tr class='part_3'>
+                      <td>Street Line 3:</td>
+                        <td><$client.env.FormField.ADR_LINE_3_TX_3.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>Zip:</td>
+                       <td><$client.env.FormField.PSTL_CD_3.HTML></td>
+                    </tr>
+                    <tr class='part_3'>
+                      <td>Country:</td>
+                        <td><$client.env.FormField.CTRY_CD_3.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>County:</td>
+                        <td><$client.env.FormField.COUNTY_3.HTML></td>
+                    </tr>
+                    <!-- ****************************************************************************** -->
+
+                    <tr class='part_4'><td colspan=4>&nbsp;</td></tr>
+                     <tr class='part_4'>
+                      <td>From Month/Year:</td>
+                        <td><$client.env.FormField.ADR_FROM_DT_4.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                      <td>To Month/Year:</td>
+                        <td>
+                            <table class='inner_td' width=100% cellpadding="0" cellspacing="0"><tr class='part_4'><td width="45%"><$client.env.FormField.ADR_TO_DT_4.HTML></td><td width="55%"><div class='radio-field'><$client.env.FormField.sd4_present.HTML></div></td></tr></table>
+                        </td>
+                    </tr>
+                    <tr class='part_4'>
+                      <td>Street Line 1:</td>
+                        <td><$client.env.FormField.ADR_LINE_1_TX_4.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>City:</td>
+                        <td><$client.env.FormField.CITY_NM_4.HTML></td>
+                    </tr>
+                    <tr class='part_4'>
+                      <td>Street Line 2:</td>
+                        <td><$client.env.FormField.ADR_LINE_2_TX_4.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>State:</td>
+                        <td><$client.env.FormField.ST_CD_4.HTML></td>
+                    </tr>
+
+                    <tr class='part_4'>
+                      <td>Street Line 3:</td>
+                        <td><$client.env.FormField.ADR_LINE_3_TX_4.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>Zip:</td>
+                       <td><$client.env.FormField.PSTL_CD_4.HTML></td>
+                    </tr>
+                    <tr class='part_4'>
+                      <td>Country:</td>
+                        <td><$client.env.FormField.CTRY_CD_4.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>County:</td>
+                        <td><$client.env.FormField.COUNTY_4.HTML></td>
+                    </tr>
+                    <!-- ****************************************************************************** -->
+                    <tr class='part_5'><td colspan=4>&nbsp;</td></tr>
+                     <tr class='part_5'>
+                      <td>From Month/Year:</td>
+                        <td><$client.env.FormField.ADR_FROM_DT_5.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                      <td>To Month/Year:</td>
+                        <td>
+                            <table class='inner_td'  width=100% cellpadding="0" cellspacing="0"><tr class='part_5'><td width="45%"><$client.env.FormField.ADR_TO_DT_5.HTML></td><td width="55%"><div class='radio-field'><$client.env.FormField.sd5_present.HTML></div></td></tr></table>
+                        </td>
+                    </tr>
+                    <tr class='part_5'>
+                      <td>Street Line 1:</td>
+                        <td><$client.env.FormField.ADR_LINE_1_TX_5.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>City:</td>
+                        <td><$client.env.FormField.CITY_NM_5.HTML></td>
+                    </tr>
+                    <tr class='part_5'>
+                      <td>Street Line 2:</td>
+                        <td><$client.env.FormField.ADR_LINE_2_TX_5.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>State:</td>
+                        <td><$client.env.FormField.ST_CD_5.HTML></td>
+                    </tr>
+
+                    <tr class='part_5'>
+                      <td>Street Line 3:</td>
+                        <td><$client.env.FormField.ADR_LINE_3_TX_5.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>Zip:</td>
+                       <td><$client.env.FormField.PSTL_CD_5.HTML></td>
+                    </tr>
+                    <tr class='part_5'>
+                      <td>Country:</td>
+                        <td><$client.env.FormField.CTRY_CD_5.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>County:</td>
+                        <td><$client.env.FormField.COUNTY_5.HTML></td>
+                    </tr>
+
+                    <!-- ****************************************************************************** -->
+                    
+                     <tr class='part_6'><td colspan=4>&nbsp;</td></tr>
+                     <tr class='part_6'>
+                      <td>From Month/Year:</td>
+                        <td><$client.env.FormField.ADR_FROM_DT_6.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                      <td>To Month/Year:</td>
+                        <td>
+                           <table  class='inner_td' width=100% cellpadding="0" cellspacing="0"><tr class='part_6'><td width="45%"><$client.env.FormField.ADR_TO_DT_6.HTML></td><td width="55%"><div class='radio-field'><$client.env.FormField.sd6_present.HTML></div></td></tr></table>
+                        </td>
+                    </tr>
+                    <tr class='part_6'>
+                      <td>Street Line 1:</td>
+                        <td><$client.env.FormField.ADR_LINE_1_TX_6.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>City:</td>
+                        <td><$client.env.FormField.CITY_NM_6.HTML></td>
+                    </tr>
+                    <tr class='part_6'>
+                      <td>Street Line 2:</td>
+                        <td><$client.env.FormField.ADR_LINE_2_TX_6.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>State:</td>
+                        <td><$client.env.FormField.ST_CD_6.HTML></td>
+                    </tr>
+
+                    <tr class='part_6'>
+                      <td>Street Line 3:</td>
+                        <td><$client.env.FormField.ADR_LINE_3_TX_6.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>Zip:</td>
+                       <td><$client.env.FormField.PSTL_CD_6.HTML></td>
+                    </tr>
+                    <tr class='part_6'>
+                      <td>Country:</td>
+                        <td><$client.env.FormField.CTRY_CD_6.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>County:</td>
+                        <td><$client.env.FormField.COUNTY_6.HTML></td>
+                    </tr>
+                    <!-- ****************************************************************************** -->
+                    <tr class='part_7'><td colspan=4>&nbsp;</td></tr>
+                     <tr class='part_7'>
+                      <td>From Month/Year:</td>
+                        <td><$client.env.FormField.ADR_FROM_DT_7.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                      <td>To Month/Year:</td>
+                        <td>
+                           <table class='inner_td'  width=100% cellpadding="0" cellspacing="0"><tr class='part_7'><td width="45%"><$client.env.FormField.ADR_TO_DT_7.HTML></td><td width="55%"><div class='radio-field'><$client.env.FormField.sd7_present.HTML></div></td></tr></table>
+                        </td>
+                    </tr>
+                    <tr class='part_7'>
+                      <td>Street Line 1:</td>
+                        <td><$client.env.FormField.ADR_LINE_1_TX_7.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>City:</td>
+                        <td><$client.env.FormField.CITY_NM_7.HTML></td>
+                    </tr>
+                    <tr class='part_7'>
+                      <td>Street Line 2:</td>
+                        <td><$client.env.FormField.ADR_LINE_2_TX_7.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>State:</td>
+                        <td><$client.env.FormField.ST_CD_7.HTML></td>
+                    </tr>
+
+                    <tr class='part_7'>
+                      <td>Street Line 3:</td>
+                        <td><$client.env.FormField.ADR_LINE_3_TX_7.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>Zip:</td>
+                       <td><$client.env.FormField.PSTL_CD_7.HTML></td>
+                    </tr>
+                    <tr class='part_7'>
+                      <td>Country:</td>
+                        <td><$client.env.FormField.CTRY_CD_7.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>County:</td>
+                        <td><$client.env.FormField.COUNTY_7.HTML></td>
+                    </tr>
+                    <!-- ****************************************************************************** -->
+                    <tr class='part_8'><td colspan=4>&nbsp;</td></tr>
+                     <tr class='part_8'>
+                      <td>From Month/Year:</td>
+                        <td><$client.env.FormField.ADR_FROM_DT_8.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                      <td>To Month/Year:</td>
+                        <td>
+                            <table class='inner_td'  width=100% cellpadding="0" cellspacing="0"><tr class='part_8'><td width="45%"><$client.env.FormField.ADR_TO_DT_8.HTML></td><td width="55%"><div class='radio-field'><$client.env.FormField.sd8_present.HTML></div></td></tr></table>
+                        </td>
+                    </tr>
+                    <tr class='part_8'>
+                      <td>Street Line 1:</td>
+                        <td><$client.env.FormField.ADR_LINE_1_TX_8.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>City:</td>
+                        <td><$client.env.FormField.CITY_NM_8.HTML></td>
+                    </tr>
+                    <tr class='part_8'>
+                      <td>Street Line 2:</td>
+                        <td><$client.env.FormField.ADR_LINE_2_TX_8.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>State:</td>
+                        <td><$client.env.FormField.ST_CD_8.HTML></td>
+                    </tr>
+
+                    <tr class='part_8'>
+                      <td>Street Line 3:</td>
+                        <td><$client.env.FormField.ADR_LINE_3_TX_8.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>Zip:</td>
+                       <td><$client.env.FormField.PSTL_CD_8.HTML></td>
+                    </tr>
+                    <tr class='part_8'>
+                      <td>Country:</td>
+                        <td><$client.env.FormField.CTRY_CD_8.HTML></td>
+                        
+                        <td>&nbsp;</td>
+                        
+                        <td>County:</td>
+                        <td><$client.env.FormField.COUNTY_8.HTML></td>
+                    </tr>
+
+                </table>
+            </td>
+          </tr>
+
+        <tr><td colspan=4>&nbsp;</td></tr>
+        <tr><td colspan=4>&nbsp;</td></tr>
+ 
+<tr><td colspan=4 class='right'>
+                <span id="remove_row1" data-max="8" data-row-btn="add_row1" data-min="1"  data-sub="part" onClick=fnEvntDeleteRow(this); class="RCappInputButtonRed">Remove Row</span>
+                <span id="add_row1" data-max="8" data-row-btn="remove_row1" data-min="1" data-sub="part"  data-value="1" onClick=fnEvntAddRow(this); class="RCappInputButtonBlue">Add Row</span>
+
+          </td></tr>
+
+        <tr><td colspan=4>&nbsp;</td></tr>
+        <tr><td colspan=4>&nbsp;</td></tr>
+
+        <tr>
+          <td colspan=4 class='italic'>***Add address groups as needed to complete 5 year time span</td>
+        </tr>
+    </table>
+<!--END:  HTML PAGE -->
+
+<$client.env.FormButtons>
+<div style="display:none;">
+<$client.env.FormField.SignatureVerification.HTML>
+<$client.env.FormField.SELECTED_PFL_FL.HTML>
+<$client.env.FormField.data_value.HTML>
+
+
+</div>
+</form>
+
+
+<script>
+ChangeCalendarIcons(); //for popup calendar
+
+ function toggleMe(el){
+    var rdoName = el.name;
+    var rdoGroup = document.frmForm.elements[rdoName];
+  
+   for (i=0;i<rdoGroup.length;i++)
+   {
+  el_ch = rdoGroup[i];
+        if(el_ch.value != el.value)
+            el_ch.checked=false; 
+   }
+
+  }
+
+// SERVICES-38871 | Waddell & Reed, Inc. - RC - Special Characters
+const replaceSpecialChars = function(el) {
+    "use strict";
+    el.value = el.value.replace(/[“]/g, "\"")
+                    .replace(/[”]/g, "\"")
+                    .replace(/[‘]/g, "\'")
+                    .replace(/[’]/g, "\'")
+                    .replace(/[‚]/g, ",");
+};
+let cities = ['BRTH_CITY_NM', 'CITY_NM'];
+for (let i = 0; i < cities.length; i++) {
+  replaceSpecialChars(document.querySelector('[name$=".' + cities[i] + '"]'));
+}
+
+</script>
+<script type='text/javascript' src='event_functions.js' /></script>

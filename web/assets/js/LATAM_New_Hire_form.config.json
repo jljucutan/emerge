@@ -1,0 +1,397 @@
+{
+    "config": {
+        "fields": [
+            {
+                "field": "nid_type",
+                "validation": "required",
+                "readonly": true,
+                "validateByCountry": {
+                    "NLD": {
+                        "readonly": true,
+                        "default": "NLD-BSN"
+                    },
+                    "DEU": {
+                        "readonly": true,
+                        "default": "DEU-SVNR",
+                        "defaultEUP": "National_ID2"
+                    },
+                    "ITA": {
+                        "readonly": false,
+                        "default": "ITA-CF"
+                    },
+                    "ESP": {
+                        "readonly": true,
+                        "default": "ESP-NIF"
+                    },
+                    "POL": {
+                        "readonly": true,
+                        "default": "POL-DO"
+                    },
+                    "BEL": {
+                        "readonly": true,
+                        "default": "BEL-NN"
+                    },
+                    "LUX": {
+                        "readonly": true,
+                        "default": "LUX-CCSS"
+                    },
+                    "HKG": {
+                        "readonly": true,
+                        "default": "HKG-ID"
+                    },
+                    "IND": {
+                        "readonly": false,
+                        "default": "IND-UAN"
+                    },
+                    "JPN": {
+                        "readonly": true,
+                        "default": "JPN-SSN"
+                    },
+                    "KOR": {
+                        "readonly": true,
+                        "default": "KOR-RRN"
+                    },
+                    "THA": {
+                        "readonly": true,
+                        "default": "THA-ID"
+                    },
+                    "PHL": {
+                        "readonly": true,
+                        "default": "PHL-SSS"
+                    },
+                    "GTM": {
+                        "readonly": true,
+                        "default": "GTM-DPI"
+                    },
+                    "MEX": {
+                        "readonly": true,
+                        "default": "MEX-RFC"
+                    },
+                    "BRA": {
+                        "readonly": true,
+                        "default": "BRA-CPF"
+                    },
+                    "ARG": {
+                        "readonly": false,
+                        "default": "ARG-DNI"
+                    }
+                }
+            },
+            {
+                "field": "nid_number",
+                "readonly": true,
+                "validateByCountry": {
+                    "NLD": {
+                        "validation": "required,regex",
+                        "regex": "^\\d{9}$",
+                        "message": "only 9 digits"
+                    },
+                    "BEL": {
+                        "readonly": false
+                    },
+                    "GTM": {
+                        "readonly": true,
+                        "defaultEUP": "NationalID3"
+                    },
+                    "POL": {
+                        "defaultEUP": "SSNO"
+                    },
+                    "BRA": {
+                        "readonly": true,
+                        "defaultEUP": "SSNO"
+                    },
+                    "ARG": {
+                        "readonly": true,
+                        "defaultEUP": "SSNO"
+                    },
+                    "MEX": {
+                        "readonly": true,
+                        "defaultEUP": "SSNO"
+                    }
+                },
+                "validateByIDType": {
+                    "NLD-BSN": {
+                        "readonly": true,
+                        "validation": "required,regex-optional",
+                        "regex": "^[0-9]{9}$",
+                        "message": "9 digits only."
+                    },
+                    "DEU-SVNR": {
+                        "readonly": true
+                    },
+                    "DEU-SID": {
+                        "validation": "required,regex-optional",
+                        "regex": "^[0-9]{11}$",
+                        "message": "11 digits only."
+                    },
+                    "ESP-NIF": {
+                        "readonly": true
+                    },
+                    "ITA-CF": {
+                        "readonly": false
+                    },
+                    "FRA-INSEE": {
+                        "readonly": true
+                    },
+                    "IRL-PPS": {
+                        "readonly": false
+                    },
+                    "ISR-IDO": {
+                        "readonly": false
+                    },
+                    "SWE-PN": {
+                        "readonly": false
+                    },
+                    "GBR-NI": {
+                        "readonly": false
+                    },
+                    "HKG-ID": {
+                        "readonly": true
+                    },
+                    "IND-UAN": {
+                        "readonly": false
+                    },
+                    "JPN-SSN": {
+                        "readonly": true
+                    },
+                    "KOR-RRN": {
+                        "readonly": true
+                    },
+                    "THA-ID": {
+                        "readonly": true
+                    },
+                    "POL-DO": {
+                        "readonly": false
+                    },
+                    "BEL-NN": {
+                        "readonly": false
+                    },
+                    "LUX-CCSS": {
+                        "readonly": false
+                    },
+                    "MYS-SOSCO": {
+                        "validation": "required,regex-optional",
+                        "regex": "^[0-9]+$",
+                        "message": "digits only."
+                    },
+                    "GTM-DPI": {
+                        "validation": "required",
+                        "defaultEUP": "NationalID3",
+                        "readonly": true
+                    },
+                    "MEX-RFC": {
+                        "readonly": true,
+                        "defaultEUP": "SSNO",
+                        "validation": "required"
+                    },
+                    "BRA-CPF": {
+                        "defaultEUP": "SSNO"
+                    },
+                    "ARG-DNI": {
+                        "readonly": true,
+                        "defaultEUP": "SSNO"
+                    },
+                    "ARG-CUIL": {
+                        "readonly": true,
+                        "defaultEUP": "National_ID2"
+                    }
+                }
+            },
+            {
+                "field": "nid_issued_date_mapped",
+                "label": "#nid_issued_date_mapped_label",
+                "validateByCountry": {
+                    "POL": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "past-date"
+                    },
+                    "BEL": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "past-date"
+                    },
+                    "LUX": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "past-date"
+                    },
+                    "AUS": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "past-date"
+                    },
+                    "ITA": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "past-date"
+                    },
+                    "DEU": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "past-date"
+                    },
+                    "ESP": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "past-date"
+                    },
+                    "NLD": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "past-date"
+                    },
+                    "ARG": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "required,past-date"
+                    },
+                    "BRA": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "past-date"
+                    },
+                    "MEX": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "past-date"
+                    },
+                    "GTM": {
+                        "label": "#nid_issued_date_mapped_label",
+                        "validation": "past-date"
+                    }
+                }
+            },
+            {
+                "field": "nid_expiration_date_mapped",
+                "label": "#nid_expiration_date_mapped_label",
+                "validateByCountry": {
+                    "POL": {
+                        "label": "#nid_expiration_date_mapped_label",
+                        "validation": "future-date"
+                    },
+                    "BEL": {
+                        "label": "#nid_expiration_date_mapped_label",
+                        "validation": "future-date"
+                    },
+                    "LUX": {
+                        "label": "#nid_expiration_date_mapped_label",
+                        "validation": "future-date"
+                    },
+                    "ARG": {
+                        "label": "#nid_expiration_date_mapped_label",
+                        "validation": "required,future-date"
+                    },
+                    "BRA": {
+                        "label": "#nid_expiration_date_mapped_label",
+                        "validation": "future-date"
+                    },
+                    "MEX": {
+                        "label": "#nid_expiration_date_mapped_label",
+                        "validation": "future-date"
+                    },
+                    "GTM": {
+                        "label": "#nid_expiration_date_mapped_label",
+                        "validation": "future-date"
+                    }
+                }
+            },
+            {
+                "field": "nid_type2",
+                "readonly": true,
+                "validation": "required",
+                "validateByCountry": {
+                    "BRA": {
+                        "readonly": true,
+                        "default": "BRA-RG"
+                    }
+                }
+            },
+            {
+                "field": "nid_number2",
+                "readonly": true,
+                "validation": "required",
+                "validateByCountry": {
+                    "BRA": {
+                        "readonly": true,
+                        "defaultEUP": "National_ID2"
+                    }
+                }
+            },
+            {
+                "field": "nid_issued_date_mapped2",
+                "label": "#nid_issued_date_mapped2_label",
+                "validation": "required,past-date"
+            },
+            {
+                "field": "nid_expiration_date_mapped2",
+                "label": "#nid_expiration_date_mapped2_label",
+                "validation": "required,future-date",
+                "validateByCountry": {
+                    "BRA": {
+                        "label": "#nid_expiration_date_mapped2_label",
+                        "validation": "future-date"
+                    },
+                    "MEX": {
+                        "label": "#nid_expiration_date_mapped2_label",
+                        "validation": "future-date"
+                    },
+                    "GTM": {
+                        "label": "#nid_expiration_date_mapped2_label",
+                        "validation": "future-date"
+                    }
+                }
+            },
+            {
+                "field": "visa_permit_type",
+                "readonly": false,
+                "validation": "required",
+                "validateByCountry": {
+                    "GTM": {
+                        "default": "GTM_WP"
+                    }                
+                }
+            }
+        ],
+        "labels": [
+            {
+                "id": "nid-type-label",
+                "mappedLabel": ".nid_type_label",
+                "validateByCountry": {
+                    "ESP": {
+                        "required": true,
+                        "text": "Identification Type 1"
+                    },
+                    "BRA": {
+                        "required": true,
+                        "text": "Identification Type 1"
+                    },
+                    "ARG": {
+                        "required": true,
+                        "text": "Identification Type"
+                    },
+                    "GTM": {
+                        "required": true,
+                        "text": "Identification Type"
+                    }
+                }
+            },
+            {
+                "id": "nid_label",
+                "mappedLabel": ".nid_number_label",
+                "validateByCountry": {
+                    "GTM": {
+                        "required": true,
+                        "text": "National ID/ SSN "
+                    },
+                    "BRA": {
+                        "required": true,
+                        "text": "Identification Number 1"
+                    },
+                    "ARG": {
+                        "required": true,
+                        "text": "Identification Number"
+                    }
+                }
+            },
+            {
+                "id": "expiration_date_label",
+                "validateByCountry": {
+                    "ARG": {
+                        "required": true,
+                        "text": "Expiration Date"
+                    }
+                }
+            }
+        ]
+    }
+}

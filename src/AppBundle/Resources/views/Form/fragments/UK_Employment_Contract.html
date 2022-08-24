@@ -1,0 +1,974 @@
+<!--//////////////////////////////////////////////   Company Signature  //////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal3" style="display:none;">
+<div id="box">
+<b>Electronic Signature</b>
+<p style="font-weight: normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below,that I acknowledge, agree and attest that the information provided by me is true and
+correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+<br>
+<b>Type your Name:</b>
+<input type=text id="eSignature3">&nbsp;
+<input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature3','eSignature3','','modal3','over','svCompany');xbObj('eSignature3').value='';">&nbsp;
+<input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature3').value='';showHide('modal3');showHide('over');xbObj('eSignature3').value='';">&nbsp;
+<input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal3');showHide('over');xbObj('eSignature3').value='';">
+</div>
+</div>
+<div id="over" style="display:none;">
+</div>
+<SCRIPT>
+showScreen('over')
+</SCRIPT>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<!--//////////////////////////////////////////////////////////// Employee Signature 1////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;">
+<div id="box">
+<b>Electronic Signature</b>
+<p style="font-weight: normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below,that I acknowledge, agree and attest that the information provided by me is true and
+correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+<br>
+<b>Type your Name:</b>
+<input type=text id="eSignature1">&nbsp;
+<input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+<input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+<input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+</div>
+</div>
+<div id="over" style="display:none;">
+</div>
+<SCRIPT>
+showScreen('over')
+</SCRIPT>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////// Employee Signature 2////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal2" style="display:none;">
+<div id="box">
+<b>Electronic Signature</b>
+<p style="font-weight: normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below,that I acknowledge, agree and attest that the information provided by me is true and
+correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+<br>
+<b>Type your Name:</b>
+<input type=text id="eSignature2">&nbsp;
+<input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature2','eSignature2','full_name','modal2','over','sv2');xbObj('eSignature2').value='';">&nbsp;
+<input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';">&nbsp;
+<input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+</div>
+</div>
+<div id="over" style="display:none;">
+</div>
+<SCRIPT>
+showScreen('over')
+</SCRIPT>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+
+
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.Signature2.prompt>
+        <$client.env.FormField.CompanySignature.prompt>
+        <$client.env.FormField.CompanyName.prompt>
+        <$client.env.FormField.CompanyPosition.prompt>
+
+      </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<div id="container">
+  <div id="incomplete">
+
+<!-- for StubHub-->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.EnityName=='StubHub (UK) Ltd.'?'block':'none')>">
+<img src="<$link;/main/RedCarpet/FormTemplates/UK_Employment_Contract/stubhub_logo.png>" border="0" width="200" height="88" align="left">
+<div align="right"><strong>StubHub (UK) Ltd.</strong></br>
+5 New Street Square,<br />
+London, EC4A 3TW,</br>
+United Kingdom</br>
+</br>
+</div>
+</div>
+
+<!-- for Gumtree -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.EnityName=='Gumtree.com Ltd'?'block':'none')>">
+   <img src="<$link;/main/RedCarpet/FormTemplates/UK_Employment_Contract/UKcontractEGumtree.png>" border="0" width="1100" height="219"><br />
+</div>
+
+<!-- for Motors -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.EnityName=='Motors.co.uk Limited'?'block':'none')>">
+   <img src="<$link;/main/RedCarpet/FormTemplates/UK_Employment_Contract/Motors_LOGO.png>" border="0" width="200" height="50"><br />
+</div>
+
+
+<!-- for eBay -->
+<div style="display:<$client.env.eval((client.tForWhomUserInfo.EnityName!='StubHub (UK) Ltd.') && (client.tForWhomUserInfo.EnityName!='Gumtree.com Ltd') && (client.tForWhomUserInfo.EnityName!='Motors.co.uk Limited')?'block':'none')>">
+<img src="<$link;/main/RedCarpet/FormTemplates/UK_Employment_Contract/UKcontractEBAY.png>" border="0"><br />
+</div>
+
+
+<table class="topTable1">
+   <tr>
+      <td colspan="2">&nbsp;</td>
+   </tr>
+<tr>
+      <td colspan="2" style="text-align: center;"><strong>THIS AGREEMENT</strong> is dated <$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.Contract_Date))>','%d %B, %Y'))></td>
+   </tr>
+   
+   <tr>
+      <td colspan="2">&nbsp;</td>
+   </tr>
+
+   <tr>
+      <td>&nbsp;</td>
+      <td style="font-weight: bold;">PARTIES</td>
+   </tr>
+
+   <tr>
+      <td colspan="2">&nbsp;</td>
+   </tr>
+
+
+   <tr>
+      <td>(A)</td>
+      <td><$client.tForWhomUserInfo.EnityName> incorporated in <$client.tForWhomUserInfo.Entity_Country> with company number <$client.tForWhomUserInfo.EntityNumber> whose registered office is <$client.tForWhomUserInfo.EntityAddress> ("<strong>Company</strong>")</td>
+   </tr>
+
+   <tr>
+      <td colspan="2">&nbsp;</td>
+   </tr>
+
+   <tr>
+      <td>(B)</td>
+      <td><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name> of <$client.tForWhomUserInfo.Address1><$client.env.eval(client.tForWhomUserInfo.Address2.length()>0?', ':'')><$client.tForWhomUserInfo.Address2>, <$client.tForWhomUserInfo.City>,  <$client.tForWhomUserInfo.Country><$client.tForWhomUserInfo.Zip>   (<strong>“you</strong>” and “<strong>your</strong>” is interpreted accordingly).</td>
+   </tr>
+     
+   <tr>
+      <td colspan="2">&nbsp;</td>
+   </tr>
+
+   <tr>
+      <td>&nbsp;</td>
+      <td><strong>AGREED TERMS</strong><br /><br />
+               This Agreement and all terms are subject to applicable law and each term shall be interpreted as incorporating the term “save to the extent otherwise required by applicable law”.<br /><br />
+CONDITIONS OF EMPLOYMENT<br /><br />
+Your employment is conditional on your having the right to live and work in the, <strong>UK</strong> and holding any required qualifications or permits for your role and your providing proof of these satisfactory to the Company. You must have these before you start employment unless otherwise expressly agreed in writing. You must fulfil these obligations throughout employment and if necessary renew any required permissions or qualifications before they expire and provide satisfactory proof of renewal. You must notify the Company at least 3 months before their expiry. The Company may terminate your employment with immediate effect if at any time during your employment you are unable to satisfy these.<br /><br />It is also a condition of your employment that:
+
+<br /><br />
+
+
+
+  <table style="margin-left: 30px;" class="topTable1">
+     <tr>
+        <td>(a)</td>
+        <td>representations you made to the Company before starting your employment are true, including any made in interviews or documents (e.g application form or CV);</td>
+     </tr>
+   <tr>
+      <td colspan="2">&nbsp;</td>
+   </tr>
+     <tr>
+        <td>(b)</td>
+        <td>your employment with the Company and your role will not cause you to be in breach of any court order or any contract or other obligation binding on you (for example in connection with a competitor of the Company); and</td>
+     </tr>
+   <tr>
+      <td colspan="2">&nbsp;</td>
+   </tr>
+     <tr>
+        <td>(c)</td>
+        <td>the Company receiving background checks and references satisfactory to the Company. During your employment the Company may require additional background checks as considered appropriate or necessary.  If you do not consent to such checks, your employment may be terminated.</td>
+     </tr>
+  </table>
+
+
+
+
+
+<br />
+
+<div><strong>COMMENCEMENT OF EMPLOYMENT AND TERM</strong><br /><br />
+   Subject to the terms of this Agreement your employment with the Company shall commence on <$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.StartDate))>','%d %B %Y'))>. </div>
+
+    <div style="display:<$client.env.eval(client.tForWhomUserInfo.Employee_Type=='1'?'block':'none')>">No previous employment counts as part of your continuous employment with the Company.<br /></div>
+   
+   <div style="display:<$client.env.eval((client.tForWhomUserInfo.Employee_Type=='2') || (client.tForWhomUserInfo.Employee_Type=='3') || (client.tForWhomUserInfo.Employee_Type=='4')?'block':'none')>">Your employment with <$client.tForWhomUserInfo.Previous_Entity_Name> counts as part of your continuous employment and therefore your continuous employment for statutory purposes began on <$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.Original_Hire_Date))>','%d %B %Y'))>.<br /></div>
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'?'block':'none')>">Your employment is for an indefinite term and shall continue until terminated in accordance with this Agreement<br /></div>
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.EMPLOYEE_GROUP_CD!='R'?'block':'none')>">Your employment with the Company is for a fixed term and will terminate automatically without further notice on <$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.ContractEndDate))>','%d %B %Y'))> unless terminated earlier by notice or otherwise in accordance with this Agreement.<br /><br /></div>
+
+
+
+<div style="display:<$client.env.eval((client.tForWhomUserInfo.Telesales_Probation_Ireland_Paypal=='2') || (client.tForWhomUserInfo.Telesales_Probation_Ireland_Paypal=='3') || (client.tForWhomUserInfo.Telesales_Probation_Ireland_Paypal=='6')?'block':'none')>"><strong>PROBATIONARY PERIOD</strong><br /><br />
+   The first <$client.tForWhomUserInfo.Telesales_Probation_Ireland_Paypal> months of employment is a probationary period during which your performance, conduct, reliability and attitude will be monitored. The Company may extend the probationary period. During the probationary period your employment may be terminated by either party on 1 weeks’ notice or payment in lieu of notice at the Company’s discretion. The Company’s usual disciplinary procedure may not be applied during the probationary period.<br /><br /></div>
+
+<div><strong>DUTIES</strong><br /><br />
+  Your role is <$client.tForWhomUserInfo.Business_Title> although the Company may amend your job title at its discretion provided it is reasonably consistent with your duties.  You shall report to <$client.tForWhomUserInfo.MngrBsnssTitle> or other person notified by the Company. You shall carry out duties given to you by the Company reasonably consistent with your role and which may include the duties set out in any job description or similar document provided to you. All duties are subject to change from time to time at the discretion of the Company. <br /><br />
+During your employment in carrying out your duties you shall (a) unless prevented by illness or injury during your working hours devote the whole of your time to your duties, (b) diligently perform assigned duties, (c) comply with all reasonable and lawful directions given to you by the Company, (d) report any wrongdoing (including your own) immediately on becoming aware of it (e) always aim to promote and protect the business of the Company and act in its best interests and (f) not take action detrimental to the reputation of the Company or any Group Company.  You must comply with all applicable laws and regulations. This includes the UK Bribery Act 2010 & the U.S. Foreign Corrupt Practices Act 1977 (which apply also in countries outside of the UK and U.S) and any local law relating to bribery and corruption and any Company anti-bribery / anti-corruption policies notified to you from time to time.<br /><br />
+Your duties to the Company may require you to perform duties or services relating to any Group Company but in doing so you will be providing services to the Company and you remain employed solely by the Company with no rights owed to you by any other Group Company. You hereby consent to the transfer of your employment to any other Group Company at any time provided you are not required to relocate outside of the UK, but such transfer shall only take place if expressly specified in writing by the Company.<br /><br />
+You do not have authority legally to bind or commit the Company or any Group Company (for example to sign contracts) unless provided by other written authority.<br /><br /></div>
+
+<div><strong>COMPANY RULES AND POLICIES</strong><br /><br />
+You shall comply with any rules, policies, standards & procedures of the Company notified to you from time to time including those notified by your manager or as part of any training and including the Company’s Code of Conduct ("Policies"). Policies & other internal rules of the Company do not form part of this Agreement and are not contractual and the Company may amend them at any time. Policies are also published in the Company's intranet and you must keep yourself informed about Policies applicable to your employment from time to time and comply with those applicable to you.<br /><br /></div>
+
+<div><strong>PLACE OF WORK</strong><br /><br />
+Your normal place of work is at the Company’s address in <$client.tForWhomUserInfo.BuildingAddress>.  The Company reserves the right to change your place of work to another location within the UK.  You agree to travel as instructed by the Company for your role both within the UK and abroad.<br /><br /></div>
+  
+<div><strong>HOURS OF WORK</strong><br /></div>
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.JobType=='Full Time Core Hours'?'block':'none')>">Your normal weekly working hours are 40 hours per week excluding breaks.  Your times of work will be determined by your manager and may change from time to time. Unless otherwise expressly agreed you are expected to be working during normal office hours but may, subject to your manager’s approval, be given flexibility outside of these normal office hours as to when you start and finish work, subject to the obligation to perform the minimum weekly hours referenced above. You must inform your manager if you are not working during the normal office hours. The times of work may be changed at the discretion of the Company.  You must comply with any working hours or attendance rules notified to you from time to time.<br /><br /></div>
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.JobType=='Full Time Stated Hours'?'block':'none')>">Your normal weekly working hours are 40/hours per week excluding breaks.  Your times of work shall be <$client.tForWhomUserInfo.Stated_Working_Hours>. You must always inform your manager if you are not working during these times. The times of work may be changed at the discretion of the Company. You must comply with any working hours or attendance rules notified to you from time to time.<br /><br /></div>
+
+
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.JobType=='Part Time'?'block':'none')>">Your normal working hours are <$client.tForWhomUserInfo.HoursPerWeek> hours per week excluding breaks. Because of the number of hours you are working, your work is classified as Part-Time.  Full-time working hours for this role are 40 hours/week so you are working <$client.tForWhomUserInfo.CAP_UTIL_LVL_PCT>% of the equivalent full-time hours. Where pay or benefits are calculated pro rata, this is the % which will be used. Overtime or additional hours worked do not change your normal contractual part-time hours which only change by express agreement in writing. If your normal hours are contractually changed by express written agreement, then any pro rata benefits may change accordingly. Your times of work shall be <$client.tForWhomUserInfo.Stated_Working_Hours> (excluding breaks). You may, subject to your manager’s approval, be given flexibility outside of these hours as to when you start and finish work, subject to the obligation to perform the minimum weekly hours referenced above. You must inform your manager if you are not working during your normal times of work unless previously agreed. These times of work may be changed at the discretion of the Company on reasonable notice. You must comply with working hours or attendance rules notified to you from time to time. If you work part-time, you will not be entitled to any higher overtime rate until you have worked in excess of 40 hours per week unless otherwise notified.<br /><br />Save for permitted rest breaks you must work during the hours of work notified to you. You must be ready to start work at the relevant start time and must not leave work early without approval of your manager. Punctuality will be monitored and you may receive warnings or be subject to disciplinary action if your attendance is unacceptable.<br /><br /></div>
+
+<!-- NO overtime -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Salary_Grade_Level>=21?'block':'none')>">You agree to perform such additional hours as are necessary for the proper performance of your duties. You agree that you shall not receive further remuneration or time off in lieu in respect of any hours worked in addition to your normal working hours. This obligation has already been taken into consideration in determining your remuneration.<br /<br /></div>
+
+<!-- Overtime -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Salary_Grade_Level<=19?'block':'none')>">You may be required to perform overtime. You shall only be entitled to payment if the overtime and the payment have been expressly agreed in writing by the Company.  The rate of pay for any Company required overtime will be notified to you. Any additional hours worked without Company approval as overtime are voluntary and are not subject to overtime pay. It is your obligation to ensure you have agreement in place before performing Company required paid overtime. You are not entitled to compensatory time off for any overtime unless agreed in writing by the Company. Overtime working shall also be subject to any Company overtime Policies applicable to your role as amended from time to time, (including in any rules, regulations or employee handbook on the Company’s intranet).  <br /><br />
+You agree that you shall not work on average in excess of 48 hours / week unless your work is of a type where your working time cannot be measured or unless you have signed the working time opt out at the end of this Agreement (the opt-out may be terminated by giving 3 months' notice in writing).<br /<br /></div>
+
+<div><strong>BASE SALARY & DEDUCTIONS</strong><br /><br /></div>
+
+
+
+
+
+
+<!-- Full Time -->
+<div style="display:<$client.env.eval(  ((client.tForWhomUserInfo.JobType=='Full Time Core Hours') || (client.tForWhomUserInfo.JobType=='Full Time Stated Hours')) && (client.tForWhomUserInfo.SalaryOffered==0)?'block':'none')>">You shall be paid a gross annual fixed salary of <$client.tForWhomUserInfo.Salary_Amount> GBP payable in arrears in (12) twelve equal installments on or around the end of each calendar month (“<strong>Base Salary</strong>”).<br /><br /></div>
+
+<!-- Part Time -->
+<div style="display:<$client.env.eval((client.tForWhomUserInfo.JobType=='Part Time') && (client.tForWhomUserInfo.SalaryOffered==0)?'block':'none')>">You shall be paid a gross annual fixed salary of <$client.tForWhomUserInfo.Salary_Amount> GBP payable in arrears in (12) twelve equal installments on or around the end of each calendar month (“<strong>Base Salary</strong>”) which is equivalent to <span id="base-salary"></span>  GBP for a full-time equivalent (40 hours / week) salary.<br /><br /></div>
+
+
+
+
+
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.SalaryOffered!=0?'block':'none')>">You shall be paid a gross fixed salary of <$client.tForWhomUserInfo.SalaryOffered> GBP per hour payable monthly on or around the end of each calendar month (“Base Salary”).<br /><br /></div>
+
+
+
+
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.EMPLOYEE_GROUP_CD!='R'?'block':'none')>">Since your employment is for a fixed term, your Base Salary and any benefits will be pro-rated in accordance with the duration of your employment relationship.<br /><br /></div>
+
+<div>Your salary and all payment or benefits shall be paid less tax, social insurance and other deductions required to be made by law or permitted to be made by the Company as a result of this or any other agreement.<br /><br />
+You agree to the Company deducting from your salary or any other sum owed to you any money owed by you to the Company or to any Group Company (including any overpayments, loans or advances, bonus or allowance repayments or any excess holiday taken). If not deducted at the Company’s discretion you agree to make payment to the Company of any sums due within 28 days of demand by the Company. <br /><br />
+Your salary may be reviewed annually. The Company is under no obligation to review or award any increase following review, whether or not increases have been made in previous reviews. There will be no salary review and any notified salary increase shall not take effect after notice has been given by either party to terminate your employment.<br /><br /></div>
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT!=0?'block':'none')>"><strong>STARTING BONUS</strong><br /><br />Subject to the terms below you shall receive a Starting Bonus of <$client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT> GBP, which will be paid less applicable deductions on or before your first full month’s payroll provided the terms and conditions in this agreement are satisfied. If your employment is terminated by you for any reason or by the Company as a result of your misconduct, performance or any serious reasons relating to your behavior within 12 months after commencement of your employment, you shall repay (or at the Company’s discretion it may deduct from monies owed to you) the Starting Bonus less 1/12th for each complete month expired from the start of your employment until the earlier of service of notice of termination (by you or the Company) or the termination date.<br /><br /></div>
+
+
+<div style="display:<$client.env.eval(((client.tForWhomUserInfo.ESTIMATED_RELO_COST=='') || (client.tForWhomUserInfo.ESTIMATED_RELO_COST=='0'))?'none':'block')>"><strong>RELOCATION: LUMP SUM ONLY</strong><br /><br />Subject to the terms below you shall receive a Relocation Lump Sum of <$client.tForWhomUserInfo.ESTIMATED_RELO_COST> GBP which will be paid less applicable deductions on or before your first full month's payroll provided the terms and conditions in this agreement are satisfied. If your employment is terminated by you for any reason or by the Company as a result of your misconduct, performance or any serious reasons relating to your behavior within 12 months after commencement of your employment, you shall repay (or at the Company’s discretion it may deduct from monies owed to you) the Relocation Lump Sum less 1/12th for each complete month expired from the start of your employment until the earlier of service of notice of termination (by you or the Company) or the termination date. The Relocation Lump Sum shall be inclusive of (and not in addition to) any other lump sum payment referenced to be paid on or shortly after commencement of employment in any separate relocation agreement.<br /><br /></div>
+
+
+
+<div><strong>EXPENSES</strong><br /><br />The Company shall reimburse all reasonable expenses wholly, exclusively and necessarily incurred by you on behalf of the Company in the performance of your employment, subject to (i) production of original receipts (ii) other appropriate evidence of payment as required by the Company and (iii) your compliance with the Company's Policies on expenses which you are required to read and with which you must comply. Any credit card supplied to you by the Company shall be used only for expenses incurred in the course of your employment and not for personal expenses.<br /><br /></div>
+
+<div><strong>BONUS & OTHER INCENTIVE PLANS</strong><br /><br />You are only eligible to participate in a bonus, commission or incentive plan if expressly notified in writing. All such plans are discretionary.  The Company may award other bonuses or ad hoc incentives at its absolute discretion. In respect of any bonus, commission, sales incentive, variable compensation or other incentive paid to you previous payment gives no right to any future payment and shall not be pensionable or counted towards the calculation of holiday pay or any other benefit unless otherwise notified to you.<br /><br /></div>
+
+
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Sales_commission_plan==0?'none':'block')>">You are eligible to participate in a discretionary sales incentive, commission or other variable compensation plan subject always to the terms of the plan as amended from time to time ("<strong>SIP</strong>"). Eligibility is subject to your signing (in writing or electronically) to accept the plan rules, targets and KPI’s and quotas applicable to the relevant period as notified to you. <strong>Each SIP applies only for the period specified in the relevant plan and terminates at the end of that period. You are not eligible for any payment in subsequent periods unless you have signed to agree to the SIP rules and any targets applicable to such period.</strong> You are not eligible for any SIP payment after termination of employment, except as expressly provided by the relevant SIP. All payments are discretionary and subject to the relevant SIP rules which may be varied from time to time.   Benefits may be reduced if you are not actively working. Any payment under the SIP shall be paid less applicable deductions and shall not count towards calculation of any other benefit save as required by applicable law.<br /><br /></div>
+
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.SalesTargetDollarAmt==0?'none':'block')>">Subject to the terms above and your signing to confirm agreement to the relevant SIP, the details of which will be provided by your manager, your Target Incentive under the SIP is GBP <$client.tForWhomUserInfo.SalesTargetDollarAmt>.<br /><br /></div>
+
+
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Non_Recoverable_Draw=='Yes'?'block':'none')>">Unless otherwise provided in the relevant SIP, during the first 90 days of your employment, in substitute for any commission or other variable payment under the SIP for that period, you will be paid a non-recoverable draw equivalent to one-quarter of your annual Target Incentive under the SIP after which any further payment shall be solely subject to the terms stated above.<br /><br /></div>
+
+<div><strong>INSURANCE BENEFITS (E.G. PERMANENT DISABILITY, LIFE & PRIVATE MEDICAL</strong><br /><br />Subject to the terms below the Company may also provide additional discretionary insurance related benefits (e.g. medical, life, accident etc.) in accordance with its policy from time to time applicable to employees in the UK, (“<strong>Insurance Benefits</strong>”). Insurance Benefits remain discretionary and not contractual however long the benefit has been provided. Some Insurance Benefits may only be applicable after your probationary period or after a waiting period. You may be required to contribute towards the cost and be taxed on the benefit provided. Any employee tax is solely your liability. <br /><br />Provision of any Insurance Benefit is subject to the following, (i) the terms of the Company policy or scheme as amended (ii) the rules or policy of the relevant scheme provider as amended (iii) you (& if applicable your family) satisfying the normal underwriting requirements of the relevant provider, (iv) you (& if applicable your family) completing any necessary paperwork and paying any additional premium not covered by the Company and (v) the premium if being paid by the Company, being at a rate which the Company considers reasonable and the Company may at its sole discretion discontinue or vary the Insurance Benefit (including reducing the level of cover) or require a contribution from you if you wish to continue to receive the benefit. If there is any conflict between this Agreement and any plans relating to any Insurance Benefit, the provisions of this Agreement shall prevail. If you are refused access by any scheme provider to any Insurance Benefit, the Company is not liable to provide any replacement benefit or any compensation in lieu.<br /><br />If the Company receives payment relating to you from a scheme provider, it may at its discretion make payment to you but is not required to do so. For example, payment may be reduced by the cost incurred by the Company in relation to such Insurance Benefit or by any benefit provided by the Company during or in relation to the period to which the insurance payment relates (for example sickness, holiday pay or any bonus or commission).<br /><br /></div>
+
+<div><strong>PENSION</strong><br /><br />You will be notified if you are eligible to receive pension benefits from the Company which shall be subject to satisfying any eligibility criteria and subject to the rules of the scheme as amended from time to time. Pension benefits provided will always satisfy minimum auto-enrolment obligations. Any benefits provided in addition are discretionary and subject to change from time to time. Full details of the current scheme are available on the Company’s intranet.  A contracting out certificate is not in place in respect of your employment.<br /><br /></div>
+
+<div><strong>HOLIDAY ALLOWANCE AND HOLIDAY RULES</strong><br /><br /></div>
+
+<div style="display:<$client.env.eval((client.tForWhomUserInfo.JobType=='Full Time Core Hours') || (client.tForWhomUserInfo.JobType=='Full Time Stated Hours')?'block':'none')>">Subject to the terms below you are entitled to the number of days’ paid holiday set out below in each complete holiday year, (pro rata for any part of the year). Holiday entitlement excluding public holidays accrues at the rate of 1/12th of your annual entitlement per completed month of service. Your Total annual holiday includes statutory, public and additional Company days.  The Company's holiday year currently runs between 1st January & 31st December. Holiday is subject to the rules set out below and any additional rules set out in the Company’s holiday Policies (on the intranet or as notified to you) from time to time. The timing of all holidays must be agreed in advance with your manager:<br /><br />
+
+<table class="holidayTable" cellspacing="0">
+  <tr>
+    <td width="160" height="50" valign="top">Years of continuous service</td>
+    <td width="160" valign="top">Statutory (28 days incl public holidays)</td>
+    <td width="160" valign="top">Company <br>additional days</td>
+    <td width="76" valign="top"><strong>Total</strong></td>
+  </tr>
+  <tr>
+    <td width="160" height="35" valign="top">Up    to 2</td>
+    <td width="160" valign="top">20 + 8 public holidays</td>
+    <td width="160" valign="top">5</td>
+    <td width="76" valign="top"><strong>33</strong></td>
+  </tr>
+  <tr>
+    <td width="160" height="35" valign="top">2-3</td>
+    <td width="160" valign="top">20 + 8 public holidays</td>
+    <td width="160" valign="top">7</td>
+    <td width="76" valign="top"><strong>35</strong></td>
+  </tr>
+  <tr>
+    <td width="160" height="35" valign="top">3-4</td>
+    <td width="160" valign="top">20 + 8 public holidays</td>
+    <td width="160" valign="top">8</td>
+    <td width="76" valign="top"><strong>36</strong></td>
+  </tr>
+  <tr>
+    <td width="160" height="35" valign="top">4-5</td>
+    <td width="160" valign="top">20 + 8 public holidays</td>
+    <td width="160" valign="top">9</td>
+    <td width="76" valign="top"><strong>37</strong></td>
+  </tr>
+  <tr>
+    <td width="160" height="35" valign="top">5+</td>
+    <td width="160" valign="top">20 + 8 public holidays</td>
+    <td width="160" valign="top">10</td>
+    <td width="76" valign="top"><strong>38</strong></td>
+  </tr>
+</table>
+
+</div>
+
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.JobType=='Part Time'?'block':'none')>">Subject to the terms below you are entitled to the number of weeks’ paid holiday set out below in each complete holiday year (pro rata for any part of the year). Holiday entitlement excluding public holidays accrues at the rate of 1/12th of your annual entitlement per completed month of service. Your Total annual holiday includes statutory, public and additional Company days. The Company's holiday year currently runs between 1st January and 31st December. The Total shown below is the number of weeks’ holiday you are entitled in a full holiday year. How many hours or days this provides depends on how many hours or days you are scheduled to work each week. So if you work 4 full days a week you are entitled to 4 days per week of holiday. If your hours vary each day but you perform 30 hours per week, you would be entitled to 30 hours of holiday per week of holiday. In each case your holiday entitlement is used against the hours or days you are usually scheduled to work each week. You do not need to take holiday for hours or days you are not usually scheduled to work. If a public holiday falls on a day you are usually scheduled to work, you must usually take this as part of your holiday allowance. Holiday is subject to the rules set out below and any additional rules set out in the Company’s holiday Policies (on the intranet or as notified to you) from time to time. The timing of all holidays must be agreed in advance with your manager.<br /><br />
+
+<!-- [50% work week grid CAP_UTIL_LVL_PCT] -->
+<div style="display:<$client.env.eval((client.tForWhomUserInfo.JobType=='Part Time') && (client.tForWhomUserInfo.CAP_UTIL_LVL_PCT=='50')?'block':'none')>">
+<table class="holidayTable" cellspacing="0">
+  <tr>
+    <td width="61">Years' service</td>
+    <td width="117">FTE Statutory holiday (weeks)</td>
+    <td width="96">FTE public holiday (weeks)</td>
+    <td width="88">FTE Company (weeks)</td>
+    <td width="89">FTE Total (weeks)</td>
+    <td width="79">Part-time %</td>
+    <td width="95">Part-time Total (weeks)</td>
+  </tr>
+  <tr>
+    <td width="61">Up to 2</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1</td>
+    <td width="89">6.6</td>
+    <td width="79">50</td>
+    <td width="95">3.30</td>
+  </tr>
+  <tr>
+    <td width="61">2-3</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.4</td>
+    <td width="89">7</td>
+    <td width="79">50</td>
+    <td width="95">3.50</td>
+  </tr>
+  <tr>
+    <td width="61">3-4</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.6</td>
+    <td width="89">7.2</td>
+    <td width="79">50</td>
+    <td width="95">3.60</td>
+  </tr>
+  <tr>
+    <td width="61">4-5</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.8</td>
+    <td width="89">7.4</td>
+    <td width="79">50</td>
+    <td width="95">3.70</td>
+  </tr>
+  <tr>
+    <td width="61">5+</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">2</td>
+    <td width="89">7.6</td>
+    <td width="79">50</td>
+    <td width="95">3.80</td>
+  </tr>
+</table>
+</div>
+
+
+<!-- [60% work week grid CAP_UTIL_LVL_PCT] -->
+<div style="display:<$client.env.eval((client.tForWhomUserInfo.JobType=='Part Time') && (client.tForWhomUserInfo.CAP_UTIL_LVL_PCT=='60')?'block':'none')>">
+<table class="holidayTable" cellspacing="0">
+<tr>
+    <td width="61">Years' service</td>
+    <td width="117">FTE Statutory holiday (weeks)</td>
+    <td width="96">FTE public holiday (weeks)</td>
+    <td width="88">FTE Company (weeks)</td>
+    <td width="89">FTE Total (weeks)</td>
+    <td width="79">Part-time %</td>
+    <td width="95">Part-time Total (weeks)</td>
+  </tr>
+  <tr>
+    <td width="61">Up to 2</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1</td>
+    <td width="89">6.6</td>
+    <td width="79">60</td>
+    <td width="95">3.96</td>
+  </tr>
+  <tr>
+    <td width="61">2-3</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.4</td>
+    <td width="89">7</td>
+    <td width="79">60</td>
+    <td width="95">4.20</td>
+  </tr>
+  <tr>
+    <td width="61">3-4</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.6</td>
+    <td width="89">7.2</td>
+    <td width="79">60</td>
+    <td width="95">4.32</td>
+  </tr>
+  <tr>
+    <td width="61">4-5</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.8</td>
+    <td width="89">7.4</td>
+    <td width="79">60</td>
+    <td width="95">4.44</td>
+  </tr>
+  <tr>
+    <td width="61">5+</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">2</td>
+    <td width="89">7.6</td>
+    <td width="79">60</td>
+    <td width="95">4.56</td>
+  </tr>
+</table>
+</div>
+
+
+
+<!-- [70% work week grid CAP_UTIL_LVL_PCT] -->
+<div style="display:<$client.env.eval((client.tForWhomUserInfo.JobType=='Part Time') && (client.tForWhomUserInfo.CAP_UTIL_LVL_PCT=='70')?'block':'none')>">
+<table class="holidayTable" cellspacing="0">
+  <tr>
+    <td width="61">Years' service</td>
+    <td width="117">FTE Statutory holiday (weeks)</td>
+    <td width="96">FTE public holiday (weeks)</td>
+    <td width="88">FTE Company (weeks)</td>
+    <td width="89">FTE Total (weeks)</td>
+    <td width="79">Part-time %</td>
+    <td width="95">Part-time Total (weeks)</td>
+  </tr>
+  <tr>
+    <td width="61" >Up to 2</td>
+    <td width="117" >4</td>
+    <td width="96" >1.6</td>
+    <td width="88" >1</td>
+    <td width="89" >6.6</td>
+    <td width="79" >70</td>
+    <td width="95" >4.62</td>
+  </tr>
+  <tr>
+    <td width="61" >2-3</td>
+    <td width="117" >4</td>
+    <td width="96" >1.6</td>
+    <td width="88" >1.4</td>
+    <td width="89" >7</td>
+    <td width="79" >70</td>
+    <td width="95" >4.90</td>
+  </tr>
+  <tr>
+    <td width="61" >3-4</td>
+    <td width="117" >4</td>
+    <td width="96" >1.6</td>
+    <td width="88" >1.6</td>
+    <td width="89" >7.2</td>
+    <td width="79" >70</td>
+    <td width="95" >5.04</td>
+  </tr>
+  <tr>
+    <td width="61" >4-5</td>
+    <td width="117" >4</td>
+    <td width="96" >1.6</td>
+    <td width="88" >1.8</td>
+    <td width="89" >7.4</td>
+    <td width="79" >70</td>
+    <td width="95" >5.18</td>
+  </tr>
+  <tr>
+    <td width="61" >5+</td>
+    <td width="117" >4</td>
+    <td width="96" >1.6</td>
+    <td width="88" >2</td>
+    <td width="89" >7.6</td>
+    <td width="79" >70</td>
+    <td width="95" >5.32</td>
+  </tr>
+</table>
+</div>
+
+<!-- [80% work week grid CAP_UTIL_LVL_PCT] -->
+<div style="display:<$client.env.eval((client.tForWhomUserInfo.JobType=='Part Time') && (client.tForWhomUserInfo.CAP_UTIL_LVL_PCT=='80')?'block':'none')>">
+<table class="holidayTable" cellspacing="0">
+  <tr>
+    <td width="61">Years' service</td>
+    <td width="117">FTE Statutory holiday (weeks)</td>
+    <td width="96">FTE public holiday (weeks)</td>
+    <td width="88">FTE Company (weeks)</td>
+    <td width="89">FTE Total (weeks)</td>
+    <td width="79">Part-time %</td>
+    <td width="95">Part-time Total (weeks)</td>
+  </tr>
+  <tr>
+    <td width="61">Up to 2</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1</td>
+    <td width="89">6.6</td>
+    <td width="79">80</td>
+    <td width="95">5.28</td>
+  </tr>
+  <tr>
+    <td width="61">2-3</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.4</td>
+    <td width="89">7</td>
+    <td width="79">80</td>
+    <td width="95">5.60</td>
+  </tr>
+  <tr>
+    <td width="61">3-4</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.6</td>
+    <td width="89">7.2</td>
+    <td width="79">80</td>
+    <td width="95">5.76</td>
+  </tr>
+  <tr>
+    <td width="61">4-5</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.8</td>
+    <td width="89">7.4</td>
+    <td width="79">80</td>
+    <td width="95">5.92</td>
+  </tr>
+  <tr>
+    <td width="61">5+</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">2</td>
+    <td width="89">7.6</td>
+    <td width="79">80</td>
+    <td width="95">6.08</td>
+  </tr>
+</table>
+</div>
+
+
+<!-- [90% work week grid CAP_UTIL_LVL_PCT] -->
+<div style="display:<$client.env.eval((client.tForWhomUserInfo.JobType=='Part Time') && (client.tForWhomUserInfo.CAP_UTIL_LVL_PCT=='90')?'block':'none')>">
+<table class="holidayTable" cellspacing="0">
+  <tr>
+    <td width="61">Years' service</td>
+    <td width="117">FTE Statutory holiday (weeks)</td>
+    <td width="96">FTE public holiday (weeks)</td>
+    <td width="88">FTE Company (weeks)</td>
+    <td width="89">FTE Total (weeks)</td>
+    <td width="79">Part-time %</td>
+    <td width="95">Part-time Total (weeks)</td>
+  </tr>
+  <tr>
+    <td width="61">Up to 2</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1</td>
+    <td width="89">6.6</td>
+    <td width="79">50</td>
+    <td width="95">5.94</td>
+  </tr>
+  <tr>
+    <td width="61">2-3</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.4</td>
+    <td width="89">7</td>
+    <td width="79">50</td>
+    <td width="95">6.30</td>
+  </tr>
+  <tr>
+    <td width="61">3-4</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.6</td>
+    <td width="89">7.2</td>
+    <td width="79">50</td>
+    <td width="95">6.48</td>
+  </tr>
+  <tr>
+    <td width="61">4-5</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">1.8</td>
+    <td width="89">7.4</td>
+    <td width="79">50</td>
+    <td width="95">6.66</td>
+  </tr>
+  <tr>
+    <td width="61">5+</td>
+    <td width="117">4</td>
+    <td width="96">1.6</td>
+    <td width="88">2</td>
+    <td width="89">7.6</td>
+    <td width="79">50</td>
+    <td width="95">6.84</td>
+  </tr>
+</table><br />
+</div>
+</div>
+
+<!-- end part time section  -->
+<div>You may only carry forward holiday from one holiday year to the next if permitted by Company Policies as amended from time to time (or as required by applicable law).  Untaken holiday is cancelled if not taken either by the end of the holiday year or by the end of any permitted carry over period. The Company may notify you that the offices will be closed on other days, (deducted from your holiday entitlement), or for other reasons require you to take your holiday at times to suit the Company. You must take holiday on public holidays unless otherwise notified or agreed.<br /><br />
+On termination of employment, payment for any accrued unused holiday will be calculated in accordance with applicable law and the Company may deduct from your final salary any holiday that has been taken but not yet earned. If either party has served notice to terminate your employment, if so requested by the Company you agree to take any accrued but unused holiday entitlement during the notice period or any Garden Leave Period. No bonus or commission or other benefit is taken into account in the calculation of payment in lieu of holiday. You shall not be entitled to pay in lieu of holiday in respect of any period after your employment has terminated, including any period of pay in lieu of notice.<br /><br />
+During absence from work of more than 2 months in any holiday year, you shall not accrue holiday under this contract save to the extent required by applicable law. If the Company has terminated your employment by reason of misconduct or poor performance any payment for accrued untaken holiday shall be limited only to accrued minimum statutory entitlement and any additional days’ shall be forfeit. In both cases, holidays already taken shall be deemed to have been taken first in satisfaction of statutory minimum entitlement.<br /><br /><br /></div>
+<div><strong>SICKNESS PAY AND SICKNESS RULES</strong><br /><br />
+The Company will provide time off and pay in accordance with applicable law (Statutory Sick Pay).  Any further payment of sick pay shall be discretionary (Discretionary Sick Pay). Payment of any Discretionary Sick Pay is non-contractual and inclusive of any entitlement to Statutory Sick Pay. If the Company pays Discretionary Sick Pay for any period of sickness absence it is not obliged to make subsequent payments of Discretionary Sick Pay for any further period. <br /><br />
+Rules relating to sickness absence and sick pay are set out in Schedule 1. Additional rules may be set out on the Company’s intranet or in other sickness or absence Policies notified to you from time to time, with which you must comply.  The terms of any sickness or insurance Policy and eligibility for any sickness benefit shall not in any way limit the Company’s right to terminate your employment.<br /><br /></div>
+<div><strong>OTHER BENEFITS</strong><br /><br /> 
+You may receive additional discretionary benefits as set out on the Company’s intranet from time to time. Save as expressly set out in this Agreement, you are not entitled contractually to any other benefit and any other benefits provided are discretionary and may be removed or amended at any time. Provision of any benefit for any period shall not override this provision.  You are liable for employee tax relating to any benefits provided in connection with your employment but the Company may deduct such tax as required by law.<br /><br /> </div>
+<div><strong>OUTSIDE INTERESTS</strong><br /><br />
+During your employment you shall not, except with the prior written consent of the Company directly or indirectly (i) be engaged or employed in, or (ii) be concerned with (in any capacity whatsoever); or (iii) provide services to, any other business or organisation whether or not for financial gain where this is or is likely to (a) be in conflict with the interests of the Company or any Group Company; or (b) adversely affect the efficient discharge of your duties. You shall disclose to the Company any matters relating to your spouse or civil partner (or anyone living as such) which may interfere, conflict or compete with the proper performance of your obligations under this Agreement. You will disclose any other matter in which you have a personal interest which may create a conflict with the Company. Excluding ordinary day to day personal transactions you shall not (i) without the Company’s written consent introduce to a third party any business opportunity with which the Company or any Group Company is able to deal or (ii) have any personal financial interest or benefit in any contracts or transactions entered into by the Company or any Group Company with any third party without first disclosing such interest or benefit to the Company and obtaining its written approval. Nothing in this clause shall prevent you from holding an investment by way of shares or other securities of not more than 5% of the total issued share capital of any company, whether or not it is listed or dealt in on a recognised stock exchange.<br /><br /> 
+<div><strong>CONFIDENTIAL INFORMATION </strong><br /><br /></div>
+You shall not except in the proper course of your duties, either during your employment or at any time after its termination (howsoever arising), use or disclose to any person any confidential information (in any form) obtained in connection with the performance of your duties hereunder including any relating to the Company, any Group Company or any business connection of either (including any employee, customer, contractor or supplier save (a) as authorised by the Company (b) in the public domain other than through your unauthorised disclosure or (c) as required by or protected by applicable law. You shall be responsible for safe storage of all such confidential information in your possession and must take all reasonable steps to avoid unauthorised disclosure. You shall immediately notify the Company of the loss of or unauthorised disclosure of any such confidential information or the serious risk of either occurring.  This is in addition to any obligation imposed by applicable law or any additional confidentiality agreement.<br /><br /></div>
+<div><strong>DATA PRIVACY & MONITORING</strong><br /><br />
+By signing this Agreement you agree (i) to the collection, storage, processing and use of  personal data relating to you by the Company both electronically and manually for all purposes relating to your employment including for the purposes of the Company's administration and management, personnel administration, managing your work, assessing your performance, administration of your contract of employment and as otherwise required for the Company’s business management purposes and (ii) to the transfer, storage and other processing (both electronically and manually) by the Company of any personal data relating to you outside the European Economic Area, including to the U.S (and any other country in which the Company operates) in accordance with applicable law. You shall comply with any data privacy and electronic communication Policies or rules notified to you from time to time.<br /><br />
+You consent to the Company monitoring and recording any use that you make of the Company's electronic communications systems for the purpose of ensuring that the Company's rules are being complied with and for legitimate business purposes. <br /><br /></div>
+<div><strong>COMPANY PROPERTY</strong><br /><br />
+All Company Property (defined below) remains the property of the Company and must be returned on demand. You shall treat all Company Property with reasonable care and take appropriate precautions to keep it safe. You must not remove any Company Property from the Company’s premises unless necessary for your work or otherwise authorised. Where the Company reasonably believes there may be a breach of contract or applicable law you consent to the Company performing reasonable work and personal searches (including desk, computer etc).  <strong>Company Property</strong> means property provided to you by the Company or any Group Company in connection with your employment including: (a) all documents, manuals, hardware and software (b) any data (including copies) produced, maintained or stored on the Company's computer systems or other media or devices (in any form) and (c) ID badge, office supplies, keys, credit cards, laptop, tablet, mobile phone, headsets, other IT or electronic equipment and any other physical objects.<br /><br /></div>
+<div><strong>COLLECTIVE AGREEMENTS</strong><br /><br />
+There are no collective agreements applicable to your employment.<br /><br /></div>
+<div><strong>HEALTH AND SAFETY</strong> <br /><br />
+The Company has legal obligations regarding your health and safety but you must also take care of your own health and safety and that of your colleagues. You must familiarise yourself with the Company’s health and safety policies, rules and internal regulations applicable to your employment on the Company’s intranet. Please contact Safety and Security if you need help to locate these. <br /><br /></div>
+<div><strong>DISCRIMINATION</strong><br /><br />
+You must not engage in or permit any fellow employee to engage in <strong>any unlawful discrimination or harassment</strong>, including on the grounds of a person’s race, sex, disability, age, religion or belief or their sexual orientation or any other ground prohibited by law.  This applies to discrimination of any person, including any employee of the Company or any Group Company, any person providing services to them and any other person.<br /><br /></div>
+
+<div><strong>TERMINATION</strong> <br /><br />
+
+<u>Notice Period</u>: Your employment may be terminated by both you and the Company giving the periods of notice set out below:<br /><br />
+
+   
+  <table style="margin-left: 30px;">
+     <tr>
+        <td style="font-size: 14px;">(a)</td><td style="font-size: 14px;">During the probationary period: 1 weeks’ notice.</td>
+      </tr>
+   </table>
+   </div>
+
+  <div style="display:<$client.env.eval(client.tForWhomUserInfo.Salary_Grade_Level<=24?'block':'none')>">
+     <table style="margin-left: 30px;">
+     <tr>
+        <td style="font-size: 14px;">(b)</td><td style="font-size: 14px;">After successful completion of your probationary period, one weeks’ notice for each full year of continuous service with a minimum of one month and a maximum of 12 weeks’ notice.</td>
+      </tr>
+   </table>
+</div>
+
+  <div style="display:<$client.env.eval(client.tForWhomUserInfo.Salary_Grade_Level>=25?'block':'none')>">
+     <table style="margin-left: 30px;">
+     <tr>
+        <td>(e)</td><td>After successful completion of your probationary period, 3 months’ notice.</td>
+      </tr>
+   </table>
+</div>
+
+</div>
+<br />
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.EMPLOYEE_GROUP_CD!='R'?'block':'none')>">These notice periods apply also at any time before the expiry of the fixed term so that your employment and this agreement may be terminated by notice to take effect before the expiry of the fixed term without further compensation.<br /><br /></div>
+
+
+<div><u>Immediate Termination</u>: Subject always to applicable law, the Company may also terminate your employment with immediate effect without notice and with no liability to make any further payment to you (other than amounts accrued due at the date of termination) if you: (a) commit any gross misconduct which is serious enough to justify such termination under applicable law, (and may include such conduct referenced in any disciplinary Policies or Company rules as gross misconduct); (b) commit any serious or repeated breach of this agreement or refuse or neglect to comply with any reasonable directions of the Company; (c) are, in the reasonable opinion of the Company seriously negligent or incompetent in the performance of your duties; (d) act in any manner which in the opinion of the Company is seriously adverse to the interests of or reputation of the Company or any Group Company or otherwise makes it unsuitable to continue with your employment (which may include the commission of any criminal offence, other than parking or minor traffic offences); (e) cease to be eligible to work in <strong>the UK</strong> or any other country necessary for the performance of your duties, (f) cease to hold any qualification which in the opinion of the Company is necessary for the performance of your duties; or (g) if your continued employment would be in breach of any applicable law or regulation.<br /><br />
+The rights above are without prejudice to any Company right to terminate your employment at any time with or without notice in accordance with applicable law and any delay by the Company shall not waive any right to terminate. The Company may suspend you on full pay and benefits pending investigation into potential dishonesty, gross misconduct or other circumstances which might entitle the Company to dismiss you summarily in accordance with applicable law. Suspension is not a disciplinary action. Termination of your employment shall not affect any obligation in this Agreement expressly intended to continue after termination.<br /><br /></div>
+
+
+
+
+<div><strong>PAYMENT IN LIEU OF NOTICE</strong><br /><br />
+Notwithstanding any other term of this Agreement, the Company may in its sole discretion terminate your employment at any time with immediate effect or on a date specified in the future and make payment in lieu of any unexpired notice period (“<strong>Payment in Lieu</strong>”). There is no right to such termination and the Company may ask you to work your notice or place you on garden leave at its sole discretion. Any Payment in Lieu shall be calculated as the equivalent of your Base Salary in lieu of the unworked balance of your notice period less applicable deductions. Payment in lieu may be paid in instalments, on the dates when such salary would usually have been paid. The Payment in Lieu shall not include any bonus or commission, the value of any benefits or any holiday entitlement in each case that would have accrued or which relates to the period for which Payment in Lieu is made. <br /><br /></div>
+<div><strong>GARDEN LEAVE</strong><br /><br />
+At the Company’s sole discretion at any time during your employment (including during any notice period), you may be required not to perform some or all of your duties or to perform only specified duties and your powers may be restricted for any period (and such period is referred to as “<strong>Garden Leave Period</strong>”). Your duties may be different than prior to the Garden Leave Period if they are overall suitable for your role.
+Subject to any other terms of this Agreement during any Garden Leave Period you shall continue to receive your salary and applicable contractual benefits subject to and if permitted by the terms of such benefit plans and you shall remain an employee of the Company and bound by the terms of this Agreement and your duty of fidelity and any other express or implied duties owed to the Company. If so instructed during any Garden Leave Period you shall (i) not without the Company’s consent attend your place of work or any other premises of the Company or any Group Company (ii) contact or deal with (or attempt to contact or deal with) any officer, employee, consultant, client, prospective client, customer, supplier, agent, distributor, shareholder, adviser or other business contact of the Company or any Group Company in connection with the business of the Company, (iii) cooperate to enable a smooth handover of your duties (iv) ensure you can be contacted during normal working hours or make yourself available for duties assigned to you during your Garden Leave Period (v) and cease to contact persons in connection with the business of the Company or attend company premises. You may be required to take any accrued unused holiday during any Garden Leave Period.<br /><br /></div>
+<div><strong>OBLIGATIONS UPON TERMINATION</strong><br /><br />
+On termination of your employment (howsoever arising) or if requested by the Company at any time (including after you or the Company has given notice of termination), you shall (a) immediately deliver to the Company all property of the Company (including all confidential information) which is in your possession or under your control and (b) irretrievably delete any information relating to the business of the Company or any Group Company stored in any form on any non-Company device in your possession or control and all matter derived from such sources save that before deleting such information, you shall ensure that the Company has a copy. If requested by the Company you shall provide a signed statement confirming whether you have complied with these obligations and if not, state in detail to what extent you have not complied and why. You hereby irrevocably consent to the Company taking whatever steps are reasonably necessary in your name to give the Company or its nominee the full benefit of this provision.  Prior to your termination date, you must also ensure another employee is aware of any passwords used by you in your employment to access documents, devices or locations to which no other employee has access. <br /><br />
+At any time after termination of your employment you must not represent yourself as employed by or having any continuing connection with the Company or any Group Company.<br /><br />
+On termination of your employment (howsoever arising) any rights in connection with any benefit plans or any incentive, bonus or any other plans in which you participated, whether administered by the Company or any Group Company shall cease on the termination date unless otherwise specified in such plans or notified by the Company and you shall have no other rights against the Company or any Group Company for the loss of any rights or benefits under such plans. <br /><br /></div>
+<div><strong>RESTRICTIONS RE OTHER EMPLOYEES, CONTRACTORS & SUPPLIERS </strong><br /><br />
+During your employment and for 12 months after the termination of your employment, unless you have the express written consent of the Company, you shall not directly or indirectly and whether on your own behalf or with or on behalf of any third party (i) employ, engage, conduct business with (or offer to do so) or endeavour to entice away from the Company or any Group Company any employee, or (ii) endeavour to entice away from the Company or any Group Company any other person providing services to the Company, each a “<strong>Prohibited Activity</strong>”, who in either case:<br /><br />
+<div>  <table style="margin-left: 30px;">
+     <tr>
+        <td>(a)</td><td>is employed or engaged by the Company or any Group Company at the time of the Prohibited Activity; or</td>
+     </tr>
+  </table>
+</div>
+<div>
+  <table style="margin-left: 30px;">
+     <tr>
+     <tr>
+         <td>(b)</td><td>was so employed or engaged in the 6 months before the Prohibited Activity: <br /><br />
+save that this restriction shall only apply to persons with whom you had material contact as part of your employment in the 12 months before the Prohibited Activity <strong>or</strong> who were at that time at Level 26 or above in the Company’s job grading scheme (or equivalent level in any revised scheme).</td>
+     </tr>
+ </table>
+</div>
+<br />
+For 12 months after termination of your employment you shall not adversely affect the supply of any goods or services to the Company or any Group Company.<br /><br /></div>
+
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Salary_Grade_Level>=27?'block':'none')>">You shall observe the post-termination restrictions set out in Schedule 2 hereto.<br /><br /></div>
+
+
+
+<div><strong>DISCIPLINARY AND GRIEVANCE PROCEDURES</strong><br /><br />
+You are subject to the Company's disciplinary and grievance Policies which are available on the Company’s intranet and you must read. If you have any complaint about any disciplinary decision (including dismissal) you should contact your manager or MyHR in accordance with the disciplinary procedure. The Company may at any time suspend you from any or all of your duties while the Company is carrying out a disciplinary investigation or pending the result of any disciplinary hearing. During suspension the provisions relating to Garden Leave Period may be applied. If you are sick during suspension, the Company may withdraw suspension temporarily and resume suspension after the end of the sickness absence. If you wish to raise a grievance, you should raise this with your manager or with MyHR. If you have a complaint regarding how your grievance has been handled, you may appeal or raise your complaint with your manager or MyHR. Contact MyHR if you require assistance to locate the disciplinary or grievance procedure. The Company’s disciplinary and grievance procedures are not part of your contract of employment, give you no contractual rights and the Company may amend them at any time.<br /><br />
+<strong>NOTICES & ELECTRONIC COMMUNICATION</strong><br /><br />
+This clause does not apply to the service of legal proceedings by either party.  Communications regarding your employment including any notice of termination may be given in writing or electronically or digitally. Notice of termination may also be given verbally (and should then be confirmed in writing). The Parties agree that either the Company or you may sign or deliver any document electronically or digitally including using the software Docusign, or any other electronic software, without any formal signature. If any notice is sent by pre-paid recorded delivery or registered post to (i) the Company at its current registered office or (ii) you at your last known address, it shall be deemed received on the 2nd business day after posting unless there is evidence of earlier receipt.<br /><br />
+<strong>MISCELLANEOUS</strong><br /><br />
+This is the entire contractual agreement between you and the Company regarding the matters set out in this agreement and supersedes all previous discussions and correspondence. You agree that you have not relied on any promise, statement or representation, (in writing or otherwise) of any person relating to your employment save as set out in this Agreement or implied by law and have no right of action in respect of any such promise, statement or representation.<br /><br /> 
+Nothing in this Agreement shall limit or exclude any liability for fraud or which cannot be excluded by law. If the Company fails to exercise any right or remedy connected with this Agreement this shall not be a waiver of that right or remedy. <br /><br />
+Variation of this Agreement must be in writing (which may include electronic communication) save that the Company may unilaterally make reasonable changes to any terms and conditions of your employment. Where practicable you will be provided with reasonable advance notice of such change. An operational practice is not an express or individual contractual agreement. Even repeated grants or benefits without express contractual agreement do not form a basis for claims in the future.<br /><br />
+The provisions and sub-provisions of this Agreement and each identifiable part are severable and if any are held to be invalid or unenforceable this shall not affect the validity or enforceability of the remaining parts. This Agreement may be executed in multiple copies and each when executed shall be an original.<br /><br />
+Any Group Company may rely directly upon any term in this agreement for its benefit. Otherwise no other party shall have any rights under this Agreement. Save for any Group Company, the Contracts (Rights of Third Parties) Act 1999 doesn’t apply. <br /><br />
+<strong>INTERPRETATION & DEFINITIONS</strong><br /><br />
+The headings in this Agreement are for convenience only and shall not affect its construction. Reference to a particular law is to the law as it is in force for the time being taking account of any amendment or re-enactment and includes any subordinate legislation for the time being in force made under it. Unless the context otherwise requires, words in the singular include the plural and in the plural include the singular. The words “include”, “including”, “in particular”, “for example” and “e.g.” shall be read in each case as being without limitation. A person includes a natural person, and a corporate or unincorporated body (whether or not having separate legal personality).<br /><br />
+Group Company in this Agreement means any entity (i) which is directly or indirectly controlled by the Company; (ii) which directly or indirectly controls the Company; (iii) which is directly or indirectly controlled by a third party which also directly or indirectly controls the Company; (iv) of which the Company or any other affiliate owns or has a beneficial interest in 20% or more of the issued share capital or 20% or more of its capital assets; or (v) which is the successor in title or assign of the entities referred to above. <br /><br />
+<strong>GOVERNING LAW AND JURISDICTION</strong><br /><br />
+This Agreement and any dispute or claim arising out of or in connection with it or its subject matter or formation (including non-contractual disputes) shall be governed by and construed pursuant to the law of England & Wales and shall be subject to the exclusive jurisdiction of the courts of England & Wales.<br /><br />
+
+<center><strong>This Agreement has been entered into on the date stated at the beginning of it.</strong></center><br /><br /></div>
+
+</td>
+ </tr>
+   <tr>
+      <td colspan="2">&nbsp;</td>
+   </tr>
+</table>
+   </div> <!-- end incomplete -->
+   <div id='complete'></div>
+
+
+<!-- signature section goes here -->
+
+
+<table class="topTable1" style="margin-left: 30px;">
+   <tr>
+      <td colspan="2">Signed by the Company:  <$client.env.formfield.CompanySignature.HTML></td>      
+   </tr>
+   <tr>
+      <td colspan="2"><$client.tForWhomUserInfo.EnityName></td>      
+   </tr>
+   <tr>
+      <td colspan="2">&nbsp;</td>      
+   </tr>
+   <tr>
+      <td colspan="2">Date: <$client.env.eval(date.now('%d %B %Y'))></td>      
+   </tr>
+   <tr>
+      <td colspan="2">&nbsp;</td>      
+   </tr>
+   <tr>
+      <td>Print Name: <$client.env.formfield.CompanyName.HTML></td>    
+      <td>State Position: <$client.env.formfield.CompanyPosition.HTML></td>  
+   </tr>
+   <tr>
+      <td colspan="2">&nbsp;</td>      
+   </tr>
+   <tr>
+      <td colspan="2">&nbsp;</td>      
+   </tr>
+   <tr>
+      <td colspan="2"><strong>I agree with the Terms and Conditions of my Employment as set out above.</strong></td>      
+   </tr>
+   <tr>
+      <td colspan="2">&nbsp;</td>      
+   </tr>
+   <tr>
+      <td colspan="2">&nbsp;</td>      
+   </tr>
+   <tr>
+      <td>Signed by the Employee: <$client.env.formfield.Signature.HTML></td>     
+      <td>Date: <$client.env.eval(date.now('%d %B %Y'))></td> 
+   </tr>
+   <tr>
+      <td colspan="2"><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></td> 
+   </tr>
+   <tr>
+      <td colspan="2">&nbsp;</td>      
+   </tr>
+   <tr>
+      <td colspan="2"><u>Working Time Opt-Out</u>: <strong>You are not required to sign this Working Time opt-out and your employment is not conditional upon signing.</strong>  I agree that I may work more than the maximum average weekly working time limit set out in the Working Time Regulations 1998 which is an average of 48 hours over a 17 week continuous reference period. I understand and agree that I may withdraw this consent by giving 3 months’ notice to the Company.</td>      
+   </tr>
+   <tr>
+      <td colspan="2">&nbsp;</td>      
+   </tr>
+   <tr>
+      <td>Signed by the Employee: <$client.env.formfield.Signature2.HTML></td>     
+      <td>Date: <$client.env.eval(date.now('%d %B %Y'))></td> 
+    </tr>
+    <tr>
+      <td colspan="2"><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></td> 
+   </tr>
+</table>
+
+
+</div>
+<br /><br /><br />
+<table>
+<tr>
+<td><$client.env.formfield.CompanySignatureVerification.HTML></td>
+</tr>
+<tr>
+<td><$client.env.FormField.SignatureVerification.HTML></td>
+</tr>
+<tr>
+<td><$client.env.FormField.Signature2Verification.HTML></td>
+</tr>
+</table>
+
+<br /><br /><br />
+<div style="display:none;">
+<$client.env.FormField.txtEmployeeName.HTML>
+</div>
+<br /><br /><br /><br /><br /><br />
+
+<div class="page">
+<center><strong>Schedule 1<br /><br />Sickness Pay and Sickness Rules</strong></center><br /><br />
+<ol>
+<li>Contractual sickness absence and sick pay rules are set out below. Additional rules may be set out in any sickness absence Policies on the Company’s intranet or other rules notified to you and with which you must comply. Sickness absence policies may relax these rules in certain cases but the Company reserves the right to revert to these rules or set other rules at its discretion.</li> 
+<li>The Company will not usually pay Discretionary Sick Pay in the following circumstances:
+   <ul style="list-style-type:disc;">
+      <li>during your probationary period 
+      <li>during notice of termination of employment (whether given by the Company or you); 
+      <li>if the Company has commenced any formal performance improvement process (PIP) or disciplinary process or notified you of an intention to do so or if any such hearing is pending or if you have an active disciplinary warning or are under a formal PIP; or
+      <li>if the Company has commenced (or notified you of an intention to commence) any redundancy consultation process with you.</li>
+    </ul>
+Note: this is not an exhaustive list of the circumstances in which Discretionary Sick Pay may not be paid and payment remains in the sole discretion of the Company. The Company will comply with any obligation imposed by law, including regarding any disability, if applicable.</li>
+<li>If the Company’s discretionary sick pay limits have been exhausted in any rolling 12 month period, then no further Discretionary Sick Pay is likely to be paid in respect of further absence relating to the same or similar causes in any subsequent period. </li>
+<li>If you are unexpectedly absent from work for any reason you must inform the Company as soon as possible and in accordance with any rules set out on the Company’s intranet or other holiday Policies as varied from time to time. Failure to comply may lead to disciplinary action and may affect receipt of Statutory Sick Pay or Discretionary Sick Pay.  If you are off sick for more than 2 weeks, you must keep us informed of your situation at regular intervals (at least weekly unless we agree a longer period), whether you are improving and when you may be fit to return to work. The Company may require a medical opinion that you are fit to return before you are allowed to do so. </li>
+<li><strong>Taking sick leave when you are not sick is dishonest and is considered to be gross misconduct and may lead to dismissal without notice or pay in lieu of notice.</strong></li>
+<li>You agree to consent to medical examinations by a doctor nominated by the Company and at the Company's expense if the Company requires. Any subsequent report may be disclosed to the Company which may discuss its contents with the relevant doctor, subject to compliance with applicable law requirements.</li>
+<li>If sickness absence is or appears to be occasioned by actionable negligence, nuisance or breach of any statutory duty on the part of a third party in respect of which damages are or may be recoverable, you shall immediately notify the Company. You will notify the Company of any claim, compromise, settlement or judgment made or awarded relating thereto and any other information reasonably required by the Company. To the extent that any third party is liable for loss of earnings for any period during which Discretionary Sick Pay has been paid, then such Discretionary Sick Pay shall be treated as a loan repayable by you on demand by the Company. The Company may at its discretion take into account any costs borne by you in connection with recovery of losses from the third party responsible in reducing the amount of any loan repayable.  </li>
+</ol></div>
+
+<br /><br /><br /><br /><br />
+
+
+
+
+<div class="page" style="display:<$client.env.eval(client.tForWhomUserInfo.Salary_Grade_Level>=27?'block':'none')>"><center><strong>Schedule 2<br /><br />
+Post Termination Restrictions</strong></center><br /><br />
+
+<ol>
+     <li>Since you will, in the course of your employment, have dealings with customers and obtain knowledge of the trade secrets and other confidential information in regard to the business of the Company other Group Companies, subject to the remaining provisions of this Schedule, you hereby agree and undertake with the Company for itself and as trustee for each Group Company that you shall not without the prior written consent of the Company:
+      <ol>
+           <li style="list-style-type:lower-alpha">for a period of <strong>six</strong> months after the termination of your employment be engaged or interested (whether as a director, shareholder, principal, consultant, agent, partner or employee) in any business concern (of whatever kind) which shall be in competition with the Business (as defined below) provided always that nothing in this Clause 1 (a) shall restrain you from engaging or being interested in any such business concern insofar as your duties or work relate principally to services or goods of a kind with which you were not concerned during the period of one year prior to the termination of your employment; 
+           <li style="list-style-type:lower-alpha">for a period of<strong> twelve</strong> months after the termination of your employment either on your own behalf or on behalf of any other person, firm or company in respect of any business concern which is in competition with the Business, canvass, solicit or approach or cause to be canvassed, solicited or approached for orders or directly or indirectly deal with any person, firm or company who at the date of the termination of this Agreement or within one year prior to such date is or was a client or customer or prospective customer of the Company or any Group Company or was in the habit of dealing under contract with the Company or any Group Company and with whom or which you had contact during the said period other than in a non-material way.
+       </ol>
+     <li>None of the restrictions in this Schedule shall prevent you from:
+      <ol>
+           <li style="list-style-type:lower-alpha">holding an investment by way of shares or other securities of not more than 5% of the total issued share capital of any company, whether or not it is listed or dealt in on a recognised stock exchange; or
+           <li style="list-style-type:lower-alpha">being engaged or concerned in any business concern insofar as your duties or work shall relate solely to geographical areas where the business concern is not in competition with any Business.
+       </ol>
+     <li>Whilst each of the restrictions in clauses 1. (a) and (b) above are considered by the parties to be reasonable in all the circumstances as at the date of this agreement it is agreed and declared that if any one or more of such restrictions shall be judged to be void as going beyond what is reasonable in all the circumstances for the protection of the interests of the Company and/or any Group Company but would be valid if words were deleted  the said restrictions shall be deemed to apply with such modifications as may be necessary to make them valid and effective and any such modification shall not affect the validity of any other restriction contained herein.
+     <li>The duration of the restrictions in clauses 1. (a) and (b) above shall be reduced by any period which you are required to cease carrying out your duties during any Garden Leave Period as defined in the Agreement.
+     <li>In this Schedule, "<strong>Business</strong>" means the business or businesses of the Company or any Group Company in or with which you have been involved or concerned at any time during the period of 12 months prior to the termination of your employment including the development or provision of any services (including technical and product support, or consultancy or customer services) and including:
+    <ol style="list-style-type:lower-alpha">
+           <li>an online marketplace which allows buyers and sellers to trade with each other through a variety of price formats; 
+           <li>online search engine; and
+           <li>online price comparison services.
+    </ol>
+</ol>
+
+</div>
+
+
+
+
+
+
+
+</div> <!-- end container -->
+
+<div style="display:none;">
+<$client.env.formfield.hidden_pg1.HTML>
+</div>
+
+
+<br /><br />
+<div id="offerprint"><$client.env.FormButtons>&nbsp;<input type="button"
+class="appInputButton RCappInputButtonBlue" value="Print Offer Letter"
+onclick="javascript:OfferLetterPrint();"></div>
+
+
+</form>
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+</SCRIPT>
+
+<SCRIPT>
+//Show populated form if already completed
+var strCompletedForm = FORM_COMPLETED;
+if (strCompletedForm != "")
+{
+showCompleted();
+}
+</SCRIPT>
+<script language="javascript">
+function OfferLetterPrint()
+{
+if(SubmitCallback(document.forms['frmForm'])==false) {return false;}
+window.print();
+}
+</script>
+
+
+
+<script>
+// <$client.env.eval((client.tForWhomUserInfo.Salary_Amount *100)/client.tForWhomUserInfo.CAP_UTIL_LVL_PCT)>    
+(function() {
+
+  let salaryRaw = Number("<$client.tForWhomUserInfo.Salary_Amount>".replace(/,/g, ''));
+  let salaryAmount = !isNaN(salaryRaw) ? salaryRaw : 0;
+  let cuntilPctRaw = Number("<$client.tForWhomUserInfo.CAP_UTIL_LVL_PCT>".replace(/,/g, ''));
+  let cuntilPct = !isNaN(cuntilPctRaw) ? cuntilPctRaw : 0;
+  let baseSalary = (Number(salaryAmount) * 1000) / cuntilPct;
+  document.getElementById('base-salary').innerText = baseSalary.toLocaleString();
+})();
+</script>

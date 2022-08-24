@@ -1,0 +1,316 @@
+<!--/////////////////////Page Loader ///////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+
+<div class="modal" id="modal" style="display:none;"> 
+
+              <div class="modal-content"> 
+
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+
+                             <p style="fontweight:normal;padding:0px"> 
+
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+
+                             </p> 
+
+                             <br> 
+
+                             <div class="row"> 
+
+                                           <div class="lifesuite__clearfix"> 
+
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+
+                             </div> 
+
+                             </div> 
+
+                             <div class="row"> 
+
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+
+                                           </div> 
+
+                             </div> 
+
+              </div> 
+
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+
+    showScreen('over') 
+
+</SCRIPT> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+
+<!-- ////////////////////////eForm Prompts/////////////////// -->
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+
+<!--/////////////////////////////Custom Prompts ////////////////////////////// -->
+<$client.env.FormField.Ack1.prompt>
+<$client.env.FormField.Ack2.prompt>
+
+<$client.env.FormField.Date.prompt>
+<$client.env.FormField.Employee_Name.prompt>
+<$client.env.FormField.I_Agree.prompt>
+<$client.env.FormField.signature.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<!--////////////////////Structure here /////////////////////////// -->
+<div class="container-fluid"> 
+    <div class="form-group"> 
+<div id="DefaultFont">
+
+<div class="row">
+<div class="col-sm-12">&nbsp;</div>
+</div>
+
+
+<div class="row">
+<div class="col-sm-12"><h1 class="newhire-heading text-center">New Hire Policy Acknowledgement Form</h1></div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">&nbsp;</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">By selecting the check box of each policy, I acknowledge that I have read the policy and understand how this policy affects me and understand the guidelines and requirements of each. </div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">&nbsp;</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="center-wrapper center-block">
+            <div class="row mb-15">
+            <div class="col-lg-offset-1 col-lg-1 col-xs-2"><$client.env.FormField.ack1.HTML></div>
+            <div class="col-lg-10 col-xs-10" id="ebay-corporate" style='display:none'><a href="<$link;/Onboarding/Uploads/Unplaced_Documents/Group_Policy_eBayzzz/Group_Policy1_Corporate_Privacy_Policy.pdf>" target="_blank" onclick="getElementById('Ack1').checked=true;">Corporate Privacy Policy</a></div>
+
+<div class="col-lg-10 col-xs-10" id="ebay-classified-corporate" style='display:none'><a href="<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/ECG/eCG_Employee_Privacy_Notice_Standard_2021.pdf>" target="_blank" onclick="getElementById('Ack1').checked=true;">Corporate Privacy Policy</a></div>
+            </div>
+
+            <div class="row mb-15">
+            <div class="col-lg-offset-1 col-lg-1 col-xs-2"><$client.env.FormField.ack2.HTML></div>
+            <div class="col-lg-10 col-xs-10"><a id="insider-trading-policy-link" href="<$link;/Onboarding/Uploads/Unplaced_Documents/Group_Policy_eBayzzz/Group_Policy_1_Insider_Trading_Policy_Global.pdf>"
+             target="_blank" onclick="getElementById('Ack2').checked=true;">Insider Trading Policy</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--////////////////////Signature /////////////////////////// -->
+
+<div class="row">
+<div class="col-sm-12">&nbsp;</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">&nbsp;</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">I acknowledge that I have reviewed and understand the documents listed above. I understand that, as an employee of <span id="bUnit"></span> (or one of its subsidiaries), I am expected to comply fully with the policies set forth in the documents listed above and, by signing below, I agree that I will comply with said policies.  Furthermore, I agree to notify Human Resources if, in the future, I become aware of a violation of these policies.  I realize and acknowledge that failure to observe and comply with these policies could result in discipline, up to and including termination of employment.  In addition to disciplinary actions, I realize and acknowledge that violation of the policies set forth above may result in civil or criminal fines and/or imprisonment.  By signing below, I acknowledge that all representations I have made in conjunction with the above policies and in this acknowledgement are true and accurate to the best of my knowledge.</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">&nbsp;</div>
+</div>
+
+<div class="row">
+<div class="col-sm-4"><strong>Employee Name</strong><$client.env.FormField.name.HTML></div>
+<div class="col-sm-8">&nbsp;</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">&nbsp;</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-5 col-xs-12 p-right-15"><strong>Signature</strong><$client.env.FormField.signature.HTML></div>
+    <div class="col-lg-3 col-xs-12"><strong>Date</strong><$client.env.FormField.date.HTML></div>
+    <div class="col-lg-2 col-xs-12 pull-right"><$client.env.FormField.agree.HTML></div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">&nbsp;</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">If you are submitting this form electronically, type your name on the Electronic Signature line, enter or select today’s date and check the box to the left of “I agree”. This is your electronic signature.  By electronically signing this form, you agree to all the terms contained herein.</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">&nbsp;</div>
+</div>
+
+
+
+
+        <div id="trademarks-container" class="row">
+          <div class="col-lg-12">
+            <p></p>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+<!--/////////////////////Form Buttons and Verification ////////////////////// -->
+<br><hr class="lifesuite__hr"> 
+                  <div class="row" id="formButtons" style="display: none;"> 
+                      <div class="lifesuite__clearfix lifesuite__float-right">                
+                              <$client.env.FormButtons> 
+                       </div>              
+                  </div> 
+           </div>  
+      </div>  
+</div>
+<div style="display:none">
+     <$client.env.FormField.signatureverification.HTML>    
+     <$client.env.FormField.business_unit.HTML>      
+     <$client.env.FormField.logoURL.HTML>    
+     <$client.env.FormField.logos_and_trademark.HTML>    
+</div>
+</form>
+
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar   
+  
+
+(function() {
+  const trademarksVerbiageContainer = document.getElementById('trademarks-container');
+  const trademarksVerbiageField = document.getElementById('logos_and_trademark')
+  
+  if (!FORM_COMPLETED.length) {
+    const businessUnit = document.querySelector('[name$=".business_unit"]');
+    businessUnit.value = '<$client.tEventCategories_Category_12.Code>';
+    // update logo based on business unit`
+    if (['eBay Kleinanzeigen GmbH','Gumtree.Ltd','mobile.de GmbH','Motors.co.uk Limited'].indexOf(businessUnit.value) >= 0) {
+      trademarksVerbiageField.value = 'The eBay name and logos are trademarks of eBay Inc.';
+    }
+    else {
+      // don't display in the print
+      trademarksVerbiageField.value = '';
+    }
+  }
+  document.getElementById('bUnit').innerText = "<$client.tEventCategories_Category_12.Value>";
+  if (!!trademarksVerbiageField.value.length) {
+    // display trademarks verbiage at the bottom
+    trademarksVerbiageContainer.style.display = 'block';
+    // populate display
+    trademarksVerbiageContainer.querySelector('p').innerText = trademarksVerbiageField.value;
+    document.getElementById('ebay-classified-corporate').style.display = 'block';
+    // trading policy link
+    document.getElementById('insider-trading-policy-link').href = '/Onboarding/Uploads/Unplaced_Documents/ECG/Adevinta_Insider_Trading_Policy.pdf';
+    return;
+  }
+  document.getElementById('ebay-corporate').style.display = 'block';
+})();
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+$( window ).resize(function() { 
+
+document.getElementById('over').style.width=''; 
+
+}); 
+
+/*
+const logosAndTrademark = document.querySelector('[name$=".logos_and_trademark"]')
+logosAndTrademark.value = 'The eBay name and logos are trademarks of eBay Inc.';
+if ('<$client.tEventCategories_Category_12.Value>'!='eBay Classifieds Group') {
+    logosAndTrademark.value = '';
+}
+*/
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+</SCRIPT>

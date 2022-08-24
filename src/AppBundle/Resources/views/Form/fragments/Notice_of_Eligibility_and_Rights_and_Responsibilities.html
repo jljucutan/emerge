@@ -1,0 +1,693 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+
+<div class="modal" id="modal" style="display:none;"> 
+
+              <div class="modal-content"> 
+
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+
+                             <p style="fontweight:normal;padding:0px"> 
+
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+
+                             </p> 
+
+                             <br> 
+
+                             <div class="row"> 
+
+                                           <div class="lifesuite__clearfix"> 
+
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+
+                             </div> 
+
+                             </div> 
+
+                             <div class="row"> 
+
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+
+                                           </div> 
+
+                             </div> 
+
+              </div> 
+
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+
+    showScreen('over') 
+
+</SCRIPT> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+  
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+
+              <div class="fb-spinner"> 
+
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+
+              </div> 
+
+</div> 
+
+  
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'> 
+
+    <div style="display:none;"> 
+        <$client.env.FormField.Form_Name.prompt> 
+        <$client.env.FormField.Form_Name.HTML> 
+        <$client.env.FormField.Form_Type.prompt> 
+        <$client.env.FormField.Form_Type.HTML> 
+        <$client.env.FormField.Form_Owner.prompt> 
+        <$client.env.FormField.Form_Owner.HTML> 
+        <$client.env.FormField.Form_CreateDate.prompt> 
+        <$client.env.FormField.Form_CreateDate.HTML> 
+        <$client.env.FormField.Form_Completed.prompt> 
+        <$client.env.FormField.Form_Completed.HTML> 
+        <$client.env.FormField.Form_Delivered.prompt> 
+        <$client.env.FormField.Form_Delivered.HTML> 
+        <$client.env.FormField.Form_TaskId.prompt> 
+        <$client.env.FormField.Form_TaskId.HTML> 
+        <$client.env.FormField.display_version.HTML> 
+
+        <$client.env.FormField.a01_To.prompt>
+        <$client.env.FormField.a02_From.prompt>
+        <$client.env.FormField.a03_Date.prompt>
+        <$client.env.FormField.a04_Date.prompt>
+        <$client.env.FormField.a05_Date.prompt>
+        <$client.env.FormField.b01_Check.prompt>
+        <$client.env.FormField.b02_Check.prompt>
+        <$client.env.FormField.b03_Check.prompt>
+        <$client.env.FormField.b04_Radio.prompt>
+        <$client.env.FormField.b05_Check.prompt>
+        <$client.env.FormField.b06_Radio.prompt>
+        <$client.env.FormField.b07_Check.prompt>
+        <$client.env.FormField.b08_Radio.prompt>
+        <$client.env.FormField.c01_Check.prompt>
+        <$client.env.FormField.c01_Text.prompt>
+        <$client.env.FormField.c02_Check.prompt>
+        <$client.env.FormField.c03_Check.prompt>
+        <$client.env.FormField.c04_Text.prompt>
+        <$client.env.FormField.c05_Text.prompt>
+        <$client.env.FormField.c06_Check.prompt>
+        <$client.env.FormField.c07_Check.prompt>
+        <$client.env.FormField.c08_Text.prompt>
+        <$client.env.FormField.c09_Check.prompt>
+        <$client.env.FormField.c10_Check.prompt>
+        <$client.env.FormField.c11_Text.prompt>
+        <$client.env.FormField.c12_Text.prompt>
+        <$client.env.FormField.d01_Date.prompt>
+        <$client.env.FormField.d02_Check.prompt>
+        <$client.env.FormField.d03_Radio.prompt>
+        <$client.env.FormField.d04_Check.prompt>
+        <$client.env.FormField.d05_Check.prompt>
+        <$client.env.FormField.d06_Text.prompt>
+        <$client.env.FormField.d07_Check.prompt>
+        <$client.env.FormField.e01_Check.prompt>
+        <$client.env.FormField.e02_Text.prompt>
+        <$client.env.FormField.e03_Text.prompt>
+        <$client.env.FormField.e04_Check.prompt>
+        <$client.env.FormField.e05_Radio.prompt>
+        <$client.env.FormField.e06_Check.prompt>
+        <$client.env.FormField.e07_Radio.prompt>
+        <$client.env.FormField.e08_Check.prompt>
+        <$client.env.FormField.e09_Text.prompt>
+        <$client.env.FormField.f01_Check.prompt>
+        <$client.env.FormField.f02_Check.prompt>
+        <$client.env.FormField.f03_Text.prompt>
+        <$client.env.FormField.f04_Check.prompt>
+        <$client.env.FormField.f05_Check.prompt>
+        <$client.env.FormField.g01_Text.prompt>
+        <$client.env.FormField.g02_Radio.prompt>
+        <$client.env.FormField.g03_Check.prompt>
+        <$client.env.FormField.g04_Text.prompt>
+        <$client.env.FormField.g05_Text.prompt>
+        <$client.env.FormField.g06_Check.prompt>
+        <$client.env.FormField.g07_Text.prompt>
+        <$client.env.FormField.g08_Text.prompt>
+        <$client.env.FormField.g09_Text.prompt>
+        <$client.env.FormField.state_leave.prompt>
+
+    </div> 
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+
+    <div class="container-fluid">  
+        <div class="form-group">
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 right">
+                    <img src="logo.png" style="max-width: 80%">
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 header">Notice of Eligibility and Rights & Responsibilities</div>
+                <div class="col-xs-12 col-md-12 subheader"><em><strong>(Family & Medical Leave Act and Applicable State Leaves)</strong></em></div>
+            </div>
+
+            <div class="row borderTop">
+                <div class="col-xs-12 col-md-12">
+                    In general, to be eligible for FMLA, an employee must have worked for an employer for at least 12 months, meet the hours of service
+                    requirement in the 12 months preceding the leave, and work at a site with at least 50 employees within 75 miles. While use of this form by
+                    employers is optional, a fully completed Form WH-381 provides employees with the information required by 29 C.F.R. § 825.300(b), which
+                    must be provided within five business days of the employee notifying the employer of the need for FMLA leave. Part B provides employees
+                    with information regarding their rights and responsibilities for taking FMLA leave, as required by 29 C.F.R. § 825.300(b), (c).
+                </div>
+            </div> 
+
+            <div class="row headerWithBackground">
+                <div class="col-xs-12 col-md-12">
+                    Part A - Notice of Eligibility
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-xs-12 col-md-1">
+                    To:
+                </div>
+                <div class="col-xs-12 col-md-11">
+                    <$client.env.FormField.a01_To.HTML>
+                    <strong><em>Employee</em></strong>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-xs-12 col-md-1">
+                    From:
+                </div>
+                <div class="col-xs-12 col-md-11">
+                    <$client.env.FormField.a02_From.HTML>
+                    <strong><em>Employer Representative</em></strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-1">
+                    Date:
+                </div>
+                <div class="col-xs-12 col-md-11">
+                    <$client.env.FormField.a03_Date.HTML>
+                </div>
+            </div> 
+
+            <div class="row col-xs-12 col-md-12">
+                <span>
+                    On <span class="input-field"><$client.env.FormField.a04_Date.HTML></span>, you informed us that you needed leave beginning on <span class="input-field"><$client.env.FormField.a05_Date.HTML></span> for:
+                </span>
+            </div> 
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.b01_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    The birth of a child, or placement of a child with you for adoption or foster care
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.b02_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    Your own serious health condition
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.b03_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    <div class="iblock">Because you are needed to care for your </div>
+                    <div class="iblock forRadioList"><$client.env.FormField.b04_Radio.HTML></div>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.b05_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    <div class="col-xs-12 col-sm-8 col-md-6">Because of a qualifying exigency arising out of the fact that your</div>
+                    <div class="col-xs-12 col-sm-4 col-md-6 forRadioList" style="float: left; width: 100%"><$client.env.FormField.b06_Radio.HTML></div>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.b07_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    <div class="iblock">Because you are the</div>
+                    <div class="iblock forRadioList"><$client.env.FormField.b08_Radio.HTML></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12">This Notice is to inform you that you:</div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1 checkboxmargin">
+                    <$client.env.FormField.c01_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    Are eligible for <$client.env.FormField.c01_Text.HTML> state leave
+                    <$client.env.FormField.c01_Text2.HTML>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1 ">
+                    <$client.env.FormField.c02_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    Are eligible for FMLA leave (See Part B below for Rights and Responsibilities)
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1 checkboxmargin">
+                    <$client.env.FormField.c03_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    Are not eligible for <$client.env.FormField.c04_Text.HTML> state leave, because <$client.env.FormField.c05_Text.HTML>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.c06_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    Are <strong>not</strong> eligible for FMLA leave, because (only one reason needs to be checked, although you may not be eligible
+                    for other reasons):
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1 ">&nbsp;</div>
+                <div class="col-xs-11 col-md-11">
+                    <div class="col-xs-1 col-md-1">
+                        <$client.env.FormField.c07_Check.HTML>
+                    </div>
+                    <div class="col-xs-11 col-md-11">
+                        You have not met the FMLA’s 12-month length of service requirement. As of the first date of requested
+                        leave, you will have worked approximately <$client.env.FormField.c08_Text.HTML> months towards this requirement.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1 ">&nbsp;</div>
+                <div class="col-xs-11 col-md-11">
+                    <div class="col-xs-1 col-md-1">
+                        <$client.env.FormField.c09_Check.HTML>
+                    </div>
+                    <div class="col-xs-11 col-md-11">
+                        You have not met the FMLA’s hours of service requirement.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1 ">&nbsp;</div>
+                <div class="col-xs-11 col-md-11">
+                    <div class="col-xs-1 col-md-1">
+                        <$client.env.FormField.c10_Check.HTML>
+                    </div>
+                    <div class="col-xs-11 col-md-11">
+                        You do not work and/or report to a site with 50 or more employees within 75-miles.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    If you have any questions, contact <$client.env.FormField.c11_Text.HTML> or view the FMLA poster
+                    located <$client.env.FormField.c12_Text.HTML>.
+                </div>
+            </div>
+
+            <div class="row headerWithBackground">
+                <div class="col-xs-12 col-md-12">
+                    Part B - Rights and Responsibilities for Taking FMLA Leave
+                </div>
+            </div>
+
+            <div class="row col-xs-12 col-md-12">
+                <span>
+                    As explained in Part A, you meet the eligibility requirements for taking FMLA leave and still have FMLA leave available in the
+                    applicable 12-month period. <strong>However, in order for us to determine whether your absence qualifies as FMLA leave,
+                    you must return the following information to us by</strong> <span class="input-field"><$client.env.FormField.d01_Date.HTML></span>. (If a certification is requested, employers must allow
+                    at least 15 calendar days from receipt of this notice; additional time may be required in some circumstances.) If sufficient
+                    information is not provided in a timely manner, your leave may be denied.
+                </span>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.d02_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <ol>
+                            <li>
+                                Sufficient certification to support your request for FMLA leave. A certification form that sets forth the information
+                                necessary to support your request  <div class="iblock"><$client.env.FormField.d03_Radio.HTML></div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1 ">
+                    <$client.env.FormField.d04_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    Sufficient documentation to establish the required relationship between you and your family member.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1 ">
+                    <$client.env.FormField.d05_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    Other information needed (such as documentation for military family leave):
+                    <$client.env.FormField.d06_Text.HTML>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1 ">
+                    <$client.env.FormField.d07_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    No additional information requested.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 ">
+                    <strong>If your leave does qualify</strong> as FMLA leave you will have the following <strong>responsibilities</strong> while on FMLA leave (only checked
+                    blanks apply):
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1 checkboxmargin">
+                    <$client.env.FormField.e01_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    The Benefits Team will contact you to make arrangements to continue to make your share of the premium payments on your health insurance to maintain health benefits while you are on leave. 
+                    If payment is not made timely, your group health insurance may be cancelled, provided we notify you
+                    in writing at least 15 days before the date that your health coverage will lapse, or, at our option, we may pay your
+                    share of the premiums during FMLA leave, and recover these payments from you upon your return to work.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.e04_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <ol>
+                            <li>
+                                You will be required to use your available <div class="iblock"><$client.env.FormField.e05_Radio_pto.HTML></div> <div class="iblock"><$client.env.FormField.e05_Radio_other.HTML></div> during your FMLA absence.
+                                This means that you will receive your paid leave and the leave will also be considered protected FMLA leave and
+                                counted against your FMLA leave entitlement.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.e06_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <ol>
+                            <li>
+                                Due to your status within the company, you are considered a “key employee” as defined in the FMLA. As a “key
+                                employee,” restoration to employment may be denied following FMLA leave on the grounds that such restoration
+                                will cause substantial and grievous economic injury to us. We <div class="iblock"><$client.env.FormField.e07_Radio.HTML></div> determined that restoring you
+                                to employment at the conclusion of FMLA leave will cause substantial and grievous economic harm to us.
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.e08_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    While on leave you will be required to furnish us with periodic reports of your status and intent to return to work
+                    every <$client.env.FormField.e09_Text.HTML>. (Indicate interval of periodic reports, as appropriate for the particular leave situation).
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <strong>If the circumstances of your leave change, and you are able to return to work earlier than the date indicated on the
+                    this form, you will be required to notify us at least two workdays prior to the date you intend to report for work.</strong>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <strong>If your leave does qualify</strong> as FMLA leave you will have the following <strong>rights</strong> while on FMLA leave:
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <ul>
+                        <li class="listDisc">
+                            You have a right under the FMLA for up to 12 weeks of unpaid leave in a 12-month period calculated as:
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    &nbsp;
+                </div>
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.f01_Check.HTML>
+                </div>
+                <div class="col-xs-10 col-md-10">
+                    the calendar year (January – December)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    &nbsp;
+                </div>
+                <div class="col-xs-1 col-md-1 checkboxmargin">
+                    <$client.env.FormField.f02_Check.HTML>
+                </div>
+                <div class="col-xs-10 col-md-10">
+                    a fixed leave year based on <$client.env.FormField.f03_Text.HTML>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    &nbsp;
+                </div>
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.f04_Check.HTML>
+                </div>
+                <div class="col-xs-10 col-md-10">
+                    the 12-month period measured forward from the date of your first FMLA leave usage
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    &nbsp;
+                </div>
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.f05_Check.HTML>
+                </div>
+                <div class="col-xs-10 col-md-10">
+                    a “rolling” 12-month period measured backward from the date of any FMLA leave usage
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <ul>
+                        <li class="listDisc">
+                            You have a right under the FMLA for up to 26 weeks of unpaid leave in a single 12-month period to care for a covered
+                            service member with a serious injury or illness. This single 12-month period commenced on <div class="iblock"><$client.env.FormField.g01_Text.HTML></div>.
+                        </li>
+                        <li class="listDisc">
+                            Your health benefits must be maintained during any period of unpaid leave under the same conditions as if you
+                            continued to work.
+                        </li>
+                        <li class="listDisc">
+                            You must be reinstated to the same or an equivalent job with the same pay, benefits, and terms and conditions
+                            of employment on your return from FMLA-protected leave. (If your leave extends beyond the end of your FMLA
+                            entitlement, you do not have return rights under FMLA.)
+                        </li>
+                        <li class="listDisc">
+                            If you do not return to work following FMLA leave for a reason other than: 1) the continuation, recurrence, or onset of a
+                            serious health condition which would entitle you to FMLA leave; 2) the continuation, recurrence, or onset of a covered
+                            servicemember’s serious injury or illness which would entitle you to FMLA leave; or 3) other circumstances beyond
+                            your control, you may be required to reimburse us for our share of health insurance premiums paid on your behalf
+                            during your FMLA leave.
+                        </li>
+                        <li class="listDisc">
+                            If we have not informed you above that you must use accrued paid leave while taking your unpaid FMLA leave
+                                    entitlement, you have the right to have <div class="iblock"><$client.env.FormField.g02_Radio_pto.HTML></div><div class="iblock"><$client.env.FormField.g02_Radio_other.HTML></div> run concurrently with your unpaid leave entitlement, provided you meet any applicable requirements of the leave policy. Applicable conditions related to the substitution of paid leave are referenced or set forth below. If you do not meet the requirements for taking paid leave, you remain entitled to take unpaid FMLA leave.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1 checkboxmargin">
+                    <$client.env.FormField.g03_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    For a copy of conditions applicable to PTO/other leave usage please refer to <strong>Employee Handbook</strong> available at:
+                    <$client.env.FormField.g05_Text.HTML>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1 col-md-1">
+                    <$client.env.FormField.g06_Check.HTML>
+                </div>
+                <div class="col-xs-11 col-md-11">
+                    Applicable conditions for use of paid leave:
+                    <$client.env.FormField.g07_Text.HTML>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <strong>Once we obtain the information from you as specified above, we will inform you, within 5 business days, whether
+                    your leave will be designated as FMLA leave and count towards your FMLA leave entitlement. If you have any
+                    questions, please do not hesitate to contact Benefits Administration at benefitsadministration@Andersen.com.</strong>
+                </div>
+            </div>
+
+            <div class="row footer borderTop">
+                <div class="col-xs-12 col-md-12 center">
+                    <strong>PAPERWORK REDUCTION ACT NOTICE AND PUBLIC BURDEN STATEMENT</strong>
+                </div>
+                <div class="col-xs-12 col-md-12 ">
+                    It is mandatory for employers to provide employees with notice of their eligibility for FMLA protection and their rights and responsibilities.
+29 U.S.C. § 2617; 29 C.F.R. § 825.300(b), (c). It is mandatory for employers to retain a copy of this disclosure in their records for three
+years. 29 U.S.C. § 2616; 29 C.F.R. § 825.500. Persons are not required to respond to this collection of information unless it displays a
+currently valid OMB control number. The Department of Labor estimates that it will take an average of 10 minutes for respondents to
+complete this collection of information, including the time for reviewing instructions, searching existing data sources, gathering and
+maintaining the data needed, and completing and reviewing the collection of information. If you have any comments regarding this burden
+estimate or any other aspect of this collection information, including suggestions for reducing this burden, send them to the Administrator,
+Wage and Hour Division, U.S. Department of Labor, Room S-3502, 200 Constitution Ave., NW, Washington, DC 20210. DO NOT SEND
+THE COMPLETED FORM TO THE WAGE AND HOUR DIVISION.
+                </div>
+            </div>
+
+            <div class="row borderTop">&nbsp;</div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-6 mobileCentered">
+                    Notice of Eligibility and Rights &amp; Responsibilities
+                </div>
+                <div class="col-xs-12 col-md-6 mobileCentered webRight">
+                    Rev 9/2020
+                </div>
+            </div>
+
+            <br><hr class="lifesuite__hr"> 
+            <$client.env.FormButtons> 
+        </div> 
+    </div> 
+
+    <div style="display:none"> 
+        <$client.env.FormField.SignatureVerification.HTML>
+    </div> 
+
+</form> 
+
+<SCRIPT> 
+
+    ChangeCalendarIcons(); //for popup calendar  
+
+  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+/* RESPONSIVE eFORM FIELDS STYLE */ 
+
+$(window).load(function() { 
+
+        $("input[type=text]").addClass('lifesuite__text-input'); 
+
+        $("input[type=text].hasDatepicker").addClass('dateField'); 
+
+        $("select").addClass('lifesuite__select-input'); 
+
+        $("input[type=radio]").addClass('lifesuite__radio'); 
+
+        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+
+        $("textarea").addClass('lifesuite__textarea-input'); 
+
+        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+
+});  
+
+  
+
+//Fixes to modal issue when viewing in mobile devices 
+
+$( window ).resize(function() { 
+
+document.getElementById('over').style.width=''; 
+
+}); 
+
+ 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+ 
+
+</SCRIPT>

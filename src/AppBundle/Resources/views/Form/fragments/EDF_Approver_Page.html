@@ -1,0 +1,166 @@
+<table border="0">
+<tr>
+			<td colspan="4" style="background-color:white; color:black; font-weight:bold;">Please review, confirm, and update as needed the below fields to appear on the EDF form for 
+			<$client.tForWhomUserInfo.First_Name> <input type="hidden" size="40" name="First Name" value="<$client.tForWhomUserInfo.First_Name>" /> <$client.tForWhomUserInfo.Last_Name> <input type="hidden" size="40" name="Last Name" value="<$client.tForWhomUserInfo.Last_Name>" /></td>
+</tr>
+
+<tr>
+     <td colspan="4" style="background-color:#00529B; color:white; font-weight:bold;">EDF Feilds</td>
+</tr>
+
+<tr>
+			<td id='Suffix_prompt'><$client.env.promptSuffix> (i.e. Jr,Sr,II)</td>
+			<td colspan="3"><$client.env.inputSuffix></td>
+		</tr>
+ <tr>
+			<td id='First_Name_prompt'>First Name</td>
+			<td colspan="3"><input type="text" name="First_Name" value="<$client.tForWhomUserInfo.First_Name>" /></td>
+		</tr>
+		<tr>
+			<td id='Middle_Name_prompt'>Middle Name</td>
+			<td colspan="3"><input type="text" name="Middle_Name" value="<$client.tForWhomUserInfo.Middle_Name>" /></td>
+		</tr>
+		<tr>
+			<td id='Last_Name_prompt'>Last Name</td>
+			<td colspan="3"><input type="text" name="Last_Name" value="<$client.tForWhomUserInfo.Last_Name>" /></td>
+		  </tr>
+  <tr>
+			<td id='Address1_prompt'><$client.env.promptAddress1></td>
+			<td colspan="3"><$client.env.inputAddress1>	</td>
+		  </tr>
+		  <tr>
+			<td id='Address2_prompt'><$client.env.promptAddress2></td>
+			<td colspan="3"><$client.env.inputAddress2>	</td>
+		  </tr>
+		  <tr>
+			<td id='City_prompt'><$client.env.promptCity></td>
+		<td colspan="3"><$client.env.inputCity>	</td>
+		</tr>
+		<tr>
+			<td id='State_prompt'><$client.env.promptState></td>
+		<td><$client.env.inputState></td>
+			<td id='Zip_prompt'><$client.env.promptZip></td>
+		<td><$client.env.inputZip></td>
+		  </tr>
+<tr>
+			<td id='Hire_DT_prompt'>Hire Date</td>
+			<input type="hidden" name="Hire_DT" value="<$client.env.eval(Date.Format('<$client.env.eval(Date.parse('<$client.tForWhomUserInfo.Hire_DT>'))>','%Y-%m-%d'))>" />
+			<td colspan="3"><input type="date" id="Hire_DT_display" value="<$client.env.eval(Date.Format('<$client.env.eval(Date.parse('<$client.tForWhomUserInfo.Hire_DT>'))>','%Y-%m-%d'))>" /></td>
+		  </tr>
+  <tr>
+			<td id='Hire_Type_prompt'><$client.env.promptHire_Type></td>
+			<td colspan="3">
+				<$client.env.inputHire_Type>
+			</td>
+		</tr>
+<tr>
+			<td id='Employee_HRISID_prompt'>GEO Employee Number for Rehire</td>
+			<td colspan="3"><input type="text" name="Employee_HRISID" value="<$client.tForWhomUserInfo.Employee_HRISID>" /></td>
+		</tr>
+<tr>
+			<td id='Hourly_Rate_prompt'>Hourly Rate</td>
+			<td colspan="3"><$client.env.inputHourly_Rate></td>
+		</tr>
+<tr!--/-->
+			<td id='Salary_Amount_prompt'>Annual Salary</td>
+			<td colspan="3"><$client.env.inputSalary_Amount></td>
+		</tr>
+<tr>
+			<td id='Biweekly_Hours_prompt'>Bi-weekly Work Hours</td>
+			<td colspan="3"><$client.env.inputBiweekly_Hours></td>
+		</tr>
+
+<tr>
+			<td id='Supervisor_Manager_Name_prompt'>Supervisor/Manager Name</td>
+			<td colspan="3"><$client.env.inputSupervisor_Manager_Name></td>
+		</tr>
+
+<tr>
+     <td>&nbsp;</td>
+</tr>
+
+
+</table>
+
+<!-- Format Dates on load -->
+<script type="text/javascript">
+   if(self.LoadCallback) {
+      LoadCallback(document.forms['frmExtendedUserProfile']);
+   }
+</script>
+
+
+<!-- SERVICES-38345 | 2019-07-30 | PSALUDARES | Added dynamic phone dashes while typing + maxlength of 12 script + disabled non-numeric input -->
+<script>
+// Adds phone dashes while typing + added maxlength of 12 + disables non-numeric input
+$(function () {
+            $('.dynamic-dashes').keydown(function (e) {
+                var key = e.charCode || e.keyCode || 0;
+                $text = $(this);
+                if (key !== 8 && key !== 9) {
+                    if ($text.val().length === 3) {
+                        $text.val($text.val() + '-');
+                    }
+                    if ($text.val().length === 7) {
+                        $text.val($text.val() + '-');
+                    }
+                }
+                return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
+            });
+            $(".dynamic-dashes").attr('maxlength',12);
+		});
+
+// SERVICES-39715 | jjucutan | Geogroup -Updates to editprofile.html page
+const doSave_x = function(btnType){
+    document.getElementById('refer').value=document.getElementById(btnType).value;
+    try {
+        if(SessionIsBad()) { return false; }
+    } 
+    catch(e) {
+        console.log(e);
+    }
+    if (!SubmitCallbackNoValidation(document.forms['frmExtendedUserProfile'])) {
+        return false;
+    }
+    if(!SubmitCallback(document.forms['frmExtendedUserProfile'])) {
+        return false;
+	}
+	const editProfileFrm = $('[name="frmExtendedUserProfile"]');
+	let frmData = new FormData(document.forms['frmExtendedUserProfile']);
+	$.ajax({
+		url: editProfileFrm.prop('action'),
+		type: editProfileFrm.prop('method'),
+		contentType: false,
+		data: frmData,
+		processData: false
+	});
+    if (IsValidationEnabled() == false) {
+		window.history.back();
+    }
+    return true;
+}
+// SERVICES-39715 | jjucutan | Geogroup -Updates to editprofile.html page
+const validateAndSave = function() {
+	"use strict";
+	EnableValidation();
+	doSave_x('refer-Save');
+	if (g_HT.size() > 0) {
+		return false;
+	}
+	window.history.back();
+	return true;
+}
+
+// SERVICES-39715 | go back to previous page and not complete
+$(document).on('ready', function() {
+    $('#TaskSummary_ButtonSave, #EUPDefaultSaveButton').hide().parent().after(
+        $('<button type="button" role="button" class="lifesuite__button" onClick="DisableValidation();doSave_x(\'refer-Save\');window.history.back();"/>').text('Save & Complete Later'),
+        $('<button id="BtnSaveAndComplete" type="button" role="button" class="lifesuite__button primary" onClick="validateAndSave();"/>').text('Save & Complete Task')
+    );
+	$('#Hire_DT_display').on('change', function() {
+		$('[name="Hire_DT"]').val(this.value);
+	});
+});
+</script>
+
+

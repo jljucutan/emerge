@@ -1,0 +1,537 @@
+<div class="modal" id="modal" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                            <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                                            </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+
+                                                         <input style="margin-top:10px" type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv','a24_Employee_Date');xbObj('eSignature1').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a24_Employee_Date');}">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                                           </div> 
+                            </div> 
+              </div> 
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<div class="modal" id="modal2" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                            <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                                            </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+
+                                                         <input style="margin-top:10px" type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','fullNamePayroll','modal2','over','sv2','a27_Payroll_Date');xbObj('eSignature2').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','a27_Payroll_Date');}">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                                           </div> 
+                            </div> 
+              </div> 
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+    showScreen('over') 
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+              <div class="fb-spinner"> 
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+              </div> 
+</div> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'> 
+
+    <div style="display:none;"> 
+        <$client.env.FormField.Form_Name.prompt> 
+        <$client.env.FormField.Form_Name.HTML> 
+        <$client.env.FormField.Form_Type.prompt> 
+        <$client.env.FormField.Form_Type.HTML> 
+        <$client.env.FormField.Form_Owner.prompt> 
+        <$client.env.FormField.Form_Owner.HTML> 
+        <$client.env.FormField.Form_CreateDate.prompt> 
+        <$client.env.FormField.Form_CreateDate.HTML> 
+        <$client.env.FormField.Form_Completed.prompt> 
+        <$client.env.FormField.Form_Completed.HTML> 
+        <$client.env.FormField.Form_Delivered.prompt> 
+        <$client.env.FormField.Form_Delivered.HTML> 
+        <$client.env.FormField.Form_TaskId.prompt> 
+        <$client.env.FormField.Form_TaskId.HTML> 
+        <$client.env.FormField.display_version.HTML>
+
+<$client.env.FormField.b06c_Account_Number.prompt>
+<$client.env.FormField.b06d_Type_of_Securities.prompt>
+<$client.env.FormField.b06e_Add_Delete.prompt>
+<$client.env.FormField.b06ee_Add_Delete.prompt>
+<$client.env.FormField.b06f_Check_Third_Party.prompt>
+<$client.env.FormField.b07a_Name_of_Broker.prompt>
+<$client.env.FormField.b07b_Account_Holder_Name.prompt>
+<$client.env.FormField.b07c_Account_Number.prompt>
+<$client.env.FormField.b07d_Type_of_Securities.prompt>
+<$client.env.FormField.b07e_Add_Delete.prompt>
+<$client.env.FormField.b07ee_Add_Delete.prompt>
+<$client.env.FormField.b07f_Check_Third_Party.prompt>
+<$client.env.FormField.b08a_Name_of_Broker.prompt>
+<$client.env.FormField.b08b_Account_Holder_Name.prompt>
+<$client.env.FormField.b08c_Account_Number.prompt>
+<$client.env.FormField.b08d_Type_of_Securities.prompt>
+<$client.env.FormField.b08e_Add_Delete.prompt>
+<$client.env.FormField.b08ee_Add_Delete.prompt>
+<$client.env.FormField.b08f_Check_Third_Party.prompt>
+<$client.env.FormField.b09a_Name_of_Broker.prompt>
+<$client.env.FormField.b09b_Account_Holder_Name.prompt>
+<$client.env.FormField.b09c_Account_Number.prompt>
+<$client.env.FormField.b09d_Type_of_Securities.prompt>
+<$client.env.FormField.b09e_Add_Delete.prompt>
+<$client.env.FormField.b09ee_Add_Delete.prompt>
+<$client.env.FormField.b09f_Check_Third_Party.prompt>
+<$client.env.FormField.c01_Circle_One.prompt>
+<$client.env.FormField.c01b_Circle_One.prompt>
+<$client.env.FormField.c02_Trustee.prompt>
+<$client.env.FormField.c03_Account_Manager_Name_Company.prompt>
+<$client.env.FormField.c04_Account_Manager_Email.prompt>
+<$client.env.FormField.c05_Account_Manager_Phone_Number.prompt>
+<$client.env.FormField.c06_Relationship_to_Account_Manager.prompt>
+<$client.env.FormField.d01a_Security_Name.prompt>
+<$client.env.FormField.d01b_Type_of_Security.prompt>
+<$client.env.FormField.d01c_Exchange_Ticker_Symbol.prompt>
+<$client.env.FormField.d01d_Add_Delete.prompt>
+<$client.env.FormField.d01dd_Add_Delete.prompt>
+<$client.env.FormField.d02a_Security_Name.prompt>
+<$client.env.FormField.d02b_Type_of_Security.prompt>
+<$client.env.FormField.d02c_Exchange_Ticker_Symbol.prompt>
+<$client.env.FormField.d02d_Add_Delete.prompt>
+<$client.env.FormField.d02dd_Add_Delete.prompt>
+<$client.env.FormField.d03a_Security_Name.prompt>
+<$client.env.FormField.d03b_Type_of_Security.prompt>
+<$client.env.FormField.d03c_Exchange_Ticker_Symbol.prompt>
+<$client.env.FormField.d03d_Add_Delete.prompt>
+<$client.env.FormField.d03dd_Add_Delete.prompt>
+<$client.env.FormField.e01_Signature.prompt>
+<$client.env.FormField.e02_Printed_Name.prompt>
+<$client.env.FormField.e03_Date.prompt>
+<$client.env.FormField.e05_Signature_Verification.prompt>
+
+<$client.env.FormField.a01_Bank_Name.prompt>
+<$client.env.FormField.a02_City_State.prompt>
+<$client.env.FormField.a03_Routing_Transit_Number.prompt>
+<$client.env.FormField.a04_Account_Number.prompt>
+<$client.env.FormField.a05_Deposit_Dollar.prompt>
+<$client.env.FormField.a06_Deposit_Entire_Amount.prompt>
+<$client.env.FormField.a07_CSO.prompt>
+<$client.env.FormField.a08_Bank_Name.prompt>
+<$client.env.FormField.a09_City_State.prompt>
+<$client.env.FormField.a10_Routing_Transit_Number.prompt>
+<$client.env.FormField.a11_Account_Number.prompt>
+<$client.env.FormField.a12_Deposit_Dollar.prompt>
+<$client.env.FormField.a13_Deposit_Entire_Amount.prompt>
+<$client.env.FormField.a14_CSO.prompt>
+<$client.env.FormField.a15_Bank_Name.prompt>
+<$client.env.FormField.a16_City_State.prompt>
+<$client.env.FormField.a17_Routing_Transit_Number.prompt>
+<$client.env.FormField.a18_Account_Number.prompt>
+<$client.env.FormField.a19_Deposit_Dollar.prompt>
+<$client.env.FormField.a20_Deposit_Entire_Amount.prompt>
+<$client.env.FormField.a21_CSO.prompt>
+<$client.env.FormField.a22_Employee_Name.prompt>
+<$client.env.FormField.a23_Employee_Signature.prompt>
+<$client.env.FormField.a24_Employee_Date.prompt>
+<$client.env.FormField.a25_Company_Name.prompt>
+<$client.env.FormField.a25_Payroll_Manager.prompt>
+<$client.env.FormField.a26_Payroll_Signature.prompt>
+<$client.env.FormField.a27_Payroll_Date.prompt>
+<$client.env.FormField.a28_SignatureVerification.prompt>
+<$client.env.FormField.a29_SignatureVerification.prompt>
+
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+
+  </div> 
+
+<div class="container-fluid">  
+
+              <div class="form-group">  
+
+<!--mainTable-->
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 center">
+                  <h5><b>DIRECT DEPOSIT ENROLLMENT</b></h5>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <h6><b>Account Information</b></h6>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <p>If depositing to a savings account, ask your bank to give you the Routing/Transit Number for your account. It isn't always the same as the number on a savings deposit slip. This will help ensure that you are paid correctly. The last item must be for the remaining amount owed to you. Make sure to indicate what kind of account, along with amount to be deposited, if less than your total net paycheck. </p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 center">
+                  &nbsp;
+                </div>
+              </div>
+
+              <div class="row equal-cols">
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-bottom-small-0">
+                  <h6>Bank Name:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-right-0 border-bottom-0 border-top-small-0">
+                  <$client.env.FormField.a01_Bank_Name.HTML>
+                </div>
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-bottom-small-0 border-top-small-0">
+                  <h6 class="padLarge">City/State:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-bottom-0 border-top-small-0">
+                  <$client.env.FormField.a02_City_State.HTML>
+                </div>
+              </div>
+
+              <div class="row equal-cols">
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-top-small-0 border-bottom-small-0">
+                  <h6>Routing/Transit #:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-right-0 border-bottom-0 border-top-small-0">
+                  <$client.env.FormField.a03_Routing_Transit_Number.HTML>
+                </div>
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-bottom-small-0 border-top-small-0">
+                  <h6 class="padLarge">Account #:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-bottom-0 border-top-sm border-top-small-0 border-bottom-small-0">
+                  <$client.env.FormField.a04_Account_Number.HTML>
+                </div>
+              </div>
+
+              <div class="row equal-cols">
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-small-0">
+                  <h6>Deposit: </h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-right-0 border-top-small-0 border-bottom-small-0" style="padding:0">
+                  <div class="row">
+                     <div class="col-xs-1 col-md-1 center"><h6 style="margin: 15px auto;">$</h6></div>
+                       <div class="col-xs-10 col-md-10">
+                          <$client.env.FormField.a05_Deposit_Dollar.HTML>
+                       </div>
+                     <div class="col-xs-1 col-md-1 center"><h6 style="margin: 15px auto;">or</h6></div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-2 bordered tableMarg border-left-0 border-right-0 border-top-small-0 border-bottom-small-0">
+                       <$client.env.FormField.a06_Deposit_Entire_Amount.HTML>
+                 </div>
+                <div class="col-xs-12 col-md-4 bordered border-top-small-0">
+                  <$client.env.FormField.a07_CSO.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  &nbsp;
+                </div>
+              </div>
+
+              <div class="row equal-cols">
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-bottom-small-0">
+                  <h6>Bank Name:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-right-0 border-bottom-0 border-top-small-0">
+                  <$client.env.FormField.a08_Bank_Name.HTML>
+                </div>
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-bottom-small-0 border-top-small-0">
+                  <h6 class="padLarge">City/State:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-bottom-0 border-top-small-0">
+                  <$client.env.FormField.a09_City_State.HTML>
+                </div>
+              </div>
+
+              <div class="row equal-cols">
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-bottom-small-0 border-top-small-0">
+                  <h6>Routing/Transit #:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-right-0 border-bottom-0 border-top-small-0">
+                  <$client.env.FormField.a10_Routing_Transit_Number.HTML>
+                </div>
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-bottom-small-0 border-top-small-0">
+                  <h6 class="padLarge">Account #:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-bottom-0 border-top-small-0">
+                  <$client.env.FormField.a11_Account_Number.HTML>
+                </div>
+              </div>
+
+              <div class="row equal-cols">
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-small-0 border-top-small-0">
+                  <h6>Deposit: </h6>
+                </div>
+                 <div class="col-xs-12 col-md-4 bordered border-right-0 border-bottom-small-0 border-top-small-0" style="padding:0">
+                  <div class="row">
+                     <div class="col-xs-1 col-md-1 center"><h6 style="margin: 15px auto;">$</h6></div>
+                       <div class="col-xs-10 col-md-10">
+                          <$client.env.FormField.a12_Deposit_Dollar.HTML>
+                       </div>
+                     <div class="col-xs-1 col-md-1 center"><h6 style="margin: 15px auto;">or</h6></div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-2 bordered tableMarg border-left-0 border-right-0 border-bottom-small-0 border-top-small-0">
+                       <$client.env.FormField.a13_Deposit_Entire_Amount.HTML>
+                 </div>
+                <div class="col-xs-12 col-md-4 bordered border-top-small-0">
+                  <$client.env.FormField.a14_CSO.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  &nbsp;
+                </div>
+              </div>
+
+              <div class="row equal-cols">
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-bottom-small-0">
+                  <h6>Bank Name:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-right-0 border-bottom-0 border-top-small-0">
+                  <$client.env.FormField.a15_Bank_Name.HTML>
+                </div>
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-bottom-small-0 border-top-small-0">
+                  <h6 class="padLarge">City/State:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-bottom-0 border-top-small-0">
+                  <$client.env.FormField.a16_City_State.HTML>
+                </div>
+              </div>
+
+              <div class="row equal-cols">
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-bottom-small-0 border-top-small-0">
+                  <h6>Routing/Transit #:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-right-0 border-bottom-0 border-top-small-0">
+                  <$client.env.FormField.a17_Routing_Transit_Number.HTML>
+                </div>
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-0 border-bottom-small-0 border-top-small-0">
+                  <h6 class="padLarge">Account #:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-bottom-0 border-top-small-0">
+                  <$client.env.FormField.a18_Account_Number.HTML>
+                </div>
+              </div>
+
+              <div class="row equal-cols">
+                <div class="col-xs-12 col-md-2 bordered border-right-0 border-bottom-small-0 border-top-small-0">
+                  <h6>Deposit: </h6>
+                </div>
+                <div class="col-xs-12 col-md-4 bordered border-right-0 border-bottom-small-0 border-top-small-0" style="padding:0">
+                  <div class="row">
+                     <div class="col-xs-1 col-md-1 center"><h6 style="margin: 15px auto;">$</h6></div>
+                       <div class="col-xs-10 col-md-10">
+                          <$client.env.FormField.a19_Deposit_Dollar.HTML>
+                       </div>
+                     <div class="col-xs-1 col-md-1 center"><h6 style="margin: 15px auto;">or</h6></div>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-md-2 bordered tableMarg border-right-0 border-left-0 border-top-small-0 border-bottom-small-0">
+                       <$client.env.FormField.a20_Deposit_Entire_Amount.HTML>
+                 </div>
+                <div class="col-xs-12 col-md-4 bordered border-top-small-0">
+                  <$client.env.FormField.a21_CSO.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 center">
+                  &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <h6><b>Authorization</b></h6>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <p>I hereby authorize my employer to deposit any amounts owed me by initiating credit entries to my account at the financial institution(s) (hereinafter "Bank") indicated on this form. Further, I authorize Bank to accept and to credit any credit entries indicated by my employer to my account. In the event that my employer deposits funds erroneously into my account, I authorize my employer to debit my account for an amount not to exceed the original amount of the erroneous credit. </p>
+                </div>
+              </div>
+
+               <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <p>This authorization is to remain in full force and effect until my employer and Bank have received written notice from me of its termination in such time and in such manner as to afford my employer and Bank reasonable opportunity to act on it. </p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 center">
+                  &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-2">
+                  <h6>Employee Name:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <$client.env.FormField.a22_Employee_Name.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-2">
+                  <h6>Signature:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <$client.env.FormField.a23_Employee_Signature.HTML>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <h6 class="padLarge">Date: </h6>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <$client.env.FormField.a24_Employee_Date.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  &nbsp;
+                </div>
+              </div>
+
+<!--
+SERVICES-40935 | ndugang | 07/16/2020
+              <div class="row">
+                <div class="col-xs-12 col-md-2">
+                  <h6>Payroll Manager: </h6>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <$client.env.FormField.a25_Payroll_Manager.HTML>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <h6 class="padLarge">Company Name:  </h6>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <$client.env.FormField.a25_Company_Name.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-2">
+                  <h6>Signature:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <$client.env.FormField.a26_Payroll_Signature.HTML>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <h6 class="padLarge">Date: </h6>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <$client.env.FormField.a27_Payroll_Date.HTML>
+                </div>
+              </div>
+-->
+<!--mainTable-->
+                <div class="col-xs-12 col-md-12">
+                    <hr class="lifesuite__hr"> 
+                </div>   
+                    <$client.env.FormButtons> 
+             
+    </div>
+</div>
+
+<div style="display:none;">
+<$client.env.FormField.a28_SignatureVerification.HTML>
+<$client.env.FormField.a29_SignatureVerification.HTML>
+</div>
+
+</form> 
+
+<SCRIPT> 
+
+    ChangeCalendarIcons(); //for popup calendar  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+
+$(window).load(function() { 
+  $("input[type=text]").addClass('lifesuite__text-input');  
+ $("input[type=text].hasDatepicker").addClass('dateField'); 
+   $("select").addClass('lifesuite__select-input'); 
+   $("input[type=radio]").addClass('lifesuite__radio'); 
+        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+        $("textarea").addClass('lifesuite__textarea-input'); 
+        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+});  
+
+
+//Fixes to modal issue when viewing in mobile devices 
+
+$( window ).resize(function() { 
+document.getElementById('over').style.width=''; 
+}); 
+
+
+function toggleCheckbox(el) { 
+    var rdoName = el.name; 
+    var rdoGroup = document.frmForm.elements[rdoName]; 
+    for (i = 0; i < rdoGroup.length; i++) { 
+        el_ch = rdoGroup[i]; 
+        if (el_ch.value != el.value) 
+            el_ch.checked = false; 
+    } 
+} 
+
+function toggleDisableTarget(controller, target) {
+  if (controller.checked) {
+    target.value = '';
+    target.disabled = true;
+    return;
+  }
+  target.disabled = false;
+}
+document.querySelector('[name$=".a06_Deposit_Entire_Amount"]').addEventListener('change', function() {
+  toggleDisableTarget(this, document.querySelector('[name$=".a05_Deposit_Dollar"]'));
+});
+toggleDisableTarget(document.querySelector('[name$=".a06_Deposit_Entire_Amount"]'), document.querySelector('[name$=".a05_Deposit_Dollar"]'));
+document.querySelector('[name$=".a13_Deposit_Entire_Amount"]').addEventListener('change', function() {
+  toggleDisableTarget(this, document.querySelector('[name$=".a12_Deposit_Dollar"]'));
+});
+toggleDisableTarget(document.querySelector('[name$=".a13_Deposit_Entire_Amount"]'), document.querySelector('[name$=".a12_Deposit_Dollar"]'));
+document.querySelector('[name$=".a20_Deposit_Entire_Amount"]').addEventListener('change', function() {
+  toggleDisableTarget(this, document.querySelector('[name$=".a19_Deposit_Dollar"]'));
+});
+toggleDisableTarget(document.querySelector('[name$=".a20_Deposit_Entire_Amount"]'), document.querySelector('[name$=".a19_Deposit_Dollar"]'));
+</SCRIPT>

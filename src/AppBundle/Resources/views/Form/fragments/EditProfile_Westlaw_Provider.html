@@ -1,0 +1,200 @@
+<div id="task_summary_outer">
+    <div id="EditProfile_container">
+        <div id="EditProfile_wrapper">
+            <div id="EditProfile">
+                <h2>Westlaw Provider Page</h2>
+                <div class="input_wrapper" data-fieldgroup-title="Westlaw Account User Name" data-fieldgroup-validation="required">
+                    <span class="floating-label">Westlaw Account User Name</span>
+                    <$client.env.inputWestlaw_Account_User_Name>
+                </div>
+                <div class="input_wrapper" data-fieldgroup-title="Westlaw Account Password" data-fieldgroup-validation="required">
+                    <span class="floating-label">Westlaw Account Password</span>
+                    <$client.env.inputWestlaw_Account_Password>
+                </div>
+                <div class="mb-30"></div>
+
+
+                <div class="button_group">
+                    <div id="save" class="input_wrapper clearfix mb-15"></div>
+                    <div id="saveandcomplete" class="input_wrapper clearfix"></div>
+                    <div id="cancel" class="input_wrapper clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div hidden>
+    <$client.env.inputSilkroad_ID>
+    <$client.env.inputApplicantID>
+    <$client.env.inputApplicationID>
+    <input type="text" id="start-date" value="<$client.tEventDates_Date_2.Value>">
+    <input id="event-location-value" type="text" value="<$client.env.eval(client.tEventCategories_Category_21.Value.length()>0?client.tEventCategories_Category_21.Value:'USA')>">
+    <input id="event-location-code" type="text" value="<$client.env.eval(client.tEventCategories_Category_21.Code.length()>0?client.tEventCategories_Category_21.Code:'USA')>">
+</div>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>" defer></script>
+<script type="text/javascript">
+    const focusInputLabel = function(el, isFocused) {
+        "use strict";
+        let label = el.closest('.input_wrapper')
+            .find('span.floating-label')
+            .removeClass('label-focus')
+            .css({"color": "#1C1C1C"});
+        if (el.is('select') && el.val() === null) {
+            return;
+        }
+        if (el.val().trim().length > 0 || isFocused) {
+            label.addClass('label-focus');
+        }
+        if (isFocused === true) {
+            label.css({"color": "#1C1C1C"});
+        }
+    }
+    const fieldHasVal = function(el) {
+        "use strict";
+        let hasVal = false;
+        $.each(el, function(k, v) {
+            if ($(v).val().length) {
+                hasVal = true;
+            }
+        });
+        return hasVal;
+    }
+    const isCheckboxChecked = function(el) {
+        "use strict";
+        let hasChecked = false;
+        $.each(el, function(k,v){
+            if ($(v).is(':checked')) {
+                hasChecked = true;
+            }
+        });
+        return hasChecked;
+    }
+
+    // initiate date field
+    // country codes set in https://kirkland-staging-redcarpet.silkroad.com/rcng/#/categories/manage
+    const countryCodes = [
+        {
+            "codes": ["15", "01", "16", "14", "04", "05", "10", "07", "02"],
+            "country": "USA"
+        },
+        {
+            "codes": ["12", "11"],
+            "country": "CHN"
+        },
+        {
+            "codes": ["09"],
+            "country": "HKG"
+        },
+        {
+            "codes": ["06"],
+            "country": "GBR"
+        },
+        {
+            "codes": ["08"],
+            "country": "DEU"
+        },
+        {
+            "codes": ["17"],
+            "country": "FRA"
+        }
+    ];
+    const extractCountryFromCode = function(countryCodes, code) {
+        "use strict";
+        for (let i = 0; i < countryCodes.length; i++) {
+            if (countryCodes[i].codes.indexOf(code) > -1) {
+                return countryCodes[i].country;
+            }
+        }
+        return "USA";
+    }
+
+    $(window).on('load', function() {
+        "use strict";
+        $('.floating-label span').css('color', 'rgb(102, 102, 102)');
+        $('.cal_and_button').prop({'cellpadding': 0, 'cellspacing': 0});
+        let isProfileCompleted = sTaskComplete;
+        // replace default submit button with paypal styled
+        $('#TaskSummary_ButtonCancel').appendTo('#cancel').show();
+        if (!isProfileCompleted) {
+            $('#TaskSummary_ButtonSave').appendTo('#saveandcomplete').prop('onclick', null).show().text('Continue');
+            $('#EUPDefaultSaveButton').appendTo('#save').show();
+        }
+        $('textarea').addClass('lifesuite__textara-input');
+
+        // remove all empty radio
+        // $('#EditProfile input[type="radio"][value=""]').closest('.horizontal_radio_item').remove();
+
+        // load form when all set
+        $('#EditProfile_wrapper').fadeIn();
+        
+        // focus style text and select fields
+        $('form').on('focus', 'input[type="text"], select', function() {
+            focusInputLabel($(this), true);
+        }).on('blur', 'input[type="text"], select', function() {
+            focusInputLabel($(this));
+        });
+        // focus field labels
+        $.each($('form input[type="text"], form select, textarea'),function(k,v) {
+            focusInputLabel($(v));
+        });
+
+        // pass validation data to each fields
+        $.each($('[data-fieldgroup-validation]'), function(k,v) {
+            $(v).find('input, select, textarea').data('validation', $(v).data('fieldgroup-validation'));
+        });
+        // pass regex data to each fields
+        $.each($('[data-fieldgroup-regex]'), function(k,v) {
+            $(v).find('input, textarea').data('regex', $(v).data('fieldgroup-regex'));
+        });
+        // pass regex message to each fields
+        $.each($('[data-fieldgroup-message]'), function(k,v) {
+            $(v).find('input, textarea').data('message', $(v).data('fieldgroup-message'));
+        });
+        // pass validation data length to each fields
+        $.each($('[data-fieldgroup-minlength]'), function(k,v) {
+            $(v).find('input, textarea').data('minlength', $(v).data('fieldgroup-minlength'));
+        });
+        $.each($('[data-fieldgroup-maxlength]'), function(k,v) {
+            $(v).find('input, textarea').data('maxlength', $(v).data('fieldgroup-maxlength'));
+        });
+        // pass target label to each radio or checkbox fields
+        $.each($('[data-fieldgroup-targetlabel]'), function(k,v) {
+            $(v).find('input[type="checkbox"], input[type="radio"]').data('label', $(v).data('fieldgroup-targetlabel'));
+        });
+        // pass title data to each fields
+        $.each($('[data-fieldgroup-title]'), function(k,v) {
+            $(v).find('input, select, textarea').data('title', $(v).data('fieldgroup-title'));
+        });
+
+        // validate each field by event and field type
+        $('form').on('blur click', 'input[type="text"], input[type="radio"], select, textarea', function() {
+            if($(this).is(':visible') && !validateField($(this))) {
+                $(this).parent().find('.text-error').css({'display': 'inline-block', 'margin-bottom': '-2px'}); // style hack since IE is such a reliable browser ;-) // changed block to inline-block
+            }
+        });
+
+        // submit the form if no errors
+        $('form').on('click', '#TaskSummary_ButtonSave', function(e) {
+            e.preventDefault();
+            let formIsValid = true;
+            $.each($('form input:not(".datepicker_button"), form select, form textarea'), function(k,v) {
+                if($(v).is(':visible') && !validateField($(v))) {
+                    formIsValid = false;
+                }
+            });
+            if (formIsValid) {
+                doSave_Custom('refer-Complete');
+            }
+            else {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        });
+        if (isProfileCompleted) {
+            $('[data-add-section], [data-remove-section]').removeClass('bg-jade bg-ignite').addClass('disabled').prop('disabled', 'disabled');
+            $('#EditProfile').find('input,select').prop('disabled', 'disabled');
+        }
+    });
+</script>

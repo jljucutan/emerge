@@ -1,3 +1,104 @@
+<script>
+/********************************************************************************************************************************************************************************************************/
+// SERVICES-35790|ldalangin|added new field permanent_resident
+// SERVICES-35790|ldalangin|remove v6 text used for reference while testing
+// SERVICES-35790|ldalangin|show "Do you have a national or foreign passport?" if and only if "Do you have citizenship in China?" is set to "No"
+// SERVICES-35790|jjucutan|update philippines sections
+// SERVICES-40585|jjucutan|update philippines identifications
+// SERVICES-40829|ldalangin|Singapore Visa Type Update 
+/********************************************************************************************************************************************************************************************************/
+</script>
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+     <div class="modal-content"> 
+          <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+          <p style="fontweight:normal;padding:0px"> 
+          <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+          </p> 
+          <br> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                             </div> 
+
+                             </div> 
+
+                             <div class="row"> 
+
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+
+                                                         <input id="signature-submit" type="button" class="lifesuite__button primary" value="Sign">&nbsp; 
+
+                                                          <input  id="signature-clear" type="button" class="lifesuite__button" value="Clear">&nbsp;
+
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+
+                                           </div> 
+
+                             </div> 
+
+              </div> 
+
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+
+    showScreen('over');
+
+</SCRIPT> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+<div class="modal" style="display:block; background: #002E6D;"> 
+   <div class="fb-spinner"> 
+      <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+   </div> 
+</div> 
+
+  
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<form id="global-new-hire-form" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form"> 
+
+    <div style="display:none;"> 
+        <$client.env.FormField.Form_Name.prompt> 
+        <$client.env.FormField.Form_Name.HTML> 
+        <$client.env.FormField.Form_Type.prompt> 
+        <$client.env.FormField.Form_Type.HTML> 
+        <$client.env.FormField.Form_Owner.prompt> 
+        <$client.env.FormField.Form_Owner.HTML> 
+        <$client.env.FormField.Form_CreateDate.prompt> 
+        <$client.env.FormField.Form_CreateDate.HTML> 
+        <$client.env.FormField.Form_Completed.prompt> 
+        <$client.env.FormField.Form_Completed.HTML> 
+        <$client.env.FormField.Form_Delivered.prompt> 
+        <$client.env.FormField.Form_Delivered.HTML> 
+        <$client.env.FormField.Form_TaskId.prompt> 
+        <$client.env.FormField.Form_TaskId.HTML> 
+        <$client.env.FormField.display_version.HTML> 
+
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+        <$client.env.FormField.country.prompt>
+        <$client.env.FormField.govdoc_expiration.prompt>
+        <$client.env.FormField.govdoc_id.prompt>
+        <$client.env.FormField.govdoc_issued.prompt>
+        <$client.env.FormField.govdoc_type.prompt>
+        <$client.env.FormField.rtw.prompt>
+        <$client.env.FormField.name.prompt>
+        <$client.env.FormField.date.prompt>
+        <$client.env.FormField.signature.prompt>
+        <$client.env.FormField.firstEmployerYN.prompt>
+    </div> 
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
 <main class="container-fluid">
    <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgr">
@@ -31,13 +132,23 @@
                   </div>
                </div>
             </div>
-            <div id="permanent_resident-container" class="row hide">
+            <div id="permanent_resident-container" class="row">
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelpermanent_resident">
                   <p class="text-indent">Are you a permanent resident in <span data-text="country"></span> <span class="font-red">*</span></p>
                </div>
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div class="text-indent">
                      <$client.env.FormField.permanent_resident.HTML>
+                  </div>
+               </div>
+            </div>
+            <div id="nid_status-container" class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelnid_status">
+                  <p class="text-indent">Do you have a National Identification card/letter in <span data-text="country"></span> <span class="font-red">*</span></p>
+               </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="text-indent">
+                     <$client.env.FormField.nid_status.HTML>
                   </div>
                </div>
             </div>
@@ -51,7 +162,7 @@
                   </div>
                </div>
             </div>
-            <div id="rtw_status-container" class="row hide">
+            <div id="rtw_status-container" class="row">
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelrtw_status">
                   <p class="text-indent">Do you have the right to work in <span data-text="country"></span> <span class="font-red">*</span></p>
                </div>
@@ -61,7 +172,7 @@
                   </div>
                </div>
             </div>
-            <div id="rtw_restrictions-container" class="row hide">
+            <div id="rtw_restrictions-container" class="row">
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelrtw_restrictions">
                   <p class="text-indent">Are there any restrictions on your right to work? <span class="font-red">*</span></p>
                </div>
@@ -71,17 +182,7 @@
                   </div>
                </div>
             </div>
-            <div id="nid_status-container" class="row hide">
-               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelnid_status">
-                  <p class="text-indent">Do you have a National Identification card/letter in <span data-text="country"></span> <span class="font-red">*</span></p>
-               </div>
-               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <div class="text-indent">
-                     <$client.env.FormField.nid_status.HTML>
-                  </div>
-               </div>
-            </div>
-            <div id="rtw_support-container" class="row hide">
+            <div id="rtw_support-container" class="row">
                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelrtw_support">
                   <p class="text-indent">Do you require support from PayPal to maintain your work authorization? <span class="font-red">*</span></p>
                </div>
@@ -99,7 +200,7 @@
             <h5 class="margin-bottom form-heading"><span>NATIONAL IDENTIFICATION</span></h5>
             <div class="row">
                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
-                  <label class="control-label">Identification Type: <span class="font-red">* </span></label>
+                  <label id="nid-type-label" class="control-label">Identification Type: <span class="font-red">* </span></label>
                </div>
                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <div class="form-group">
@@ -109,11 +210,21 @@
             </div>
             <div class="row">
                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
-                  <label class="control-label">Identification Number: <span class="font-red">* </span></label>
+                  <label id="nid_label" class="control-label">Identification Number: <span class="font-red">* </span></label>
                </div>
                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <$client.env.FormField.nid_number.HTML>
+                  </div>
+               </div>
+            </div>
+            <div data-section="PHL" class="row hide">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  &nbsp;
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.sss_verification.HTML>
                   </div>
                </div>
             </div>
@@ -139,7 +250,7 @@
             </div>
             <div class="row">
                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
-                  <label class="control-label">Issued Date: <span class="font-red">* </span></label>
+                  <label class="control-label">Issued Date: <span class="font-red nid-issued-date-required">* </span></label>
                </div>
                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                    <div class="form-group">
@@ -149,11 +260,31 @@
             </div>
             <div class="row">
                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
-                  <label class="control-label">Expiration Date: </label>
+                  <label id="nid-expiration-label" class="control-label">Expiration Date: </label>
                </div>
                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <$client.env.FormField.nid_expiration_date_mapped.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row" style="display: none;">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Identification Type 2: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.nid_type2.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row" style="display: none;">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Identification Number #: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.nid_number2.HTML>
                   </div>
                </div>
             </div>
@@ -180,6 +311,16 @@
                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <div class="form-group">
                       <$client.env.FormField.passport_number.HTML>
+                  </div>
+               </div>
+            </div>
+            <div data-section="PHL" class="row hide">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  &nbsp;
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.PPID_verification.HTML>
                   </div>
                </div>
             </div>
@@ -317,6 +458,78 @@
             </div>
          </div>
       </div>
+
+      <!-- Philippine specific section -->
+      <div id="PHL" class="row margin-bottom hide">
+         <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+            <h5 class="margin-bottom form-heading"><span>PHILIPPINES SPECIFIC SECTION</span></h5>
+            <div id="rtw_restrictions-container" class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="firstEmployerYN_label">
+                  <p class="text-indent">Is PayPal your first employer in the current calendar year? <span class="font-red">*</span></p>
+               </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="text-indent">
+                     <$client.env.FormField.firstEmployerYN.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Tax Identification: <span class="font-red">*</span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                   <div class="form-group">
+                       <$client.env.FormField.tin_number.HTML>
+                   </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">&nbsp;</div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                   <div class="form-group">
+                       <$client.env.FormField.tin_number_verification.HTML>
+                   </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Pag-IBIG MID: <span class="font-red">*</span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.pibig_mid_number.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">&nbsp;</div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.pibig_mid_number_verification.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">PhilHealth Identification: <span class="font-red">*</span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.pin_number.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">&nbsp;</div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.pin_number_verification.HTML>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
    </section>
    <!--Employee Signature -->
    <div class="row">
@@ -330,7 +543,7 @@
       </div>
       <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><label class="control-label">Date: </label></div>
       <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-        <div class="form-group">
+        <div class="form-group signature-date">
             <$client.env.FormField.date_mapped.html>
         </div>
       </div>
@@ -351,3 +564,62 @@
       </div>
    </div>
 </main>
+
+<div class="hide">
+     <$client.env.FormField.SignatureVerification.HTML> 
+     <$client.env.FormField.EventLocation.HTML>  
+     <$client.env.FormField.nid_country.HTML>  
+     <$client.env.FormField.Country.HTML>  
+     <$client.env.FormField.Country2.HTML>  
+     <$client.env.FormField.Work_Permit_Type_Global.HTML>
+     <$client.env.FormField.National_ID_Type.HTML>
+     <$client.env.FormField.date.HTML>
+     <$client.env.FormField.fid_expiration_date.HTML>
+     <$client.env.FormField.fid_issued_date.HTML>
+     <$client.env.FormField.nid_number_label.HTML>
+     <$client.env.FormField.nid_type_label.HTML>
+     <$client.env.FormField.nid_expiration_date.HTML>
+     <$client.env.FormField.nid_issued_date.HTML>
+     <$client.env.FormField.passport_expiration_date.HTML>
+     <$client.env.FormField.passport_issued_date.HTML>
+     <$client.env.FormField.visa_expiration_date.HTML>
+     <$client.env.FormField.visa_issued_date.HTML>
+     <$client.env.FormField.SKMarried.HTML>
+</div>
+
+</form> 
+
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator_V2.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/js/script23.js>" defer></script> 
+<script> 
+ChangeCalendarIcons(); //for popup calendar
+disableCalButton('date-disabled'); 
+const thisForm = document.querySelector('[name="frmForm"]');
+const LOCATION = '<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>';
+const SECTION_CONFIG_PATH = '<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/js/toggler_config.json>';
+const FIELDS_CONFIG_PATH = '<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/js/fields_config23.json>';
+const FIELDS_CONFIG = {};
+const COUNTRIES_PATH = '<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/js/countries.json>';
+const SECTION_CONFIG = {};
+const NID_TYPE = '<$client.tForWhomUserInfo.National_ID_Type>';
+const NID_TYPE2 = '<$client.tForWhomUserInfo.National_ID_Type2>';
+const NID_TYPE2_DESC = '<$client.tForWhomUserInfo.National_ID_Type2_Description>';
+const NID_ID2 = '<$client.tForWhomUserInfo.National_ID2>';
+const NID_SERIES_NUMBER = '<$client.tForWhomUserInfo.Series_Number>';
+const NID_ISSUING_AGENCY = '<$client.tForWhomUserInfo.nid_issuing_agency>';
+const SSNO = '<$client.tForWhomUserInfo.SSNO>';
+const MARITAL_STATUS = '<$client.tForWhomUserInfo.MaritalStatus>';
+const EUP_MAP = {
+   'National_ID_Type': '<$client.tForWhomUserInfo.National_ID_Type>',
+   'National_ID_Type2': '<$client.tForWhomUserInfo.National_ID_Type2>',
+   'National_ID_Type2_Description': '<$client.tForWhomUserInfo.National_ID_Type2_Description>',
+   'National_ID2': '<$client.tForWhomUserInfo.National_ID2>',
+   'Series_Number': '<$client.tForWhomUserInfo.Series_Number>',
+   'nid_issuing_agency': '<$client.tForWhomUserInfo.nid_issuing_agency>',
+   'SSNO': '<$client.tForWhomUserInfo.SSNO>',
+   'MaritalStatus': '<$client.tForWhomUserInfo.MaritalStatus>'
+}
+<$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>
+</script>

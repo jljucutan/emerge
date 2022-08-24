@@ -1,0 +1,644 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'a43_Date');xbObj('eSignature1').value=''; document.getElementById('eSignature1').focus();">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a43_Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form" class="form-horizontal">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a01_Name.prompt>
+        <$client.env.FormField.a02_Title.prompt>
+        <$client.env.FormField.a03_Office.prompt>
+        <$client.env.FormField.a04_Phone.prompt>
+        <$client.env.FormField.a05_Fax.prompt>
+        <$client.env.FormField.a06_Cell.prompt>
+        <$client.env.FormField.a07_State_Licensed.prompt>
+        <$client.env.FormField.a08_Requestor_Name.prompt>
+        <$client.env.FormField.a09_Requestors_Office.prompt>
+        <$client.env.FormField.a10_Telephone_Number.prompt>
+        <$client.env.FormField.a11_Manager.prompt>
+        <$client.env.FormField.a12_Date.prompt>
+        <$client.env.FormField.a13_Requested_Delivery_Date.prompt>
+        <$client.env.FormField.a14_Office_Ship_To.prompt>
+        <$client.env.FormField.a15_Release_from_Previously_Approved_Blanket_Purchase.prompt>
+        <$client.env.FormField.a15_Release_from_Previously_Approved_Blanket_Purchase_2.prompt>
+        <$client.env.FormField.a16_PO.prompt>
+        <$client.env.FormField.a17_Quantity.prompt>
+        <$client.env.FormField.a18_UOM.prompt>
+        <$client.env.FormField.a19_Description.prompt>
+        <$client.env.FormField.a32_Company_Name.prompt>
+        <$client.env.FormField.a33_Address.prompt>
+        <$client.env.FormField.a34_Contact_Name.prompt>
+        <$client.env.FormField.a35_Contact_Email.prompt>
+        <$client.env.FormField.a36_Contact_Phone.prompt>
+        <$client.env.FormField.a37_Estimated_Purchase_Cost.prompt>
+        <$client.env.FormField.a38_Project_Code.prompt>
+        <$client.env.FormField.a39_Department_Code.prompt>
+        <$client.env.FormField.a40_Natural_Activity_Work_Type.prompt>
+        <$client.env.FormField.a41_Client.prompt>
+        <$client.env.FormField.a41_Office_Code.prompt>
+        <$client.env.FormField.a42_Manager_Signature.prompt>
+        <$client.env.FormField.a43_Date.prompt>
+        <$client.env.FormField.a44_Manager_Name.prompt>
+        <$client.env.FormField.a45_Title.prompt>
+        <$client.env.FormField.a46_EMP_Number.prompt>
+        <$client.env.FormField.a47_Director.prompt>
+        <$client.env.FormField.a48_Date.prompt>
+        <$client.env.FormField.a49_Chief_Adm_Officer.prompt>
+        <$client.env.FormField.a50_Date.prompt>
+        <$client.env.FormField.a51_Share_Partner.prompt>
+        <$client.env.FormField.a52_Date.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <header class="row mb-20">
+        <div class="col-lg-12 text-center">
+            <strong>
+                <u>BUSINESS CARD ORDER FORM</u>
+            </strong>
+        </div>
+    </header>
+
+    <div class="box bcard-group center-block mb-40">
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label">
+                NAME:
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a01_Name.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label">
+                TITLE:
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a02_Title.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label">
+                OFFICE:
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a03_Office.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label">
+                PHONE:
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a04_Phone.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label">
+                FAX(Optional):
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a05_Fax.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label">
+                CELL(Optional):
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a06_Cell.HTML>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label">
+                IF ATTORNEY, <br class="hidden-xs hidden-sm">STATE(S) LICENSED:
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a07_State_Licensed.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="spaceholder hidden-sm hidden-xs">&nbsp;</div>
+
+    <section id="non-new-hire">
+        <div class="row mb-20">
+            <div class="col-lg-12 text-center">
+                <h4>
+                    K &amp; E
+                </h4>
+                <p>
+                    <strong>PURCHASE REQUISITION FORM</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    <strong>REQUESTING INFORMATION</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2 col-col-md-2 col sm-12 col-xs-12">
+                <label class="control-label">
+                    Requestor Name:
+                </label>
+            </div>
+            <div class="col-lg-4 col-col-md-4 col sm-12 col-xs-12 mb-10">
+                <$client.env.FormField.a08_Requestor_Name.HTML>
+            </div>
+            <div class="col-lg-3 col-col-md-3 col sm-12 col-xs-12">
+                <label class="control-label">
+                    Date:
+                </label>
+            </div>
+            <div class="col-lg-3 col-col-md-3 col sm-12 col-xs-12 mb-10">
+                <$client.env.FormField.a12_Date.HTML>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2 col-col-md-2 col sm-12 col-xs-12">
+                <label class="control-label">
+                    Requestor's Office:
+                </label>
+            </div>
+            <div class="col-lg-4 col-col-md-4 col sm-12 col-xs-12 mb-10">
+                <$client.env.FormField.a09_Requestors_Office.HTML>
+            </div>
+            <div class="col-lg-3 col-col-md-3 col sm-12 col-xs-12">
+                <label class="control-label">
+                    Requested Delivery Date:
+                </label>
+            </div>
+            <div class="col-lg-3 col-col-md-3 col sm-12 col-xs-12 mb-10">
+                <$client.env.FormField.a13_Requested_Delivery_Date.HTML>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2 col-col-md-2 col sm-12 col-xs-12">
+                <label class="control-label">
+                    Telephone Number:
+                </label>
+            </div>
+            <div class="col-lg-4 col-col-md-4 col sm-12 col-xs-12 mb-10">
+                <$client.env.FormField.a10_Telephone_Number.HTML>
+            </div>
+            <div class="col-lg-3 col-col-md-3 col sm-12 col-xs-12">
+                <label class="control-label">
+                    Office Ship To:
+                </label>
+            </div>
+            <div class="col-lg-3 col-col-md-3 col sm-12 col-xs-12 mb-10">
+                <$client.env.FormField.a14_Office_Ship_To.HTML>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2 col-col-md-2 col sm-12 col-xs-12">
+                <label class="control-label">
+                    Manager:
+                </label>
+            </div>
+            <div class="col-lg-4 col-col-md-4 col sm-12 col-xs-12 mb-10">
+                <$client.env.FormField.a11_Manager.HTML>
+            </div>
+        </div>
+
+        <div class="row mb-10">
+            <div class="col-lg-12">
+                <span>
+                    Release from Previously Approved Blanket Purchase Order (PO):
+                </span>
+                <span>
+                    Yes 
+                    <div class="i-block">
+                        <$client.env.FormField.a15_Release_from_Previously_Approved_Blanket_Purchase.HTML>
+                    </div>
+                </span>
+                <span>
+                    PO#  
+                </span>
+                <div class="i-block">
+                    <$client.env.FormField.a16_PO.HTML>
+                </div>
+                <span>
+                    No 
+                    <div class="i-block">
+                        <$client.env.FormField.a15_Release_from_Previously_Approved_Blanket_Purchase_2.HTML>
+                    </div>
+                </span>
+                <span>
+                    (Please attach invoice copy. AND, if within terms of original blanket PO, only manager or above with responsibility for spend must sign below.)
+                </span>
+            </div>
+        </div>
+
+        <div class="hr-line mb-20">&nbsp;</div>
+
+        <div class="row mb-20">
+            <div class="col-lg-12">
+                <strong>REQUEST INFORMATION</strong>
+            </div>
+        </div>
+
+        <div class="row hidden-xs">
+            <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                <p>
+                    <u>Quantity</u>
+                </p>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                <p>
+                    <u>UOM</u>
+                </p>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <p>
+                    <u>Description</u>
+                </p>
+            </div>
+        </div>
+
+        <div class="box mb-20">
+            <div class="row">
+                <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+                    <u class="visible-xs">Quantity</u>
+                    <$client.env.FormField.a17_Quantity.HTML>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+                    <u class="visible-xs">UOM</u>
+                    <$client.env.FormField.a18_UOM.HTML>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                    <u class="visible-xs">Description</u>
+                    <$client.env.FormField.a19_Description.HTML>
+                </div>
+            </div>
+        </div>
+
+        <div class="hr-line mb-20">&nbsp;</div>
+
+        <div class="row mb-20">
+            <div class="col-lg-12">
+                <strong>VENDOR INFORMATION</strong>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label class="control-label">
+                    Company Name:
+                </label>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a32_Company_Name.HTML>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label class="control-label">
+                    Address:
+                </label>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a33_Address.HTML>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label class="control-label">
+                    Contact Name:
+                </label>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a34_Contact_Name.HTML>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label class="control-label">
+                    Contact Email:
+                </label>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a35_Contact_Email.HTML>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label class="control-label">
+                    Contact Phone:
+                </label>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.a36_Contact_Phone.HTML>
+            </div>
+        </div>
+
+        <div class="hr-line mb-20">&nbsp;</div>
+
+        <div class="row mb-20">
+            <div class="col-lg-12">
+                <strong>ACCOUNTING INFORMATION</strong>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label class="control-label">
+                    Estimated Purchase Cost:
+                </label>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <$client.env.FormField.a37_Estimated_Purchase_Cost.HTML>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label class="control-label">
+                    Project Code:
+                </label>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <$client.env.FormField.a38_Project_Code.HTML>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label class="control-label">
+                    Department Code:
+                </label>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <$client.env.FormField.a39_Department_Code.HTML>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label class="control-label">
+                    Natural / Activity / Work Type: 
+                </label>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <$client.env.FormField.a40_Natural_Activity_Work_Type.HTML>
+            </div>
+        </div>
+
+        <div class="row mb-20">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label class="control-label">
+                    Client# (if applicable):
+                </label>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <$client.env.FormField.a41_Client.HTML>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <label class="control-label">
+                    Office Code:
+                </label>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <$client.env.FormField.a41_Office_Code.HTML>
+            </div>
+        </div>
+
+        <div class="box p-sm mb-40">
+            <div class="box p-10">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="text-center">
+                            <strong>COMPLETED BY THE REQUESTING DEPARTMENT</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        Manager / Associate Director Signature
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <$client.env.FormField.a42_Manager_Signature.HTML>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                        <label class="control-label">
+                            Date:
+                        </label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <$client.env.FormField.a43_Date.HTML>
+                    </div>
+                </div>
+                <div class="row mb-20">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        Manager / Associate Director
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <div class="i-block">
+                            <$client.env.FormField.a44_Manager_Name.HTML>
+                            <small>Manager name</small>
+                        </div>
+                        <div class="i-block">
+                            <$client.env.FormField.a45_Title.HTML>
+                            <small>Title</small>
+                        </div>
+                        <div class="i-block">
+                            <$client.env.FormField.a46_EMP_Number.HTML>
+                            <small>Emp #</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="text-center">
+                            <strong>OTHER APPROVALS (PER POLICY)</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>
+                            <strong>APPROVALS</strong>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <label class="control-label">
+                            Director
+                        </label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <$client.env.FormField.a47_Director.HTML>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                        <label class="control-label">
+                            Date:
+                        </label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <$client.env.FormField.a48_Date.HTML>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <label class="control-label">
+                        Chief Adm. Officer
+                        </label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <$client.env.FormField.a49_Chief_Adm_Officer.HTML>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                        <label class="control-label">
+                            Date:
+                        </label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <$client.env.FormField.a50_Date.HTML>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <label class="control-label">
+                        Share Partner
+                        </label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <$client.env.FormField.a51_Share_Partner.HTML>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                        <label class="control-label">
+                            Date:
+                        </label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <$client.env.FormField.a52_Date.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input input-sm');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input input-sm');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+
+    disableCalButton($('.disable-date'));
+
+    $('form').on('blur', '#signature', function() {
+        let inerval = setInterval(function(){
+            "use strict";
+            if(document.getElementById('modal').style.display=='block') {
+                document.getElementById('fullName').focus();
+                document.getElementById('eSignature1').focus();
+                clearInterval(inerval);
+            }
+        }, 500);
+    });
+
+    let focusSigFields = setInterval(function(){
+      "use strict";
+      if(document.getElementById('modal').style.display=='block') {
+        document.getElementById('fullName').focus();
+        document.getElementById('eSignature1').focus();
+        clearInterval(focusSigFields);
+      }
+    }, 500);
+
+    // hide section for non new hire
+    if (<$client.env.eval((url.forWhom==account.userguid)?'true':'false')> ) {
+        $('#non-new-hire').addClass('hide');
+    }
+
+    $(".modal").hide();
+
+});
+</script>

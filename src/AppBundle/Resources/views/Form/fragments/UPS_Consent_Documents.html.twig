@@ -1,0 +1,877 @@
+<!-- Modal 1 E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'a03_Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a03_Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2 E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','fullName','modal2','over','sv2', 'a20_Date');xbObj('eSignature2').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','a20_Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" class="form-horizontal" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+		<$client.env.FormField.Form_Name.prompt>
+		<$client.env.FormField.Form_Name.HTML>
+		<$client.env.FormField.Form_Type.prompt>
+		<$client.env.FormField.Form_Type.HTML>
+		<$client.env.FormField.Form_Owner.prompt>
+		<$client.env.FormField.Form_Owner.HTML>
+		<$client.env.FormField.Form_CreateDate.prompt>
+		<$client.env.FormField.Form_CreateDate.HTML>
+		<$client.env.FormField.Form_Completed.prompt>
+		<$client.env.FormField.Form_Completed.HTML>
+		<$client.env.FormField.Form_Delivered.prompt>
+		<$client.env.FormField.Form_Delivered.HTML>
+		<$client.env.FormField.Form_TaskId.prompt>
+		<$client.env.FormField.Form_TaskId.HTML>
+		<$client.env.FormField.display_version.HTML>
+		<!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+		<$client.env.FormField.SignatureVerification.prompt>
+		<$client.env.FormField.SignatureVerification2.prompt>
+		<$client.env.FormField.a01_Employee_Name.prompt>
+		<$client.env.FormField.a02_Employee_Signature.prompt>
+		<$client.env.FormField.a03_Date.prompt>
+		<$client.env.FormField.a04_SSN0.prompt>
+		<$client.env.FormField.a04_SSN1.prompt>
+		<$client.env.FormField.a04_SSN2.prompt>
+		<$client.env.FormField.a05_Date_of_Birth.prompt>
+		<$client.env.FormField.a06_Truncate_SSN.prompt>
+		<$client.env.FormField.a07_CA_Resident.prompt>
+		<$client.env.FormField.a08_MN_Resident.prompt>
+		<$client.env.FormField.a09_OK_Resident.prompt>
+		<$client.env.FormField.a10_CA_Resident_Credit_Report.prompt>
+		<$client.env.FormField.a11_Printed_Name.prompt>
+		<$client.env.FormField.a12_Address.prompt>
+		<$client.env.FormField.a13_CityStateZip.prompt>
+		<$client.env.FormField.a16_CA_Employee.prompt>
+		<$client.env.FormField.a16_Last_Name.prompt>
+		<$client.env.FormField.a16_MN_OK_Employee.prompt>
+		<$client.env.FormField.a17_First_Name.prompt>
+		<$client.env.FormField.a18_Middle_Name.prompt>
+		<$client.env.FormField.a19_Signature.prompt>
+		<$client.env.FormField.a20_Date.prompt>
+		<$client.env.FormField.a21_Account_Number.prompt>
+		<$client.env.FormField.a21_Last_Name.prompt>
+		<$client.env.FormField.a22_First_Name.prompt>
+		<$client.env.FormField.a23_Middle_Name.prompt>
+		<$client.env.FormField.a24_Alias.prompt>
+		<$client.env.FormField.a25_SSN0.prompt>
+		<$client.env.FormField.a25_SSN1.prompt>
+		<$client.env.FormField.a25_SSN2.prompt>
+		<$client.env.FormField.a26_Date_of_Birth.prompt>
+		<$client.env.FormField.a27_Drivers_License.prompt>
+		<$client.env.FormField.a28_Drivers_License_State.prompt>
+		<$client.env.FormField.a29_Address.prompt>
+		<$client.env.FormField.a30_Phone_Number.prompt>
+		<$client.env.FormField.a31_CityStateZip.prompt>
+		<$client.env.FormField.a34_Former_Employer.prompt>
+		<$client.env.FormField.a35_Position.prompt>
+		<$client.env.FormField.a36_Employment_Date.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-6 col-12">
+			<label class="control-label">
+				APPLICANT/EMPLOYEE NAME:
+			</label>
+		</div>
+		<div class="col-lg-9 col-md-9 col-sm-6 col-12">
+			<$client.env.FormField.a01_Employee_Name.HTML>
+		</div>
+	</div>
+	<div class="row mb-20">
+		<div class="col-lg-12">
+			<h5 class="text-center">
+				<strong>DISCLOSURE</strong>
+			</h5>
+			<p>
+				As part of the employment process, First Advantage (the "Company) who is a vendor or service provider and its client (the "Sponsor), will obtain a consumer report (known as an investigative consumer report in California), which I understand may include information regarding my credit worthiness, credit standing, credit capacity, character, general reputation, personal characteristics, or mode of living. 			
+			</p>
+			<h5 class="text-center">
+				<strong>AUTHORIZATION</strong>
+			</h5>
+			<p>
+				During the application process and at any time during the tenure of my employment with the Company, I hereby authorize ChoicePoint WorkPlace Solutions Inc., on behalf of The Company and the Sponsor to procure a consumer report (known as an investigative consumer report in California) which I understand may include information regarding my credit worthiness, credit standing, credit capacity, character, general reputation, personal characteristics, or mode of living. This report may be compiled with information from credit bureaus, courts record repositories, departments of motor vehicles, past or present employers and educational institutions, governmental occupational licensing or registration entities, business or personal references, and any other source required to verify information that I have voluntarily supplied. I understand that I may request a complete and accurate disclosure of the nature and scope of the background verification; to the extent such investigation includes information bearing on my character, general reputation, personal characteristics or mode of living. 
+			</p>
+		</div>
+	</div>
+	<div class="row mb-10">
+		<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 mb-10">
+			<$client.env.FormField.a02_Employee_Signature.HTML>
+			Applicant/Employee Signature
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-10">
+			<$client.env.FormField.a03_Date.HTML>
+			Date
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 mb-10">
+			<div class="clearfix">
+				<div class="i-block col-15">
+					<$client.env.FormField.a04_SSN0.HTML>
+				</div>
+				-
+				<div class="i-block col-15">
+					<$client.env.FormField.a04_SSN1.HTML>
+				</div>
+				-
+				<div class="i-block col-15">
+					<$client.env.FormField.a04_SSN2.HTML>
+				</div>
+			</div>
+			<div class="mb-10">
+				Social Security Number *
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mb-10">
+			<$client.env.FormField.a05_Date_of_Birth.HTML>
+			Date of Birth
+		</div>
+	</div>
+	<div class="row mb-20">
+		<div class="col-lg-12">
+			<p>
+				* For Identification Purposes Only
+			</p>
+			<p>
+				<strong>
+					Truncation Request
+				</strong>
+			</p>
+			<$client.env.FormField.a06_Truncate_SSN.HTML>
+		</div>
+	</div>
+	<div class="row mb-20">
+		<div class="col-lg-12">
+			<p>
+				<strong>CA, MN &amp; Oklahoma Residents please note:</strong> In connection with your application for employment, your consumer report may be obtained and reviewed. Under California, Minnesota and Oklahoma law, you have a right to receive a free copy of your consumer report by checking the appropriate box below. 
+			</p>
+			<$client.env.FormField.a07_CA_Resident.HTML>
+			<$client.env.FormField.a08_MN_Resident.HTML>
+			<$client.env.FormField.a09_OK_Resident.HTML>
+		</div>
+	</div>
+	<div class="row mb-20">
+		<div class="col-lg-12">
+			<p>
+				<strong>CA Residents please note:</strong> In connection with your application for employment, your credit report may be obtained and reviewed. Under California law, if your credit report is ordered, you have a right to receive a free copy of your credit report by checking the appropriate box below. Your credit report will be mailed to you by the consumer reporting agency. Please note that if you elect to receive the entire investigative consumer report, this will include your credit report. 
+			</p>
+			<$client.env.FormField.a10_CA_Resident_Credit_Report.HTML>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Printed Name
+			</label>
+		</div>
+		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+			<div class="mb-10">
+				<$client.env.FormField.a11_Printed_Name.HTML>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Street Address
+			</label>
+		</div>
+		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+			<div class="mb-10">
+				<$client.env.FormField.a12_Address.HTML>
+			</div>
+		</div>
+	</div>
+	<div class="row mb-20">
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				City, State, Zip
+			</label>
+		</div>
+		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+			<div class="mb-10">
+				<$client.env.FormField.a13_CityStateZip.HTML>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<h5 class="text-center">
+				<strong>CALIFORNIA DISCLOSURE</strong>
+			</h5>
+			<p>
+				As part of the employment process, First Advantage. ("The Company") who is a vendor or service provider and its client (the "Sponsor"), will obtain an investigative consumer report. The investigative consumer report may include information regarding your credit worthiness, credit standing, credit capacity, character, general reputation, personal characteristics or mode of living. The following Consumer Reporting Agency will prepare the report: 
+			</p>
+			<p>
+				<strong>
+					ChoicePoint WorkPlace Solutions Inc. <br>
+					Consumer Disclosure Center  <br>
+					PO Box 105292  <br>
+					Atlanta, GA 30348  <br>
+					1-800-845-6004
+				</strong>
+			</p>
+			<p>
+				<u>California Notice:</u>
+			</p>
+			<p>
+				You have the right under Section 1786.22 of the California Civil Code to contact ChoicePoint during normal business hours to obtain your file for your review. You may obtain such information as follows: 
+			</p>
+			<ol>
+				<li>
+					In person at ChoicePoint's office at the address listed above. You will need to furnish proper identification prior to receiving your file. You may have someone accompany you and should inform such person that they will also have to present reasonable identification. If you want ChoicePoint to disclose to or discuss your information with this third party, you may be required to provide a written statement granting ChoicePoint permission to do so. 
+				</li>
+				<li>
+					By certified mail, if you make a written request (and provide proper identification) to have your file sent to a specified addressee. 
+				</li>
+				<li>
+					By telephone, if you have previously made a written request and provided proper identification. 
+				</li>
+			</ol>
+			<p>
+				ChoicePoint has trained personnel to explain any information that is furnished to you and to explain any information that is coded. 
+			</p>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-lg-12">
+			<p class="text-center">
+				<strong>DISCLOSURE AND AUTHORIZATION</strong><br>
+				[IMPORTANT — PLEASE READ CAREFULLY BEFORE SIGNING AUTHORIZATION] 
+			</p>
+			<p class="text-center">
+				<u>DISCLOSURE REGARDING BACKGROUND INVESTIGATION</u>
+			</p>
+			<p class="text-justify">
+				As part of the employment process,  First Advantage ("the Company') who is a vendor or service provider and its client (the "Sponsor') may obtain information about you for employment purposes from a third party consumer reporting agency. Thus, you may be the subject of a "consumer report" and/or an "investigative consumer report" which may include information about your character, general reputation, personal characteristics, and/or mode of living, and which can involve personal interviews with sources such as your neighbors, friends, or associates. These reports may contain information regarding your credit history, criminal history, social security verification, motor vehicle records ("driving records"), verification of your education or employment history, or other background checks. Credit history will only be requested where such information is related to the duties and responsibilities of the position for which you are applying. You have the right, upon written request made within a reasonable time after receipt of this notice, to request disclosure of the nature and scope of any investigative consumer report and a copy of any report about you. Please be advised that the nature and scope of the most common form of investigative consumer report obtained with regard to applicants for employment is an investigation into your education and/or employment history conducted by First Advantage, P.O. Box 105108, Atlanta, GA 30348-5108,1-800-845-6004, www.fadv.com/risk/solutions. The scope of this notice and authorization is all-encompassing, however, allowing the Company and Sponsor to obtain from any outside organization all manner of consumer reports and investigative consumer reports now and throughout the course of your employment to the extent permitted by law. As a result, you should carefully consider whether to exercise your right to request disclosure of the nature and scope of any investigative consumer report. 
+			</p>
+			<div class="box padded-wrapper text-justify mb-10">
+				<strong><u>New York and Maine applicants or employees only</u>:</strong> You have the right to inspect and receive a copy of any investigative consumer report requested by the Company by contacting the consumer reporting agency identified above directly. You may also contact the Company to request the name, address and telephone number of the nearest unit of the consumer reporting agency designated to handle inquiries, which the Company shall provide within 5 days. 
+			</div>
+			<p class="text-center">
+				<u>ACKNOWLEDGMENT AND AUTHORIZATION</u>
+			</p>
+			<p class="text-justify">
+				I acknowledge receipt of the DISCLOSURE REGARDING BACKGROUND INVESTIGATION and A SUMMARY OF YOUR RIGHTS UNDER THE FAIR CREDIT REPORTING ACT and certify that I have read and understand both of those documents. I hereby authorize the obtaining of "consumer reports" and/or "investigative consumer reports" by the Company and Sponsor at any time after receipt of this authorization and throughout my employment, if applicable. To this end, I hereby authorize, without reservation, any law enforcement agency, administrator, state or federal agency, institution, school or university (public or private), information service bureau, employer, or insurance company to furnish any and all background information requested by First Advantage., P.O. Box 105108, Atlanta, GA 30348-5108,1-800-845-6004, www.fadv.com/risk/solutions, another outside organization acting on behalf of the Company, and/or the Company itself. First Advantage Privacy Policy: http://www.fadv.com/privacy-policy/screen.html. I agree that a facsimile ("fax"), electronic or photographic copy of this Authorization shall be as valid as the original. 
+			</p>
+			<div class="box padded-wrapper no-border-bottom">
+				<strong><u>New York applicants or employees only</u>:</strong> By signing below, you also acknowledge receipt of Article 23-A of the New York Correction Law. 
+			</div>
+			<div class="box padded-wrapper no-border-bottom">
+				<strong><u>Minnesota and Oklahoma applicants or employees only</u>:</strong> Please check this box if you would like to receive a copy of a consumer report at no charge if one is obtained by the Company.
+				<span class="i-block">
+					<$client.env.FormField.a16_MN_OK_Employee.HTML>
+				</span>
+			</div>
+			<div class="box padded-wrapper no-border-bottom">
+				<strong><u>California applicants or employees only</u>:</strong> By signing below, you also acknowledge receipt of the <strong>NOTICE REGARDING BACKGROUND INVESTIGATION PURSUANT TO CALIFORNIA LAW</strong>. Please check this box if you would like to receive a copy of an investigative consumer report or consumer credit report at no charge if one is obtained by the Company whenever you have a right to receive such a copy under California law.
+				<span class="i-block">
+					<$client.env.FormField.a16_CA_Employee.HTML>
+				</span>
+			</div>
+			<div class="box padded-wrapper mb-20">
+				<p>
+					<strong>Washington State applicants or employees only: </strong>
+				</p>
+				You also have the right to request from the consumer reporting agency a written summary of your rights and remedies under the Washington Fair Credit Reporting Act. 
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Last Name
+			</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a16_Last_Name.HTML>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-6 col-xs-12">
+			<label class="control-label">
+				First
+			</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a17_First_Name.HTML>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Middle
+			</label>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a18_Middle_Name.HTML>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-1 col-md-1 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Signature:
+			</label>
+		</div>
+		<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a19_Signature.HTML>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Date:
+			</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a20_Date.HTML>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<p>
+				** If you will be requesting driving records, we recommend that you have this form notarized.
+			</p>
+		</div>
+	</div>
+	<hr>
+	<div class="row mb-10">
+		<div class="col-lg-12">
+			<p>
+				<strong>Employer please note:</strong> If a Minnesota or Oklahoma consumer checks "YES" regarding the consumer report, or if a California consumer checks "YES" regarding the credit report (and you do request a credit report), please fax this form to your First Advantage service center. If consumer checks "YES" regarding the full consumer report, and consumer resides in California, you will need to provide the individual with a copy of their consumer report, unless you have made prior arrangements for First Advantage to do so on your behalf. Account Number: 
+				<span class="i-block">
+					<$client.env.FormField.a21_Account_Number.HTML>
+				</span>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<p>
+				<strong>Consumer Information</strong>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Last Name
+			</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a21_Last_Name.HTML>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-6 col-xs-12">
+			<label class="control-label">
+				First
+			</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a22_First_Name.HTML>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Middle
+			</label>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a23_Middle_Name.HTML>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Other Names/Alias
+			</label>
+		</div>
+		<div class="col-lg-10 col-md-10 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a24_Alias.HTML>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Social Security* #
+			</label>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mb-10">
+			<div class="i-block col-30">
+				<$client.env.FormField.a25_SSN0.HTML>
+			</div>
+			-
+			<div class="i-block col-30">
+				<$client.env.FormField.a25_SSN1.HTML>
+			</div>
+			-
+			<div class="i-block col-30">
+				<$client.env.FormField.a25_SSN2.HTML>
+			</div>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Date of Birth*
+			</label>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a26_Date_of_Birth.HTML>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Driver's License #
+			</label>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a27_Drivers_License.HTML>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<label class="control-label">
+				State of Driver's License*
+			</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a28_Drivers_License_State.HTML>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Present Address
+			</label>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a29_Address.HTML>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Phone Number
+			</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a30_Phone_Number.HTML>
+		</div>
+	</div>
+	<div class="row mb-10">
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+			<label class="control-label">
+				City/State/Zip
+			</label>
+		</div>
+		<div class="col-lg-10 col-md-10 col-sm-4 col-xs-12 mb-10">
+			<$client.env.FormField.a31_CityStateZip.HTML>
+		</div>
+	</div>
+	<div class="row mb-10">
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Former Employer
+			</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a34_Former_Employer.HTML>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Position
+			</label>
+		</div>
+		<div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a35_Position.HTML>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Dates of Employment
+			</label>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 mb-10">
+			<$client.env.FormField.a36_Employment_Date.HTML>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<p>
+				*This information will be used for background screening process only and will not be used as hiring criteria
+			</p>
+		</div>
+	</div>
+	<hr>
+	<div class="row mb-20">
+		<div class="col-lg-12">
+			<h5 class="text-center">
+				<strong>NOTICE REGARDING BACKGROUND INVESTIGATION PURSUANT TO CALIFORNIA LAW</strong>
+			</h5>
+			<p class="text-justify">
+				As part of the employment process, <u>First Advantage</u> (the "Company") who is a vendor or service provider and its client (the "Sponsor") intends to obtain information about you for employment screening purposes from a consumer reporting agency. Thus, you can expect to be the subject of "investigative consumer reports" and "consumer credit reports" obtained for employment purposes. Such reports may include information about your character, general reputation, personal characteristics and mode of living. With respect to any investigative consumer report from an investigative consumer reporting agency ("ICRA"), the Company and Sponsor may investigate the information contained in your employment application and other background information about you, including but not limited to obtaining a criminal record report, verifying references, work history, your social security number, your educational achievements, licensure, and certifications, your driving record, and other information about you, and interviewing people who are knowledgeable about you. The results of this report may be used as a factor in making employment decisions. The source of any investigative consumer report (as that term is defined under California law) will be First Advantage., P.O. Box 105108, Atlanta, GA 30348-5108,1-800-845-6004, http://www.fadv.com/ solutions/solutions.aspx. The source of any credit report will be <strong>[Credit Bureau Name</strong> <u>First Advantage</u> <strong>Address</strong> <u>PO Box 105108 Atlanta. GA 30348</u> <strong>Toll-free number</strong> <u>800-845-6004</u>]. The Company agrees to provide you with a copy of an investigative consumer report when required to do so under California law. 
+			</p>
+			<p class="text-justify">
+				Under California Civil Code section 1786.22, you are entitled to find out from an ICRA what is in the ICRA's file on you with proper identification, as follows:
+			</p>
+			<p class="text-justify">
+				In person, by visual inspection of your file during normal business hours and on reasonable notice. You also may request a copy of the information in person. The ICRA may not charge you more than the actual copying costs for providing you with a copy of your file.
+			</p>
+			<p class="text-justify">
+				A summary of all information contained in the ICRA's file on you that is required to be provided by the California Civil Code will be provided to you via telephone, if you have made a written request, with proper identification, for telephone disclosure, and the toll charge, if any, for the telephone call is prepaid by or charged directly to you. 
+			</p>
+			<p class="text-justify">
+				By requesting a copy be sent to a specified addressee by certified mail. ICRAs complying with requests for certified mailings shall not be liable for disclosures to third parties caused by mishandling of mail after such mailings leave the ICRAs. 
+			</p>
+			<p class="text-justify">
+				"Proper Identification' includes documents such as a valid driver's license, social security account number, military identification card, and credit cards. Only if you cannot identify yourself with such information may the ICRA require additional information concerning your employment and personal or family history in order to verify your identity.
+			</p>
+			<p class="text-justify">
+				The ICRA will provide trained personnel to explain any information furnished to you and will provide a written explanation of any coded information contained in files maintained on you. This written explanation will be provided whenever a file is provided to you for visual inspection. 
+			</p>
+			<p class="text-justify">
+				You may be accompanied by one other person of your choosing, who must furnish reasonable identification. An ICRA may require you to furnish a written statement granting permission to the ICRA to discuss your file in such person's presence. 
+			</p>
+			<p>
+				<strong>Notice Regarding Credit Checks:</strong><br>
+				Pursuant to Section 1024.5 of the California Labor Code, the Company informs you that it may obtain a credit report about you from the above named entity, because you are seeking to work in the following position: 
+			</p>
+			<div class="ml-20 mb-10">
+				[_] An employee covered by the executive exemption set forth in subparagraph (1) of paragraph (A) of Section 1 of Wage Order 4 of the Industrial Welfare Commission; <br>
+				[_] A position in the state Department of Justice; <br>
+				[_] A sworn peace officer or other law enforcement; <br>
+				[_] A position for which the information contained in the report is required by law to be disclosed or obtained; <br>
+				[_] A position that involves regular access to specified personal information for any purpose other than the routine solicitation and processing of credit card applications in a retail establishment, such as bank or credit card account information, social security number, or date of birth; <br>
+				[_] A position which the person can enter into financial transactions on behalf of the company; <br>
+				[_] A position that involves access to confidential or proprietary information; <br>
+				[_] A position that involves regular access to $10,000 or more of cash; OR <br>
+				[_] The Company will not obtain a consumer credit report on you. <br>
+				[_] The Company is subject to 15 U.S.C. Sec. 6801-6809, the Gramm-Leach-Bliley Act and Section 1024.5 of the California Labor Code does not apply 
+			</div>
+			<h5>
+				<strong>NOTICE REGARDING CREDIT CHECKS PER VERMONT LAW </strong>
+			</h5>
+			<p>
+				Pursuant to Vermont Act No. 154 (S. 95), the Company informs you that it may obtain a credit report about you, for the following reason(s):
+			</p>
+			<p class="mb-20">
+ 				[_] The information is required by state or federal law or regulation; <br>
+ 				[_] You seek to be/are employed in a position that involves access to "confidential financial information (defined as 'sensitive financial information of commercial value that a customer or client of the employer gives explicit authorization for the employer to obtain, process, and store and that the employer entrusts only to managers or employees as a necessary function of their job duties"); <br>
+ 				[_] The Company is a financial institution as defined in 8 V.S.A. §11101(32) or a credit union as defined in 8 V.S.A. §30101(5); <br>
+ 				[_] You seek to be/are employed in a position as a law enforcement officer, emergency medical personnel or firefighter as these terms are respectively defines in 20 V.S.A. §2358, 24 V.S.A. §2651(6) and 20 V.S.A. §3151(3) <br>
+ 				[_] You seek to be/are employed in a position that requires a financial fiduciary responsibility to the Company or a Company's clients, including the authority to issue payments, collect debts, transfer money or enter into contracts; <br>
+ 				[_] You seek to be/are employed in a position that involves access to the Company's payroll information: <br>
+ 				[_] The Company can demonstrate that credit information is a valid and reliable predictor of employee performance in the your specific position of employment; <br>
+ 				[_] The Company will not obtain a consumer credit report on you. 
+			</p>
+			<p class="text-justify">
+				<strong>
+					<em>Para informacion en Espanol, visite <a href="http://www.consumerfinance.gov/learnmore" target="_blank">www.consumerfinance.gov/learnmore</a> o escribe a la Consumer Financial Protection Bureau, 1-00 G Street NW, Washington, DC 20552.</em>
+				</strong>
+			</p>
+			<p class="text-center">
+				<strong>A Summary of Your Rights Under the Fair Credit Reporting Act</strong>
+			</p>
+			<p>
+				The federal Fair Credit Reporting Act (FCRA) promotes the accuracy, fairness, and privacy of information in the files of consumer reporting agencies. There are many types of consumer reporting agencies, including credit bureaus and specialty agencies (such as agencies that sell information about check writing histories, medical records, and rental history records). Here is a summary of your major rights under the FCRA. <strong>For more information, including information about additional rights, go to <a href="http://www.consumerfinance.gov/learnmore" target="_blank">www.consumerfinance.gov/learnmore</a> or write to: Consumer Financial Protection Bureau, 1700 G Street N.W., Washington, DC 20552.</strong>
+			</p>
+			<ul>
+				<li>
+					<strong>You must be told if information in your file has been used against you.</strong> Anyone who uses a credit report or another type of consumer report to deny your application for credit, insurance, or employment— or to take another adverse action against you —must tell you, and must give you the name, address, and phone number of the agency that provided the information.
+				</li>
+			</ul>
+			<ul class="mb-10">
+				<li>
+					<strong>You have the right to know what is in your file.</strong> You may request and obtain all the information about you in the files of a consumer reporting agency (your "file disclosure"). You will be required to provide proper identification, which may include your Social Security number. In many cases, the disclosure will be free. You are entitled to a free file disclosure if
+					<ul>
+						<li>
+							a person has taken adverse action against you because of information in your credit report;	
+						</li>
+						<li>
+							you arc the victim of identity theft and place a fraud alert in your file; • your file contains inaccurate information as a result of fraud;
+						</li>
+						<li>
+							you are on public assistance;
+						</li>
+						<li>
+							you are unemployed but expect to apply for employment within 60 days.
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<p>
+				In addition, all consumers are entitled to one free disclosure every 12 months upon request from each nationwide credit bureau and from nationwide specialty consumer reporting agencies. See <a href="http://www.consumerfinance.gov/learnmore" target="_blank">www.consumerfinance.gov/learnmore</a> for additional information.
+			</p>
+			<ul>
+				<li>
+					You have the right to ask for a credit score. Credit scores are numerical summaries of your credit-worthiness based on information from credit bureaus. You may request a credit score from consumer reporting agencies that create scores or distribute scores used in residential real property loans, but you will have to pay for it. In some mortgage transactions, you will receive credit score information for free from the mortgage lender.
+				</li>
+				<li>
+					You have the right to dispute incomplete or inaccurate information. If you identify information in your file that is incomplete or inaccurate, and report it to the consumer reporting agency, the agency must investigate unless your dispute is frivolous. See <a href="http://www.consumerfinance.gov/learnmore" target="_blank">www.consumerfinance.gov/learnmore</a> for an explanation of dispute procedures.				
+				</li>
+				<li>
+					Consumer reporting agencies must correct or delete inaccurate, incomplete, or unverifiable information. Inaccurate, incomplete or unverifiable information must be removed or corrected, usually within 30 days. However, a consumer reporting agency may continue to report information it has verified as accurate. 
+				</li>
+				<li>
+					Consumer reporting agencies may not report outdated negative information. In most cases, a consumer reporting agency may not report negative information that is more than seven years old, or bankruptcies that are more than 10 years old. 				
+				</li>
+				<li>
+					Access to your file is limited. A consumer reporting agency may provide information about you only to people with a valid need — usually to consider an application with a creditor, insurer, employer, landlord, or other business. The FCRA specifies those with a valid need for access. 
+				</li>
+				<li>
+					You must give your consent for reports to be provided to employers. A consumer reporting agency may not give out information about you to your employer, or a potential employer, without your written consent given to the employer. Written consent generally is not required in the trucking industry. For more information, go to <a href="http://www.consumerfinance.gov/learnmore" target="_blank">www.consumerfinance.gov/learnmore</a>. 
+				</li>
+				<li>
+					You may limit "prescreened" offers of credit and insurance you get based on information in your credit report. Unsolicited "prescreened" offers for credit and insurance must include a toll-free phone number you can call if you choose to remove your name and address from the lists these offers are based on. You may opt-out with the nationwide credit bureaus at 1-888-567-8688. 
+				</li>
+				<li>
+					You may seek damages from violators. If a consumer reporting agency, or, in some cases, a user of consumer reports or a furnisher of information to a consumer reporting agency violates the FCRA, you may be able to sue in state or federal court. 
+				</li>
+				<li>
+					Identity theft victims and active duty military personnel have additional rights. For more information, visit <a href="http://www.consumerfinance.gov/learnmore" target="_blank">www.consumerfinance.gov/learnmore</a>. 
+				</li>
+			</ul>
+			<p>
+				<strong>States may enforce the FCRA, and many states have their own consumer reporting laws. In some cases, you may have more rights under state law. For more information, contact your state or local consumer protection agency or your state Attorney General. For information about your federal rights, contact: </strong>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 table-responsive">
+			<table class="table table-condensed table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>
+							TYPE OF BUSINESS:
+						</th>
+						<th>
+							CONTACT:
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<p>
+								1.a. Banks, savings associations, and credit unions with total assets of over $10 billion and their affiliates.
+							</p>
+							<p>
+								b. Such affiliates that are not banks, savings associations, or credit unions also should list, in addition to the CFPB:
+							</p>
+						</td>
+						<td>
+							<p>
+								a. Consumer Financial Protection Bureau 1700 G Street NW Washington, DC 20552
+							</p>
+							<p>
+								b. Federal Trade Commission: Consumer Response Center FCRA Washington, DC 20580 (877) 382-4357
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								2. To the extent not included in item 1 above:
+							</p>
+							<p>
+								a. National banks, federal savings associations, and federal branches and federal agencies of foreign banks
+							</p>
+							<p>
+								than federal branches, federal agencies, and Insured State Branches of Foreign Banks), commercial lending companies owned or controlled by foreign banks, and organizations operating under section 25 or 25A of the Federal Reserve Act
+							</p>
+							<p>
+								c. Nonmember Insured Banks, Insured State Branches of Foreign Banks, and insured state savings associations
+							</p>
+							<p>
+								d. Federal Credit Unions
+							</p>
+						</td>
+						<td>
+							<p>
+								a. Office of the Comptroller of the Currency Customer Assistance Group 1301 McKinney Street, Suite 3450 Houston, TX 77010-9050
+							</p>
+							<p>
+								b. Federal Reserve Consumer Help Center P.O. Box 1200 Minneapolis, MN 55480
+							</p>
+							<p>
+								c. FDIC Consumer Response Center 1100 Walnut Street, Box #11 Kansas City, MO 64106
+							</p>
+							<p>
+								d. National Credit Union Administration Office of Consumer Protection (OCP) Division of Consumer Compliance and Outreach (DCCO) 1775 Duke Street Alexandria, VA 22314
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								3. Air carriers
+							</p>
+						</td>
+						<td>
+							Asst. General Counsel for Aviation Enforcement &amp; Proceedings Aviation Consumer Protection Division Department of Transportation 1200 New Jersey Avenue, S.E. Washington, DC 20590
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								4. Creditors Subject to Surface Transportation Board
+							</p>
+						</td>
+						<td>
+							Office of Proceedings, Surface Transportation Board Department of Transportation 395 E Street SW Washington, DC 20423
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								5. Creditors Subject to Packers and Stockyards Act
+							</p>
+						</td>
+						<td>
+							Nearest Packers and Stockyards Administration area supervisor
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								6. Small Business Investment Companies
+							</p>
+						</td>
+						<td>
+							Associate Deputy Administrator for Capital Access United States Small Business Administration 409 Third Street, SW, 8th Floor Washington, DC 20416
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								7. Brokers and Dealers
+							</p>
+						</td>
+						<td>
+							Securities and Exchange Commission 100 F Street NE Washington, DC 20549
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								8. Federal Land Banks, Federal Land Bank Associations, Federal Intermediate Credit Banks, and Production Credit Associations
+							</p>
+						</td>
+						<td>
+							Farm Credit Administration 1501 Farm Credit Drive McLean, VA 22102-5090
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<p>
+								9. Retailers, Finance Companies, and All Other Creditors Not Listed Above
+							</p>
+						</td>
+						<td>
+							<p>
+								FTC Regional Office for region in which the creditor operates or Federal Trade Commission: Consumer Response Center FCRA Washington, DC 20580 (877) 382-4357
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+    "use strict";
+    $('[data-ssn-group]').on('keyup', function() {
+    	let ssnGroup = $('[data-ssn-group="' + $(this).data('ssn-group') + '"]');
+    	if (ssnGroup.eq(0).val().length < 3) {
+    		ssnGroup.eq(1).val('');
+    		ssnGroup.eq(2).val('');
+    	}
+    	if (ssnGroup.eq(0).val().length >= 3) {
+    		ssnGroup.eq(1).focus();
+    	}
+    	if (ssnGroup.eq(1).val().length >= 3) {
+    		ssnGroup.eq(2).focus();
+    	}
+    });
+    $(".modal").hide();
+});
+</script>

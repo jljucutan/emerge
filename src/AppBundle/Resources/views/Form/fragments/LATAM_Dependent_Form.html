@@ -1,0 +1,759 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input id="signature-sign" type="button" class="lifesuite__button primary" value="Sign">&nbsp; 
+                    <input id="signature-clear" type="button" class="lifesuite__button" value="Clear">&nbsp; 
+                    <input id="signature-cancel" type="button" class="lifesuite__button" value="Cancel"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+  <div class="fb-spinner"> 
+   <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+ </div> 
+</div> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form"> 
+  <div style="display:none;"> 
+    <$client.env.FormField.Form_Name.prompt> 
+    <$client.env.FormField.Form_Name.HTML> 
+    <$client.env.FormField.Form_Type.prompt> 
+    <$client.env.FormField.Form_Type.HTML> 
+    <$client.env.FormField.Form_Owner.prompt> 
+    <$client.env.FormField.Form_Owner.HTML> 
+    <$client.env.FormField.Form_CreateDate.prompt> 
+    <$client.env.FormField.Form_CreateDate.HTML> 
+    <$client.env.FormField.Form_Completed.prompt> 
+    <$client.env.FormField.Form_Completed.HTML> 
+    <$client.env.FormField.Form_Delivered.prompt> 
+    <$client.env.FormField.Form_Delivered.HTML> 
+    <$client.env.FormField.Form_TaskId.prompt> 
+    <$client.env.FormField.Form_TaskId.HTML> 
+    <$client.env.FormField.display_version.HTML> 
+
+    <!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+    <$client.env.FormField.Employee_Name.prompt>
+    <$client.env.FormField.Signature.prompt>
+    <$client.env.FormField.Signature_Date.prompt>
+    <$client.env.FormField.Signature_Verification.prompt>
+    <$client.env.FormField.dependent_dob_1.prompt>
+    <$client.env.FormField.dependent_dob_2.prompt>
+    <$client.env.FormField.dependent_dob_3.prompt>
+    <$client.env.FormField.dependent_dob_4.prompt>
+    <$client.env.FormField.dependent_dob_5.prompt>
+    <$client.env.FormField.dependent_firstname_1.prompt>
+    <$client.env.FormField.dependent_firstname_2.prompt>
+    <$client.env.FormField.dependent_firstname_3.prompt>
+    <$client.env.FormField.dependent_firstname_4.prompt>
+    <$client.env.FormField.dependent_firstname_5.prompt>
+    <$client.env.FormField.dependent_lastname_1.prompt>
+    <$client.env.FormField.dependent_lastname_2.prompt>
+    <$client.env.FormField.dependent_lastname_3.prompt>
+    <$client.env.FormField.dependent_lastname_4.prompt>
+    <$client.env.FormField.dependent_lastname_5.prompt>
+    <$client.env.FormField.dependent_gender_1.prompt>
+    <$client.env.FormField.dependent_gender_2.prompt>
+    <$client.env.FormField.dependent_gender_3.prompt>
+    <$client.env.FormField.dependent_gender_4.prompt>
+    <$client.env.FormField.dependent_gender_5.prompt>
+    <$client.env.FormField.dependent_idnumber_1.prompt>
+    <$client.env.FormField.dependent_idnumber_2.prompt>
+    <$client.env.FormField.dependent_idnumber_3.prompt>
+    <$client.env.FormField.dependent_idnumber_4.prompt>
+    <$client.env.FormField.dependent_idnumber_5.prompt>
+    <$client.env.FormField.dependent_idtype_1.prompt>
+    <$client.env.FormField.dependent_idtype_2.prompt>
+    <$client.env.FormField.dependent_idtype_3.prompt>
+    <$client.env.FormField.dependent_idtype_4.prompt>
+    <$client.env.FormField.dependent_idtype_5.prompt>
+    <$client.env.FormField.dependent_nationality_1.prompt>
+    <$client.env.FormField.dependent_nationality_2.prompt>
+    <$client.env.FormField.dependent_nationality_3.prompt>
+    <$client.env.FormField.dependent_nationality_4.prompt>
+    <$client.env.FormField.dependent_nationality_5.prompt>
+    <$client.env.FormField.dependent_relationship_1.prompt>
+    <$client.env.FormField.dependent_relationship_2.prompt>
+    <$client.env.FormField.dependent_relationship_3.prompt>
+    <$client.env.FormField.dependent_relationship_4.prompt>
+    <$client.env.FormField.dependent_relationship_5.prompt>
+    <$client.env.FormField.dependents.prompt>
+    <$client.env.FormField.ind_Blood_Type.prompt>
+    <$client.env.FormField.ind_allergies.prompt>
+    <$client.env.FormField.ind_allergies_list.prompt>
+    <$client.env.FormField.ind_father_firstname.prompt>
+    <$client.env.FormField.ind_father_surname.prompt>
+    <$client.env.FormField.mys_spouse_employed.prompt>
+    <$client.env.FormField.number_children.prompt>
+    <$client.env.FormField.dependent_idcountry_1.prompt>
+    <$client.env.FormField.dependent_idcountry_2.prompt>
+    <$client.env.FormField.dependent_idcountry_3.prompt>
+    <$client.env.FormField.dependent_idcountry_4.prompt>
+    <$client.env.FormField.dependent_idcountry_5.prompt>
+
+  </div> 
+  <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+  
+  <div class="container-fluid">  
+    <div class="form-group">  
+      <!-- Replace With eForm Specific HTML --> 
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 imgr"><img src="<$link;/main/RedCarpet/FormTemplates/LATAM_Dependent_Form/img/logo.png>" style="max-width: 120px;"/></div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2">&nbsp;</div>
+        <div class="col-sm-8">
+          <div id="form-body">
+
+            <div class="row">
+              <div class="col-md-12">
+                <h3>LATAM Dependent Form</h3>
+              </div>
+            </div>
+
+            <br><br>
+            <div class="row" style="margin-top: 2em">
+              <div class="col-md-12">
+                <p style="width:100%; border-bottom: 1px solid #CCC; line-height:0.1em; margin:10px 0 20px;">
+                  <strong style="background:#eeeeee; padding:0 10px 0 0;font-size: 14px;">GENERAL INFORMATION</strong>
+                </p>
+              </div>
+            </div><br>
+
+            <div class="row">
+              <div class="col-md-12">
+                <label id="dependents-label" style="float:left;padding:2px 0px;" class="dependents">Do you have any dependents?<br>(Individuals that are financially dependent / cargas de familia) <span class="font-red">* </span></label> <br style="clear:both"><$client.env.FormField.dependents.HTML>
+              </div>
+            </div>
+
+            <div class="row" id="number-of-children">
+              <div class="col-lg-5 align-right"><label>Number of Dependents: <span class="font-red" id="nc_ast">* </span></label></div>
+              <div class="col-lg-7"><$client.env.FormField.number_children.HTML>
+              </div>
+            </div><br>
+
+            <div id="dependents-container">
+              <div class="row" style="margin-top: 2em">
+                <div class="col-md-12">
+                  <p style="width:100%; border-bottom: 1px solid #CCC; line-height:0.1em; margin:10px 0 20px;">
+                    <strong style="background:#eeeeee; padding:0 10px 0 0;font-size: 14px;">DEPENDENT INFORMATION </strong>
+                  </p>
+                </div>
+              </div>
+
+              <div class="dependents_section first"> 
+                <div class="row" style="margin-top: 2em">
+                  <div class="col-lg-5 align-right"><p><strong>Dependent #1</strong></p></div>
+                  <div class="col-lg-7">&nbsp;</div>
+                </div>
+
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Legal First Name: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_firstname_1.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Legal Last Name: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_lastname_1.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Relationship: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_relationship_1.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Gender: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_gender_1.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Nationality: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_nationality_1.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Country:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idcountry_1.HTML>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Type:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idtype_1.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Number:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idnumber_1.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Date of Birth: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_dob_1.HTML>
+                    <br style="clear:both">
+                  </div>
+                </div>
+                <br>
+              </div><!--end of dependent #1-->
+
+
+              <div class="dependents_section"> 
+                <div class="row" style="margin-top: 2em">
+                  <div class="col-lg-5 align-right"><p><strong>Dependent #2</strong></p></div>
+                  <div class="col-lg-7">&nbsp;</div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Legal First Name: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_firstname_2.HTML>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Legal Last Name: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_lastname_2.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Relationship: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_relationship_2.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Gender: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_gender_2.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Nationality: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_nationality_2.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Country:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idcountry_2.HTML>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Type:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idtype_2.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Number:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idnumber_2.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Date of Birth: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_dob_2.HTML>
+                    <br style="clear:both">
+                  </div>
+                </div>
+                <br>
+              </div><!--end of dependent #2-->
+
+
+              <div class="dependents_section"> 
+                <div class="row" style="margin-top: 2em">
+                  <div class="col-lg-5 align-right"><p><strong>Dependent #3</strong></p></div>
+                  <div class="col-lg-7">&nbsp;</div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Legal First Name: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_firstname_3.HTML>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Legal Last Name: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_lastname_3.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Relationship: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_relationship_3.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Gender: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_gender_3.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Nationality: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_nationality_3.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Country: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idcountry_3.HTML>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Type:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idtype_3.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Number:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idnumber_3.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Date of Birth: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_dob_3.HTML>
+                    <br style="clear:both">
+                  </div>
+                </div>
+                <br>
+              </div><!--end of dependent #3-->
+
+
+              <div class="dependents_section"> 
+                <div class="row" style="margin-top: 2em">
+                  <div class="col-lg-5 align-right"><p><strong>Dependent #4</strong></p></div>
+                  <div class="col-lg-7">&nbsp;</div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Legal First Name: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_firstname_4.HTML>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Legal Last Name: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_lastname_4.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Relationship: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_relationship_4.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Gender: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_gender_4.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Nationality: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_nationality_4.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Country:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idcountry_4.HTML>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Type:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idtype_4.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Number:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idnumber_4.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Date of Birth: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_dob_4.HTML>
+                    <br style="clear:both">
+                  </div>
+                </div>
+                <br>
+              </div><!--end of dependent #4-->
+
+
+              <div class="dependents_section"> 
+                <div class="row" style="margin-top: 2em">
+                  <div class="col-lg-5 align-right"><p><strong>Dependent #5</strong></p></div>
+                  <div class="col-lg-7">&nbsp;</div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Legal First Name: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_firstname_5.HTML>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Legal Last Name: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_lastname_5.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Relationship: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_relationship_5.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Gender: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_gender_5.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Nationality: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_nationality_5.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Country:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idcountry_5.HTML>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Type:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idtype_5.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Identification Number:</label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_idnumber_5.HTML>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-5 align-right"><label>Date of Birth: <span class="font-red">* </span></label></div>
+                  <div class="col-lg-7"><$client.env.FormField.dependent_dob_5.HTML>
+                    <br style="clear:both">
+                  </div>
+                </div>
+              </div><!--end of dependent #5-->
+              <div class="row" style="margin-top: 0em">
+                <div class="col-md-offset-3 col-md-9 col-sm-12">
+                  <div class="lifesuite__clearfix"><button type="button" class="lifesuite__button" id="delete-dependent">Delete Dependent</button><button type="button" class="lifesuite__button primary" id="add-dependent">Add Dependent</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br><br>
+
+          <br>
+
+              <br>
+            </div> 
+
+          </div>
+
+        </div>
+        <!--Employee Signature -->
+        <div class='row'>
+          <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText text-right" style="white-space: nowrap;">
+            <label>Signature:</label> <span class="font-red">*</span>
+          </div>
+          <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.Signature.html>
+          </div>
+          <div class="col-lg-1 col-sm-12 col-xs-12 AlignMergeStringText text-right"><label>Date: </label></div>
+          <div class="col-lg-3 col-sm-12 col-xs-12"><$client.env.FormField.Signature_Date.html>
+          </div>
+        </div>
+        <div class='row'>
+          <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText text-right" style="white-space: nowrap;">
+            <label>Name: </label>
+          </div>
+          <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.Employee_Name.html>
+            </div>
+          <div class="col-lg-5 col-sm-12 col-xs-12">&nbsp;</div>
+        </div>
+
+        <br>
+        <hr class="lifesuite__hr">
+
+        <div class="row" id="formButtons" style="display: none;"> 
+          <div class="lifesuite__clearfix lifesuite__float-right">                
+            <$client.env.FormButtons> 
+          </div>              
+        </div> 
+      </div> 
+      <!--End of container-fluid-->
+
+
+      <div style="display:none"> 
+        <$client.env.FormField.Signature_Verification.HTML>
+        <$client.env.FormField.DependentNumber.HTML>
+        <$client.env.FormField.Germany_Dependent.HTML>
+        <$client.env.FormField.dependent_idcountry.HTML>
+        <$client.env.FormField.Signature_Date_mapped.HTML>
+        <$client.env.FormField.dependent_dob_1_mapped.HTML>
+        <$client.env.FormField.dependent_dob_2_mapped.HTML>
+        <$client.env.FormField.dependent_dob_3_mapped.HTML>
+        <$client.env.FormField.dependent_dob_4_mapped.HTML>
+        <$client.env.FormField.dependent_dob_5_mapped.HTML>
+        <$client.env.FormField.dummy_date.HTML>
+      </div> 
+    </form> 
+
+<script src="<$link;/main/RedCarpet/FormTemplates/LATAM_Dependent_Form/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator_V3.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script>
+<$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+const sectionFilled = function(section) {
+    'use strict';
+    if ($('input, select:not(.dependent_idcountry)', section).val().length) {
+        return true;
+    }
+    return false;
+}
+
+const VALIDATION_MAP = {
+    'ARG-DNI': {
+        'regex': '^[0-9]{2}\.[0-9]{3}\.[0-9]{3}$',
+        'message': 'formatted as 8 digits (xx.xxx.xxx).'
+    },
+    'ARG-CUIL': {
+        'regex': '^[0-9]{2}\.[0-9]{8}\.[0-9]{1}$',
+        'message': '11 digits (xx.xxxxxxxx.x)'
+    }
+}
+
+$(document).on('ready', function() {
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+  const mapIDTypeToNumberValidation = function() {
+    'use strict'
+    $('.dependent_idtype').each(function() {
+        const dtype = $(this)
+        const nem = dtype.prop('name');
+        const id = nem[nem.length-1]
+        if (dtype.val().length <= 0) {
+            $('[name$=".dependent_idnumber_' + id + '"]').data({
+                'validation': '',
+                'regex': null,
+                'message': null
+            })
+            return;
+        }
+        $('[name$=".dependent_idnumber_' + id + '"]').data({
+            'validation': 'regex-optional',
+            'regex': VALIDATION_MAP[dtype.val()].regex,
+            'message': VALIDATION_MAP[dtype.val()].message
+        })
+    });
+  }
+  $('.dependent_idtype').on('change', function() {
+      mapIDTypeToNumberValidation();
+  });
+  mapIDTypeToNumberValidation();
+
+  const EVENT_LOCATION = '<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>';
+  const toggleDependents = function(hasDependent) {
+    'use strict'
+    if (hasDependent == 'Yes') {
+        $('#dependents-container, #number-of-children').show();
+        return;
+    }
+    $('#dependents-container, #number-of-children').hide().find('input, select:not(.dependent_idcountry)').each(function() {
+        validateField($(this).val(''), true);
+    });
+    $('.dependents_section:not(:first)').each(function() {
+        $(this).hide();
+    });
+    updateSectionControls();
+  }
+  $('[name$=".dependents"]').on('change', function(e) {
+    toggleDependents(e.target.value);
+  });
+  toggleDependents($('[name$=".dependents"]:checked').val());
+
+  $('.dependents_section').each(function() {
+    if (sectionFilled($(this))) {
+        $(this).show();
+    }
+  });
+
+  const addDependentControl = $('#add-dependent').on('click', function() {
+    const hiddenSection = $('.dependents_section:hidden');
+    if (hiddenSection.length) {
+        hiddenSection.first().show();
+    }
+    updateSectionControls();
+  });
+  const deleteDependentControl = $('#delete-dependent').on('click', function() {
+    const visibleSection = $('.dependents_section:visible');
+    if (visibleSection.length) {
+        visibleSection.last().hide().find('input, select:not(.dependent_idcountry)').each(function() {
+          if ($(this).hasClass('hasDatepicker')) {
+            $('[name$=".' + $(this).data('targetdate') + '"]').val('');
+          }
+          validateField($(this).val(''), true);
+        });
+    }
+    updateSectionControls();
+  });
+
+  const updateSectionControls = function() {
+    'use strict';
+    const visibleSections = $('.dependents_section:visible');
+    if (visibleSections.length >= 5) {
+        addDependentControl.hide();
+    }
+    if (visibleSections.length <= 1) {
+        deleteDependentControl.hide();
+    }
+    if (visibleSections.length < 5) {
+        addDependentControl.show();
+    }
+    if (visibleSections.length > 1) {
+        deleteDependentControl.show();
+    }
+  }
+  updateSectionControls()
+
+  // date fields
+  $('[name$=".dependent_dob_1"], [name$=".dependent_dob_2"], [name$=".dependent_dob_3"], [name$=".dependent_dob_4"], [name$=".dependent_dob_5"]').formatDatePicker(dateConfig, EVENT_LOCATION)
+    .datepicker('option', 'onSelect', function() {
+        let dateStr = '';
+        let dateVal = $(this).datepicker('getDate')
+        if (dateVal) {
+            dateStr = moment(dateVal).format('YYYY/MM/DD');
+        }
+        $('[name$=".' + $(this).data('targetdate') + '"]').val(dateStr);
+        validateField($(this))
+    });
+  
+  $('#signature-sign').on('click', function() {
+    if(!validateSignature('signature','eSignature1','fullName','modal','over','sv')) {
+        xbObj('eSignature1').value='';
+        document.getElementById('eSignature1').focus();
+        return;
+    }
+    $('[name$=".Signature_Date"]').val(moment().format('DD/MM/YYYY'));
+    $('[name$=".Signature_Date_mapped"]').val(moment().format('YYYY-MM-DD'));
+  })
+
+  $('#signature-clear').on('click', function() {
+    xbObj('signature').value='';
+    showHide('modal');
+    showHide('over');
+    xbObj('eSignature1').value='';
+    if (typeof targetdatecheckCLEAR == 'function' ) {
+        $('[name$=".Signature_Date"], [name$=".Signature_Date_mapped"]').val('');
+    }
+  })
+
+  $('#signature-cancel').on('click', function() {
+    showHide('modal');
+    showHide('over');
+    xbObj('eSignature1').value='';
+  })
+
+  // frontend validation
+  $(thisForm).on('change blur', 'select:visible', function() {
+    validateField($(this))
+  })
+
+  $(thisForm).on('blur paste keyup', 'input:visible:not(#signature):not(:button):not(disabled):not(readonly)', function() {
+    validateField($(this))
+  })
+
+  $('#modal').on('click', 'input.lifesuite__button', function() {
+    validateField($('#signature'))
+  });
+
+  $('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete', thisForm).on('click', function(e) {
+      let formIsValid = true;
+      const btn = $(this)
+      e.preventDefault()
+      $('input:visible:not(:button), select:visible', thisForm).each(function(k, v) {
+        if (!$("input.calendar_button").length) formIsValid = true
+        else{
+          if(false == validateField($(v)) && $(v).is(':visible')) {
+            formIsValid = false
+          }
+        }
+      })
+      if (!formIsValid) {
+        $("html, body").animate({ scrollTop: 0 }, "slow")
+        return;
+        
+      }
+      switch (btn.attr('id')) {
+      case 'ButtonPrint':
+        funcPrint();
+      break;
+      case 'ButtonSaveAndComplete':
+        funcSaveAndComplete();
+      break;
+      }
+  })
+  setTimeout(function() {
+    $(".modal").hide()
+  }, 1000)
+})
+</script>

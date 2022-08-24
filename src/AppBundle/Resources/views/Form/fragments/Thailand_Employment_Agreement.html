@@ -1,0 +1,417 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','date');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12"> 
+                <strong>Type your Name:</strong> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','SignerMan','modal2','over','sv2','date2');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp; 
+                    <input id="clear-sig-2" type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','date2');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="italy-offer-letter" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="img-wrapper mb-3">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-responsive">
+            </div>
+            <p>
+                <mark><$client.tForWhomUserInfo.EnityName></mark>
+            </p>
+        </div>
+    </div>
+    <template id="fragment-1">
+        <p class="hide"><$client.tForWhomUserInfo.EnityName></p>
+        <p class="hide">&nbsp;</p>
+        <p class="text-center">
+            <strong>EMPLOYMENT AGREEMENT</strong>
+        </p>
+        <p class="text-center mb-5">สัญญาจ้างงาน</p>
+        <p class="hide">&nbsp;</p>
+
+        <p>This Employment Agreement (the “Agreement”) is made on this <mark><%= Current_Date %></mark> in Bangkok, Thailand, by and between:</p>
+        <p>สัญญาจ้างงานฉบับนี้ (“สัญญา”) ทำขึ้นเมื่อวันที่ <mark><%= Current_Date %></mark> ณ กรุงเทพมหานคร ประเทศไทย โดยและระหว่าง</p>
+        <p>PayPal (Thailand) Company Limited (the “Company”), a limited company duly   registered under the laws of the Kingdom of Thailand, with its office located at 23rd Floor, Athenee Tower Building, Unit 27-29, no. 63 Wireless Road, Lumpini, Pathumwan, Bangkok; and</p>
+        <p>บริษัท เพย์พาล (ประเทศไทย) จำกัด (“บริษัท”) ซึ่งเป็นบริษัทจำกัดก่อตั้งถูกต้องตามกฎหมายไทย มีสำนักงานตั้งอยู่ที่ ชั้น 23 อาคารแอทธินี ทาวเวอร์ ยูนิต 27-29 เลขที่ 63 ถนนวิทยุ ลุมพินี ปทุมวัน กรุงเทพมหานคร กับ</p>
+        <p><mark><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></mark> (the “Employee”), holding identification card number <mark><$client.tForWhomUserInfo.SSNO></mark>, presently residing at <mark><$client.tForWhomUserInfo.Address1></mark>&nbsp;<mark><$client.tForWhomUserInfo.Address2></mark>&nbsp;<mark><$client.tForWhomUserInfo.State_Description></mark>, <mark><$client.tForWhomUserInfo.Zip></mark>, <mark><$client.tForWhomUserInfo.City></mark>.</p>
+        <p><mark><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></mark> (“พนักงาน”) ผู้ถือบัตรประจำตัวประชาชนเลขที่ <mark><$client.tForWhomUserInfo.SSNO></mark> พำนักอยู่ที่ <mark><$client.tForWhomUserInfo.Address1></mark>&nbsp;<mark><$client.tForWhomUserInfo.Address2></mark>&nbsp;<mark><$client.tForWhomUserInfo.State_Description></mark>, <mark><$client.tForWhomUserInfo.Zip></mark>, <mark><$client.tForWhomUserInfo.City></mark></p>
+        <p>In this Agreement, the Company and the Employee may be referenced collectively as the “<strong>Parties</strong>” or each individually as a “<strong>Party</strong>”.</p>
+        <p>ในสัญญานี้ อาจเรียกบริษัทและพนักงานรวมกันว่า “คู่สัญญาทั้งสองฝ่าย” หรืออาจเรียกแต่ละฝ่ายว่า “คู่สัญญาฝ่ายหนึ่ง”</p>
+        <p><strong>WHEREAS,</strong> the Company wishes to employ the Employee and the Employee wishes to be employed by the Company according to the terms and conditions herein set forth.</p>
+        <p>โดยที่ บริษัทมีความประสงค์จะจ้างพนักงานและพนักงานมีความประสงค์จะทำงานกับบริษัทภายใต้ข้อกำหนดและเงื่อนไขที่ระบุไว้ในสัญญานี้</p>
+        <p><strong>NOW, THEREFORE,</strong> the Parties hereto mutually agree as follows:</p>
+        <p>ดังนั้น คู่สัญญาทั้งสองฝ่ายจึงได้ตกลงกันดังต่อไปนี้</p>
+        <ol>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Position/ตำแหน่ง</strong>
+                </div>
+                <p>Contingent on the Employee passing the pre-employment background screening, the Company agrees to employ the Employee in the position of <mark><$client.tForWhomUserInfo.Business_Title></mark> commencing on <mark><%= moment("<$client.tEventDates_Date_2.Value>").format('DD MMMM YYYY') %></mark> or on such other date selected by the Company and communicated to the Employee in writing. If the Employee does not pass the pre-employment background screening, the employment will not commence.</p>
+                <p>บริษัทตกลงจ้างพนักงานทำงานในตำแหน่ง <mark><$client.tForWhomUserInfo.Business_Title></mark> เริ่มงานวันที่ <mark><%= moment("<$client.tEventDates_Date_2.Value>").format('DD MMMM YYYY') %></mark> หรือในวันอื่นใดซึ่งบริษัทได้เลือกและแจ้งต่อพนักงานเป็นหนังสือ แต่ทั้งนี้พนักงานต้องผ่านการตรวจสอบประวัติก่อนการจ้างงานเรียบร้อยแล้วเท่านั้น หากพนักงานไม่ผ่านการตรวจสอบประวัติก่อนการจ้างงาน การจ้างงานจะไม่เกิดขึ้น</p>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Probationary Period/ระยะเวลาทดลองงาน</strong>
+                </div>
+                <p>The Employee will be subject to a probationary period of one hundred nineteen (119) calendar days, starting on the first day of employment. This probationary period may be extended by the Company in its sole discretion and in any such case the Employee will first be notified. If the Employee is not considered suitable for the job by the Company or if for any reasons the Employee’s continued employment is not required, this Agreement will be terminated at the end of the probationary period or at the expiry of any notice given during the probationary period. Upon the termination of this Agreement in accordance with this section, the Company shall have no liabilities to the Employee except for the salary due and payable to the Employee, and the Employee shall have no right to make any other claim against the Company.</p>
+                <p>พนักงานจะต้องทดลองงานเป็นระยะเวลาหนึ่งร้อยสิบเก้า (119) วันปฏิทิน เริ่มตั้งแต่วันแรกของการทำงาน ระยะเวลาทดลองงานนี้ บริษัทอาจขยายออกไปได้โดยดุลยพินิจของบริษัทแต่เพียงผู้เดียว และในกรณีดังกล่าวพนักงานจะได้รับการแจ้งให้ทราบก่อน ทั้งนี้หากบริษัทพิจารณาแล้วเห็นว่าพนักงานไม่เหมาะสมกับตำแหน่งหน้าที่ หรือไม่มีความจำเป็นต้องจ้างพนักงานต่อไปด้วยสาเหตุใดก็ตาม สัญญานี้จะถูกยกเลิกเมื่อสิ้นสุดระยะเวลาทดลองงานหรือเมื่อครบกำหนดระยะเวลาตามหนังสือบอกกล่าวที่ได้ให้ไว้ในระหว่างระยะเวลาทดลองงาน เมื่อสัญญานี้ถูกยกเลิกตามข้อนี้ บริษัทจะไม่มีความรับผิดใดๆ ต่อพนักงาน ยกเว้นเงินเดือนที่ถึงกำหนดต้องชำระให้แก่พนักงาน และพนักงานไม่มีสิทธิเรียกร้องอื่นใดต่อบริษัท</p>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Duties &amp; Responsibilities/หน้าที่และความรับผิดชอบ</strong>
+                </div>
+                <p>3.1 The Employee agrees to perform such other duties as the Company may, from time to time, instruct. The Employee agrees to comply with all instructions given by the Company, whether oral or in writing, and whether contained in policies or procedures or otherwise. The Employee agrees to devote the whole of the Employee’s time, attention, and ability to carrying out the Employee’s duties solely for the Company. The Employee agrees to faithfully serve the Company to the best of the Employee’s abilities and agrees to use best efforts to promote the interests of the Company.</p>
+                <p>พนักงานตกลงปฏิบัติหน้าที่ต่างๆ ตามที่อาจได้รับมอบหมายจากบริษัท พนักงานตกลงจะปฏิบัติตามคำสั่งทั้งหมดของบริษัทไม่ว่าจะเป็นคำสั่งด้วยวาจาหรือเป็นหนังสือ และไม่ว่าคำสั่งนั้นจะมีอยู่ในระเบียบหรือนโยบายของบริษัทหรือไม่ พนักงานตกลงจะอุทิศเวลาทั้งหมดของพนักงาน ความตั้งใจ และความสามารถในการทำงานในหน้าที่ของพนักงานให้กับบริษัทแต่เพียงผู้เดียว พนักงานตกลงจะปฏิบัติหน้าที่อย่างซื่อสัตย์สุจริต อย่างเต็มความสามารถ และตกลงจะใช้ความพยายามอย่างที่สุดเพื่อประโยชน์ของบริษัท</p>
+                <p>3.2 The Employee's place of work shall be at the Company's registered office which presently is located at the address above indicated but the Employee may from time to time be required to travel to work elsewhere or be expected to perform occasional services to the Company's affiliates or subsidiaries which may involve working at different places for the period of time applicable.</p>
+                <p>สถานที่ทำงานของพนักงานจะอยู่ที่สำนักงานจดทะเบียนของบริษัทซึ่งปัจจุบันตั้งอยู่ ณ ที่อยู่ตามที่ระบุข้างต้น แต่พนักงานอาจถูกกำหนดให้เดินทางไปทำงานที่อื่นเป็นครั้งคราว หรือถูกคาดหวังให้ไปให้บริการเป็นครั้งคราวแก่บริษัทในเครือหรือบริษัทลูกของบริษัทซึ่งอาจทำให้ต้องทำงานในสถานที่อื่นเป็นระยะเวลาตามที่เกี่ยวข้อง</p>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Wages/ค่าจ้าง</strong>
+                </div>
+                <p>4.1 The Employee’s gross monthly wages shall be THB <mark><$client.tForWhomUserInfo.SalaryOffered></mark> (Baht <mark><$client.tForWhomUserInfo.Salary_Words_English></mark>) and which shall be paid on monthly basis on the last day of each calendar month. If the last day of a calendar month is a weekend or public holiday, then the pay day will be the working day immediately preceding the last day of the calendar month. The Company shall withhold for income tax, social security contributions, and any other payments specified in applicable law, prior to paying the net wages to the Employee. The Employee agrees and gives consent that the Company may pay wages and other monetary benefits, if any, by transfer to the Employee’s designated bank account or by any other means the Company deems appropriate.</p>
+                <p>พนักงานจะได้รับค่าจ้างในอัตราเดือนละ <mark><$client.tForWhomUserInfo.SalaryOffered></mark> บาท โดยจะจ่ายเป็นรายเดือนในวันสุดท้ายของแต่ละเดือนปฏิทิน หากวันสุดท้ายของเดือนปฏิทินใดตรงกับวันสุดสัปดาห์หรือวันหยุดราชการ วันจ่ายค่าจ้างจะเป็นวันทำงานที่อยู่ก่อนและติดกับวันสุดท้ายของเดือนปฏิทินนั้น บริษัทจะหักภาษีเงินได้ เงินสมทบกองทุนประกันสังคม และเงินอื่นๆ ตามที่กฎหมายกำหนด จากค่าจ้างของพนักงานก่อนจ่ายจำนวนเงินสุทธิให้กับพนักงาน ทั้งนี้พนักงานให้ความยินยอมให้บริษัทจ่ายค่าจ้างสุทธิให้แก่พนักงานโดยจ่ายผ่านบัญชีธนาคารของพนักงานหรือโดยวิธีอื่นที่บริษัทเห็นสมควร</p>
+                <p>4.2 The Employee agrees that the Employee’s wages consist only of the Employee’s wages described in Clause 4.1. The Employee further agrees that any other money and/or employment benefits the Employee may receive in addition to the wages, are not wages, but are welfare or benefits provided by the Company, and thus shall not be included in the basis for calculating paid leave, paid holidays, severance pay, or anything else.</p>
+                <p><strong>พนักงานตกลงว่าค่าจ้างของพนักงานประกอบด้วยค่าจ้างของพนักงานตามที่ระบุในข้อ</strong> 4.1 <strong>เท่านั้น พนักงานตกลงว่าเงินและ/หรือผลประโยชน์อื่นใดที่พนักงานได้รับนอกเหนือจากค่าจ้างเป็นสวัสดิการที่บริษัทจัดให้กับพนักงานไม่ใช่ค่าจ้างและจะไม่นำมารวมคำนวณเป็นค่าจ้างสำหรับวันลาและวันหยุดที่ได้รับค่าจ้าง ค่าชดเชย หรือเงินอื่นใดทั้งสิ้น</strong></p>
+            </li>
+            <li class="mb-5">
+                <div class="mb-2">
+                    <strong>Welfare Benefits/สวัสดิการ </strong>
+                </div>
+                <div class="marked">
+                    <% if('<$client.tEventCategories_Category_31.Code>'=='AIP-Yes') { %>
+                    <div id="<%= makeid() %>" data-toggle="popover" data-placement="top" data-content="AIP = Yes"></div>
+                    <p>The Employee will be eligible to participate in the PayPal Annual Incentive Plan (“AIP”). The annual bonus period is from January 1 through December 31. The Employee’s target bonus for the AIP is <mark><$client.tForWhomUserInfo.eIP_Target_Pct></mark>% of the Employee’s annual wages, calculated based on the wages paid to the Employee during the annual bonus period. Details regarding the AIP and the Employee’s eligibility for a bonus are available in the AIP plan document, which outlines the terms and conditions of the AIP.</p>
+                    <p>พนักงานมีสิทธิเข้าร่วมแผนการจ่ายรางวัลจูงใจรายปีของเพย์พาล (แผน “เอไอพี”) (PayPal Annual Incentive Plan (AIP)) โบนัสรายปีคำนวณจากวันที่ 1 มกราคม ถึงวันที่ 31 ธันวาคม โบนัสสำหรับการทำได้ตามเป้าหมายของพนักงานสำหรับแผนเอไอพี คืออัตราร้อยละ <mark><$client.tForWhomUserInfo.eIP_Target_Pct></mark> ของค่าจ้างรายปีของพนักงาน คำนวณจากค่าจ้างที่มีการจ่ายให้แก่พนักงานในช่วงระยะเวลาการจ่ายโบนัส พนักงานสามารถดูรายละเอียดเกี่ยวกับแผนเอไอพีและสิทธิการได้รับโบนัสได้ในเอกสารเกี่ยวกับแผนเอไอพี ซึ่งมีรายละเอียดเรื่องข้อกำหนดและเงื่อนไขของแผนเอไอพีระบุไว้</p>
+                    <% } %>
+                    <% if('<$client.tEventCategories_Category_31.Code>'!='AIP-Yes') { %>
+                    <div id="<%= makeid() %>" data-toggle="popover" data-placement="top" data-content="AIP = No"></div>
+                    <p>Section not applicable to Employee</p>
+                    <% } %>
+                </div>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Reimbursement for Certain Expenses/การเบิกคืนสำหรับค่าใช้จ่ายต่างๆ</strong>
+                </div>
+                <p>The Employee must obtain prior approval from the Company for any expenses the Employee will incur on behalf of the Company in connection with the Employee’s duties. The Company shall reimburse the Employee for all documented, reasonable and necessary expenses which have received prior approval by the Company, subject to the Company’s applicable policies and procedures for employees.</p>
+                <p>พนักงานต้องขออนุมัติล่วงหน้าจากบริษัทสำหรับค่าใช้จ่ายใดๆ ที่พนักงานจะก่อให้มีขึ้นในนามของบริษัทและเกี่ยวเนื่องกับหน้าที่ของพนักงาน บริษัทจะจ่ายเงินคืนให้แก่พนักงานสำหรับค่าใช้จ่ายทั้งปวงที่มีหลักฐานเป็นหนังสือและเป็นค่าใช้จ่ายที่จำเป็นและมีจำนวนตามสมควร ซึ่งได้รับการอนุมัติล่วงหน้าจากบริษัท ทั้งนี้ โดยเป็นไปตามนโยบายและระเบียบที่ใช้บังคับกับพนักงาน</p>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Change of Position/Duties /การเปลี่ยนแปลงตำแหน่ง/หน้าที่</strong>
+                </div>
+                <p>To the extent allowed by law, the Employee hereby agrees and gives consent to the Company to change the work duties, position, or to transfer or assign the Employee to any other unit/department, working place, and/or other office of the Company, or company within the same group, with continuation of employment, for any reason whatsoever, including but not limited to Company restructuring, i.e., dissolution, restructuring, or merging units/departments. Any such change or transfer is at the discretion of the Company as it deems appropriate for its business requirements, taking account of the Employee’s health condition.</p>
+                <p>ตามที่กฎหมายอนุญาตให้สามารถทำได้ พนักงานตกลงและยินยอมให้บริษัทเปลี่ยนแปลงหน้าที่การทำงาน ตำแหน่ง หรือโยกย้าย หรือมอบหมายให้ไปทำงานในแผนกอื่นหรือ ณ สถานที่ทำงานอื่นของบริษัทหรือของบริษัทในเครือโดยนับอายุงานต่อเนื่อง รวมถึงการเปลี่ยนแปลงโครงสร้างในองค์กร ได้แก่การยุบหรือยกเลิกหน่วยงาน/แผนก การเพิ่มหรือรวมหน่วยงาน/แผนก การเปลี่ยนแปลงหรือโยกย้ายการทำงานดังกล่าวขึ้นอยู่กับดุลยพินิจของบริษัทตามที่บริษัทเห็นสมควรโดยพิจารณาจากความจำเป็นหรือความเหมาะสมในการดำเนินธุรกิจของบริษัทรวมถึงสุขภาพของพนักงาน</p>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Working Conditions/ เงื่อนไขการทำงาน</strong>
+                </div>
+                <p>8.1 <strong>Working Hours and Days/ วันและเวลาทำงาน</strong></p>
+                <p>The Employee’s normal working hours and working days shall be 09.00 hrs. – 18.00 hrs. Monday through Friday, with a rest period of one (1) hour per day. The Employee agrees and gives consent to the Company to change the Employee’s normal working hours and working days to meet business requirements.</p>
+                <p>วันและเวลาทำงานปกติของพนักงาน คือ วันจันทร์ ถึง วันศุกร์ เวลา 09.00 น. – 18.00 น. โดยมีเวลาพักวันละหนึ่ง (1) ชั่วโมง พนักงานตกลงและยินยอมให้บริษัทเปลี่ยนแปลงวันและเวลาทำงานปกติของพนักงานตามความจำเป็นและความเหมาะสมในการดำเนินธุรกิจของบริษัท</p>
+                <p>8.2 <strong>Work Rules and Regulations; Company Policies/ ระเบียบและข้อบังคับการทำงานและนโยบายของบริษัท</strong></p>
+                <p>Other working conditions shall be in compliance with the Company’s Work Rules and Regulations and policies, with which the Employee agrees to strictly comply. Should there be any conflict between provisions of the Work Rules and Regulations and policies, and this Agreement, this Agreement shall prevail. By signing this contract of employment, the Employee confirms that he has read, understood and accepts the Work Rules.</p>
+                <p>สภาพการจ้างงานอื่นๆ ให้เป็นไปตามระเบียบและข้อบังคับการทำงานของบริษัทและนโยบายของบริษัทซึ่งพนักงานตกลงปฏิบัติตามอย่างเคร่งครัด ในกรณีที่บทบัญญัติข้อใดในระเบียบและข้อบังคับการทำงานและนโยบายของบริษัทมีลักษณะขัดต่อสัญญาจ้างงานฉบับนี้ให้ถือสัญญาจ้างงานฉบับนี้เป็นเกณฑ์</p>
+                <p>
+                    8.3 <strong>Misrepresentation การแสดงข้อความอันเป็นเท็จ</strong>
+                </p>
+                <p>
+                    <u>The Employee shall at all times during and after the employment accurately represent the position, title,role description and duties, including in any dealings with the Company’s customers and suppliers and in                             the Employee’s resume, social media profiles and pages (including without limitation LinkedIn or Facebook profile), website, email signature and business card.</u>
+                </p>
+                <p>
+                    <u>พนักงาน ไม่ว่าในระยะเวลาใดๆ ระหว่างและภายหลังการจ้างงาน จะต้องแสดงซึ่งตำแหน่งงาน ขอบเขตของงาน และหน้าที่ความรับผิดชอบอย่างถูกต้อง รวมไปถึงในการตกลงใดๆ กับลูกค้าและซัพพลายเออร์ของบริษัท และในประวัติส่วนบุคคล หน้าข้อมูลผู้ใช้และเพจในสื่อสังคมออนไลน์ (ซึ่งรวมถึงแต่ไม่จำกัดเพียง ลิงค์อินหรือเฟซบุ๊ก) เว็บไซต์ ลายเซ็นอีเมล์ และนามบัตรธุรกิจของพนักงาน </u>
+                </p>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Intellectual Property/ทรัพย์สินทางปัญญา</strong>
+                </div>
+                <p>The Employee agrees and declares that all proprietary information, including without limitation trade secrets, know-how, inventions, ideas, designs, developments, source code, methods and processes, patents, copyrights, and all other intellectual property rights in connection therewith developed by or with the contribution of the Employee’s efforts during employment with the Company, shall be the sole property of the Company. Should any intellectual property vest in the Employee, the Employee shall assign and transfer to the Company all right, title and interest, free and clear of all liens and encumbrances in and to all Intellectual Property conceived, contributed to, or developed or reduced to practice by the Employee, at any time during employment either in the past or in the future, whether alone or jointly with others, and regardless of whether the results of efforts are at or away from the workplace), to the fullest extent permitted by law (hereafter “<strong>Assigned Intellectual Property</strong>”). The Assigned Intellectual Property shall be the sole property of the Company for the entire validity period of such Assigned Intellectual Property. To the extent such Intellectual Property is not transferable in any country, the Employee hereby grants the Company an irrevocable, worldwide, perpetual, royalty free, exclusive license to use, reproduce, sublicense and otherwise employ such Intellectual Property. The Employee shall execute all documents necessary to assign, transfer, or license such proprietary rights to the Company.</p>
+                <p>พนักงานตกลงยินยอมและแถลงว่า ข้อมูลที่ถือสิทธิได้ทั้งหมด รวมถึงความลับทางการค้า ความก้าวหน้าทางวิทยาการ (know-how) การประดิษฐ์ ความคิด แบบดีไซน์ สิ่งที่พัฒนาขึ้น รหัสต้นทาง (source code) วิธีการและกระบวนการ สิทธิบัตร ลิขสิทธิ์ รวมถึงสิทธิในทรัพย์สินทางปัญญาอื่นทั้งหมดที่เกี่ยวข้องกัน ซึ่งพัฒนาขึ้นโดยหรือด้วยการอุทิศความพยายามของพนักงานตลอดระยะเวลาที่ทำงานกับบริษัทจะตกเป็นทรัพย์สินของบริษัทแต่เพียงผู้เดียว หากพนักงานเป็นเจ้าของทรัพย์สินทางปัญญาใดๆ พนักงานขอโอนสิทธิและโอนให้บริษัท ซึ่งบรรดาสิทธิ กรรมสิทธิ์และผลประโยชน์ที่ปลอดและปราศจากสิทธิยึดหน่วงและภาระติดพันทั้งปวงในทรัพย์สินทางปัญญาทั้งปวงที่พนักงานประดิษฐ์คิดค้น ทำให้เกิดขึ้น หรือพัฒนาขึ้น หรือลดทอนลงเพื่อให้สามารถนำมาปฏิบัติได้ ไม่ว่าจะในเวลาใดก็ตามตลอดระยะเวลาที่ทำงานกับบริษัท ไม่ว่าในอดีตหรือในอนาคต ไม่ว่าโดยพนักงานแต่เพียงผู้เดียว หรือโดยร่วมกับผู้อื่น และไม่ว่าจะเป็นผลจากความพยายามของพนักงานทั้งในหรือนอกสถานที่ทำงาน อย่างเต็มที่เท่าที่กฎหมายอนุญาตไว้ (ต่อไปจะเรียกว่า “ทรัพย์สินทางปัญญาที่โอนสิทธิ”) ทั้งนี้ ทรัพย์สินทางปัญญาที่โอนสิทธิจะเป็นทรัพย์สินของบริษัทแต่ผู้เดียวตลอดระยะเวลาที่ทรัพย์สินทางปัญญาที่โอนสิทธิดังกล่าวมีความถูกต้องสมบูรณ์ พนักงานจะลงนามในเอกสารทั้งปวงที่จำเป็นต้องใช้ในการโอนสิทธิหรือโอนทรัพยสิทธิดังกล่าวให้บริษัท หากทรัพย์สินทางปัญญาไม่อาจโอนได้ในประเทศใด พนักงานอนุญาตให้บริษัทนำทรัพย์สินทางปัญญานั้นไปใช้ ทำซ้ำ อนุญาตให้ใช้ช่วง และจัดการโดยประการอื่น โดยเป็นการอนุญาตอันมิอาจเพิกถอนได้ มีผลใช้บังคับทั่วโลกและตลอดไป ปราศจากค่าสิทธิ และให้ไว้กับบริษัทแต่เพียงผู้เดียว พนักงานจะลงนามในเอกสารที่จำเป็นทั้งหมดเพื่อการมอบ การโอน หรือการอนุญาตในสิทธิที่ถือได้ให้แก่บริษัท</p>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Confidentiality and Non-Disclosure/การรักษาความลับและการห้ามเปิดเผยความลับ</strong>
+                </div>
+                <p>10.1 The Employee understands and acknowledges that employment with the Company is a relationship of confidence and trust. In the course of the employment, the Employee may have access to Confidential Information. The Employee agrees that all Confidential Information shall remain the sole property of the Company and/or its affiliates and/or each of their customers or suppliers, if any, as applicable, and the Employee shall make no claim thereto. The Employee shall, at all times during and after the end of the term of employment, for any reason keep strictly confidential all Confidential Information and not to disclose or reveal any Confidential Information to any person, corporation, or entity, without the prior written consent of the Company, unless required by law or court order. The Employee shall not use any Confidential Information for the benefit of the Employee or any person, corporation, or entity. In any event the Employee is legally required to disclose or reveal any Confidential Information, the Employee agrees to give the Company the maximum possible notice, in writing, prior to making such disclosure, and to thoroughly consult with the Company in preparing such disclosure, to the extent time allows.</p>
+                <p>พนักงานเข้าใจและรับทราบว่าการทำงานกับบริษัทเป็นความสัมพันธ์ทางความเชื่อถือและความเชื่อใจ ในการปฏิบัติหน้าที่ของพนักงานพนักงานอาจได้รับทราบถึงข้อมูลที่เป็นความลับ พนักงานตกลงว่าข้อมูลที่เป็นความลับทั้งหมดเป็นทรัพย์สินแต่เพียงผู้เดียวของบริษัทและ/หรือของบริษัทในเครือและ/หรือลูกค้าและ ซัพพลายเออร์ของบริษัทและ/หรือของบริษัทในเครือ และพนักงานจะไม่เรียกร้องอ้างสิทธิในข้อมูลที่เป็นความลับดังกล่าว ตลอดระยะเวลาการจ้างงานและหลังจากการจ้างงานสิ้นสุดลงไม่ว่าด้วยเหตุใดก็ตาม พนักงานจะเก็บรักษาข้อมูลที่เป็นความลับของบริษัทไว้เป็นความลับอย่างเคร่งครัดและจะไม่เปิดเผยหรือแพร่งพรายข้อมูลที่เป็นความลับใดๆ ให้บุคคล บริษัท ห้างร้าน หรือนิติบุคคลใดๆ ล่วงรู้โดยมิได้รับความยินยอมเป็นหนังสือจากบริษัทก่อน เว้นแต่ในกรณีที่กฎหมายกำหนดหรือโดยคำสั่งศาลให้พนักงานต้องเปิดเผยข้อมูลที่เป็นความลับ พนักงานจะไม่ใช้ข้อมูลที่เป็นความลับใดๆ เพื่อประโยชน์ส่วนตนหรือประโยชน์ของบุคคล บริษัท ห้างร้าน หรือนิติบุคคลใดๆ ในกรณีกฎหมายกำหนดให้พนักงานต้องเปิดเผยข้อมูลที่เป็นความลับใดๆ พนักงานจะต้องส่งคำบอกกล่าวเป็นหนังสือแจ้งให้บริษัททราบโดยเร็วที่สุดก่อนดำเนินการเปิดเผยข้อมูลนั้นและพนักงานจะต้องปรึกษาหารือกับบริษัทอย่างถี่ถ้วนเพื่อตระเตรียมการเปิดเผยข้อมูลที่เป็นความลับดังกล่าว</p>
+                <p>10.2 <strong>“Confidential Information”</strong> includes, but is not limited to, all proprietary information and other information of whatsoever nature relating to the Company’s business, sales, purchasing, manufacturing, business, and market plans and strategies; lists or information of customers, prospective customers, vendors, suppliers, and employees; financial information; computer systems; profit and loss statements, balance sheets, and any other financial reports; costing and selling price information; trade secrets, acquired by the Employee in the course of the employment, and/or developed by the Company or any of its employees or contractors; technical designs or specifications; source code, know-how; intellectual property; current activities and future plans relating to all or any matters of developments or documents; and other information which is confidential and proprietary. For the avoidance of doubt, Confidential Information includes any and all information developed by the Employee in the course of employment with the Company, as well as other information to which the Employee may have access in connection with such employment. Confidential Information also includes the confidential information of others with which the Company or any affiliate of the Company has a business relationship. </p>
+                <p>“ข้อมูลที่เป็นความลับ” รวมถึงแต่ไม่จำกัดเพียง ข้อมูลที่ถือสิทธิเป็นเจ้าของได้ทั้งหมดและข้อมูลอื่นไม่ว่าในลักษณะใดก็ตามที่เกี่ยวกับธุรกิจของบริษัท การขาย การจัดซื้อ การผลิต แผนและกลยุทธ์ทางธุรกิจ แผนและกลยุทธ์การตลาดของบริษัท รายชื่อหรือข้อมูลลูกค้า ผู้ที่มีแนวโน้มจะเป็นลูกค้า ผู้ขายสินค้า ซัพพลายเออร์และลูกจ้าง อีกทั้งข้อมูลทางการเงิน ระบบคอมพิวเตอร์ งบกำไรขาดทุน งบดุลและรายงานทางการเงินอื่นใด ข้อมูลต้นทุนและราคาขาย ความลับทางการค้า ซึ่งพนักงานได้รับในระหว่างที่ทำงานกับบริษัท และ/หรือซึ่งบริษัทหรือพนักงานของบริษัท หรือผู้รับจ้างของบริษัท ได้พัฒนาขึ้น การออกแบบด้านเทคนิค (technical designs) หรือข้อมูลที่เป็นคุณลักษณ์จำเพาะ (specifications) รหัสต้นทาง (source code) ความรู้ความก้าวหน้าทางวิทยาการ (know-how) ทรัพย์สินทางปัญญา แผนการดำเนินงานในปัจจุบันและในอนาคตที่เกี่ยวข้องกับการพัฒนาหรือเอกสารใดๆ ทั้งหมด รวมถึงข้อมูลอื่นใดที่เป็นความลับและถือสิทธิเป็นเจ้าของได้ เพื่อให้เกิดความกระจ่าง ข้อมูลที่เป็นความลับรวมถึงข้อมูลทุกประเภทที่จัดทำ/พัฒนาโดยพนักงานในระหว่างการทำงานกับบริษัท และข้อมูลอื่นๆ ที่เกี่ยวกับการทำงานที่พนักงานได้รับ/เข้าถึง ข้อมูลที่เป็นความลับนี้ยังรวมถึงข้อมูลที่เป็นความลับของบุคคลอื่นที่บริษัทหรือบริษัทในเครือของบริษัทมีปฏิสัมพันธ์ทางธุรกิจการค้า</p>
+                <p>10.3 Confidential Information shall not include any (a) information known generally to the public (other than as a result of unauthorized disclosure by the Employee), (b) information that became available from a third-party source and such source is not bound by a confidentiality agreement, or (c) any information not otherwise considered by the Company to be Confidential Information.</p>
+                <p>ข้อมูลที่เป็นความลับไม่รวมถึง (a) ข้อมูลใดๆ ซึ่งเป็นที่ทราบกันทั่วไปในหมู่สาธารณชน (ที่ไม่ได้เป็นผลมาจากการเปิดเผยข้อมูลโดยไม่ได้รับอนุญาตโดยพนักงาน) (b) ข้อมูลที่ได้รับจากแหล่งข้อมูลซึ่งเป็นบุคคลที่สามและแหล่งข้อมูลดังกล่าวไม่มีข้อผูกพันตามสัญญาการรักษาความลับ หรือ (c) ข้อมูลอื่นใดที่บริษัทไม่ถือว่าเป็นความลับ</p>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Non-Competition and Non-Solicitation/การห้ามการแข่งขันและการห้ามชักจูง</strong>
+                </div>
+                <div class="marked">
+                    <div id="<%= makeid() %>" data-toggle="popover" data-placement="top" data-content="Non-Compete Clause"></div>
+                    <% if ('<$client.tForWhomUserInfo.Non_Compete_Clause_Required>' == 'Y') { %>
+                    <p>11.1 The Employee agrees that, during the term of employment and for a period of 24 months thereafter, the Employee shall not directly or indirectly engage in, be employed by, manage, operate, render services for, carry on, or participate in (whether as owner, partner, consultant, employee, or otherwise, in any capacity whatsoever) any business which is in competition directly or indirectly with the business of the Company, except wherein the Employee, obtains prior written consent from the Company.</p>
+                    <p>พนักงานตกลงว่า ในระหว่างการจ้างงานกับบริษัทและภายในระยะเวลา 24 เดือนนับจากวันที่การจ้างงานสิ้นสุดลง พนักงานจะไม่ประกอบกิจการ เป็นลูกจ้าง บริหารจัดการ ประกอบการ ให้บริการ ดำเนินกิจการ หรือมีส่วนร่วม (ไม่ว่าในฐานะเจ้าของ หุ้นส่วน ที่ปรึกษา ลูกจ้าง หรือโดยประการอื่นไม่ว่าในฐานะใดก็ตาม) ไม่ว่าโดยตรงหรือโดยอ้อมในธุรกิจใดก็ตามอันเป็นการแข่งขันไม่ว่าโดยตรงหรือโดยอ้อมกับธุรกิจของบริษัท เว้นแต่พนักงานจะได้รับความยินยอมเป็นหนังสือจากบริษัทก่อน</p>
+                    <p>11.2 The Employee agrees that, during the term of engagement and for a period of 24 months thereafter, the Employee shall not directly or indirectly approach, solicit, or entice away or endeavor to solicit or entice away from the Company, either individually or on behalf of any other person, company, or entity, any director or employee of the Company to join the Employee or any other person, company, or entity as a partner, co-venturer, employee, investor, or otherwise; or any of the Company’s customers, prospective customers, vendors, or suppliers.</p>
+                    <p>พนักงานตกลงว่า ในระหว่างการจ้างงานกับบริษัทและภายในระยะเวลา 24 เดือนนับจากวันที่การจ้างงานสิ้นสุดลง พนักงานจะไม่ติดต่อทาบทาม ชักชวน หรือชักจูงหรือพยายามชักชวนหรือชักจูงกรรมการหรือลูกจ้างของบริษัท ไม่ว่าโดยตรงหรือโดยอ้อมให้ไปทำงานกับพนักงานหรือบุคคลอื่นใด บริษัท หรือนิติบุคคลอื่นใดในฐานะหุ้นส่วน ผู้ร่วมลงทุน ลูกจ้าง ผู้ลงทุน หรือโดยประการอื่น ไม่ว่าจะกระทำการเช่นนั้นเพื่อตนเองหรือแทนบุคคลอื่นใด บริษัท หรือนิติบุคคลอื่นใด หรือติดต่อทาบทาม ชักชวน หรือแย่งหรือพยายามชักชวนหรือแย่งลูกค้าของบริษัท ผู้ที่จะเป็นลูกค้าของบริษัท ผู้ขายสินค้าบริการให้บริษัท หรือซัพพลายเออร์ของบริษัท ไม่ว่าโดยตรงหรือโดยอ้อม ไม่ว่าจะกระทำการเช่นนั้นเพื่อตนเองหรือแทนบุคคลอื่นใด บริษัท หรือนิติบุคคลอื่นใด</p>
+                    <p>11.3 These obligations of non-competition and non-solicitation shall apply to all provinces in which the Company shall engage in activities in Thailand.</p>
+                    <p>หน้าที่เกี่ยวกับข้อห้ามค้าแข่งและข้อห้ามชักจูงเหล่านี้ให้มีผลบังคับใช้ในจังหวัดต่างๆ ในประเทศไทยที่บริษัทดำเนินธุรกิจ</p>
+                    <% } %>
+                    <% if ('<$client.tForWhomUserInfo.Non_Compete_Clause_Required>' != 'Y') { %>
+                    <p>Section not applicable to Employee</p>
+                    <% } %>
+                </div>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Compensation for Breach of Restrictive Covenants/การชดใช้ค่าเสียหาย</strong>
+                </div>
+                <p>The Employee hereby agrees and consents that in the event the Employee is in breach of Clauses 10 and 11 hereof, the Employee shall compensate the Company for the resulting loss and/or damages at a minimum amount of two times of the Employee’s last wage rate per violation. The Employee further agrees and consents that if it appears that the loss and/or damage suffered by the Company is greater in value than such minimum amount, the Employee shall compensate the Company for the actual amount of loss and/or damages.</p>
+                <p>พนักงานตกลงและยินยอมว่า หากพนักงานกระทำผิดสัญญาข้อ 10 และข้อ 11 พนักงานยินดีชดใช้ค่าเสียหายขั้นต่ำให้แก่บริษัทเป็นจำนวนเงิน 2 เท่าของค่าจ้างอัตราสุดท้ายที่พนักงานได้รับจากบริษัท ต่อการกระทำความผิดหนึ่งครั้ง อย่างไรก็ตามหากปรากฏว่าบริษัทได้รับความเสียหายมากกว่าจำนวนเงินที่กำหนดไว้ดังกล่าว พนักงานตกลงและยินยอมชดใช้ค่าเสียหายใด ๆ ที่เกิดขึ้นทั้งหมดให้แก่บริษัท</p>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Collection and Transfer of Personal Data/ การเก็บรวบรวมและการโอนย้ายข้อมูล</strong>
+                </div>
+                <p>During the employment period, the Company will collect various personal data of the Employee, some of which may be sensitive, such as health data which are required for managing human resources as well as for various other legitimate business purposes. The Company may have to transfer and share some of these data with other affiliated companies and service providers. The Company will take the necessary steps to provide a reasonable level of security of any personal data processed and transferred. However, some of these recipients are located in countries which have no laws on the protection of personal data or laws which provide a different level of protection.</p>
+                <p>ในระหว่างการจ้างงาน บริษัทจะเก็บรวบรวมข้อมูลส่วนบุคคลของพนักงานซึ่งจำเป็นต่อการจัดการทรัพยากรมนุษย์และเพื่อจุดประสงค์ทางธุรกิจอันชอบด้วยกฎหมายหลายประการ ซึ่งข้อมูลบางส่วนอาจเป็นข้อมูลที่อ่อนไหว เช่น ข้อมูลเกี่ยวกับสุขภาพ เป็นต้น บริษัทอาจโอนย้ายหรือแบ่งปันข้อมูลเหล่านี้กับบริษัทในเครือและผู้ให้บริการอื่นๆ บริษัทจะใช้มาตรการที่จำเป็นในการรักษาข้อมูลส่วนบุคคลในระดับที่เหมาะสมในการดำเนินการเกี่ยวกับข้อมูลส่วนบุคคลและการโอนย้ายข้อมูลดังกล่าว อย่างไรก็ตาม ผู้รับข้อมูลเหล่านี้บางส่วนอยู่ในประเทศที่ไม่มีกฎหมายเกี่ยวกับการปกป้องข้อมูลส่วนบุคคล (laws on the protection of personal data) หรือกฎหมายซึ่งกำหนดระดับความแตกต่างในการปกป้องข้อมูลดังกล่าว</p>
+                <p>As far as legally required, the Employee, by signing this Agreement, explicitly provides the Employee’s consent to the Company to the collection and transfer of the Employee’s data as described above. </p>
+                <p>เท่าที่กฎหมายกำหนด โดยการลงลายมือชื่อในสัญญานี้ พนักงานให้ความยินยอมกับบริษัทโดยชัดแจ้งในการเก็บรวมรวมและการโอนย้ายข้อมูลของพนักงาน ตามที่กล่าวไว้ข้างต้น</p>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>Ending the Employment Relationship/ การสิ้นสุดการจ้างงาน</strong>
+                </div>
+                <p>14.1 The Company may terminate the employment upon written notice to the Employee, of at least one pay period prior to termination. Notwithstanding the foregoing, the Company may terminate the employment without advance notice and with immediate effect, when applicable law so allows. The Company shall only pay severance as required by law.</p>
+                <p>บริษัทอาจบอกเลิกการจ้างงานโดยทำเป็นหนังสือบอกกล่าวล่วงหน้าอย่างน้อยหนึ่งงวดการจ่ายค่าจ้างให้แก่พนักงาน อย่างไรก็ตามบริษัทอาจบอกเลิกการจ้างพนักงานได้โดยทันทีโดยไม่ต้องบอกกล่าวล่วงหน้าถึงการเลิกจ้างในกรณีที่กฎหมายกำหนดว่าบริษัทไม่ต้องบอกกล่าวล่วงหน้า บริษัทจะจ่ายค่าชดเชยให้แก่พนักงานที่ถูกเลิกจ้างเฉพาะกรณีที่กฎหมายกำหนดให้บริษัทต้องจ่ายค่าชดเชยเท่านั้น</p>
+                <p>Upon termination of this Agreement for any reason whatsoever, if the Employee has been appointed as a director of the Company (or any of the Company’s subsidiaries or affiliates), the Employee shall, at the request of the Company, resign from their position as director and from any other offices or positions the Employee may hold in the Company, its subsidiaries or affiliates without claim for compensation.</p>
+                <p>เมื่อสัญญานี้ถูกบอกเลิกด้วยสาเหตุใดก็ตาม หากพนักงานได้รับการแต่งตั้งให้เป็นกรรมการของบริษัท (หรือบริษัทลูกหรือบริษัทในเครือใดๆ ของบริษัท) เมื่อบริษัทร้องขอ พนักงานจะต้องลาออกจากตำแหน่งกรรมการและตำแหน่งอื่นใดที่พนักงานอาจดำรงอยู่ในบริษัท บริษัทลูกหรือบริษัทในเครือของบริษัท โดยไม่เรียกร้องค่าชดเชยใดๆ</p>
+                <p>14.2 The Employee may resign upon written notice to the Company, given at least 30 days prior to resignation.</p>
+                <p>หากพนักงานมีความประสงค์จะลาออกพนักงานจะต้องยื่นใบลาออกไม่น้อยกว่า 30 วันล่วงหน้าก่อนวันที่ประสงค์จะลาออก</p>
+                <p>14.3 Prior to the end of employment for any reason, the Employee shall give full cooperation in transferring and handing over work, duties, and responsibilities to any person(s) so assigned by the Company; the Employee shall immediately deliver to the Company, all documents, records, information, mobile phones, laptop computers, tools, and accessories, as applicable, used for Company work, including all Company property and all Confidential Information.</p>
+                <p>ก่อนการจ้างงานสิ้นสุดลงไม่ว่าด้วยเหตุใดก็ตาม พนักงานจะให้ความร่วมมือกับบริษัทอย่างเต็มที่ในการส่งมอบงานซึ่งตนรับผิดชอบให้แก่ผู้ที่บริษัทมอบหมาย พนักงานจะคืนเอกสาร บันทึก ข้อมูล บัญชีรายชื่อลูกค้าและข้อมูลที่ติดต่อ โทรศัพท์มือถือ เครื่องคอมพิวเตอร์ชนิดพกพา (laptop computer) เครื่องมือ และสิ่งของต่างๆ ที่ใช้ในการทำงาน รวมถึงทรัพย์สินทั้งหลายทั้งปวงและข้อมูลความลับทั้งหมดให้แก่บริษัทโดยทันที</p>
+                <p>14.4 After the employment relationship ends, the Employee shall not represent that he or she is still employed by, engaged as a consultant for or in any other service relationship (collectively, an “Affiliation”) with the Company or any of its affiliates. This obligation includes ensuring that at all times after the employment ends, that the Employee’s resume, social media profiles and pages (including without limitation any LinkedIn or Facebook profile), website, email signature and business card shall not indicate that the Employee has any Affiliation with the Company or any affiliate of the Company. In addition, the Employee agrees that any statements that he or she makes on social media, in resumes or otherwise about the Employee’s activities on behalf of the Company and any affiliates shall be a reasonable and accurate summary.</p>
+                <p>ภายหลังจากที่การจ้างงานสิ้นสุดลง พนักงานจะต้องไม่แสดงตนว่าพนักงานยังคงเป็นลูกจ้าง หรือเป็นที่ปรึกษาสำหรับหรือในการให้บริการใด ๆ (เรียกรวมกันว่า “ความเกี่ยวข้อง”) แก่บริษัทหรือบริษัทในเครือของบริษัท ซึ่งหน้าที่นี้รวมถึงการทำให้ประวัติ ข้อมูลส่วนตัวและเพจในสื่อสังคมออนไลน์ (ซึ่งรวมถึงแต่ไม่จำกัดเพียง ข้อมูลส่วนตัวในลิงค์อินหรือเฟซบุ๊ก) เว็บไซต์ ลายเซ็นอีเมล์ และนามบัตรธุรกิจของพนักงาน ไม่แสดงว่าพนักงานมีความเกี่ยวข้องกับบริษัทหรือบริษัทในเครือของบริษัทตลอดระยะเวลาภายหลังจากที่การจ้างงานสิ้นสุดลง นอกจากนี้ พนักงานยังตกลงด้วยว่าข้อความใด ๆ ที่เกี่ยวกับการกระทำของพนักงานในนามของบริษัทหรือบริษัทในเครือใด ๆ ซึ่งพนักงานทำลงในสื่อสังคมออนไลน์ ประวัติ หรืออื่น ๆ จะมีเนื้อหาที่มีความเหมาะสมและถูกต้อง</p>
+            </li>
+            <li class="mb-4">
+                <div class="mb-2">
+                    <strong>General / ทั่วไป</strong>
+                </div>
+                <p>15.1 Any notice under the Agreement shall be in writing and shall be delivered by hand, private courier, e-mail, or fax, subject to evidence of delivery, in the case of the Employee, to the Employee’s last contact details on record with the Company or, in case of the Company, to the contact details herein, or of which the Employee is subsequently given notice.</p>
+                <p>คำบอกกล่าวตามสัญญานี้จะต้องทำเป็นหนังสือและส่งด้วยมือถึงตัวผู้รับ ส่งทางไปรษณีย์อากาศของบริษัทเอกชน จดหมายอิเล็กทรอนิกส์ หรือโทรสาร โดยให้มีหลักฐานในการส่ง ในกรณีส่งถึงพนักงาน ให้ส่งไปยังที่อยู่สุดท้ายของพนักงานที่บริษัทบันทึกไว้ ในกรณีส่งถึงบริษัท ให้ส่งไปยังที่อยู่ตามที่ระบุในหนังสือนี้หรือตามที่พนักงานจะได้รับแจ้งในภายหน้า</p>
+                <p>15.2 Should any provision of the Agreement be or become illegal, invalid, or unenforceable in any jurisdiction, such shall not affect the validity or enforceability in that jurisdiction of the remainder of the Agreement, nor shall it affect the validity or enforceability in other jurisdictions of that or any other provision of the Agreement.</p>
+                <p>หากสัญญานี้มีข้อสัญญาใดไม่ชอบด้วยกฎหมาย ไม่สมบูรณ์ หรือไม่อาจบังคับใช้ได้ในเขตอำนาจศาลใด ข้อสัญญานั้นจะไม่กระทบความสมบูรณ์และความสามารถใช้บังคับได้ในเขตอำนาจศาลนั้นของสัญญาส่วนที่เหลือ และจะไม่กระทบความสมบูรณ์และความสามารถใช้บังคับได้ในเขตอำนาจศาลอื่นของข้อสัญญานั้นหรือข้อสัญญาอื่นใดในสัญญาฉบับนี้</p>
+                <p>15.3 The terms of this Agreement replace any and all other agreements, understandings, or declarations between the Parties, whether written, oral, or otherwise, that were made prior to the date of this Agreement. The Agreement may only be modified in a subsequent writing signed by both Parties. Failure to enforce any of these clauses shall not function as a waiver of either Party’s rights hereunder or in law.</p>
+                <p>ข้อกำหนดของสัญญาฉบับนี้ใช้แทนสัญญา บันทึกความเข้าใจ และหนังสืออื่นทั้งปวงที่เคยทำไว้ระหว่างคู่สัญญา ไม่ว่าจะเป็นหนังสือ ด้วยวาจา หรือด้วยวิธีการอื่นใด ก่อนวันที่ทำสัญญานี้ อนึ่ง การเปลี่ยนแปลงแก้ไขสัญญาฉบับนี้จะต้องทำเป็นหนังสือลงลายมือชื่อโดยคู่สัญญาทั้งสองฝ่าย การไม่บังคับตามข้อสัญญาใดๆ เหล่านี้ไม่ถือเป็นการสละสิทธิใดๆ ที่คู่สัญญาฝ่ายหนึ่งไม่ว่าฝ่ายใดมีตามสัญญานี้หรือตามกฎหมาย</p>
+                <p>15.4 This Agreement is governed by and shall be construed in accordance with the laws of the Kingdom of Thailand, and the Parties hereto submit to the exclusive jurisdiction of the Thai Courts in the determination of any dispute arising hereunder.</p>
+                <p>สัญญาฉบับนี้อยู่ภายใต้บังคับและการตีความตามกฎหมายไทย และคู่สัญญาทั้งสองฝ่ายตกลงให้การตัดสินข้อพิพาทที่เกิดขึ้นจากสัญญานี้อยู่ในเขตอำนาจของศาลไทยแต่เพียงผู้เดียว</p>
+            </li>
+        </ol>
+        <p><strong>IN WITNESS WHEREOF,</strong> the Parties hereto have executed this Agreement as of the date first set forth above.</p>
+        <p><strong>เพื่อเป็นหลักฐานในการนี้</strong> คู่สัญญาทั้งสองฝ่ายจึงได้ลงลายมือชื่อเพื่อจัดทำสัญญานี้ในวันที่ที่ระบุข้างต้น</p>
+        <p class="text-justify mb-4"><mark><%= signatory %></mark><br>For and on behalf of the Company/<strong>เพื่อและในนามของบริษัท</strong></p>
+        <p class="hide"></p>
+    </template>
+    
+    <div id="offer-letter-body" class="row">
+        <div class="col-sm-offset-2 col-sm-8">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+    </div>
+    <template id="fragment-2">
+        <p class="ml-lg-4">
+            <strong>Employee:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete2">
+                <div id="markup2"></div>
+            </div>
+            <div id="complete2"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature.HTML>
+        </div>
+        <div class="col-sm-1 pt-2 text-sm-right">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name.HTML>
+        </div>
+    </div>
+
+    <template id="fragment-3">
+        <p class="ml-lg-4">
+            <strong>Employer:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete3">
+                <div id="markup3"></div>
+            </div>
+            <div id="complete3"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature2.HTML>
+        </div>
+        <div class="col-sm-1 pt-2 text-sm-right">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date2.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name2.HTML>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>     
+    <$client.env.FormField.hidden_pg3.HTML>     
+    <$client.env.FormField.hidden_pg4.HTML>     
+    <$client.env.formfield.EmployeeStamp.html>
+    <$client.env.formfield.SignatoryStamp.html>
+    <$client.env.formfield.RecruiterStamp.html>
+    <$client.env.formfield.SignerMan.html>
+    <$client.env.formfield.CoordinatorStamp.html>
+    <$client.env.formfield.Current_Date.html>
+    <$client.env.FormField.Repayment_Agreement_Eligible.html>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Thailand_Employment_Agreement/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Thailand_Employment_Agreement/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Thailand_Employment_Agreement/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.getElementById('italy-offer-letter');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.signDate, .dateField').parent().find('input').prop('disabled', true);
+});
+
+const data = {
+    'Current_Date': document.getElementById('Current_Date').value,
+    'signatory': ''
+};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+// signature section clearing on task reopen variables
+const isCoordinator = <$client.env.eval((client.role.rc_hrcoordinators==1)?'true':'false')>;
+const isRecruiter = <$client.env.eval((client.tEventManagers_16.UserGuid==account.userguid)?'true':'false')>;
+const isSignatory = <$client.env.eval((client.role.rc_thailand_company_signatory>0)?'true':'false')>;
+const isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const EmployeeStamp = "<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>"; 
+if (isSignatory) {
+    $('#SignerMan').val("<$client.account.username_first> <$client.account.username>");
+}
+</script>

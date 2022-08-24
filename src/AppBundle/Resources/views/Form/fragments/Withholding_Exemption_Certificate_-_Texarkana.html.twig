@@ -1,0 +1,253 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a1_EmployeeFullName.prompt>
+        <$client.env.FormField.a2_SSN.prompt>
+        <$client.env.FormField.a3_EmployeeAddress.prompt>
+        <$client.env.FormField.a4_City.prompt>
+        <$client.env.FormField.a5_State.prompt>
+        <$client.env.FormField.a6_Zip.prompt>
+        <$client.env.FormField.a7_TexarkanaExemption.prompt>
+        <$client.env.FormField.a7_TexarkanaExemption2.prompt>
+        <$client.env.FormField.a8_TexarkanaExemptionDate.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="box mb-30">
+        <div class="row">
+            <div class="col-lg-12">
+                <h5>
+                    <strong>FORM AR4EC(TX)</strong>
+                </h5>
+            </div>
+        </div>
+        <div class="row mb-20">
+            <div class="col-lg-12">
+                <h5 class="text-center">
+                    <strong>State of Arkansas</strong>
+                </h5>
+                <h5 class="text-center">
+                    <strong>Texarkana Employee's Withholding Exemption Certificate</strong>
+                </h5>
+            </div>
+        </div>
+        <div class="row mb-10">
+            <div class="col-lg-2 col-sm-6 col-xs-12">
+                <label for="full-name" class="control-label">Employee Full Name</label>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <$client.env.FormField.a1_EmployeeFullName.HTML>
+            </div>
+            <div class="col-lg-1 col-sm-6 col-xs-12">
+                <label for="ssn" class="control-label">SSN</label>
+            </div>
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <$client.env.FormField.a2_SSN.HTML>
+            </div>
+        </div>
+        <div class="row mb-10">
+            <div class="col-lg-2 col-sm-6 col-xs-12">
+                <label for="employee-address" class="control-label">Employee Address</label>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <$client.env.FormField.a3_EmployeeAddress.HTML>
+            </div>
+            <div class="col-lg-1 col-sm-6 col-xs-12">
+                <label for="city" class="control-label">City</label>
+            </div>
+            <div class="col-lg-1 col-sm-6 col-xs-12">
+                <$client.env.FormField.a4_City.HTML>
+            </div>
+            <div class="col-lg-1 col-sm-6 col-xs-12">
+                <label for="state" class="control-label">State</label>
+            </div>
+            <div class="col-lg-1 col-sm-6 col-xs-12">
+                <$client.env.FormField.a5_State.HTML>
+            </div>
+            <div class="col-lg-1 col-sm-6 col-xs-12">
+                <label for="zip" class="control-label">Zip</label>
+            </div>
+            <div class="col-lg-1 col-sm-6 col-xs-12">
+                <$client.env.FormField.a6_Zip.HTML>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="text-center">
+                    <strong>If Texarkana Exemption is Claimed for Arkansas Income Tax Withholding, Check One of the Following:</strong>
+                </p>
+            </div>
+        </div>
+        <div class="row mb-10">
+            <div class="col-lg-offset-2 col-sm-offset-1 col-lg-6 col-sm-6 col-xs-10">
+                Texarkana, ARKANSAS (resident within city limits only)
+            </div>
+            <div class="col-lg-1 col-sm-2 col-xs-2">
+                <$client.env.FormField.a7_TexarkanaExemption.HTML>
+            </div>
+        </div>
+        <div class="row mb-10">
+            <div class="col-lg-offset-2 col-sm-offset-1 col-lg-6 col-sm-6 col-xs-10">
+                Texarkana, TEXAS (resident within city limits only)
+            </div>
+            <div class="col-lg-1 col-sm-2 col-xs-2">
+                <$client.env.FormField.a7_TexarkanaExemption2.HTML>
+            </div>
+        </div>
+        <div class="row mb-10">
+            <div class="col-lg-offset-2 col-sm-offset-1 col-lg-5 col-sm-6 col-xs-12">
+                <label class="control-label">The above information is correct as of this date:</label>
+            </div>
+            <div class="col-lg-3 col-sm-4 col-xs-12">
+                <$client.env.FormField.a8_TexarkanaExemptionDate.HTML>
+            </div>
+        </div>
+        <div class="row mb-10">
+            <div class="col-lg-offset-2 col-sm-offset-1 col-lg-10 col-sm-11 col-xs-12">
+                <p>
+                    Under penalty of perjury, I certify that the above information is true and if there is a change in my status, I will notify my employer within seven (7) days after the change occurs.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <$client.env.FormField.Signer.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-30">
+        <div class="col-lg-12">
+            <div class="narrow-wrapper center-block">
+                <p class="text-center">
+                    INSTRUCTIONS FOR THE TEXARKANA EXEMPTION CERTIFICATE
+                </p>
+                <p>
+                    Any employee who qualifies for the exemption should check the appropriate box then sign and date the form.
+                </p>
+                <p>
+                    The place of physical residency should be placed in the employee address field. A post office box or route number is not acceptable.
+                </p>
+                <p>
+                    It is the responsibility of the employee to notify the employer within seven (7) days after any change to the exemption claimed.
+                </p>
+                <p>
+                    The completed certificate should be maintained by the employer.
+                </p>
+                <p>
+                    The employer does not have the authority to cease withholding Arkansas Income Tax unless the employee qualifies for, and checks, one the exemptions above.
+                </p>
+                <p>
+                    Employees exempt from Arkansas Withholding, who would be required to file a return without the exemption, must still file an Arkansas Individual Income Tax return.
+                </p>
+                <p>
+                    If you have any questions regarding the Texarkana exemption please contact the Withholding Tax Department at 501-682-7290.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Withholding_Exemption_Certificate_-_Texarkana/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).ready(function() {
+    // SERVICES-40716 | jjucutan | add keyboard sign
+    angular.element('[ng-controller="SignerController"]')
+        .on('click', '[id^="btnSigTypedSign"]', function() {
+            setTimeout(function() {
+                angular.element('#sv').val(angular.element('[ng-bind="signatureStatement"]').text());
+            }, 1000);
+        });
+    angular.element('#divLoader').hide();
+});
+</script>
+<$include;/main/RedCarpet/FormTemplates/Withholding_Exemption_Certificate_-_Texarkana/WIECT_Includes>

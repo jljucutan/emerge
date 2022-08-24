@@ -1,0 +1,254 @@
+<!--/////////////////////Page Loader ///////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- /////////////////////E-Signature Box ////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;"">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <br>
+        <div class="row">
+        <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> 
+        <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width:99%">&nbsp;</div>
+        </div> 
+        <div class="row">
+        <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','over','modal','sv');xbObj('eSignature1').value='';"> 
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">        
+</div>
+</div>    
+</div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.Date.prompt>
+<$client.env.FormField.fullName.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+        <!-- Replace With eForm Specific HTML -->
+
+
+
+
+<!--////////////////////Structure here /////////////////////////// -->
+
+
+
+<div class="container-fluid"> 
+<div class="form-group"> 
+<div id="DefaultFont">
+<div id='incomplete'>
+<div class="row">
+    <div class="col-xs-12" align="middle"><img class="img-responsive" src="img/logo.png" /></div>
+</div>
+ <br>
+<br>
+<div class="row">
+    <div class="col-xs-12 col-md-3"><$client.env.eval(date.now('%B %d, %Y'))></div>
+    <div class="hidden-xs hidden-sm col-md-9">&nbsp;</div>
+</div>
+<br>
+<div class="row">
+    <div class="col-xs-12 col-md-3">Dear <$client.tForWhomUserInfo.First_Name>,</div>
+    <div class="hidden-xs hidden-sm col-md-9">&nbsp;</div>
+</div>
+<br>
+<p>This letter is to document the elements of your offer of temporary employment with Turner Broadcasting System, Inc. (the “Company”), a subsidiary of Warner Media, LLC (“WarnerMedia”)). The Company has offered to employ you as <$client.tForWhomUserInfo.T_JOB_POST_TITL> with a targeted start date of <$client.env.eval(Date.Format(Date.parse(client.tEventDates_2.value),'%B %d, %Y'))> and expected end date of <$client.env.eval(Date.Format(Date.parse(client.tForWhomUserInfo.Expected_End_Date),'%B %d, %Y'))>, although it may end earlier or later, in the Company’s sole discretion, based upon business needs your performance or other relevant factors as determined by the Company. At the end of this period, because you are engaged as a temporary employee, you will not be eligible for severance pay under the Company’s severance policy, nor are you guaranteed a full-time, regular position.</p> 
+
+<p id="p1">
+You will be compensated at the hourly rate of $<$client.tForWhomUserInfo.Hourly_Rate>. You will receive your compensation payments in arrears based on a bi-weekly pay period after the submission and approval of your hours worked within the pay period. You are not eligible for overtime compensation. And, all payments are subject to all withholdings and deductions required by applicable law.</p>
+
+<p id="p2">
+    You will be compensated at the hourly rate of $<$client.tForWhomUserInfo.Hourly_Rate>. You will receive your compensation payments in arrears based on a bi-weekly pay period after the submission and approval of your hours worked within the pay period. You are eligible for overtime compensation. And, all payments are subject to all withholdings and deductions required by applicable law.
+</p>
+
+<p id="p3">
+You will be compensated at the fixed, daily rate of $<$client.tForWhomUserInfo.Daily_Rate>. You will receive your compensation payments in arrears based on a bi-weekly pay period after the submission and approval of your hours worked within the pay period. You are not eligible for overtime compensation. And, all payments are subject to all withholdings and deductions required by applicable law. </p>
+
+<p>During the interview process you consented to a background check. All offers of employment from the Company are contingent upon the acceptable results of that check. You will not be able to begin work until the Company is satisfied with the results of your background check.</p>
+
+<p>This offer is contingent on your being able to comply with US immigration / employment laws. Therefore, on your first day of work you will need to bring with you the documents required to complete your I-9 forms.</p>
+
+<p>This letter is not an employment contract and if you accept this offer, your employment will be on an “at will” basis, in accordance with Company policies. This letter supersedes all prior offers and correspondence and is valid until <$client.env.eval(Date.Format(Date.parse(client.tForWhomUserInfo.Offer_Expiration_Date),'%B %d, %Y'))>. Please contact us as soon as possible if your understanding of this offer differs in any way from the information in this letter. 
+
+</p>
+
+<p>We look forward to your accepting this offer and joining our Company! Please do not hesitate to call if you have any questions.</p>
+
+<p>Sincerely,<br><br>Turner Human Resources</p>
+</div>
+<br>
+
+
+<!--incomplete DYNAMIC stuff ends-->
+
+    <div id='complete'>
+
+    </div>
+
+<div class="row">
+<div class="col-sm-12 col-md-6 TextBoxInline">Employee Signature<$client.env.FormField.Signature.HTML></div>
+<div class="col-sm-12 col-md-6 TextBoxInline"><$client.env.FormField.Date.HTML></div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">&nbsp;<em>Via electronic delivery</em></div>
+</div>
+
+<div class="row">
+<div class="col-sm-12"><$client.env.FormField.SignatureVerification.HTML></div>
+</div>
+
+
+<div id="offerprint"><$client.env.FormButtons>&nbsp;<button id="btn-print" type="button"
+class="lifesuite__button primary" onclick="javascript:OfferLetterPrint();"><i class="fa fa-print"></i>&nbsp;Print</button></div>
+
+                      
+   
+<div style="display: none">
+<$client.env.formfield.hidden_pg1.html>
+</div>
+    
+<div style='display:none;'>
+<$client.env.FormField.fullName.HTML>
+</div>
+
+
+
+</div>
+</div>
+</div>
+
+
+
+
+
+<SCRIPT>
+//Show populated form if already completed
+var strCompletedForm = FORM_COMPLETED;
+if (strCompletedForm != "")
+{
+    showCompleted();
+}
+</SCRIPT>
+<script language="javascript">
+function OfferLetterPrint()
+{
+    if(SubmitCallback(document.forms['frmForm'])==false) {return false;}
+    window.print();
+}
+</script>
+
+
+<script>
+
+
+var compRate = '<$client.tForWhomUserInfo.COMPRATE>';
+var flsaStatus = '<$client.tForWhomUserInfo.FLSA_Status>';
+if ( flsaStatus == 'E' && parseInt(compRate) > 0 ){
+    document.getElementById('p1').style.display = 'block';
+}
+if ( flsaStatus == 'E' && parseInt(compRate) > 0 ){
+    document.getElementById('p2').style.display = 'block';
+}
+if ( parseInt(compRate) == 0 ){
+    document.getElementById('p3').style.display = 'block';
+}
+
+
+</script>
+<script>
+
+$(document).ready(function() {
+
+setTimeout(function() {
+  $('#buttonCancel').after($('#btn-print'));
+},200);
+});
+</script>
+
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       //document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+//Fixes to modal issue when viewing in mobile devices 
+
+$( window ).resize(function() { 
+
+document.getElementById('over').style.width=''; 
+
+}); 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+</SCRIPT>

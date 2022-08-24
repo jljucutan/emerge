@@ -1,0 +1,1530 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+
+<div class="modal" id="modal" style="display:none;"> 
+
+  <div class="modal-content"> 
+
+   <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+
+   <p style="fontweight:normal;padding:0px"> 
+
+     <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+
+   </p> 
+
+   <br> 
+
+   <div class="row"> 
+
+     <div class="lifesuite__clearfix"> 
+
+      <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+
+    </div> 
+
+  </div> 
+
+  <div class="row"> 
+
+   <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullname','modal','over','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+    <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}"> &nbsp;
+    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+  </div>
+
+</div> 
+
+</div> 
+
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+
+  showScreen('over') 
+
+</SCRIPT> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+
+  <div class="fb-spinner"> 
+
+   <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+
+ </div> 
+
+</div> 
+
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form''> 
+
+  <div style="display:none;"> 
+
+    <$client.env.FormField.Form_Name.prompt> 
+
+    <$client.env.FormField.Form_Name.HTML> 
+
+    <$client.env.FormField.Form_Type.prompt> 
+
+    <$client.env.FormField.Form_Type.HTML> 
+
+    <$client.env.FormField.Form_Owner.prompt> 
+
+    <$client.env.FormField.Form_Owner.HTML> 
+
+    <$client.env.FormField.Form_CreateDate.prompt> 
+
+    <$client.env.FormField.Form_CreateDate.HTML> 
+
+    <$client.env.FormField.Form_Completed.prompt> 
+
+    <$client.env.FormField.Form_Completed.HTML> 
+
+    <$client.env.FormField.Form_Delivered.prompt> 
+
+    <$client.env.FormField.Form_Delivered.HTML> 
+
+    <$client.env.FormField.Form_TaskId.prompt> 
+
+    <$client.env.FormField.Form_TaskId.HTML> 
+
+    <$client.env.FormField.display_version.HTML> 
+
+
+
+    <$client.env.FormField.AdditionalWithholding.prompt>
+    <$client.env.FormField.Address.prompt>
+    <$client.env.FormField.Allowances.prompt>
+    <$client.env.FormField.CityStateZip.prompt>
+    <$client.env.FormField.DateSigned.prompt>
+    <$client.env.FormField.CATaxID.prompt>
+    <$client.env.FormField.EmployerAddress.prompt>
+    <$client.env.FormField.EmployerName.prompt>
+    <$client.env.FormField.Exempt.prompt>
+    <$client.env.FormField.FilingStatus.prompt>
+    <$client.env.FormField.FullName.prompt>
+    <$client.env.FormField.SSN.prompt>
+    <$client.env.FormField.Signature.prompt>
+    <$client.env.FormField.WorksheetA_A.prompt>
+    <$client.env.FormField.WorksheetA_Allowances.prompt>
+    <$client.env.FormField.WorksheetA_B.prompt>
+    <$client.env.FormField.WorksheetA_C.prompt>
+    <$client.env.FormField.WorksheetA_D.prompt>
+    <$client.env.FormField.WorksheetA_E.prompt>
+    <$client.env.FormField.WorksheetA_F.prompt>
+    <$client.env.FormField.WorksheetB_1.prompt>
+    <$client.env.FormField.WorksheetB_10.prompt>
+    <$client.env.FormField.WorksheetB_11.prompt>
+    <$client.env.FormField.WorksheetB_2.prompt>
+    <$client.env.FormField.WorksheetB_3.prompt>
+    <$client.env.FormField.WorksheetB_4.prompt>
+    <$client.env.FormField.WorksheetB_5.prompt>
+    <$client.env.FormField.WorksheetB_6.prompt>
+    <$client.env.FormField.WorksheetB_7.prompt>
+    <$client.env.FormField.WorksheetB_8.prompt>
+    <$client.env.FormField.WorksheetB_9.prompt>
+    <$client.env.FormField.WorksheetB_Allowances.prompt>
+    <$client.env.FormField.WorksheetC_1.prompt>
+    <$client.env.FormField.WorksheetC_10.prompt>
+    <$client.env.FormField.WorksheetC_11.prompt>
+    <$client.env.FormField.WorksheetC_12.prompt>
+    <$client.env.FormField.WorksheetC_13.prompt>
+    <$client.env.FormField.WorksheetC_14.prompt>
+    <$client.env.FormField.WorksheetC_15.prompt>
+    <$client.env.FormField.WorksheetC_2.prompt>
+    <$client.env.FormField.WorksheetC_3.prompt>
+    <$client.env.FormField.WorksheetC_4.prompt>
+    <$client.env.FormField.WorksheetC_5.prompt>
+    <$client.env.FormField.WorksheetC_6.prompt>
+    <$client.env.FormField.WorksheetC_7.prompt>
+    <$client.env.FormField.WorksheetC_8.prompt>
+    <$client.env.FormField.WorksheetC_9.prompt>
+    <$client.env.FormField.Total_Allowances.prompt>
+
+  </div> 
+
+  <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+
+  
+
+  <div class="container-fluid">  
+
+    <div class="form-group">  
+
+
+
+      <div class="row ">
+        <div class="col-lg-8 col-md-8 col-xs-12 logo padding-mute-x">
+          <img src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_CA/CA_logo.png>"  style="max-width: 200px;">
+       </div>
+        <div class="col-lg-1 col-md-1 col-xs-12">
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-12 padding-mute-x">
+          &nbsp;
+          <!-- <p class="text-center bordered">
+            This form can be used to manually compute your withholding allowances, or you can electronically compute them at <a href="http://www.taxes.ca.gov/de4.pdf" target="_blank"><span class="bold">www.taxes.ca.gov/de4.pdf.</span></a>
+          </p> -->
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <p class="bold header-font text-center">EMPLOYEE&rsquo;S WITHHOLDING ALLOWANCE CERTIFICATE</p>
+      </div>
+      <div class="row">
+        <p>Complete this form so that your employer can withhold the correct California state income tax from your paycheck.</p>
+      </div>      
+      <!--starting here-->
+      <div style="border-left: 1px solid #000000; border-right: 1px solid #000000;">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12 table-borders-1 bordered-color bordered-style padding-y table-height-1" style="border-width: 1px 0px 0px 0px;">
+          <span style="font-weight: bold;">Enter Personal Information</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-xs-12 table-borders-1 bordered-color bordered-style padding-y table-height-1" style="border-width: 1px 1px 0px 0px; height: 65px;">
+          <p style="margin-bottom:0px;">First, Middle, Last Name</p>
+          <$client.env.FormField.FullName.HTML>
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-xs-12 table-borders-1 bordered-color bordered-style padding-y table-height-1" style="border-width: 1px 0px 0px 0px; height: 65px;">
+          <p style="margin-bottom:0px;">Social Security Number</p>
+          <$client.env.FormField.SSN.HTML>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 col-md-12 col-xs-12" style="padding-right: 0px; padding-left: 0px;">
+          <div class="col-lg-12 col-md-12 col-xs-12 table-borders-1 bordered-color bordered-style padding-y table-height-1" style="border-width: 1px 1px 0px 0px; height: 65px;">
+            <p style="margin-bottom:0px;">Address</p>
+            <$client.env.FormField.Address.HTML>
+          </div>
+          <div class="col-lg-12 col-md-12 col-xs-12 table-borders-1 bordered-color bordered-style padding-y table-height-1" style="border-width: 1px 1px 1px 0px; height: 65px;">
+            <p style="margin-bottom:0px;">City, State, and ZIP Code</p>
+            <$client.env.FormField.CityStateZip.HTML>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-xs-12" style="padding-right: 0px; padding-left: 0px;">
+          <div class="col-lg-12 col-md-12 col-xs-12 table-borders-1-end bordered-color bordered-style padding-y table-height-1 table-height-2" style="border-width: 1px 0px 1px 0px; height: 130px;">
+            <p class="padding-bottom" style="margin-bottom:0px;">Filing Status</p>    
+            <$client.env.FormField.FilingStatus.HTML>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!--end here-->
+      <div class="row"> 
+        <div class="col-lg-12 col-md-12 col-xs-12 padding-y-middle padding-mute-right padding-mute-left">
+          <table><tr><td valign="top">1.</td><td>Use Worksheet A for Regular Withholding allowances. Use other worksheets on the following pages as applicable.</td></tr></table>
+        </div>
+        <!-- <div class="col-lg-3 col-md-6 col-xs-12 padding-top max-width float-right lifesuite__clearfix" style="direction: rtl;">
+          <$client.env.FormField.Total_Allowances.HTML>
+        </div> -->
+      </div>
+      <div class="row"> 
+        <div class="col-lg-9 col-md-6 col-xs-12 padding-y-middle padding-mute-right padding-mute-left">
+          <table><tr><td valign="top" style="padding-left: 50px;">1a.</td><td>Number of Regular Withholding Allowances (Worksheet A)</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-6 col-xs-12 padding-top max-width float-right lifesuite__clearfix" style="direction: rtl;">
+          <$client.env.FormField.WorksheetA_Allowances.HTML>
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="col-lg-9 col-md-6 col-xs-12 padding-y-middle padding-mute-right padding-mute-left">
+          <table><tr><td valign="top" style="padding-left: 50px;">1b.</td><td>Number of allowances from the Estimated Deductions (Worksheet B, if applicable.)</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-6 col-xs-12 padding-top max-width float-right lifesuite__clearfix" style="direction: rtl;">
+          <$client.env.FormField.WorksheetB_Allowances.HTML>
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="col-lg-9 col-md-6 col-xs-12 padding-y-middle padding-mute-right padding-mute-left">
+          <table><tr><td valign="top" style="padding-left: 50px;">1c.</td><td>Total Number of Allowances you are claiming</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-6 col-xs-12 padding-top max-width float-right lifesuite__clearfix" style="direction: rtl;">
+          <$client.env.FormField.Total_Allowances.HTML>
+        </div>
+      </div>
+<!--       <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 padding-mute-right padding-mute-left " style="padding-top: 20px;">
+          <table><tr><td style="width: 10px"></td><td>Number of allowances from the Estimated Deductions, Worksheet&nbsp;B</td></tr></table>
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12 padding-y padding-mute-x max-width">
+          <$client.env.FormField.WorksheetB_Allowances.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 padding-mute-right padding-mute-left"><br/>
+          <table><tr><td class="indent-1"></td><td>Total Number of Allowances (A + B) when using the California <br/>Withholding Schedules for 2019
+          </td></tr></table>
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-12 padding-y padding-mute-x max-width float-right lifesuite__clearfix">
+          <$client.env.FormField.Allowances.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-12 text-center" style="margin-bottom: -10px;">
+          OR
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-lg-9 col-md-6 col-xs-12 padding-y-middle padding-mute-right padding-mute-left">
+          <table><tr><td valign="top">2.</td><td>Additional amount, if any, you want withheld each pay period (if employer agrees), <Strong>(Worksheet C)</strong><br>OR<br><Strong>Exemption from Withholding</Strong></td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-6 col-xs-12 padding-top max-width float-right lifesuite__clearfix" style="direction: rtl;">
+          <$client.env.FormField.AdditionalWithholding.HTML>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12">
+          <Strong>Exemption from Withholding</Strong>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-lg-9 col-md-6 col-xs-12 padding-y-middle padding-mute-right padding-mute-left">
+          <table><tr><td valign="top">3.</td><td>I claim exemption from withholding for 2022, and I certify I meet both of the conditions for exemption. <br> OR </td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-6 col-xs-12 padding-top max-width float-right lifesuite__clearfix" style="direction: rtl;">
+          <$client.env.FormField.Exempt_From_Withholding.HTML>
+          <!-- (Check box here) -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-6 col-xs-12 padding-y-middle padding-mute-right padding-mute-left">
+          <table><tr><td valign="top">4.</td><td> I certify under penalty of perjury that I am <Strong>not subject</Strong> to California withholding. I meet the conditions set forth under the Service Member Civil Relief Act, as amended by the Military Spouses Residency Relief Act and the Veterans Benefits and Transition Act of 2018.</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-6 col-xs-12 padding-top max-width float-right lifesuite__clearfix" style="direction: rtl;">
+          <$client.env.FormField.Exempt.HTML>
+          
+        </div>
+      </div>      
+      <div class="row padding-y" style="border-top: 1px solid black; padding-bottom: 10px;">
+        <p>Under the penalties of perjury, I certify that the number of withholding allowances claimed on this certificate does not exceed the number to which I am entitled or, if claiming exemption from withholding, that I am entitled to claim the exempt status.</p>
+      </div>
+      <div class="row padding-y">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 padding-mute-left Sinerfield">
+          <$client.env.FormField.Signer.HTML>
+        </div>
+      </div>
+
+      <div class="row bordered">
+        <div class="col-lg-6 table-height-1 padding-y" style="border-right: 1px solid black;">
+          <p style="margin-bottom:0px;"><Strong>Employer’s Section:</Strong> Employer's Name and Address</p>
+          <$client.env.FormField.EmployerName.HTML>
+          <$client.env.FormField.EmployerAddress.HTML>
+        </div>
+        <div class="col-lg-6">
+          <p style="margin-bottom:0px;">California Employer Payroll Tax Account Number</p>
+          <$client.env.FormField.CATaxID.HTML>
+        </div>
+      </div>
+<!--       <div class="row"> 
+        <div class="col-lg-5 col-md-5 col-xs-4 padding-mute-right">
+          <hr class=" cut-here">
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-4 text-center padding-y-middle">
+          <p>cut here</p>
+        </div>
+        <div class="col-lg-5 col-md-5 col-xs-4 padding-mute-left">
+          <hr class=" cut-here">
+        </div>
+      </div>
+      <div class="row">
+        <p>Give the top portion of this page to your employer and keep the remainder for your records.</p>
+      </div>
+      <div class="row bordered-top padding-top">
+        <p class="header-font">YOUR CALIFORNIA PERSONAL INCOME <span class="header-font bold">TAX MAY BE UNDERWITHHELD</span> IF YOU DO NOT FILE THIS DE 4 FORM.</p>
+      </div>
+      <div class="row bordered-bottom">
+        <p class="bold italic">IF YOU RELY ON THE FEDERAL <a href="https://www.irs.gov/" target="_blank"><span class="bold" style="font-size: 12px;">FORM W-4</span></a> FOR YOUR CALIFORNIA WITHHOLDING ALLOWANCES, YOUR CALIFORNIA STATE PERSONAL INCOME TAX MAY BE UNDERWITHHELD AND YOU MAY OWE MONEY AT THE END OF THE YEAR.</p>
+      </div> -->
+      <div class="row padding-top">
+        <div class="col-lg-6 col-md-12 col-xs-12 padding-mute-left">
+          <p><span class="bold">PURPOSE:</span>  This certificate, DE 4, is for <span class="bold">California Personal Income Tax (PIT) withholding</span> purposes only. The DE 4 is used to compute the amount of taxes to be withheld from your wages, by your employer, to accurately reflect your state tax withholding obligation.</p>
+          <p>
+            Beginning January 1, 2020, <em>Employee’s Withholding Allowance Certificate</em> (Form W-4) from the Internal Revenue Service (IRS) will be used for federal income tax withholding <Strong>only</Strong>. You must file the state form <em>Employee’s Withholding Allowance Certificate</em> (DE 4) to determine the appropriate California Personal Income Tax (PIT) withholding. 
+          </p>
+          
+
+          <p>If you do not provide your employer with a withholding certificate, the employer must use Single with Zero withholding allowance.</p>
+          <p><strong>CHECK YOUR WITHHOLDING:</strong> After your DE 4 takes effect, compare the state income tax withheld with your estimated total annual tax. For state withholding, use the worksheets on this form.</p>
+          <p><Strong>EXEMPTION FROM WITHHOLDING:</Strong> If you wish to claim exempt, complete the federal Form W-4 and the state DE 4. You may claim exempt from withholding California income tax if you meet both of the following conditions for exemption:</p>
+          
+        </div>
+        <div class="col-lg-6 col-md-12 col-xs-12 padding-mute-left">
+          <p>
+            <ul style="list-style: decimal; list-style-position: outside; padding-left: 12px;">
+              <li>
+                You did not owe any federal/state income tax last year, and
+              </li>
+              <li>
+                You do not expect to owe any federal/state income tax this year. The exemption is good for one year.
+              </li>
+            </ul>
+          </p>
+          <p>
+            If you continue to qualify for the exempt filing status, a new DE 4 designating EXEMPT must be submitted by February 15 each year to continue your exemption. If you are not having federal/state income tax withheld this year but expect to have a tax liability next year, you are required to give your employer a new DE 4 by December 1.
+          </p>
+          <p>
+            <strong>Member Service Civil Relief Act:</strong> Under this act, as provided by the Military Spouses Residency Relief Act and the Veterans Benefits and Transition Act of 2018, you may be exempt from California income tax withholding on your wages if
+            <!--<ul style="list-style: lower-roman; list-style-position: outside; padding-left: 25px;">
+              <li>
+                your spouse is a member of the armed forces present in California in compliance with military orders;
+              </li>
+              <li>
+                you are present in California solely to be with your spouse; and
+              </li>
+              <li>
+                you maintain your domicile in another state.
+              </li>
+            </ul> -->
+            <table><tr><td valign="top" style="width:20px">(i)</td><td style="width: 15px;"></td><td>your spouse is a member of the armed forces present in California in compliance with military orders;</td></tr></table>
+          <table><tr><td valign="top" style="width:20px">(ii)</td><td style="width: 15px;"></td><td>you are present in California solely to be with your spouse; and</td></tr></table>
+          <table><tr><td valign="top" style="width:20px">(iii)</td><td style="width: 15px;"></td><td>you maintain your domicile in another state.</td></tr></table>
+          </p>
+          <p>
+            If you claim exemption under <span class="bold">this</span> act, <span class="bold">check the box on Line 4</span>. You may be required to provide proof of exemption upon request.
+          </p>
+        </div>
+      </div>
+      
+      <div class="row bordered-bottom" style="border-width: 2px;">
+        <div class="col-lg-4 col-md-4 col-xs-4 padding-mute-left">
+          <p>DE 4 Rev. 51 (12-21) <span class="bold">(INTERNET)</span></p>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-xs-4 text-center">
+          &nbsp;
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-xs-4 padding-mute-right text-right">
+         
+        </div>
+      </div>
+      <div class="row padding-top">
+        <div class="col-lg-12 col-md-12 col-xs-12 padding-mute-left">
+          &nbsp;
+        </div>
+      </div>
+      <div class="row padding-top">
+        <div class="col-lg-12 col-md-12 col-xs-12 padding-mute-left">
+          <p>
+            The <a href="https://edd.ca.gov/pdf_pub_ctr/de44.pdf" target="blank"><em>California Employer’s Guide (DE 44)</em></a> (edd.ca.gov/pdf_pub_ctr/de44.pdf) provides the income tax withholding tables. This publication may be found by visiting <a href="https://edd.ca.gov/Payroll_Taxes/Forms_and_Publications.htm" target="blank">Payroll Taxes - Forms and Publications</a> (edd.ca.gov/Payroll_Taxes/Forms_and_ Publications.htm). To assist you in calculating your tax liability, please visit the <a href="https://www.ftb.ca.gov/" target="blank">Franchise Tax Board (FTB)</a> (ftb.ca.gov).
+          </p>
+          
+          <p>
+            <strong>If you need information on your last <em>California Resident Income Tax Return</em> (FTB Form 540), visit the</strong> <a href="https://www.ftb.ca.gov/" target="blank">FTB</a> (ftb.ca.gov).
+          </p>
+        </div>
+      </div>
+      <div class="row bordered-top">
+        <div class="col-lg-6 col-md-12 col-md-12 padding-top padding-mute-left">
+          <p>
+            <span class="bold">NOTIFICATION:</span> The burden of proof rests with the employee to show the correct California income tax withholding. Pursuant to section 4340-1(e) of <a href="https://govt.westlaw.com/calregs/Search/Index" target="blank">Title 22, California Code of Regulations (CCR)</a> (govt.westlaw. com/calregs/Search/Index), the FTB or the EDD may, by special direction in writing, require an employer to submit a Form W-4 or DE 4 when such forms are necessary for the administration of the withholding tax programs.
+          </p>
+        </div>
+        <div class="col-lg-6 col-md-12 col-md-12 padding-top padding-mute-left">
+          <p>
+            <span class="bold">PENALTY:</span> You may be fined $500 if you file, with no reasonable basis, a DE 4 that results in less tax being withheld than is properly allowable. In addition, criminal penalties apply for willfully supplying false or fraudulent information or failing to supply information requiring an increase in withholding. This is provided by section 13101 of the <a href="https://leginfo.legislature.ca.gov/faces/codes.xhtml" target="blank">California Unemployment Insurance Code</a> (leginfo.legislature. ca.gov/faces/codes.xhtml) and section 19176 of the <a href="https://leginfo.legislature.ca.gov/faces/codes.xhtml" target="blank">Revenue and Taxation Code</a> (leginfo.legislature.ca.gov/faces/codes).xhtml).</a>.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-4 padding-mute-left">
+          <p>DE 4 Rev. 51 (12-21) <span class="bold">(INTERNET)</span></p>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-xs-4 text-center">
+          &nbsp;
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-xs-4 padding-mute-right text-right">
+          &nbsp;
+        </div>
+      </div><!-- continue here -->
+      <div class="row bordered-bottom" style="border-width: 2px;">
+        <div class="col-lg-12 col-md-12 col-xs-12 center">
+          <span style="font-size: 18px;">WORKSHEETS</span>
+        </div>
+      </div>
+      <div class="row padding-top">
+        <p class="bold">INSTRUCTIONS &mdash; 1 &mdash; ALLOWANCES*</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 padding-mute-left">
+          <p>When determining your withholding allowances, you must consider your personal situation:</p>
+          <p>— Do you claim allowances for dependents or blindness?</p>
+          <p>— Will you itemize your deductions?</p>
+          <p>— Do you have more than one income coming into the household?</p>
+          <p><span class="bold">TWO-EARNERS/MULTIPLE INCOMES:</span> When earnings are derived from more than one source, under-withholding may occur. If you have a working spouse or more than one job, it is best to check the box “SINGLE or MARRIED (with two or more incomes).” Figure the total number of allowances you are entitled to claim on all jobs using only one DE 4 form. Claim allowances with <strong>one</strong> employer.
+          </p>
+          <p>
+           Do <span class="bold">not</span> claim the same allowances with more than one employer. Your withholding will usually be most accurate when all allowances are claimed on the DE 4 filed for the highest paying job and zero allowances are claimed for the others. 
+           
+         </p>
+        </div>
+        <div class="col-lg-6 padding-mute-left">
+          <p><span class="bold">MARRIED BUT NOT LIVING WITH YOUR SPOUSE: </span>You may check the “Head of Household” marital status box if you meet all of the following tests:</p>
+          <table><tr><td valign="top">(1)</td><td style="width: 15px;"></td><td>Your spouse will not live with you <span class="bold">at any time</span> during the year;</td></tr></table>
+          <table><tr><td valign="top">(2)</td><td style="width: 15px;"></td><td>You will furnish over half of the cost of maintaining a home for the entire year for yourself and your child or stepchild who qualifies as your dependent; <span class="bold">and</span></td></tr></table>
+          <table><tr><td valign="top">(3)</td><td style="width: 15px;"></td><td>You will file a separate return for the year.</td></tr></table>
+          <br/>
+          <p><span class="bold">HEAD OF HOUSEHOLD: </span> To qualify, you must be unmarried or legally separated from your spouse and pay more than 50% of the costs of maintaining a home for the <span class="bold">entire</span> year for yourself and your dependent(s) or other qualifying individuals. Cost of maintaining the home includes such items as rent, property insurance, property taxes, mortgage interest, repairs, utilities, and cost of food. It does not include the individual’s personal expenses or any amount which represents value of services performed by a member of the household of the taxpayer.</p>
+        </div>
+      </div>
+      <div class="row bordered-top bordered-bottom padding-top bold">
+        <div class="col-lg-2 col-md-12 col-xs-12 padding-mute-left worksheet-label">
+          <p>WORKSHEET A</p>
+        </div>
+        <div class="col-lg-8 col-md-12 col-xs-12 text-center">
+          <p>REGULAR WITHHOLDING ALLOWANCES</p>
+        </div>
+      </div>
+      <div class="row padding-top">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top">(A)</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Allowance for yourself — enter 1</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;"><tr><td class="padding-left padding-right legend-lg">(A)</td><td style="width: 100%;"><$client.env.FormField.WorksheetA_A.HTML></td></tr></table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top">(B)</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Allowance for your spouse (if not separately claimed by your spouse) — enter 1</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;"><tr><td class="padding-left padding-right legend-lg">(B)</td><td style="width: 100%;"><$client.env.FormField.WorksheetA_B.HTML></td></tr></table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top">(C)</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Allowance for blindness — yourself — enter 1</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;"><tr><td class="padding-left padding-right legend-lg">(C)</td><td style="width: 100%;"><$client.env.FormField.WorksheetA_C.HTML></td></tr></table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top">(D)</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Allowance for blindness — your spouse (if not separately claimed by your spouse) — enter 1</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;"><tr><td class="padding-left padding-right legend-lg">(D)</td><td style="width: 100%;"><$client.env.FormField.WorksheetA_D.HTML></td></tr></table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top">(E)</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Allowance(s) for dependent(s) — do not include yourself or your spouse</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;"><tr><td class="padding-left padding-right legend-lg">(E)</td><td style="width: 100%;"><$client.env.FormField.WorksheetA_E.HTML></td></tr></table>
+        </div>
+      </div>
+      <div class="row padding-bottom">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top">(F)</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Total — add lines (A) through (E) above and enter on line 1a of the DE 4</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;"><tr><td class="padding-left padding-right legend-lg">(F)</td><td style="width: 100%;"><$client.env.FormField.WorksheetA_F.HTML></td></tr></table>
+        </div>
+      </div>
+      <div class="row padding-top bordered-top">
+        <p class="bold">INSTRUCTIONS — 2 — (OPTIONAL) ADDITIONAL WITHHOLDING ALLOWANCES</p>
+      </div>
+      <div class="row padding-mute-x padding-bottom">
+        <p>If you expect to itemize deductions on your California income tax return, you can claim additional withholding allowances. Use Worksheet B to determine whether your expected estimated deductions may entitle you to claim <strong>one or more additional</strong> withholding allowances. Use last year’s FTB Form 540 as a model to calculate this year’s withholding amounts.</p>
+        
+        <p>Do not include deferred compensation, qualified pension payments, or flexible benefits, etc., that are deducted from your gross pay but are not taxed on this worksheet.</p>
+
+        <p>You may reduce the amount of tax withheld from your wages by claiming one additional withholding allowance for each $1,000, or fraction of $1,000, by which you expect your estimated deductions for the year to exceed your allowable standard deduction.</p>
+      </div>
+      <div class="row bordered-top bordered-bottom padding-top">
+        <div class="col-lg-2 col-md-12 col-xs-12 padding-mute-left worksheet-label">
+          <p class="bold">WORKSHEET B</p>
+        </div>
+        <div class="col-lg-8 col-md-12 col-xs-12">
+          <p class="bold text-center">ESTIMATED DEDUCTIONS</p>
+        </div>
+      </div>
+      <div class="row bordered-top bordered-bottom padding-top">
+        <div class="col-lg-12 col-md-12 col-xs-12 padding-mute-left worksheet-label">
+          Use this worksheet <Strong>only</Strong> if you plan to itemize deductions, claim certain adjustments to income, or have a large amount of nonwage income not subject to withholding.
+        </div>
+      </div>
+      <div class="row padding-top">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">1.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Enter an estimate of your itemized deductions for California taxes for this tax year as listed in the schedules in the FTB Form 540</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a">&nbsp;&nbsp;&nbsp;</td>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;1.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetB_1.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">2.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Enter $9,606 if married filing joint with two or more allowances, unmarried head of household, or qualifying widow(er) with dependent(s) or $4,803 if single or married filing separately, dual income married, or married with multiple employers</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a">&nbsp;-&nbsp;</td>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;2.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetB_2.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">3.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Subtract line 2 from line 1, enter difference</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a">&nbsp;=&nbsp;</td>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;3.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetB_3.HTML></td>
+            </tr>
+          </table>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">4.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Enter an estimate of your adjustments to income (alimony payments, IRA deposits)</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a">&nbsp;+&nbsp;</td>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;4.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetB_4.HTML></td>
+            </tr>
+          </table>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">5.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Add line 4 to line 3, enter sum</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a">&nbsp;=&nbsp;</td>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;5.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetB_5.HTML></td>
+            </tr>
+          </table>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">6.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Enter an estimate of your nonwage income (dividends, interest income, alimony receipts)</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a">&nbsp;-&nbsp;</td>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;6.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetB_6.HTML></td>
+            </tr>
+          </table>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">7.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> If line 5 is greater than line 6 (if less, see below [go to line 9]); <br>Subtract line 6 from line 5, enter difference</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a">&nbsp;=&nbsp;</td>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;7.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetB_7.HTML></td>
+            </tr>
+          </table>
+        </div> 
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">8.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Divide the amount on line 7 by $1,000, round any fraction to the nearest whole number 8. <br>enter this number on line 1b of the DE 4. Complete Worksheet C, if needed, otherwise <strong>stop here</strong>. </td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a">&nbsp;&nbsp;&nbsp;</td>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;8.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetB_8.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">9.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> If line 6 is greater than line 5; <br>Enter amount from line 6 (nonwage income)</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a">&nbsp;&nbsp;&nbsp;</td>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;9.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetB_9.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div><!--end-->
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">10.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Enter amount from line 5 (deductions)</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a">&nbsp;&nbsp;&nbsp;</td>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">10.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetB_10.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">11.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Subtract line 10 from line 9, enter difference. Then, complete Worksheet C.<br/><span class="bold">Complete Worksheet C</span></td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a">&nbsp;&nbsp;&nbsp;</td>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">11.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetB_11.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row padding-top">
+        <p>*Wages paid to registered domestic partners will be treated the same for state income tax purposes as wages paid to spouses for California PIT withholding and PIT wages. This law does not impact federal income tax law. A registered domestic partner means an individual partner in a domestic partner relationship within the meaning of section 297 of the Family Code. For more information, please call our Taxpayer Assistance Center at 1-888-745-3886.</p>
+      </div>
+      <div class="row bordered-bottom" style="border-width: 2px;">
+        <div class="col-lg-4 col-md-4 col-xs-4 padding-mute-left">
+          <p>DE 4 Rev. 51 (12-21) <span class="bold">(INTERNET)</span></p>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-xs-4 text-center">
+          &nbsp;
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-xs-4 padding-mute-right text-right">
+          &nbsp;
+        </div>
+      </div>
+      <div class="row bordered-bottom padding-top">
+        <div class="col-lg-2 col-md-12 col-xs-12 padding-mute-left worksheet-label">
+          <p class="bold">WORKSHEET C</p>
+        </div>
+        <div class="col-lg-8 col-md-12 col-xs-12">
+          <p class="bold text-center">ADDITIONAL TAX WITHHOLDING AND ESTIMATED TAX</p>
+        </div>
+        <div class="col-lg-4 col-md-12 col-xs-12">
+        </div>
+      </div>
+      <div class="row padding-top">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">1.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Enter estimate of total wages for tax year 2022.</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;1.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_1.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">2.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Enter estimate of nonwage income (line 6 of Worksheet B).</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;2.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_2.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">3.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Add line 1 and line 2. Enter sum.</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;3.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_3.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">4.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Enter itemized deductions or standard deduction (line 1 or 2 of Worksheet B, whichever is largest).</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;4.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_4.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">5.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Enter adjustments to income (line 4 of Worksheet B).</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;5.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_5.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">6.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Add line 4 and line 5. Enter sum.</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;6.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_6.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">7.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Subtract line 6 from line 3. Enter difference.</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;7.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_7.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">8.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Figure your tax liability for the amount on line 7 by using the 2022 tax rate schedules below.</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;8.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_8.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">9.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Enter personal exemptions (line F of Worksheet A x $141.90).</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">&nbsp;&nbsp;9.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_9.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">10.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Subtract line 9 from line 8. Enter difference.</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">10.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_10.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">11.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Enter any tax credits. (See FTB Form 540).</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">11.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_11.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">12.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Subtract line 11 from line 10. Enter difference. This is your total tax liability.</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">12.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_12.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">13.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Calculate the tax withheld and estimated to be withheld during 2022. Contact your employer to request the amount that will be withheld on your wages based on the marital status and number of withholding allowances you will claim for 2022. Multiply the estimated amount to be withheld by the number of pay periods left in the year. Add the total to the amount already withheld for 2022.</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">13.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_13.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">13.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Calculate the tax withheld and estimated to be withheld during 2022. Contact your employer to request the amount that will be withheld on your wages based on the marital status and number of withholding allowances you will claim for 2022. Multiply the estimated amount to be withheld by the number of pay periods left in the year. Add the total to the amount already withheld for 2022.</td></tr></table>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">13.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_13.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">14.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Subtract line 13 from line 12. Enter difference. If this is less than zero, you do not need to have additional taxes withheld.</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">14.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_14.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9 col-md-12 col-xs-12 padding-mute-left padding-y-middle">
+          <table><tr><td valign="top" class="worksheet-item-label-a">15.</td><td style="width: 5px;"></td><td>&nbsp;</td><td> Divide line 14 by the number of pay periods remaining in the year. Enter this figure on line 2 of the DE 4.</td></tr></table>
+        </div>
+        <div class="col-lg-3 col-md-12 col-xs-12">
+          <table style="width: 100%;">
+            <tr>
+              <td class="worksheet-item-label-a padding-left padding-right legend-lg">15.&nbsp;</td>
+              <td><$client.env.FormField.WorksheetC_15.HTML></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row padding-mute-x padding-top">
+        <p><span class="bold">NOTE:</span> Your employer is not required to withhold the additional amount requested on line 2 of your DE 4. If your employer does not agree to withhold the
+additional amount, you may increase your withholdings as much as possible by using the “single” status with “zero” allowances. If the amount withheld still
+results in an underpayment of state income taxes, you may need to file quarterly estimates on Form 540-ES with the FTB to avoid a penalty.</p>
+      </div>
+      <div class="row" style="margin-bottom: -20px;"> <!--table 1-->
+        <p class="italic text-center">THESE TABLES ARE FOR CALCULATING WORKSHEET C AND FOR 2022 ONLY</p>
+      </div><!--START HERE-->
+
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      &nbsp;
+    </div>
+  </div>
+
+  <div class="row padding-bottom" style="padding-top: 5px;">
+    <div class="col-lg-6 col-md-12 col-xs-12">
+      <div class="col-lg-12 col-md-12 col-xs-12 center">
+        <Strong>SINGLE PERSONS, DUAL INCOME <br>MARRIED WITH MULTIPLE EMPLOYERS</Strong>
+      </div>
+      <div class="col-lg-12 col-md-12 col-xs-12 padding-mute-x table-responsive" style="width:100% !important">
+        <!-- <table class="table-3" >
+          <tr>
+            <td class="text-center padding-y" colspan="5"><Strong>SINGLE PERSONS, DUAL INCOME <br>MARRIED WITH MULTIPLE EMPLOYERS</Strong></td>
+          </tr>
+        </table> -->
+        <table class="table-3">
+          <tr class="text-center bordered-bottom padding-top padding-bottom" >
+            <td colspan="2">IF THE TAXABLE INCOME IS</td>
+            <td colspan="3">COMPUTED TAX IS</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">OVER</td>
+            <td class="padding-y">BUT NOT <br/>OVER</td>
+            <td class="padding-y" colspan="2">OF AMOUNT<br/> OVER...</td>
+            <td class="padding-y">PLUS</td>
+          </tr>
+
+          <tr class="text-right">
+            <td class="padding-y">$0</td>
+            <td class="padding-y">$9,325</td>
+            <td class="padding-y">1.100%</td>
+            <td class="padding-y">$0</td>
+            <td class="padding-y">$0.00</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$9,325</td>
+            <td class="padding-y">$22,107</td>
+            <td class="padding-y">2.200%</td>
+            <td class="padding-y">$9,325</td>
+            <td class="padding-y">$102.58</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$22,107</td>
+            <td class="padding-y">$34,892</td>
+            <td class="padding-y">4.400%</td>
+            <td class="padding-y">$22,107</td>
+            <td class="padding-y">$383.78</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$34,892</td>
+            <td class="padding-y">$48,435</td>
+            <td class="padding-y">6.600%</td>
+            <td class="padding-y">$34,892</td>
+            <td class="padding-y">$946.32</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$48,435</td>
+            <td class="padding-y">$61,214</td>
+            <td class="padding-y">8.800%</td>
+            <td class="padding-y">$48,435</td>
+            <td class="padding-y">$1,840.16</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$61,214</td>
+            <td class="padding-y">$312,686</td>
+            <td class="padding-y">10.230%</td>
+            <td class="padding-y">$61,214</td>
+            <td class="padding-y">$2,964.71</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$312,686</td>
+            <td class="padding-y">$375,221</td>
+            <td class="padding-y">11.330%</td>
+            <td class="padding-y">$312,686</td>
+            <td class="padding-y">$28,690.30</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$375,221</td>
+            <td class="padding-y">$625,369</td>
+            <td class="padding-y">12.430%</td>
+            <td class="padding-y">$375,221</td>
+            <td class="padding-y">$35,775.52</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$625,369</td>
+            <td class="padding-y">$1,000,000</td>
+            <td class="padding-y">13.530%</td>
+            <td class="padding-y">$625,369</td>
+            <td class="padding-y">$66,868.92</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$1,000,000</td>
+            <td class="padding-y">and over</td>
+            <td class="padding-y">14.630%</td>
+            <td class="padding-y">$1,000,000</td>
+            <td class="padding-y">$117,556.49</td>
+          </tr>
+        </table>
+      </div> 
+    </div>
+
+    <div class="col-lg-2 col-md-12 col-xs-12 rem-div" style="width: 4%;" >
+
+    </div>
+
+    <div class="col-lg-6 col-md-12 col-xs-12">
+      <div class="col-lg-12 col-md-12 col-xs-12 center">
+        <Strong><span class="hidden-xs hidden-sm">&nbsp;</span><br class="hidden-xs hidden-sm">MARRIED PERSONS</Strong>
+      </div>
+      <div class="col-lg-12 col-md-12 col-xs-12 padding-mute-x table-responsive" style="width:100% !important">
+        <!-- <table class="table-3" >
+          <tr>
+            <td class="text-center padding-y" colspan="5"><br><Strong>MARRIED PERSONS</Strong></td>
+          </tr>
+        </table> -->
+        <table class="table-3">
+          <tr class="text-center bordered-bottom padding-top padding-bottom" >
+            <td colspan="2">IF THE TAXABLE INCOME IS</td>
+            <td colspan="3">COMPUTED TAX IS</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">OVER</td>
+            <td class="padding-y">BUT NOT <br/>OVER</td>
+            <td class="padding-y" colspan="2">OF AMOUNT<br/> OVER...</td>
+            <td class="padding-y">PLUS</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$0</td>
+            <td class="padding-y">$18,650</td>
+            <td class="padding-y">1.100%</td>
+            <td class="padding-y">$0</td>
+            <td class="padding-y">$0.00</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$18,650</td>
+            <td class="padding-y">$44,214</td>
+            <td class="padding-y">2.200%</td>
+            <td class="padding-y">$18,650</td>
+            <td class="padding-y">$205.15</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$44,214</td>
+            <td class="padding-y">$69,784</td>
+            <td class="padding-y">4.400%</td>
+            <td class="padding-y">$44,214</td>
+            <td class="padding-y">$767.56</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$69,784</td>
+            <td class="padding-y">$96,870</td>
+            <td class="padding-y">6.600%</td>
+            <td class="padding-y">$69,784</td>
+            <td class="padding-y">$1,892.64</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$96,870</td>
+            <td class="padding-y">$122,428</td>
+            <td class="padding-y">8.800%</td>
+            <td class="padding-y">$96,870</td>
+            <td class="padding-y">$3,680.32</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$122,428</td>
+            <td class="padding-y">$625,372</td>
+            <td class="padding-y">10.230%</td>
+            <td class="padding-y">$122,428</td>
+            <td class="padding-y">$5,929.42</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$625,372</td>
+            <td class="padding-y">$750,442</td>
+            <td class="padding-y">11.330%</td>
+            <td class="padding-y">$625,372</td>
+            <td class="padding-y">$57,380.59</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$750,442</td>
+            <td class="padding-y">$1,000,000</td>
+            <td class="padding-y">12.430%</td>
+            <td class="padding-y">$750,442</td>
+            <td class="padding-y">$71,551.02</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$1,000,000</td>
+            <td class="padding-y">$1,250,738</td>
+            <td class="padding-y">13.530%</td>
+            <td class="padding-y">$1,000,000</td>
+            <td class="padding-y">$102,571.08</td>
+          </tr>
+          <tr class="text-right">
+            <td class="padding-y">$1,250,738</td>
+            <td class="padding-y">and over</td>
+            <td class="padding-y">14.630%</td>
+            <td class="padding-y">$1,250,738</td>
+            <td class="padding-y">$136,495.93</td>
+          </tr>
+        </table>
+      </div> <!-- col-md-6-->
+    </div>
+  </div><!--row -->
+
+      <div class="row col-lg-12">
+        
+      </div>
+
+
+  <div class="row padding-bottom" style="padding-top: 5px;">
+    <div class="col-lg-6 col-md-12 col-xs-12">
+      <div class="col-lg-12 col-md-12 col-xs-12 center">
+        <Strong>UNMARRIED HEAD OF HOUSEHOLD</Strong>
+      </div>
+      <div class="col-lg-12 col-md-12 col-xs-12 padding-mute-x table-responsive" style="width:100% !important">
+         <!--  <table class="table-3">
+            <tr>
+              <td class="text-center padding-y" colspan="5"><Strong>UNMARRIED HEAD OF HOUSEHOLD</Strong></td>
+            </tr>
+          </table> -->
+          <table class="table-3">
+            <tr class="text-center bordered-bottom padding-top padding-bottom" >
+              <td colspan="2">IF THE TAXABLE INCOME IS</td>
+              <td colspan="3">COMPUTED TAX IS</td>
+            </tr>
+            <tr class="text-right">
+              <td class="padding-y">OVER</td>
+              <td class="padding-y">BUT NOT <br/>OVER</td>
+              <td class="padding-y" colspan="2">OF AMOUNT<br/> OVER...</td>
+              <td class="padding-y">PLUS</td>
+            </tr>
+            <tr class="text-right">
+              <td class="padding-y">$0</td>
+              <td class="padding-y">$18,663</td>
+              <td class="padding-y">1.100%</td>
+              <td class="padding-y">$0</td>
+              <td class="padding-y">$0.00</td>
+            </tr>
+            <tr class="text-right">
+              <td class="padding-y">$18,663</td>
+              <td class="padding-y">$44,217</td>
+              <td class="padding-y">2.200%</td>
+              <td class="padding-y">$18,663</td>
+              <td class="padding-y">$205.29</td>
+            </tr>
+            <tr class="text-right">
+              <td class="padding-y">$44,217</td>
+              <td class="padding-y">$56,999</td>
+              <td class="padding-y">4.400%</td>
+              <td class="padding-y">$44,217</td>
+              <td class="padding-y">$767.48</td>
+            </tr>
+            <tr class="text-right">
+              <td class="padding-y">$56,999</td>
+              <td class="padding-y">$70,542</td>
+              <td class="padding-y">6.600%</td>
+              <td class="padding-y">$56,999</td>
+              <td class="padding-y">$1,329.89</td>
+            </tr>
+            <tr class="text-right">
+              <td class="padding-y">$70,542</td>
+              <td class="padding-y">$83,324</td>
+              <td class="padding-y">8.800%</td>
+              <td class="padding-y">$70,542</td>
+              <td class="padding-y">$2,223.73</td>
+            </tr>
+            <tr class="text-right">
+              <td class="padding-y">$83,324</td>
+              <td class="padding-y">$425,251</td>
+              <td class="padding-y">10.230%</td>
+              <td class="padding-y">$83,324</td>
+              <td class="padding-y">$3,348.55</td>
+            </tr>
+            <tr class="text-right">
+              <td class="padding-y">$425,251</td>
+              <td class="padding-y">$510,303</td>
+              <td class="padding-y">11.330%</td>
+              <td class="padding-y">$425,251</td>
+              <td class="padding-y">$38,327.68</td>
+            </tr>
+            <tr class="text-right">
+              <td class="padding-y">$510,303</td>
+              <td class="padding-y">$850,503</td>
+              <td class="padding-y">12.430%</td>
+              <td class="padding-y">$510,303</td>
+              <td class="padding-y">$47,964.07</td>
+            </tr>
+            <tr class="text-right">
+              <td class="padding-y">$850,503</td>
+              <td class="padding-y">$1,000,000</td>
+              <td class="padding-y">13.530%</td>
+              <td class="padding-y">$850,503</td>
+              <td class="padding-y">$90,250.93</td>
+            </tr>
+            <tr class="text-right">
+              <td class="padding-y">$1,000,000</td>
+              <td class="padding-y">and over</td>
+              <td class="padding-y">14.630%</td>
+              <td class="padding-y">$1,000,000</td>
+              <td class="padding-y">$110,477.87</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    
+
+
+        <div class="col-lg-6 col-md-12 col-xs-12 padding-mute-right quadrant-4">
+          <div class="row bordered-top padding-top padding-bottom" >
+            <p>If you need information on your last California Resident Income Tax Return, FTB Form 540, visit </strong> <a href="https://www.ftb.ca.gov/" target="blank">(FTB)</a> (ftb.ca.gov).</p>
+          </div>
+        </div>
+      </div>
+    
+    
+
+
+
+
+
+  <div class="row bordered-top col-lg-12 padding-mute-x" > <!--END HERE-->
+    <p>The DE 4 information is collected for purposes of administering the PIT law and under the authority of Title 22, CCR, section 4340-1, and the California Revenue and Taxation Code, including section 18624. The Information Practices Act of 1977 requires that individuals be notified of how information they provide may be used. Further information is contained in the instructions that came with your last California resident income tax return.</p>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-xs-4 padding-mute-left">
+      <p>DE 4 Rev. 51 (12-21) <span class="bold">(INTERNET)</span></p>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-xs-4 text-center">
+      &nbsp;
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-xs-4 padding-mute-right text-right">
+
+    </div>
+  </div>
+
+
+
+
+  <br><hr class="lifesuite__hr"> 
+
+  <div class="row" id="formButtons" style="display: none;"> 
+
+    <div class="lifesuite__clearfix lifesuite__float-right">                
+
+      <$client.env.FormButtons> 
+
+    </div>              
+
+  </div> 
+
+</div> 
+
+</div> 
+
+<div style="display:none"> 
+
+ <$client.env.FormField.SignatureVerification.HTML> 
+ <$client.env.FormField.Login_ID>
+ <$client.env.FormField.Auth_Param>
+ <$client.env.FormField.EmployeeID>
+</div> 
+
+</form> 
+
+<SCRIPT> 
+
+    ChangeCalendarIcons(); //for popup calendar  
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+/* RESPONSIVE eFORM BUTTONS STYLE */ 
+
+
+
+$(window).load(function() { 
+
+  $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+
+  $("#buttonCancel").addClass("lifesuite__button"); 
+
+  $('#buttonCancel').attr('id','ButtonCancel'); 
+
+  $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue"); 
+
+  $("#buttonSave").addClass("lifesuite__button primary"); 
+
+  $('#buttonSave').attr('id','ButtonSave'); 
+
+  $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+
+  $("#buttonSaveAndComplete").addClass("lifesuite__button primary"); 
+
+  $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete'); 
+
+  $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+
+  $("#buttonPrint").addClass("lifesuite__button"); 
+
+  $('#buttonPrint').attr('id','ButtonPrint'); 
+
+  $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed"); 
+
+  $("#buttonPreviewDelete").addClass("lifesuite__button"); 
+
+  $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete'); 
+
+  $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue"); 
+
+  $("#buttonPreviewSave").addClass("lifesuite__button primary"); 
+
+  $('#buttonPreviewSave').attr('id','ButtonPreviewSave'); 
+
+  $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+
+  $("#buttonComplete").addClass("lifesuite__button primary"); 
+
+  $('#buttonComplete').attr('id','ButtonComplete'); 
+
+
+
+  document.getElementById('formButtons').style.display = "block"; 
+
+  
+
+  $("input[type=text]").addClass('lifesuite__text-input'); 
+
+  $("input[type=text].hasDatepicker").addClass('dateField'); 
+
+  $("select").addClass('lifesuite__select-input'); 
+
+  $("input[type=radio]").addClass('lifesuite__radio'); 
+
+  $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+
+  $("textarea").addClass('lifesuite__textarea-input'); 
+
+  $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+
+}); 
+
+$( window ).resize(function() { 
+
+document.getElementById('over').style.width=''; 
+
+}); 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+$(function() {
+    setTimeout(function() {  
+        if (strFormCompleted == '') { // if eForm is incomplete 
+            $("#ButtonPrint")[0].onclick = null; 
+            $("#ButtonPrint").click(function() {  
+                /* Add your code/function here */ 
+                $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+                void(funcPrint()); // default print function 
+            }); 
+            if ($("#ButtonSaveAndComplete").length) {  
+                $("#ButtonSaveAndComplete")[0].onclick = null; 
+                $("#ButtonSaveAndComplete").click(function() {  
+                    /* Add your code/function here */ 
+                    $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+                    void(funcSaveAndComplete());  //default Save function 
+                }); 
+            } 
+        }
+    }, 300); 
+});
+$(document).ready(function(){
+    $("#Exempt_From_Withholding").change(function(){
+    if($(this).is(':checked')) {
+        $('#a1').val("");
+        $('#a2').val("");
+        $("#a1").prop( "disabled", true );
+        $("#a2").prop( "disabled", true );
+        $('#allowances').val("");
+        $("#allowances").prop( "disabled", true );
+        $('#additionalwithholding').val("");
+        $("#additionalwithholding").prop( "disabled", true );  
+        $("#exempt").prop("checked", false);    
+        //$("#exempt").prop("disabled", true);
+        alert("You have selected exempt. Therefore, your values in Fields 1 and 2 have been removed.  If you wish to claim Allowances or Additional Amounts, remove your exempt selection.");
+    }
+    else{
+       $("#additionalwithholding").prop( "disabled", false );
+       $("#allowances").prop( "disabled", false );
+       //$("#exempt").prop("disabled", false);
+       $("#a1").prop( "disabled", false );
+        $("#a2").prop( "disabled", false );
+    }
+})   
+});
+
+$(document).ready(function(){
+    $("#exempt").change(function(){
+    if($(this).is(':checked')) {
+        //$("#Exempt_From_Withholding").prop( "disabled", true );
+        $('#a1').val("");
+        $('#a2').val("");
+        $("#a1").prop( "disabled", true );
+        $("#a2").prop( "disabled", true );
+        $("#Exempt_From_Withholding").prop("checked", false);
+        $("#allowances").prop( "disabled", true );
+        $('#allowances').val("");
+        $('#additionalwithholding').val("");
+        $("#additionalwithholding").prop( "disabled", true );
+        alert("You have selected exempt. Therefore, your values in Fields 1 and 2 have been removed.  If you wish to claim Allowances or Additional Amounts, remove your exempt selection.");
+    }
+    else{
+       //$("#Exempt_From_Withholding").prop("disabled", false);
+       $("#a1").prop( "disabled", false );
+        $("#a2").prop( "disabled", false );
+       $("#allowances").prop( "disabled", false );
+        $("#additionalwithholding").prop( "disabled", false );
+    }
+})   
+});
+$(window).load(function() {
+    $("#exempt").each(function(){
+    if($(this).is(':checked')) {
+        //$("#Exempt_From_Withholding").prop( "disabled", true );
+        $('#a1').val("");
+        $('#a2').val("");
+        $("#a1").prop( "disabled", true );
+        $("#a2").prop( "disabled", true );
+        $("#Exempt_From_Withholding").prop("checked", false);
+        $("#allowances").prop( "disabled", true );
+        $("#additionalwithholding").prop( "disabled", true );
+    }
+    else{
+       //$("#Exempt_From_Withholding").prop("disabled", false);
+       //$("#a1").prop( "disabled", false );
+        //$("#a2").prop( "disabled", false );
+        //$("#allowances").prop( "disabled", false);
+        //$("#additionalwithholding").prop( "disabled", false );
+    }
+});
+
+    $("#Exempt_From_Withholding").each(function(){
+    if($(this).is(':checked')) {
+        $('#a1').val("");
+        $('#a2').val("");
+        $("#a1").prop( "disabled", true );
+        $("#a2").prop( "disabled", true );
+        $('#allowances').val("");
+        $("#allowances").prop( "disabled", true );
+        $('#additionalwithholding').val("");
+        $("#additionalwithholding").prop( "disabled", true );  
+        $("#exempt").prop("checked", false);    
+        //$("#exempt").prop("disabled", true);
+        
+    }
+    else{
+       //$("#additionalwithholding").prop( "disabled", false );
+       //$("#allowances").prop( "disabled", false );
+       //$("#exempt").prop("disabled", false);
+       //$("#a1").prop( "disabled", false );
+        //$("#a2").prop( "disabled", false );
+    }
+});      
+
+});  
+</SCRIPT>

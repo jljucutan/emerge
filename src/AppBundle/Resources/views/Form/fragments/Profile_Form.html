@@ -1,0 +1,606 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                    </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form''>
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+ 
+<!--////////////INSERT PROMPTS HERE///////////-->
+<$client.env.FormField.Alternate2.prompt>
+<$client.env.FormField.BirthCity.prompt>
+<$client.env.FormField.BirthCountry.prompt>
+<$client.env.FormField.BirthDate.prompt>
+<$client.env.FormField.BirthState.prompt>
+<$client.env.FormField.Cellular2.prompt>
+<$client.env.FormField.City.prompt>
+<$client.env.FormField.County.prompt>
+<$client.env.FormField.DepDOB1.prompt>
+<$client.env.FormField.DepDOB2.prompt>
+<$client.env.FormField.DepDOB3.prompt>
+<$client.env.FormField.DepDOB4.prompt>
+<$client.env.FormField.DepDOB5.prompt>
+<$client.env.FormField.DepFirst1.prompt>
+<$client.env.FormField.DepFirst2.prompt>
+<$client.env.FormField.DepFirst3.prompt>
+<$client.env.FormField.DepFirst4.prompt>
+<$client.env.FormField.DepFirst5.prompt>
+<$client.env.FormField.DepLast1.prompt>
+<$client.env.FormField.DepLast2.prompt>
+<$client.env.FormField.DepLast3.prompt>
+<$client.env.FormField.DepLast4.prompt>
+<$client.env.FormField.DepLast5.prompt>
+<$client.env.FormField.DepMI1.prompt>
+<$client.env.FormField.DepMI2.prompt>
+<$client.env.FormField.DepMI3.prompt>
+<$client.env.FormField.DepMI4.prompt>
+<$client.env.FormField.DepMI5.prompt>
+<$client.env.FormField.DepRel1.prompt>
+<$client.env.FormField.DepRel2.prompt>
+<$client.env.FormField.DepRel3.prompt>
+<$client.env.FormField.DepRel4.prompt>
+<$client.env.FormField.DepRel5.prompt>
+<$client.env.FormField.DepSex1.prompt>
+<$client.env.FormField.DepSex2.prompt>
+<$client.env.FormField.DepSex3.prompt>
+<$client.env.FormField.DepSex4.prompt>
+<$client.env.FormField.DepSex5.prompt>
+<$client.env.FormField.EC2Address.prompt>
+<$client.env.FormField.EC2Cell.prompt>
+<$client.env.FormField.EC2City.prompt>
+<$client.env.FormField.EC2Country.prompt>
+<$client.env.FormField.EC2Home.prompt>
+<$client.env.FormField.EC2Name.prompt>
+<$client.env.FormField.EC2Relationship.prompt>
+<$client.env.FormField.EC2State.prompt>
+<$client.env.FormField.EC2Work.prompt>
+<$client.env.FormField.EC2Zip.prompt>
+<$client.env.FormField.ECAddress.prompt>
+<$client.env.FormField.ECCell.prompt>
+<$client.env.FormField.ECCity.prompt>
+<$client.env.FormField.ECCountry.prompt>
+<$client.env.FormField.ECHome.prompt>
+<$client.env.FormField.ECName.prompt>
+<$client.env.FormField.ECRelationship.prompt>
+<$client.env.FormField.ECState.prompt>
+<$client.env.FormField.ECWork.prompt>
+<$client.env.FormField.ECZip.prompt>
+<$client.env.FormField.FirstName.prompt>
+<$client.env.FormField.FluencySpeak1.prompt>
+<$client.env.FormField.FluencySpeak2.prompt>
+<$client.env.FormField.FluencySpeak3.prompt>
+<$client.env.FormField.FluencyWrite1.prompt>
+<$client.env.FormField.FluencyWrite2.prompt>
+<$client.env.FormField.FluencyWrite3.prompt>
+<$client.env.FormField.FormerFirstName.prompt>
+<$client.env.FormField.FormerLastName.prompt>
+<$client.env.FormField.FormerMiddle.prompt>
+<$client.env.FormField.HomeAddressStreet.prompt>
+<$client.env.FormField.HomeCity.prompt>
+<$client.env.FormField.HomeCounty.prompt>
+<$client.env.FormField.HomeState.prompt>
+<$client.env.FormField.HomeZip.prompt>
+<$client.env.FormField.Language1.prompt>
+<$client.env.FormField.Language2.prompt>
+<$client.env.FormField.Language3.prompt>
+<$client.env.FormField.LastName.prompt>
+<$client.env.FormField.MiddleInitial.prompt>
+<$client.env.FormField.MaritalStatus.prompt>
+<$client.env.FormField.Nickname.prompt>
+<$client.env.FormField.OtherCitizenship.prompt>
+<$client.env.FormField.PersEmail.prompt>
+<$client.env.FormField.PrevContractor.prompt>
+<$client.env.FormField.PrevEmp.prompt>
+<$client.env.FormField.PrimaryFax.prompt>
+<$client.env.FormField.ProfFirst.prompt>
+<$client.env.FormField.ProfLastName.prompt>
+<$client.env.FormField.ProfMiddle.prompt>
+<$client.env.FormField.SSN.prompt>
+<$client.env.FormField.Sex.prompt>
+<$client.env.FormField.State.prompt>
+<$client.env.FormField.SupTel.prompt>
+<$client.env.FormField.SuppHomeFax.prompt>
+<$client.env.FormField.SupplementalAddressStreet.prompt>
+<$client.env.FormField.Telephone.prompt>
+<$client.env.FormField.USCitizen.prompt>
+<$client.env.FormField.ZipCode.prompt>
+
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<div class="container-fluid"> 
+    <div class="form-group"> 
+        <div class="row">
+
+<!--/////////////////////////////////////////////////////////////////////////START HTML CODING HERE//////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div class="container-fluid">
+    <div class="row">
+    <div id="OpeningHeader"><div class="col-sm-9"><b>PROFILE FORM</b></div>
+    <div class="col-sm-3"><img src="<$link;/main/RedCarpet/FormTemplates/Profile_Form/AGLogo.PNG>" width="150" height="43" border="0"></div>
+        </div>
+        </div>
+</div>
+         
+<div id="DefaultFont">    
+<div id="ContainerBorder">
+<div class="container-fluid">
+
+    <div class="row" style="display: none;">
+        <div class="col-sm-3"><strong>Legal Name</strong> (Last)</div>
+        <div class="col-sm-3">(First)</div>
+        <div class="col-sm-3">(Middle/Middle Initial)</div>
+        <div class="col-sm-3">(Preferred name)</div>
+  </div>
+
+  <div class="row">
+        <div class="col-sm-3"><strong>Legal Name</strong> (Last)<$client.env.FormField.LastName.html> </div>
+        <div class="col-sm-3">(First)<$client.env.FormField.FirstName.html> </div>
+        <div class="col-sm-3">(Middle/Middle Initial<$client.env.FormField.MiddleInitial.html> </div>
+        <div class="col-sm-3">(Preferred name)<$client.env.FormField.Nickname.html></div>
+  </div>
+
+    <div class="row">   
+        <div class="col-sm-12">&nbsp;</div>
+        </div>
+    
+<p><b>Professional Name:</b> <i>(Complete this section only if you prefer for your professional name to display differently in firm systems than your legal name indicated above. Provide your professional name below exactly as your would like it to display.)</i></p>
+
+       <div class="row">    
+        <div class="col-sm-12">&nbsp;</div>
+      </div> 
+   
+     <div class="row" style="display: none;">
+        <div class="col-sm-4">(Last Name)</div>
+        <div class="col-sm-4">(First/First Initial/Nickname)</div>
+        <div class="col-sm-4">(Middle/Middle Initial)</div> 
+     </div>
+
+   <div class="row">
+        <div class="col-sm-4">(Last Name)<$client.env.FormField.ProfLastName.html></div>
+        <div class="col-sm-4">(First/First Initial/Nickname)<$client.env.FormField.ProfFirst.html></div>
+        <div class="col-sm-4">(Middle/Middle Initial)<$client.env.FormField.ProfMiddle.html></div>  
+   </div>
+</div>
+</div>
+
+<div id="ContainerBorder">
+<div class="container-fluid">
+
+    <div class="row">
+    <div class="col-sm-6" align="center"><b>Previous AG Employee?</b></div>
+        <div class="col-sm-6" align="center"><b>Previous AG Outside Contractor?</b></div>
+   </div>
+
+<div class="row">
+    <div class="col-sm-6" align="center"><div class="radio"><$client.env.FormField.PrevEmp.html></div></div>
+        <div class="col-sm-6" align="center"><div class="radio"><$client.env.FormField.PrevContractor.html></div></div>
+        </div>
+  
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+    </div>
+
+<div class="row">
+        <div class="col-sm-12"><i>(If yes for either, enter former name used, if applicable.)</i></div>
+    </div>
+
+    
+    <div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+    </div>
+
+    <div class="row" style="display: none;">
+        <div class="col-sm-4">(Former Last Name)</div>
+        <div class="col-sm-4">(First)</div>
+        <div class="col-sm-4">(Middle)</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-4">(Former Last Name)<$client.env.FormField.FormerLastName.html></div>
+        <div class="col-sm-4">(First)<$client.env.FormField.FormerFirstName.html></div>
+        <div class="col-sm-4">(Middle)<$client.env.FormField.FormerMiddle.html></div>
+    </div>
+   
+ <div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+    </div>
+ 
+    <div class="row" style="display: none;">
+      <div class="col-sm-2" align="center"><b>Social Security #</b></div>
+      <div class="col-sm-3" align="center"><b>Birth Date</b></div>
+      <div class="col-sm-2" align="center"><b>Birth City</b></div>
+      <div class="col-sm-2" align="center"><b>Birth State</b></div>
+      <div class="col-sm-3" align="center"><b>Birth Country</b></div>
+    </div>
+
+    <div class="row" style="display: none;">
+      <div class="col-sm-2">&nbsp;</div>
+      <div class="col-sm-3" align="center"><em>(mm-dd-yyyy)</em></div>
+      <div class="col-sm-2" align="center"><em>(Lawyers Only)</em></div>
+      <div class="col-sm-2" align="center"><em>(Lawyers Only)</em></div>
+      <div class="col-sm-3" align="center"><em>(Lawyers Only)</em></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2"><b>Social Security #</b><br>&nbsp;<$client.env.FormField.SSN.html></div>    
+      <div class="col-sm-3"><b>Birth Date</b><br><em>(mm-dd-yyyy)</em><$client.env.FormField.BirthDate.html></div>  
+      <div class="col-sm-2"><b>Birth City</b><br><em>(Lawyers Only)</em><$client.env.FormField.BirthCity.html></div>    
+      <div class="col-sm-2"><b>Birth State</b><br><em>(Lawyers Only)</em><$client.env.FormField.BirthState.html></div>  
+      <div class="col-sm-3"><b>Birth Country</b><br><em>(Lawyers Only)</em><$client.env.FormField.BirthCountry.html></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12"><b>Home Address</b> (Street) <$client.env.FormField.HomeAddressStreet.html></div>
+        </div>
+    
+    <div class="row" style="display: none;">
+        <div class="col-sm-3">(City)</div>
+        <div class="col-sm-3">(County)</div>
+        <div class="col-sm-2">(State)</div>
+        <div class="col-sm-2">(Zip Code)</div>
+        <div class="col-sm-2">(Primary Phone #)</div>
+    </div>
+    
+     <div class="row">
+        <div class="col-sm-3">(City)<$client.env.FormField.HomeCity.html></div>
+        <div class="col-sm-3">(County)<$client.env.FormField.HomeCounty.html></div>
+        <div class="col-sm-2">(State)<$client.env.FormField.HomeState.html></div>
+        <div class="col-sm-2">(Zip Code)<$client.env.FormField.HomeZip.html></div>
+        <div class="col-sm-2">(Primary Phone #)<$client.env.FormField.Telephone.html></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12"><b>Supplemental Address</b> (Street) <$client.env.FormField.SupplementalAddressStreet.html></div>
+        </div>
+    
+    <div class="row" style="display: none;">
+        <div class="col-sm-3">(City)</div>
+        <div class="col-sm-3">(County</div>
+        <div class="col-sm-2">(State)</div>
+        <div class="col-sm-2">(Zip Code)</div>
+        <div class="col-sm-2">(Supplementary Telephone #)</div>
+    </div>
+    
+     <div class="row">
+        <div class="col-sm-2">(City)<$client.env.FormField.City.html></div>
+        <div class="col-sm-3">(County)<$client.env.FormField.County.html></div>
+        <div class="col-sm-2">(State)<$client.env.FormField.State.html></div>
+        <div class="col-sm-2">(Zip Code)<$client.env.FormField.ZipCode.html></div>
+        <div class="col-sm-3">(Supplementary Telephone #)<$client.env.FormField.SupTel.html></div>
+    </div>    
+    
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-12"><b>Additional Telephone #s</b></div>
+    </div>
+
+<div class="row" style="display: none;">
+        <div class="col-sm-3">(Cellular)</div>
+        <div class="col-sm-3">(Alternate)</div>
+        <div class="col-sm-3">(Primary Home Fax)</div>
+        <div class="col-sm-3">(Supplemental Home Fax)</div>
+</div>
+    
+<div class="row">
+        <div class="col-sm-3">(Cellular)<$client.env.FormField.Cellular2.html></div>
+        <div class="col-sm-3">(Alternate)<$client.env.FormField.Alternate2.html></div> 
+        <div class="col-sm-3">(Primary Home Fax)<$client.env.FormField.PrimaryFax.html></div>
+        <div class="col-sm-3">(Supplemental Home Fax)<$client.env.FormField.SuppHomeFax.html></div>
+</div>
+ 
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+    </div>
+   
+    <div class="row">
+        <div class="col-sm-12"><b>Personal/Home Email*</b> <$client.env.FormField.PersEmail.html></div>
+    </div>
+
+<div class="row">   
+        <div class="col-sm-12"><i>*This information is secure and confidential. It can only be viewed by you and those in Human Resources or Office Administration. Your personal email address will be used solely for emergency notifications.</i></div>
+    </div>
+    
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+    </div>
+
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+    </div>
+
+    <div class="row" style="display: none;">
+        <div class="col-sm-4" align="center"><b>Marital Status</b></div>
+        <!-- <div class="col-sm-3" align="center"><b>Sex</b></div>  -->
+        <div class="col-sm-4" align="center"><b>U.S. Citizenship</b></div> 
+        <div class="col-sm-4" align="center"><b>Other Citizenship</b></div>
+     </div>
+     <div class="row">
+        <div class="col-sm-4 form-group" align="center"><b>Marital Status</b><$client.env.FormField.MaritalStatus.html></div>
+        <!-- <div class="col-sm-3" align="center"><$client.env.FormField.Sex.html></div> -->
+        <div class="col-sm-4 form-group" align="center"><b>U.S. Citizenship</b><$client.env.FormField.USCitizen.html></div>  
+        <div class="col-sm-4 form-group" align="center"><b>Other Citizenship</b><$client.env.FormField.OtherCitizenship.html></div>
+    </div>
+
+</div>
+</div>
+
+<div id="ContainerBorder">
+<div class="container-fluid">
+
+    <div class="row">
+        <div id="CustomHeader"><div class="col-sm-12"><b>Language Fluency</b></div></div>
+
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">Please complete this section if you speak and/or write a language (other than English) with sufficient fluency to be called upon to assist with translation requests.</div>
+    </div>
+ 
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+    </div>
+   
+    <div class="row">
+        <div class="col-sm-3"><b>Language</b> (Excluding English)</div>
+        <div class="col-sm-3"><$client.env.FormField.Language1.html></div>
+        <div class="col-sm-3" align="center"><div class="checkbox"><label><$client.env.FormField.FluencySpeak1.html></label></div></div>
+        <div class="col-sm-3" align="center"><div class="checkbox"><label><$client.env.FormField.FluencyWrite1.html></label></div></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-3"><b>Language</b> (Excluding English)</div>
+        <div class="col-sm-3"><$client.env.FormField.Language2.html></div>
+         <div class="col-sm-3" align="center"><div class="checkbox"><label><$client.env.FormField.FluencySpeak2.html></label></div></div>
+         <div class="col-sm-3" align="center"><div class="checkbox"><label><$client.env.FormField.FluencyWrite2.html></label></div></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-3"><b>Language</b> (Excluding English)</div>
+        <div class="col-sm-3"><$client.env.FormField.Language3.html></div>
+         <div class="col-sm-3" align="center"><div class="checkbox"><label><$client.env.FormField.FluencySpeak3.html></label></div></div>
+         <div class="col-sm-3" align="center"><div class="checkbox"><label><$client.env.FormField.FluencyWrite3.html></label></div></div>
+    </div>
+</div>
+</div>
+</div>
+
+
+</div>
+
+<div id="ContainerBorder">
+
+<div id="DefaultFont">
+<div class="container-fluid">
+
+    <div class="row">
+        <div id="CustomHeader"><b>Emergency Contacts</b></div>
+    </div>
+
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12"><b>Emergency Contact 1</b></div>
+    </div>
+    
+    <div class="row" style="display: none;">
+        <div class="col-sm-9">(Name)</div>
+        <div class="col-sm-3">(Relationship)</div>
+    </div>  
+    
+    <div class="row">
+        <div class="col-sm-9">(Name)<$client.env.FormField.ECNAme.html></div>
+        <div class="col-sm-3">(Relationship)<$client.env.FormField.ECRelationship.html></div>
+    </div>  
+    
+    <div class="row" style="display: none;">
+        <div class="col-sm-3">(Address)</div>
+        <div class="col-sm-3">(City)</div>
+        <div class="col-sm-2">(State)</div>
+        <div class="col-sm-2">(Zip Code)</div>
+        <div class="col-sm-2">(Country)</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-3">(Address)<$client.env.FormField.ECAddress.html></div>
+        <div class="col-sm-3">(City)<$client.env.FormField.ECCity.html></div>
+        <div class="col-sm-2">(State)<$client.env.FormField.ECState.html></div>
+        <div class="col-sm-2">(Zip Code)<$client.env.FormField.ECZip.html></div>
+        <div class="col-sm-2">(Country)<$client.env.FormField.ECCountry.html></div>
+    </div>
+    
+    <div class="row" style="display: none;">
+        <div class="col-sm-4">(Cell Phone #)</div>
+        <div class="col-sm-4">(Home Phone #)</div>
+        <div class="col-sm-4">(Work Phone #)</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-4">(Cell Phone #)<$client.env.FormField.ECCEll.html></div>
+        <div class="col-sm-4">(Home Phone #)<$client.env.FormField.ECHome.html></div>
+        <div class="col-sm-4">(Work Phone #)<$client.env.FormField.ECWork.html></div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12"></div>
+    </div>
+ 
+<div class="row">
+    <div class="col-sm-12">&nbsp;</div>
+    </div>
+   
+    <div class="row">
+        <div class="col-sm-12"><b>Emergency Contact 2</b></div>
+    </div>
+    
+        <div class="row" style="display: none;">
+        <div class="col-sm-9">(Name)</div>
+        <div class="col-sm-3">(Relationship)</div>
+    </div>  
+    
+    <div class="row">
+        <div class="col-sm-9">(Name)<$client.env.FormField.EC2NAme.html></div>
+        <div class="col-sm-3">(Relationship)<$client.env.FormField.EC2Relationship.html></div>
+    </div>  
+    
+    <div class="row" style="display: none;">
+        <div class="col-sm-3">(Address)</div>
+        <div class="col-sm-3">(City)</div>
+        <div class="col-sm-2">(State)</div>
+        <div class="col-sm-2">(Zip Code)</div>
+        <div class="col-sm-2">(Country)</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-3">(Address)<$client.env.FormField.EC2Address.html></div>
+        <div class="col-sm-3">(City)<$client.env.FormField.EC2City.html></div>
+        <div class="col-sm-2">(State)<$client.env.FormField.EC2State.html></div>
+        <div class="col-sm-2">(Zip Code)<$client.env.FormField.EC2Zip.html></div>
+        <div class="col-sm-2">(Country)<$client.env.FormField.EC2Country.html></div>
+    </div>
+    
+    <div class="row" style="display: none;">
+        <div class="col-sm-4">(Cell Phone #)</div>
+        <div class="col-sm-4">(Home Phone #)</div>
+        <div class="col-sm-4">(Work Phone #)</div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-4">(Cell Phone #)<$client.env.FormField.EC2CEll.html></div>
+        <div class="col-sm-4">(Home Phone #)<$client.env.FormField.EC2Home.html></div>
+        <div class="col-sm-4">(Work Phone #)<$client.env.FormField.EC2Work.html></div>
+    </div>
+</div>
+</div>     
+
+</div>
+</div>
+    
+
+
+
+           <br><hr class="lifesuite__hr"> 
+                  <div class="row" id="formButtons" style="display: none;"> 
+                      <div class="lifesuite__clearfix lifesuite__float-right">                
+                              <$client.env.FormButtons> 
+                       </div>              
+                  </div> 
+           </div>  
+      </div>  
+</div>
+<div style="display:none">
+     <$client.env.FormField.SignatureVerification.HTML>
+     <$client.env.FormField.ard.HTML>
+</div>
+</form>
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// <!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+        if ($('#ard').val()=='1') {
+                $('#ButtonPrint').addClass('hide');
+        }
+});
+(function(ardv) {
+    if ('1'==ardv) {
+        $('[name$=".SSN"]').closest('div').addClass('hide');
+        $('#ButtonPrint').addClass('hide');
+        return false;
+    }
+})($('#ard').val());
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+</SCRIPT>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentElement targetNamespace="/eprise/contentelement.xsd">
+<SelectionField Options="EUP_Title" OptionType="DropDown" OptionsFromList="true" Prompt="Title" FieldOrder="10" Name="Title" />
+<TextField Prompt="Full Legal Name" FieldOrder="20" Name="Full_Name" Rows="1" Cols="40" />
+<TextField Prompt="Preferred Name (Nickname)" FieldOrder="30" Name="Preferred_Name" Rows="1" Cols="20" />
+<TextField Prompt="Preferred First Name" FieldOrder="40" Name="Preferred_First_Name" Rows="1" Cols="30" />
+<TextField Prompt="Preferred Last Name" FieldOrder="50" Name="Preferred_Last_Name" Rows="1" Cols="30" />
+<SelectionField Options="EUP_Country_New" OptionType="DropDown" OptionsFromList="true" Prompt="National ID Issued By" FieldOrder="60" Name="National_ID_IssuedBy" FormOptions="id='NationalID_Country'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" />
+<SelectionField Options="EUP.National_ID_Type" OptionType="DropDown" OptionsFromList="true" Prompt="National ID Type" FieldOrder="70" Name="National_ID_Type" FormOptions="id='NationalID_Type'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" />
+<TextField Prompt="National ID/SSN" FieldOrder="80" Name="SSNO" Rows="1" Cols="9" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'checkNationalID':'doNothing')&gt;" ValidationType="JavaScriptFunction" MaxSize="9" />
+<TextField Prompt="Employee ID" FieldOrder="90" Name="Employee_ID" Rows="1" Cols="10" FormOptions=" " />
+<TextField Prompt="Date of Birth" FieldOrder="100" Name="DOB" Rows="1" Cols="10" FormOptions="class='eupDate'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'RequiredDOB16Plus':'doNothing')&gt;" ValidationType="JavaScriptFunction" DisplayFormat="enabled mm/dd/yyyy" Visual="DATE" />
+<SelectionField Options="EUP_MaritalStatus_NEW" OptionType="DropDown" OptionsFromList="true" Prompt="Marital Status" FieldOrder="110" Name="MaritalStatus" FormOptions="id='Emp_MaritalStatus'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" />
+<TextField Prompt="Contact&amp;nbsp;Information" FieldOrder="120" Name="SectionContactInfo" Rows="1" Cols="1" FormOptions="style='display:none;'" />
+<TextField Prompt="Address Line 1" FieldOrder="130" Name="Address1" Rows="1" Cols="30" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" />
+<TextField Prompt="Address Line 2" FieldOrder="140" Name="Address2" Rows="1" Cols="30" />
+<TextField Prompt="City" FieldOrder="150" Name="City" Rows="1" Cols="30" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" />
+<SelectionField Options="EUP_State_New" OptionType="SimpleDropDown" OptionsFromList="true" Prompt="State" FieldOrder="160" Name="State" FormOptions="id='state_prov'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'Validate_StateValue_Custom':'doNothing')&gt;" />
+<TextField Prompt="Offer Letter State (Non US Only)" FieldOrder="170" Name="IrelandState" Rows="1" Cols="40" />
+<TextField Prompt="Postal Code" FieldOrder="180" Name="Zip" Rows="1" Cols="10" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" />
+<TextField Prompt="Postal Code" FieldOrder="190" Name="Postal_Code" Rows="1" Cols="12" />
+<SelectionField Options="EUP_Country_New" OptionType="DropDown" OptionsFromList="true" Prompt="Country" FieldOrder="200" Name="Country" FormOptions="id='Emp_Country' onChange='fnGetCountryDetails(this);'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" />
+<SelectionField Options="EUP.Phone_Country_Code" OptionType="DropDown" OptionsFromList="true" Prompt="Phone Country Code" FieldOrder="210" Name="Phone_Country_Code" FormOptions="id='PhoneCode'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="Phone Country Code" />
+<TextField Prompt="Phone Area Code" FieldOrder="220" Name="Phone_Area_Code" Rows="1" Cols="5" FormOptions="placeholder='(555)' class='remove-alpha'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'RequiredPaypalAreaCodeDigits':'paypalAreaCodeDigits')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="Phone Area Code" />
+<TextField Prompt="Primary Phone" FieldOrder="230" Name="Phone" Rows="1" Cols="15" FormOptions="placeholder='5555555' class='remove-alpha'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'RequiredPaypalPhoneDigits':'paypalPhoneDigits')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="Primary Phone" />
+<SelectionField Options="EUP.Phone_Country_Code" OptionType="DropDown" OptionsFromList="true" Prompt="Secondary Phone Country Code" FieldOrder="240" Name="Secondary_Phone_Country_Code" FormOptions="id='PhoneCode2'" />
+<TextField Prompt="Secondary Phone Area Code" FieldOrder="250" Name="Secondary_Phone_Area_Code" Rows="1" Cols="5" FormOptions="placeholder='(555)' class='remove-alpha'" ValidationExtraInfo="paypalAreaCodeDigits" ValidationType="JavaScriptFunction" DisplayLabel="Secondary Phone Area Code" />
+<TextField Prompt="Secondary Phone" FieldOrder="260" Name="Secondary_Phone" Rows="1" Cols="15" FormOptions="placeholder='5555555' class='remove-alpha'" ValidationExtraInfo="paypalPhoneDigits" ValidationType="JavaScriptFunction" DisplayLabel="Secondary Phone" />
+<TextField Prompt="EEO&amp;nbsp;Information" FieldOrder="270" Name="SectionEEOInfo" Rows="1" Cols="1" FormOptions="style='display:none;'" />
+<SelectionField Options="EUP_Nationality_New" OptionType="DropDown" OptionsFromList="true" Prompt="Nationality (Country of Birth)" FieldOrder="280" Name="Nationality" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" />
+<SelectionField Options="EUP_Ethnicity" OptionType="DropDown" OptionsFromList="true" Prompt="Ethnicity" FieldOrder="290" Name="Ethnicity" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" />
+<SelectionField Options="EUP_Gender_New" OptionType="DropDown" OptionsFromList="true" Prompt="Gender" FieldOrder="300" Name="Gender" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" />
+<SelectionField Options=",Yes,No,I chose not to self identify" OptionType="SimpleDropDown" Prompt="Disabled" FieldOrder="310" Name="Disability_Status" />
+<TextField Prompt="Veteran&amp;nbsp;Status&lt;br /&gt;&lt;font size=-2&gt;(Check&amp;nbsp;all&amp;nbsp;that&amp;nbsp;apply.)&lt;/font&gt;&lt;/td&gt;" FieldOrder="320" Name="SectionVeteranEEOInfo" Rows="1" Cols="1" FormOptions="style='display:none;'" />
+<SelectionField Options="Armed Forces service medal veteran ,Armed Forces service medal veteran" OptionType="CheckBox" Prompt="Veteran Armed Forces service medal veteran" FieldOrder="330" Name="Veteran_ArmedForces" />
+<SelectionField Options="Disabled Veteran,Disabled Veteran" OptionType="CheckBox" Prompt="Veteran Disabled Veteran" FieldOrder="340" Name="Veteran_Disabled" />
+<SelectionField Options="Recently separated veteran,Recently separated veteran" OptionType="CheckBox" Prompt="Veteran Recently separated veteran" FieldOrder="350" Name="Veteran_RecentlySeperated" />
+<SelectionField Options="Special Disabled Veteran,Special Disabled Veteran" OptionType="CheckBox" Prompt="Veteran Special Disabled Veteran" FieldOrder="360" Name="Veteran_SpecialDisabled" />
+<SelectionField Options="Veteran of Vietnam Era,Veteran of Vietnam Era" OptionType="CheckBox" Prompt="Veteran Veteran of Vietnam Era" FieldOrder="370" Name="Veteran_VietnamEra" />
+<SelectionField Options="Other Protected Veteran,Other Protected Veteran" OptionType="CheckBox" Prompt="Veteran Other Protected Veteran" FieldOrder="380" Name="Veteran_OtherProtected" />
+<SelectionField Options="Not Applicable,Not Applicable" OptionType="CheckBox" Prompt="Veteran Not Applicable" FieldOrder="390" Name="Veteran_NotApplicable" />
+<TextField Prompt="Position&amp;nbsp;Information" FieldOrder="400" Name="SectionPositionInfo" Rows="1" Cols="1" FormOptions="style='display:none;'" />
+<TextField Prompt="Resume Number" FieldOrder="410" Name="Resume_ID" Rows="1" Cols="10" ValidationType="Numeric" />
+<TextField Prompt="Position ID" FieldOrder="420" Name="Position" Rows="1" Cols="30" />
+<TextField Prompt="Tracking Code" FieldOrder="430" Name="Tracking_Code" Rows="1" Cols="25" />
+<TextField Prompt="Business Card Title" FieldOrder="440" Name="Business_Title" Rows="1" Cols="40" />
+<TextField Prompt="Job code" FieldOrder="450" Name="Job_ID" Rows="1" Cols="10" ValidationType="Numeric" />
+<TextField Prompt="System Title" FieldOrder="460" Name="SystemTitle" Rows="1" Cols="40" />
+<TextField Prompt="Salary Grade" FieldOrder="470" Name="SalaryGrade" Rows="1" Cols="10" />
+<TextField Prompt="Salary Grade Lvl" FieldOrder="480" Name="SalaryGradeLvl" Rows="1" Cols="10" />
+<TextField Prompt="Recruiter Name" FieldOrder="490" Name="Recruiter" Rows="1" Cols="25" />
+<TextField Prompt="Recruiter Email" FieldOrder="500" Name="RC_EMAIL" Rows="1" Cols="20" />
+<TextField Prompt="Hiring Manager Name" FieldOrder="510" Name="Hiring_Manager" Rows="1" Cols="25" />
+<TextField Prompt="Manager Email" FieldOrder="520" Name="MGR_EMAIL" Rows="1" Cols="20" />
+<TextField Prompt="Hiring Manager Business Title" FieldOrder="530" Name="MngrBsnssTitle" Rows="1" Cols="40" />
+<SelectionField Options=",,01,Officials and Managers,02,Professionals,03,Technicians,04,Sales Workers,05,Office and Clerical,06,Craft Workers (Skilled),07,Operatives (Semi-skilled),08,Laborers (Unskilled),09,Service Workers,10,Exec/Sr Lvl Officials &amp; Mgrs,11,First/Mid Lvl Officials &amp; Mgrs" OptionType="DropDown" Prompt="EEO Job Category" FieldOrder="540" Name="EEO_Job_Category" />
+<TextField Prompt="Job Template" FieldOrder="550" Name="Job_Template_Name" Rows="1" Cols="25" />
+<TextField Prompt="Work Week %" FieldOrder="560" Name="CAP_UTIL_LVL_PCT" Rows="1" Cols="20" />
+<TextField Prompt="Number of Hours per week" FieldOrder="570" Name="HoursPerWeek" Rows="1" Cols="10" />
+<TextField Prompt="BR Req ID" FieldOrder="580" Name="BRREQNUMBER" Rows="1" Cols="20" />
+<TextField Prompt="BR Candidate ID" FieldOrder="590" Name="CANDIDATEID" Rows="1" Cols="20" />
+<TextField Prompt="Department Name" FieldOrder="600" Name="DEPARTMENT_NAME" Rows="1" Cols="20" />
+<TextField Prompt="Cost center" FieldOrder="610" Name="DEPARTMENT_CD" Rows="1" Cols="20" />
+<TextField Prompt="Work Location Code" FieldOrder="620" Name="LOCATION" Rows="1" Cols="20" />
+<TextField Prompt="Work Location Desc" FieldOrder="630" Name="LOCATION_DESC" Rows="1" Cols="20" />
+<TextField Prompt="Pay State" FieldOrder="640" Name="PAY_AREA_STATE" Rows="1" Cols="20" />
+<TextField Prompt="Pay City" FieldOrder="650" Name="PAY_AREA_CITY" Rows="1" Cols="20" />
+<SelectionField Options="EUP_EMPLOYEE_GROUP_CD" OptionType="DropDown" OptionsFromList="true" Prompt="&lt;span style='color:red'&gt;Employee Group" FieldOrder="660" Name="EMPLOYEE_GROUP_CD" />
+<SelectionField Options="Yes" OptionType="CheckBox" Prompt="Contract Conversion" FieldOrder="670" Name="Contract_Conversion" />
+<TextField Prompt="Contract/Engagement Type" FieldOrder="680" Name="CONTRACT_TYPE_DESC" Rows="1" Cols="20" />
+<TextField Prompt="Shift" FieldOrder="690" Name="Shift" Rows="1" Cols="20" />
+<SelectionField Options="EUP_Exempt" OptionType="DropDown" OptionsFromList="true" Prompt="&lt;span style='color:red'&gt;*Exempt Status&lt;/span&gt;" FieldOrder="700" Name="Exempt" />
+<SelectionField Options=",Part Time,Full Time" OptionType="SimpleDropDown" Prompt="&lt;span style='color:red'&gt;*Part Time/Full Time&lt;/span&gt;" FieldOrder="710" Name="JobType" />
+<SelectionField Options=",,E,Exempt,N,Non-Exempt" OptionType="DropDown" Prompt="Intern Offer Part-Time" FieldOrder="720" Name="InternExempt" />
+<TextField Prompt="Number - FTE length in Months" FieldOrder="730" Name="FTELength" Rows="1" Cols="3" MaxSize="2" />
+<SelectionField Options=",Weeks,Week,Month,Months" OptionType="SimpleDropDown" Prompt="Internship Term" FieldOrder="740" Name="internshipTerm" />
+<TextField Prompt="Number-Internship Length" FieldOrder="750" Name="InternshipLength" Rows="1" Cols="3" />
+<SelectionField Options="EUP_OfferAcceptanceTime" OptionType="DropDown" OptionsFromList="true" Prompt="Offer Acceptance Time  (US RCG Offers only) " FieldOrder="760" Name="OfferAcceptanceTime" />
+<SelectionField Options=",Rent.com,Shopping.com" OptionType="SimpleDropDown" Prompt="Sales Plan" FieldOrder="770" Name="SalesPlan" />
+<TextField Prompt="Contract End Date" FieldOrder="780" Name="ContractEndDate" Rows="1" Cols="10" ValidationType="Date" DisplayFormat="enabled mm/dd/yyyy" Visual="DATE" />
+<TextField Prompt="Ireland Temporary Fixed Term Contract Length (in Months)" FieldOrder="790" Name="IrelandTempFixedTerm" Rows="1" Cols="10" />
+<SelectionField Options="EUP_EnityName" OptionType="DropDown" OptionsFromList="true" Prompt="&lt;span style='color:red'&gt;* Entity Name&lt;/span&gt;" FieldOrder="800" Name="EnityName" />
+<SelectionField Options=",eBay Bangalore" OptionType="SimpleDropDown" Prompt="Entity City" FieldOrder="810" Name="EntityCity" />
+<SelectionField Options="EUP_EntityAddress" OptionType="DropDown" OptionsFromList="true" Prompt="Entity Address" FieldOrder="820" Name="EntityAddress" />
+<SelectionField Options="EUP_BuildingAddress" OptionType="DropDown" OptionsFromList="true" Prompt="Building Address" FieldOrder="830" Name="BuildingAddress" />
+<SelectionField Options="EUP_IEPPContractAddress" OptionType="DropDown" OptionsFromList="true" Prompt="Ireland Contract Address" FieldOrder="840" Name="IEPPContractAddress" FormOptions="id=irelandAddress" />
+<SelectionField Options="EUP_Telesales_PP" OptionType="SimpleDropDown" OptionsFromList="true" Prompt="Telesales Probation (Ireland PayPal Only)" FieldOrder="850" Name="Telesales_Probation_Ireland_Paypal" />
+<SelectionField Options=",901292-X,646013-T" OptionType="SimpleDropDown" Prompt="Company Number" FieldOrder="860" Name="CompanyNumber" />
+<SelectionField Options=",Yes,No" OptionType="SimpleDropDown" Prompt="Manager" FieldOrder="870" Name="Manager" />
+<TextField Prompt="&lt;span style='color:red'&gt;* Subsidiary Name&lt;/span&gt;" FieldOrder="880" Name="SubsidiaryName" Rows="1" Cols="40" />
+<SelectionField Options=",Yes,No" OptionType="SimpleDropDown" Prompt="Non-US Citizen / Non Permanent Residence" FieldOrder="890" Name="Immigration" />
+<TextField Prompt="Compensation" FieldOrder="900" Name="CompensationHeader" Rows="1" Cols="1" FormOptions="style='display:none;'" />
+<TextField Prompt="Start Date" FieldOrder="910" Name="StartDate" Rows="1" Cols="10" ValidationType="Date" DisplayFormat="mm/dd/yyyy" Visual="DATE" />
+<TextField Prompt="Annual Salary" FieldOrder="920" Name="Salary_Amount" Rows="1" Cols="13" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'doNothing':'eFormRequiredField')&gt;" ValidationType="JavaScriptFunction" HTML="ANY" />
+<TextField Prompt="Pay Rate Amount" FieldOrder="930" Name="SalaryOffered" Rows="1" Cols="20" />
+<TextField Prompt="(Intern) Stipend" FieldOrder="940" Name="InternStipend" Rows="1" Cols="20" />
+<TextField Prompt="Salary Currency" FieldOrder="950" Name="SALARY_CURRENCY" Rows="1" Cols="20" />
+<TextField Prompt="Pay Type" FieldOrder="960" Name="Salary_Type" Rows="1" Cols="20" />
+<TextField Prompt="Stock Options" FieldOrder="970" Name="NEW_HIRE_STOCK_OPTIONS" Rows="1" Cols="20" />
+<TextField Prompt="Offer Type " FieldOrder="980" Name="OFFER_TYPE" Rows="1" Cols="15" />
+<TextField Prompt="RSUs" FieldOrder="990" Name="NEW_HIRE_REST_STOCK_UNITS" Rows="1" Cols="20" />
+<TextField Prompt="Supplemental RSU's" FieldOrder="1000" Name="SupplementalRSU" Rows="1" Cols="10" />
+<TextField Prompt="Shift Differential NonExempt" FieldOrder="1010" Name="SHIFT_DIFFERENTIAL" Rows="1" Cols="20" />
+<TextField Prompt="Shift Differential Exempt" FieldOrder="1020" Name="Shift_Differential_Exempt" Rows="1" Cols="20" />
+<TextField Prompt="Language Differential" FieldOrder="1030" Name="LANGUAGE_DIFFERENTIAL" Rows="1" Cols="20" />
+<TextField Prompt="(AIP) PayPal Annual Incentive Plan" FieldOrder="1040" Name="eIP_Target_Pct" Rows="1" Cols="20" />
+<TextField Prompt="Telesales Incentive Program %" FieldOrder="1050" Name="TIP" Rows="1" Cols="10" />
+<TextField Prompt="CS/OPS Incentive Plans (% of Salary Targets)" FieldOrder="1060" Name="CSIncentivePlan" Rows="1" Cols="10" />
+<TextField Prompt="CS/Ops Incentive Plans (Fixed Incentive Targets)" FieldOrder="1070" Name="CSIncentivePlan_fixed" Rows="1" Cols="10" />
+<TextField Prompt="PayPal Teammates Incentive Plan-Front Office Metrics Plan (% of Salary Targets)" FieldOrder="1080" Name="Front_Office_Metrics_Plan" Rows="1" Cols="15" />
+<TextField Prompt="PayPal Teammates Incentive Plan – Back Office Individual Performance (IP) Plan (% of Salary Targets)" FieldOrder="1090" Name="Back_Office_Individual_Performance_Plan" Rows="1" Cols="15" />
+<TextField Prompt="Sales Incentive Plan" FieldOrder="1100" Name="SalesTargetDollarAmt" Rows="1" Cols="10" />
+<TextField Prompt="Sales Incentive Plan % (Non US)" FieldOrder="1110" Name="SalesIncentivePlanIE" Rows="1" Cols="10" />
+<TextField Prompt="Sales Commission Plan" FieldOrder="1120" Name="Sales_commission_plan" Rows="1" Cols="10" />
+<TextField Prompt="Overtime Rate" FieldOrder="1130" Name="Overtime_Rate" Rows="1" Cols="10" />
+<TextField Prompt="Incentive Type Code" FieldOrder="1140" Name="INCENTIVE_TYPE_CODE" Rows="1" Cols="10" Hidden="true" />
+<TextField Prompt="Incentive Type Description" FieldOrder="1150" Name="INCENTIVE_TYPE_DESC" Rows="1" Cols="20" Hidden="true" />
+<TextField Prompt="Incentive Plan Code" FieldOrder="1160" Name="INCENTIVE_PLAN_CODE" Rows="1" Cols="10" Hidden="true" />
+<TextField Prompt="Incentive Plan Description" FieldOrder="1170" Name="INCENTIVE_PLAN_DESC" Rows="1" Cols="20" Hidden="true" />
+<TextField Prompt="Bonus" FieldOrder="1180" Name="BonusHeader" FormOptions="style='display:none;'" />
+<TextField Prompt="Hire on Bonus " FieldOrder="1190" Name="HIRE_ON_BONUS_AMOUNT" Rows="1" Cols="20" />
+<TextField Prompt="Hire on Bonus Currency" FieldOrder="1200" Name="HIRE_ON_BONUS_CRNCY_CD" Rows="1" Cols="20" />
+<TextField Prompt="* Note: Both Welcome Bonus fields must equal the Hire On Bonus, if Hire On Bonus exists" FieldOrder="1210" Name="Welcomebonusheader" FormOptions="style='display:none;'" />
+<TextField Prompt="Welcome Bonus 1 (India)" FieldOrder="1220" Name="WelcomeBonus1" Rows="1" Cols="10" />
+<TextField Prompt="Welcome Bonus 2 (India)" FieldOrder="1230" Name="WelcomeBonus2" Rows="1" Cols="10" />
+<TextField Prompt="Retention Bonus" FieldOrder="1240" Name="RETENTION_BONUS_AMOUNT" Rows="1" Cols="20" />
+<TextField Prompt="Retention Bonus Currency" FieldOrder="1250" Name="RETENTION_BONUS_CRNCY_CD" Rows="1" Cols="20" />
+<SelectionField Options=",,Y,Yes,N,No" OptionType="DropDown" Prompt="Relocation" FieldOrder="1260" Name="Relocation" />
+<TextField Prompt="Relocation - From City State" FieldOrder="1270" Name="RelocationFrom" Rows="1" Cols="40" />
+<TextField Prompt="Relocation - To City State" FieldOrder="1280" Name="PayAreaCity" Rows="1" Cols="40" />
+<TextField Prompt="Estimated Relocation Bonus" FieldOrder="1290" Name="ESTIMATED_RELO_COST" Rows="1" Cols="20" />
+<TextField Prompt="Estimated Relo Bonus Currrency" FieldOrder="1300" Name="ESTIMATED_RELO_COST_CRNCY_CD" Rows="1" Cols="20" />
+<TextField Prompt="Additional Cash Bonus" FieldOrder="1310" Name="CashBonus" Rows="1" Cols="12" />
+<TextField Prompt="Make Good Payment – one payment date" FieldOrder="1320" Name="MGPOnePmtDate" FormOptions="style='display:none;'" />
+<TextField Prompt="Make Good Payment - One Payment Date - Bonus Amt" FieldOrder="1330" Name="paymentAmount1" Rows="1" Cols="10" ValidationType="Numeric" />
+<TextField Prompt="Make Good Payment – two payment dates (dates inserted) – Option One" FieldOrder="1340" Name="MGPTwoPmtDate" FormOptions="style='display:none;'" />
+<TextField Prompt="Make Good Payment - Two Payment Dates Option One - Bonus Amt" FieldOrder="1350" Name="paymentAmount2" Rows="1" Cols="10" ValidationType="Numeric" />
+<TextField Prompt="Make Good Payment - Two Payment Dates Option One - First Installment Payment Amt " FieldOrder="1360" Name="firstinstallmentamount" Rows="1" Cols="10" ValidationType="Numeric" />
+<TextField Prompt="Make Good Payment - Two Payment Dates Option One - First Installment Payment Date" FieldOrder="1370" Name="firstpaymentdate" Rows="1" Cols="10" ValidationType="Date" DisplayFormat="mm/dd/yyyy" Visual="DATE" />
+<TextField Prompt="Make Good Payment - Two Payment Dates Option One - Second Installment Payment Amt" FieldOrder="1380" Name="secondinstallmentamount" Rows="1" Cols="10" ValidationType="Numeric" />
+<TextField Prompt="Make Good Payment - Two Payment Dates Option One - Second Installment Payment Date" FieldOrder="1390" Name="secondpaymentdate" Rows="1" Cols="10" ValidationType="Date" DisplayFormat="mm/dd/yyyy" Visual="DATE" />
+<TextField Prompt="Make Good Payment – two payment dates –Option Two" FieldOrder="1400" Name="MGPTwoPmtDateOption2" FormOptions="style='display:none;'" ValidationType="Numeric" />
+<TextField Prompt="Make Good Payment - Two Payment Dates Option Two - Bonus Amt" FieldOrder="1410" Name="Option2PaymentAmt" Rows="1" Cols="10" ValidationType="Numeric" />
+<TextField Prompt="Make Good Payment - Two Payment Dates Option Two - First Installment Payment Amt" FieldOrder="1420" Name="Option2FirstInstallment" Rows="1" Cols="10" ValidationType="Numeric" />
+<TextField Prompt="Make Good Payment - Two Payment Dates Option Two - Second Installment Payment Amt" FieldOrder="1430" Name="Option2SecondInstallmentAmt" Rows="1" Cols="10" ValidationType="Numeric" />
+<SelectionField Options="," OptionType="SimpleDropDown" Prompt="Company Name" FieldOrder="1440" Name="co_name" ShowDefault="true" />
+<SelectionField Options="," OptionType="SimpleDropDown" Prompt="Company Address 1" FieldOrder="1450" Name="co_address1" ShowDefault="true" />
+<SelectionField Options=" ," OptionType="SimpleDropDown" Prompt="Address 2" FieldOrder="1460" Name="co_address2" ShowDefault="true" />
+<SelectionField Options="," OptionType="SimpleDropDown" Prompt="Company City" FieldOrder="1470" Name="co_city" ShowDefault="true" />
+<SelectionField Options="," OptionType="SimpleDropDown" Prompt="Company State" FieldOrder="1480" Name="co_state" ShowDefault="true" />
+<SelectionField Options="," OptionType="SimpleDropDown" Prompt="Company Zip" FieldOrder="1490" Name="co_zip" ShowDefault="true" />
+<SelectionField Options="," OptionType="SimpleDropDown" Prompt="Company Employer Identification Number" FieldOrder="1500" Name="co_ein" ShowDefault="true" />
+<TextField Prompt="Incentive %" FieldOrder="1510" Name="INCENTIVE_PERC" Rows="1" Cols="20" Hidden="true" />
+<TextField Prompt="Incentive Amt" FieldOrder="1520" Name="INCENTIVE_AMT" Rows="1" Cols="20" Hidden="true" />
+<TextField Prompt="Total Target Cash" FieldOrder="1530" Name="TARGET_CASH" Rows="1" Cols="20" Hidden="true" />
+<TextField Prompt="AWARD AMOUNT" FieldOrder="1540" Name="AWARD_AMOUNT" Rows="1" Cols="10" Hidden="true" />
+<SelectionField Options=",,01,Accept ,02,Decline Offer - Accepted offer from another employer,03,Decline Offer - Commute ,04,Decline Offer - Not able/willing to relocate ,05,Decline Offer - Returning to School ,06,Decline Offer - Compensation insufficient ,07,Decline Offer - Shift conflict ,08,Decline Offer - Other" OptionType="DropDown" Prompt="Offer Letter Status" FieldOrder="1550" Name="AcceptDecline" FormOptions="disabled" />
+<TextField Prompt="Other Reason Text" FieldOrder="1560" Name="OtherReasonText" Rows="1" Cols="30" />
+<TextField Prompt="Emergency&amp;nbsp;Contact&amp;nbsp;Info" FieldOrder="1570" Name="SectionEmergencyContactInfo" Rows="1" Cols="1" FormOptions="style='display:none;'" />
+<TextField Prompt="First Name" FieldOrder="1580" Name="EC_First_Name" Rows="1" Cols="30" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="Name" />
+<TextField Prompt="Last Name" FieldOrder="1590" Name="EC_Last_Name" Rows="1" Cols="30" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="Last Name" />
+<SelectionField Options="EUP_Relationship_Type_New" OptionType="DropDown" OptionsFromList="true" Prompt="Relationship" FieldOrder="1600" Name="EC_Relationship" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="Relationship" />
+<TextField Prompt="Address Line 1" FieldOrder="1610" Name="EC_Address_Line1" Rows="1" Cols="30" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="Address Line 1" />
+<TextField Prompt="Address Line 2" FieldOrder="1620" Name="EC_Address_Line2" Rows="1" Cols="30" DisplayLabel="Address Line 2" />
+<SelectionField Options="EUP_Country_New" OptionType="DropDown" OptionsFromList="true" Prompt="Country" FieldOrder="1630" Name="EC_Country" FormOptions="id='EC_Country' onChange='fnGetCountryDetails(this);'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="Country" />
+<TextField Prompt="City" FieldOrder="1640" Name="EC_City" Rows="1" Cols="30" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="City" />
+<SelectionField Options="EUP_State_New" OptionType="DropDown" OptionsFromList="true" Prompt="State" FieldOrder="1650" Name="EC_State" FormOptions="id='EC_State'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="State" />
+<TextField Prompt="Postal Code" FieldOrder="1660" Name="EC_Zip" Rows="1" Cols="15" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="Zip" />
+<SelectionField Options="EUP.Phone_Country_Code" OptionType="DropDown" OptionsFromList="true" Prompt="Primary Country Phone Code" FieldOrder="1670" Name="EC_Primary_Country_Code" FormOptions="id='ECHomePhoneCode'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="EC Primary Country Phone Code" />
+<TextField Prompt="Primary Area Code" FieldOrder="1680" Name="EC_Primary_Area_Code" Rows="1" Cols="5" FormOptions="placeholder='(555)' class='remove-alpha'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'RequiredPaypalAreaCodeDigits':'paypalAreaCodeDigits')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="EC Primary Area Code" />
+<TextField Prompt="Primary Phone Number" FieldOrder="1690" Name="EC_Primary_Phone_Number" Rows="1" Cols="15" FormOptions="placeholder='5555555' class='remove-alpha'" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'RequiredPaypalPhoneDigits':'paypalPhoneDigits')&gt;" ValidationType="JavaScriptFunction" DisplayLabel="EC Primary Phone Number" />
+<SelectionField Options="EUP.Phone_Country_Code" OptionType="DropDown" OptionsFromList="true" Prompt="Mobile Country Phone Code" FieldOrder="1700" Name="EC_Mobile_Country_Code" FormOptions="id='ECMobilePhoneCode'" FieldModifyExpression="EC Mobile Country Phone Code" />
+<TextField Prompt="Mobile Area Code" FieldOrder="1710" Name="EC_Mobile_Area_Code" Rows="1" Cols="5" FormOptions="placeholder='(555)' class='remove-alpha'" ValidationExtraInfo="paypalAreaCodeDigits" ValidationType="JavaScriptFunction" DisplayLabel="EC Mobile Area Code" />
+<TextField Prompt="Mobile Phone Number" FieldOrder="1720" Name="EC_Mobile_Phone_Number" Rows="1" Cols="15" FormOptions="placeholder='5555555' class='remove-alpha'" ValidationExtraInfo="paypalPhoneDigits" ValidationType="JavaScriptFunction" DisplayLabel="EC Mobile Phone Number" />
+<SelectionField Options="EUP.Phone_Country_Code" OptionType="DropDown" OptionsFromList="true" Prompt="Work Country Code" FieldOrder="1730" Name="EC_Work_Country_Code" FormOptions="id='ECWorkPhoneCode'" DisplayLabel="Work Country Code" Hidden="true" />
+<SelectionField Options="EUP.Phone_Country_Code" OptionType="DropDown" OptionsFromList="true" Prompt="Other Country Code" FieldOrder="1740" Name="EC_Other_Country_Code" FormOptions="id='ECOtherPhoneCode'" DisplayLabel="Other Country Code" Hidden="true" />
+<TextField Prompt="Intl Date - do not remove" FieldOrder="1750" Name="IntlDate" Rows="1" Cols="8" FormOptions="class='intlDate' onchange='setDate()'" ValidationType="Date" DisplayFormat="enabled dd/mm/yyyy" Visual="DATE" />
+</ContentElement>

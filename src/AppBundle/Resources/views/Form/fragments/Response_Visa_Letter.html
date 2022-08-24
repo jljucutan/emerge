@@ -1,0 +1,224 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Green_Card_Renewal_Month.prompt>
+        <$client.env.FormField.Green_Card_Renewal_Year.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row mb-30">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-sm-12">
+            <img src="<$link;/main/RedCarpet/FormTemplates/Response_Visa_Letter/img/santander_logo.jpg>" alt="Santander Logo" class="img-responsive">
+        </div>
+    </div>
+    <template id="fragment-1">
+        <p class="hide">&nbsp;</p>
+        <p>Hello <%= RECRUITING_COORDINATOR_NAME %>,</p>
+
+        <p>Thank you for sending us the completed Mobility checklist for review of this case.</p>
+
+        <p>We can confirm that this is a viable <%= Visa_Type %> case.</p>
+
+        <p>The cost of the visa is estimated to be <strong><%= Approx_Cost %></strong> and will be charged to the business line's cost center.</p>
+
+        <% if (Visa_Type == 'H-1B Visa Transfer') { %>
+            <p>H-1B cases are being challenged frequently.  If this should occur, it will prolong the timing of approval and incur additional costs to the business area (approx. $5k-$7k).</p>
+            <p>The H-1B visa is valid for 6 years (with extensions). Two years prior to the capout of the visa, we would need to review for Green Card sponsorship.  The cost would be approx. 27K. <u>We need to be clear that Santander is not promising future sponsorship at this time</u> and this should only be communicated to the business line (not the candidate) as an FYI so they have the full picture from a total cost perspective for hire. Santander has a Permanent Residency Program with eligibility guidelines. </p>
+        <% } %>
+        <% if (Visa_Type == 'L-1A Visa') { %>
+            <p>The L-1A visa is valid for 7 years (with extensions).  Two years prior to the cap out of the visa, we would need to review for Green Card sponsorship.  The cost would be approx. 27K. <u>We need to be clear that Santander is not promising future sponsorship at this time</u> and this should only be communicated to the business line (not the candidate) as an FYI so they have the full picture from a total cost perspective for hire.  Santander has a Permanent Residency Program with eligibility guidelines.</p>
+        <% } %>
+        <% if (Visa_Type == 'L-1b Visa') { %>
+            <p>The L-1B visa is valid for 5 years (with extensions). Two years prior to the cap out of the visa, we would need to review for Green Card sponsorship. The cost would be approx. 27K. We need to be clear that Santander is not promising future sponsorship at this time and this should only be communicated to the business line (not the candidate) as an FYI so they have the full picture from a total cost perspective for hire. Santander has a Permanent Residency Program with eligibility guidelines.</p>
+        <% } %>
+        <% if (Visa_Type == 'E-2 Visa') { %>
+            <p>A candidate needing E-2 visa sponsorship needs to apply at the Embassy in Spain.  Please note that we do not cover any visa –related travel expenses.  An E-2 visa can be renewed indefinitely and the visa holder never has to go to Green Card status to remain work authorized while being sponsored for the E-2 visa.</p>
+        <% } %>
+        <% if (Visa_Type == 'TN Visa') { %>
+            <p>The TN visa can be renewed indefinitely however, someone on a TN may have issues renewing after a period of time because they shouldn't have permanent intent.  Please be sure the candidate is made aware of this potential risk.</p>
+            <p>It is recommended by our immigration attorney that after 3 years of TN (at the time of their extension) that we review their case for potential Green Card consideration.  The cost of a TN to Green Card is approx. $27K. <u>We need to be clear that Santander is not promising future sponsorship at this time</u> and this should only be communicated to the business line (not the candidate) as an FYI so they have the full picture from a total cost perspective for hire.  Santander has a Permanent Residency Program with eligibility guidelines.</p>
+        <% } %>
+        <% if (Visa_Type == 'H1B1') { %>
+            <p>The H1B1 visa can be renewed indefinitely however, someone on an H1B1 visa may have issues renewing after a period of time because they shouldn't have permanent intent.  Please be sure the candidate is made aware of this potential risk.</p>
+            <p>It is recommended by our immigration attorney that after 3 years of H1B1 status (at the time of their extension) that we review their case for potential Green Card consideration.  The cost of an H1B1 to Green Card is approx. $27K. <u>We need to be clear that Santander is not promising future sponsorship at this time</u> and this should only be communicated to the business line (not the candidate) as an FYI so they have the full picture from a total cost perspective for hire.  Santander has a Permanent Residency Program with eligibility guidelines.</p>
+        <% } %>
+
+        <p>Should an offer be presented and the candidate accepts, the visa process starts from the time the candidate submits all required documentation will take <%= TIMING %>. Please ensure that when communicating to the business, the cost & timing is made clear to them.</p>
+
+        <% if (Green_Card_Renewal=='yes') { %>
+            <p><u>** As this individual will need Green Card sponsorship in <% if (!readonly) { %><span><input type="text" value="<%= Green_Card_Renewal_Month %>" readonly class="date-month lifesuite__text-input ng-invalid" data-dateformat="MM" data-targetdate="#Green_Card_Renewal_Month" data-change-year="0" data-change-month="1"></span> <span><input type="text" value="<%= Green_Card_Renewal_Year %>" readonly class="date-year lifesuite__text-input ng-invalid" data-dateformat="yy" data-targetdate="#Green_Card_Renewal_Year" data-change-year="1" data-change-month="0"></span><% } %><%if (!!readonly) { %><%= Green_Card_Renewal_Month %>&nbsp;<%= Green_Card_Renewal_Year %><% } %> (which would be an exception to our Green Card program requirements), this offer will need additional approval from the HR Business Partner and Diane Cornish.  The cost is approx.  $27,000.00. If approved to move forward, please let us know prior to submitting the offer to Taleo/US Mobility team for approval.</u></p>
+        <% } %>
+
+        <p><u>If approved to move forward, please let us know prior to submitting the offer to Taleo so that we can provide Diane the necessary advance notice as to why she will receive this letter for approval.  Please confirm in writing why an exception will be made.</u></p>
+
+        <p>Please be sure that U.S. Mobility is included as an approver of the offer letter in Taleo before proceeding. <strong>(Offers at SC ( non- Taleo users)</strong>: Please be sure that U.S. Mobility is included as an approver of the offer letter given the sponsored visa verbiage by sending for approval to our email address, <u><a href="mailto:IntlMobilityTeam@santander.us">IntlMobilityTeam@santander.us</a>).</u></p>
+
+        <p>Once the candidate has accepted, please upload the signed offer letter as confirmation the individual has accepted so that we can initiate the visa process.</p>
+
+        <p>Please ensure the candidate does not give notice to their current employer until the immigration firm gives them the approval to do so.</p>
+
+        <p class="mb-30">Our team will communicate this to them, but please let them know that if they have upcoming travel plans abroad, they need to notify our team because there could be implications to their US visa.</p>
+
+        <p class="hide">&nbsp;</p>
+        <p>Please let us know if you have any questions.</p>
+
+        <p>Kind regards</p>
+    </template>
+
+    <div class="row">
+        <div id="complete" class="col-lg-12"></div>
+    </div>
+
+    <div id="incomplete">
+        <div id="markup"></div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.Green_Card_Renewal.HTML>
+    <$client.env.FormField.Green_Card_Renewal_Month.HTML>
+    <$client.env.FormField.Green_Card_Renewal_Year.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Response_Visa_Letter/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Response_Visa_Letter/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Response_Visa_Letter/js/script_version_1.js>" defer></script>
+<script>
+    showScreen('over');
+    ChangeCalendarIcons(); //for popup calendar
+    const IS_MOBILITY = <$client.env.eval((client.tEventManagers_Person_9.UserGuid==account.userguid)?'true':'false')>;
+    const GREEN_CARD_RENEWAL = "<$client.tForWhomUserInfo.Green_Card_Renewal>";
+    const thisForm = document.querySelector('[name="frmForm"]');
+    const VISA_CONFIG = {
+        'L-1A Visa': {
+            'timing': 'at least 4-6 weeks',
+            'cost': '5000'
+        },
+        'L-1b Visa': {
+            'timing': 'at least 4-6 weeks',
+            'cost': '5000'
+        },
+        'H-1B Visa Transfer': {
+            'timing': 'No guarantee if premium processing is currently suspended. If the case is challenged, the cost will be approx. $14K to cover legal and filing fees to respond to the request.  If premium processing, will receive a response within 3 weeks of case being filed.',
+            'cost': '8000'
+        },
+        'E-2 Visa': {
+            'timing': 'at least 4-6 weeks. A trip to Spain may be necessary also (if the candidate is not already there)  Santander does not support visa related travel',
+            'cost': '4000'
+        },
+        'TN Visa': {
+            'timing': 'No guarantee if premium processing is currently suspended.  If premium processing, will receive a response within 3 weeks of case being filed',
+            'cost': '6000'
+        },
+        'H1B1': {
+            'timing': 'at least 4-6 weeks',
+            'cost': '4000'
+        },
+        'B Visa': {
+            'timing': 'at least 4-6 weeks',
+            'cost': '1600'
+        }
+    }   
+    let greedCardReadonly = true;
+    if (!!IS_MOBILITY && GREEN_CARD_RENEWAL == 'yes') {
+        greedCardReadonly = false;
+    }
+    const data = {
+        'Visa_Type': '<$client.tForWhomUserInfo.Visa_Type>',
+        'RECRUITING_COORDINATOR_NAME': '<$client.tEventManagers_Person_10.First_Name>',
+        'Approx_Cost': 0,
+        'TIMING': '',
+        'Green_Card_Renewal': GREEN_CARD_RENEWAL,
+        'Green_Card_Renewal_Month': '<$client.env.FormField.Green_Card_Renewal_Month.Value>',
+        'Green_Card_Renewal_Year': '<$client.env.FormField.Green_Card_Renewal_Year.Value>',
+        'readonly': greedCardReadonly // editable only for mobility team
+    }
+    /* RESPONSIVE eFORM BUTTONS STYLE */
+    $(document).on('ready', function() {
+        $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+        $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonSaveAndComplete',  onclick: null});
+        $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop({id:'ButtonPrint', onclick: null});
+        $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+        $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+        $('#formButtons').show();
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    });
+
+    const disableCalButton = function(el) {
+        "use strict";
+        el.parent().find('input').prop('disabled', 'disabled');
+    }
+
+    $(window).on('load', function() {
+        $(".modal").hide();
+    });
+    angular.element(window).on('load', function() {
+        setTimeout(function() {
+            angular.element('#divLoader').hide();
+        }, 800);
+    });
+</script>

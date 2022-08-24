@@ -1,0 +1,182 @@
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+    <div id="box">
+        <b>Electronic Signature</b>
+        <p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <br>
+        <b>Type your Name:</b> 
+        <input type=text id="eSignature1"> 
+        <input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','','over','modal','sv');xbObj('eSignature1').value='';"> 
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">        
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+
+
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+
+<$client.env.FormField.Active.prompt>
+<$client.env.FormField.Armed.prompt>
+<$client.env.FormField.Date.prompt>
+<$client.env.FormField.DischargeDate.prompt>
+<$client.env.FormField.Disabled.prompt>
+<$client.env.FormField.Experience.prompt>
+<$client.env.FormField.First.prompt>
+<$client.env.FormField.Last.prompt>
+<$client.env.FormField.Middle.prompt>
+<$client.env.FormField.NotProtected.prompt>
+<$client.env.FormField.PersonnelNumber.prompt>
+<$client.env.FormField.Protected.prompt>
+<$client.env.FormField.Separated.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.SignatureVerification.prompt>
+      </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<table style="width: 900px;" class="formHeader" border="0">
+   <Tr>
+      <TD align="left"><img src="<$link;/eprise/main/SiteGen/Onboard_US/Content/Uploads/Images/accenture_form_logo.gif>" border="2"></TD>
+      <TD class="title" valign="top">U.S. Veteran and Military Identification Form</TD>
+   </Tr>
+
+   <tr>
+       <td width="425px">Personnel Number:&nbsp;<$client.env.FormField.PersonnelNumber.HTML></TD>
+       <td width="475px"></td>
+   </tr>
+</table>
+<table style="width: 900px;" class="formHeader" border="0">
+   <tr>
+      <td id="inputPadding">Name:<$client.env.FormField.LastName.HTML></td>
+      <td><$client.env.FormField.FirstName.HTML></td>
+      <td><$client.env.FormField.MiddleName.HTML></td>
+   </tr>
+   <tr>
+       <td class="labelLast" valign="top"><div class="subScript">Last</div></td>
+       <td class="labelFirst" valign="top"><div class="subScript">First</div></td>
+       <td class="labelMiddle" valign="top"><div class="subScript">Middle</div></td>
+   </tr>
+   <tr>
+       <td colspan="3"><br />Accenture is a Government contractor subject to the Vietnam Era Veterans' Readjustment Assistance Act of 1974, as amended by the Jobs for Veterans Act of 2002, 38 U.S.C. 4212 (VEVRAA), which requires Government contractors to take affirmative action to employ and advance in employment: (1) Disabled veterans; (2) Recently separated veterans; (3) Active duty wartime or campaign badge veterans; and (4) Armed Forces service medal veterans.<br /><br />As a Government contractor subject to VEVRAA, we are required to submit a report to the United States Department of Labor each year identifying the number of our employees belonging to each specified “protected veteran” category in accordance with the Federal Government’s definitions. If you believe you belong to any of the categories of protected veterans listed above, please indicate by checking the appropriate box below.<br /><br />I BELONG TO THE FOLLOWING CLASSIFICATIONS OF PROTECTED VETERANS (CHOOSE ALL THAT APPLY):<br /><br /></td>
+   </tr>
+</table>
+<table style="width: 900px;" class="formHeader" border="0">
+   <tr>
+        <td width="25"><$client.env.FormField.chbxSDV.HTML></td><td>DISABLED VETERAN: A “disabled veteran” is one of the following:<br /></td>
+   </tr>
+       <td colspan="2"><p class="bullets">&bull; &nbsp;a veteran of the U.S. military, ground, naval or air service who is entitled to compensation (or who but for the receipt of military retired pay would be entitled to compensation) under laws administered by the Secretary of Veterans Affairs; or</p></td>
+    </tr>
+    <tr>
+        <td colspan="2"><p class="bullets">&bull; &nbsp;a person who was discharged or released from active duty because of a service-connected disability.</p></td>
+   </tr>
+   <tr>
+        <td><$client.env.FormField.chbxOther2.HTML></td><td> RECENTLY SEPARATED VETERAN: A “recently separated veteran” means any veteran during the three-year period beginning on the date of such veteran's discharge or release from active duty in the U.S. military, ground, naval, or air service.<br /><br /></td>
+   </tr>
+       <td colspan="2" style="padding-left: 200px;"><table><tr><td>Discharge/Release Date:</td><td><$client.env.FormField.DischargeDate.HTML></td></tr></table><br /><br /></td>
+    </tr>
+   <tr>
+        <td><$client.env.FormField.chbxActive.HTML></td><td>ACTIVE WARTIME OR CAMPAIGN BADGE VETERAN: An “active duty wartime or campaign badge veteran” means a veteran who served on active duty in the U.S. military, ground, naval or air service during a war, or in a campaign or expedition for which a campaign badge has been authorized under the laws administered by the Department of Defense.<br /><br /></td>
+   </tr>
+   <tr>
+        <td><$client.env.FormField.chbxOther1.HTML></td><td>ARMED FORCES SERVICE MEDAL VETERAN: An “Armed forces service medal veteran” means a veteran who, while serving on active duty in the U.S. military, ground, naval or air service, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order 12985.<br /><br /></td>
+   </tr>
+   <tr>
+        <td><$client.env.FormField.chbxVietnam.HTML></td><td>I am a protected veteran, but I choose not to self-identify the classifications to which I belong.<br /><br /></td>
+   </tr>
+   <tr>
+        <td><$client.env.FormField.NotProtected.HTML></td><td>I am NOT a protected veteran and the classifications above do not apply to me.<br /><br /></td>
+   </tr>
+</table>
+<table style="width: 900px;" class="formHeader" border="0">
+   <tr>
+      <td>If you are a disabled veteran,  and are requesting a reasonable accommodation that would enable you to perform the essential functions of the job, including special equipment, changes in the physical layout of the job, changes in the way the job is customarily performed, provision of personal assistance services or other accommodations, please complete the Accommodation Request Form.  This form is listed in the Task section and will assist us in making reasonable accommodations for your disability.<br /><br />Submission of this Veteran-related information is voluntary and refusal to provide it will not subject you to any adverse treatment. The information provided will be used only in ways that are not inconsistent with the Vietnam Era Veterans' Readjustment Assistance Act of 1974, as amended.<br /><br />The Veteran information you submit will be kept confidential, except that Government officials engaged in enforcing laws administered by the Office of Federal Contract Compliance Programs, or enforcing the Americans with Disabilities Act, may be informed.<br /><br />While not all military experience may fall into the government denoted ‘Protected Veteran Categories,’ Accenture also would like to extend our affirmative action efforts to all who have served in the Military. For this reason we have included a question pertaining voluntary identification of military experience. Accenture will use this anonymous data to understand and improve its ability to recruit military veterans. Information regarding prior military service is collected and stored in accordance to Accenture’s data privacy policies. This information is reported and utilized anonymously and in aggregate, and will not contain any personal or identifying information. On occasion, Accenture may be asked to provide statistics regarding its veterans hiring practices as part of business development, government reporting, and other activities. In these instances, Accenture will only share information in an aggregate, anonymous form; information will not contain nor be linked to any personal information.<br /><br />
+</td>
+    </tr>
+        <td>Do you have any US armed forces military experience?<br /><br /><$client.env.FormField.US_Military_Experience.HTML><br />
+        </td>
+    </tr>
+    <tr>
+        <td>Accenture has a voluntary US Inclusion & Diversity Interest Group focused on individuals with a disability or a family member or friend who is affected  by a disability.  For more information or to join the group once your start, please visit the Disability Employee Resource Group (ERG) website. 
+Portal > Career & Benefits > Inclusion & Diversity at Accenture > Persons with Disabilities.<br /><br /></td>
+</tr>
+
+<tr>
+   <td><table><tr><td><$client.env.formfield.chbxAck.HTML></td><td>I understand that by typing my full name and saving this form that I am electronically signing this document and that by doing so, that I acknowledge, agree and attest under penalty of perjury that the information provided on this form is true and correct. I also understand that my electronic signature carries the same legal effect and enforceability as my handwritten signature.<br /><br /></td></tr></table></td>
+
+   </tr>
+      </table>
+     
+
+<table width="800px">
+<tr>
+   <td width="540px">Signature:&nbsp;<$client.env.FormField.Signature.HTML></td><td><table><tr><td>Date:</td> <td><$client.env.FormField.Date.HTML></td></tr></table></td>
+</tr>
+</table>
+<br /><br />
+
+
+    <div style="display:none;">
+        <$client.env.FormField.SignatureVerification.HTML>
+    </div>
+
+
+    <$client.env.FormButtons>
+</form>
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+</SCRIPT>
+
+<script>
+const chkbxgrp = document.querySelectorAll('.chkbxgrp')
+const toggleDRDate = function() {
+  "use strict"
+  if (strFormCompleted.length > 0) {
+    return
+  }
+  let c = document.querySelector('[name$=".chbxOther2"]')
+  if (!c.checked) {
+    $('[name$=".DischargeDate_display"]').datepicker('setDate', null).prop('disabled', true)
+    return
+  }
+  $('[name$=".DischargeDate_display"]').datepicker('option', 'disabled', false)
+}
+$(window).on('load', function() {
+  chkbxgrp.forEach(function(f) {
+    f.addEventListener('change', function() {
+      let chkd = this.checked
+      chkbxgrp.forEach(function(fi) {
+        fi.checked = false
+      })
+      this.checked = chkd
+      toggleDRDate()
+    })
+    toggleDRDate()
+  })
+})
+</script>

@@ -1,0 +1,561 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                    </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','firstnamemiddleinitial,lastname','modal','over','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<script type="text/javascript">
+    showScreen('over');
+</script>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+<$client.env.FormField.AdditionalWithholding.prompt>
+<$client.env.FormField.Address.prompt>
+<$client.env.FormField.Allowances.prompt>
+<$client.env.FormField.City.prompt>
+<$client.env.FormField.State.prompt>
+<$client.env.FormField.Zip.prompt>
+<$client.env.FormField.DateSigned.prompt>
+<$client.env.FormField.EIN1.prompt>
+<$client.env.FormField.EIN2.prompt>
+<$client.env.FormField.EmployerNameAddress.prompt>
+<$client.env.FormField.Exempt.prompt>
+<$client.env.FormField.FilingStatusA.prompt>
+<$client.env.FormField.FirstDateEmployment.prompt>
+<$client.env.FormField.FirstNameMiddleInitial.prompt>
+<$client.env.FormField.LastName.prompt>
+<$client.env.FormField.MJWorksheet1.prompt>
+<$client.env.FormField.MJWorksheet2.prompt>
+<$client.env.FormField.MJWorksheet3.prompt>
+<$client.env.FormField.MJWorksheet4.prompt>
+<$client.env.FormField.MJWorksheet5.prompt>
+<$client.env.FormField.MJWorksheet6.prompt>
+<$client.env.FormField.MJWorksheet7.prompt>
+<$client.env.FormField.MJWorksheet8.prompt>
+<$client.env.FormField.MJWorksheet9.prompt>
+<$client.env.FormField.SSN1.prompt>
+<$client.env.FormField.SSN2.prompt>
+<$client.env.FormField.SSN3.prompt>
+<$client.env.FormField.Signature.prompt>
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+    <header class="row b-bottom b-green mb-10">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 b-sm-right b-green">
+            <div class="center-block">
+                <img src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_ID/img/idaho_logo.jpg>" alt="" class="img-responsive">
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+            <h3>
+                <strong>
+                    Form ID W-4 <br class="hidden-xs">
+                    Employee’s Withholding Allowance Certificate
+                </strong>
+            </h3>
+        </div>
+    </header>
+    <div class="row mb-20">
+        <div class="col-lg-12">
+            <p class="mb-20">
+                Complete Form ID W-4 so your employer can withhold the correct amount of state income tax from your paycheck. Sign the form and give it to your employer. <strong>Use the information on the back</strong> to calculate your Idaho allowances and any additional amount you need withheld from each paycheck. If you plan to itemize deductions, use the worksheet at <strong><a class="black--text" href="http://tax.idaho.gov/w4" target="_blank">tax.idaho.gov/w4</a></strong>.</p>
+            <p>
+                <strong>Withholding Status</strong>
+            </p>
+            Check the “<strong>A</strong>” box (Single) if you’re:
+            <ul class="list-indented mb-10">
+                <li>Single with one job or single with multiple jobs</li>
+                <li>Filing as head of household</li>
+            </ul>
+            Check the “<strong>B</strong>” box (Married) if you’re:
+            <ul class="list-indented mb-10">
+                <li>Married filing jointly with one job and your spouse doesn’t work</li>
+                <li>A qualifying widow(er)
+                </li>
+            </ul>
+            Check the “<strong>C</strong>” box (Married, but withhold at Single rate) if you’re:
+            <ul class="list-indented mb-60">
+                <li>Married filing jointly and both people work (or you have multiple jobs)
+                </li>
+                <li>Married filing separately</li>
+            </ul>
+            <p class="text-center bg-cut">
+                <small class="bg-padded">
+                    <em>CUT HERE</em>
+                </small>
+            </p>
+        </div>
+    </div>
+    <header class="row b-bottom b-green mb-10">
+        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 b-right b-green">
+            <div class="center-block">
+                <img src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_ID/img/idaho_logo.jpg>" alt="" class="img-responsive">
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+            <h3>
+                <strong>
+                    Form ID W-4 <br class="hidden-xs">
+                    Employee’s Withholding Allowance Certificate
+                </strong>
+            </h3>
+        </div>
+    </header>
+    <div class="row mb-10">
+        <div class="col-lg-12">
+            <p>
+                <strong>WITHHOLDING STATUS</strong> (see information above)
+            </p>
+            <div class="row mb-10">
+                <div class="col-lg-3 col-sm-4 col-xs-12">
+                    <strong class="inline-block">A</strong>
+                    <div class="inline-block">
+                        <$client.env.formfield.FilingStatusA.html>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-4 col-xs-12">
+                    <strong class="inline-block">B</strong>
+                    <div class="inline-block">
+                        <$client.env.formfield.FilingStatusB.html>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-sm-4 col-xs-12">
+                    <strong class="inline-block">C</strong>
+                    <div class="inline-block">
+                        <$client.env.formfield.FilingStatusC.html>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-10">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+            1. Total number of Idaho allowances you’re claiming
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <$client.env.formfield.Allowances.html>
+        </div>
+    </div>
+    <div class="row mb-10">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+            2. Additional amount (if any) you need withheld from each paycheck (Enter whole dollars)
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <$client.env.formfield.AdditionalWithholding.html>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-offset-9 col-md-offset-9 col-sm-offset-6 col-lg-3 col-md-3 col-sm-6 col-xs-12 box b-none-bottom">
+            <div class="form-group">
+                <small>Your Social Security number (required)</small>
+                <$client.env.formfield.SSN.html>
+            </div>
+        </div>
+    </div>
+    <div class="box mb-10">
+        <div class="row b-bottom">
+            <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 b-sm-right">
+                <div class="form-group">
+                    <small>
+                        Your first name and initial
+                    </small>
+                    <$client.env.formfield.FirstNameMiddleInitial.html>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <small>
+                        Last name
+                    </small>
+                    <$client.env.formfield.LastName.html>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <small>Current mailing address</small>
+                    <$client.env.formfield.Address.html>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-sm-right">
+                <div class="form-group">
+                    <small>City</small>
+                    <$client.env.formfield.City.html>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-sm-right">
+                <div class="form-group">
+                    <small>State</small>
+                    <$client.env.formfield.State.html>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <small>ZIP Code</small>
+                    <$client.env.formfield.Zip.html>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>Under penalties of perjury, I declare that to the best of my knowledge and belief I can claim the number of withholding allowances on line 1 above.</p>
+        </div>
+    </div>
+    <div class="row box mb-30">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <small>Your signature</small>
+                <$client.env.formfield.Signer.html>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                <strong>1. Total number of allowances you’re claiming.</strong>
+            </p>
+            <p>Enter the number of children in your household age 16 or under as of December 31, 2021. If you have no qualifying children, enter “0.” If your filing status will be head of household on your tax return, add “2” to the number of qualifying children. <strong>Don’t claim allowances for you or your spouse.</strong> You can claim fewer allowances but not more.</p>
+            <p>If you’re married, claim your allowances on the W-4 for the highest-paying job for the most accurate withholding. If you’re married filing jointly, only one of you should claim the allowances. The other should claim zero allowances.</p>
+            <p>If you work for more than one employer at the same time, you should claim zero allowances on your W-4 with any employer other than your principal employer.</p>
+            Write <strong>Exempt</strong> on line 1 if you meet <strong>both</strong> of the following conditions:
+            <ul class="list-indented mb-10">
+                <li>Last year I had no Idaho income tax liability <strong>and</strong>
+                </li>
+                <li>This year I expect to have no Idaho income tax liability</li>
+            </ul>
+            <p class="blue--text">
+                <strong>Nonresident Aliens</strong>
+            </p>
+            <p>
+                <strong>Exempt income</strong>. If you’re a nonresident alien and all your income is exempt from withholding, write “Exempt” on line 1.</p>
+            <p>
+                <strong>Exempt income from a treaty</strong>. If a treaty exempts a portion of your income from withholding, complete federal Form 8233 to claim your treaty benefits and complete the Idaho W-4 to withhold on income that’s not exempt by your treaty.</p>
+            <p>
+                <strong>Idaho taxable income</strong>. If you’re a nonresident alien and have Idaho taxable income, do all of these:
+            </p>
+            <ol>
+                <li>Check the “Single” withholding status box regardless of your martial status.</li>
+                <li>Enter 0 on line 1.</li>
+                <li>Using the Pay Period table below, enter the additional amount of income tax to be withheld for each pay period on line 2. <em>Exception</em>: If you’re a student or business apprentice from India, report $0 on line 2.
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-3 col-xs-12 b-top b-left b-right-xs b-bottom-xs">
+                            <strong>Pay Period Table</strong>
+                        </div>
+                        <div class="col-lg-3 col-sm-3 col-xs-12 b-left hidden-xs">&nbsp;</div>
+                    </div>
+                    <div class="row hidden-xs">
+                        <div class="col-lg-3 col-sm-3 col-xs-12 b-bottom b-top b-left">
+                            If your pay period is:
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-xs-12 b-bottom b-top b-left text-center">
+                            Weekly
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-xs-12 b-bottom b-top b-left text-center">
+                            Biweekly
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-xs-12 b-bottom b-top b-left text-center">
+                            Semimonthly
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-xs-12 b-bottom b-top b-left b-right text-center">
+                            Monthly
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-3 b-bottom b-left hidden-xs">
+                            Enter this amount on line 2:
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-xs-12 b-bottom b-left b-right-xs text-right">
+                            <span class="visible-xs">Enter this amount on line 2 (Weekly):</span>
+                            $17
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-xs-12 b-bottom b-left b-right-xs text-right">
+                            <span class="visible-xs">Enter this amount on line 2 (Biweekly):</span>
+                            $33
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-xs-12 b-bottom b-left b-right-xs text-right">
+                            <span class="visible-xs">Enter this amount on line 2 (Semimonthly):</span>
+                            $36
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-xs-12 b-bottom b-left b-right text-right">
+                            <span class="visible-xs">Enter this amount on line 2 (Monthly):</span>
+                            $72
+                        </div>
+                    </div>
+                    <p>The withholding table calculations for employers include the standard deduction. Because nonresident aliens don’t qualify for the standard deduction, the Pay Period table helps ensure that employers withhold enough.</p>
+                </li>
+            </ol>
+            <p>
+                <strong>2. Additional amount, if any, you need withheld from each paycheck.</strong>
+            </p>
+            <p>
+                <strong>If you’re single or married filing separately and have more than one job at a time</strong>, complete the worksheet below to calculate any additional amount you need withheld from each paycheck.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <ol class="list-indented">
+                <li>Other than your primary job, how many jobs do you expect to have at the same time during 2021? (Don’t   count your primary job.)
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.formfield.MJWorksheet1.html>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <ol class="list-indented" start="2">
+                <li>Multiply the number on line 1 by $12,400</li>
+            </ol>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.formfield.MJWorksheet2.html>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <ol class="list-indented" start="3">
+                <li>Enter an estimate of your 2021 income from other jobs (not including your primary job)
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.formfield.MJWorksheet3.html>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <ol class="list-indented" start="4">
+                <li>Enter the smaller of lines 2 or 3</li>
+            </ol>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.formfield.MJWorksheet4.html>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <ol class="list-indented" start="5">
+                <li>If you completed the itemized deduction worksheet for Idaho (<strong><a class="black--text" href="https://tax.idaho.gov/w4" target="_blank"><strong>tax.idaho.gov/w4</strong></a></strong>), enter the number from line 4. Otherwise, enter “0”
+                </li>
+            </ol>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.formfield.MJWorksheet5.html>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <ol class="list-indented" start="6">
+                <li>Multiply the number on line 5 by $2,960</li>
+            </ol>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.formfield.MJWorksheet6.html>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <ol class="list-indented" start="7">
+                <li>Subtract line 6 from line 4</li>
+            </ol>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.formfield.MJWorksheet7.html>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <ol class="list-indented" start="8">
+                <li>Multiply line 7 by 6.925% (.06925). This is the additional amount you need to withhold annually</li>
+            </ol>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.formfield.MJWorksheet8.html>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-30">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <ol class="list-indented" start="9">
+                <li>Divide the amount on line 8 by the number of your remaining pay periods in 2021. Enter the number on line 2 of the W-4 as the additional amount you need withheld from each paycheck</li>
+            </ol>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.formfield.MJWorksheet9.html>
+            </div>
+        </div>
+    </div>
+    <div class="row b-top b-bottom b-green b-thick">
+        <div class="col-lg-12 text-center">
+            <strong>Contact us:</strong>
+            <br>
+            In the Boise area: (208) 334-7660 | Toll free: (800) 972-7660
+            <br>
+            Hearing impaired (TDD) (800) 377-3529
+            <br>
+            <strong><a class="black--text" href="https://tax.idaho.gov/contact" target="_blank"><strong>tax.idaho.gov/contact</strong></a></strong>
+        </div>
+    </div>
+    <div class="row mb-30">
+        <div class="col-lg-12">
+            <p>EFO00307 12-15-2020</p>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div class="hide">
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.Signature.HTML>
+    <$client.env.FormField.DateSigned.html>
+    <$client.env.FormField.SSN1.html>
+    <$client.env.FormField.SSN2.html>
+    <$client.env.FormField.SSN3.html>
+    <$client.env.FormField.EIN1.html>
+    <$client.env.FormField.EIN2.html>
+    <$client.env.FormField.Login_ID.html>
+    <$client.env.FormField.Auth_Param.html>
+    <$client.env.FormField.EmployeeID.html>
+    <$client.env.FormField.Exempt.HTML>
+    <$client.env.FormField.NonResidentAlien.HTML>
+</div>
+
+</form>
+
+<$include;/main/RedCarpet/FormTemplates/State_Withholding_ID/ID_Includes_8>
+<script>
+ChangeCalendarIcons(); //for popup calendar
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).on('load', function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+  $('[data-checkbox-group]:checkbox').on('click', function() {
+    var groupId = $(this).data('checkbox-group');
+    $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+    $(this).prop('checked', true);
+  });
+});
+
+angular.element(window).ready(function() {
+    angular.element('[id^="btnSigTypedSign"]').click(function() {
+        setTimeout(function() {
+            document.getElementById('sv').value = angular.element('[ng-bind="signatureStatement"]').text();
+        }, 1000);
+    });
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+</script>

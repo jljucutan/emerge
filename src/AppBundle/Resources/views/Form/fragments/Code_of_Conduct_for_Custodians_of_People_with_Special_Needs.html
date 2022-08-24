@@ -1,0 +1,201 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <p class="text-heading mb-2">
+        <strong>Electronic Signature</strong>
+    </p>
+    <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)></p>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        Type your Name: <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Name.prompt>
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Signature.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row heading-bar">
+        <div class="col-12">
+            <div class="inner-content mx-auto pt-5">
+                <p class="h1">
+                    <strong>CODE OF CONDUCT FOR CUSTODIANS OF PEOPLE WITH SPECIAL NEEDS</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="inner-content mx-auto">
+                <div class="triangle-5 pull-right"></div>
+            </div>
+        </div>
+    </div>
+    <div class="inner-content mx-auto">
+        <div class="row">
+            <div class="col-12">
+                <p>The Code of Conduct, as set forth in the Code of Conduct itself, sets forth a framework intended to assist impacted employees to help people with special needs “live self-directed, meaningful lives in their communities, free from abuse and neglect, and protected from harm,” in addition to the specific guidance provided by the agency’s policies and training.</p>
+                <p>Similarly, the Notice to Mandated Reporters contains guidance designed to assist mandated reporters and is intended to provide a summary of reporting obligations for mandated reporters. It is not intended to supplement or in any way add to the reporting obligations provided by law, rule, or regulation.</p>
+                <p>As provided by law, rule, or regulation, only custodians who have or will have regular and direct contact with vulnerable persons receiving services or support from facilities or providers covered by the Justice Center Act must sign that they have read and understand the Code of Conduct.</p>
+                <p class="text-blue text-heading">
+                    <strong>FRAMEWORK PROVISIONS</strong>
+                </p>
+                <ol class="mb-3">
+                    <li class="mb-3"><strong>Person-Centered Approach</strong>:<br> My primary duty is to the people who receive supports and services from this organization. I acknowledge that each person of suitable age must have the opportunity to direct his or her own life, honoring, where consistent with agency policy, their right to assume risk in a safe manner, and recognizing each person’s potential for lifelong learning and growth. I understand that my job will require flexibility, creativity and commitment. Whenever consistent with agency policy, I will work to support the individual’s preferences and interests. </li>
+                    <li class="mb-3"><strong>Physical, Emotional, and Personal Well-being</strong>:<br> I will promote the physical, emotional and personal well-being of any person who receives services and supports from this organization, including their protection from abuse and neglect and reducing their risk of harm to others and themselves. </li>
+                    <li class="mb-3"><strong>Respect, Dignity, and Choice</strong>:<br> I will respect the dignity and individuality of any person who receives services and supports from this organization and honor their choices and preferences whenever possible and consistent with agency policy. I will help people receiving supports and services use the opportunities and resources available to all in the community, whenever possible and consistent with agency policy. </li>
+                    <li class="mb-3"><strong>Self-Determination</strong>:<br> I will help people receiving supports and services realize their rights and responsibilities, and, as consistent with agency policy, make informed decisions and understand their options related to their physical health and emotional well-being. </li>
+                    <li class="mb-3"><strong>Relationships</strong>:<br> I will help people who receive services and supports from this organization maintain or develop healthy relationships with family and friends. I will support them in making informed choices about safely expressing their sexuality and other preferences, whenever possible and consistent with agency policy.</li>
+                    <li class="mb-3"><strong>Advocacy</strong>:<br>I will advocate for justice, inclusion and community participation with, or on behalf of, any person who receives services and supports from this organization, as consistent with agency policy. I will promote justice, fairness and equality, and respect their human, civil and legal rights.</li>
+                    <li class="mb-3"><strong>Personal Health Information and Confidentiality</strong>:<br>I understand that persons served by my organization have the right to privacy and confidentiality with respect to their personal health information and I will protect this information from unauthorized use or disclosure, except as required or permitted by law, rule, or regulation.</li>
+                    <li class="mb-3"><strong>Non-discrimination</strong>:<br>I will not discriminate against people receiving services and supports or colleagues based on race, religion, national origin, sex, age, sexual orientation, gender identity, economic condition, disability, or any other protected class under the law.</li>
+                    <li class="mb-3"><strong>Integrity, Responsibility, and Professional Competency</strong>:<br>I will reinforce the values of this organization when it does not compromise the well-being of any person who receives services and supports. I will maintain my skills and competency through continued learning, including all training provided by this organization. I will actively seek advice and guidance of others whenever I am uncertain about an appropriate course of action. I will not misrepresent my professional qualifications or affiliations. I will demonstrate model behavior to all, including persons receiving services and supports.</li>
+                    <li class="mb-3"><strong>Reporting Requirement</strong>:<br>As a mandated reporter, I acknowledge my legal obligation under Social Services Law § 491, as may be amended from time to time or superseded, to report all allegations of reportable incidents immediately upon discovery to the Justice Center’s Vulnerable Persons’ Central Register by calling 1-855-373-2122.</li>
+                </ol>
+                <p class="text-blue text-heading">
+                    <strong>CODE OF CONDUCT ACKNOWLEDGEMENT<sup>1</sup> FOR CUSTODIANS OF PEOPLE WITH SPECIAL NEEDS</strong>
+                </p>
+                <p>I pledge to prevent abuse, neglect, or harm toward any person with special needs, consistent with agency policy. In addition, to the extent I am required to report abuse, neglect, or harm of any person with special needs by law, rule, or regulation, I agree to abide by the law, rule, or regulation. If I learn of, or witness, any incident of abuse, neglect or harm toward any person with special needs, I will offer immediate assistance, notify emergency personnel, including 9-1-1, and inform the management of this organization, consistent with agency policy.</p>
+                <p>I acknowledge that I have read and that I understand the Code of Conduct.</p>
+                <p>Please type your name in “Signature” which represents your electronic signature, and select today’s date. By electronically signing this form, you attest to the receipt of the above documents, to adhere to the policies referenced herein and online and that the acknowledgments and representations made herein are true and accurate.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="mb-2">
+                    <$client.env.FormField.Name.HTML>
+                </div>
+                <p>
+                    <label class="text-blue" for="fullName">Name</label>
+                </p>
+            </div>
+            <div class="col-sm-5">
+                <div class="mb-2">
+                    <$client.env.FormField.Date.HTML>
+                </div>
+                <p>
+                    <label class="text-blue">Date</label>
+                </p>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-sm-7">
+                <div class="mb-2">
+                    <$client.env.FormField.Signature.HTML>
+                </div>
+                <p>
+                    <label class="text-blue" for="signature">Signature</label>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-9">
+                <p class="mt-4 mb-0">
+                    <em><sup>1</sup>No aspect of this Code of Conduct is in any way intended to interfere, abridge, or infringe upon the rights provided by the Taylor Law.</em>
+                </p>
+            </div>
+            <div class="col-sm-3">
+                <div class="pull-right" style="max-width: 150px;">
+                    <img src="<$link;/main/RedCarpet/FormTemplates/Code_of_Conduct_for_Custodians_of_People_with_Special_Needs/img/bottomLogo.png>" alt="NYULangone Logo" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-end">
+                <span style="font-size: 8pt; color: #53565a;">Last Revision: 6/16/2021</span>
+            </div>
+        </div>
+
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Code_of_Conduct_for_Custodians_of_People_with_Special_Needs/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

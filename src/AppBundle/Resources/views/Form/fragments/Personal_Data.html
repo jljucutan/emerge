@@ -1,0 +1,546 @@
+<!--[if lt IE 8]>
+<style type="text/css">
+    #tableContent{border: 1px solid #333 !important;}
+    #tdContentWrapper{padding: 15px 35px 35px 35px !important;}
+ #imgLogo{margin-right: 20px !important;}
+</style>
+<![endif]-->
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+	<div id="box">
+		<b>Electronic Signature</b>
+		<p style="fontweight:normal;padding:0px">
+			<$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+		</p>
+		<br>
+		<b>Type your Name:</b>
+		<input type=text id="eSignature1">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+		
+		
+<$client.env.FormField.Blood_Type.prompt>
+<$client.env.FormField.Citizenship_Status.prompt>
+<$client.env.FormField.Company1.prompt>
+<$client.env.FormField.Company2.prompt>
+<$client.env.FormField.Company3.prompt>
+<$client.env.FormField.Country.prompt>
+<$client.env.FormField.Date_Completed.prompt>
+<$client.env.FormField.Date_of_Birth.prompt>
+<$client.env.FormField.Disabled1.prompt>
+<$client.env.FormField.Disabled2.prompt>
+<$client.env.FormField.Disabled3.prompt>
+<$client.env.FormField.Disabled4.prompt>
+<$client.env.FormField.Disabled5.prompt>
+<$client.env.FormField.Disabled6.prompt>
+<$client.env.FormField.Disabled7.prompt>
+<$client.env.FormField.Disabled8.prompt>
+<$client.env.FormField.Disabled9.prompt>
+<$client.env.FormField.Disabled_Veteran1.prompt>
+<$client.env.FormField.Disabled_Veteran2.prompt>
+<$client.env.FormField.Ethnicity.prompt>
+<$client.env.FormField.Education_Achievement_Date.prompt>
+<$client.env.FormField.Education_Level1.prompt>
+<$client.env.FormField.Education_Level2.prompt>
+<$client.env.FormField.Education_Level3.prompt>
+<$client.env.FormField.Education_Level4.prompt>
+<$client.env.FormField.Education_Level5.prompt>
+<$client.env.FormField.Education_Level6.prompt>
+<$client.env.FormField.Education_Level7.prompt>
+<$client.env.FormField.Education_Level8.prompt>
+<$client.env.FormField.Education_Level9.prompt>
+<$client.env.FormField.Education_Level9a.prompt>
+<$client.env.FormField.Education_Level9b.prompt>
+<$client.env.FormField.Emergency_Contact_Name.prompt>
+<$client.env.FormField.Emergency_Contact_Phone.prompt>
+<$client.env.FormField.Emergency_Contact_Phone2.prompt>
+<$client.env.FormField.Emergency_Contact_Relationship.prompt>
+<$client.env.FormField.EmplId.prompt>
+<$client.env.FormField.Expiration_Dt.prompt>
+<$client.env.FormField.Home_Phone_Number.prompt>
+<$client.env.FormField.Home_Work_Number.prompt>
+<$client.env.FormField.Maiden_Name.prompt>
+<$client.env.FormField.MaritalStatus.prompt>
+<$client.env.FormField.Military_Service.prompt>
+<$client.env.FormField.Name.prompt>
+<$client.env.FormField.Pension_Service_Date.prompt>
+<$client.env.FormField.Prior_Surename.prompt>
+<$client.env.FormField.Public_Assistance_Participant1.prompt>
+<$client.env.FormField.Public_Assistance_Participant2.prompt>
+<$client.env.FormField.Public_Assistance_Participant3.prompt>
+<$client.env.FormField.SERVICE_DT.prompt>
+<$client.env.FormField.Vesting_Year.prompt>
+<$client.env.FormField.Vietnam_Era1.prompt>
+<$client.env.FormField.Vietnam_Era2.prompt>
+<$client.env.FormField.Visa_Type.prompt>
+		
+		
+		
+		
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+        <!-- Replace With eForm Specific HTML -->
+		
+		
+		
+		
+		
+
+  
+  <!---mainTable-->
+<table class="tablemain"> 
+      <tr>
+      	<td>
+        	<table class="innertable">
+            	<tr>
+            	  <td><img src="logo.png" width="129" height="51"></td>
+            	  <td width="33%">&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td></td>
+            	  <td rowspan="4" class="mini_font"><strong> </strong> <br />
+            	    <br />
+           	       </td>
+           	  </tr>
+            	<tr>
+            	  <td>&nbsp;</td>
+           	  </tr>
+            	<tr>
+            	  <td>&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td>&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td colspan="2" class="header">Personal  Data Form</td>
+           	  </tr>
+            </table>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>
+        	<table class="innertable">
+            	<tr>
+                	<td class="border tdpadding">Employee Name*<br />
+                    <$client.env.FormField.Name.HTML></td>
+                	<td class="border tdpadding">Employee No.<br />
+                    <$client.env.FormField.EmplId.HTML></td>
+                	<td class="border tdpadding">Date Completed<br />
+                    <$client.env.FormField.Date_Completed.HTML></td>
+                </tr>
+            	<tr>
+            	  <td colspan="3">
+                  	<table class="innertable">
+                    	<tR>
+                        	<td width="2%">&nbsp;</td>
+                        	<td width="96%" bgcolor="#000000" style="color:#FFF" class="border tdpadding"><em>Instructions: Unless a  new hire, complete only unshaded areas needed to be updated</em></td>
+                        	<td width="2%">&nbsp;</td>
+                        </tR>
+                    </table>
+                  </td>
+           	  </tr>
+            	<tr>
+            	  <td class="border tdpadding">Maiden Name<br />
+                  <$client.env.FormField.Maiden_Name.HTML></td>
+            	  <td colspan="2" class="border tdpadding">Prior Surname<br />
+                  <$client.env.FormField.Prior_Surename.HTML></td>
+           	  </tr>
+            	<tr>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td><p><strong>Contact Information</strong></p></td>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td class="border mini_font">Employee Work Phone No.  (include area code)<br />
+                  <$client.env.FormField.Home_Phone_Number.HTML></td>
+            	  <td class="border mini_font">Employee Home Phone No.  (include area code)<br />
+                  <$client.env.FormField.Home_Work_Number.HTML></td>
+            	  <td class="border mini_font">Emergency Contact First Name<br />
+                  <$client.env.FormField.Emergency_Contact_First_Name.HTML></td>
+          	  </tr>
+            	<tr>
+            	  <td class="border mini_font">Emergency Contact Last Name<br />
+                  <$client.env.FormField.Emergency_Contact_Last_Name.HTML></td>
+            	  <td class="border mini_font">Emergency Contact&rsquo;s  Relationship*<br />
+                  <$client.env.FormField.Emergency_Contact_Relationship.HTML></td>
+            	  <td class="border mini_font">Emergency Contact&rsquo;s Phone  #1<br />
+                  <$client.env.FormField.Emergency_Contact_Phone.HTML></td>
+                </tr>
+                <tr>
+            	  <td class="border mini_font">Emergency Contact Phone # 2<br />
+                  <$client.env.FormField.Emergency_Contact_Phone2.HTML></td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td><p><strong>Personal Information</strong></p></td>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td class="border">
+                  	<table class="innertable">
+                    	<tr>
+                        	<td class="mini_font"><strong>Marital Status</strong></td>
+                       	</tr>
+                    	<tr>
+                    	  <td><$client.env.FormField.MaritalStatus.HTML></td>
+                  	  </tr>
+                    </table>
+                  </td>
+            	  <td class="border">
+                      <table class="innertable">
+                        <tr>
+                          <td class="mini_font"><p><strong>Sex</strong></p></td>
+                      </tr>
+                        <tr>
+                    	  <td><$client.env.FormField.Gender.HTML></td>
+                      </tr>
+                    </table>
+                </td>
+            	  <td class="border"><table class="innertable">
+            	    <tr>
+            	      <td colspan="3" class="mini_font"><p><strong>Date of  Birth</strong>*</p></td>
+          	      </tr>
+            	    <tr>
+            	      <td class="mini_font" align="center">Month</td>
+            	      <td class="mini_font" style="border-right:1px solid #000; border-left:1px solid #000;" align="center">Day</td>
+            	      <td class="mini_font" align="center">Year</td>
+          	      </tr>
+            	    <tr>
+            	      <td colspan="3" align="center"><$client.env.FormField.Date_of_Birth.HTML> </td>
+           	        </tr>
+          	    </table></td>
+          	  </tr>
+            	<tr>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td><strong>Ethnicity: Select all that apply</strong></td>
+            	  <td>&nbsp;</td>
+            	  <td class="tdpadding"><strong>Public Assistance Participant</strong></td>
+          	  </tr>
+            	<tr>
+            	  <td colspan="2" class="border">
+                  	<table class="innertable">
+                    	<tr>
+                        	<td class="mini_font"><$client.env.FormField.EthnicityList.HTML></td>
+                        </tr>
+                    </table>
+                  </td>
+            	  <td class="border">
+                  
+                  	<table class="innertable">
+                    	<tr>
+                        	<td class="mini_font"><$client.env.FormField.Public_Assistance_Participant1.HTML></td>
+                        </tr>
+                    	<tr>
+                    	  <td class="mini_font"><$client.env.FormField.Public_Assistance_Participant2.HTML></td>
+                  	  </tr>
+                    	<tr>
+                    	  <td class="mini_font"><$client.env.FormField.Public_Assistance_Participant3.HTML></td>
+                  	  </tr>
+                      </table>
+                  </td>
+          	  </tr>
+            	<tr>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+            	  <td style="border-left: 1px solid #000">&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td><strong>Disability: Check any if appropriate</strong></td>
+            	  <td>&nbsp;</td>
+            	  <td style="border-left: 1px solid #000" class="tdpadding"><strong>Blood Type</strong></td>
+          	  </tr>
+            	<tr>
+            	  <td colspan="2">
+                  	<table class="innertable">
+                    	<tr>
+                        	<td class="mini_font"><$client.env.FormField.Disabled1.HTML></td>
+                        	<td class="mini_font"><$client.env.FormField.Disabled2.HTML></td>
+                        	<td class="mini_font"><$client.env.FormField.Disabled3.HTML></td>
+                        	<td class="mini_font"><$client.env.FormField.Disabled4.HTML></td>
+                        	<td class="mini_font"><$client.env.FormField.Disabled5.HTML></td>
+                        </tr>
+                    	<tr>
+                    	  <td class="mini_font"><$client.env.FormField.Disabled6.HTML></td>
+                    	  <td class="mini_font"><$client.env.FormField.Disabled7.HTML></td>
+                    	  <td class="mini_font"><$client.env.FormField.Disabled8.HTML></td>
+                    	  <td colspan="2" class="mini_font"><$client.env.FormField.Disabled9.HTML></td>
+                   	  </tr>
+                    </table>
+                  </td>
+            	  <td style="border-left: 1px solid #000">
+                  	<table class="innertable">
+                    	<tr>
+                        	<td class="mini_font"><$client.env.FormField.Blood_Type.HTML></td>
+                        </tr>
+                    </table>
+                  </td>
+          	  </tr>
+            	<tr>
+            	  <td colspan="2">&nbsp;</td>
+            	  <td style="border-left: 1px solid #000">&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td class="border">
+                  	<table class="innertable">
+                    	<tr>
+                          <td colspan="3" class="mini_font"><p><strong>Military  Status: Check one and check month/year achieved</strong></p></td>
+                        </tr>
+                    	<tr>
+                    	  <td width="36%" class="mini_font"><$client.env.FormField.Military_Service.HTML><br>Separation Date:<$client.env.FormField.Separation_Date.HTML></td>
+                  	  </tr>
+                    </table>
+                  </td>
+            	  <td class="border">
+                  	<table class="innertable">
+                    	<tr>
+                          <td colspan="2" align="center" class="mini_font"><strong>Disabled Veteran</strong></td>
+                        </tr>
+                    	<tr>
+                    	  <td colspan="2" class="mini_font"><p>Entitled to Disability Pay?</p></td>
+                   	  </tr>
+                    	<tr>
+                    	  <td width="30%" class="mini_font"><$client.env.FormField.Disabled_Veteran1.HTML></td>
+                    	  <td width="70%" class="mini_font"><$client.env.FormField.Disabled_Veteran2.HTML></td>
+                  	  </tr>
+                    	<tr>
+                    	  <td class="mini_font">&nbsp;</td>
+                    	  <td class="mini_font">&nbsp;</td>
+                  	  </tr>
+                    </table>
+                  </td>
+            	  <td class="border">
+                  	<table class="innertable">
+                    	<tr>
+                          <td colspan="2" align="center" class="mini_font"><p><strong>Vietnam-Era</strong></p></td>
+                        </tr>
+                    	<tr>
+                    	  <td colspan="2" class="mini_font"><p>Veteran (8/5/64-5/7/75)</p></td>
+                   	  </tr>
+                    	<tr>
+                    	  <td width="40%" class="mini_font"><$client.env.FormField.Vietnam_Era1.HTML></td>
+                    	  <td width="60%" class="mini_font"><$client.env.FormField.Vietnam_Era2.HTML></td>
+                  	  </tr>
+                    	<tr>
+                    	  <td class="mini_font">&nbsp;</td>
+                    	  <td class="mini_font">&nbsp;</td>
+                  	  </tr>
+                    </table>
+                  </td>
+          	  </tr>
+            	<tr>
+            	  <td colspan="2">&nbsp;</td>
+            	  <td style="border-left: 1px solid #000">&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td colspan="2" style="border-bottom: 1px solid #000">
+                  	<table class="innertable">
+                    	<tr>
+                        	<td colspan="4"><strong>Education Level: Check one and show month/year  achieved</strong></td>
+                       	</tr>
+                    	<tr>
+                    	  <td class="mini_font"><$client.env.FormField.Education_Level1.HTML></td>
+                    	  <td class="mini_font"><$client.env.FormField.Education_Level2.HTML></td>
+                    	  <td class="mini_font"><$client.env.FormField.Education_Level3.HTML></td>
+                    	  <td class="mini_font"><$client.env.FormField.Education_Level4.HTML></td>
+                  	  </tr>
+                    	<tr>
+                    	  <td class="mini_font"><$client.env.FormField.Education_Level5.HTML></td>
+                    	  <td class="mini_font"><$client.env.FormField.Education_Level6.HTML></td>
+                    	  <td class="mini_font"><$client.env.FormField.Education_Level7.HTML></td>
+                    	  <td class="mini_font"><$client.env.FormField.Education_Level8.HTML></td>
+                  	  </tr>
+                    	<tr>
+                    	  <td class="mini_font"><$client.env.FormField.Education_Level9.HTML></td>
+                    	  <td class="mini_font"><$client.env.FormField.Education_Level9a.HTML></td>
+                    	  <td colspan="2" class="mini_font"><$client.env.FormField.Education_Level9b.HTML></td>
+                   	  </tr>
+                    </table>
+                  </td>
+            	  <td style="border-left: 1px solid #000; border-bottom: 1px solid #000" valign="top">
+                  	<table class="innertable">
+                    	<tr>
+                        	<td align="center"><strong>Month</strong></td>
+                        	<td align="center"><strong>Day</strong></td>
+                        	<td align="center"><strong>Year</strong></td>
+                        </tr>
+                    	<tr>
+                    	  <td colspan="3" class="mini_font" align="center"><$client.env.FormField.Education_Achievement_Date.HTML></td>
+                   	  </tr>
+                    </table>
+                  </td>
+          	  </tr>
+            	<tr>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td colspan="3">
+                  	<table class="innertable container">
+                    	<tr>
+                        	<td colspan="5"><strong>Citizenship Status: If other than U.S. citizen. Complete all unshaded  areas in the section which apply to you</strong></td>
+                        </tr>
+                    	<tr>
+                    	  <td><$client.env.FormField.Citizenship_Status.HTML></td>
+                  	  </tr>
+                    </table>
+                  </td>
+           	  </tr>
+            	<tr>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+            	  <td>&nbsp;</td>
+          	  </tr>
+            	<tr>
+            	  <td class="border">
+                  	<table class="innertable container">
+                    	<tr>
+                        	<td width="67%">Visa Type</td>
+                        	<td width="33%" style="border-left: 1px solid #000">&nbsp;</td>
+                        </tr>
+                    	<tr>
+                    	  <td><$client.env.FormField.Visa_Type.HTML></td>
+                    	  <td style="border-left: 1px solid #000">&nbsp;</td>
+                  	  </tr>
+                    	<tr>
+                    	  <td>&nbsp;</td>
+                    	  <td style="border-left: 1px solid #000">&nbsp;</td>
+                  	  </tr>
+                    </table>
+                  </td>
+            	  <td class="border">
+                  	<table class="innertable container">
+                    	<tr>
+                        	<td>Country of Citizenship</td>
+                      </tr>
+                    	<tr>
+                    	  <td><$client.env.FormField.Country.HTML></td>
+                  	  </tr>
+                    	<tr>
+                    	  <td>&nbsp;</td>
+                  	  </tr>
+                    </table>
+                  </td>
+            	  <td class="border">
+                  	<table class="innertable container">
+                    	<tr>
+                        	<td colspan="3">Alien Work  Expiration</td>
+                       	</tr>
+                    	<tr>
+                    	  <td align="center">Month</td>
+                    	  <td style="border-right:1px solid #000; border-left:1px solid #000;" align="center">Day</td>
+                    	  <td align="center">Year</td>
+                  	  </tr>
+                    	<tr>
+                    	  <td colspan="3" align="center"><$client.env.FormField.Expiration_Dt.HTML></td>
+                   	  </tr>
+                    </table>
+                  </td>
+          	  </tr>
+            	<tr>
+            	  <td style="border-bottom:1px solid #000;"><table class="innertable container">
+            	    <tr>
+            	      <td height="18"><strong>Service Date</strong></td>
+           	        </tr>
+            	    <tr>
+            	      <td><$client.env.FormField.SERVICE_DT.HTML></td>
+           	        </tr>
+          	    </table></td>
+            	  <td style="border-right:1px solid #000; border-left:1px solid #000; border-bottom: 1px solid #000"><table class="innertable container">
+            	    <tr>
+            	      <td><strong>Pension Service Date</strong></td>
+           	        </tr>
+            	    <tr>
+            	      <td><$client.env.FormField.Pension_Service_Date.HTML></td>
+           	        </tr>
+          	    </table></td>
+            	  <td style="border-bottom:1px solid #000;"><table class="innertable container">
+            	    <tr>
+            	      <td><strong>Vesting</strong> <strong>Years</strong></td>
+           	        </tr>
+            	    <tr>
+            	      <td><$client.env.FormField.Vesting_Year.HTML></td>
+           	        </tr>
+          	    </table></td>
+          	  </tr>
+            </table>
+        </td>
+      </tr>
+</table>
+  <!---ENDmainTable-->
+
+
+    <div style="display:none;">
+        <$client.env.FormField.SignatureVerification.HTML>
+        <$client.env.FormField.Marital_Status.HTML>
+        <$client.env.FormField.Ethnicity.HTML>
+    </div>
+    <$client.env.FormButtons>
+</form>
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+</SCRIPT>
+<script>
+document.onreadystatechange = function() {
+    const ethnicityField = document.querySelector('[name$=".EthnicityList"]');
+    ethnicityField.addEventListener('change', function(e) {
+        const selectedEthnicities = [];
+        ethnicityField.querySelectorAll('option').forEach(function(opt) {
+            if (opt.value.length && opt.selected) {
+                selectedEthnicities.push(opt.innerText)
+            }
+        })
+        document.querySelector('[name$=".Ethnicity"]').value = selectedEthnicities.join(', ')
+    });
+}
+</script>

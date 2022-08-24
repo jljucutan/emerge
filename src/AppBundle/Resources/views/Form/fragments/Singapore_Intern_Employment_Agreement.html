@@ -1,0 +1,415 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signatory-signature','eSignature1','signatory-name','modal','over','sv', 'SignatoryDate');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signatory-signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signatory-signature','SignatoryDate');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal E-Signature box 2: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature2','name','modal2','over','sv2', 'Date');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="Singapore_Intern_Employment_Agreement" class="form-horizontal" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.SignatureVerification2.prompt>
+        <$client.env.FormField.CompanySignature.prompt>
+        <$client.env.FormField.CompanySignatureDate.prompt>
+        <$client.env.FormField.CompanyName.prompt>
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Name.prompt>
+        <$client.env.FormField.hidden_pg1.prompt>
+        <$client.env.FormField.hidden_pg2.prompt>
+        <$client.env.FormField.hidden_pg3.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main id="container" class="container-fluid">
+
+    <header class="row mb-20">
+        <div class="col-lg-2 col-sm-12 col-xs-12">
+            <div class="img-wrapper center-block-mobile">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="Paypal Logo" class="img-responsive">
+            </div>
+        </div>
+    </header>
+
+    <div class="row mb-10">
+        <div class="col-lg-2 col-sm-12 col-xs-12">
+            <div class="img-wrapper center-block-mobile">
+                <p class="smallest">
+                    5 Temasek Boulevard <br>
+                    #09-01 Suntec Tower 5  <br>
+                    Singapore 038985
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-8 col-sm-12 col-xs-12">
+            <div class="inner-wrapper center-block">
+                <div id="incomplete">
+                    <div id="markup"></div>
+                </div>
+                <div id="complete"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="signature-section-title mb-20 offerClause2">
+            <p><strong>Company:</strong></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2 col-sm-12 col-xs-12">
+            <label for="company-signature" class="control-label">
+                Signature: <span class="font-red">*</span>
+            </label>
+        </div>
+        <div class="col-lg-5 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.SignatorySignature.HTML>
+            </div>
+        </div>
+        <div class="col-lg-1 col-sm-12 col-xs-12">
+            <label class="control-label">
+                Date:
+            </label>
+        </div>
+        <div class="col-lg-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.SignatoryDate.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2 col-sm-12 col-xs-12">
+            <label for="company-name" class="control-label">
+                Name: <span class="font-red">*</span>
+            </label>
+        </div>
+        <div class="col-lg-5 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.SignatoryName.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="signature-section-title mb-20 offerClause3">
+            <p><strong>Accepted:</strong></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2 col-sm-12 col-xs-12">
+            <label for="signature" class="control-label">
+                Signature: <span class="font-red">*</span>
+            </label>
+        </div>
+        <div class="col-lg-5 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.Signature.HTML>
+            </div>
+        </div>
+        <div class="col-lg-1 col-sm-12 col-xs-12">
+            <label class="control-label">
+                Date:
+            </label>
+        </div>
+        <div class="col-lg-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.Date.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2 col-sm-12 col-xs-12">
+            <label for="name" class="control-label">
+                Name: <span class="font-red">*</span>
+            </label>
+        </div>
+        <div class="col-lg-5 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.Name.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2 col-sm-12 col-xs-12">
+            <label for="name" class="control-label">
+                Passport/NRIC No: <span class="font-red">*</span>
+            </label>
+        </div>
+        <div class="col-lg-5 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.PassportNo.HTML>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>
+    <$client.env.FormField.hidden_pg3.HTML>
+    <$client.env.FormField.current_date.HTML>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.SignatoryStamp.HTML>
+    <$client.env.FormField.NewhireStamp.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+
+// signature stamp marker
+const resetStamp = function(id) {
+  if(id.length) {
+    document.getElementById(id).value = 0;
+  }
+}
+
+// set current date for offer letter header
+if (document.getElementById('current_date').value.length < 1) {
+    document.getElementById('current_date').value = moment().format("DD MMMM YYYY");
+}
+
+// offer letter variables
+const offerLetterData = {
+    // EUPs
+    "currentDate": $('#current_date').val(),
+    "Full_Name": "<$client.tForWhomUserInfo.Full_Name>",
+    "Address1": "<$client.tForWhomUserInfo.Address1>",
+    "Address2": "<$client.tForWhomUserInfo.Address2>",
+    "City": "<$client.tForWhomUserInfo.City>",
+    "State": "<$client.tForWhomUserInfo.State>",
+    "Zip": "<$client.tForWhomUserInfo.Zip>",
+    "CityStateZip": "<$client.tForWhomUserInfo.City><$client.env.eval(client.tForWhomUserInfo.State.length()>0?', ':'')> <$client.tForWhomUserInfo.State><$client.env.eval(client.tForWhomUserInfo.Zip.length()>0?', ':'')><$client.tForWhomUserInfo.Zip>",
+    "Preferred_Name": "<$client.tForWhomUserInfo.Preferred_First_Name>",
+    "Business_Title": "<$client.tForWhomUserInfo.Business_Title>",
+    "SystemTitle": "<$client.tForWhomUserInfo.SystemTitle>",
+    "JobType": "<$client.tForWhomUserInfo.JobType>",
+    "Salary_Amount": "<$client.tForWhomUserInfo.Salary_Amount>",
+    "SALARY_CURRENCY": "<$client.tForWhomUserInfo.SALARY_CURRENCY>",
+    "ContractEndDate": "<$client.tForWhomUserInfo.ContractEndDate>".length ? moment("<$client.tForWhomUserInfo.ContractEndDate>").format('DD MMMM YYYY') : '',
+
+    // Event data
+    "EventStartDate": moment("<$client.tEventDates_Date_2.Value>").format('DD MMMM YYYY')
+};
+
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+	"use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    document.getElementById('formButtons').style.display = "block";
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+    // frontend validation
+    $('#Singapore_Intern_Employment_Agreement').on('change blur', 'input:visible:not(#signatory-signature):not(#signature):not(:button):not(disabled):not(readonly)', function() {
+      validateField($(this));
+    });
+    $('#modal').on('click', 'input.lifesuite__button', function() {
+      validateField($('#signatory-signature'));
+    });
+    $('#modal2').on('click', 'input.lifesuite__button', function() {
+      validateField($('#signature'));
+    });
+    $('#Singapore_Intern_Employment_Agreement').on('click', '#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete', function(e) {
+      "use strict";
+      let formIsValid = true; 
+      let btn = $(this);
+      e.preventDefault();
+      $.each($('#Singapore_Intern_Employment_Agreement input:visible:not(:button)'), function(k, v) {
+        if (!$("input.calendar_button").length) formIsValid = true;
+        else{
+          if(false == validateField($(v)) && $(v).is(':visible')) {
+            formIsValid = false;
+          }
+        }
+      });
+      if (formIsValid) {
+        switch (btn.attr('id')) {
+          case 'ButtonPrint':
+            funcPrint();
+          break;
+          case 'ButtonSaveAndComplete':
+            resetStamp("<$client.env.eval((client.role.rc_singapore_company_signatory==1)?'signatory-stamp':'')>");
+            resetStamp("<$client.env.eval((url.forWhom==account.userguid)?'newhire-stamp':'')>");
+            funcSaveAndComplete();
+          break;
+        }
+      }
+      else {
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+      }
+    });
+
+    // clear fields after reassigning
+    // only signatory and new hire signs the form
+    let isSignatory = <$client.env.eval((client.role.rc_singapore_company_signatory==1)?'true':'false')>;
+    let isNewhire = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+
+    // fill signatory name is signer is signatory
+    if (isSignatory) {
+        $('#signatory-name').val("<$client.account.username_first> <$client.account.username>");
+    }
+
+    // fill employee name is signer is new hire
+    if (isNewhire) {
+        $('#name').val("<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>");
+    }
+
+    const initSignatures = function() {
+        // if signer is signatory
+        if (isSignatory && parseInt($('#signatory-stamp').val()) === 0) {
+            $('#name, #sv, #sv2, #passportno').val('');
+            xbObj('signatory-signature').value='';
+            targetdatecheckCLEAR('signatory-signature','SignatoryDate');
+            xbObj('signature').value='';
+            targetdatecheckCLEAR('signature','Date');
+            $('#signatory-stamp').val(1);
+        }
+
+        // if signer is the new hire
+        if (isNewhire &&  parseInt($('#newhire-stamp').val()) === 0) {
+            $('#sv2').val('');
+            xbObj('signature').value='';
+            targetdatecheckCLEAR('signature','Date');
+            $('#newhire-stamp').val(1);
+        }
+
+        // if the signer is neither signatory nor the new hire
+        if(!isNewhire && !isSignatory) {
+            $('#signatory-name, #name, #passportno, #sv, #sv2').val('');
+            xbObj('signatory-signature').value='';
+            targetdatecheckCLEAR('signatory-signature','SignatoryDate');
+            xbObj('signature').value='';
+            targetdatecheckCLEAR('signature','Date');
+        }
+    }
+    if (document.querySelector('[name="buttonSaveAndComplete"]') !== null) { 
+        setTimeout(initSignatures(),400);
+    }
+
+    // remove highlight if new hire
+    if (isNewhire) {  
+        $('#tablePopup').addClass('deactivate-highlight');  
+    } 
+
+    let focusSigFields = setInterval(function(){
+      "use strict";
+      if(document.getElementById('modal').style.display=='block') {
+        document.getElementById('ButtonPrint').focus();
+        document.getElementById('eSignature1').focus();
+        clearInterval(focusSigFields);
+      }
+    }, 500);
+});
+
+const disableCalButton = function(el) {
+	"use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+	"use strict";
+    $(".modal").hide();
+    disableCalButton($('.disable-date'));
+});
+</script>
+<script type="text/javascript" defer src="<$link;/main/RedCarpet/FormTemplates/Singapore_Intern_Employment_Agreement/script_version_1.js>"></script>

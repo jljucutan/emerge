@@ -1,0 +1,369 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h3><strong>Electronic Signature</strong></h3>
+    <p>
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.EmployeeName.prompt>
+        <$client.env.FormField.EmployeeSignature.prompt>
+        <$client.env.FormField.SignatureDate.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a01_bank_name.prompt>
+        <$client.env.FormField.a02_bank_routing_number.prompt>
+        <$client.env.FormField.a03_bank_account_number.prompt>
+        <$client.env.FormField.a04_account_type.prompt>
+        <$client.env.FormField.a04_deposit_amount.prompt>
+        <$client.env.FormField.a04_net_amount.prompt>
+        <$client.env.FormField.a05_bank_name.prompt>
+        <$client.env.FormField.a06_bank_routing_number.prompt>
+        <$client.env.FormField.a07_bank_account_number.prompt>
+        <$client.env.FormField.a08_account_type.prompt>
+        <$client.env.FormField.a09_deposit_amount.prompt>
+        <$client.env.FormField.a10_net_amount.prompt>
+        <$client.env.FormField.a11_bank_name.prompt>
+        <$client.env.FormField.a12_bank_routing_number.prompt>
+        <$client.env.FormField.a13_bank_account_number.prompt>
+        <$client.env.FormField.a14_account_type.prompt>
+        <$client.env.FormField.a15_deposit_amount.prompt>
+        <$client.env.FormField.a16_net_amount.prompt>
+        <$client.env.FormField.a17_authorization.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+
+    <div id="heading" class="row my-3">
+        <div class="col-12">
+            <h4 class="text-center">
+                <strong>
+                    <span class="company-name"><$client.env.FormField.co_name.Value></span> <br>
+                    Direct Deposit Form
+                </strong>
+            </h4>
+        </div>
+    </div>
+
+    <div id="instruction" class="row mb-3">
+        <div class="col-12">
+            <p>
+                Below is a sample check MICR line, detailing where the information necessary to complete this form can be found.
+            </p>
+            <div class="d-block mx-auto" style="max-width: 850px;">
+                <img src="<$link;/main/RedCarpet/FormTemplates/Standard_Direct_Deposit_Form/img/dd_sample.jpg>" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div id="account-1" class="row mb-3">
+        <div class="col-12">
+            <p class="mb-2">
+                <u>Primary Account</u>: If no additional accounts are specified, 100% of your net pay will be deposited into your Primary Account
+            </p>
+            <div class="bg-dark text-white text-center py-1 mb-3">
+                <strong>Direct Deposit Information: Primary Account</strong>
+            </div>
+            <div class="border border-dark">
+                <div class="d-lg-flex d-sm-flex align-items-center">
+                    <div class="border-right border-bottom border-dark py-1 px-1">
+                        Bank Name:
+                        <$client.env.FormField.a01_bank_name.HTML>
+                    </div>
+                    <div class="border-right border-bottom border-dark py-1 px-1">
+                        Bank Routing:
+                        <$client.env.FormField.a02_bank_routing_number.HTML>
+                    </div>
+                    <div class="border-bottom border-dark flex-grow-1 py-1 px-1">
+                        Bank Account Number:
+                        <$client.env.FormField.a03_bank_account_number.HTML>
+                    </div>
+                </div>
+                <div class="d-lg-flex d-sm-flex align-items-center border-bottom border-dark">
+                    <div class="mr-3 py-1 px-1">
+                        Account Type:
+                    </div>
+                    <div class="flex-grow-1 py-1 px-1">
+                        <$client.env.FormField.a04_account_type.HTML>
+                    </div>
+                </div>
+                <div class="d-lg-flex d-sm-flex align-items-center">
+                    <div class="mr-3 py-1 px-1">
+                        Deposit Amount:
+                    </div>
+                    <div id="deposit-amount-1" class="flex-grow-1 py-1 px-1">
+                        <$client.env.FormField.a04_deposit_amount.HTML>
+                    </div>
+                    <div class="mr-5 py-1 px-1">
+                        <div class="d-inline-block align-middle">
+                            OR Net Amount:
+                        </div>
+                        <div class="d-inline-block align-middle">
+                            <$client.env.FormField.a04_net_amount.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="account-2" class="additional-account d-none row mb-2">
+        <div class="col-12">
+            <p>
+                <u>Additional Accounts:</u>
+            </p>
+            <div class="bg-dark text-white text-center py-1 mb-3">
+                <strong>Direct Deposit Information: Account #2</strong>
+            </div>
+            <div class="border border-dark">
+                <div class="d-lg-flex d-sm-flex align-items-center">
+                    <div class="border-right border-bottom border-dark py-1 px-1">
+                        Bank Name:
+                        <$client.env.FormField.a05_bank_name.HTML>
+                    </div>
+                    <div class="border-right border-bottom border-dark py-1 px-1">
+                        Bank Routing:
+                        <$client.env.FormField.a06_bank_routing_number.HTML>
+                    </div>
+                    <div class="border-bottom border-dark flex-grow-1 py-1 px-1">
+                            Bank Account Number:
+                            <$client.env.FormField.a07_bank_account_number.HTML>
+                    </div>
+                </div>
+                <div class="d-lg-flex d-sm-flex align-items-center border-bottom border-dark">
+                    <div class="py-1 pr-3 pl-1">
+                        Account Type:
+                    </div>
+                    <div class="flex-grow-1 py-1 px-1">
+                        <$client.env.FormField.a08_account_type.HTML>
+                    </div>
+                </div>
+                <div class="d-lg-flex d-sm-flex align-items-center">
+                    <div class="mr-3 py-1 px-1">
+                        Deposit Amount:
+                    </div>
+                    <div id="deposit-amount-2" class="flex-grow-1 py-1 px-1">
+                        <$client.env.FormField.a09_deposit_amount.HTML>
+                    </div>
+                    <div class="mr-5 py-1 px-1">
+                        <div class="d-inline-block align-middle">
+                            OR Net Amount:
+                        </div>
+                        <div class="d-inline-block align-middle">
+                            <$client.env.FormField.a10_net_amount.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="account-3" class="additional-account d-none row mb-2">
+        <div class="col-12">
+            <p class="mb-2">
+                <u>Additional Accounts:</u>
+            </p>
+            <div class="bg-dark text-white text-center py-1 mb-3">
+                <strong>Direct Deposit Information: Account #3</strong>
+            </div>
+            <div class="border border-dark">
+                <div class="d-lg-flex d-sm-flex align-items-center">
+                    <div class="border-right border-bottom border-dark py-1 px-1">
+                        Bank Name:
+                        <$client.env.FormField.a11_bank_name.HTML>
+                    </div>
+                    <div class="border-right border-bottom border-dark py-1 px-1">
+                        Bank Routing:
+                        <$client.env.FormField.a12_bank_routing_number.HTML>
+                    </div>
+                    <div class="border-bottom border-dark flex-grow-1 py-1 px-1">
+                        Bank Account Number:
+                        <$client.env.FormField.a13_bank_account_number.HTML>
+                    </div>
+                </div>
+                <div class="d-lg-flex d-sm-flex align-items-center border-bottom border-dark">
+                    <div class="py-1 pr-3 pl-1">
+                        Account Type:
+                    </div>
+                    <div class="flex-grow-1 py-1 px-1">
+                        <$client.env.FormField.a14_account_type.HTML>
+                    </div>
+                </div>
+                <div class="d-lg-flex d-sm-flex align-items-center">
+                    <div id="deposit-amount-2" class="mr-3 py-1 px-1">
+                        Deposit Amount:
+                    </div>
+                    <div id="deposit-amount-3" class="flex-grow-1 py-1 px-1">
+                        <$client.env.FormField.a15_deposit_amount.HTML>
+                    </div>
+                    <div class="mr-5 py-1 px-1">
+                        <div class="d-inline-block align-middle">
+                            OR Net Amount:
+                        </div>
+                        <div class="d-inline-block align-middle">
+                            <$client.env.FormField.a16_net_amount.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toggle-section" class="row mb-2">
+        <div class="col-12">
+            <div class="float-lg-right float-sm-right">
+                <button id="remove-account" type="button" class="lifesuite__button">Delete Account</button>
+                <button id="add-account" type="button" class="lifesuite__button primary mr-0">Add Account</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="authorization-section" class="row mb-3">
+        <div class="col-12">
+            <p>
+                I authorize my net pay to be electronically deposited to the specified account(s) above.
+            </p>
+        </div>
+    </div>
+
+    <div id="additional-verbiage-section" class="row mb-3">
+        <div class="col-12">
+            <$client.env.FormField.AdditionalVerbiage.HTML>
+        </div>
+    </div>
+
+    <div id="signature-section" class="row mb-4">
+        <div class="col-12">
+            <$client.env.FormField.Signer.HTML>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-12">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.a17_authorization.HTML>
+    <$client.env.FormField.co_name.HTML>
+    <$client.env.FormField.EmployeeName.HTML>
+    <$client.env.FormField.EmployeeSignature.HTML>
+    <$client.env.FormField.SignatureDate.HTML>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Standard_Direct_Deposit_Form/js/bootstrap.min.js>"></script>
+<script>
+function showScreen(elName) {
+    xbStyleObj(elName).height = (docHeight() + 30) + "px";
+    xbStyleObj(elName).width = (docWidth() - 30) + "px";
+}
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary mr-0").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary mr-0").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+    if (strFormCompleted == '') { // if eForm is incomplete 
+        $("#ButtonPrint")[0].onclick = null; 
+        $("#ButtonPrint").click(function() {  
+            /* Add your code/function here */ 
+            $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+            void(funcPrint()); // default print function 
+        }); 
+        if ($("#ButtonSaveAndComplete").length) {  
+            $("#ButtonSaveAndComplete")[0].onclick = null; 
+            $("#ButtonSaveAndComplete").click(function() {  
+                /* Add your code/function here */ 
+                $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+                void(funcSaveAndComplete());  //default Save function 
+            }); 
+        } 
+    }
+});
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+        }
+    };
+}
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+
+<$include;/main/RedCarpet/FormTemplates/Standard_Direct_Deposit_Form/SDD_Includes>
+
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

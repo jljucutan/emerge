@@ -1,0 +1,267 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<!--div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px"> 
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+        </p>
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','date');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div-->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" id="modal" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+                             </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px;"> 
+                                                         <input id="signature-submit" type="button" class="lifesuite__button primary" value="Sign">&nbsp; 
+                                                          <input  id="signature-clear" type="button" class="lifesuite__button" value="Clear">&nbsp;
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                                           </div> 
+                             </div> 
+              </div> 
+</div> 
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+    showScreen('over');
+</SCRIPT>  
+
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="sip-letter" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <template id="fragment-1">
+        <p class="mb-5">
+            <mark><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></mark><br>
+            <mark><$client.tForWhomUserInfo.Address1></mark><br>
+            <% if ('<$client.tForWhomUserInfo.Address2>'.length > 0) { %>
+            <mark><$client.tForWhomUserInfo.Address2></mark><br>
+            <% } %>
+            <% if (['HKG-HK001','HKG-HK002','JPN-13001','KOR-13001','THA-C001'].indexOf('<$client.tEventCategories_Category_11.Code>') >= 0) { %>
+            <mark><$client.tForWhomUserInfo.City></mark>, <mark><$client.tForWhomUserInfo.State_Description></mark>, <mark><$client.tForWhomUserInfo.Zip></mark>
+            <% } %>
+        <% if (['HKG-HK001','HKG-HK002','JPN-13001','KOR-13001','THA-C001'].indexOf('<$client.tEventCategories_Category_11.Code>') < 0) { %>
+            <mark><$client.tForWhomUserInfo.Zip></mark>&nbsp;<mark><$client.tForWhomUserInfo.City></mark>
+            <% } %>
+        </p>
+        <p class="d-none"></p>
+        <p>Re: Eligibility for PayPal Sales Incentive Plan</p>
+        <p class="text-justify">Dear <mark><$client.env.eval((client.tForWhomUserInfo.Preferred_First_Name.length()>0)?client.tForWhomUserInfo.Preferred_First_Name:client.tForWhomUserInfo.First_Name)></mark>,
+        </p>
+        <p class="text-justify">We are pleased to welcome you to the family of PayPal Holdings, Inc. (“PayPal”) companies.  As a new member of the PayPal family and an employee of <mark><$client.tForWhomUserInfo.EnityName></mark> (the “Employer”), we are pleased to inform that you will be eligible to participate in a PayPal Sales Incentive Plan (”SIP”) for a specified fiscal year, with an annual on target incentive of <mark><$client.tForWhomUserInfo.SIP_Amount> </mark> <mark><$client.tForWhomUserInfo.SALARY_CURRENCY></mark>, in accordance with the terms and conditions of the SIP. The full terms and conditions of the SIP shall be provided to you separately via a Participation Agreement.</p>
+        <% if ('<$client.tForWhomUserInfo.Introductory_RampUp_Period_Eligible>' == 'Y') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-placement="top" data-toggle="popover" data-content="Ramp-Up period = YES"></div>
+            <p class="text-justify">To facilitate a smooth onboarding onto the SIP, on joining PayPal you will be eligible to receive a non-recoverable advance payment of [50%] of the annual Target Incentive amount specified in your Participation Agreement for the SIP (the “Non-Recoverable Advance”). Your eligibility for each installment will be considered each quarter during the ramp-up period (the “Ramp-Up Period”), in accordance with and subject to the terms of the SIP.</p>
+            <p class="text-justify">The Non-Recoverable Advance is payable regardless of whether you actually meet the pre-defined performance targets in the SIP during the Ramp-Up Period, but payment of each installment is subject to your continuing active employment by PayPal up to the applicable payment date during the Ramp-Up Period.</p>
+            <p class="text-justify">Any sums received under the Non-Recoverable Advance will be off-set against any sums you would otherwise become entitled to under the terms of the SIP as a result of performance against the pre-defined targets in the SIP during the Ramp-Up Period – so you will not be rewarded twice.</p>
+            <p class="text-justify">Once you have earned or been paid 50% of your annual Target Incentive, either through the Non-Recoverable Advance or otherwise pursuant to the terms of the SIP,  you will not receive any further SIP payments unless your performance exceeds the performance necessary to earn the 50% of your Target Incentive delivered via the Non-Recoverable Advance .  In that case, you will be eligible for consideration in each applicable quarter for the remaining 50% of your Target Incentive based on performance against the predefined targets over and above performance rewarded by the  Non-Recoverable Advance, and subject to the terms of the SIP. A reconciliation will take place each quarter comparing any Non-Recoverable Advance already paid plus any additional amount paid under the SIP against overall performance. An adjustment may be made in any quarter to reflect outperformance or underperformance year to date.</p>
+        </div>
+        <% } %>
+        <p class="text-justify">Full details of this are set out in the SIP terms and conditions.  If you have any questions, please raise these with your line manager in the first instance. Any bonus or payment or award under the SIP shall be determined by PayPal in its sole and absolute discretion, subject to the terms and conditions of the SIP and of such amount, in such form, at such intervals and subject to such conditions as PayPal may in its absolute discretion determine from time to time. There is no guarantee that any payment under the SIP will be awarded or received. Any SIP payment, even if it is made repeatedly or regularly and whatever its amount, can never lead to a vested right for you, the employee.</p>
+        <p class="text-justify">PayPal reserves the right, in its sole discretion, to amend, change, withdraw or cancel the SIP, and your eligibility to participate in the SIP or any other incentive compensation plan, at any time. Further, the incentive compensation plan that you are eligible to participate in may change over time. You acknowledge and agree that PayPal may substitute or cancel the SIP referenced in this letter and any contract of employment [addendum] or any offer documentation, as it determines in its sole discretion from time to time.</p>
+        <p class="text-justify">Please note that all disputes arising under or relating to the PayPal Sales Incentive Plan or the provisions of this letter shall be governed by and construed in accordance with the applicable law as set forth in your employment agreement.</p>
+        <p class="text-justify">Once again, we are pleased to welcome you to the PayPal family.</p>
+        <p class="text-justify">Sincerely,</p>
+    </template>
+    <template id="fragment-2">
+        <p class="text-justify mb-5">
+            <strong>Dan Schulman <br>
+            President and CEO, PayPal Holdings, Inc.</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="inner-wrapper center-block">
+                <div id="incomplete">
+                    <div id="markup"></div>
+                </div>
+                <div id="complete"></div>
+                <div class="sig-wrapper mb-3">
+                    <img src="<$link;/main/RedCarpet/FormTemplates/Sales_Incentive_Plan_Side_Letter/img/dan_schulman_signature.png>" alt="Dan Schulman Signature" class="img-responsive">
+                </div>
+                <div id="incomplete2">
+                    <div id="markup2"></div>
+                </div>
+                <div id="complete2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="ml-4">
+                <strong>Employee:</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature.HTML>
+        </div>
+        <div class="col-sm-1 pt-2 text-sm-right">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <!--$client.env.FormField.date.HTML-->
+            <$client.env.FormField.date_mapped.HTML> <!-- 2021-05-06 | psaludares | SERVICES-42563 -->
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name.HTML>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>     
+    <$client.env.formfield.EmployeeStamp.html>
+    <$client.env.formfield.RecruiterStamp.html>
+    <$client.env.formfield.SignerMan.html>
+    <$client.env.formfield.CoordinatorStamp.html>
+    <$client.env.FormField.date.HTML><!-- 2021-05-06 | psaludares | SERVICES-42563 -->
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Sales_Incentive_Plan_Side_Letter/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Sales_Incentive_Plan_Side_Letter/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Sales_Incentive_Plan_Side_Letter/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.getElementById('sip-letter');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.signDate, .dateField').parent().find('input').prop('disabled', true);
+  $(".modal").hide();
+  $('#SignerMan').val("<$client.account.username_first> <$client.account.username>");
+
+  // start of changes 2021-05-06 | psaludares | SERVICES-42563
+  $('#sip-letter').on('change', 'input.hasDatepicker:visible', function() {
+    $("[data-id='"+$(this).data('date-mapped')+"']").val($(this).data("realdate"));
+  });
+
+  $('#modal').on('click', '#signature-submit', function() {
+    if (validateSignature('signature','eSignature1','full_name','modal','over','sv')) {
+        $('#date_mapped').setFormattedDate(new Date());
+        $("[data-id='date']").val($('#date_mapped').data("realdate"));
+    }
+    xbObj('eSignature1').value='';
+    validateField($('#signature'));
+    document.getElementById('eSignature1').focus();
+  });
+
+  $('#modal').on('click', '#signature-clear', function() {
+    xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';
+    if (typeof targetdatecheckCLEAR == 'function' ){$('#date_mapped').setFormattedDate(null);$("[data-id='date']").val("");}
+    validateField($('#signature'));
+  });
+
+  
+<$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>
+  if (!$("#sv").prop('readonly')) {
+    $('#date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+  }
+
+  // end of changes 2021-05-06 | psaludares | SERVICES-42563
+});
+
+const data = {};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+
+// signature section clearing on task reopen variables
+const isCoordinator = <$client.env.eval((client.role.rc_hrcoordinators==1)?'true':'false')>;
+const isRecruiter = <$client.env.eval((client.tEventManagers_16.UserGuid==account.userguid)?'true':'false')>;
+const isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const EmployeeStamp = "<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>";       
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 1500);
+});
+</script>

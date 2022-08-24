@@ -1,0 +1,235 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h4><strong>Electronic Signature</strong></h4>
+    <p>
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'g_Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','g_Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.a_ProgramReqs.prompt>
+        <$client.env.FormField.b1_PhysicalReqsYes.prompt>
+        <$client.env.FormField.b2_PhysicalReqsNo.prompt>
+        <$client.env.FormField.c1_USStudent.prompt>
+        <$client.env.FormField.c2_IntlStudent.prompt>
+        <$client.env.FormField.d_ContactInfo.prompt>
+        <$client.env.FormField.e_IAgree.prompt>
+        <$client.env.FormField.f_StudentSignature.prompt>
+        <$client.env.FormField.g_Date.prompt>
+        <$client.env.FormField.h_SignatureVerification.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <header class="row mb-5">
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-2">
+            <img src="<$link;/main/RedCarpet/FormTemplates/WOC_Nursing_Enrollment_Attestation/img/cleveland_icon.jpg>" class="img-fluid" alt="Cleveland Clinic icon">
+        </div>
+        <div class="col-lg-8 col-sm-8 col-xs-12 text-sm-right text-lg-right">
+            <small>
+                R. B. Turnbull Jr., MD School of WOC Nursing Education <br>
+                Ann Goldstein Online Nursing Education
+            </small>
+        </div>
+    </header>
+
+    <div class="row">
+        <div class="col-12">
+            <p class="text-center mb-5">
+                <strong>
+                    WOC NURSING STUDENT <br>
+                    ENROLLMENT ATTESTATION FORM
+                </strong>
+            </p>
+            <p>
+                <strong>PREREQUISITE ENROLLMENT REQUIREMENT</strong>
+            </p>
+            <p class="text-justify">
+                The applicant must be a registered nurse (RN) with a baccalaureate degree (not necessarily in nursing science) or higher and one year’s clinical experience as a RN to qualify for enrollment into the WOC Nursing Education program.
+            </p>
+            <div class="mb-4">
+                <$client.env.FormField.a_ProgramReqs.HTML>
+            </div>
+            <p>
+                <strong>NONDISCRIMINATION – TITLE IX</strong>
+            </p>
+            <p class="text-justify">
+                Cleveland Clinic does not discriminate in admission, employment, or administration of its programs or activities, on the basis of age, gender, race, national origin, religion, creed, color, marital status, physical or mental disability, pregnancy, sexual orientation, gender identity or expression, genetic information, ethnicity, ancestry, veteran status, or any other characteristic protected by federal, state or local law. In addition, Cleveland Clinic administers all programs and services without regard to disability, and provides reasonable accommodations for otherwise qualified disabled individuals.
+            </p>
+            <p class="text-justify">
+                Should you have any questions about this policy or to file a discrimination complaint, you must contact the Title IX Coordinator, Phil Gard via phone 216-444-5678 and/or email at <a href="mailto:gardp@ccf.org">gardp@ccf.org</a>.
+            </p>
+            <p>
+                <strong>PHYSICAL PERFORMANCE</strong>
+            </p>
+            <p class="text-justify">
+                The role and function of the WOC nursing student involves being able to handle and lift patients; manual and finger dexterity; eye/hand coordination; standing and walking for extensive periods of time; lifting and carrying items weighing up to 50 pounds; and hearing and vision corrected to normal range. If you require assistance or assistive devices in meeting these requirements, please notify the WOC nursing program director at <a href="mailto:WOCschool@ccf.org">WOCschool@ccf.org</a> or (216) 445-4816 at the time of this application.
+            </p>
+            <div class="mb-4">
+                <$client.env.FormField.b1_PhysicalReqsYes.HTML>
+                <$client.env.FormField.b2_PhysicalReqsNo.HTML>
+            </div>
+            <p>
+                <strong>U.S. WORK/STUDY AUTHORIZATION</strong>
+            </p>
+            <p class="text-justify">
+                Are you authorized to work or study in the United States? International students must demonstrate English language proficiency by taking the Test of English as Foreign Language (TOEFL), and achieve a minimum score of 60 on the internet based test or 500 on the paper based test. The TOEFL test measures one’s ability to use and understand the English language as it is spoken in a classroom setting. The test, given in four sections, measures how well an individual reads, listens, speaks and writes in English as well as using these skills together. If you are an international student, who resides outside of the United States, then you are required to complete the TOEFL test. To access the TOEFL test go to: www.toefl.org to complete this test. Results should be submitted with your student registration / onboarding documentation. Questions may be directed to <a href="mailto:WOCschool@ccf.org">WOCschool@ccf.org</a> or 216-444-5966.
+            </p>
+            <div class="mb-4">
+                <$client.env.FormField.c1_USStudent.HTML>
+                <$client.env.FormField.c2_IntlStudent.HTML>
+            </div>
+            <p>
+                <strong>PERSONAL CONTACT INFORMATION</strong>
+            </p>
+            <p class="text-justify">
+                I understand that I am required to keep my personal contact information (i.e., name, home mailing address, cell and work phone numbers, and personal email address) current with the program’s office. Any changes to my personal information will be emailed to <a href="mailto:WOCschool@ccf.org">WOCschool@ccf.org</a>.
+            </p>
+            <div class="mb-5">
+                <$client.env.FormField.d_ContactInfo.HTML>
+            </div>
+            <p>
+                I hereby certify that this information is accurate and I understand that any misrepresentation or omission of facts in this application process is cause for cancellation of the application or expulsion from the program. I understand and agree that this document shall remain in effect for the duration of my student didactic and clinical experience while enrolled in this WOC nursing education program.
+            </p>
+            <div class="mb-4">
+                <$client.env.FormField.e_IAgree.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-3 col-xs-12 mt-1">
+            Student’s Signature:
+        </div>
+        <div class="col-lg-7 col-sm-7 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.f_StudentSignature.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            Academic Institution: Cleveland Clinic WOC Nursing Education
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-1 col-sm-1 col-xs-12 mt-1">
+            Date:
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.g_Date.HTML>
+            </div>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-12">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.FullName.HTML>
+    <$client.env.FormField.h_SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/WOC_Nursing_Enrollment_Attestation/js/bootstrap.min.js>"></script>
+<script>
+function showScreen(elName) {
+    xbStyleObj(elName).height = (docHeight() + 30) + "px";
+    xbStyleObj(elName).width = (docWidth() - 30) + "px";
+}
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+thisForm.querySelectorAll('[data-checkboxgroup]').forEach(function(cbx) {
+    cbx.addEventListener('change', function(e) {
+        let checked = e.target.checked;
+        thisForm.querySelectorAll('[data-checkboxgroup="' + cbx.dataset.checkboxgroup + '"]').forEach(function(c) {
+            c.checked = false;
+        });
+        e.target.checked = !!checked;
+    });
+});
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

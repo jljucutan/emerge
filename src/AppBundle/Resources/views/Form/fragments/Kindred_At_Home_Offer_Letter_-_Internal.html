@@ -1,0 +1,447 @@
+<!-- Main QA Area --> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+  <div class="modal-content"> 
+   <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+   <p style="fontweight:normal;padding:0px"> 
+     <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+   </p> 
+   <br> 
+   <div class="row"> 
+     <div class="lifesuite__clearfix"> 
+      <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+    </div> 
+  </div> 
+  <div class="row"> 
+   <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px;"> 
+     <input style="margin-top:10px" type="button" data-target="signature" class="removeNgInvalid lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','name','modal','over','sv','SignatureDate');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+     <input type="button" class="addNgInvalid lifesuite__button" data-target="signature" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','SignatureDate');}">&nbsp; 
+     <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+   </div> 
+ </div> 
+</div> 
+</div> 
+
+
+
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+  showScreen('over') 
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+  <div class="fb-spinner"> 
+   <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+ </div> 
+</div> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<form id='kindred-offer-letter' name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);"> 
+
+  <div style="display:none;">
+    <$client.env.FormField.Form_Name.prompt>
+    <$client.env.FormField.Form_Name.HTML>
+    <$client.env.FormField.Form_Type.prompt>
+    <$client.env.FormField.Form_Type.HTML>
+    <$client.env.FormField.Form_Owner.prompt>
+    <$client.env.FormField.Form_Owner.HTML>
+    <$client.env.FormField.Form_CreateDate.prompt>
+    <$client.env.FormField.Form_CreateDate.HTML>
+    <$client.env.FormField.Form_Completed.prompt>
+    <$client.env.FormField.Form_Completed.HTML>
+    <$client.env.FormField.Form_Delivered.prompt>
+    <$client.env.FormField.Form_Delivered.HTML>
+    <$client.env.FormField.Form_TaskId.prompt>
+    <$client.env.FormField.Form_TaskId.HTML>
+    <$client.env.FormField.display_version.HTML>
+    <!-- Your Required/Validated Form Fields -->
+
+    <$client.env.formfield.Signature.prompt>
+    <$client.env.formfield.SignatureDate.prompt>
+    <$client.env.formfield.Accept_Decline_Offer.prompt>
+    <$client.env.FormField.Decline_Offer_Select.prompt>
+  </div>
+
+  <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+  <!-- Begin HTML Content -->
+
+  <main id='container'  class="container-fluid">
+    <div class="row" style="margin-bottom: 20px;">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 imgr">
+        <img src="logox.png" class="img-responsive" style="max-width: 210px;">
+      </div>
+    </div >
+    <div class="row" style="margin-bottom: 20px;">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div id='incomplete'> 
+          <div id="markup"></div>
+        </div>
+        <div id='complete'></div>
+        <div id='incomplete2'> 
+          <div id="markup2"></div>
+        </div>
+        <div id='complete2'></div>
+      </div>
+    </div >
+    <div id='fields'>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <$client.env.FormField.Accept_Decline_Offer.html>
+        </div>
+      </div>
+      <div class="row ad-section">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div id='incomplete3'> 
+            <div id="markup3"></div>
+          </div>
+          <div id='complete3'></div>
+          <$client.env.FormField.Decline_Offer_Select.html>
+        </div>
+      </div>
+      <br><br>
+      <span class="signatureSection">
+        <div class="row">
+          <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <label class="control-label">Signature: </label> 
+          </div>
+          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <div class="form-group">
+              <$client.env.FormField.Signature.html>
+            </div>
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+            <label class="control-label">Date: </label>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group" id="sign-date-container">
+              <$client.env.FormField.SignatureDate.html>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">&nbsp;</div>
+        </div>
+        <div class="row">
+          <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <label class="control-label">Full Name: </label>
+          </div>
+          <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <$client.env.FormField.Name.html>
+          </div>
+        </div>
+      </span>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+      <div class="lifesuite__clearfix lifesuite__float-right">                
+        <$client.env.FormButtons> 
+      </div>
+    </div>
+  </main> 
+
+  <div style="display:none;">
+    <$client.env.formfield.headerpg1.html>
+    <$client.env.formfield.hidden_pg.html>
+    <$client.env.formfield.hidden_pg2.html>
+    <$client.env.formfield.hidden_pg3.html>
+    <$client.env.formfield.SignatureVerification.html>
+    <$client.env.formfield.EmployeeStamp.html>
+    <$client.env.formfield.SignatoryStamp.html>
+    <$client.env.formfield.Offer_Text_1.html>
+    <$client.env.formfield.Offer_Text_2.html>
+    <$client.env.formfield.Reason_Header.html>
+  </div>
+
+</form>
+
+<script>
+
+//Show populated form if already completed
+var strCompletedForm = FORM_COMPLETED;
+if (strCompletedForm != "")
+{
+//Gather the fields that need to be displayed
+//For images we need to setup the image tag. 
+var imgHeader = "<img src='<$client.env.formfield.headerpg1.value>' />";
+var imgVPSignature = "<img src='<$client.env.formfield.vpsignature.value>' />";
+
+//Create an array of info to pass to complete the offer letter
+//0 for images sending an image tag, 1 for sections of text sneding the ID of the field that holds the HTML.
+var arrParts = [
+[1,'hidden_pg']
+
+];
+var arrParts2 = [
+[1,'hidden_pg2']
+
+];
+var arrParts3 = [
+[1,'hidden_pg3']
+
+];
+//Send (ID of the div to hide,ID of the div to show,Parts to get the offer letter)
+showCompletedOfferLetter('incomplete','complete',arrParts);
+showCompletedOfferLetter('incomplete2','complete2',arrParts2);
+showCompletedOfferLetter('incomplete3','complete3',arrParts3);
+} 
+</script>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Kindred_At_Home_Offer_Letter_-_Internal/script_Version_2.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script> 
+<script type="text/javascript"> 
+
+    ChangeCalendarIcons(); //for popup calendar  
+
+    $(window).ready(function() { 
+
+      $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+      $("#buttonCancel").addClass("lifesuite__button"); 
+      $('#buttonCancel').attr('id','ButtonCancel'); 
+      $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue"); 
+      $("#buttonSave").addClass("lifesuite__button primary"); 
+      $('#buttonSave').attr('id','ButtonSave'); 
+      $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+      $("#buttonSaveAndComplete").addClass("lifesuite__button primary"); 
+      $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete').removeAttr('onclick'); 
+      $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+      $("#buttonPrint").addClass("lifesuite__button"); 
+      $('#buttonPrint').attr('id','ButtonPrint').removeAttr('onclick');  
+      $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed"); 
+      $("#buttonPreviewDelete").addClass("lifesuite__button"); 
+      $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete'); 
+      $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue"); 
+      $("#buttonPreviewSave").addClass("lifesuite__button primary"); 
+      $('#buttonPreviewSave').attr('id','ButtonPreviewSave'); 
+      $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+      $("#buttonComplete").addClass("lifesuite__button primary"); 
+      $('#buttonComplete').attr('id','ButtonComplete'); 
+      $('#buttonPrint').removeAttr('onclick');
+      $('#buttonSaveAndComplete').removeAttr('onclick');
+
+      document.getElementById('formButtons').style.display = "block"; 
+
+      $("input[type=text]").addClass('lifesuite__text-input'); 
+      $("input[type=text].hasDatepicker").addClass('dateField'); 
+      $("select").addClass('lifesuite__select-input'); 
+      $("input[type=radio]").addClass('lifesuite__radio'); 
+      $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+      $("textarea").addClass('lifesuite__textarea-input'); 
+      $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+
+
+
+      $('#kindred-offer-letter').on('click change', 'input:visible[type="radio"]', function() {
+        validateField($(this));
+      });
+
+      $('#kindred-offer-letter').on('change', 'input:visible:not(#signature):not(:button), select:visible', function() {
+        validateField($(this));
+      });
+
+      $('#modal').on('click', 'input.lifesuite__button', function() {
+        validateField($('#signature'));
+        validateField($('#sign-date-container .cal_and_button input:not(:button)'), true);
+      });
+
+      $('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete').on('click', function(e) {
+        var formIsValid = true, btn = $(this);
+        e.preventDefault();
+        $.each($('#kindred-offer-letter input:visible:not(:button), #kindred-offer-letter select:visible'), function(k, v) {
+          if(false == validateField($(v)) && $(v).is(':visible')) {
+            formIsValid = false;
+          }
+        });
+        if (formIsValid) {
+          switch (btn.attr('id')) {
+            case 'ButtonPrint':
+            funcPrint();
+            break;
+            case 'ButtonSaveAndComplete':
+            completeStamp("<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>");
+            funcSaveAndComplete();
+            break;
+          }
+        }
+      });
+      $(window).resize(function() { 
+
+        document.getElementById('over').style.width=''; 
+
+      }); 
+      var assignee = "<$client.account.username_first> <$client.account.username>";
+      console.log(assignee);
+      var recruiter_signature = document.getElementById('recruiter_signature');
+      var rec_name =  document.getElementById('company-name');
+
+
+      var isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+      console.log("isemp " + isEmployee);
+      var emp_name = document.getElementById('name'); 
+
+      if(!$('#signature').val().length) {
+        emp_name.value = <$client.env.eval((url.forWhom==account.userguid)?'assignee':'null')>;
+      } 
+
+      var init = function() {
+        if($('#SignatoryStamp').prop('readonly')) {
+          $('#signature, .startDate').prop('onfocus',null);
+          return false;
+        }
+
+
+        if ((isEmployee &&  parseInt($('#EmployeeStamp').val()) === 0)) {
+          $('#signature, #name').val('');
+          $('#EmployeeStamp').val(1);
+          setTimeout(function() {
+            $('.signDate, #sv').val('');
+          }, 400);
+          if(!$('#signature').val().length) {
+            emp_name.value = <$client.env.eval((url.forWhom==account.userguid)?'assignee':'null')>;
+          }
+        }
+
+        if(!isEmployee) {
+          $('#signature, #name, #sv').val('');
+          setTimeout(function() {
+            $('.signDate').val('');
+          }, 400);
+        }
+      }
+      setTimeout(init(),400);
+      if (!isEmployee) {$('.startDate').parent().find('input').prop('disabled', true);}
+
+
+      var myVar2 = setInterval(function(){ 
+        if(document.getElementById('modal').style.display=='block') {
+          document.getElementById('ButtonSaveAndComplete').focus()
+          document.getElementById('eSignature1').focus()
+          clearInterval(myVar2) 
+        }}, 500);
+
+    });
+
+$('.signDate').parent().find('input').prop('disabled', true);
+
+$( window ).resize(function() {
+  document.getElementById('over').style.width='';
+});
+
+
+$(window).ready(function() { 
+
+ var isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>; 
+ if (isNewhire) {  
+  $('#tablePopup').addClass('deactivate-highlight');  
+} 
+
+$('mark').each(function(x){ 
+  if($('mark').eq(x).html().length <= 0){ 
+    $('mark').eq(x).html('&nbsp;'); 
+  } 
+});
+
+
+var loadFriendlyTexts = function() { 
+  if (!isNewhire) { 
+    setTimeout(function() { 
+      $('.marked').popover({ 'trigger': 'manual' }).popover('show'); 
+      $('.popover-content').addClass('text-uppercase');
+    }, 500);  
+  } 
+} 
+
+loadFriendlyTexts(); 
+
+$(window).on('resize', function() { 
+  loadFriendlyTexts(); 
+}); 
+});
+
+$(document).ready(function(){
+  $(".accept-decline-select").change(function(){
+    var ad = $(".accept-decline-select:checked").val();
+    if(ad == 'Yes'){
+      $("#offer-declined-select").val('');
+      $(".ad-section").hide();
+      $(".signatureSection").show();
+      fnShowAccepted('acc');
+      fnShowDeclined('acc');
+    }else if(ad == 'No'){
+      $(".ad-section").show();
+      $(".signatureSection").show();
+      fnShowAccepted('dec');
+      fnShowDeclined('dec');
+    }else{
+      $("#offer-declined-select").val('');
+      $(".ad-section").hide();
+      $(".signatureSection").hide();
+      fnShowAccepted('nil');
+      fnShowDeclined('nil');
+    }
+  }).change();
+  $("#offer-declined-select").change(function() {
+      employee.Reason = $("#offer-declined-select option:selected").val();
+      $(".accept-decline-select").trigger("change");
+  }).change();
+   
+});
+</script>
+<script>
+  $(".addNgInvalid").each(function() {
+    $(".addNgInvalid").click(function() {
+      var targetID = $(this).data('target');
+      $("#"+targetID+"").addClass("ng-invalid");
+    });
+  });
+
+  $(".removeNgInvalid").each(function() {
+    $(".removeNgInvalid").click(function() {
+      var targetID = $(this).data('target');
+      if($("#"+targetID+"").val() != ""){
+        $("#"+targetID+"").removeClass("ng-invalid");
+      }
+    });
+  }); 
+
+  $(".removeNgInvalid").each(function() {
+    $(".removeNgInvalid").click(function() {
+      var targetID = $(this).data('target');
+      if($("#"+targetID+"").val() != ""){
+        $("#"+targetID+"").removeClass("ng-invalid");
+      }
+    });
+  }); 
+
+  $(".radioBorder").click(function() {
+    var thisGroup = this.name;
+    $('input[name="'+thisGroup+'"]').each(function() {
+      if($('input[name="'+thisGroup+'"]').is(':checked') == true){
+        $('input[name="'+thisGroup+'"]').css("box-shadow", "none");
+      } else {
+        $('input[name="'+thisGroup+'"]').css("box-shadow", "0 0 4px 0 #ff4d4d99 ");
+      }
+    });
+  });
+
+  $(".radioBorder").each(function() {
+    var thisGroup = this.name;
+    $('input[name="'+thisGroup+'"]').each(function() {
+      if($('input[name="'+thisGroup+'"]').is(':checked') == true){
+        $('input[name="'+thisGroup+'"]').css("box-shadow", "none");
+      } else {
+        $('input[name="'+thisGroup+'"]').css("box-shadow", "0 0 4px 0 #ff4d4d99 ");
+      }
+    });
+  });  
+
+
+</script>

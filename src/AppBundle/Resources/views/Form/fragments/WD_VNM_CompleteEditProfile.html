@@ -1,0 +1,99 @@
+<table id="apple_jp_ep_header" border="0">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table id="apple_jp_ep" border="0">
+  <tr>
+    <td>Ngày tháng năm sinh<br><span id="DOB_promptx">Date of Birth</span>: </td>
+    <td colspan="3"><$client.env.inputDOB></td>
+  </tr>
+  <tr>
+    <td>Giới tính:<br><span id="WD_Gender_VNM_promptx">Gender</span>:</td>
+    <td colspan="3"><$client.env.inputWD_Gender_VNM></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="Marital_Status_VNM_promptx">Marital Status</span>:</td>
+    <td colspan="3"><$client.env.inputMarital_Status_VNM></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="Citizenship_Status_promptx">Citizenship Status</span>:</td>
+    <td colspan="3"><$client.env.inputCitizenship_status></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="Nationality_Primary_promptx">Nationality</span>:</td>
+    <td colspan="3"><$client.env.inputNationality_Primary></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="National_ID_Country_promptx">National ID Country</span>:</td>
+    <td colspan="3"><$client.env.inputNational_ID_Country></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="National_ID_Type_VNM_promptx">National ID Type</span>:</td>
+    <td colspan="3"><$client.env.inputNational_ID_Type_VNM></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="National_ID_Number_promptx">National ID Number</span>:</td>
+    <td colspan="3"><$client.env.inputNational_ID_Number></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="Passport_Country_promptx">Passport Country</span>:</td>
+    <td colspan="3"><$client.env.inputPassport_Country></td>
+  </tr>
+  <tr>
+    <td>Số hộ chiếu:<br><span id="Passport_ID_Number_promptx">Passport Number</span>:</td>
+    <td colspan="3"><$client.env.inputPassport_ID_Number></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="Passport_Issued_Date_promptx">Passport Issued Date</span>:</td>
+    <td colspan="3"><$client.env.inputPassport_Issued_Date></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="Passport_Expiration_Date_promptx">Passport Expiration Date</span>:</td>
+    <td colspan="3"><$client.env.inputPassport_Expiration_Date></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="Visa_Country_promptx">Visa Country</span>:</td>
+    <td colspan="3"><$client.env.inputVisa_Country></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="Visa_ID_Type_VNM_promptx">Visa ID Type</span>:</td>
+    <td colspan="3"><$client.env.inputVisa_ID_Type_VNM></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="Visa_ID_Number_promptx">Visa ID Number</span>:</td>
+    <td colspan="3"><$client.env.inputVisa_ID_Number></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="Visa_Issued_Date_promptx">Visa Issued Date</span>:</td>
+    <td colspan="3"><$client.env.inputVisa_Issued_Date></td>
+  </tr>
+  <tr>
+    <td>&lt;Placeholder for translation&gt;:<br><span id="Visa_Expiration_Date_promptx">Visa Expiration Date</span>:</td>
+    <td colspan="3"><$client.env.inputVisa_Expiration_Date></td>
+  </tr>
+
+</table>
+<div id="label-container" hidden></div>
+
+<script>
+if(self.LoadCallback) {
+  LoadCallback(document.forms['frmExtendedUserProfile']);
+}
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = function (callback, thisArg) {
+    thisArg = thisArg || window
+    for (var i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this)
+    }
+  }
+}
+document.onreadystatechange = function() {
+  document.querySelectorAll('[id$="_promptx"]').forEach(function(f) {
+    const div = document.createElement('div')
+    div.id = f.id.replace(/x$/, '')
+    div.innerHTML = f.innerHTML.replace(/:/, '')
+    document.getElementById('label-container').appendChild(div)
+  })
+}
+</script>

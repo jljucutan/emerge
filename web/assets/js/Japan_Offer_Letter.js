@@ -1,24 +1,54 @@
 /**
  * SERVICES-35974 | PayPal - Create Japan Offer Letter
  * Japan_Offer_Letter
+ * 02/27/2019 | jjucutan | display complimentary close addressee when addressee or new hire is signed in
  */
-function fnView() {
+const fnView = function() {
+    "use strict";
     $("#markup").html("").append(
         // OfferClause 1
         $('<div class="offerClause"/>').append(
-            $('<p/>').append(employee.Current_Date)
+            $('<p/>').append(
+                $('<mark/>').append(
+                    employee.Current_Date
+                )
+            )
         ),
         $('<div class="offerClause">').append(
             $('<p class="mb-40"/>').append(
-                $('<span/>').append(employee.Full_Legal_Name + '<br>'),
-                $('<span/>').append(employee.Address_Line_1 ? employee.Address_Line_1 + '<br>' : ''),
-                $('<span/>').append(employee.Address_Line_2 ? employee.Address_Line_2 + '<br>' : ''),
-                $('<span/>').append((employee.City ? employee.City + ', ' : '') + (employee.State ? employee.State + ', ' : '') + employee.Postal_Code)
+                $('<mark/>').append(
+                    employee.Full_Legal_Name
+                ),
+                '<br>',
+                $('<mark/>').append(
+                    employee.Address_Line_1
+                ),
+                '<br>',
+                (employee.Address_Line_2.length > 0) && $('<mark/>').append(
+                    employee.Address_Line_2
+                ).append('<br>'),
+                $('<mark/>').append(
+                    employee.City
+                ),
+                ', ',
+                $('<mark/>').append(
+                    employee.State
+                ),
+                ', ',
+                $('<mark/>').append(
+                    employee.Postal_Code
+                )
             ),
             $('<p class="hide"/>').append('&nbsp;')
         ),
         $('<div class="offerClause"/>').append(
-            $('<p/>').append('Dear ' + (employee.Preferred_First_Name ? employee.Preferred_First_Name : employee.First_Name) + ','),
+            $('<p/>').append(
+                'Dear ',
+                $('<mark/>').append(
+                    (employee.Preferred_First_Name ? employee.Preferred_First_Name : employee.First_Name)
+                ),
+                ','
+            ),
             $('<p/>').append(
                 'We, PayPal Japan KK (the “Company”), are pleased to offer you employment as the \‘Position Title,\’ with the Company upon the following terms and conditions.  This offer of employment is contingent upon the successful completion of the standard PayPal background verification and a three-month probationary period.'
             ),
@@ -32,7 +62,15 @@ function fnView() {
             ),
             $('<p/>').append(
                 $('<strong/>').append('<u>3. Salary</u><br>'),
-                'You will be paid an annual salary of ' + employee.Salary_Currency + ' ' + employee.Salary_Amount + ' divided by 12 payments, once per month paid on the last business day of each month.  This sum is to be paid in Japanese Yen and will be paid by remittance to the bank account designated by you.  The compensation will be subject to deduction for Japanese income tax, inhabitant’s tax and employee’s portion of social and labor insurance premiums in accordance with the relevant laws of Japan.  Your compensation will be reviewed annually.  You are not entitled to a retirement allowance.'
+                'You will be paid an annual salary of ',
+                $('<mark/>').append(
+                    employee.Salary_Currency
+                ),
+                ' ',
+                $('<mark/>').append(
+                    employee.Salary_Amount
+                ),
+                ' divided by 12 payments, once per month paid on the last business day of each month.  This sum is to be paid in Japanese Yen and will be paid by remittance to the bank account designated by you.  The compensation will be subject to deduction for Japanese income tax, inhabitant’s tax and employee’s portion of social and labor insurance premiums in accordance with the relevant laws of Japan.  Your compensation will be reviewed annually.  You are not entitled to a retirement allowance.'
             ),
             $('<p/>').append(
                 $('<strong/>').append('<u>4. Work Rules and Corporate Policies</u><br>'),
@@ -94,7 +132,10 @@ function fnView() {
                 'Yours sincerely,'
             ),
             $('<p/>').append(
-                $('<span/>').append('For and on behalf of PayPal Japan KK<br><span id="signatory-complimentary"></span><br>'),
+                $('<span/>').append('For and on behalf of PayPal Japan KK<br>'),
+                $('<div id="complimentary-close-signer">').append(
+                    '<mark id="signatory-complimentary"></mark><br>'
+                ),
                 $('<span/>').append('Company Signatory')
             )
         )
@@ -159,14 +200,9 @@ $(function() {
         $("#ButtonSaveAndComplete").remove();
         $("input[type=text]").removeAttr('onfocus').attr("disabled", "disabled");
 
-        var arrParts = [
+        let arrParts = [
             [1, 'hidden_pg']
         ];
-
-        var arrParts2 = [
-            [1, 'hidden_pg5']
-        ];
-
-        // showCompletedOfferLetter('incomplete', 'complete', arrParts);
+        showCompletedOfferLetter('incomplete','complete',arrParts);
     }
 });

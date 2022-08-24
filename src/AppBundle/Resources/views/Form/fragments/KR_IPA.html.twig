@@ -1,0 +1,572 @@
+<!-- Main QA Area --> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px"> 
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+        </p>
+        <br> 
+        <div class="row">
+            <div class="lifesuite__clearfix"> 
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px;"> 
+                <input type="button" class="lifesuite__button btn-sign" value="Sign" onClick="validateSignature('signature','eSignature1','PrintName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+  showScreen('over');
+</SCRIPT> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+<div class="modal" style="display:block; background: #002E6D;"> 
+  <div class="fb-spinner"> 
+   <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+ </div> 
+</div> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form"> 
+
+  <div style="display:none;">
+    <$client.env.FormField.Form_Name.prompt>
+    <$client.env.FormField.Form_Name.HTML>
+    <$client.env.FormField.Form_Type.prompt>
+    <$client.env.FormField.Form_Type.HTML>
+    <$client.env.FormField.Form_Owner.prompt>
+    <$client.env.FormField.Form_Owner.HTML>
+    <$client.env.FormField.Form_CreateDate.prompt>
+    <$client.env.FormField.Form_CreateDate.HTML>
+    <$client.env.FormField.Form_Completed.prompt>
+    <$client.env.FormField.Form_Completed.HTML>
+    <$client.env.FormField.Form_Delivered.prompt>
+    <$client.env.FormField.Form_Delivered.HTML>
+    <$client.env.FormField.Form_TaskId.prompt>
+    <$client.env.FormField.Form_TaskId.HTML>
+    <$client.env.FormField.display_version.HTML>
+    <!-- Your Required/Validated Form Fields -->
+
+    <$client.env.formfield.English_Prior_Inventions.prompt>
+  </div>
+
+  <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+  <!-- Begin HTML Content -->
+
+<div id="container">
+    <div class="container-fluid">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right logo-padding" style="margin-bottom:20px!important;">
+                    <img src="<$link;/main/RedCarpet/FormTemplates/KR_IPA/apple_logo.png>" alt="Apple Logo" style="max-width:80px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col=sm-12 col-xs-12 mid-padding">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom">
+                        <h2>
+                            Confidentiality and Intellectual 
+                        </h2>
+                        <h2>
+                            Property Agreement 
+                        </h2>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom-25">
+                        <p>
+                            This Confidentiality and Intellectual Property Agreement (“Agreement” or “IPA Agreement”) is entered into between you (also referred to as “Employee”) and Apple Korea Limited, a Korean corporation having its principal place of business at 3901 ASEM Tower, 159 Samsung-dong, Gangnam-gu, Seoul, 135-798 (collectively and severally with its affiliates and subsidiaries, “Apple”) (Employee and Apple collectively, the “parties”). Apple has agreed to employ you (or continue to employ you if this Agreement is signed after you have already been employed by Apple) on the condition that you agree to and abide by all of the following terms and conditions for the duration of your employment by Apple, including but not limited to during any leave of absence or other time off, and thereafter.
+                        </p>
+                        <p>
+                            Apple’s business includes the research &amp; development, design, engineering, programming, assembly, manufacture, distribution, retail, and sale of electronic goods, software, content, and services. As a full-time or part-time employee, intern, or temporary or contingent worker employed by Apple, you will have, access to various types of confidential information that is owned by Apple or to which Apple has separately committed to one or more third parties to maintain as confidential. Therefore, to protect Apple's intellectual property rights and business and technical secrets and safeguard both parties’ interests, the parties hereby agree as follows in consideration of the above premises, the mutual promises contained herein, and the compensation paid to you in connection with your employment by Apple.
+                        </p>
+                        <div style="margin-bottom: 11px!important;">&nbsp;</div>
+                        <h4><span class="roman-inline">I.</span><span class="subsub">CONFIDENTIAL AND PROPRIETARY INFORMATION</span></h4>
+                        <p class="margin-bottom">
+                            You understand that your employment by Apple creates a relationship of confidence and trust with respect to any confidential, proprietary, or non-public information that may be disclosed to you or otherwise learned by you in the course of employment at Apple, including but not limited to any confidential information of third parties disclosed to Apple. As referred to herein, “Proprietary Information” means all information not generally known outside Apple and/or kept confidential by Apple, including for example but not limited to (a) trade secrets, R&amp;D records, reports, samples, manuals, plans, specifications, inventions, ideas, designs, prototypes, software, source code, or any other materials or information relating to past, existing, and future products and services whether or not developed, marketed, used, or rejected by Apple or persons or companies dealing with Apple; (b) sales, profits, organization, customer lists, pricing, sources of material, supply, costs, manufacturing, financials, forecasts, market research, or any other information relating to the business operations or affairs of Apple or persons or companies dealing with Apple; and (c) the employment and personnel information of Apple, such as compensation, training, recruiting, and other human resource information.<sup>1</sup>
+                        </p>
+                        <ol class="ol-custom margin-bottom-25">
+                            <li>
+                                <span class="li-span">
+                                <strong>Treatment of Proprietary Information. </strong>You understand and agree that your employment by Apple prohibits you, during or after employment, from using or disclosing, or permitting any  other person or entity to use or disclose, any Proprietary Information without the written consent of Apple, except as necessary to perform your duties as an employee of Apple.  You understand and agree to strictly comply with all of Apple’s rules and policies regarding Proprietary Information and use best efforts to safeguard such Proprietary Information  and protect it against disclosure, misuse, loss, or theft. Upon termination of employment with Apple, you will promptly deliver to Apple all documents and materials of any kind pertaining to your work  at Apple, and you agree that you will not take with you any documents, materials, or copies thereof, whether on paper or any other medium, containing any Proprietary Information.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>Information of Others. </strong>You agree that you have not brought, and during your employment  with Apple will not bring, any confidential, proprietary, or secret information or intellectual property of your former employer(s) or any other person(s) or entity(ties) onto Apple property. You further agree you have not improperly used or disclosed (or induced the same), and during your employment with Apple will not improperly use or disclose (or induce the same), any confidential, proprietary, or secret information or intellectual property of your former employer(s) or any other person(s) or entity(ties).
+                                </span>
+                            </li>
+                        </ol>
+                        <h4><span class="roman-inline">II.</span><span class="subsub">INVENTIONS</span></h4>
+                        <ol class="ol-custom margin-bottom-25">
+                            <li>
+                                <span class="li-span">
+                                <strong>Definition of Invention. </strong>As used in this Agreement, “Inventions” means any and all inventions, ideas, and discoveries, including improvements, original works of authorship, designs, formulas, processes, specifications, technology, computer programs or portions thereof, databases, mask works, results, know-how, trade secrets and proprietary information, documentation, and materials made, created, conceived, or reduced to practice by you, alone or jointly with others.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>Prior Inventions. </strong><span class="text-blue">In a separate form associated with this Agreement, you may list all Inventions   that you made prior to  your  employment with  Apple and that you claim an ownership or any other legal right or title in (“Prior Inventions”).</span>  If you do   not claim an ownership or other legal right or title   in a Prior Invention  because you assigned all rights to a previous employer, then you should not list the Prior Invention. You should not include any information that is subject to  a confidentiality obligation to a third party. <br>Apple's prior written consent. You further agree to grant and do hereby grant to Apple a non-exclusive, royalty-free, irrevocable, perpetual (to the maximum extent permitted by law), worldwide license without any additional compensation to make, have made, use, offer to sell, sell, import, export, reproduce, modify, display, perform, transmit, and otherwise distribute and exploit any listed Prior Invention(s) that is incorporated or used in or for an Apple Product, (i) with your knowledge, involvement, acquiescence, or permission, (ii) if you were involved in the development or implementation of the relevant part of the Apple Product, or (iii) if you do not promptly object to the public use or commercialization of the relevant part of the Apple Product in a written notice to an Apple Vice President, or equivalent in your region. If you do not list a Prior Invention, you acknowledge and agree that no such Prior Inventions exist, and, to the extent such Prior Inventions do exist, you waive any and all past, present, and future claims against Apple relating to such Prior Inventions. You understand that your listing of any Prior Inventions here does not constitute an acknowledgment by Apple of the existence or extent of such Prior Inventions, nor of any ownership of such Prior Inventions. Please do not use this space to disclose an ongoing business or project, or a product that you are developing and/or distributing; such ongoing activity must be disclosed and presented to your manager in writing, and approved in advance by your Apple Vice President, or equivalent in your region.
+                                </span>
+                                <div style="margin-bottom: 14px!important;"></div>
+                                <span class="li-span">
+                                If you do not list a Prior Invention, you acknowledge and agree that no such Prior Inventions exist, and, to the extent such Prior Inventions do exist, you waive any and all past, present, and future claims against Apple relating to such Prior Inventions. You understand that your listing of any Prior Inventions
+                                here does not constitute an acknowledgment by Apple of the existence or extent of such Prior Inventions, nor of any ownership of such Prior
+                                Inventions. Please do not use this space to disclose an ongoing business or project, or a product that you are developing and/or distributing; such
+                                ongoing activity must be disclosed and presented to your manager in writing, and approved in advance  by your Apple Vice President, or equivalent in your region.
+                                </span>
+                                <div style="margin-bottom: 14px!important;"></div>
+                                <span class="li-span">
+                                <strong>Prior Inventions</strong> <span style="color: red"> * </span>
+                                </span>
+                                <div></div>
+                                <span class="li-span">
+                                <$client.env.formfield.English_Prior_Inventions.html>
+                                </span>
+                                <p class="req-notif">Required information is missing.</p>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>Apple Ownership of Inventions. </strong>You confirm and agree that all Inventions that (a) are developed using any equipment, supplies, facilities or Proprietary Information provided by Apple; (b) result from or are suggested by work performed by you for Apple or Proprietary Information provided by Apple; or (c) are conceived of or reduced to practice during the time you are employed by Apple and relate to any aspect of Apple’s business or products, or Apple’s actual or anticipated research and development (collectively “Apple Inventions”) are the sole and exclusive property of Apple. You agree to make a full written disclosure promptly to Apple of any and all Apple Inventions. Other than the payment made under Apple’s Patent Award Program, you agree that no additional compensation or remuneration is or will become due to you in consideration for Apple’s ownership of the Apple Inventions, and that any award or bonus provided to you (for example pursuant to a patent award program) is not a condition for Apple’s ownership of any Inventions. You acknowledge and agree that you have no right to, and will not directly or indirectly use Apple Inventions except as authorized by Apple for your work at Apple. For example, you agree not to: (a) reproduce, manufacture, market, publish, distribute, sell, license, or sublicense, transfer, rent, lease, transmit, broadcast, display, or use the Apple Inventions, or any portion or copy thereof, in any form; (b) apply for, or apply to register, any patent, copyright, trademark, mask work, or other industrial property right or intellectual property right in or related to the Apple Inventions, anywhere in the world; or (c) cause other persons, companies, or organizations to do any of the above.
+                                </span>
+                                <div style="margin-bottom: 14px!important;"></div>
+                                <span class="li-span">
+                                <strong>Assignment, License, and/or Waiver of Rights to Apple Inventions. </strong>If any applicable laws and regulations provide that certain rights in any Apple Inventions vest in Employee and/or do not permit the parties contractually to agree otherwise with respect to such vesting, you hereby agree to assign and do hereby assign such rights to Apple to the fullest extent legally permitted, including any “moral” rights that you may have in any Apple Invention(s) under the copyright or other law, whether U.S. or foreign, and Apple hereby accepts such assignment (the “Assigned Inventions”). You acknowledge that all original works of authorship that are made by you (solely or jointly with others) within the scope of your employment by Apple, and that are protectable by copyright, are works made for hire, as that term is defined in the United States Copyright Act (17 U.S.C. §101). In the event that any rights to an Apple Invention are not effectively assigned to Apple, then you hereby grant Apple a license to make, have made, use, offer to sell, sell, import, export, reproduce, modify, display, perform, transmit and otherwise distribute and exploit, in its sole discretion, the Apple Inventions (and modified and derivative works thereof). The license rights under this clause shall be free of charge, perpetual, irrevocable, exclusive (you shall not use or otherwise exploit the Apple Inventions nor appoint other licensees), worldwide, and transferable, and Apple shall have the right to sublicense. In the event that there are any rights to an Apple Invention that are not effectively assigned or licensed to Apple pursuant to the foregoing provisions, then you irrevocably waive and agree not to exercise or assert any rights to any such Apple Inventions worldwide, including but not limited to all moral rights, rights of attribution, identification of authorship, limitation on subsequent modification or other “personal rights” in the Apple Inventions, during or after the termination of your employment by Apple. You agree that Apple and its licensees are not required to designate you as the author of any Apple Inventions when distributed.
+                                </span>
+                                <div style="margin-bottom: 14px!important;"></div>
+                                <span class="li-span">
+                                <strong>Protection of Apple Inventions. </strong>You agree, during and after termination of  employment,
+                                whether voluntary or involuntary, to assist Apple or any party designated by Apple (at Apple’s expense) in every proper way to obtain, perfect, confirm, realize rights in, and/or enforce all of Apple’s
+                                ownership and other rights to Apple Inventions in any and all countries.  This includes promptly
+                                executing any documents that Apple may reasonably request for use in obtaining or enforcing such patents, copyrights, and other legal protections.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>Excluded Employee Inventions. </strong>Apple acknowledges and agrees, in accordance with any applicable law, that any Inventions (a) that you develop entirely on your own time; and (b) that you develop without using Apple’s equipment, supplies, facilities, or trade secret information; and (c) that do not result from any work performed by you  for
+                                Apple; and (d) that do not relate, at the time of conception or reduction to practice, to Apple’s business or products, or to Apple’s actual or
+                                demonstrably anticipated research or development, will be owned entirely by you, even if developed by you during the time period in which you are
+                                employed by Apple.
+                                </span>
+                            </li>
+                        </ol>
+                        <h4><span class="roman-inline">III.</span><span class="subsub">NO CONFLICTING OBLIGATIONS</span></h4>
+                        <ol class="ol-custom margin-bottom-25">
+                            <li>
+                                <span class="li-span">
+                                <strong>No Conflicting Outside Interests. </strong>You agree that during your employment by Apple, you will not plan or engage in any other employment, occupations,
+                                consulting, or other business activities or
+                                commitments competitive with or directly related to Apple’s business or products, or to its actual or demonstrably anticipated research or development, nor will you engage in any other activities that
+                                conflict with any employment obligations to Apple. Activities and commitments as used herein do not include passive investments in stocks or other
+                                financial instruments.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>No Conflicting Agreements. </strong>You represent to Apple that you have no other commitments  that
+                                would hinder or prevent the full performance of your duties as an Apple employee or your obligations under this Agreement, and you agree not to enter into any such conflicting agreement during the  tenure of employment by Apple.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>Disclosure of Agreement. </strong>You hereby authorize
+                                Apple to notify others, including customers of Apple, and any future employers you may have, of the  terms of this Agreement and your responsibilities under this Agreement.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>No Solicitation. </strong>To the fullest extent permitted by applicable law, during your employment and for a period of one (1) year following your termination (whether voluntary or involuntary), you will not, directly or indirectly, on your own behalf or on   behalf of any person or entity, solicit, recruit, or take any action intended to induce Apple employees or
+                                contractors to terminate their relationship with Apple.
+                                </span>
+                            </li>
+                        </ol>
+                        <h4><span class="roman-inline">IV.</span><span class="subsub">NON-COMPLIANCE</span></h4>
+                        <p>
+                            You acknowledge and agree that the limitations set forth herein are reasonable with respect to scope and duration, and are properly required for the protection of  the
+                            legitimate interest of Apple. If you breach any part of this Agreement, Apple is entitled to take any action to the
+                            extent permissible under applicable laws and this Agreement, including but not limited to terminating employment, initiating a legal proceeding, filing  a
+                            complaint to relevant administrative departments, and assisting the relevant judicial authorities to pursue your liabilities in case that your breach of this Agreement has violated any criminal laws.
+                        </p>
+                        <p>
+                            In case any dispute or claim arises under or from this
+                            Agreement, you and Apple will try to settle the dispute or claim through friendly consultation. To the fullest extent permitted by law, if settlement of such dispute or claims fails, either you or Apple shall submit the dispute to
+                            mandatory binding arbitration by a reputable arbitration organization or tribunal under the International Chamber of Commerce (“ICC”) Rules of Arbitration then in force when such claim is submitted.  The  arbitration
+                            organization or tribunal will be selected by mutual agreement of the parties. The language to be used in the arbitral proceedings shall be English, and the arbitral award shall be final and binding upon the parties and shall be enforceable in accordance with its terms.  During the
+                            course of any arbitration proceedings, all provisions of this Agreement shall be implemented continuously by the parties.
+                        </p>
+                        <p>
+                            Notwithstanding the foregoing, you acknowledge and agree that any breach of this Agreement could give rise to irreparable harm to Apple for which money damages may not be an adequate remedy.  Because such harm and injury may not be compensable by damages, you agree that Apple will have the right to enforce this  Agreement by injunction, specific performance, or other equitable relief without posting of a bond or security and without prejudice of any other rights and remedies  available.
+                            Accordingly, Apple may apply to any court of competent jurisdiction for any interim or conservatory measures, including temporary or permanent injunctive relief or to compel arbitration.
+                        </p>
+                        <div style="margin-bottom: 11px!important;">&nbsp;</div>
+                        <h4><span class="roman-inline">V.</span><span class="subsub">NO IMPLIED EMPLOYMENT RIGHTS</span></h4>
+                        <p>
+                            You understand and agree that no term or provision of   this Agreement confers upon you any rights to continued employment by Apple and that no term or provision of this Agreement obligates Apple to employ you for any specific period of time or interferes with or restricts your right or,   to the fullest extent permitted by applicable law, Apple’s right to terminate your employment, at any time for any reason with or without cause or prior notice.
+                        </p>
+                        <div style="margin-bottom: 11px!important;">&nbsp;</div>
+                        <h4><span class="roman-inline">VI.</span><span class="subsub">GENERAL PROVISIONS</span></h4>
+                        <ol class="ol-custom margin-bottom-25">
+                            <li>
+                                <span class="li-span">
+                                <strong>Severability. </strong>If one or more of the provisions of this Agreement are deemed void or unenforceable by law, then the remaining provisions will continue in full force and effect  and the Parties or a tribunal of competent jurisdiction shall substitute suitable  provisions
+                                having like effect.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>Governing Law. </strong>This agreement will be governed in accordance with the laws of South Korea. This Agreement is made and executed in both the Korean and English languages. The English version of this Agreement shall govern in the event of any dispute or claim between Apple and you with respect to the interpretation of the provisions of this Agreement.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>Successors and Assigns. </strong>This Agreement will be binding upon your heirs, executors, administrators, and other legal representatives, and will be for the benefit of Apple, its successors, and assigns. You may not assign or transfer this Agreement, in whole or in part, to any other person or entity.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>Entire Agreement. </strong>This Agreement and any other Apple employment agreements are
+                                coterminous and set forth the entire agreement between you and Apple relating to the subject matter of this Agreement. To the extent there are any contrary provisions, understandings, or representations, whether written or oral, that pertain to the subject matter of this Agreement, any such contradictions are expressly
+                                superseded by this Agreement. No modification to or amendment of this Agreement, nor any
+                                waiver of any rights under this Agreement, will be effective unless in writing signed by  both you  and an Apple Vice President, or equivalent in  your region. Any subsequent changes in your duties, salary, or compensation will not affect the validity or scope of this Agreement.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>Compliance with Laws. </strong>You agree that you will comply, and do all things necessary for Apple to comply, with the laws and regulations of all governments where Apple do business, and with provisions of contracts between any such government or its contractors and Apple.
+                                </span>
+                            </li>
+                        </ol>
+                        <h4><span class="roman-inline">VII.</span><span class="subsub">VOLUNTARY AGREEMENT</span></h4>
+                        <p>
+                            You acknowledge that you have read this Agreement carefully, that you understand all of its terms, that all agreements between you and Apple relating to  the
+                            subjects covered in this Agreement are contained in it, and that you have entered into this Agreement voluntarily and not in reliance upon any promises or representations other than those contained in this Agreement  itself.
+                        </p>
+                        <p>
+                            You further acknowledge that you have had the
+                            opportunity to discuss this Agreement with private legal counsel.
+                        </p>
+                        <p>
+                            This Agreement is and will be effective on and after the first day of your employment.
+                        </p>
+                    </div>
+                </div>
+                <!-- koryan start -->
+                <div class="col-lg-6 col-md-6 col=sm-12 col-xs-12 mid-padding">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom">
+                        <h2>
+                            기밀 및 지적 재산 계약
+                        </h2>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 margin-bottom-25">
+                        <p>
+                            본 기밀 및 지적 재산 계약('계약' 또는 'IPA 계약')은 귀하(또는 '직원')와 주 사업장 주소가 서울시 강남구 삼성동 159 아셈타워 3901(135-798)인 대한민국 법인 Apple Korea Limited(계열사 및 자회사 포함 'Apple'로 총칭 또는 지칭)(직원과 Apple 을 '당사자'로 총칭) 간에 체결된 것입니다. Apple 은 결근, 휴무 등을 포함하되 이에 제한하지 않고 Apple 의 고용 기간 중 귀하가 다음 조건을 모두 준수하기로 동의한다는 조건하에 귀하를 고용하거나, 귀하가 Apple 에 이미 고용된 후 본 계약에 서명하는 경우 귀하를 계속 고용하는 데 동의합니다.
+                        </p>
+                        <p>
+                            Apple 의 비즈니스에는 전자 제품, 소프트웨어, 콘텐츠 및 서비스의 연구/개발, 설계, 엔지니어링, 프로그래밍, 조립, 제조, 유통, 소매 및 판매가 포함됩니다. Apple 이 고용한 정규직 또는 비정규직 직원, 인턴, 임시 직원의 경우 Apple 이 소유하거나 Apple 이 기밀을 유지하도록 한 명 이상의 제 3 자에게 별도로 위임한 다양한 종류의 기밀 정보에 대해 액세스 권한을 갖게 됩니다. 따라서 Apple 의 지적 재산권과 비즈니스 및 기술 기밀을 보호하고 양 당사자의 이익을 보호하기 위해, 양 당사자는 이에 상기 전제, 여기에 포함된 상호 약속 및 Apple 의 고용과 관련하여 귀하에게 지불된 보수를 감안하여 다음과 같이 동의합니다.
+                        </p>
+                        <div style="margin-bottom: 11px!important;">&nbsp;</div>
+                        <h4><span class="roman-inline">I.</span><span class="subsub">기밀 및 독점 정보</span></h4>
+                        <p class="margin-bottom">
+                            귀하는 귀하의 Apple 고용으로 인해 Apple 에게 공개된 제 3 자의 기밀 정보를 포함하되 이에 국한되지 않고, 귀하에게 공개되거나 Apple 과의 고용 과정 중에 달리 알게 된 모든 기밀, 독점 또는 비공개 정보와 관련하여 신뢰 및 신의 관계가 형성됨을 알고 있습니다. 여기 언급된 '독점 정보'는 일반적으로 Apple 외부에 알려지지 않거나 Apple 이 기밀을 유지하는 모든 정보를 의미합니다. 예를 들어, (a) 영업 기밀, R&amp;D 기록, 보고서, 샘플, 매뉴얼, 계획, 사양, 발명품, 아이디어, 디자인, 시제품, 소프트웨어, 소스 코드, 과거/기존/미래 제품 및 서비스와 관련된 다른 모든 자료나 정보(Apple 또는 Apple 과 거래하는 개인이나 기업이 개발, 판매, 사용 또는 거부했는지 여부와는 상관 없음), (b) Apple 또는 Apple 과 거래하는 개인이나 기업의 비즈니스 운영 및 업무와 관련된 판매, 수익, 조직, 고객 목록, 가격 책정, 자료 소스, 공급, 원가, 제조, 재무, 예측, 시장 조사 또는 기타 정보, (c) Apple 의 고용 및 인사 정보(예: 보수, 교육, 채용 및 기타 인사 정보)를 포함하되 이에 제한되지 않습니다.<sup>2</sup>
+                        </p>
+                        <ol class="ol-custom margin-bottom-25">
+                            <li>
+                                <span class="li-span">
+                                <strong>독점 정보의 처리.</strong>귀하는 Apple 과의 고용으로 인해 고용 중이나 고용 이후에 Apple 직원으로서 업무를 수행하는 데 필요한 경우를 제외하고, Apple 의 서면 동의 없이 독점 정보를 사용 또는 공개하거나 다른 개인이나 기업에서 사용 또는 공개할 수 있도록 허가하지 못함을 이해하고 이에 동의합니다. 귀하는 기밀 정보와 관련된 Apple 의 모든 규칙 및 정책을 엄격하게 준수하고, 해당 독점 정보를 보호하고 공개, 오용, 분실 또는 도난으로부터 보호하기 위해 최선을 다할 것을 양해 및 동의합니다. 귀하는 Apple 과의 고용이 종료되는 즉시 Apple 에서 수행한 귀하의 업무와 관련된 모든 종류의 문서 및 자료를 Apple 에 제공하며, 독점 정보가 수록된 서류 또는 기타 매체의 문서, 자료 또는 그 사본을 반출하지 않는 데 동의합니다.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>타인의 정보.</strong>귀하는 이전 고용주 또는 다른 개인이나 기업의 기밀, 독점 또는 기밀 정보나 지적 재산을 Apple 재산에 가져오지 않았으며, Apple 과의 고용 기간 중에 가져오지 않는 데 동의합니다. 그리고 귀하는 이전 고용주 또는 다른 개인이나 기업의 기밀, 독점 또는 기밀 정보나 지적 재산을 부적절하게 사용 또는 공개하거나 그렇게 하도록 유도하지 않았으며, Apple 과의 고용 기간 중 이를 부적절하게 사용 또는 공개하거나 그렇게 하도록 유도하지 않는 데 동의합니다.
+                                </span>
+                            </li>
+                        </ol>
+                        <h4><span class="roman-inline">II.</span><span class="subsub">발명</span></h4>
+                        <ol class="ol-custom margin-bottom-25">
+                            <li>
+                                <span class="li-span">
+                                <strong>발명의 정의.</strong>본 계약에서 사용된 '발명'은 귀하가 단독으로 또는 다른 사람과 공동으로 만들거나, 구상하거나, 실행한개 선사항, 원본 작업물, 디자인, 공식, 프로세스, 사양, 기술,컴퓨 터 프로그램 또는 그 중 일부, 데이터베이스, 마스크워크, 결 과, 노하우, 영업 기밀 및 독점 정보, 문서 및 자료를포함한 모 든 발명품, 아이디어 및 발견을 의미합니다.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>선행 발명.</strong><span class="text-blue">아래 공란 또는 본 계약에 첨부된 별도 용지에 Apple 과의 고용 전에 귀하가 만들었고 소유권 또는 기타법 적 권리나 소유권을 갖고 있는 모든 발명('선행 발명')을나열 할 수 있습니다.</span> 모든 권리를 이전 고용주에게 양도했기때문 에 소유권 또는 기타 법적 권리나 소유권을 주장하지않을 경 우에는 선행 발명을 나열하지 마십시오. 제 3 자에대한 기밀 유지 의무가 적용되지 않는 정보는 포함시키지마십시오. 귀하는 Apple 의 사전 서면 동의 없이 Apple 제품, 서비스, 프로세스 또는 업무 수행 방식('Apple 제품'으로 총칭)에선 행 발명을 포함시키지 않을 것이며, 포함되도록 허용하지않는 데 동의합니다. 귀하는 Apple 제품에 포함되거나Apple 제 품에서 사용된 나열된 선행 발명을 만들거나,사용하거나, 판 매를 제안하거나, 판매하거나, 수입 또는수출하거나, 재생하 거나, 수정, 전시, 수행 또는 전송하거나달리 유통 및 이용할 수 있는 비독점적이며, 사용료가 없으며,취소 불가능하고, 영 구적이며, 전 세계적인 라이센스를 본계약에 따라 Apple 에 게 제공하는 데 동의합니다. 단, (i)귀하가 선행 발명을 알고 있고, 관여, 묵인 또는 허가하거나, (ii) Apple 제품의 관련 부분의 개발 및 시행에 관여한 경우 또는 (iii) 귀하가 Apple 부사장 또는 해당 지역 담당자에게 서면 통지를 통해 Apple 제품의 관련 부분을 공개적으로사 용하거나 상용화하는 데 즉각적으로 반대하지 않은 경우에한 합니다.
+                                </span>
+                                <div style="margin-bottom: 14px!important;"></div>
+                                <span class="li-span">
+                                선행 발명을 나열하지 않은 경우 귀하는 해당하는 선행 발명이 없음을 인정 및 동의합니다. 그리고 해당 선행 발명이 존재하는 범위까지 해당 선행 발명과 관련하여 Apple 에 대해 과거, 현재 및 미래의 모든 청구를 포기합니다. 귀하는 본 계약에서 선행 발명을 표시하는 것이 Apple 이 선행 발명의 존재 또는 범위를 인정하거나 해당하는 선행 발명의 소유권을 인정하는 것으로 간주되지 않음을 양해합니다. 본 공란을 사용하여 진행 중인 비즈니스 또는 프로젝트, 개발 중이거나 유통 중인 제품을 공개하지 마십시오. 해당하는 진행 중인 작업은 Apple 부사장 또는 해당 지역 담당자의 사전 서면 승인을 받아 관리자에게 공개 및 제공해야 합니다.
+                                </span>
+                                <!--div style="margin-bottom: 14px!important;"></div>
+                                    <span class="li-span">
+                                      Inventions antérieures : <span style="color: red"> * </span>
+                                    </span>
+                                    <div></div>
+                                    <span class="li-span">
+                                    </span>
+                                    <p class="req-notif">Les informations requises sont manquantes.</p-->
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>발명에 대한 Apple 소유권.</strong>귀하는 (a) Apple 이 제공한 장비, 소모품, 시설 또는 독점 정보를 사용하여 개발하거나, (b) Apple 을 위해 귀하가 수행한 작업 또는 Apple 이 제공한 독점 정보에서 발생하거나 이로부터 제안되거나, (c) Apple 에 고용되어 있는 기간 중에 구상 또는 시행하고 Apple 의 비즈니스 또는 제품의 측면 또는 Apple 의 실제 또는 예상되는 연구/개발과 관련된 모든 발명('Apple 발명'으로 총칭)은 Apple 의 유일하고 독점적인 자산임을 확인하고 이에 동의합니다. 귀하는 모든 Apple 발명에 대해 즉시 Apple 에 전적으로 서면 공개하는 데 동의합니다. 귀하는 Apple 발명의 Apple 소유에 대한 대가로 Apple 의 Patent Award Program 에 의한 지불 외에 별도의 보상이나 보수가 귀하에게 지급되지 않는 데 동의합니다. 예를 들어, Patent Award Program 에 따라 귀하에게 제공된 모든 보수 또는 보너스는 여하한 발명에 대한 Apple 소유권의 조건이 아니라는 데 동의합니다. 귀하는 Apple 에서 업무를 수행하는 데 Apple 이 승인한 경우를 제외하고, Apple 발명에 대해 권리를 갖지 않으며 이를 직접 또는 간접적으로 사용하지 않을 것을 인정 및 동의합니다. 예를 들어, 귀하는 (a) Apple 발명, Apple 발명의 일부 또는 사본을 복제, 제조, 마케팅, 공개, 유통, 판매, 라이센스 또는 재라이센스, 양도, 임대, 리스, 전송, 방송, 전시 또는 사용하지 않으며, (b) 전세계 어디서든지 Apple 발명과 관련된 특허권, 저작권, 상표, 마스크 워크 또는 기타 산업 재산권 및 지적 재산권을 신청하거나 이에 대한 등록을 신청하지 않고, (c) 다른 개인, 기업 또는 조직이 위에 나열된 행동을 하도록 유도하지 않는 데 동의합니다.
+                                </span>
+                                <div style="margin-bottom: 14px!important;"></div>
+                                <span class="li-span">
+                                <strong>Apple 발명에 대한 권리의 양도, 라이센스 또는 포기.</strong>관련 법률 또는 규정에서 Apple 발명에 대한 특정 권리를 직원에게 부여하거나 그러한 부여와 관련하여 당사자가 별도로 계약상 동의하는 것을 허가하지 않을 경우, 귀하는 미국 또는 해외의 저작권법 또는 기타 법률에 따라 귀하가 Apple 발명에 대해 가질 수 있는 모든 '도덕적' 권리를 포함하여 법이 허용하는 최대 한도의 권리를 Apple 에게 양도하거나 양도하는 데 동의하며 Apple 은 그러한 양도('양도된 발명')를 수락합니다. 귀하는 Apple 에 고용된 범위 내에서 귀하가 (독자적으로 또는 타인과 공동으로) 제작했으며 저작권의 보호를 받는 모든 독창적 저작물이 미국 저작권법(17.U.S.C. §101)에 규정된 '업무상 저작물'에 해당함을 인정합니다. Apple 발명에 대한 모든 권리가 실질적으로 Apple 에게 양도되지 않은 경우 귀하는 단독 재량에 따라 Apple 발명 및 Apple 발명의 수정물 및 파생물을 제작, 제작 위임, 사용, 판매 제안, 판매, 수입, 수출, 복제, 수정, 전시, 수행, 전송 및 달리 유통 및 이용할 수 있는 라이센스를 Apple 에 부여합니다. 본 절에 따른 라이센스 권리는 무료이고 영구적이며, 취소 불가능하고, 독점적이고(귀하는 Apple 발명을 사용 또는 달리 이용하거나 다른 라이센스 소유자를 지정할 수 없음), 전세계적이며, 양도 가능한 권리이고, Apple 은 재라이센스할 수 있는 권리를 갖습니다. 상기 규정에 따라 실질적으로 Apple 에게 양도 또는 라이센스되지 않은 Apple 발명에 대한 권리가 있는 경우, 귀하는 Apple 과의 고용 기간 중이나 고용이 종료된 후에도 Apple 발명에 대한 모든 도덕적 권리, 귀속 권리, 저작권 식별, 후속 수정에 대한 제한이나 다른 '개인적인 권리'를 포함하되 이에 제한하지 않고, Apple 발명에 대한 모든 권리를 전 세계에서 시행하거나 주장하지 않는 데 동의하고 최종적으로 이를 포기합니다. 귀하는 Apple 과 그 라이센스 보유자가 Apple 발명의 배포 시 귀하를 제작자로 명시할 의무가 없다는 데 동의합니다.
+                                </span>
+                                <div style="margin-bottom: 14px!important;"></div>
+                                <span class="li-span">
+                                <strong>Apple 발명의 보호.</strong>귀하는 고용 기간 중이나 자발적 또는 비자발적이든 고용이 종료된 후에도 Apple 또는 Apple 이 지정한 다른 당사자(Apple 이 비용 부담)가 모든 국가에서 Apple 발명에 대한 모든 Apple 소유권 및 기타 권리를 확보, 완료, 확인, 실현 또는 행사할 수 있도록 적절한 모든 방법으로 지원하는 데 동의합니다. 귀하는 그러한 특허, 저작권 및 기타 법적 보호권을 확보하거나 행사하기 위해 Apple 이 합리적으로 요청할 수 있는 모든 문서를 즉시 작성하는 데 동의합니다.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>제외된 직원 발명.</strong>Apple 은 (a) 귀하가 전적으로 개인 시간에 개발한 발명, (b) 귀하가 Apple 의 장비, 소모품, 시설 또는 영업 비밀 정보를 사용하지 않고 개발한 발명, (c) 귀하가 Apple 을 위해 수행한 서비스에 기인하지 않은 발명, (d) 발명의 착상 또는 실체화 시점에서 Apple 의 비즈니스 또는 제품과 무관하거나 실제의 또는 시연을 통해 예측한 연구개발과 무관한 발명은 귀하가 지정 업무 시간 중에 개발한 것이라도 전적으로 귀하의 소유임을 관련 법률에 따라 인정하고 동의합니다.
+                                </span>
+                            </li>
+                        </ol>
+                        <h4><span class="roman-inline">III.</span><span class="subsub">의무 상충 금지</span></h4>
+                        <ol class="ol-custom margin-bottom-25">
+                            <li>
+                                <span class="li-span">
+                                <strong>외부 이해 관계 상충 금지.</strong>귀하는 Apple 과의 고용 중에 Apple 의 비즈니스 또는 제품이나 Apple 의 실제 또는 입증 가능하게 예상되는 연구 또는 개발과 직접 관련되거나 경쟁하는 다른 비즈니스 활동 또는 임무, 다른 고용, 직업 또는 컨설팅을 계획 또는 관여하지 않거나, Apple 의 고용 의무와 상충하는 다른 활동에 관여하지 않는 데 동의합니다. 여기서 사용하는 용어 '활동' 및 '임무'에는 주식 또는 기타 금융 상품에 대한 수동적 투자가 포함되지 않습니다.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>상충하는 계약 없음.</strong>귀하는 Apple 직원으로서 귀하의 업무 또는 이 계약에 따른 귀하의 의무를 최대의 성과로 수행하는 데 방해가 되거나 이를 가로막는 다른 임무가 없음을 Apple 에 진술하고, 귀하의 Apple 고용 기간 동안 그러한 상충되는 계약을 체결하지 않는 데 동의합니다.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>계약의 공개.</strong>귀하는 이 계약의 기간 및 이 계약에 따른 귀하의 의무를 Apple 고객 및 귀하의 이후 고용주 등 타인에게 통지할 권한을 이로써 Apple 에 부여합니다.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>권유하지 않음.</strong>고용 기간 및 자발적 또는 비자발적 고용이 종료된 후로부터 1 년의 기간 중 관련 법률이 허용하는 최대한, 귀하는 자신이나 다른 개인 또는 기업을 대신하여 직접 또는 간접적으로 Apple 직원 또는 계약업체가 Apple 과의 관계를 종료하도록 권유하거나, 설득하거나, 유도하기 위한 조치를 취하지 않습니다.
+                                </span>
+                            </li>
+                        </ol>
+                        <h4><span class="roman-inline">IV.</span><span class="subsub">비준수</span></h4>
+                        <p>
+                            귀하는 본 계약에 기술된 제한 사항이 범위 및 기간 면에서 적절하며, Apple 의 합법적인 이익을 보호하는 데 적절하게 필요함을 인정 및 동의합니다. 귀하가 본 계약의 일부를 위반할 경우 Apple 은 관련 법률 및 본 계약에서 허용하는 최대한의 조치를 취할 수 있는 자격이 있습니다. 고용을 중단하거나, 법적 소송을 개시하거나, 관련 주무 부서에 이의를 제기하거나, 귀하의 본 계약 위반이 형사법에 위배되는 경우 관련 사법 당국이 귀하의 책임을 추구할 수 있도록 지원하는 것을 포함하되 이에 제한되지 않습니다.
+                        </p>
+                        <p>
+                            본 계약에서 분쟁이나 소송이 발생할 경우 귀하와 Apple 은 우호적인 협의를 통해 분쟁 또는 소송을 해결하기 위해 노력합니다. 해당 분쟁 또는 소송의 해결에 실패한 경우 귀하 또는 Apple 은 해당 소송 제출 시 시행 중인 ICC(국제 상업 회의소) 중재 규정에 따라 신뢰할 수 있는 중재 기구 또는 법원의 구속력 있는 강제 중재에 분쟁을 제출해야 합니다. 중재 기구 또는 법원은 당사자의 상호 합의에 따라 선택합니다. 중재 절차에 사용되는 언어는 영어이고, 중재 결정은 양 당사자에게 최종적이고 구속력이 있으며, 해당 조건에 따라 시행되어야 합니다. 중재 절차 진행 중에도 당사자는 지속적으로 본 계약의 모든 조항을 이행해야 합니다.
+                        </p>
+                        <p>
+                            상기 내용에도 불구하고 귀하는 본 계약을 위반할 경우 Apple 에게 복구할 수 없는 피해가 발생할 수 있고, 금전적 손해 배상금은 적절한 해결책이 되지 않을 수도 있음을 인정하고 이에 동의합니다. 해당 손해 및 부상이 손해 배상금으로 보상되지 못할 수도 있기 때문에 귀하는 Apple 이 보석금을 공탁하거나 사용 가능한 다른 권리 및 구제책을 침해하지 않으면서 명령, 특정 이행 또는 강제 조치로 본 계약을 실시할 수 있는 권리를 보유하는 데 동의합니다. 따라서 Apple 은 일시적 또는 영구적인 금지명령 구제를 포함하여 모든 잠정적 또는 임시 조치나 강제 중재를 관할 법원에 신청할 수 있습니다.
+                        </p>
+                        <div style="margin-bottom: 11px!important;">&nbsp;</div>
+                        <h4><span class="roman-inline">V.</span><span class="subsub">수반되는 고용 권한 없음</span></h4>
+                        <p>
+                            귀하는 본 계약의 어떤 조건이나 조항도 귀하에게 Apple 과의 지속적인 고용 권리를 부여하지 않으며, 본 계약의 어떤 조건이나 조항도 Apple 에게 특정 기간 동안 귀하를 고용해야 할 의무를 지우거나, 관련 법률에서 허용하는 최대 한도까지 어떤 이유로든 언제든지 또는 사전 통지를 통해 언제든지 귀하의 고용을 종료할 수 있는 Apple 의 권한이나 귀하의 권리를 방해하거나 제한하지 않음을 양해 및 동의합니다.
+                        </p>
+                        <div style="margin-bottom: 11px!important;">&nbsp;</div>
+                        <h4><span class="roman-inline">VI.</span><span class="subsub">일반 조항</span></h4>
+                        <ol class="ol-custom margin-bottom-25">
+                            <li>
+                                <span class="li-span">
+                                <strong>분리 가능성. </strong>본 계약의 조항 중 하나 이상이 법률에 의해 무효이거나 시행 불가능한 것으로 간주되는 경우에도 나머지 조항은 계속 유효하고 시행되며, 당사자 또는 관할 법원은 유사한 효력을 가진 적절한 조항으로 대체합니다.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>준거법.</strong>본 계약에는 대한민국 법률이 적용됩니다. 본 계약은 한국어와 영어로 작성됩니다. 본 계약 조항의 해석과 관련하여 Apple 과 귀하 간에 분쟁이나 소송이 발생할 경우 본 계약의 영문 본이 우선 적용됩니다.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>승계인 및 양수인.</strong>본 계약은 귀하의 상속인, 집행인, 관리인 및 기타 법적 대리인에 대해 구속력을 가지며 Apple 과 그 승계인 및 양수인에게 유리한 방향으로 적용됩니다. 귀하는 본 계약의 전체 또는 일부를 다른 개인이나 기업에게 양도 또는 이전할 수 없습니다.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>완전 합의.</strong>본 계약 및 다른 모든 Apple 고용 계약은 거의 동일하고, 본 계약의 주제와 관련하여 귀하와 Apple 간의 전체 합의가 기술되어 있습니다. 본 계약의 주제와 관련하여 서면 또는 구두 여부와 상관없이 반대 조항, 양해 또는 진술이 있는 한, 해당 불일치는 본 계약에 의해 명시적으로 대체됩니다. 귀하와 Apple 부사장 또는 해당 지역 담당자가 서면 날인하지 않는 한, 이 계약의 어떠한 수정 또는 개정은 물론 이 계약에 따른 권리의 포기도 유효하지 않습니다. 귀하의 의무, 급여 또는 보상에 대한 후속 변경은 이 계약의 효력 또는 범위에 영향을 미치지 않습니다.
+                                </span>
+                            </li>
+                            <li>
+                                <span class="li-span">
+                                <strong>법률 준수.</strong>귀하는 Apple 이 사업을 영위하는 모든 국가의 법률과 규정 및 그러한 국가 또는 계약업체와 Apple 간의 계약 조항을 준수하며, Apple 이 이를 준수하는 데 필요한 모든 것을 수행하는 데 동의합니다.
+                                </span>
+                            </li>
+                        </ol>
+                        <h4><span class="roman-inline">VII.</span><span class="subsub">자발적 계약</span></h4>
+                        <p>
+                            귀하는 본 계약을 자세히 읽었고, 모든 조항을 이해했으며, 이 계약에서 다루는 문제와 관련된 귀하와 Apple 간의 모든 합의가 여기 수록되어 있으며, 이 계약 자체에 수록된 내용을 제외한 그 밖의 약속이나 진술에 의존하지 않고 귀하가 자발적으로 이 계약을 체결했음을 인정합니다.
+                        </p>
+                        <p>
+                            또한 귀하는 이 계약에 대해 귀하의 개인 법률 고문과 논의할 기회가 있었음을 인정합니다.
+                        </p>
+                        <p>
+                            본 계약은 귀하의 고용 첫째 날부터 유효합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="padding-left: 40px; padding-right: 40px;">
+                    <p>
+                        Understood and agreed by /이를 이해하고 동의하는 바입니다:
+                    </p>
+                </div>
+            </div>
+            <br/>
+            <div id='fields' class="mid-padding">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 srt_eform_module">
+                        <!-- end srt_eform_text_inner  -->
+                    </div>
+                    <!--end 8 -->
+                </div>
+                <!--end row  -->
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 srt_eform_module">
+                        <$client.env.formfield.Signer.html><br><br>
+                    </div>
+                    <!--end 8 -->
+                </div>
+                <!--end row  -->
+                <div class="row">
+                    <p class="margin-bottom">
+                        <small><sup>1</sup>Nothing in this Agreement should be interpreted as restricting your rights to speak freely about your wages, hours, or working conditions as permitted.</small>
+                    </p>
+                </div>
+                <div class="row">
+                    <p class="margin-bottom">
+                        <small><sup>2</sup>본 계약의 어떤 내용도 임금, 시간 또는 작업 조건에 대해 법에서 허용하는 대로 자유롭게 말할 수 있는 귀하의 권리를 제한하는 것으로 해석되지 않습니다.</small>
+                    </p>
+                </div>
+                <!--end row  -->
+                <p>
+                    <br/>
+                    Please make and retain a copy of this agreement for your records.  <br/>
+                    기록을 위해 이 계약의 사본을 작성하여 보관하십시오.
+                </p>
+                <br>
+                <p>Korea IPA 2019.1</p>
+            </div>
+            <!-- end fields-->
+        </div>
+    </div>
+</div> 
+
+
+<div class="clearfix">
+  <div id="formButtons" class="row" style="display: none;">
+    <div class="lifesuite__clearfix">
+      <div class="srt_eform_section">
+        <div id="srt_form_btn_wrapper" style="background-color: #eee!important;">
+          <div class="srt_eform_row">
+            <div class="col-lg-12 srt_eform_module">
+              <$client.env.FormButtons>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end form-buttons  -->
+</form>
+
+<script type="text/javascript">
+$(function() {
+    $("#buttonCancel")
+        .removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue")
+        .addClass("lifesuite__button");
+
+    $('#buttonCancel').attr('id', 'ButtonCancel');
+
+    $("#buttonSave")
+        .removeClass("appInputButton RCappInputButtonBlue")
+        .addClass("lifesuite__button");
+
+    $('#buttonSave').attr('id', 'ButtonSave');
+
+    $("#buttonSaveAndComplete")
+        .removeClass("appInputButton RCappInputButtonBlue")
+        .addClass("lifesuite__button");
+
+    $('#buttonSaveAndComplete').attr('id', 'ButtonSaveAndComplete');
+
+    $("#buttonPrint")
+        .removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue")
+        .addClass("lifesuite__button");
+
+    $('#buttonPrint').attr('id', 'ButtonPrint');
+
+    $("#buttonPreviewDelete")
+        .removeClass("appInputButton RCappInputButtonRed")
+        .addClass("lifesuite__button");
+
+    $('#buttonPreviewDelete').attr('id', 'ButtonPreviewDelete');
+
+    $("#buttonPreviewSave")
+        .removeClass("appInputButton RCappInputButtonBlue")
+        .addClass("lifesuite__button");
+
+    $('#buttonPreviewSave').attr('id', 'ButtonPreviewSave');
+
+    document.getElementById('formButtons').style.display = "block";
+
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $('.inputprompt').addClass('lifesuite__input-label lifesuite__input—block');
+
+    $("body").addClass("apple_custom_theme");
+
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $('.inputprompt').addClass('lifesuite__input-label lifesuite__input—block');
+
+    function adjustHeight() {
+        $winHeight = $(window).height();
+
+        $btn_container = $("#formButtons").height();
+        $body_padding = parseFloat($('body').css('padding-top')) * 2;
+        $srt_form_container_margin = parseFloat($('#container').css('margin-top')) * 2;
+
+        $("#container").css({
+            'height': $winHeight - ($btn_container + $body_padding + $srt_form_container_margin),
+            'display': 'block',
+        });
+
+
+    }
+
+    // adjustHeight();
+    //  adjustHeight();
+    /*Hide Compensation and Benefits lines when employee is intern and below 19 work hours*/
+    if (("<$client.tEventCategories_23.Code>" == 'INT') && ("<$client.tForWhomUserInfo.Weekly_Hours>" < 19)) {
+        setTimeout(function() {
+            $('.InternLess').hide();
+        }, 1000);
+    }
+});
+
+disableCalButton('disableDate');
+
+if ($(".eng-pi:checked").length > 0) {
+    $(".req-notif").hide();
+}
+
+function switchStuff(elem) {
+    //console.log(elem.value);
+    var val = elem.value;
+    $(".req-notif").hide();
+    if ($(".eng-pi:checked").length > 0) {
+        $(".req-notif").hide();
+    }
+}
+</script>

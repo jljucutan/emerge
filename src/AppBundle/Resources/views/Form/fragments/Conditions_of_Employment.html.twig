@@ -1,0 +1,563 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2" style="padding-left: 0;"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','','modal','over','sv', 'a06_Employee_Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a06_Employee_Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="modal2" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2" style="padding-left: 0;"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature2','eSignature2','fullName','modal2','over','sv2', 'a08_Joiner_Date');xbObj('eSignature2').value='';document.getElementById('eSignature1').focus();">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','a08_Joiner_Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="modal3" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2" style="padding-left: 0;"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature3" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature3','eSignature3','','modal3','over','sv3', 'a10_Attorney_Date');xbObj('eSignature3').value='';document.getElementById('eSignature1').focus();">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature3').value='';showHide('modal3');showHide('over');xbObj('eSignature3').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature3','a10_Attorney_Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal3');showHide('over');xbObj('eSignature3').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.SignatureVerification2.prompt>
+        <$client.env.FormField.a01_Name.prompt>
+        <$client.env.FormField.a02_Commencement_Date.prompt>
+        <$client.env.FormField.a03_Job_Title.prompt>
+        <$client.env.FormField.a05_Employee_Signature.prompt>
+        <$client.env.FormField.a06_Employee_Date.prompt>
+        <$client.env.FormField.a07_Joiner_Signature.prompt>
+        <$client.env.FormField.a08_Joiner_Date.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="text-right">
+                <strong>Kirkland &amp; Ellis International LLP <br></strong>
+                London Office <br>
+                <small>
+                    <u>Confidential</u>
+                </small>
+            </p>
+            <h4 class="text-center">
+                <strong>
+                    <u>PRINCIPAL STATEMENT OF TERMS AND CONDITIONS OF EMPLOYMENT</u>
+                </strong>
+            </h4>
+            <p>
+                This Statement is issued on <$client.env.eval(date.now('%d %B %Y'))> in accordance with the Employment Rights Act 1996.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-sm-4 col-xs-12 my-10">
+            <strong>NAME AND ADDRESS OF EMPLOYER:</strong>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-xs-12">
+            <div class="form-group">
+                <input type="text" value="Kirkland & Ellis International LLP (“K&E”), 30 St Mary Axe, London EC3A 8AF" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-sm-4 col-xs-12 my-10">
+            <strong>NAME OF EMPLOYEE:</strong>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a01_Name.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-sm-4 col-xs-12 my-10">
+            <strong>DATE OF COMMENCEMENT:</strong>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a02_Commencement_Date.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-sm-4 col-xs-12 my-10">
+            <strong>JOB TITLE:</strong>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a03_Job_Title.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                No previous employment counts as part of your continuous period of employment.
+            </p>
+            <h4 class="text-center">
+                <strong>
+                    <u>PARTICULARS OF EMPLOYMENT</u>
+                </strong>
+            </h4>
+            <h4 class="text-center">
+                <strong>SECTION A</strong>
+            </h4>
+            <p>
+                <u>HOURS OF WORK:</u>
+            </p>
+            <p class="text-justify">
+                You are required to work seven hours per business day and additional hours as necessitated by the needs of clients and K&amp;E without being entitled to further direct remuneration for such additional hours (the annual performance bonus for which you are eligible is in part based on time worked and billed). Your working hours must be tracked pursuant to K&amp;E Time and Expense Reporting Policies. You agree that the limit in Regulation 4(1) of the Working Time Regulations 1998 shall not apply to your employment and your working time as defined in the Working Time Regulations 1998 may therefore exceed an average of 48 hours for each 7 day period in the applicable reference period. You can withdraw this agreement by giving three months’ prior written notice to K&amp;E.
+            </p>
+            <p>
+                <u>REMUNERATION:</u>
+            </p>
+            <p class="text-justify">
+                You will be paid a starting salary of <span id='Salary_Amount_Currency_Code'></span> <span id='UK_Salary_Amount'></span> per annum and you will be placed in the class of <span id='Class_year'></span> for review purposes. Your salary will be converted to pounds sterling each month, at the spot rate as at the first day of the applicable month and subject to the prevailing currency collar arrangement in place from time to time. You will be entitled to a salary review in December <span class='Review_Year'></span>. Salary is subject to review at any time and from time to time in line with Firm Committee policy for the London office, including in relation to amount, currency and exchange rates.
+            </p>
+            <p class="text-justify">
+                Our associate review period, for the purposes of bonus allocation, runs from 1 September until 31 August of each year. You will be entitled to be considered for a prorated bonus for the <span id='Bonus_Period_Begins'></span> - <span id='Bonus_Period_Ends'></span> period, paid in December <span class='Review_Year'></span>. Bonuses are discretionary and subject to applicable Firm Committee policy for the London office.
+            </p>
+            <p>
+                <u>PLACE OF WORK:</u>
+            </p>
+            <p class="text-justify">
+                You will normally be based at 30 St Mary Axe, London EC3A 8AF. You may be required to work outside the office and outside the United Kingdom as and when business needs dictate.
+            </p>
+            <h4 class="text-center">
+                <strong>SECTION B</strong>
+            </h4>
+            <p>
+                <u>ANNUAL HOLIDAYS:</u>
+            </p>
+            <p class="text-justify">
+                Our holiday year begins on 1 January and ends 31 December each year.
+            </p>
+            <p class="text-justify">
+                Based on full-time employment, you will receive a paid holiday entitlement of twenty five (25) working days during your first year of employment. You will earn your holidays currently and your entitlement for part year’s service will be calculated as 1/12th of the annual entitlement for each completed month of service during that holiday year.
+            </p>
+            <p class="text-justify">
+                In the event of your employment being terminated, any holidays earned but not taken in the holiday year will be paid for by us as part of normal termination pay. Equally, if you have taken holidays within the holiday year that have not been earned, we reserve the right to make appropriate deductions in respect of that overpayment from your final pay.
+            </p>
+            <p class="text-justify">
+                PLEASE UNDERSTAND THAT THIS IS AN EXPRESS WRITTEN TERM OF YOUR CONTRACT OF EMPLOYMENT IN COMPLIANCE WITH THE EMPLOYMENT RIGHTS ACT 1996 SECTIONS 13 - 27 INCLUSIVE.
+            </p>
+            <p>
+                <u>HOLIDAY PAY:</u>
+            </p>
+            <p class="text-justify">
+                Your rate of pay for holidays is your normal basic salary only.
+            </p>
+            <p>
+                <u>PUBLIC/BANK HOLIDAYS:</u>
+            </p>
+            <p class="text-justify">
+                The following Public/Bank holidays in each year will be recognized in addition to your annual holiday entitlement.
+            </p>
+            <p class="column-2">
+                New Years Day <br>
+                Good Friday <br>
+                Easter Monday <br>
+                First Monday in May <br>
+                Last Monday in May <br>
+                Last Monday in August <br>
+                Christmas Day <br>
+                Boxing Day
+            </p>
+            <p class="text-justify">
+                It may be necessary to substitute alternative days due to the needs of the business.
+            </p>
+            <p>
+                <u>SICKNESS/INJURY TERMS AND PAY:</u>
+            </p>
+            <p class="text-justify">
+                Your entitlement to sickness/injury pay, (including Statutory Sick Pay), is shown in the <em>Employee Handbook</em>.∗
+            </p>
+            <p>
+                <u>PENSION AND PENSION SCHEME:</u>
+            </p>
+            <p class="text-justify">
+You will be enrolled in the Firm’s group personal pension scheme (or such other registered pension scheme as may be established by K&amp;E to replace the scheme) (the “Scheme”). Your participation in the Scheme will be subject to the rules of the Scheme as are in force from time to time and HM Revenue &amp; Customs requirements. K&amp;E reserves the right to vary or terminate the scheme at any time.  Further details of the Scheme, including conditions of eligibility and the rates of contributions, will be sent to you separately.
+            </p>
+            <p class="text-justify">
+                We will make a contribution of 3% of “qualifying earnings”.   You will contribute a minimum of 5% of “qualifying earnings”. The amount of qualifying earnings is set annually by the Department for Work and Pensions and we will amend the value of our contributions accordingly. Your contributions to the Scheme will be deducted from your salary and paid into the Scheme by 22nd of the following month.  The Kirkland &amp; Ellis pension scheme is operated under salary sacrifice.
+            </p>
+            <p class="text-justify">
+                Contributions will change in line with the contribution rates detailed within the Scheme’s rules, details of which will be sent to you separately. Contributions may increase in line with auto-enrolment obligations.
+            </p>
+            <p>
+                <u>CONFIDENTIALITY:</u>
+            </p>
+            <p class="text-justify">
+                Please read and sign the K&E Confidential Information Policy, which is attached to these terms and conditions of employment, forms part of them and shall survive termination of your employment with K&E howsoever it may be terminated.
+            </p>
+            <p>
+                <u>CONFLICT OF INTEREST:</u>
+            </p>
+            <p class="text-justify">
+                K&E adheres strictly to all conflict of interest rules and procedures in the jurisdictions where it practices law.  You will be subject to rules promulgated by US and English statutory, regulatory and bar association authorities as well as rules and procedures adopted by K&E.  Your legal work will be solely on behalf of K&E and its clients.
+            </p>
+            <h4 class="text-center">
+                <strong>SECTION C</strong>
+            </h4>
+            <p>
+                <u>PROBATIONARY EMPLOYMENT:</u>
+            </p>
+            <p class="text-justify">
+                In accordance with standard business practice, the first six (6) months of your employment with us will be regarded as a probationary period.  During this period, we shall review with you your ongoing performance and suitability. Naturally, we would hope to confirm your position as permanent, but it may be necessary to extend the probationary period, or where you prove to be unsuitable, to terminate your employment within or at the conclusion of the probationary period.
+            </p>
+            <p>
+                <u>NOTICE OF RESIGNATION OR TERMINATION:</u>
+            </p>
+            <p class="text-justify">
+                Employees who wish to resign from K&amp;E are requested to provide written notice to their supervising partner or manager/supervisor. Unless our letter offering you employment advises to the contrary, the notice requirements are as follows:
+            </p>
+            <ul class="ml-30">
+                <li>
+                    One (1) month notice on either side during the first six months' probationary period, and any extension thereof.
+                </li>
+                <li>
+                    Three (3) months’ notice on either side after six months' service and/or the successful completion of the probationary period.
+                </li>
+            </ul>
+            <p class="text-justify">
+                K&amp;E may pay salary in lieu of part or all of your period of notice and may effect immediate dismissal on the grounds of gross misconduct, which shall include any conduct prejudicial to the best interests of K&amp;E. If K&amp;E believes it may be entitled to initiate disciplinary proceedings concerning you or otherwise to investigate your conduct it shall be entitled to suspend you from work and exclude you from its premises.
+            </p>
+            <p>
+                <u>GARDEN LEAVE:</u>
+            </p>
+            <p class="text-justify">
+                Once either K&amp;E or you have given to the other the notice of termination required by these terms and conditions, K&amp;E may at any time and for any period or periods as it determines:
+            </p>
+            <ul class="ml-30">
+                <li>
+                    Assign different duties or particular projects to you; and/or
+                </li>
+                <li>
+                    Cease to provide any work for you; and/or
+                </li>
+                <li>
+                    Require you to stay away from and have no contact with anyone on its premises; and/or
+                </li>
+                <li>
+                    Require you to immediately deliver to us all or any property in your possession or control which belongs to K&amp;E or which relates to its business.
+                </li>
+            </ul>
+            <p>
+                During any such period of “Garden Leave”, you:
+            </p>
+            <ul class="ml-30">
+                <li>
+                    Shall be entitled to continue to receive your usual salary and benefits;
+                </li>
+                <li>
+                    Shall continue to be bound by the express and implied terms of these terms and conditions of employment;
+                </li>
+                <li>
+                    Shall not contact or communicate with any client, employee or consultant of K&amp;E; and
+                </li>
+                <li>
+                    Shall immediately inform K&amp;E of any matters relating to our business which come to your knowledge.
+                </li>
+            </ul>
+            <h4 class="text-center">
+                <strong>SECTION D</strong>
+            </h4>
+            <p>
+                <u>DISCIPLINARY RULES AND PROCEDURES:</u>
+            </p>
+            <p class="text-justify">
+                The Disciplinary Rules and General Notices, which apply to your employment, are shown in the <em>Employee Handbook*</em> to which you should refer. The Disciplinary Rules and Procedures do not form part of your terms and conditions of employment and do not give rise to contractual rights.
+            </p>
+            <p>
+                <u>GRIEVANCE PROCEDURE:</u>
+            </p>
+            <p class="text-justify">
+                If you feel dissatisfied with any matter during the course of your employment you may raise a grievance with the Firm Administrator or his designee. Further information can be found in the <em>Employee Handbook.*</em>
+            </p>
+            <p>
+                <u>COLLECTIVE AGREEMENTS:</u>
+            </p>
+            <p class="text-justify">
+                There are no collective agreements affecting your terms and conditions of employment.
+            </p>
+            <p>
+                <u>AMENDMENTS:</u>
+            </p>
+            <p class="text-justify mb-20">
+                Any changes or amendments to this statement will be notified to you within one month.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                For and on behalf of K&amp;E
+            </p>
+            Attorney Recruiter Signature
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7 col-sm-7 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a05_Employee_Signature.HTML>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-3 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a06_Employee_Date.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            Signing Attorney Signature
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7 col-sm-7 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a09_AttorneySignature.HTML>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-3 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a10_Attorney_Date.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                I acknowledge receipt of this statement.
+            </p>
+            New Joiner Signature
+        </div>
+    </div>
+    <div class="row mb-20">
+        <div class="col-lg-7 col-sm-7 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a07_Joiner_Signature.HTML>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-3 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a08_Joiner_Date.HTML>
+            </div>
+        </div>
+    </div>
+    <footer class="row mb-20">
+        <div class="col-lg-12">
+            <p>
+                *The <em>Employee Handbook</em> can be found on the home page of the onboarding site.
+            </p>
+        </div>
+    </footer>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="text-center">
+                <strong>
+                    <u>ANNEX</u>
+                </strong>
+            </h4>
+            <p>
+                <u>STATEMENT OF EMPLOYMENT PARTICULARS</u>
+            </p>
+            <p class="text-justify">
+                This Annex supplements your contractual terms and conditions of employment by providing additional information on your employment particulars as required by Part 1 of the Employment Rights Act 1996.  Although annexed to your contractual terms and conditions of employment, the information in the Annex is provided to meet our statutory duties and does not confer any contractual rights or obligations.
+            </p>
+            <p>
+                <u>PROVISIONS REGARDING WORKING OUTSIDE THE UK FOR OVER A MONTH</u>
+            </p>
+            <p class="text-justify">
+                If you are required to work outside the UK for more than a month, we will specify the period, the currency in which you will be paid, any additional pay and benefits and terms relating to your return to the UK.
+            </p>
+            <p>
+                <u>LEAVE OTHER THAN HOLIDAYS AND SICKNESS</u>
+            </p>
+            <p class="text-justify">
+                You may have statutory rights to take paid leave in certain circumstances, including maternity, paternity and parental leave.  You will be entitled to enhanced leave and pay under our Family Leave Policies – see our Employee Handbook for full details.
+            </p>
+            <p>
+                <u>OTHER BENEFITS</u>
+            </p>
+            <p class="text-justify">
+                We provide the following benefits:
+            </p>            
+            <ul class="ml-30">
+                <li>Employee Assistance Programme</li>
+                <li>Private Medical Insurance</li>
+                <li>Business Travel Accident Insurance Plan</li>
+                <li>Life Assurance</li>
+                <li>Income Protection</li>
+                <li>Travel Insurance</li>
+                <li>Dental Insurance</li>
+                <li>GP services</li>
+                <li>Eye care</li>
+                <li>Emergency back-up childcare</li>
+                <li>Gym membership</li>
+                <li>Season ticket loan (after successful completion of probation)</li>
+                <li>CycleScheme (after successful completion of probation)</li>
+                <li>Referral reward</li>
+            </ul>
+            <p>
+                <u>TRAINING</u>
+            </p>
+            <p class="text-justify">
+                We will require you to complete the following online training modules within the first two weeks of your employment:
+            </p>           
+            <ul class="ml-30">
+                <li>Anti-Money Laundering for Support Staff in Law Firms</li>
+                <li>Avoiding Bribery Risks for Law Firms </li>
+                <li>Data Protection Under GDPR for Law Firms</li>
+                <li>Equality and Diversity for Partners and Managers in Law Firms</li>
+            </ul>
+            <p class="text-justify">
+                You may be required to complete further training from time to time as part of your role.
+            </p>  
+        </div>
+    </div>  
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.SignatureVerification3.HTML>
+    <$client.env.FormField.UK_Salary_Amount.HTML>
+    <$client.env.FormField.Class_year.HTML>
+    <$client.env.FormField.Salary_Amount_Currency_Code.HTML>
+    <$client.env.FormField.Review_Year.HTML>
+    <$client.env.FormField.Bonus_Period_Begins.HTML>
+    <$client.env.FormField.Bonus_Period_Ends.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Conditions_of_Employment/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    disableCalButton($('.disable-date'));
+    $(".modal").hide();
+});
+
+    $("#Salary_Amount_Currency_Code").html($("#Salary_Amount_Currency_Code_Field").val());
+    $("#UK_Salary_Amount").html($("#UK_Salary_Amount_Field").val());
+    $("#UK_Salary_Amount").html($("#UK_Salary_Amount_Field").val());
+    $("#Class_year").html($("#Class_year_Field").val());
+    $(".Review_Year").html($("#Review_Year_Field").val());
+    $("#Bonus_Period_Begins").html($("#Bonus_Period_Begins_Field").val());
+    $("#Bonus_Period_Ends").html($("#Bonus_Period_Ends_Field").val());
+
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800)
+});
+</script>

@@ -1,0 +1,117 @@
+<table border="0">
+    <tr>
+        <td id='First_Name_prompt'>First Name </td>
+        <td colspan="3"><input type="text" name="First_Name" value="<$client.tForWhomUserInfo.First_Name>" /></td>
+    </tr>
+    <tr>
+        <td id='Middle_Name_prompt'>Middle Name</td>
+        <td colspan="3"><input type="text" name="Middle_Name" value="<$client.tForWhomUserInfo.Middle_Name>" /></td>
+    </tr>
+    <tr>
+        <td id='Last_Name_prompt'>Last Name</td>
+        <td colspan="3"><input type="text" name="Last_Name" value="<$client.tForWhomUserInfo.Last_Name>" /></td>
+      </tr>
+    <tr>
+        <td id='Full_Name_prompt'><$client.env.promptFull_Name></td>
+        <td colspan="3"><$client.env.inputFull_Name></td>
+    </tr>
+       <tr>
+        <td id='DOB_prompt'><$client.env.promptDOB></td>
+        <td colspan="3"><$client.env.inputDOB></td>
+    </tr>  
+    <tr>
+        <td id='Country_Of_Birth_prompt'><$client.env.promptCountry_Of_Birth></td>
+        <td colspan="3"><$client.env.inputCountry_Of_Birth></td>
+    </tr>
+    <tr>
+        <td id='Identification_Type_prompt'><$client.env.promptIdentification_Type></td>
+        <td><$client.env.inputIdentification_Type></td>
+    <tr>
+    <td id='National_ID_prompt'><$client.env.promptNational_ID></td>
+        <td colspan="3"><$client.env.inputNational_ID></td>
+    </tr>
+    <tr>
+        <td id='Drivers_License_prompt'><$client.env.promptDrivers_License></td>
+        <td colspan="3"><$client.env.inputDrivers_License></td>
+    </tr>
+    <tr>
+        <td id='Visa_Passport_London_prompt'><$client.env.promptVisa_Passport_London></td>
+        <td colspan="3"><$client.env.inputVisa_Passport_London></td>
+    </tr>
+ <tr>
+        <td id='Country_of_IssuanceUK_prompt'><$client.env.promptCountry_of_IssuanceUK></td>
+        <td colspan="3"><$client.env.inputCountry_of_IssuanceUK></td>
+    </tr>
+    <tr>
+        <td  id='Email_prompt'>Email Address</td>
+        <td colspan="3"><input type="text" name="Email" value="<$client.tForWhomUserInfo.Email>"  size="40"/>   </td>
+    </tr>
+    <tr>
+        <td id='Premise_prompt'><$client.env.promptPremise></td>
+        <td colspan="3"><$client.env.inputPremise>  </td>
+    </tr>
+    <tr>
+        <td id='House_Number_prompt'><$client.env.promptHouse_Number></td>
+        <td colspan="3"><$client.env.inputHouse_Number> </td>
+    </tr>
+    <tr>
+        <td id='PO_Box_prompt'><$client.env.promptPO_Box></td>
+    <td><$client.env.inputPO_Box></td>
+    <tr>
+        <td id='Post_Town_prompt'><$client.env.promptPost_Town></td>
+        <td colspan="3"><$client.env.inputPost_Town></td>
+    </tr>
+        <td id='Post_Code_prompt'><$client.env.promptPost_Code></td>
+        <td><$client.env.inputPost_Code></td>
+    </tr>
+    <tr>
+        <td id='Country_prompt'><$client.env.promptCountry></td>
+        <td colspan="3"><$client.env.inputCountry></td>
+    </tr>
+    <tr>
+        <td id='Phone_prompt'><$client.env.promptPhone></td>
+        <td colspan="3"><$client.env.inputPhone></td>
+    </tr>
+    <tr>
+        <td id='Direct_Patient_Contact_prompt'><$client.env.promptDirect_Patient_Contact></td>
+        <td colspan="3"><$client.env.inputDirect_Patient_Contact></td>
+    </tr>
+</table>
+
+<!-- Format Dates on load -->
+<script type="text/javascript">
+    if(self.LoadCallback) {
+        LoadCallback(document.forms['frmExtendedUserProfile']);
+    }
+
+    // Identification Type: On Change Event
+    $("form").on("change", $("[name$='.Identification_Type']"), function() {
+        // Disable All Fields
+        $("[name$='.National_ID']").prop("disabled", true);
+        $("[name$='.Drivers_License']").prop("disabled", true);
+        $("[name$='.Visa_Passport_London']").prop("disabled", true);
+        
+        // Enable Specific Field
+        if ($("[name$='.Identification_Type']:checked").val() == "National ID") {
+            $("[name$='.National_ID']").prop("disabled", false);
+        }
+        else if ($("[name$='.Identification_Type']:checked").val() == "Driver's License") {
+            $("[name$='.Drivers_License']").prop("disabled", false);
+        }
+        else if ($("[name$='.Identification_Type']:checked").val() == "Visa/Passport") {
+            $("[name$='.Visa_Passport_London']").prop("disabled", false);
+        }
+        
+        // Clear Values
+        if ($("[name$='.National_ID']").prop("disabled")) $("[name$='.National_ID']").val("");
+        if ($("[name$='.Drivers_License']").prop("disabled")) $("[name$='.Drivers_License']").val("");
+        if ($("[name$='.Visa_Passport_London']").prop("disabled")) $("[name$='.Visa_Passport_London']").val("");
+    });
+    $("[name$='.Identification_Type']").trigger("change");
+    $(window).on('load', function() {
+        // SERVICES-40634 | dob readonly if it has value
+        if ($('[name$=".DOB_display"]').datepicker('getDate')) {
+          $('[name$=".DOB_display"]').datepicker('disable').prop('disabled', 'disabled');
+        }
+    });
+</script>

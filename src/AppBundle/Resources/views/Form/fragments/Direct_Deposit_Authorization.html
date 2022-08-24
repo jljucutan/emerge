@@ -1,0 +1,304 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+                <div class="modal-content">
+                                <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+                                <p style="font-weight:normal;padding:0px">
+                                            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+                                </p>
+                                <br>
+                                <div class="row">
+                                            <div class="lifesuite__clearfix">
+                                                            <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                                </div>
+                                </div>
+                                <div class="row">
+                                            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                                                            <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','','modal','over','sv');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+                                                            <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+                                                            <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+                                            </div>
+                                </div>
+                </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+    
+<div class="modal" style="display:block; background: #002E6D;">
+                <div class="fb-spinner">
+                                <i class="fa fa-2x fa-spinner fa-pulse"></i>
+                </div>
+</div>
+    
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+    
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'>
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+    
+    <div class="container-fluid"> 
+        <div class="form-group"> 
+
+            <div class="row">
+                <div class="col-md-6 center">
+                    <img src="logo-southland.png" style="max-width: 70%;"/>
+                </div>
+                <div class="col-md-6 center text-header" style="margin-top: 2.5rem !important;">
+                    Direct Deposit Authorization
+                </div>
+            </div>
+
+            <div class="row border-top">
+                <div class="col-md-12">&nbsp;</div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>Company Name:</strong> Southland Industries
+                </div>
+                <div class="col-md-8">
+                    <strong>Company ID Number:</strong> 95-1596533
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-justify">
+                    I hereby authorize SOUTHLAND INDUSTRIES hereinafter called COMPANY, to initiate credit entries and to initiate, if necessary,
+                    debit entries and adjustments for any credit entries in error to my account indicated and the institution named below, hereinafter
+                    called INSTITUTION, to credit and/or debit the same to such account.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-subheader">
+                    Deposit Account Information
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>Account Type:</strong>
+                </div>
+                <div class="col-md-10">
+                    <$client.env.FormField.a01_AccountType.HTML>
+                </div>
+
+                <div class="col-md-2 text-label">
+                    <strong>Banking Institution:</strong>
+                </div>
+                <div class="col-md-4">
+                    <$client.env.FormField.a02_BankInstitution.HTML>
+                </div>
+
+                <div class="col-md-2 text-label">
+                    <strong>Branch:</strong>
+                </div>
+                <div class="col-md-4">
+                    <$client.env.FormField.a03_Branch.HTML>
+                </div>
+
+                <div class="col-md-2 text-label">
+                    <strong>Routing Number:</strong>
+                </div>
+                <div class="col-md-4">
+                    <$client.env.FormField.a04_RoutingNumber.HTML>
+                </div>
+
+                <div class="col-md-2 text-label">
+                    <strong>Account Number:</strong>
+                </div>
+                <div class="col-md-4">
+                    <$client.env.FormField.a05_AccountNumber.HTML>
+                </div>
+            </div>
+
+            <div class="row border-top-orange">
+                <div class="col-md-12">&nbsp;</div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-subheader">
+                    Split Deposit Account Information
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <strong>Account Type:</strong>
+                </div>
+                <div class="col-md-10">
+                    <$client.env.FormField.b01_AccountType.HTML>
+                </div>
+
+                <div class="col-md-2 text-label">
+                    <strong>Banking Institution:</strong>
+                </div>
+                <div class="col-md-4">
+                    <$client.env.FormField.b02_BankInstitution.HTML>
+                </div>
+
+                <div class="col-md-2 text-label">
+                    <strong>Branch:</strong>
+                </div>
+                <div class="col-md-4">
+                    <$client.env.FormField.b03_Branch.HTML>
+                </div>
+
+                <div class="col-md-2 text-label">
+                    <strong>Routing Number:</strong>
+                </div>
+                <div class="col-md-4">
+                    <$client.env.FormField.b04_RoutingNumber.HTML>
+                </div>
+
+                <div class="col-md-2 text-label">
+                    <strong>Account Number:</strong>
+                </div>
+                <div class="col-md-4">
+                    <$client.env.FormField.b05_AccountNumber.HTML>
+                </div>
+
+                <div class="col-md-3 text-label">
+                    <strong>Percentage Net or Dollar Amount:</strong>
+                </div>
+                <div class="col-md-3">
+                    <$client.env.FormField.b06_PercentageNet.HTML>
+                </div>
+            </div>
+
+            <div class="row border-top-orange">
+                <div class="col-md-12">&nbsp;</div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="text-subheader">
+                        Verifying Documentation<br /><br />
+                    </div>
+                    
+                    <div class="text-justify">
+                        <strong>On your first day, please provide a verifying document to your HR representative. This is an additional step to completing this form; if you complete a split deposit, you will need 2 verifying documents.</strong> A verifying document can be a picture of a voided check, a direct deposit bank authorization letter, or a screen shot from the online account showing the bank name, your name, and the full routing/account numbers.
+                    </div>
+                </div>
+                
+                <div class="col-md-6" id="image-display">
+                    <img src="dd-sample-card.jpg" style="max-width: 80%;">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-justify">
+                    This authority is to remain in full force and effect until COMPANY has received a written notification from me of its termination in
+                    such time and in such manner as to afford COMPANY and DEPOSITORY a reasonable opportunity to act on it. 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 text-label">
+                    <strong>Print Name:</strong>
+                </div>
+                <div class="col-md-5">
+                    <$client.env.FormField.c01_PrintName.HTML>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2 text-label">
+                    <strong>Signature:</strong>
+                </div>
+                <div class="col-md-5">
+                    <$client.env.FormField.c03_Signature.HTML>
+                </div>
+
+                <div class="col-md-1 text-label">
+                    <strong>Date:</strong>
+                </div>
+                <div class="col-md-4">
+                    <$client.env.FormField.c04_Date.HTML>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <span style="color: red; font-weight: bold;">NOTE:</span> Any change to your Direct Deposit will cause it to go back to a pre-note and check for the first pay period after the
+                    change. We recommend you always verify with your bank that the automatic deposit has taken place.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 text-label">
+                    Return this Authorization to Payroll, attention: <strong>PAYROLL</strong>
+                </div>
+            </div>
+
+            <div class="row bordered">
+                <div class="col-md-2 border-right">
+                    Southland Industries
+                </div>
+
+                <div class="col-md-8">&nbsp;</div>
+
+                <div class="col-md-2 border-left" style="text-align: right; color: #EE5020;">
+                    Page 1 of 1
+                </div>
+            </div>
+
+            <br><hr class="lifesuite__hr">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+    <div style="display:none">
+        <$client.env.FormField.SignatureVerification.HTML>
+        <$client.env.FormField.Image2_af_image.HTML>
+    </div>
+</form>
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar 
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* RESPONSIVE eFORM FIELDS STYLE */
+$(window).load(function() {
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+}); 
+    
+//Fixes to modal issue when viewing in mobile devices
+    $( window ).resize(function() {
+    document.getElementById('over').style.width='';
+    });
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+</SCRIPT>

@@ -1,0 +1,189 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;"> 
+  <div class="modal-content"> 
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+    <p style="fontweight:normal;padding:0px"> 
+      <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+    </p> 
+    <br> 
+    <div class="row"> 
+      <div class="lifesuite__clearfix"> 
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+      </div> 
+    </div> 
+    <div class="row"> 
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullname','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;  
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+      </div> 
+    </div> 
+  </div> 
+</div> 
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<div class="modal" style="display:block; background: #002E6D;"> 
+  <div class="fb-spinner"> 
+    <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+  </div> 
+</div> 
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+  <div style="display:none;">
+    <$client.env.FormField.Form_Name.prompt>
+    <$client.env.FormField.Form_Name.HTML>
+    <$client.env.FormField.Form_Type.prompt>
+    <$client.env.FormField.Form_Type.HTML>
+    <$client.env.FormField.Form_Owner.prompt>
+    <$client.env.FormField.Form_Owner.HTML>
+    <$client.env.FormField.Form_CreateDate.prompt>
+    <$client.env.FormField.Form_CreateDate.HTML>
+    <$client.env.FormField.Form_Completed.prompt>
+    <$client.env.FormField.Form_Completed.HTML>
+    <$client.env.FormField.Form_Delivered.prompt>
+    <$client.env.FormField.Form_Delivered.HTML>
+    <$client.env.FormField.Form_TaskId.prompt>
+    <$client.env.FormField.Form_TaskId.HTML>
+    <$client.env.FormField.display_version.HTML>
+ 
+    <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    <$client.env.FormField.SignatureVerification.prompt>
+    <$client.env.FormField.a1_EmployeeName.prompt>
+    <$client.env.FormField.a6_EmployeeSignature.prompt>
+    <$client.env.FormField.a7_Date.prompt>
+  </div>
+  <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+        
+  <!-- Replace With eForm Specific HTML -->
+
+  <!-- Begin HTML Content -->
+
+  <div id='container'>
+    <div class="row h1margin blueBackGround">
+      <div class="col-xs-12 col-md-12">
+        <h1 class="h1Title" style="font-size:25pt"><b>EMPLOYMENT STATEMENT OF<br>UNDERSTANDING</b></h1>
+      </div>  
+    </div>
+
+    <div class="row">
+      <div class="col-xs-7 col-md-10"></div>
+      <div class="col-xs-1 col-md-1">
+        <div class="triangle-5 pull-right"></div>
+      </div>
+    </div>
+
+    <div class="row content">
+      <div class="col-md-12">
+        <div id='incomplete'>
+          <div id="markup"></div>
+        </div> <!-- incomplete -->
+        <div id='complete'></div> 
+
+        <div id='fields' style="">
+          <div class='row'>               
+            <div class='col-xs-12 col-md-7'>
+              <$client.env.FormField.a1_EmployeeName.HTML>
+              <label class="lightBlueFont">Name</label>
+            </div>
+            <div class='col-xs-12 col-md-5'>
+              <$client.env.FormField.a7_Date.HTML>
+              <label class="lightBlueFont">Date</label>
+            </div>
+            <div class='col-xs-12 col-md-7'>
+              <$client.env.FormField.a6_EmployeeSignature.HTML>
+              <label class="lightBlueFont">Signature</label>
+            </div>
+          </div>    
+        </div> <!-- fields -->
+
+        <div id='incomplete2'>
+          <div id="markup2"></div>
+        </div> <!-- incomplete2 -->
+        <div id='complete2'></div> 
+
+      </div> <!-- col-md-10 -->
+    </div> <!-- row -->
+
+    <div class="content">
+      <hr class="lifesuite__hr">
+    </div>
+
+  </div> <!-- container -->
+
+  <div style="display:none;">
+    <$client.env.FormField.headerpg1.HTML>
+    <$client.env.FormField.headerpg2.HTML>
+    <$client.env.FormField.hidden_pg.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>
+    <$client.env.FormField.signatureVerification.HTML>
+  </div>
+  <div class="content">
+    <$client.env.FormButtons>
+  </div>
+</form>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script> 
+<script>
+//Show populated form if already completed
+var strCompletedForm = FORM_COMPLETED;
+
+if (strCompletedForm != "") {
+  //Gather the fields that need to be displayed
+  //For images we need to setup the image tag. 
+  var imgHeader = "<img src='<$client.env.formfield.headerpg1.value>' />";
+  var imgVPSignature = "<img src='<$client.env.formfield.vpsignature.value>' />";
+
+  //Create an array of info to pass to complete the offer letter
+  //0 for images sending an image tag, 1 for sections of text sending the ID of the field that holds the HTML.
+  var arrParts = [
+    [1,'hidden_pg']
+  ];
+
+  var arrParts2 = [
+    [0,imgHeader],
+    [1,'hidden_pg2']
+  ];
+
+  //Send (ID of the div to hide,ID of the div to show,Parts to get the offer letter)
+  showCompletedOfferLetter('incomplete','complete',arrParts);
+  showCompletedOfferLetter('incomplete2','complete2',arrParts2);
+} 
+else {
+  //If the offer letter is not complete set up the logos and link field values. 
+  pickDivisionLogo();
+  // SetImageOnOfferLetter('headerpg1');
+}
+</script>
+
+
+<script> 
+ChangeCalendarIcons(); //for popup calendar  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+/* RESPONSIVE eFORM BUTTONS STYLE */ 
+  
+$(window).load(function() { 
+  $("input[type=text]").addClass('lifesuite__text-input'); 
+  $("input[type=text].hasDatepicker").addClass('dateField'); 
+  $("select").addClass('lifesuite__select-input'); 
+  $("input[type=radio]").addClass('lifesuite__radio'); 
+  $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+  $("textarea").addClass('lifesuite__textarea-input'); 
+  $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+});  
+ 
+
+//Fixes to modal issue when viewing in mobile devices 
+$( window ).resize(function() { 
+  document.getElementById('over').style.width=''; 
+});
+  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+</script>
+
+<!-- JS file where the actual content is defined -->
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Grant_Letter/script_Version_5.js>" defer></script>

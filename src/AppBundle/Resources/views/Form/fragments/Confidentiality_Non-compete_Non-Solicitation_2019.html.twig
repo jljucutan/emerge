@@ -1,0 +1,356 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal E-Signature box 2: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','fullName2','modal2','over','sv2', 'Date_2');xbObj('eSignature2').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','Date_2');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" class="form-horizontal" role="form">
+    <div style="display:none;">
+		<$client.env.FormField.Form_Name.prompt>
+		<$client.env.FormField.Form_Name.HTML>
+		<$client.env.FormField.Form_Type.prompt>
+		<$client.env.FormField.Form_Type.HTML>
+		<$client.env.FormField.Form_Owner.prompt>
+		<$client.env.FormField.Form_Owner.HTML>
+		<$client.env.FormField.Form_CreateDate.prompt>
+		<$client.env.FormField.Form_CreateDate.HTML>
+		<$client.env.FormField.Form_Completed.prompt>
+		<$client.env.FormField.Form_Completed.HTML>
+		<$client.env.FormField.Form_Delivered.prompt>
+		<$client.env.FormField.Form_Delivered.HTML>
+		<$client.env.FormField.Form_TaskId.prompt>
+		<$client.env.FormField.Form_TaskId.HTML>
+		<$client.env.FormField.display_version.HTML>
+		<!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+		<$client.env.FormField.Date.prompt>
+		<$client.env.FormField.Date_2.prompt>
+		<$client.env.FormField.Have_Listed.prompt>
+		<$client.env.FormField.Have_Not_Listed.prompt>
+		<$client.env.FormField.Idea_Description.prompt>
+		<$client.env.FormField.Name_One.prompt>
+		<$client.env.FormField.Print_Name.prompt>
+		<$client.env.FormField.Print_Name_2.prompt>
+		<$client.env.FormField.Right.prompt>
+		<$client.env.FormField.Signature.prompt>
+		<$client.env.FormField.SignatureVerification.prompt>
+		<$client.env.FormField.SignatureVerification2.prompt>
+		<$client.env.FormField.Signature_2.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+	<header class="row mb-20">
+		<div class="col-lg-12">
+			<div class="img-wrapper center-block">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 927.87 235.05"><defs><style>.cls-1{fill:#008cfa;}.cls-2{fill:#002e6d;}</style></defs><title>Asset 1</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path class="cls-1" d="M0,0V235.05H235.05V0ZM112.1,188.05,23.51,153.92l19.78-11.58a23.51,23.51,0,0,1,20.32-1.65l88.6,34.13L132.42,186.4A23.47,23.47,0,0,1,112.1,188.05Zm29.61-46.84L53.12,107.08,72.9,95.5a23.47,23.47,0,0,1,20.32-1.65L181.82,128,162,139.56A23.53,23.53,0,0,1,141.71,141.21Zm29.73-46.85L82.85,60.23l19.78-11.58A23.51,23.51,0,0,1,123,47l88.6,34.13L191.76,92.71A23.51,23.51,0,0,1,171.44,94.36Z"></path><path class="cls-2" d="M297.6,211.14h-7.48V171.83H276.68v-6.41H311v6.41H297.6Z"></path><path class="cls-2" d="M368.5,211.14H342.64V165.42H368.5v6.31H350.11v12.45h17.24v6.25H350.11v14.36H368.5Z"></path><path class="cls-2" d="M422.43,171.17a12.31,12.31,0,0,0-10.13,4.57q-3.69,4.56-3.69,12.6,0,8.41,3.55,12.73t10.27,4.31a26.68,26.68,0,0,0,5.63-.58c1.81-.38,3.7-.88,5.66-1.48v6.41a34.45,34.45,0,0,1-12.2,2q-10,0-15.41-6.08t-5.38-17.4a28.11,28.11,0,0,1,2.61-12.48,18.52,18.52,0,0,1,7.55-8.19,22.83,22.83,0,0,1,11.6-2.85,28.8,28.8,0,0,1,12.95,2.94l-2.69,6.22a39.46,39.46,0,0,0-4.89-1.92A17.72,17.72,0,0,0,422.43,171.17Z"></path><path class="cls-2" d="M504.22,211.14h-7.5V190.53H475.63v20.61h-7.47V165.42h7.47v18.7h21.09v-18.7h7.5Z"></path><path class="cls-2" d="M578.94,211.14h-9.16L547.29,174.7H547l.16,2q.43,5.82.44,10.63v23.77h-6.79V165.42h9.07l22.42,36.24h.19c0-.48-.13-2.22-.25-5.24s-.19-5.36-.19-7v-24h6.85Z"></path><path class="cls-2" d="M656.19,188.21q0,11.17-5.58,17.36t-15.81,6.19q-10.34,0-15.9-6.14t-5.54-17.47q0-11.33,5.58-17.39t15.93-6.06q10.2,0,15.76,6.16T656.19,188.21Zm-34.9,0q0,8.44,3.41,12.81t10.1,4.36q6.68,0,10.06-4.31t3.39-12.86c0-5.6-1.12-9.86-3.36-12.75s-5.58-4.35-10-4.35-7.87,1.45-10.15,4.35S621.29,182.61,621.29,188.21Z"></path><path class="cls-2" d="M690.61,211.14V165.42h7.47v39.31h19.36v6.41Z"></path><path class="cls-2" d="M790.5,188.21q0,11.17-5.58,17.36t-15.81,6.19q-10.35,0-15.9-6.14t-5.55-17.47q0-11.33,5.58-17.39t15.94-6.06q10.19,0,15.76,6.16T790.5,188.21Zm-34.9,0q0,8.44,3.41,12.81t10.1,4.36q6.66,0,10-4.31t3.4-12.86c0-5.6-1.12-9.86-3.36-12.75s-5.59-4.35-10-4.35-7.87,1.45-10.15,4.35S755.6,182.61,755.6,188.21Z"></path><path class="cls-2" d="M843.62,186.34h16.82v22.95a48.89,48.89,0,0,1-7.93,1.91,56.76,56.76,0,0,1-8.21.56q-10.38,0-16-6.14t-5.63-17.34q0-11,6.35-17.28t17.48-6.24a34.08,34.08,0,0,1,13.57,2.75l-2.62,6.23a26.41,26.41,0,0,0-11.14-2.57q-7.31,0-11.56,4.6t-4.26,12.57q0,8.39,3.83,12.74t11,4.36a36.49,36.49,0,0,0,7.75-.9V192.75h-9.47Z"></path><path class="cls-2" d="M908.92,186.28l10.82-20.86h8.13l-15.23,28v17.73h-7.5V193.66L890,165.42h8.13Z"></path><path class="cls-1" d="M268.86,99.12h14.47c1.9,14.65,7.75,27.05,32.56,27.05,15.85,0,28.08-9.3,28.08-23.26s-6.37-19.81-29.8-23.6C288.33,75.35,273,67.25,273,45.38c0-19,16.36-33.42,39.62-33.42,24.63,0,40,12.05,42.38,33.93H341.56C338.63,30.39,329.67,24,312.62,24,295.74,24,287,32.46,287,44c0,12.06,4.48,18.26,29.63,22,27.39,4.3,41.86,12.57,41.86,35.83,0,20.67-18.09,36.35-42.55,36.35C283,138.23,271.1,120.14,268.86,99.12Z"></path><path class="cls-1" d="M377.39,18.33a9.48,9.48,0,1,1,9.48,9.47A9.56,9.56,0,0,1,377.39,18.33ZM380,46.58h14.3v90.1H380Z"></path><path class="cls-1" d="M420.46,3.52h14.47V136.68H420.46Z"></path><path class="cls-1" d="M460.76,3.52h14.3V88.1l37.38-41.52h16.71L490.57,88.44l41.86,48.24H515L475.06,90v46.69h-14.3Z"></path><path class="cls-2" d="M547.24,13.51h37c23.6,0,43.07,9.64,43.07,34.28v.69c0,20.32-13.61,30.32-30.5,33.59l37.73,54.61H617.87L581.18,83.1H562.23v53.58h-15Zm38.07,57.71c17.57,0,27.05-7.58,27.05-22.74v-.69c0-16.71-10.34-22.22-27.05-22.22H562.23V71.22Z"></path><path class="cls-2" d="M638.2,92.4V91C638.2,64,657,45,682.47,45s44.27,18.78,44.27,45.82v1.38c0,27.22-18.77,46-44.44,46S638.2,118.76,638.2,92.4Zm73.73,0V91.2c0-20.85-11.54-34.28-29.46-34.28C664.38,56.92,653,70.35,653,91V92.4c0,20.5,11.2,33.94,29.46,33.94C700.56,126.34,711.93,112.73,711.93,92.4Z"></path><path class="cls-2" d="M741.56,111.7c0-20.85,22.05-27.91,45.13-27.91h12.92V77.25c0-14.3-5.51-20.33-19.29-20.33-12.41,0-19.3,5.17-20.68,16.19h-14.3C747.24,52.61,763.61,45,781,45c17.23,0,32.91,7.06,32.91,32.22v59.43h-14.3V125.31c-6.72,8.44-14.82,12.92-28.08,12.92C754.82,138.23,741.56,130.13,741.56,111.7Zm58.05-6.55V94h-12.4c-18.09,0-31.36,4.47-31.36,17.74,0,9.3,4.48,15.16,17.06,15.16C788.07,126.86,799.61,119.11,799.61,105.15Z"></path><path class="cls-2" d="M831.82,93.44V92.06c0-27.56,17.23-47,42-47,15,0,24.29,7.24,29.46,16V3.52h14.3V136.68h-14.3V121.17c-5.17,8.79-17.74,17.06-30.83,17.06C848.88,138.23,831.82,121.52,831.82,93.44Zm72-1.21V90.85c0-23.08-11-33.93-28.6-33.93-17.91,0-28.59,12.57-28.59,34.45v1.38c0,22.74,12.23,33.59,27.39,33.59C890.74,126.34,903.83,115.32,903.83,92.23Z"></path></g></g></svg>
+				</div>
+			</div>
+	</header>
+	<div class="row mb-20">
+		<div class="col-lg-12">
+			<p class="text-center">
+				<strong>SilkRoad Technology, Inc.</strong>
+			</p>
+			<h5 class="text-center">
+				<strong>CONFIDENTIALITY, ASSIGNMENT OF INVENTIONS, NON-COMPETITION AND NON-SOLICITATION AGREEMENT</strong>
+			</h5>
+			<p class="text-justify">
+				This CONFIDENTIALITY, ASSIGNMENT OF INVENTIONS, NON-COMPETITION AND NON-SOLICITATION AGREEMENT (“Agreement”) is entered into by
+				<span class="i-block">
+					<$client.env.FormField.Name_One.HTML>
+				</span>
+				(“I”, “me” or “my”) as a condition of my employment or continued employment with SilkRoad Technology, Inc. (“SilkRoad”). In exchange for my employment or continued employment with SilkRoad, and other good and valuable consideration the receipt and legal sufficiency of which are hereby acknowledged, I understand and agree as follows:
+			</p>
+			<ol type="1">
+				<li>
+					<strong>Confidential Information.</strong>
+					<ol>
+						<li class="text-justify">
+							I acknowledge that the Confidential Information (as defined below) constitutes a legitimate business interest of SilkRoad which may be protected by law, and agree that at all times during and following the resignation or termination of my employment with such company I will not possess, disclose, furnish, make available or use any Confidential Information other than as authorized in the course of such employment. I will abide by all of SilkRoad’s policies, procedures and rules for the protection of its Confidential Information. I further agree that in the course of my employment with SilkRoad I will not use any confidential information or documents belonging to others except as may be authorized in the regular performance of my duties when such information or documents have been properly provided to me.
+						</li>
+						<li class="text-justify">
+							As used in this Agreement, “Confidential Information” means all trade secrets and other confidential and proprietary information of SilkRoad, maintained in any form and regardless of who develops it. Such Confidential Information includes, but is not limited to, one or more of the following: (i) information concerning the methods and systems used by SilkRoad in developing, marketing, soliciting to sell, selling, providing or performing its products and services; (ii) SilkRoad’s research and development; (iii) customer lists, customer preferences and buying patterns, and other information concerning SilkRoad, SilkRoad’s customers and potential customers, suppliers and contractors; and (iv) processes, formulas, data, program documentation, designs, drawings, algorithms, source codes, object codes, know-how, improvements, inventions, licenses, techniques, plans or strategies for marketing and development, costs and pricing structures, business plans, financial statements, profit margins and other internal business information which is proprietary in nature, confidential to SilkRoad and not generally available to the public or to its competitors. Confidential Information also means all information disclosed to SilkRoad by third parties which is subject to confidentiality obligations.
+						</li>
+					</ol>
+				</li>
+				<li class="text-justify">
+					<strong>Return of Materials.</strong> Upon request by SilkRoad, or upon the resignation or termination of myemployment with such company, I will promptly return to SilkRoad all Confidential Information and allcopies of same, in any form, that are in my possession. In addition, I shall return and deliver to SilkRoadall computers, computer files (and any copies thereof), keys, vehicles, cellular phones, personal dataassistants (“PDAs”), and other documents or equipment related to SilkRoad’s business and which are inmy possession or which have been issued to me and remain under my direction or control.
+				</li>
+				<li class="text-justify">
+					<strong>Consideration.</strong> I acknowledge that my employment or continued employment with SilkRoad, and theremuneration and unique professional opportunities provided to me through such employment, as well asother payments or advantages which may be provided to me by SilkRoad, constitute fair and adequate consideration for this Agreement; that I have discretion to not accept or continue employment with SilkRoad; that I have freely entered into this Agreement to obtain such unique opportunities, and that entering into and complying with this Agreement is a condition of employment or continued employment with SilkRoad.
+				</li>
+				<li>
+					<strong>Assignment of Inventions.</strong>
+					<ol>
+						<li>
+							I agree that all Inventions (as defined below) are the sole and exclusive property of SilkRoad.
+						</li>
+						<li>
+							As used in this Agreement, “<strong>Inventions</strong>” means any and all inventions, developments, discoveries, improvements, works of authorship, concepts or ideas, or expressions thereof, whether or not subject to patents, copyright, trademark, trade secret protection or other intellectual property right protection (in the United States or elsewhere), (i) that are developed by me during my employment with SilkRoad and (ii) that are developed within one (1) year following termination of such employment which relate to any actual or anticipated business, work, research or investigation for SilkRoad, or which are suggested by or result from tasks assigned to or performed by me for SilkRoad. This Agreement does not apply to Inventions that are or have been developed entirely by me on my own time without use of our facilities, supplies, equipment or Confidential Information, and which do not relate to any actual or anticipated business, work, research or investigation for SilkRoad. I further agree that all original works of authorship which are made by me (either alone or with others) within the scope of and during the period of my employment with SilkRoad and which are protectible by copyright laws, are “works made for hire” owned exclusively by SilkRoad, as that term is defined in the United States Copyright Act.
+						</li>
+						<li>
+							I hereby assign to SilkRoad all right, title and interest to any Inventions and agree to assist SilkRoad and irrevocably designate and appoint SilkRoad as my attorney-in-fact to execute and file, register, record, obtain, maintain, defend or enforce the rights to any Inventions. I shall, at the request of SilkRoad and without further compensation, take all actions and execute all instruments reasonably requested to secure and perfect SilkRoad’s (or its assigns’) sole and exclusive right, title and interest in and to Inventions, including but not limited to the execution of instruments assigning to others designated by SilkRoad all of my right, title and interest in and to Inventions, and to provide assistance in preparing applications, registration forms, and other documents relating to the acquisition or maintenance of copyrights and patents in the United States and in other countries.
+						</li>
+					</ol>
+				</li>
+				<li>
+					<strong>List of Prior Inventions.</strong> All Inventions which I have made prior to my employment with SilkRoad, if any, are set forth on <strong>Exhibit A</strong> and excluded from this Agreement. I understand and agree that I will have to provide SilkRoad proper documentation showing ownership to any Inventions listed on Exhibit A.
+				</li>
+				<li>
+					<strong>Non-Competition and Non-Solicitation.</strong>
+					<ol>
+						<li class="text-justify">
+							During the term of my employment with SilkRoad and for a period of six (6) months thereafter, I will not, through my own actions or through an agent or representative, act against the best interests of SilkRoad or otherwise compete against SilkRoad as follows:, solicit to sell, sell, or otherwise provide or perform services or products in competition with SilkRoad to any of its customers, or solicit or induce any such customer to terminate or reduce its business relationship with SilkRoad. For the purposes of this Section 6, “customer” shall mean any person or business entity for whom I, or anyone I managed or supervised, performed consulting services, obtained unique or confidential knowledge of, was engaged in sales or promotional efforts concerning, or otherwise solicited to sell, provided or performed services or products through or on behalf of SilkRoad during the last year of my employment with such company. In addition, to “compete” or be “in competition with” SilkRoad shall mean to solicit to sell, sell, or otherwise provide or perform any products or services which are the same as or substantially similar to the products or services developed, marketed, solicited, sold or otherwise provided or performed by SilkRoad at any time during the last year of my employment with such company.
+						</li>
+						<li class="text-justify">
+							During the term of my employment and for a period of six (6) months thereafter, I will not, through my own actions or through an agent or representative, hire, employ, solicit or attempt to solicit or induce any person employed by or who has contracted with SilkRoad, to leave such employment, or to violate any covenant not to compete, non-solicitation agreement, confidentiality agreement, nondisclosure agreement or any other restrictive covenant, employment agreement, independent contractor agreement or other business relationship with SilkRoad.
+						</li>
+					</ol>
+				</li>
+				<li class="text-justify">
+					<strong>Remedies and Attorneys’ Fees.</strong> I agree that this Agreement is reasonable and necessary for the protection of SilkRoad’s legitimate business interests against unfair competition, that immediate and irreparable injury will result to SilkRoad if I breach any of the restrictive covenants of this Agreement, and that in the event of my breach or threatened breach of this Agreement SilkRoad will have no adequate remedy at law. I agree that, in the event of any actual or threatened breach by me of this Agreement, SilkRoad will be entitled to immediate injunctive and other equitable relief, without bond and without the necessity of showing actual monetary damages. Such rights conferred upon SilkRoad shall not prevent it from recovering any form of monetary damages or any other form of equitable relief in addition to an injunction. If legal action is brought concerning the enforcement of this Agreement, I further acknowledge and agree that I shall pay all costs and expenses, including reasonable attorneys’ fees, incurred by SilkRoad in connection with any such action or proceeding, or with any appeal from such action or proceeding, which results in the enforcement of any of the agreements, covenants or provisions of this Agreement against me and to the benefit of SilkRoad.
+				</li>
+				<li class="text-justify">
+					<strong>Governing Law, Jurisdiction and Venue.</strong> North Carolina law shall govern the validity, interpretation, performance and enforcement of this Agreement. If legal action is brought at any time based on any controversy or claim arising out of, or relating to this Agreement, I agree that I shall submit to the jurisdiction and venue of the civil district or superior court of Forsyth County, North Carolina, and that such court shall have exclusive jurisdiction and venue of such action without regard to any state’s conflicts of law, choice of law or forum selection legal requirements.
+				</li>
+				<li class="text-justify">
+					<strong>Representation.</strong> I represent and warrant that: (1) There is nothing preventing me from committing myself to or abiding by the covenants and conditions of this Agreement, or from otherwise performing my obligations hereunder; and (2) To the best of my knowledge, I am not currently, nor will I by entering into this Agreement or any other employment agreement between me and SilkRoad, be deemed to be violating or in breach of any rights of any third party, including without limitation any of my former employers.
+				</li>
+				<li>
+					<strong>Miscellaneous.</strong>
+					<ol>
+						<li class="text-justify">
+							<u>Waiver; Tolling of Restricted Period.</u> No waiver of any breach of this Agreement shall be construed to be a waiver as to succeeding breaches. Any period of violation of this Agreement which results in legal action to enforce same shall toll the period of time in which I shall be restricted hereunder, so that such restricted period shall begin and be in full force and effect from the date of such enforcement.
+						</li>
+						<li class="text-justify">
+							<u>“SilkRoad”.</u> For the purposes of this Agreement, the term “SilkRoad” shall be deemed to include SilkRoad Technology, Inc., and any parent corporation, subsidiary, affiliate, division, predecessor, or successor of same, or any incorporated or unincorporated entity that, directly or indirectly, controls or is controlled by SilkRoad through ownership, agreement or otherwise.
+						</li>
+						<li class="text-justify">
+							<u>Entire Agreement; Modification.</u> This Agreement constitutes the entire agreement regarding its subject matter, and may not be modified or amended in any way except in writing and with the mutual consent of me and SilkRoad. This Agreement supersedes and replaces any prior agreement or agreements of confidentiality, non-solicitation, non-competition, or Inventions with SilkRoad that I may have executed. Notwithstanding the foregoing, the requirements of any other policy regarding trade secrets or other confidential and proprietary information as set forth in any associate handbook, or other separately distributed policy, remain in full force and effect as a supplement to but not a replacement of this Agreement while I am employed with SilkRoad.
+						</li>
+						<li class="text-justify">
+							<u>Severability.</u> Each provision of this Agreement is intended to be severable. If any court of competent jurisdiction determines that one or more of the provisions of this Agreement, or any part thereof, is or are invalid, illegal or unenforceable, such determination shall not affect or impair any other provision of this Agreement, and this Agreement shall be given full force and effect while being construed as if such invalid, illegal or unenforceable provision or part had not been contained within it. If the scope of any provision in this Agreement is found to be too broad to permit enforcement of such provision to its full extent, I consent to judicial modification of such provision and enforcement to the maximum extent permitted by law.
+						</li>
+					</ol>
+				</li>
+			</ol>
+			<p>
+				<strong>
+					I have carefully read this Confidentiality, Assignment of Inventions, Non-Competition and Non-Solicitation Agreement, know and understand its contents, and sign this Agreement intending to be bound by its terms.
+				</strong>
+			</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="row">
+				<label class="col-lg-3 col-md-3 col-xs-12 col-sm-12 control-label">
+					Date:
+				</label>
+				<div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 form-group">
+					<$client.env.FormField.Date.HTML>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-7">
+			<div class="row">
+				<label class="col-lg-4 col-md-4 col-xs-12 col-sm-12 control-label">
+					Signature:
+				</label>
+				<div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 form-group">
+					<$client.env.FormField.Signature.HTML>
+				</div>
+			</div>
+			<div class="row">
+				<label class="col-lg-4 col-md-4 col-xs-12 col-sm-12 control-label">
+					Print Name:
+				</label>
+				<div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 form-group">
+					<$client.env.FormField.Print_Name.HTML>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="hr-line-outer mb-40">
+		<div class="hr-line-inner">&nbsp;</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<p class="text-center">
+				<strong>EXHIBIT A</strong>
+			</p>
+			<p class="text-center">
+				<strong>TO</strong>
+			</p>
+			<p class="text-center">
+				<strong>CONFIDENTIALITY, ASSIGNMENT OF INVENTIONS, NON-COMPETITION AND NON-SOLICITATION AGREEMENT</strong>
+			</p>
+			<p class="text-justify">
+				I represent that I have disclosed on this “Exhibit A” all inventions or other new discoveries in which I have any right or interest. I agree that any present or future patent, idea, copyright, writing, computer program, or other Invention as that term is defined in the foregoing Agreement, and which is not listed below, is being assigned to SilkRoad in accordance with Section 4 of such Agreement. I also agree that under no circumstances will I incorporate in any work that I perform for SilkRoad any of the items I have disclosed on this Exhibit without SilkRoad’s prior written consent.
+			</p>
+		</div>
+	</div>
+	<div class="row mb-20">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<p class="text-center">
+				<strong>Brief Description of Patent, Idea, Copyright, Writing, Computer Program or Other Invention</strong>
+			</p>
+			<$client.env.FormField.Idea_Description.HTML>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<p class="text-center">
+				<strong>Right, Title, or Interest and Date <br class="hidden-xs">Acquired</strong>
+			</p>
+			<$client.env.FormField.Right.HTML>
+		</div>
+	</div>
+
+	<div class="row mb-20">
+		<div class="col-lg-12">
+			<$client.env.FormField.Have_Listed.HTML>
+			<$client.env.FormField.Have_Not_Listed.HTML>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-4">
+			<div class="row">
+				<label class="col-lg-3 col-md-3 col-xs-12 col-sm-12 control-label">
+					Date:
+				</label>
+				<div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 form-group">
+					<$client.env.FormField.Date_2.HTML>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-7">
+			<div class="row">
+				<label class="col-lg-4 col-md-4 col-xs-12 col-sm-12 control-label">
+					Signature:
+				</label>
+				<div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 form-group">
+					<$client.env.FormField.Signature_2.HTML>
+				</div>
+			</div>
+			<div class="row">
+				<label class="col-lg-4 col-md-4 col-xs-12 col-sm-12 control-label">
+					Print Name:
+				</label>
+				<div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 form-group">
+					<$client.env.FormField.Print_Name_2.HTML>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="hr-line-outer mb-40">
+		<div class="hr-line-inner">&nbsp;</div>
+	</div>
+
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+    
+</main>
+
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+    "use strict";
+    $('[data-checkbox-group]').on('click', function() {
+	    let groupId = $(this).data('checkbox-group');
+	    let checked = $(this).is(':checked');
+	    $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+	    $(this).prop('checked', checked);
+	});
+    $(".modal").hide();
+});
+</script>

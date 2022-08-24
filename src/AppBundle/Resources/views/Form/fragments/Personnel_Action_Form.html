@@ -1,0 +1,1102 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+
+<div class="modal" id="modal" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                             </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','','modal','over','sv','b02_Date');xbObj('eSignature1').value='';">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','b02_Date');}">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                                           </div> 
+                             </div> 
+              </div> 
+</div> 
+<div id="over" style="display:none;"></div> 
+
+
+<div class="modal" id="modal2" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                             </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','','modal2','over','sv2','d02_Date');xbObj('eSignature2').value='';">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','d02_Date');}">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                                           </div> 
+                             </div> 
+              </div> 
+</div> 
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+
+    showScreen('over') 
+
+</SCRIPT> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+  
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+
+              <div class="fb-spinner"> 
+
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+
+              </div> 
+
+</div> 
+
+  
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form''> 
+
+    <div style="display:none;"> 
+
+        <$client.env.FormField.Form_Name.prompt> 
+
+        <$client.env.FormField.Form_Name.HTML> 
+
+        <$client.env.FormField.Form_Type.prompt> 
+
+        <$client.env.FormField.Form_Type.HTML> 
+
+        <$client.env.FormField.Form_Owner.prompt> 
+
+        <$client.env.FormField.Form_Owner.HTML> 
+
+        <$client.env.FormField.Form_CreateDate.prompt> 
+
+        <$client.env.FormField.Form_CreateDate.HTML> 
+
+        <$client.env.FormField.Form_Completed.prompt> 
+
+        <$client.env.FormField.Form_Completed.HTML> 
+
+        <$client.env.FormField.Form_Delivered.prompt> 
+
+        <$client.env.FormField.Form_Delivered.HTML> 
+
+        <$client.env.FormField.Form_TaskId.prompt> 
+
+        <$client.env.FormField.Form_TaskId.HTML> 
+
+        <$client.env.FormField.display_version.HTML> 
+
+ 
+
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+
+
+<$client.env.FormField.a01_Full_Name.prompt>
+<$client.env.FormField.a02_Position_ID.prompt>
+<$client.env.FormField.a03_Effective_Date.prompt>
+<$client.env.FormField.a04_Newhire_Rehire.prompt>
+<$client.env.FormField.a05_Dept_Practice_Area.prompt>
+<$client.env.FormField.a06_Annual_Salary.prompt>
+<$client.env.FormField.a07_Title.prompt>
+<$client.env.FormField.a08_Semi_Monthly_Hourly.prompt>
+<$client.env.FormField.a10_FLSA_Status.prompt>
+<$client.env.FormField.a11_Date_of_Birth.prompt>
+<$client.env.FormField.a12_Full_Part_Time.prompt>
+<$client.env.FormField.a13_Social_Security.prompt>
+<$client.env.FormField.a14_Billing_Rate.prompt>
+<$client.env.FormField.a15_Class_Year.prompt>
+<$client.env.FormField.a16_Change_of_Status.prompt>
+<$client.env.FormField.a17_Current_FLSA_Status.prompt>
+<$client.env.FormField.a18_New_FLSA_Status.prompt>
+<$client.env.FormField.a19_Current_Full_Part_Time.prompt>
+<$client.env.FormField.a20_New_Full_Part_Time.prompt>
+<$client.env.FormField.a21_Current_Dept_Practice_Area.prompt>
+<$client.env.FormField.a22_New_Dept_Practice_Area.prompt>
+<$client.env.FormField.a23_Current_Title.prompt>
+<$client.env.FormField.a24_New_Title.prompt>
+<$client.env.FormField.a25_Current_Salary_Hourly_Rate.prompt>
+<$client.env.FormField.a26_New_Salary_Hourly_Rate.prompt>
+<$client.env.FormField.a27_Current_Billing_Rate.prompt>
+<$client.env.FormField.a28_New_Billing_Rate.prompt>
+<$client.env.FormField.a29_Promotion.prompt>
+<$client.env.FormField.a30_Change_Reason.prompt>
+<$client.env.FormField.a31_Bonus.prompt>
+<$client.env.FormField.a32_Bonus_Type.prompt>
+<$client.env.FormField.a33_Bonus_Amount.prompt>
+<$client.env.FormField.a34_Details.prompt>
+<$client.env.FormField.a35_Departure.prompt>
+<$client.env.FormField.a36_Voluntary_Involuntary.prompt>
+<$client.env.FormField.a37_Departure_Reason.prompt>
+<$client.env.FormField.a38_Resignation_Date.prompt>
+<$client.env.FormField.a39_Severance_Pay.prompt>
+<$client.env.FormField.a40_Eligible_for_Rehire.prompt>
+<$client.env.FormField.a41_Leave.prompt>
+<$client.env.FormField.a42_First_Day_Out.prompt>
+<$client.env.FormField.a43_Return_to_Work_Date.prompt>
+<$client.env.FormField.a44a_Leave_Type.prompt>
+<$client.env.FormField.a44b_Amount_of_Time.prompt>
+<$client.env.FormField.a44c_Date_From.prompt>
+<$client.env.FormField.a44d_Date_To.prompt>
+<$client.env.FormField.a45a_Leave_Type.prompt>
+<$client.env.FormField.a45b_Amount_of_Time.prompt>
+<$client.env.FormField.a45c_Amount_of_Time.prompt>
+<$client.env.FormField.a45c_Date_From.prompt>
+<$client.env.FormField.a46c_Date_From.prompt>
+<$client.env.FormField.a45d_Date_To.prompt>
+<$client.env.FormField.a46a_Leave_Type.prompt>
+<$client.env.FormField.a46b_Amount_of_Time.prompt>
+<$client.env.FormField.a46c_Amount_of_Time.prompt>
+<$client.env.FormField.a46d_Date_To.prompt>
+<$client.env.FormField.a47a_Total.prompt>
+<$client.env.FormField.a47b_Date_From.prompt>
+<$client.env.FormField.a47c_Date_To.prompt>
+<$client.env.FormField.a48_Other.prompt>
+<$client.env.FormField.a49_Type_of_Action.prompt>
+<$client.env.FormField.a50_Details.prompt>
+<$client.env.FormField.b01_Authorizing_Signature.prompt>
+<$client.env.FormField.b02_Date.prompt>
+<$client.env.FormField.b03_Title.prompt>
+<$client.env.FormField.c01_Term_HR_PR.prompt>
+<$client.env.FormField.c02_EFT.prompt>
+<$client.env.FormField.c03_Act_Bal.prompt>
+<$client.env.FormField.c04_Vac_Bal.prompt>
+<$client.env.FormField.c05_Delete_Hrs_from_Batch.prompt>
+<$client.env.FormField.c06_Skip_Forecast.prompt>
+<$client.env.FormField.d01_Approver.prompt>
+<$client.env.FormField.d02_Date.prompt>
+<$client.env.FormField.d03_Title.prompt>
+<$client.env.FormField.e01_Signature_Verification.prompt>
+<$client.env.FormField.e02_Signature_Verification.prompt>
+
+
+    </div> 
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+
+  
+
+<div class="container-fluid">  
+
+              <div class="form-group">  
+
+ 
+
+                  <div class='row'>
+            <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12  text-right'>
+              <img src='img/logo.png' alt='logo' width='152px'>
+            </div>
+          </div>
+
+          <div class='row'>
+            &nbsp;
+          </div>
+
+          <div class='row'>
+            <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+              <p class='main-header'>Personnel Action Form (PAF)</p>
+            </div>
+          </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Full Name (first middle last):</h6>
+                </div>
+                <div class="col-xs-12 col-md-9">
+                  <$client.env.FormField.a01_Full_Name.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Position ID:</h6>
+                </div>
+                <div class="col-xs-12 col-md-9">
+                  <$client.env.FormField.a02_Position_ID.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Effective Date:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a03_Effective_Date.HTML>
+                </div>
+              </div>
+
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a04_Newhire_Rehire.HTML>
+                </div>
+              </div>
+    <div class="targetSect1">
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Dept/Practice Area:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a05_Dept_Practice_Area.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">Annual Salary:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3 withDollar">
+                  <span>$ </span>
+                  <$client.env.FormField.a06_Annual_Salary.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Title:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a07_Title.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">Semi Monthly/Hourly:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3 withDollar">
+                  <span>$ </span>
+                  <$client.env.FormField.a08_Semi_Monthly_Hourly.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>FLSA Status:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a10_FLSA_Status.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">Billing Rate:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3 withDollar">
+                  <span>$ </span>
+                  <$client.env.FormField.a14_Billing_Rate.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Date of Birth:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a11_Date_of_Birth.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">Full Time/Part Time:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a12_Full_Part_Time.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Social Security #:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a13_Social_Security.HTML>
+                </div>
+              </div>
+
+              <div class="row classYear">
+                <div class="col-xs-12 col-md-6">
+                  &nbsp;
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">Class Year:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a15_Class_Year.HTML>
+                </div>
+              </div>
+            </div>
+
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a16_Change_of_Status.HTML>
+                </div>
+              </div>
+
+             <div class="targetSect2">
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Current FLSA Status:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a17_Current_FLSA_Status.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">New FLSA Status:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a18_New_FLSA_Status.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Current Full Time/Part Time:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a19_Current_Full_Part_Time.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">New Full Time/Part Time:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a20_New_Full_Part_Time.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Current Dept/Practice Area:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a21_Current_Dept_Practice_Area.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">New Dept/Practice Area:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a22_New_Dept_Practice_Area.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Current Title:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a23_Current_Title.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">New Title:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a24_New_Title.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Current Salary or Hourly Rate:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3 withDollar">
+                  <span>$ </span>
+                  <$client.env.FormField.a25_Current_Salary_Hourly_Rate.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">New Salary or Hourly Rate:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3 withDollar">
+                  <span>$ </span>
+                  <$client.env.FormField.a26_New_Salary_Hourly_Rate.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Current Billing Rate:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3 withDollar">
+                  <span>$ </span>
+                  <$client.env.FormField.a27_Current_Billing_Rate.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">New Billing Rate:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3 withDollar">
+                  <span>$ </span>
+                  <$client.env.FormField.a28_New_Billing_Rate.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Promotion:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a29_Promotion.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">Change Reason:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a30_Change_Reason.HTML>
+                </div>
+              </div>
+            </div>
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a31_Bonus.HTML>
+                </div>
+              </div>
+           <div class="targetSect3">
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Bonus Type:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a32_Bonus_Type.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">Bonus Amount:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3 withDollar">
+                  <span>$ </span>
+                  <$client.env.FormField.a33_Bonus_Amount.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Details:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a34_Details.HTML>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                  &nbsp;
+                </div>
+              </div>
+           </div>
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a35_Departure.HTML>
+                </div>
+              </div>
+           <div class="targetSect4">
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Voluntary/Involuntary:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a36_Voluntary_Involuntary.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">Departure Reason:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a37_Departure_Reason.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>Resignation Date:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a38_Resignation_Date.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">Severance Pay:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a39_Severance_Pay.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-6">
+                  &nbsp;
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">Eligible for Rehire:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a40_Eligible_for_Rehire.HTML>
+                </div>
+              </div>
+            </div>
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <$client.env.FormField.a41_Leave.HTML>
+                </div>
+              </div>
+           <div class="targetSect5">
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <h6>First Day Out:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a42_First_Day_Out.HTML>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <h6 class="padLarge">Return to Work Date:</h6>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a43_Return_to_Work_Date.HTML>
+                </div>
+              </div>
+
+              <div class="row hidden-xs hidden-sm">
+                <div class="col-md-4 col-lg-4">
+                  &nbsp;
+                </div>
+                <div class="col-md-3 col-lg-3 center">
+                  <h6><i><u>Amount of Time</u></i></h6>
+                </div>
+                <div class="col-md-5 col-lg-5 center">
+                    <h6><i><u>Date(s)</u></i></h6>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-2">
+                  <h6>Leave Type 1</h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <$client.env.FormField.a44a_Leave_Type.HTML>
+                </div>
+<div class="col-xs-12 hidden-md hidden-lg center">
+                  <h6><i><u>Amount of Time</u></i></h6>
+</div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a44b_Amount_of_Time.HTML>
+                </div>
+<div class="col-xs-12 hidden-md hidden-lg center">
+                    <h6><i><u>Date(s)</u></i></h6>
+</div>
+                <div class="col-xs-12 col-md-2">
+                  <$client.env.FormField.a44c_Date_From.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1 center">
+                  <h6>to</h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <$client.env.FormField.a44d_Date_To.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-2">
+                  <h6>Leave Type 2</h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <$client.env.FormField.a45a_Leave_Type.HTML>
+                </div>
+<div class="col-xs-12 hidden-md hidden-lg center">
+                  <h6><i><u>Amount of Time</u></i></h6>
+</div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a45b_Amount_of_Time.HTML>
+                </div>
+<div class="col-xs-12 hidden-md hidden-lg center">
+                    <h6><i><u>Date(s)</u></i></h6>
+</div>
+                <div class="col-xs-12 col-md-2">
+                  <$client.env.FormField.a45c_Date_From.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1 center">
+                  <h6>to</h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.a45d_Date_To.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-2">
+                  <h6>Leave Type 3</h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <$client.env.FormField.a46a_Leave_Type.HTML>
+                </div>
+<div class="col-xs-12 hidden-md hidden-lg center">
+                  <h6><i><u>Amount of Time</u></i></h6>
+</div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a46b_Amount_of_Time.HTML>
+                </div>
+<div class="col-xs-12 hidden-md hidden-lg center">
+                    <h6><i><u>Date(s)</u></i></h6>
+</div>
+                <div class="col-xs-12 col-md-2">
+                  <$client.env.FormField.a46c_Date_From.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1 center">
+                  <h6>to</h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <$client.env.FormField.a46d_Date_To.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-4">
+                  <h6>Total:</h6>
+                </div>
+<div class="col-xs-12 hidden-md hidden-lg center">
+                  <h6><i><u>Amount of Time</u></i></h6>
+</div>
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a47a_Total.HTML>
+                </div>
+<div class="col-xs-12 hidden-md hidden-lg center">
+                    <h6><i><u>Date(s)</u></i></h6>
+</div>
+                <div class="col-xs-12 col-md-2">
+                  <$client.env.FormField.a47b_Date_From.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1 center">
+                  <span>to</span>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <$client.env.FormField.a47c_Date_To.HTML>
+                </div>
+              </div>
+            </div>
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-3">
+                  <$client.env.FormField.a48_Other.HTML>
+                </div>
+              </div>
+           <div class="targetSect6">
+              <div class="row">
+                <div class="col-xs-12 col-md-2">
+                  <h6>Type of Action:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <$client.env.FormField.a49_Type_of_Action.HTML>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                  <h6 class="padLarge">Details:</h6>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <$client.env.FormField.a50_Details.HTML>
+                </div>
+              </div>
+         </div>
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+
+
+
+                 <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                      <$client.env.FormField.b01_Authorizing_Signature.HTML>
+                      Authorizing Signature
+                    </div>
+                    <div class="col-xs-12 col-md-2">
+                      <$client.env.FormField.b02_Date.HTML>
+                      Date
+                    </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                      <$client.env.FormField.b03_Title.HTML>
+                      Title
+                    </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+
+                   <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                      <$client.env.FormField.d01_Approver.HTML>
+                      Approver Signature
+                    </div>
+                    <div class="col-xs-12 col-md-2">
+                      <$client.env.FormField.d02_Date.HTML>
+                      Date
+                    </div>
+                   </div>
+                  <div class="row">
+                      <div class="col-xs-12 col-md-12">
+                           &nbsp;
+                       </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                      <$client.env.FormField.d03_Title.HTML>
+                      Title
+                    </div>
+                   </div>
+
+
+<!--                <div class="col-xs-12 col-md-6">
+                 <div class="row">
+                   <div class="col-xs-12 col-md-12 center bordered">
+                     <h6><b>For Accounting Use Only</b></h6>
+                   </div>
+                  </div>
+                  <div class="row flexLarge">
+                   <div class="col-xs-12 col-md-6 bordered text-cell">
+                     <h6><b>Term HR/PR</b></h6>
+                   </div>
+                   <div class="col-xs-12 col-md-6 bordered right-column">
+                     <$client.env.FormField.c01_Term_HR_PR.HTML>
+                   </div>
+                  </div>
+                  <div class="row flexLarge">
+                   <div class="col-xs-12 col-md-6 bordered text-cell">
+                     <h6><b>EFT</b></h6>
+                   </div>
+                   <div class="col-xs-12 col-md-6 bordered right-column">
+                     <$client.env.FormField.c02_EFT.HTML>
+                   </div>
+                  </div>
+                  <div class="row flexLarge">
+                   <div class="col-xs-12 col-md-6 bordered text-cell">
+                     <h6><b>Act Bal</b></h6>
+                   </div>
+                   <div class="col-xs-12 col-md-6 bordered right-column">
+                     <$client.env.FormField.c03_Act_Bal.HTML>
+                   </div>
+                  </div>
+                  <div class="row flexLarge">
+                   <div class="col-xs-12 col-md-6 bordered text-cell">
+                     <h6><b>Vac Bal</b></h6>
+                   </div>
+                   <div class="col-xs-12 col-md-6 bordered right-column">
+                    <$client.env.FormField.c04_Vac_Bal.HTML>
+                   </div>
+                  </div>
+                  <div class="row flexLarge">
+                   <div class="col-xs-12 col-md-6 bordered text-cell">
+                     <h6><b>Delete Hrs from Batch</b></h6>
+                   </div>
+                   <div class="col-xs-12 col-md-6 bordered right-column">
+                     <$client.env.FormField.c05_Delete_Hrs_from_Batch.HTML>
+                   </div>
+                  </div>
+                  <div class="row flexLarge">
+                   <div class="col-xs-12 col-md-6 bordered text-cell">
+                     <h6><b>Skip Forecast</b></h6>
+                   </div>
+                   <div class="col-xs-12 col-md-6 bordered right-column">
+                     <$client.env.FormField.c06_Skip_Forecast.HTML>
+                   </div>
+                  </div>
+                </div> -->
+
+
+
+
+
+          <div class='row'>
+            &nbsp;
+          </div>
+
+          <div class='row'>
+            &nbsp;
+          </div>
+
+          <div class='row'>
+            &nbsp;
+          </div>
+
+          <div class='row'>
+            <div class='col-xs-6 col-sm-6 col-md-2 col-lg-2 small font-arial'>
+              <p>4827-5541-8234.1</p>
+            </div>
+
+            <div class='col-xs-6 col-sm-6 col-md-10 col-lg-10 logo-right'>
+              <img class='img' src='img/footer.png' alt='logo' width='80px'>
+            </div>
+          </div
+
+
+ 
+
+                  <br><hr class="lifesuite__hr"> 
+
+                  <$client.env.FormButtons> 
+
+              </div> 
+
+</div> 
+
+<div style="display:none"> 
+
+<$client.env.FormField.e01_Signature_Verification.HTML>
+<$client.env.FormField.e02_Signature_Verification.HTML>
+
+</div> 
+
+</form> 
+
+<SCRIPT> 
+
+    ChangeCalendarIcons(); //for popup calendar  
+
+  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+/* RESPONSIVE eFORM FIELDS STYLE */ 
+
+$(window).load(function() { 
+        $("input[type=text]").addClass('lifesuite__text-input'); 
+        $("input[type=text].hasDatepicker").addClass('dateField'); 
+        $("select").addClass('lifesuite__select-input'); 
+        $("input[type=radio]").addClass('lifesuite__radio'); 
+        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+        $("textarea").addClass('lifesuite__textarea-input'); 
+        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+});  
+
+ 
+//Fixes to modal issue when viewing in mobile devices 
+$( window ).resize(function() { 
+document.getElementById('over').style.width=''; 
+}); 
+
+ 
+
+///////////////////////////////////////////////////////////
+// checkbox like radio
+///////////////////////////////////////////////////////////
+ function toggleCheckbox(el) { 
+    var rdoName = el.name; 
+    var rdoGroup = document.frmForm.elements[rdoName]; 
+    for (i = 0; i < rdoGroup.length; i++) { 
+        el_ch = rdoGroup[i]; 
+        if (el_ch.value != el.value) 
+            el_ch.checked = false; 
+    } 
+} 
+
+/////////////////////////////////////////////////////////////
+//disable datepicker depending on role
+/////////////////////////////////////////////////////////////
+<$client.env.eval((client.role.HR_Coordinators>0)?'disableCalButton(\'ApproverDate\');':'')> 
+<$client.env.eval((client.role.Approver>0)?'disableCalButton(\'HRCoordDate\');':'')> 
+
+//hide section and remove value
+function hideShowSect(el) { 
+
+    var rdoName = el.dataset.target; 
+    var targetClass = document.getElementsByClassName(rdoName);
+    var inputChild = document.getElementsByClassName(rdoName)[0].getElementsByTagName("input");
+    var dropDownChild = document.getElementsByClassName(rdoName)[0].getElementsByTagName("select");
+
+        for (i=0;i<targetClass.length;i++) {
+          if(el.checked) {
+             targetClass[i].style.display = "block";
+          } else {
+             targetClass[i].style.display = "none";
+          }
+        }  
+
+        for (x=0;x<inputChild.length;x++) {
+          if(!el.checked) {
+             inputChild[x].value= "";
+          } 
+        }  
+
+        for (x=0;x<dropDownChild.length;x++) {
+          if(!el.checked) {
+             dropDownChild[x].value= "";
+          } 
+        }  
+} 
+
+//auto populate checkbox is checked
+$("[name*='a04_Newhire_Rehire']").each( function() {
+var classYear = "<$client.tEventCategories_Category_23.Value>";
+  var thisGroup = this.name; 
+  var targetClass = $(this).data("target"); 
+  $('[name="'+thisGroup+'"]').click(function() { //click
+        if($('[name="'+thisGroup+'"]').is(':checked') == true){
+          $('.'+targetClass).css("display", "block");
+                               $('[name$="a11_Date_of_Birth_display"]').val("<$client.env.eval(client.tForWhomUserInfo.DOB.subString(5,6))>/<$client.env.eval(client.tForWhomUserInfo.DOB.subString(8,9))>/<$client.env.eval(client.tForWhomUserInfo.DOB.subString(0,3))>");
+          $('[name$="a13_Social_Security"]').val("<$client.env.eval(client.tForWhomUserInfo.SSNO.length()>0?'<$client.env.eval(client.tForWhomUserInfo.SSNO.subString(0,2))>-<$client.env.eval(client.tForWhomUserInfo.SSNO.subString(3,4))>-<$client.env.eval(client.tForWhomUserInfo.SSNO.subString(5,8))>':'')>");
+                           $('[name$="a06_Annual_Salary"]').val("<$client.tForWhomUserInfo.Annual_Salary>");
+          $('[name$="a08_Semi_Monthly_Hourly"]').val("<$client.tForWhomUserInfo.Semi_Monthly_Hourly>");
+                       $('[name$="a14_Billing_Rate"]').val("<$client.tForWhomUserInfo.Billing_Rate>");
+          $('[name$="a05_Dept_Practice_Area"]').val("<$client.tForWhomUserInfo.Practice_Area_Department>");
+          $('[name$="a07_Title"]').val("<$client.tForWhomUserInfo.Job_Title>");
+                         $('[name$="a10_FLSA_Status"]').val("<$client.tForWhomUserInfo.FLSA_Status>");
+          $('[name$="a12_Full_Part_Time"]').val("<$client.tForWhomUserInfo.Full_time_Part_time>");
+if (classYear == "Advisor" || classYear == "Associate" || classYear == "Consultant Advisor" || classYear == "Consultant Attorney" || classYear == "Fall Associate" || classYear == "Law Clerk" || classYear == "Of Counsel" || classYear == "Partner" || classYear == "Senior Advisor" || classYear == "Special Counsel" || classYear == "Staff Attorney" || classYear == "Summer Associate") {
+document.getElementsByClassName("classYear")[0].style.display = "block";
+$('[name$="a15_Class_Year"]').val("<$client.tForWhomUserInfo.Class_Year>");
+} else {
+document.getElementsByClassName("classYear")[0].style.display = "none";
+$('[name$="a15_Class_Year"]').val("");
+}
+        } else {
+          $('.'+targetClass).css("display", "none");
+        }
+       });
+    $('[name="'+thisGroup+'"]').each(function() { //onload
+        if($('[name="'+thisGroup+'"]').is(':checked') == true){
+          $('.'+targetClass).css("display", "block");
+       setTimeout(function(){  
+                     $('[name$="a11_Date_of_Birth_display"]').val("<$client.env.eval(client.tForWhomUserInfo.DOB.subString(5,6))>/<$client.env.eval(client.tForWhomUserInfo.DOB.subString(8,9))>/<$client.env.eval(client.tForWhomUserInfo.DOB.subString(0,3))>");
+       }, 1000);
+          $('[name$="a13_Social_Security"]').val("<$client.env.eval(client.tForWhomUserInfo.SSNO.length()>0?'<$client.env.eval(client.tForWhomUserInfo.SSNO.subString(0,2))>-<$client.env.eval(client.tForWhomUserInfo.SSNO.subString(3,4))>-<$client.env.eval(client.tForWhomUserInfo.SSNO.subString(5,8))>':'')>");
+          $('[name$="a06_Annual_Salary"]').val("<$client.tForWhomUserInfo.Annual_Salary>");
+                $('[name$="a08_Semi_Monthly_Hourly"]').val("<$client.tForWhomUserInfo.Semi_Monthly_Hourly>");
+          $('[name$="a14_Billing_Rate"]').val("<$client.tForWhomUserInfo.Billing_Rate>");
+                  $('[name$="a05_Dept_Practice_Area"]').val("<$client.tForWhomUserInfo.Practice_Area_Department>");
+          $('[name$="a07_Title"]').val("<$client.tForWhomUserInfo.Job_Title>");
+                 $('[name$="a10_FLSA_Status"]').val("<$client.tForWhomUserInfo.FLSA_Status>");
+          $('[name$="a12_Full_Part_Time"]').val("<$client.tForWhomUserInfo.Full_time_Part_time>");
+if (classYear == "Advisor" || classYear == "Associate" || classYear == "Consultant Advisor" || classYear == "Consultant Attorney" || classYear == "Fall Associate" || classYear == "Law Clerk" || classYear == "Of Counsel" || classYear == "Partner" || classYear == "Senior Advisor" || classYear == "Special Counsel" || classYear == "Staff Attorney" || classYear == "Summer Associate") {
+document.getElementsByClassName("classYear")[0].style.display = "block";
+$('[name$="a15_Class_Year"]').val("<$client.tForWhomUserInfo.Class_Year>");
+} else {
+document.getElementsByClassName("classYear")[0].style.display = "none";
+$('[name$="a15_Class_Year"]').val("");
+}
+        } else {
+          $('.'+targetClass).css("display", "none");
+        }
+       });
+  });
+
+//auto populate checkbox is checked
+$("[name*='a16_Change_of_Status']").each( function() {
+  var thisGroup = this.name; 
+  $('[name="'+thisGroup+'"]').click(function() { //click
+        if($('[name="'+thisGroup+'"]').is(':checked') == true){
+          $('[name$="a17_Current_FLSA_Status"]').val("<$client.tForWhomUserInfo.FLSA_Status>");
+          $('[name$="a19_Current_Full_Part_Time"]').val("<$client.tForWhomUserInfo.Full_time_Part_time>");
+          $('[name$="a21_Current_Dept_Practice_Area"]').val("<$client.tForWhomUserInfo.Practice_Area_Department>");
+          $('[name$="a23_Current_Title"]').val("<$client.tForWhomUserInfo.Job_Title>");
+          $('[name$="a27_Current_Billing_Rate"]').val("<$client.tForWhomUserInfo.Billing_Rate>");
+        }
+       });
+
+    $('[name="'+thisGroup+'"]').each(function() { //onload
+        if($('[name="'+thisGroup+'"]').is(':checked') == true){
+          $('[name$="a17_Current_FLSA_Status"]').val("<$client.tForWhomUserInfo.FLSA_Status>");
+          $('[name$="a19_Current_Full_Part_Time"]').val("<$client.tForWhomUserInfo.Full_time_Part_time>");
+          $('[name$="a21_Current_Dept_Practice_Area"]').val("<$client.tForWhomUserInfo.Practice_Area_Department>");
+          $('[name$="a23_Current_Title"]').val("<$client.tForWhomUserInfo.Job_Title>");
+          $('[name$="a27_Current_Billing_Rate"]').val("<$client.tForWhomUserInfo.Billing_Rate>");
+        }
+       });
+  });
+   
+//hide section and remove value
+hideShowSect($('[name*="a16_Change_of_Status"]')[0]);
+hideShowSect($('[name*="a35_Departure"]')[0]);
+hideShowSect($('[name*="a41_Leave"]')[0]);
+hideShowSect($('[name*="a48_Other"]')[0]);
+
+
+// SERVICES-41382
+const toggleBonuses = function(chkd) {
+  "use strict";
+  if (chkd) {
+    document.querySelector('.targetSect3').classList.remove('hide');
+    document.querySelector('[name$=".a32_Bonus_Type"]').value = '<$client.tForWhomUserInfo.Bonus_Select>';
+    document.querySelector('[name$=".a34_Details"]').value = '<$client.tForWhomUserInfo.Bonus_Details>';
+    document.querySelector('[name$=".a33_Bonus_Amount"]').value = '<$client.tForWhomUserInfo.Bonus_Amt>';
+    return;
+  }
+  document.querySelector('.targetSect3').classList.add('hide');
+  document.querySelectorAll('[name$=".a32_Bonus_Type"], [name$=".a34_Details"], [name$=".a33_Bonus_Amount"]').forEach(function(bunos) {
+  bunos.value = '';
+  });
+}
+document.querySelector('[name$="a31_Bonus"]').addEventListener('change', function() {
+  toggleBonuses(this.checked);
+});
+setTimeout(function() {
+  toggleBonuses(document.querySelector('[name$="a31_Bonus"]').checked);
+}, 1000);
+
+
+
+
+
+</SCRIPT>

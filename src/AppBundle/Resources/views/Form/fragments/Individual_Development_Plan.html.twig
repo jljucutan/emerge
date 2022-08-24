@@ -1,0 +1,824 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid form-horizontal">
+	<header class="row mb-20">
+		<div class="col-lg-12">
+			<div class="col-lg-12">
+				<div class="logo-wrapper">
+					<img src="<$link;/main/RedCarpet/FormTemplates/Individual_Development_Plan/img/rockwell_automation_logo.jpg>" alt="Rockwell Automation" class="img-responsive">
+				</div>
+			</div>
+			<div class="col-lg-12">
+				<h3 class="text-center">
+					Individual Development Plan
+				</h3>
+			</div>
+		</div>
+	</header>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="inner-wrapper center-block">
+				<div class="form-group">
+					<label class="control-label col-lg-4">
+						Name:
+					</label>
+					<div class="col-lg-8">
+						<$client.env.FormField.a01_name.HTML>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-4">
+						Date:
+					</label>
+					<div class="col-lg-8">
+						<$client.env.FormField.a02_date.HTML>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-4">
+						Current Position:
+					</label>
+					<div class="col-lg-8">
+						<$client.env.FormField.a03_Current_Position.HTML>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-4">
+						Desired Position:
+					</label>
+					<div class="col-lg-8">
+						<$client.env.FormField.a04_Desired_Position.HTML>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-lg-4">
+						Development Goals and Priorities:
+					</label>
+					<div class="col-lg-8 mb-30">
+						<$client.env.FormField.a05_Development_Goals_and_Priorities.HTML>
+					</div>
+				</div>
+				<h5>
+					<strong>Objectives</strong>
+				</h5>
+				<div class="mb-30">
+					<hr>
+				</div>
+				<!-- div class="form-group">
+					<div class="col-lg-8 col-lg-offset-4 mb-20">
+						<button id="view-development-examples" class="lifesuite__button primary">View Development Examples</button>
+					</div>
+				</div -->
+
+				<div id="development-objective">
+					<div class="form-group">
+						<label class="control-label col-lg-4">
+							<strong>Development Objective:</strong>
+						</label>
+						<div class="col-lg-8">
+							<$client.env.FormField.a06_Development_Objective.HTML>
+						</div>
+					</div>
+					<div class="action-item-container">
+						<div class="form-group">
+							<label class="control-label col-lg-4">
+								Action Item:
+							</label>
+							<div class="col-lg-8">
+								<$client.env.FormField.a07_Action_Item.HTML>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-lg-4">
+								Due Date:
+							</label>
+							<div class="col-lg-4">
+								<$client.env.FormField.a08_Due_Date.HTML>
+							</div>
+							<div class="col-lg-4">
+								<button class="lifesuite__button primary action-item-controller pull-right">Add Action Item</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-lg-8 col-lg-offset-4 mb-30">
+								<button class="plan-controllers lifesuite__button primary pull-right">Add to my Plan</button>
+							</div>
+						</div>
+					</div>
+					<div class="action-item-container additional-action-item">
+						<div class="form-group">
+							<label class="control-label col-lg-4">
+								Action Item:
+							</label>
+							<div class="col-lg-8">
+								<$client.env.FormField.a09_Action_Item.HTML>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-lg-4">
+								Due Date:
+							</label>
+							<div class="col-lg-8">
+								<$client.env.FormField.a10_Due_Date.HTML>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-lg-8 col-lg-offset-4 mb-30">
+								<button class="plan-controllers lifesuite__button primary pull-right">Add to my Plan</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="subdevelopment-objective">
+						<div class="form-group">
+							<label class="control-label col-lg-4">
+								<strong>Development Objective:</strong>
+							</label>
+							<div class="col-lg-8">
+								<div class="close-objective-container">
+									<button class="btn btn-sm btn-default">&times;</button>
+								</div>
+								<$client.env.FormField.a06_Development_Objective_2.HTML>
+							</div>
+						</div>
+						<div class="action-item-container">
+							<div class="form-group">
+								<label class="control-label col-lg-4">
+									Action Item:
+								</label>
+								<div class="col-lg-8">
+									<$client.env.FormField.a07_Action_Item_2.HTML>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-lg-4">
+									Due Date:
+								</label>
+								<div class="col-lg-4">
+									<$client.env.FormField.a08_Due_Date_2.HTML>
+								</div>
+								<div class="col-lg-4">
+									<button class="lifesuite__button primary action-item-controller pull-right" disabled="">Add Action Item</button>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-8 col-lg-offset-4 mb-30">
+									<button class="plan-controllers lifesuite__button primary pull-right" disabled>Add to my Plan</button>
+								</div>
+							</div>
+						</div>
+						<div class="action-item-container additional-action-item">
+							<div class="form-group">
+								<label class="control-label col-lg-4">
+									Action Item:
+								</label>
+								<div class="col-lg-8">
+									<$client.env.FormField.a09_Action_Item_2.HTML>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-lg-4">
+									Due Date:
+								</label>
+								<div class="col-lg-8">
+									<$client.env.FormField.a10_Due_Date_2.HTML>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-8 col-lg-offset-4 mb-30">
+									<button class="plan-controllers lifesuite__button primary pull-right" disabled>Add to my Plan</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="subdevelopment-objective">
+						<div class="form-group">
+							<label class="control-label col-lg-4">
+								<strong>Development Objective:</strong>
+							</label>
+							<div class="col-lg-8">
+								<div class="close-objective-container">
+									<button class="btn btn-sm btn-default">&times;</button>
+								</div>
+								<$client.env.FormField.a06_Development_Objective_3.HTML>
+							</div>
+						</div>
+						<div class="action-item-container">
+							<div class="form-group">
+								<label class="control-label col-lg-4">
+									Action Item:
+								</label>
+								<div class="col-lg-8">
+									<$client.env.FormField.a07_Action_Item_3.HTML>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-lg-4">
+									Due Date:
+								</label>
+								<div class="col-lg-4">
+									<$client.env.FormField.a08_Due_Date_3.HTML>
+								</div>
+								<div class="col-lg-4">
+									<button class="lifesuite__button primary action-item-controller pull-right" disabled>Add Action Item</button>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-8 col-lg-offset-4 mb-30">
+									<button class="plan-controllers lifesuite__button primary pull-right" disabled>Add to my Plan</button>
+								</div>
+							</div>
+						</div>
+						<div class="action-item-container additional-action-item">
+							<div class="form-group">
+								<label class="control-label col-lg-4">
+									Action Item:
+								</label>
+								<div class="col-lg-8">
+									<$client.env.FormField.a09_Action_Item_3.HTML>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="control-label col-lg-4">
+									Due Date:
+								</label>
+								<div class="col-lg-8">
+									<$client.env.FormField.a10_Due_Date_3.HTML>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-8 col-lg-offset-4 mb-30">
+									<button class="plan-controllers lifesuite__button primary pull-right" disabled>Add to my Plan</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-lg-8 col-lg-offset-4 mb-20">
+							<button id="add-development-objectives" class="lifesuite__button primary">Add Development Objective</button>
+						</div>
+					</div>
+
+				</div>
+
+				<div id="development-plan">
+					<div class="mb-30">
+						<hr>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-lg-4">
+							<strong>Development Objective:</strong>
+						</label>
+						<div class="col-lg-8 mb-30">
+							<$client.env.FormField.a11_Development_Objective.HTML>
+						</div>
+					</div>
+					<div id="action-item-list-container-1"></div>
+					<div id="progress-notes-container-1" class="progress-notes-container">
+						<div class="form-group progress-note">
+							<label class="control-label col-lg-4">
+								<div class="mb-20">
+									<strong>Progress Notes:</strong>
+								</div>
+							</label>
+						</div>
+						<div class="progress-notes-comments-container"></div>
+						<div class="form-group">
+							<div class="col-lg-8 col-lg-offset-4 mb-30">
+								<button data-target-field="#a13_Action_Item_Comments" class="lifesuite__button primary">Add Progress Notes</button>
+							</div>
+						</div>
+					</div>
+					<div id="action-item-list-container-2"></div>
+					<div id="progress-notes-container-2" class="progress-notes-container">
+						<div class="form-group progress-note">
+							<label class="control-label col-lg-4">
+								<div class="mb-20">
+									<strong>Progress Notes:</strong>
+								</div>
+							</label>
+						</div>
+						<div class="progress-notes-comments-container"></div>
+						<div class="form-group">
+							<div class="col-lg-8 col-lg-offset-4 mb-30">
+								<button data-target-field="#a15_Action_Item_Comments" class="lifesuite__button primary">Add Progress Notes</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-lg-4">
+								<strong>Date Completed:</strong>
+							</label>
+							<div class="col-lg-8 mb-30">
+								<$client.env.FormField.a16_Completed_Date.HTML>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+
+				<div class="row training-section">
+					<h5>
+						<strong>Training</strong>
+					</h5>
+					<div class="mb-30">
+						<hr>
+					</div>
+					<div id="planned-training" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="row">
+							<div class="col-lg-12 text-center">
+								<h5>
+									<strong>Planned Training:</strong>
+								</h5>
+								<div class="mb-20">
+									<hr>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="recommended-training" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+						<div class="row">
+							<div class="col-lg-12 text-center">
+								<h5>
+									<strong>Recommended Training:</strong>
+								</h5>
+								<div class="mb-20">
+									<hr>
+								</div>
+							</div>
+						</div>
+						<div class="row available-training">
+							<div class="col-lg-12">
+								<div class="available-training-item">
+									<div class="row">
+										<div class="col-lg-7">
+											<p>
+												Managing for Excellence<br>
+												<small>
+													This course is designed to help mentor and prepare associates for challenges in management roles.
+												</small>
+											</p>
+										</div>
+										<div class="col-lg-5 col-10">
+											<button class="lifesuite__button primary add-training">Add to my Plan</button>
+											<button class="lifesuite__button alt-primary remove-training">Remove</button>
+										</div>
+									</div>
+									<div class="row mb-20 completed-date-section">
+										<div class="col-lg-4">
+											<label>
+												Date Completed:
+											</label>
+										</div>
+										<div class="col-lg-8">
+											<$client.env.FormField.a16_Completed_Date_2.HTML>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row available-training">
+							<div class="col-lg-12">
+								<div class="available-training-item">
+									<div class="row">
+										<div class="col-lg-7">
+											<p>
+												TimeKeeping <br>
+												<small>
+													This course is designed to introduce responsibilites of management roles within the system.
+												</small>
+											</p>
+										</div>
+										<div class="col-lg-5 col-10">
+											<button class="lifesuite__button primary add-training">Add to my Plan</button>
+											<button class="lifesuite__button alt-primary remove-training">Remove</button>
+										</div>
+									</div>
+									<div class="row mb-20 completed-date-section">
+										<div class="col-lg-4">
+											<label>
+												Date Completed:
+											</label>
+										</div>
+										<div class="col-lg-8">
+											<$client.env.FormField.a16_Completed_Date_3.HTML>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row available-training">
+							<div class="col-lg-12">
+								<div class="available-training-item">
+									<div class="row">
+										<div class="col-lg-7">
+											<p>
+												Security <br>
+												<small>
+													This course is designed to reitterate Rockwell Automation's security requirements and compliance.
+												</small>
+											</p>
+										</div>
+										<div class="col-lg-5 col-10">
+											<button class="lifesuite__button primary add-training">Add to my Plan</button>
+											<button class="lifesuite__button alt-primary remove-training">Remove</button>
+										</div>
+									</div>
+									<div class="row mb-20 completed-date-section">
+										<div class="col-lg-4">
+											<label>
+												Date Completed:
+											</label>
+										</div>
+										<div class="col-lg-8">
+											<$client.env.FormField.a16_Completed_Date_4.HTML>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div> <!-- inner wrapper end -->
+		</div>
+	</div>
+
+	
+
+	<div class="row">
+		<div class="col-lg-12">
+			<p class="invisible">
+				We do not recommend you have more than two development objectives at one time. However, your development is a continuous process. Once you complete one, please work with your manager and HR partner to add another.
+			</p>
+		</div>
+	</div>
+</main>
+
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div class="hide">
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.today.HTML>
+	<$client.env.FormField.a12_Action_Item.HTML>
+	<$client.env.FormField.a13_Action_Item_Comments.HTML>
+	<$client.env.FormField.a14_Action_Item.HTML>
+	<$client.env.FormField.a15_Action_Item_Comments.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date-script.js>"></script> 
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const renderTemplates = function(tmplPath, target, data, append) {
+    "use strict";
+    let appendHTML = (append === true) ? true : false;
+	$.get(tmplPath, function(tmpl) {
+		let rendered = Mustache.render(tmpl, data);
+		if (appendHTML) {
+			target.append(rendered);
+		}
+		else {
+			target.html(rendered);
+		}
+		if (data.actionItemDate) {
+			$('[data-name="' + data.actionItemDate + '"]').formatDatePicker().makeReadonly();
+		}
+		$(document.getElementsByName(data.progressNoteDateField)).formatDatePicker({setDate: new Date()}).makeReadonly();
+	})
+	.done(function() {
+		return true;
+	});
+}
+const renderComments = function(tmplPath, target, data) {
+    "use strict";
+	$.get(tmplPath, function(tmpl) {
+		let i;
+		for (i = 0; i < data.length; i++) {
+			let rendered = Mustache.render(tmpl, data[i]);
+			target.append(rendered);
+			$(document.getElementsByName(data[i].progressNoteDateField)).formatDatePicker({setDate: new Date()}).makeReadonly();
+		}
+	});
+}
+const disableCalButton = function (el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+const genID = function() {
+    "use strict";
+	return Math.random().toString(36).substring(7);
+}
+const disableButton = function(el) {
+    "use strict";
+	el.removeClass('primary').prop('disabled', true);
+}
+const enableButton = function(el) {
+    "use strict";
+	el.addClass('primary').prop('disabled', false);
+}
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $(".modal").hide();
+});
+
+$(document).on('ready', function() {
+    "use strict";
+    /**
+     * SERVICES-37797 | Rockwell Automation Demo Form
+     */
+    $('#view-development-examples').on('click', function(e) {
+	    e.preventDefault();
+	    $('#development-objective').fadeIn(500);
+	    disableButton($(this));
+	});
+	$('#add-development-objectives').on('click', function(e) {
+		e.preventDefault();
+		if ($('.subdevelopment-objective:hidden').length) {
+			$($('.subdevelopment-objective:hidden')[0]).show();
+		}
+		if ($('.subdevelopment-objective:hidden').length <= 0) {
+			disableButton($(this));
+		}
+	});
+	let actionItemsTemplatePath = "<$link;/main/RedCarpet/FormTemplates/Individual_Development_Plan/templates/action-items.mst>";
+	let commentsTemplatePath = "<$link;/main/RedCarpet/FormTemplates/Individual_Development_Plan/templates/progress-notes.mst>";
+
+	$('.plan-controllers').on('click', function(e) {
+		e.preventDefault();
+		$('#development-plan, #planned-training, #recommended-training, .training-section').fadeIn(500);
+	    disableButton($(this));
+		// Populate development objective
+		$('[name$=".a11_Development_Objective"]').val($('[name$=".a06_Development_Objective"]').val());
+		let actionItemData = $(this).closest('.action-item-container').find('input').serializeArray();
+		actionItemData.push({'origin': $(this).prop('id')});
+		if ($('[name$=".a12_Action_Item"]').val().length < 1) {
+			$('[name$=".a12_Action_Item"]').val(JSON.stringify(actionItemData));
+			renderTemplates(actionItemsTemplatePath, $('#action-item-list-container-1'), {
+				actionItemName: actionItemData[0].name,
+				actionItemNameValue: actionItemData[0].value,
+				actionItemDate: actionItemData[1].name,
+				actionItemDateValue: actionItemData[1].value,
+			});
+			$('#progress-notes-container-1').show();
+			return;
+		}
+		if ($('[name$=".a14_Action_Item"]').val().length < 1) {
+			$('[name$=".a14_Action_Item"]').val(JSON.stringify(actionItemData));
+			renderTemplates(actionItemsTemplatePath, $('#action-item-list-container-2'), {
+				actionItemName: actionItemData[0].name,
+				actionItemNameValue: actionItemData[0].value,
+				actionItemDate: actionItemData[1].name,
+				actionItemDateValue: actionItemData[1].value,
+			});
+			$('#progress-notes-container-2').show();
+			return;
+		}
+	});
+	$('.progress-notes-container').on('click', 'button', function(e) {
+		e.preventDefault();
+		let progressNotesContainer = $(this).closest('.progress-notes-container');
+		let progressCommentsContainer = progressNotesContainer.find('.progress-notes-comments-container');
+		progressNotesContainer.find('.progress-note').fadeIn();
+		renderTemplates(commentsTemplatePath, progressCommentsContainer, {
+			progressNoteDateField: "progress-note-date-" + genID(),
+			progressNoteNameField: "progress-note-name-" + genID(),
+			progressNoteNameValue: "<$client.account.username_first> <$client.account.username>",
+			progressNoteCommentField: "progress-note-comment-" + genID(),
+			progressAuthorID: "<$client.env.eval(account.userguid)>",
+			progressNoteTargetField: $(this).data('target-field')
+		}, true);
+		if (progressCommentsContainer.children().size() >= 3) {
+		    disableButton($(this));
+		}
+	});
+	
+	// update comments persistence
+	$('.progress-notes-comments-container').on('paste keyup', 'textarea', function() {
+		let commentsStack = [];
+		let progressNotesContainer = $(this).closest('.progress-notes-comments-container');
+		$.each(progressNotesContainer.children(), function(k,v){
+			commentsStack.push($(v).find('input, textarea').serializeArray());
+		});
+		$($(this).data('target-update')).val(JSON.stringify(commentsStack));
+	});
+	// display hidden sections onload if forms is already filled out
+	if ($('[name$=".a12_Action_Item"]').val().length > 0 || $('[name$=".a14_Action_Item"]').val().length > 0) {
+		$('#development-objective, #development-plan, .available-training, .training-section, #planned-training, #recommended-training').show();
+		if ($('[name$=".a12_Action_Item"]').val().length > 0) {
+			let actionItemData = JSON.parse($('[name$=".a12_Action_Item"]').val());
+			$('[name$=".a12_Action_Item"]').val(JSON.stringify(actionItemData));
+			renderTemplates(actionItemsTemplatePath, $('#action-item-list-container-1'), {
+				actionItemName: actionItemData[0].name,
+				actionItemNameValue: actionItemData[0].value,
+				actionItemDate: actionItemData[1].name,
+				actionItemDateValue: actionItemData[1].value,
+			});
+			$('#progress-notes-container-1').show();
+		    disableButton($(document.getElementById(actionItemData[2].origin)));
+		}
+		if ($('[name$=".a14_Action_Item"]').val().length > 0) {
+			let actionItemData = JSON.parse($('[name$=".a14_Action_Item"]').val());
+			$('[name$=".a14_Action_Item"]').val(JSON.stringify(actionItemData));
+			renderTemplates(actionItemsTemplatePath, $('#action-item-list-container-2'), {
+				actionItemName: actionItemData[0].name,
+				actionItemNameValue: actionItemData[0].value,
+				actionItemDate: actionItemData[1].name,
+				actionItemDateValue: actionItemData[1].value,
+			});
+			$('#progress-notes-container-2').show();
+		    disableButton($(document.getElementById(actionItemData[2].origin)));
+		}
+	}
+	// load comments onload
+	if ($('#a13_Action_Item_Comments').val().length > 0) {
+		$('#progress-notes-container-1 .progress-note').show();
+		let progressCommentsContainer = $('#progress-notes-container-1 > .progress-notes-comments-container');
+		let comments = JSON.parse($('#a13_Action_Item_Comments').val());
+		let data = [];
+		for (let i = 0; i < comments.length; i++) {
+			let commentReadonly = (comments[i][2].value !== "<$client.env.eval(account.userguid)>")?' readonly':'';
+			data.push({
+				progressNoteDateField: comments[i][0].name,
+				progressNoteDateValue: comments[i][0].value,
+				progressNoteNameField: comments[i][1].name,
+				progressNoteNameValue: comments[i][1].value,
+				progressAuthorID: comments[i][2].value,
+				progressNoteCommentField: comments[i][3].name,
+				progressNoteCommentValue: comments[i][3].value,
+				progressNoteTargeField: $('#progress-notes-container-1 button').data('target-field'),
+				progressNoteReadonly: commentReadonly,
+			});
+		}
+		renderComments(commentsTemplatePath, progressCommentsContainer, data);
+		if (comments.length >= 4) {
+			$('#progress-notes-container-1 button').removeClass('primary').prop('disabled', true);
+		}
+	}
+	if ($('#a15_Action_Item_Comments').val().length > 0) {
+		$('#progress-notes-container-2 .progress-note').show();
+		let progressCommentsContainer = $('#progress-notes-container-2 > .progress-notes-comments-container');
+		let comments = JSON.parse($('#a15_Action_Item_Comments').val());
+		let data = [];
+		for (let i = 0; i < comments.length; i++) {
+			let commentReadonly = (comments[i][2].value !== "<$client.env.eval(account.userguid)>")?' readonly':'';
+			data.push({
+				progressNoteDateField: comments[i][0].name,
+				progressNoteDateValue: comments[i][0].value,
+				progressNoteNameField: comments[i][1].name,
+				progressNoteNameValue: comments[i][1].value,
+				progressAuthorID: comments[i][2].value,
+				progressNoteCommentField: comments[i][3].name,
+				progressNoteCommentValue: comments[i][3].value,
+				progressNoteTargeField: $('#progress-notes-container-2 button').data('target-field'),
+				progressNoteReadonly: commentReadonly,
+			});
+		}
+		renderComments(commentsTemplatePath, progressCommentsContainer, data);
+		if (comments.length >= 4) {
+			$('#progress-notes-container-2 button').removeClass('primary').prop('disabled', true);
+		}
+	}
+
+	// move from available training column to planned training
+	$('.add-training').on('click', function(e) {
+		e.preventDefault();
+		let trainingContainer = $(this).closest('.available-training');
+		trainingContainer
+			.appendTo($('#planned-training'))
+			.find('.completed-date-section').show();
+		trainingContainer.find('.remove-training').show();
+		$(this).hide();
+	});
+	// move from available planned training column to available training
+	$('.remove-training').on('click', function(e) {
+		e.preventDefault();
+		let trainingContainer = $(this).closest('.available-training');
+		trainingContainer
+			.appendTo($('#recommended-training'))
+			.find('.completed-date-section').hide()
+			.find('input')
+			.datepicker('setDate', null);
+		trainingContainer.find('.add-training').show();
+		$(this).hide();
+	});
+
+	// display additional action item
+	$('.action-item-controller').on('click', function(e) {
+		e.preventDefault();
+		$(this).closest('.action-item-container').next().show();
+		disableButton($(this));
+	});
+
+	// transfer training to planned row if filled out
+	$.each($('.available-training'), function(k,v) {
+		if ($(v).find('input').val().length > 0) {
+			$(v).find('.add-training').trigger('click');
+		}
+	});
+
+	$('.close-objective-container').on('click', 'button', function(e) {
+		e.preventDefault();
+		$(this).closest('.subdevelopment-objective').fadeOut(500);
+		enableButton($('#add-development-objectives'));
+	});
+
+	// format date skin
+	$('[name$=".a02_date"]').formatDatePicker({setDate: new Date()}).makeReadonly();
+	$('[name$=".a08_Due_Date"], [name$=".a10_Due_Date"]').formatDatePicker();
+	$('[name$=".a16_Completed_Date"], [name$=".a16_Completed_Date_2"], [name$=".a16_Completed_Date_3"], [name$=".a16_Completed_Date_4"]').formatDatePicker();
+
+	// display filled out development objectives
+	$.each($('.subdevelopment-objective'), function() {
+		if (($(this).find('input.dateField:eq(0)').val().length > 0) || ($(this).find('input.dateField:eq(1)').val().length > 0)) {
+			$(this).show();
+		}
+	});
+
+	// display filled out additional action items
+	$.each($('.additional-action-item, .action-item-container'), function() {
+		if ($(this).find('input.dateField').val().length > 0) {
+			disableButton($(this).show().closest('.action-item-container').prev().find('.action-item-controller'));
+			disableButton($(this).find('.plan-controllers'));
+		}
+	});
+
+});
+</script>

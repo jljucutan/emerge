@@ -1,0 +1,252 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h2 class="lifesuite__h2 ml-0">
+                    <strong>Electronic Signature</strong>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','date');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12"> 
+                <strong>Type your Name:</strong> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','SignerMan','modal2','over','sv2','date2');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp; 
+                    <input id="clear-sig-2" type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','date2');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="italy-offer-letter" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <template id="fragment-1">
+        <p>&nbsp;</p>
+        <p class="text-center mb-4">
+            <strong>
+                <u>Política de vacaciones en todas las entidades de PayPal Inc. en España.</u>
+            </strong>
+        </p>
+        <p class="hide"></p>
+        <p>Con el objeto de gestionar el periodo vacacional de manera más eficiente, la empresa ha optado por implementar una política de vacaciones en todas las entidades sociales que conforman PayPal Inc. en España.</p>
+        <p>El propósito de esta política de vacaciones es detallar cómo se gestiona el periodo de vacaciones del empleado en nuestras entidades en este país.</p>
+        <p>Todos los empleados de PayPal Inc. en España disfrutarán de unas vacaciones anuales de 30 días naturales, equivalentes a 22 días laborables. El personal contratado con menos de un año tiene derecho a un número de días proporcional al período de tiempo contratado.</p>
+        <p>El calendario de vacaciones se extiende desde el mes de enero hasta el mes de diciembre de cada año natural. Los empleados solicitarán disfrutar los días de vacaciones a los que tengan derecho dentro del año natural en curso.</p>
+        <p>No obstante, entendemos que hay momentos en los que al trabajador, no le es posible, o le conviene una diferente planificación de su tiempo anual de vacaciones. Por ello, PayPal Inc. desea mostrar flexibilidad y apoyo a nuestros empleados en este aspecto incorporando la opción, a voluntad del trabajador, de poder disfrutar de un máximo de 5 días laborables en el año siguiente. Estos 5 días laborables de vacaciones acumulados en el año siguiente deberán disfrutarse no más tarde del 30 de marzo de dicho año. </p>
+        <p class="mb-5">Aquellos empleados que estén en una situación de extinción de contrato con la empresa tendrán derecho a la cantidad proporcional de días de vacaciones generados durante la duración de su contrato en ese año natural. Los empleados deberán disfrutar de las vacaciones anuales antes de la fecha de extinción de su contrato. En caso de que esto no fuera posible, se procederá a su liquidación junto con los haberes que correspondan, en el momento de la extinción del contrato.</p>
+        <p class="hide">&nbsp;</p>
+        <p>Firmado,</p>
+        <p class="mb-5">Employee Central</p>
+        <p class="hide">&nbsp;</p>
+        <p class="mb-5">En Madrid, a <mark><%= Current_Date %></mark></p>
+        <p class="hide"></p>
+        <p class="mb-5">El trabajador que suscribe <mark><$client.env.eval((url.forWhom!=account.userguid)?'':'<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Initial><$client.env.eval(client.tForWhomUserInfo.Middle_Initial.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>')></mark>, con D.N.I/N.I.F. núm. <mark><$client.tForWhomUserInfo.National_ID2></mark>, declara haber recibido de la empresa <mark><$client.tForWhomUserInfo.EnityName></mark> una copia de la política de vacaciones.</p>
+        <p class="hide"></p>
+    </template>
+    
+    <div class="row offer-letter-body">
+        <div class="col-sm-offset-2 col-sm-8">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+    </div>
+    <template id="fragment-2">
+        <p>Firmado y enterado el trabajador: </p>
+        <p class="ml-lg-4"><strong>El Empleado:</strong></p>
+    </template>
+    <div class="row offer-letter-body">
+        <div class="col-lg-12">
+            <div id="incomplete2">
+                <div id="markup2"></div>
+            </div>
+            <div id="complete2"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Firma: <span class="text-red">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature.HTML>
+        </div>
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label class="control-label">Fecha de firma:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Nombre:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name.HTML>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>     
+    <$client.env.FormField.hidden_pg3.HTML>       
+    <$client.env.formfield.EmployeeStamp.html>
+    <$client.env.formfield.RecruiterStamp.html>
+    <$client.env.formfield.SignerMan.html>
+    <$client.env.formfield.CoordinatorStamp.html>
+    <$client.env.formfield.Current_Date.html>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Spain_Vacation_Policy/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Spain_Vacation_Policy/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Spain_Vacation_Policy/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.getElementById('italy-offer-letter');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.signDate, .dateField').parent().find('input').prop('disabled', true);
+  $('#SignerMan').val("<$client.account.username_first> <$client.account.username>");
+});
+
+const data = {
+    'Current_Date': document.getElementById('Current_Date').value,
+    'signatory': ''
+};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+// signature section clearing on task reopen variables
+const isCoordinator = <$client.env.eval((client.role.rc_hrcoordinators==1)?'true':'false')>;
+const isRecruiter = <$client.env.eval((client.tEventManagers_16.UserGuid==account.userguid)?'true':'false')>;
+const isSignatory = <$client.env.eval((client.role.rc_italy_company_signatory>0)?'true':'false')>;
+const isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const EmployeeStamp = "<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>"; 
+
+$('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete', thisForm).on('click', function(e) {
+    let formIsValid = true;
+    const btn = $(this);
+    e.preventDefault();
+    $('input:visible:not(:button), select:visible', thisForm).each(function(k, v) {
+      if (!$("input.calendar_button").length) formIsValid = true;
+      else{
+        if(false == validateField($(v)) && $(v).is(':visible')) {
+          formIsValid = false;
+        }
+      }
+    })
+    if (formIsValid) {
+      switch (btn.attr('id')) {
+        case 'ButtonPrint':
+          // remove friendly text from print
+          $('.marked').popover('hide');
+          $('.popover').remove();
+          funcPrint();
+        break
+        case 'ButtonSaveAndComplete':
+          completeStamp("<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>");
+          $('.marked').popover('hide');
+          $('.popover').remove();
+          funcSaveAndComplete();
+        break
+      }
+    }
+    else {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    }
+    })
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 1000);
+});
+</script>

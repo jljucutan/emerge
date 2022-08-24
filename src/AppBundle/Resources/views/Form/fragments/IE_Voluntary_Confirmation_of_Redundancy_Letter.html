@@ -1,0 +1,282 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','date');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12"> 
+                <strong>Type your Name:</strong> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','SignerMan','modal2','over','sv2','date2');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp; 
+                    <input id="clear-sig-2" type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','date2');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="italy-offer-letter" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <template id="fragment-1">
+        <p>&nbsp;</p>
+        <p class="sidebar-address">PayPal Europe Services Ltd, <br>Ballycoolin Business Park, <br>Blanchardstown, <br>Dublin 15, Ireland</p>
+    </template>
+    <template id="fragment-2">
+        <p>&nbsp;</p>
+        <p class="mb-5">
+            <strong>STRICTLY PRIVATE &amp; CONFIDENTIAL</strong><br>
+            <mark><$client.tForWhomUserInfo.First_Name></mark>&nbsp;<mark><$client.tForWhomUserInfo.Last_Name></mark><br>
+            <mark><$client.tForWhomUserInfo.Employee_HRISID></mark><br>
+            <mark><$client.tForWhomUserInfo.Email></mark>
+        </p>
+        <p class="hide"></p>
+        <p class="mb-5">
+            <mark><%= '<$client.tForWhomUserInfo.Confirmation_Correspondence_Date>'.length ? moment('<$client.tForWhomUserInfo.Confirmation_Correspondence_Date>').format('DD MMMM YYYY') : ''; %></mark>
+        </p>
+        <p class="hide"></p>
+        <p>
+            <strong>Your position with PayPal Europe Services Limited (the ‘Company’)</strong>
+        </p>
+        <p>
+            <strong>WITHOUT PREJUDICE / SUBJECT TO CONTRACT</strong>
+        </p>
+        <p class="text-justify">Dear <mark><$client.tForWhomUserInfo.First_Name></mark>,</p>
+        <p class="text-justify">Following recent conversations with you regarding the Company’s need to re-organise, I am writing to confirm your application for voluntary redundancy has been accepted. As discussed, and agreed with you, your last working day will be the <mark><%= '<$client.tForWhomUserInfo.Planned_Last_Day_Worked>'.length ? moment('<$client.tForWhomUserInfo.Planned_Last_Day_Worked>').format('DD MMMM YYYY') : ''; %></mark>.</p>
+        <p class="text-justify">Please take some time to read and digest the employee information pack. If you have questions or comments about your redundancy or any related issues then please contact me as, soon as possible so we can make arrangements to discuss them with you. Some of the key points from the pack are below: Some of the key points from the pack are below:</p>
+        <ul class="text-justify">
+            <li class="mb-3">You will not be required to work your notice period. You will be placed on garden leave for the first two weeks of your notice period until <mark><%= '<$client.tForWhomUserInfo.Final_Seperation_Date>'.length ? moment('<$client.tForWhomUserInfo.Final_Seperation_Date>').format('DD MMMM YYYY') : ''; %></mark> (the “Termination Date”). Thereafter, you will receive payment in lieu of your remaining notice period in line with the Minimum Notice and Terms of Employment Act 1973 or your employment contract, whichever entitlement is greater.</li>
+            <li class="mb-3">In order to receive your ex-gratia severance payment and any other benefits as part of the voluntary redundancy offering, you are required to sign a Severance Agreement. The Severance Agreement is attached. It is also a requirement that you obtain legal advice on the terms of the Severance Agreement.</li>
+            <li class="mb-3">It is a requirement that we receive the signed Severance Agreement by <mark><%= '<$client.tForWhomUserInfo.Last_Day_To_Sign>'.length ? moment('<$client.tForWhomUserInfo.Last_Day_To_Sign>').format('DD MMMM YYYY') : ''; %></mark>. In the event that we do not receive your signed Severance Agreement by this date, the offer of the enhanced ex-gratia package will lapse and you will instead be placed into the pool of employees from which individuals will be selected for proposed compulsory redundancy.</li>
+        </ul>
+        <p class="text-justify">I would like to thank you for your hard work for the Company over the past years and wish you all the best for your future career. If we can do anything to assist over the course of the next few days, then please do not hesitate to ask. I would like to remind you that the services of the Employee Assistance Program (EAP) are available to you and you may contact them directly on 1800 995 956, or by email at <a href="mailto:eap@vhics.ie">eap@vhics.ie</a>.</p>
+        <p class="text-justify">Yours sincerely,</p>
+        <p class="text-justify"><mark><%= signatory %></mark></p>
+        <p class="text-justify mb-4">PayPal Human Resources<br>For and on Behalf of the Company</p>
+        <p class="hide"></p>
+    </template>
+    
+    <div id="offer-letter-body" class="row mb-5">
+        <div class="col-sm-2">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+        <div class="col-sm-8">
+            <div id="incomplete2">
+                <div id="markup2"></div>
+            </div>
+            <div id="complete2"></div>
+        </div>
+    </div>
+
+    <template id="fragment-3">
+        <p class="ml-lg-4">
+            <strong>Employer:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete3">
+                <div id="markup3"></div>
+            </div>
+            <div id="complete3"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature2" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature2.HTML>
+        </div>
+        <div class="col-sm-1 pt-2 text-sm-right">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date2.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="recruiter_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name2.HTML>
+        </div>
+    </div>
+
+    <template id="fragment-4">
+        <p class="ml-lg-4">
+            <strong>Employee:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete4">
+                <div id="markup4"></div>
+            </div>
+            <div id="complete4"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature2" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature.HTML>
+        </div>
+        <div class="col-sm-1 pt-2 text-sm-right">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="recruiter_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5 mb-5">
+            <$client.env.FormField.name.HTML>
+        </div>
+    </div>
+
+    <template id="fragment-5">
+        <p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p><p class="hide">&nbsp;</p>
+        <p class="fb-size9">Managing Directors: Annette Hickey, Daniela Matiz, Tim Minall <br> PayPal Europe Services Ltd, Ballycoolin Business Park, Blanchardstown, Dublin 15, Ireland <br> Company Registration Number 422164</p>
+        <p class="text-right">6968251.1</p>
+    </template>
+    <div class="row paypal-footer">
+        <div class="col-sm-2">
+            <img src="<$link;/main/RedCarpet/FormTemplates/IE_Voluntary_Confirmation_of_Redundancy_Letter/img/paypal_logo.jpg>" alt="PayPal footer logo" class="img-responsive">
+        </div>
+        <div class="col-sm-10">
+            <div id="incomplete5">
+                <div id="markup5"></div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>     
+    <$client.env.FormField.hidden_pg3.HTML>     
+    <$client.env.FormField.hidden_pg4.HTML>     
+    <$client.env.FormField.hidden_pg5.HTML>     
+    <$client.env.formfield.EmployeeStamp.html>
+    <$client.env.formfield.SignatoryStamp.html>
+    <$client.env.formfield.RecruiterStamp.html>
+    <$client.env.formfield.SignerMan.html>
+    <$client.env.formfield.CoordinatorStamp.html>
+    <$client.env.formfield.Current_Date.html>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/IE_Voluntary_Confirmation_of_Redundancy_Letter/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/IE_Voluntary_Confirmation_of_Redundancy_Letter/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/IE_Voluntary_Confirmation_of_Redundancy_Letter/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.getElementById('italy-offer-letter');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.signDate, .dateField').parent().find('input').prop('disabled', true);
+});
+
+const data = {
+    'Current_Date': document.getElementById('Current_Date').value,
+    'signatory': '<$client.tEventManagers_Person_29.FormattedName>'
+};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const NEW_HIRE = "<$client.env.eval((url.forWhom!=account.userguid)?'':'<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Initial><$client.env.eval(client.tForWhomUserInfo.Middle_Initial.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>')>";
+// signature section clearing on task reopen variables
+const isSignatory = <$client.env.eval((account.userguid==client.tEventManagers_Person_29.UserGuid)?'true':'false')>;
+const isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const EmployeeStamp = "<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>"; 
+if (isSignatory) {
+    $('#SignerMan').val("<$client.tEventManagers_Person_29.FormattedName>".length ? '<$client.tEventManagers_Person_29.FormattedName>' : '<$client.tEventManagers_Person_29.FormattedName>');
+}
+</script>

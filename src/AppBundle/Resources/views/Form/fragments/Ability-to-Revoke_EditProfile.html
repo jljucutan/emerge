@@ -1,0 +1,646 @@
+<script>
+// $hm(document).ready(function() {
+//     $hm('#EditProfile_wrapper').hide();
+//     $hm('input, select').hide();
+//     window.setTimeout(function(){
+//        $hm('#EditProfile_wrapper').fadeIn(500);
+//        $hm('input, select').fadeIn(500);
+//     }, 1000);
+// });
+</script>
+
+
+<div id="task_summary_outer" style="height: 1200px;"> <!-- Start Outer Container -->
+<div id="bg-image">.</div> <!-- BG Image Placeholder -->
+
+<div id="EditProfile_container">
+<div id="EditProfile_wrapper">
+
+<div id="EditProfile">
+
+<div id="EditProfile_Title">
+<h4><strong>Ability to Revoke</strong></h4>
+</div>
+
+
+<div class="input_wrapper">
+  <label id="Signature_Revoke_label">Is the employee revoking this Separation Agreement? *</label>
+  <$client.env.inputSignature_Revoke>
+</div>
+<div class="input_wrapper">
+  <label>If you select Yes, you will need to add the task called "Revoke Signature" to the user's event.</label>
+</div>
+
+<div class="button_group">
+<div id="save"></div>
+<div id="saveandcomplete"></div>
+<div id="cancel"></div>
+</div>
+
+</div>
+</div>
+</div>
+
+</div> <!-- End Outer Container -->
+
+<div style="display:none;"> <!-- field labels needed for error message--> 
+  <span id='First_Name_prompt'>Legal First Name</span>
+  <span id='Middle_Name_prompt'>Legal Middle Name</span>
+  <span id='Last_Name_prompt'>Legal Last Name</span> 
+  <span id='Preferred_First_Name_prompt'><$client.env.promptPreferred_First_Name></span> 
+  <span id='Preferred_Last_Name_prompt'><$client.env.promptPreferred_Last_Name></span>
+  <span id='Email_prompt'>Email Address</span>
+  <span id='Address1_prompt'><$client.env.promptAddress1></span>
+  <span id='Address2_prompt'><$client.env.promptAddress2></span>
+  <span id='Country_prompt'><$client.env.promptCountry></span>
+  <span id='City_prompt'><$client.env.promptCity></span>
+  <span id='State_prompt'><$client.env.promptState></span>
+  <span id='Zip_prompt'><$client.env.promptZip></span>
+  <span id='Phone_prompt'><$client.env.promptPhone></span>
+  <span id='Phone_Country_Code_prompt' style="display:none"><$client.env.promptPhone_Country_Code></span>
+  <span id='Phone_Area_Code_prompt' style="display:none"><$client.env.promptPhone_Area_Code></span>
+  <span id='Secondary_Phone_Country_Code_prompt' style="display:none"><$client.env.promptSecondary_Phone_Country_Code></span>
+  <span id='Secondary_Phone_Area_Code_prompt' style="display:none"><$client.env.promptSecondary_Phone_Area_Code></span>
+  <span id='primary_phone_type_prompt' style="display:none"><$client.env.promptprimary_phone_type></span>
+  <span id='secondary_phone_type_prompt' style="display:none"><$client.env.promptsecondary_phone_type></span>
+  <$client.env.inputEvt_Location_Code>
+</div>
+
+
+<input type="hidden" id="Site_Name" name="Site_Name" value="<$client.env.index.site_name>" />
+
+<input type="hidden" id="Evt_Location" name="Evt_Location" value="<$client.tEventCategories_Category_11.Value>" />
+
+<!--
+<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/country.js"></script>
+<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/custom-paypal.js"></script>
+<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/setFieldsBeforeOffer.js"></script>
+-->
+
+<script>
+$hm(document).ready(function() {
+$hm('#phone').attr("placeholder", "");
+$hm('#phone2').attr("placeholder", "");
+});
+document.getElementById('Evt_Location_Code').value = "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>";
+</script>
+
+<!--
+<script>
+
+// Highlights fields red on validation error and shows error message - Start
+function EnableClientSideValidation() {
+     var error_counter = 0;
+
+     if ($("#First_Name").val().trim().length == 0) {
+          $("#First_Name").addClass("input-error");
+          $(".first-name").addClass("error-message");
+          error_counter ++;
+     }
+     else if ($("#First_Name").val().trim().length > 0 && $("#First_Name").val() === $("#First_Name").val().toUpperCase()) {
+          $("#First_Name").addClass("input-error");
+          $(".first-name-allcaps").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#First_Name").removeClass("input-error");
+          $(".first-name").removeClass("error-message");
+          $(".first-name-allcaps").removeClass("error-message");
+     }
+
+     if ($("#Last_Name").val().trim().length == 0) {
+          $("#Last_Name").addClass("input-error");
+          $(".last-name").addClass("error-message");
+          error_counter ++;
+     }
+     else if ($("#Last_Name").val().trim().length > 0 && $("#Last_Name").val() === $("#Last_Name").val().toUpperCase()) {
+          $("#Last_Name").addClass("input-error");
+          $(".last-name-allcaps").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#Last_Name").removeClass("input-error");
+          $(".last-name").removeClass("error-message");
+          $(".last-name-allcaps").removeClass("error-message");
+     }
+
+     if ($("input[name='Email']").val().trim().length == 0) {
+          $("input[name='Email']").addClass("input-error");
+          $(".email").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("input[name='Email']").removeClass("input-error");
+          $(".email").removeClass("error-message");
+     }
+
+     if ($("#Emp_Preferred_First").val().trim().length == 0 && $("#Emp_Preferred_Last").val().trim().length > 0) {
+          $("#Emp_Preferred_First").addClass("input-error");
+          $(".preferred-first").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#Emp_Preferred_First").removeClass("input-error");
+          $(".preferred-first").removeClass("error-message");
+     }
+   
+     if ($("#Emp_Preferred_Last").val().trim().length == 0 && $("#Emp_Preferred_First").val().trim().length > 0) {
+          $("#Emp_Preferred_Last").addClass("input-error");
+          $(".preferred-last").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#Emp_Preferred_Last").removeClass("input-error");
+          $(".preferred-last").removeClass("error-message");
+     }
+
+     if ($("#address1").val().trim().length == 0) {
+          $("#address1").addClass("input-error");
+          $(".address1").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#address1").removeClass("input-error");
+          $(".address1").removeClass("error-message");
+     }
+
+     if ($("#city").val().trim().length == 0) {
+          $("#city").addClass("input-error");
+          $(".city").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#city").removeClass("input-error");
+          $(".city").removeClass("error-message");
+     }
+
+     if ($("#state_prov").val().trim().length == 0) {
+          $("#state_prov").addClass("input-error");
+          $(".state").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#state_prov").removeClass("input-error");
+          $(".state").removeClass("error-message");
+     }
+
+     if ($("#zip").val().trim().length == 0) {
+          $("#zip").addClass("input-error");
+          $(".zip").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#zip").removeClass("input-error");
+          $(".zip").removeClass("error-message");
+     }
+
+     if ($("#Emp_Country").prop("selectedIndex") == 0) {
+          $("#Emp_Country").addClass("input-error");
+          $(".country").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#Emp_Country").removeClass("input-error");
+          $(".country").removeClass("error-message");
+     }
+
+     if ($("#PhoneCode").prop("selectedIndex") == 0) {
+          $("#PhoneCode").addClass("input-error");
+          $(".phone-code").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#PhoneCode").removeClass("input-error");
+          $(".phone-code").removeClass("error-message");
+     }
+
+     if ($("#primary-phone-type").val().trim().length == 0) {
+          $("#primary-phone-type").addClass("input-error");
+          $(".primary-phone-type").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#primary-phone-type").removeClass("input-error");
+          $(".primary-phone-type").removeClass("error-message");
+     }
+
+     if ($("#phone").val().trim().length == 0) {
+          $("#phone").addClass("input-error");
+          $(".phone").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          var pattern = new RegExp('^[0-9]{7,13}$');
+          if (pattern.test($("#phone").val()) == false) {
+               $("#phone").addClass("input-error");
+               $(".phone").addClass("error-message");
+               error_counter ++;
+          }
+          else {
+               $("#phone").removeClass("input-error");
+               $(".phone").removeClass("error-message");
+          }
+     }
+
+     if ($("#secondary-phone-type").val().trim().length == 0 && $("#phone2").val().trim().length > 0) {
+          $("#secondary-phone-type").addClass("input-error");
+          $(".secondary-phone-type").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          $("#secondary-phone-type").removeClass("input-error");
+          $(".secondary-phone-type").removeClass("error-message");
+     }
+
+     if ($("#phone2").val().trim().length == 0 && $("#secondary-phone-type").val().trim().length > 0 ) {
+          $("#phone2").addClass("input-error");
+          $(".phone2").addClass("error-message");
+          error_counter ++;
+     }
+     else {
+          var pattern = new RegExp('^[0-9]{7,13}$');
+          if (pattern.test($("#phone2").val()) == false && $("#phone2").val().trim().length > 0) {
+               $("#phone2").addClass("input-error");
+               $(".phone2").addClass("error-message");
+               error_counter ++;
+          }
+          else {
+               $("#phone2").removeClass("input-error");
+               $(".phone2").removeClass("error-message");
+          }
+     }
+
+     if (error_counter > 0) {
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+          return false;
+     }
+     else {
+          EnableValidation();
+          doSave_Custom('refer-Complete');
+          return true;
+     }
+}
+
+$(window).load(function() {
+     var isProfileCompleted = sTaskComplete;
+
+     $('#TaskSummary_ButtonCancel').appendTo('#cancel').show();
+     if (!isProfileCompleted) {
+          $('#TaskSummary_ButtonSave').appendTo('#saveandcomplete').prop('onclick', null).show().text('Continue');
+          $('#EUPDefaultSaveButton').appendTo('#save').show();
+     }
+
+     window.alert = function() {};
+
+     $("form").on("click", "#TaskSummary_ButtonSave", function(e) {
+          e.preventDefault();
+          EnableClientSideValidation();
+     });
+});
+
+$(document).ready(function() {
+
+  $("#First_Name").blur(function() {
+    var sTest = $(this).val().toUpperCase();
+    if ($(this).val().trim().length > 0 && $(this).val() === sTest) {
+      $(this).addClass("input-error");
+      $(".first-name-allcaps").addClass("error-message");
+    } else if ($(this).val().trim().length > 0 && $(this).val() != sTest) {
+      $(this).removeClass("input-error");
+      $(".first-name-allcaps").removeClass("error-message");
+    } else if ($(this).val().trim().length < 1) {
+      $(".first-name-allcaps").removeClass("error-message");
+    }
+  });
+
+  $("#task_summary_outer").on('blur', 'input#First_Name', function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".first-name").removeClass("error-message");
+    } else if ($(this).val().trim().length < 1) {
+      $(this).addClass("input-error");
+      $(".first-name").addClass("error-message");
+    }
+  });
+
+
+  $("input[name='Last_Name']").blur(function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".last-name").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".last-name").addClass("error-message");
+    }
+  });
+  $("input[name='Email']").blur(function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".email").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".email").addClass("error-message");
+    }
+  });
+
+
+  $("#Last_Name").blur(function() {
+    var sTest = $(this).val().toUpperCase();
+    if ($(this).val().trim().length > 0 && $(this).val() === sTest) {
+      $(this).addClass("input-error");
+      $(".last-name-allcaps").addClass("error-message");
+    } else if ($(this).val().trim().length > 0 && $(this).val() != sTest) {
+      $(this).removeClass("input-error");
+      $(".last-name-allcaps").removeClass("error-message");
+    } else if ($(this).val().trim().length < 1) {
+      $(".last-name-allcaps").removeClass("error-message");
+    }
+  });
+
+  $("#address1").blur(function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".address1").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".address1").addClass("error-message");
+    }
+  });
+  $("#city").blur(function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".city").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".city").addClass("error-message");
+    }
+  });
+  $("#state_prov").blur(function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".state").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".state").addClass("error-message");
+    }
+  });
+  $("#state_prov").change(function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".state").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".state").addClass("error-message");
+    }
+  });
+  $("#zip").blur(function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".zip").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".zip").addClass("error-message");
+    }
+  });
+  $("#EditProfile").on('blur change', '#Emp_Country', function() {
+    if ($(this).prop("selectedIndex") > 0) {
+      $(this).removeClass("input-error");
+      $(".country").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".country").addClass("error-message");
+    }
+    $('#PhoneCode').trigger('blur'); 
+  });
+  $("#PhoneCode").blur(function() {
+    if ($(this).prop("selectedIndex") > 0) {
+      $(this).removeClass("input-error");
+      $(".phone-code").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".phone-code").addClass("error-message");
+    }
+  });
+  $("#PhoneCode").change(function() {
+    if ($(this).prop("selectedIndex") > 0) {
+      $(this).removeClass("input-error");
+      $(".phone-code").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".phone-code").addClass("error-message");
+    }
+  });
+  $("#primary-phone-type").blur(function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".primary-phone-type").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".primary-phone-type").addClass("error-message");
+    }
+  });
+  $("#primary-phone-type").change(function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".primary-phone-type").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".primary-phone-type").addClass("error-message");
+    }
+  });
+  $("#phone").blur(function() {
+    var pattern = new RegExp('^[0-9]{7,13}$');
+    if ($(this).val().trim().length > 0 && pattern.test($(this).val())) {
+      $(this).removeClass("input-error");
+      $(".phone").removeClass("error-message");
+    } else {
+      $(this).addClass("input-error");
+      $(".phone").addClass("error-message");
+    }
+  });
+
+  $("#secondary-phone-type").blur(function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".secondary-phone-type").removeClass("error-message");
+    } else if ($("#phone2").val().trim().length > 0) {
+      $(this).addClass("input-error");
+      $(".secondary-phone-type").addClass("error-message");
+    } else {
+      $(this).removeClass("input-error");
+      $(".secondary-phone-type").removeClass("error-message");
+      $("#phone2").removeClass("input-error");
+      $(".phone2").removeClass("error-message");
+    }
+  });
+
+  $("#secondary-phone-type").change(function() {
+    if ($(this).val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".secondary-phone-type").removeClass("error-message");
+    } else if ($("#phone2").val().trim().length > 0) {
+      $(this).addClass("input-error");
+      $(".secondary-phone-type").addClass("error-message");
+    } else {
+      $(this).removeClass("input-error");
+      $(".secondary-phone-type").removeClass("error-message");
+      $("#phone2").removeClass("input-error");
+      $(".phone2").removeClass("error-message");
+    }
+  });
+
+  $("#phone2").blur(function() {
+    var pattern = new RegExp('^[0-9]{7,13}$');
+    if ($(this).val().trim().length > 0 && pattern.test($(this).val())) {
+      $(this).removeClass("input-error");
+      $(".phone2").removeClass("error-message");
+    } else if ($(this).val().trim().length > 0) {
+      $(this).addClass("input-error");
+      $(".phone2").addClass("error-message");
+    } else if ($("#secondary-phone-type").val().trim().length > 0) {
+      $(this).addClass("input-error");
+      $(".phone2").addClass("error-message");
+    } else {
+      $(this).removeClass("input-error");
+      $(".phone2").removeClass("error-message");
+      $("#secondary-phone-type").removeClass("input-error");
+      $(".secondary-phone-type").removeClass("error-message");
+    }
+  });
+
+  $("#Emp_Preferred_First").blur(function() {
+    if ($(this).val().trim().length > 0 && $("#Emp_Preferred_Last").val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".preferred-first").removeClass("error-message");
+    } else if ($(this).val().trim().length > 0 && $("#Emp_Preferred_Last").val().trim().length <= 0) {
+      $("#Emp_Preferred_Last").addClass("input-error");
+      $(".preferred-last").addClass("error-message");
+    } else if ($(this).val().trim().length <= 0 && $("#Emp_Preferred_Last").val().trim().length > 0) {
+      $(this).addClass("input-error");
+      $(".preferred-first").addClass("error-message");
+    } else if ($(this).val().trim().length <= 0 && $("#Emp_Preferred_Last").val().trim().length <= 0) {
+      $(this).removeClass("input-error");
+      $("#Emp_Preferred_Last").removeClass("input-error");
+      $(".preferred-first").removeClass("error-message");
+      $(".preferred-last").removeClass("error-message");
+    }
+  });
+
+  $("#Emp_Preferred_Last").blur(function() {
+    if ($(this).val().trim().length > 0 && $("#Emp_Preferred_First").val().trim().length > 0) {
+      $(this).removeClass("input-error");
+      $(".preferred-last").removeClass("error-message");
+    } else if ($(this).val().trim().length > 0 && $("#Emp_Preferred_First").val().trim().length <= 0) {
+      $("#Emp_Preferred_First").addClass("input-error");
+      $(".preferred-first").addClass("error-message");
+    } else if ($(this).val().trim().length <= 0 && $("#Emp_Preferred_First").val().trim().length > 0) {
+      $(this).addClass("input-error");
+      $(".preferred-last").addClass("error-message");
+    } else if ($(this).val().trim().length <= 0 && $("#Emp_Preferred_First").val().trim().length <= 0) {
+      $(this).removeClass("input-error");
+      $("#Emp_Preferred_First").removeClass("input-error");
+      $(".preferred-first").removeClass("error-message");
+      $(".preferred-last").removeClass("error-message");
+    }
+  });
+
+});
+// Highlights fields red on validation error and shows error message - End
+
+</script>
+-->
+
+
+<script>
+
+$(document).ready(function() {
+        $('#TaskSummary_ButtonCancel').clone(true).appendTo('#cancel').show();
+        $('#TaskSummary_ButtonSave').clone(true).appendTo('#saveandcomplete').show().text('Continue');
+        $('#EUPDefaultSaveButton').clone(true).appendTo('#save').show();
+});
+
+</script>
+
+<style>
+/* Highlights fields red on validation error and shows error message - Start */
+.error-message {
+     display: block !important;
+     width: 100%;
+     font-size: 12px;
+}
+
+/* Highlights fields red on validation error and shows error message - End */
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {  
+/* CSS Statements that only apply on webkit-based browsers (Chrome, Safari, etc.) */  
+     select {
+          -webkit-appearance: none !important;
+          -moz-appearance: none;
+          -webkit-border-radius: 0px;
+          background-image: url("<$link;/main/sitegen/Onboarding/content/Uploads/Images/skin/drop-down-arrow.png>");
+          /* Icon made by http://creativecommons.org/licenses/by/3.0/ from www.flaticon.com */
+          background-position: 98% 50%;
+          background-repeat: no-repeat;
+          background-size: 8px;
+     }
+}
+body {color: #444;}
+input.dateField[required] {box-shadow: none;}
+.margin-bottom{margin-bottom: 40px;}
+.margin-bottom-2{margin-bottom: 80px;}
+.margin-top{margin-top: 80px;}
+.padding-top{padding-top: 5px;}
+.AlignMergeStringText{margin-top: 5px; text-align: left; }
+.input-error, .input-error:focus {outline: none; border: 1px solid rgba(255, 77, 77, 0.6) !important; border-radius: none !important; box-shadow: none !important; margin-bottom: 0 !important; }
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { .input-error, .input-error:focus { margin-bottom: -3px !important; } }
+.first-name, .last-name, .first-name-allcaps, .last-name-allcaps, .preferred-first,.preferred-last,.email, .address1, .city, .state, .zip, .country, .phone-code, .primary-phone-type, .phone, .secondary-phone-type, .phone2 { display: none; color: #ffffff; background: #FF4D4D; list-style-type: none; color: #ffffff; line-height: 1.5em; width: 100%; margin-bottom: 10px; }
+#TaskSummary_ButtonCancel, #TaskSummary_ButtonSave, #EUPDefaultSaveButton { display: none; }
+
+/*** Ability To Revoke ***/
+
+.horizontal_radio_item {
+    display: flex !important;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.horizontal_radio_item input {
+    margin: 0px !important;
+    flex-basis: 10%;
+}
+
+.horizontal_radio_item label {
+    margin: 0px !important;
+    width: 10% !important;
+}
+#EditProfile h4 {font-weight: 700;}
+#Signature_Revoke_label, .input_wrapper {margin-bottom: 1em;}
+input[type="radio"] {margin-bottom: 1em; background: #f6f7f9;}
+</style>
+
+<script>
+window.EnableClientSideValidation = function() {return function() {return null};}; 
+window.EnableValidation = window.EnableClientSideValidation;
+$(window).on('load', function() {
+  $('[name$=".Signature_Revoke"]').on('change', function() {
+    validateField($(this));
+  });
+  $('#TaskSummary_ButtonSave').prop('onclick', false).on('click', function(e) {
+      e.preventDefault();
+      let formIsValid = true;
+      $.each($('input:not(".datepicker_button"):not(:disabled):not(:hidden), select:not(:disabled):not(:hidden), textarea'), function(k,v) {
+          if($(v).is(':visible') && !validateField($(v))) {
+              formIsValid = false;
+          }
+      });
+      if (!formIsValid) {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+      }
+      window.doSave_Custom('refer-Complete');
+  });
+  $('#EditProfile_wrapper').fadeIn(1000, function() {
+    (sTaskComplete) && $('#TaskSummary_ButtonSave, #EUPDefaultSaveButton').remove() && $('#EditProfile').find('input,select').prop('disabled', 'disabled');
+  });
+});
+</script>

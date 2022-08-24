@@ -1,0 +1,302 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'A14_SignDate');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','A14_SignDate');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form" class="form-horizontal">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.A01_if_no_claims.prompt>
+        <$client.env.FormField.A02_Patient_Name_Case_No.prompt>
+        <$client.env.FormField.A03_Date_of_occurrence.prompt>
+        <$client.env.FormField.A04_Date_Claim.prompt>
+        <$client.env.FormField.A05_Nature_of_Claim.prompt>
+        <$client.env.FormField.A06_Alleged_Injury.prompt>
+        <$client.env.FormField.A07_Claim_Status.prompt>
+        <$client.env.FormField.A08_Date_Closed.prompt>
+        <$client.env.FormField.A09_Method_of_closing.prompt>
+        <$client.env.FormField.A10_Amount_of_Settlement.prompt>
+        <$client.env.FormField.A11_Name.prompt>
+        <$client.env.FormField.A11_Address.prompt>
+        <$client.env.FormField.A11_City.prompt>
+        <$client.env.FormField.A11_State.prompt>
+        <$client.env.FormField.A11_Zip.prompt>
+        <$client.env.FormField.A12_Practitioner_Signature.prompt>
+        <$client.env.FormField.A13_Printed_Name.prompt>
+        <$client.env.FormField.A14_SignDate.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <h4 class="text-center">
+        <strong>Professional Liability Claim History</strong><br>
+    </h4>
+
+    <div class="box mb-20">
+        <div class="row bg-grey">
+            <div class="col-lg-12 text-center">
+                PROFESSIONAL LIABILITY DETAILS
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <strong>If no claims please check off on the not applicable/ "N/A" box directly below.</strong>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <$client.env.FormField.A01_if_no_claims.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">&nbsp;</div>
+        </div>
+        <div class="row b-bottom">
+            <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label text-left">
+                Patient Name/Case Number:
+            </label>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.A02_Patient_Name_Case_No.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label text-left">
+                Date of occurrence:
+            </label>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.A03_Date_of_occurrence.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <label class="col-lg-3 col-md-3 col-sm-12 col-xs-12 control-label text-left">
+                Date claim/suit filed:
+            </label>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.A04_Date_Claim.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                Nature of the claim: (Please provide a brief explanation)
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <$client.env.FormField.A05_Nature_of_Claim.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                Alleged Injury/Allegations listed in the complaint:
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <$client.env.FormField.A06_Alleged_Injury.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <label class="control-label col-lg-2 col-md-2 col-xs-12 col-sm-12 text-left">
+                Claim status:
+            </label>
+            <div class="col-lg-3 col-md-3 col-xs-12 col-sm-12">
+                <$client.env.FormField.A07_Claim_Status.HTML>
+            </div>
+            <label class="control-label col-lg-2 col-md-2 col-xs-12 col-sm-12 text-left">
+                Date Closed:
+            </label>
+            <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12">
+                <$client.env.FormField.A08_Date_Closed.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <label class="col-lg-4 col-md-4 col-sm-12 col-xs-12 control-label">
+                If closed, indicate method of closing:
+            </label>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <$client.env.FormField.A09_Method_of_closing.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <label class="col-lg-4 col-md-4 col-sm-12 col-xs-12 control-label">
+                Amount of settlement or judgment: $
+            </label>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <$client.env.FormField.A10_Amount_of_Settlement.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                Name and address of malpractice insurance carrier involved:
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <$client.env.FormField.A11_Name.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <$client.env.FormField.A11_Address.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.A11_City.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.A11_State.HTML>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-4 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.A11_Zip.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="narrow-wrapper center-block mb-40">
+        <div class="row mb-10">
+            <label class="control-label col-3 col-md-3 col-sm-12 col-xs-12 text-left">
+                PRACTITIONER SIGNATURE:
+            </label>
+            <div class="col-9 col-md-9 col-sm-12 col-xs-12">
+                <$client.env.FormField.A12_Practitioner_Signature.HTML>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="control-label col-2 col-md-2 col-sm-12 col-xs-12 text-left">
+                PRINTED NAME:
+            </label>
+            <div class="col-6 col-md-6 col-sm-12 col-xs-12">
+                <$client.env.FormField.A13_Printed_Name.HTML>
+            </div>
+            <label class="control-label col-1 col-md-1 col-sm-12 col-xs-12 text-left">
+                DATE:
+            </label>
+            <div class="col-3 col-md-3 col-sm-12 col-xs-12">
+                <$client.env.FormField.A14_SignDate.HTML>
+            </div>
+        </div>
+    </div>
+
+   
+
+    <p class="invisible">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia eius a atque corrupti maxime fugit esse ut alias, aut ab neque tenetur repudiandae at asperiores, unde eligendi architecto quaerat error?
+    </p>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el, enable) {
+    "use strict";
+    if (enable) {
+        el.parent().find('input').prop('disabled', null);
+        return
+    }
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+    "use strict";
+    $('form').on('change', '[name$=".A07_Claim_Status"]', function() {
+        if ($('form [name$=".A07_Claim_Status"]:checked').val() === 'Closed') {
+            disableCalButton($('[name$=".A08_Date_Closed_display"]'), true);
+            return;
+        }
+        disableCalButton($('[name$=".A08_Date_Closed_display"]'), false);
+    });
+    $('form [name$=".A07_Claim_Status"]').trigger('change');
+    $('[data-checkbox-group]').on('change', function() {
+        let groupId = $(this).data('checkbox-group');
+        let checked = $(this).is(':checked');
+        $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+        $(this).prop('checked', checked);
+    });
+
+    $(".modal").hide();
+});
+</script>

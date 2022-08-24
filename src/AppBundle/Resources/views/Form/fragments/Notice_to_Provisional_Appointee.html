@@ -1,0 +1,419 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Anticipated_date.prompt>
+        <$client.env.FormField.appointment_type.prompt>
+        <$client.env.FormField.city_state_zip.prompt>
+        <$client.env.FormField.class_numb_title.prompt>
+        <$client.env.FormField.date.prompt>
+        <$client.env.FormField.PS_Dept_Desc.prompt>
+        <$client.env.FormField.eff_date.prompt>
+        <$client.env.FormField.first_middle_last_name.prompt>
+        <$client.env.FormField.sign_appointee.prompt>
+        <$client.env.FormField.street.prompt>
+        <$client.env.FormField.work_schedule.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+
+    <div class="row my-4">
+        <div class="col-12 d-lg-flex d-content-center align-items-center">
+            <div class="flex-fill text-center">
+                <p class="my-3">
+                    <strong>City and County of San Francisco</strong>
+                </p>
+            </div>
+            <div>
+                <div class="img-header-wrapper mx-auto">
+                    <img src="<$link;/main/RedCarpet/FormTemplates/Notice_to_Provisional_Appointee/img/sf_seal.jpg>" alt="Seal of Country of San Francisco" class="img-fluid">
+                </div>
+            </div>
+            <div class="flex-fill text-center">
+                <p class="my-3">
+                    <strong>Department of Human Resources</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 text-center">
+        <div class="col-12">
+            <h5>
+                <strong>Notice to Provisional Appointee</strong>
+            </h5>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-12 d-lg-flex align-items-center">
+            <div class="pr-2">
+                <strong>Effective Date:</strong>
+            </div>
+            <div>
+                <$client.env.FormField.eff_date.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-12 d-lg-flex align-items-center">
+            <div class="pr-2">
+                <strong>Name:</strong>
+            </div>
+            <div class="flex-grow-1 pr-lg-5 mr-lg-5">
+                <$client.env.FormField.first_middle_last_name.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-xs-12 d-lg-flex align-items-center mb-2">
+            <div class="pr-2">
+                <strong>Address:</strong>
+            </div>
+            <div class="flex-fill pr-lg-2">
+                <$client.env.FormField.first_middle_last_name.HTML>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xs-12 d-lg-flex align-items-center mb-2">
+            <div class="pr-2">
+                <strong>City, State, Zip Code:</strong>
+            </div>
+            <div class="flex-fill">
+                <$client.env.FormField.city_state_zip.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-12 d-lg-flex align-items-center">
+            <div class="pr-2">
+                <strong>Class Number and Class Name:</strong>
+            </div>
+            <div class="flex-grow-1 pr-lg-5 mr-lg-5">
+                <$client.env.FormField.class_numb_title.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-12 d-lg-flex align-items-center">
+            <div class="pr-2">
+                <strong>PS Dept. Desc.:</strong>
+            </div>
+            <div class="flex-grow-1 pr-lg-5 mr-lg-5">
+                <$client.env.FormField.PS_Dept_Desc.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-xs-12 mb-2">
+            <p>
+                <strong>
+                    <u>Appointment Type</u>
+                </strong>
+                (Check One)
+            </p>
+            <$client.env.FormField.appointment_type.HTML>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-xs-12 mb-2">
+            <p>
+                <strong>
+                    <u>Work Schedule</u>
+                </strong>
+                (Check One)
+            </p>
+            <$client.env.FormField.work_schedule.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 d-lg-flex align-items-center">
+            <div class="pr-2">
+                Anticipated Last Day of Employment:
+            </div>
+            <div>
+                <$client.env.FormField.Anticipated_date.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h5 class="text-center mb-3">
+                <strong>
+                    <u>Important Information</u>
+                </strong>
+            </h5>
+            <p>
+                <strong>As a provisional appointee you acquire no guaranteed right or preference for permanent Civil Service employment. Your provisional appointment is also time limited and may end by operation of the applicable Civil Service Rule. An appointment may, however, be extended by the Human Resources Director for additional time periods as allowed by Civil Service Rules.</strong>
+            </p>
+            <p>
+                <strong>Aside and apart from the time limitation above, in the absence of collective bargaining language to the contrary, your employment may be terminated at any time by the Appointing Officer. Further, you may be displaced by an eligible from a Civil Service list at any time. Your appointment may, therefore, be terminated prior to the anticipated last day of employment noted above.</strong>
+            </p>
+            <p>
+                Please sign this form below acknowledging that you have received a copy of this notice.
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-6 col-sm-6 col-xs-12 mb-2">
+            <div class="border-bottom border-dark py-1">&nbsp;</div>
+            Signature of Appointee
+        </div>
+        <div class="col-lg-6 col-sm-6 col-xs-12 mb-2">
+            <$client.env.FormField.date.HTML>
+            Date
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <p>
+                cc: Employee’s Personnel Folder
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p class="mb-3">
+                <strong>INSTRUCTIONS</strong>
+            </p>
+            <div class="border border-dark py-1 text-center mb-3">
+                <strong>
+                    <u>Notice to Provisional Appointee (Including Limited Tenure <br>
+                    And Non-Civil Service Appointments)</u>
+                </strong>   
+            </div>
+            <ol class="mb-4">
+                <li>
+                    The Notice to Provisional Appointee must be completed whenever a provisional, limited tenure, and noncivil service employee is appointed, has the appointment extended, or has a change in work schedules.
+                </li>
+                <li>
+                    The original copy of the Notice to Provisional Appointee must be given to the employee and a copy placed in the employee’s personnel folder in the department.
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 px-5">
+            <p class="text-center">
+                <strong>
+                    <u>CIVIL SERVICE COMMISSION RULES</u>
+                </strong>
+            </p>
+            <p>
+                Refer to applicable Civil Service Commission Rules for provisions regarding provisional, limited tenure, and non-civil service appointments.
+            </p>
+            <u>Civil Service Commission Rules, Volume I</u>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-lg-5 pl-xs-2">
+                    Provisional Appointee:
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-xs-2">
+                    CSC Rules 14.5 and 14.9
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-lg-5 pl-xs-2">
+                    Limited Tenure Appointee:
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-xs-2">
+                    CSR Rules 14.7 and 14.9
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-lg-5 pl-xs-2">
+                    Non-Civil Service Appointee:
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-xs-2">
+                    CSC Rules 14.6 and 14.9
+                </div>
+            </div>
+
+            <u>Civil Service Commission Rules, Volume II</u>
+            <div class="row">
+                <div class="col-12">
+                    <div class="pl-2">
+                        Police Department Uniformed Personnel
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-lg-5 pl-xs-2">
+                    Provisional Appointee:
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-xs-2">
+                    CSC Rules 214.5 and 214.8
+                </div>
+            </div>
+
+            <u>Civil Service Commission Rules, Volume III</u>
+            <div class="row">
+                <div class="col-12">
+                    <div class="pl-2">
+                        Uniformed Ranks of the S.F. Fire Department
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-lg-5 pl-xs-2">
+                    Provisional Appointee:
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-xs-2">
+                    CSC Rules 314.5 and 314.9
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-lg-5 pl-xs-2">
+                    Limited Tenure Appointee:
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-xs-2">
+                    CSC Rules 314.7 and 314.9
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-lg-5 pl-xs-2">
+                    Non-Civil Service Appointee::
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-xs-2">
+                    CSC Rules 314.6 and 314.9
+                </div>
+            </div>
+
+            <u>Civil Service Commission Rules</u>
+            <div class="row">
+                <div class="col-12">
+                    <div class="pl-2">
+                        Municipal Transportation Agency Service – Critical
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-lg-5 pl-xs-2">
+                    Provisional Appointee:
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-xs-2">
+                    CSC Rules 414.5 and 414.9
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-lg-5 pl-xs-2">
+                    Limited Tenure Appointee:
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-xs-2">
+                    CSC Rules 414.7 and 414.9
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-lg-5 pl-xs-2">
+                    Non-Civil Service Appointee::
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12 pl-xs-2">
+                    CSC Rules 414.6 and 414.9
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-12">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Notice_to_Provisional_Appointee/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

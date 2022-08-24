@@ -1,0 +1,1200 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.a01_school.prompt>
+        <$client.env.FormField.a02_degree.prompt>
+        <$client.env.FormField.a03_major.prompt>
+        <$client.env.FormField.a04_graduated.prompt>
+        <$client.env.FormField.a05_graduated_from.prompt>
+        <$client.env.FormField.a06_graduated_to.prompt>
+        <$client.env.FormField.a07_notes.prompt>
+        <$client.env.FormField.a08_education_section.prompt>
+        <$client.env.FormField.a10_school.prompt>
+        <$client.env.FormField.a11_degree.prompt>
+        <$client.env.FormField.a13_major.prompt>
+        <$client.env.FormField.a14_graduated.prompt>
+        <$client.env.FormField.a15_graduated_from.prompt>
+        <$client.env.FormField.a16_graduated_to.prompt>
+        <$client.env.FormField.a17_notes.prompt>
+        <$client.env.FormField.a18_education_section.prompt>
+        <$client.env.FormField.a20_school.prompt>
+        <$client.env.FormField.a21_degree.prompt>
+        <$client.env.FormField.a23_major.prompt>
+        <$client.env.FormField.a24_graduated.prompt>
+        <$client.env.FormField.a25_graduated_from.prompt>
+        <$client.env.FormField.a26_graduated_to.prompt>
+        <$client.env.FormField.a27_notes.prompt>
+        <$client.env.FormField.a28_education_section.prompt>
+        <$client.env.FormField.a30_school.prompt>
+        <$client.env.FormField.a31_degree.prompt>
+        <$client.env.FormField.a33_major.prompt>
+        <$client.env.FormField.a34_graduated.prompt>
+        <$client.env.FormField.a35_graduated_from.prompt>
+        <$client.env.FormField.a36_graduated_to.prompt>
+        <$client.env.FormField.a37_notes.prompt>
+        <$client.env.FormField.a38_education_section.prompt>
+        <$client.env.FormField.a40_school.prompt>
+        <$client.env.FormField.a41_degree.prompt>
+        <$client.env.FormField.a43_major.prompt>
+        <$client.env.FormField.a44_graduated.prompt>
+        <$client.env.FormField.a45_graduated_from.prompt>
+        <$client.env.FormField.a46_graduated_to.prompt>
+        <$client.env.FormField.a47_notes.prompt>
+        <$client.env.FormField.a48_education_section.prompt>
+        <$client.env.FormField.a50_school.prompt>
+        <$client.env.FormField.a51_degree.prompt>
+        <$client.env.FormField.a53_major.prompt>
+        <$client.env.FormField.a54_graduated.prompt>
+        <$client.env.FormField.a55_graduated_from.prompt>
+        <$client.env.FormField.a56_graduated_to.prompt>
+        <$client.env.FormField.a57_notes.prompt>
+        <$client.env.FormField.a58_education_section.prompt>
+        <$client.env.FormField.a60_school.prompt>
+        <$client.env.FormField.a61_degree.prompt>
+        <$client.env.FormField.a63_major.prompt>
+        <$client.env.FormField.a64_graduated.prompt>
+        <$client.env.FormField.a65_graduated_from.prompt>
+        <$client.env.FormField.a66_graduated_to.prompt>
+        <$client.env.FormField.a67_notes.prompt>
+        <$client.env.FormField.a68_education_section.prompt>
+        <$client.env.FormField.a70_school.prompt>
+        <$client.env.FormField.a71_degree.prompt>
+        <$client.env.FormField.a73_major.prompt>
+        <$client.env.FormField.a74_graduated.prompt>
+        <$client.env.FormField.a75_graduated_from.prompt>
+        <$client.env.FormField.a76_graduated_to.prompt>
+        <$client.env.FormField.a77_notes.prompt>
+        <$client.env.FormField.a78_education_section.prompt>
+        <$client.env.FormField.a80_school.prompt>
+        <$client.env.FormField.a81_degree.prompt>
+        <$client.env.FormField.a83_major.prompt>
+        <$client.env.FormField.a84_graduated.prompt>
+        <$client.env.FormField.a85_graduated_from.prompt>
+        <$client.env.FormField.a86_graduated_to.prompt>
+        <$client.env.FormField.a87_notes.prompt>
+        <$client.env.FormField.a88_education_section.prompt>
+        <$client.env.FormField.a90_school.prompt>
+        <$client.env.FormField.a91_degree.prompt>
+        <$client.env.FormField.a93_major.prompt>
+        <$client.env.FormField.a94_graduated.prompt>
+        <$client.env.FormField.a95_graduated_from.prompt>
+        <$client.env.FormField.a96_graduated_to.prompt>
+        <$client.env.FormField.a97_notes.prompt>
+        <$client.env.FormField.a98_education_section.prompt>
+        <$client.env.FormField.b01_employer.prompt>
+        <$client.env.FormField.b02_type.prompt>
+        <$client.env.FormField.b03_position.prompt>
+        <$client.env.FormField.b04_city_state_country.prompt>
+        <$client.env.FormField.b05_start_date.prompt>
+        <$client.env.FormField.b06_end_date.prompt>
+        <$client.env.FormField.b07_notes.prompt>
+        <$client.env.FormField.b08_employment_section.prompt>
+        <$client.env.FormField.b11_employer.prompt>
+        <$client.env.FormField.b12_type.prompt>
+        <$client.env.FormField.b13_position.prompt>
+        <$client.env.FormField.b14_city_state_country.prompt>
+        <$client.env.FormField.b15_start_date.prompt>
+        <$client.env.FormField.b16_end_date.prompt>
+        <$client.env.FormField.b17_notes.prompt>
+        <$client.env.FormField.b18_employment_section.prompt>
+        <$client.env.FormField.b21_employer.prompt>
+        <$client.env.FormField.b22_type.prompt>
+        <$client.env.FormField.b23_position.prompt>
+        <$client.env.FormField.b24_city_state_country.prompt>
+        <$client.env.FormField.b25_start_date.prompt>
+        <$client.env.FormField.b26_end_date.prompt>
+        <$client.env.FormField.b27_notes.prompt>
+        <$client.env.FormField.b28_employment_section.prompt>
+        <$client.env.FormField.b31_employer.prompt>
+        <$client.env.FormField.b32_type.prompt>
+        <$client.env.FormField.b33_position.prompt>
+        <$client.env.FormField.b34_city_state_country.prompt>
+        <$client.env.FormField.b35_start_date.prompt>
+        <$client.env.FormField.b36_end_date.prompt>
+        <$client.env.FormField.b37_notes.prompt>
+        <$client.env.FormField.b38_employment_section.prompt>
+        <$client.env.FormField.b41_employer.prompt>
+        <$client.env.FormField.b42_type.prompt>
+        <$client.env.FormField.b43_position.prompt>
+        <$client.env.FormField.b44_city_state_country.prompt>
+        <$client.env.FormField.b45_start_date.prompt>
+        <$client.env.FormField.b46_end_date.prompt>
+        <$client.env.FormField.b47_notes.prompt>
+        <$client.env.FormField.b48_employment_section.prompt>
+        <$client.env.FormField.b51_employer.prompt>
+        <$client.env.FormField.b52_type.prompt>
+        <$client.env.FormField.b53_position.prompt>
+        <$client.env.FormField.b54_city_state_country.prompt>
+        <$client.env.FormField.b55_start_date.prompt>
+        <$client.env.FormField.b56_end_date.prompt>
+        <$client.env.FormField.b57_notes.prompt>
+        <$client.env.FormField.b58_employment_section.prompt>
+        <$client.env.FormField.b61_employer.prompt>
+        <$client.env.FormField.b62_type.prompt>
+        <$client.env.FormField.b63_position.prompt>
+        <$client.env.FormField.b64_city_state_country.prompt>
+        <$client.env.FormField.b65_start_date.prompt>
+        <$client.env.FormField.b66_end_date.prompt>
+        <$client.env.FormField.b67_notes.prompt>
+        <$client.env.FormField.b68_employment_section.prompt>
+        <$client.env.FormField.b71_employer.prompt>
+        <$client.env.FormField.b72_type.prompt>
+        <$client.env.FormField.b73_position.prompt>
+        <$client.env.FormField.b74_city_state_country.prompt>
+        <$client.env.FormField.b75_start_date.prompt>
+        <$client.env.FormField.b76_end_date.prompt>
+        <$client.env.FormField.b77_notes.prompt>
+        <$client.env.FormField.b78_employment_section.prompt>
+        <$client.env.FormField.b81_employer.prompt>
+        <$client.env.FormField.b82_type.prompt>
+        <$client.env.FormField.b83_position.prompt>
+        <$client.env.FormField.b84_city_state_country.prompt>
+        <$client.env.FormField.b85_start_date.prompt>
+        <$client.env.FormField.b86_end_date.prompt>
+        <$client.env.FormField.b87_notes.prompt>
+        <$client.env.FormField.b88_employment_section.prompt>
+        <$client.env.FormField.b91_employer.prompt>
+        <$client.env.FormField.b92_type.prompt>
+        <$client.env.FormField.b93_position.prompt>
+        <$client.env.FormField.b94_city_state_country.prompt>
+        <$client.env.FormField.b95_start_date.prompt>
+        <$client.env.FormField.b96_end_date.prompt>
+        <$client.env.FormField.b97_notes.prompt>
+        <$client.env.FormField.b98_employment_section.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+
+    <div class="row mb-2">
+        <div class="col">
+            <h3 class="bg-danger bg-gradient text-white text-center py-1">Education &amp; Experience</h3>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <p>
+                <strong>Education</strong>
+            </p>
+            <div class="row mb-2">
+                <div class="col-sm-2">School*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a01_school.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Degree*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a02_degree.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Major*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a03_major.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Graduated?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a04_graduated.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">From*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a05_graduated_from.HTML>
+                </div>
+                <div class="col-sm-1 pt-1">To*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a06_graduated_to.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a07_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-education">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">School*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a10_school.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Degree*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a11_degree.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Major*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a13_major.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Graduated?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a14_graduated.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">From*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a15_graduated_from.HTML>
+                </div>
+                <div class="col-sm-1 pt-1">To*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a16_graduated_to.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a17_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-education">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2">School*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a20_school.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Degree*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a21_degree.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Major*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a23_major.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Graduated?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a24_graduated.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">From*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a25_graduated_from.HTML>
+                </div>
+                <div class="col-sm-1 pt-1">To*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a26_graduated_to.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a27_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-education">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">School*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a30_school.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Degree*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a31_degree.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Major*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a33_major.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Graduated?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a34_graduated.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">From*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a35_graduated_from.HTML>
+                </div>
+                <div class="col-sm-1 pt-1">To*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a36_graduated_to.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a37_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-education">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">School*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a40_school.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Degree*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a41_degree.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Major*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a43_major.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Graduated?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a44_graduated.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">From*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a45_graduated_from.HTML>
+                </div>
+                <div class="col-sm-1 pt-1">To*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a46_graduated_to.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a47_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-education">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">School*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a50_school.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Degree*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a51_degree.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Major*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a53_major.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Graduated?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a54_graduated.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">From*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a55_graduated_from.HTML>
+                </div>
+                <div class="col-sm-1 pt-1">To*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a56_graduated_to.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a57_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-education">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">School*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a60_school.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Degree*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a61_degree.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Major*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a63_major.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Graduated?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a64_graduated.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">From*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a65_graduated_from.HTML>
+                </div>
+                <div class="col-sm-1 pt-1">To*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a66_graduated_to.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a67_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-education">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">School*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a70_school.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Degree*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a71_degree.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Major*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a73_major.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Graduated?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a74_graduated.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">From*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a75_graduated_from.HTML>
+                </div>
+                <div class="col-sm-1 pt-1">To*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a76_graduated_to.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a77_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-education">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">School*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a80_school.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Degree*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a81_degree.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Major*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a83_major.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Graduated?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a84_graduated.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">From*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a85_graduated_from.HTML>
+                </div>
+                <div class="col-sm-1 pt-1">To*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a86_graduated_to.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a87_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-education">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">School*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a90_school.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Degree*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a91_degree.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Major*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a93_major.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Graduated?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a94_graduated.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">From*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a95_graduated_from.HTML>
+                </div>
+                <div class="col-sm-1 pt-1">To*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.a96_graduated_to.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.a97_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                <button id="remove-education" type="button" class="lifesuite__button">Remove Education Section</button>
+                <button id="add-education" type="button" class="lifesuite__button primary">Add Education Section</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <p>
+                <strong>Previous Employment</strong>
+            </p>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Employer*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b01_employer.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Type*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b02_type.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Position*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b03_position.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">City/State or Country?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b04_city_state_country.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Start Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b05_start_date.HTML>
+                </div>
+                <div class="col-sm-2 pt-1">End Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b06_end_date.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b07_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-employment">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Employer*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b11_employer.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Type*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b12_type.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Position*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b13_position.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">City/State or Country?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b14_city_state_country.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Start Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b15_start_date.HTML>
+                </div>
+                <div class="col-sm-2 pt-1">End Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b16_end_date.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b17_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-employment">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Employer*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b21_employer.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Type*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b22_type.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Position*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b23_position.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">City/State or Country?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b24_city_state_country.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Start Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b25_start_date.HTML>
+                </div>
+                <div class="col-sm-2 pt-1">End Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b26_end_date.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b27_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mb-3 additional-employment">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Employer*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b31_employer.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Type*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b32_type.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Position*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b33_position.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">City/State or Country?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b34_city_state_country.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Start Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b35_start_date.HTML>
+                </div>
+                <div class="col-sm-2 pt-1">End Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b36_end_date.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b37_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mb-3 additional-employment">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Employer*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b41_employer.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Type*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b42_type.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Position*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b43_position.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">City/State or Country?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b44_city_state_country.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Start Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b45_start_date.HTML>
+                </div>
+                <div class="col-sm-2 pt-1">End Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b46_end_date.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b47_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mb-3 additional-employment">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Employer*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b51_employer.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Type*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b52_type.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Position*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b53_position.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">City/State or Country?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b54_city_state_country.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Start Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b55_start_date.HTML>
+                </div>
+                <div class="col-sm-2 pt-1">End Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b56_end_date.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b57_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mb-3 additional-employment">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Employer*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b61_employer.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Type*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b62_type.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Position*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b63_position.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">City/State or Country?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b64_city_state_country.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Start Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b65_start_date.HTML>
+                </div>
+                <div class="col-sm-2 pt-1">End Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b66_end_date.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b67_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-employment">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Employer*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b71_employer.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Type*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b72_type.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Position*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b73_position.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">City/State or Country?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b74_city_state_country.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Start Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b75_start_date.HTML>
+                </div>
+                <div class="col-sm-2 pt-1">End Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b76_end_date.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b77_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mb-3 additional-employment">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Employer*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b81_employer.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Type*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b82_type.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Position*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b83_position.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">City/State or Country?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b84_city_state_country.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Start Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b85_start_date.HTML>
+                </div>
+                <div class="col-sm-2 pt-1">End Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b86_end_date.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b87_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3 additional-employment">
+        <div class="col">
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Employer*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b91_employer.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Type*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b92_type.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Position*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b93_position.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">City/State or Country?*</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b94_city_state_country.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Start Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b95_start_date.HTML>
+                </div>
+                <div class="col-sm-2 pt-1">End Date*</div>
+                <div class="col-sm-3">
+                    <$client.env.FormField.b96_end_date.HTML>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-sm-2 pt-1">Notes</div>
+                <div class="col-sm-10">
+                    <$client.env.FormField.b97_notes.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                <button id="remove-employment" type="button" class="lifesuite__button">Remove Employment Section</button>
+                <button id="add-employment" type="button" class="lifesuite__button primary">Add Employment Section</button>
+            </div>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.education_sections.HTML>
+    <$client.env.FormField.employment_sections.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Education_and_Previous_Employment/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Education_and_Previous_Employment/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input m-0 w-100');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

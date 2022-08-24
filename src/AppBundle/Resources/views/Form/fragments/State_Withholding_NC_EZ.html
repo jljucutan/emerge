@@ -1,0 +1,664 @@
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+<$client.env.FormField.AdditionalWithholding.prompt>
+<$client.env.FormField.Address.prompt>
+<$client.env.FormField.Allowances.prompt>
+<$client.env.FormField.CertifyLine3.prompt>
+<$client.env.FormField.CertifyLine4.prompt>
+<$client.env.FormField.CheckHere.prompt>
+<$client.env.FormField.City.prompt>
+<$client.env.FormField.Country.prompt>
+<$client.env.FormField.County.prompt>
+<$client.env.FormField.DateSigned.prompt>
+<$client.env.FormField.Domicile.prompt>
+<$client.env.FormField.EffectiveYear.prompt>
+<$client.env.FormField.FilingStatus.prompt>
+<$client.env.FormField.FirstName.prompt>
+<$client.env.FormField.LastName.prompt>
+<$client.env.FormField.MiddleInitial.prompt>
+<$client.env.FormField.RequirementLine3.prompt>
+<$client.env.FormField.RequirementLine4.prompt>
+<$client.env.FormField.SSN.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.State.prompt>
+<$client.env.FormField.Zip.prompt>
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<div class="container-fluid"> 
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                    <div class="image-container">
+                        <img class="img-responsive" src="images/logo.png"> 
+                        <div class="center text">
+                            Web<br>
+                            11-19
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-xs-12 col-md-10 lifesuite__clearfix">
+                    <div class="my-header">
+                        NC-4EZ<br>
+                        Employee’s Withholding<br>
+                        Allowance Certificate
+                    </div>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="section">
+                <div class="row">
+                    <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                        Filing Status <span class="smaller-text">(Mark one box only)</span>
+                    </div>
+                    <div class="col-xs-12 col-md-9 lifesuite__clearfix text">
+                        <$client.env.FormField.FilingStatus.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 lifesuite__clearfix">
+                        <div class="smaller-text">Social Security Number</div>
+                        <$client.env.FormField.SSN.HTML>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-5 lifesuite__clearfix">
+                        <div class="smaller-text">First Name</div>
+                        <$client.env.FormField.FirstName.HTML>
+                    </div>
+                    <div class="col-xs-6 col-md-1 lifesuite__clearfix">
+                        <div class="smaller-text">M.I.</div>
+                        <$client.env.FormField.MiddleInitial.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-6 lifesuite__clearfix">
+                        <div class="smaller-text">Last Name</div>
+                        <$client.env.FormField.LastName.HTML>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-9 lifesuite__clearfix">
+                        <div class="smaller-text">Address</div>
+                        <$client.env.FormField.Address.HTML>
+                    </div>
+                    <div class="col-xs-6 col-md-3 lifesuite__clearfix">
+                        <div class="smaller-text">County <span class="italic tiny-text">(Enter first five letters)</span></div>
+                        <$client.env.FormField.County.HTML>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-5 lifesuite__clearfix">
+                        <div class="smaller-text">City</div>
+                        <$client.env.FormField.City.HTML>
+                    </div>
+                    <div class="col-xs-6 col-md-1 lifesuite__clearfix">
+                        <div class="smaller-text">State</div>
+                        <$client.env.FormField.State.HTML>
+                    </div>
+                    <div class="col-xs-6 col-md-3 lifesuite__clearfix">
+                        <div class="smaller-text">Zip Code</div>
+                        <$client.env.FormField.Zip.HTML>
+                    </div>
+                    <div class="col-xs-6 col-md-3 lifesuite__clearfix">
+                        <div class="smaller-text">Country <span class="italic">(If not U.S.)</span></div>
+                        <$client.env.FormField.Country.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                        <span class="bold">Instructions.</span> Use Form NC-4EZ if you:
+                        <ul>
+                            <li>
+                                Plan to claim the N.C. Standard Deduction
+                            </li>
+                            <li>
+                                Plan to claim the N.C. Child Deduction Amount (but no other N.C. deductions)
+                            </li>
+                            <li>
+                                Do not plan to claim N.C. tax credits
+                            </li>
+                            <li>
+                                Prefer not to complete the extended Form NC-4
+                            </li>
+                            <li>
+                                Qualify to claim exempt status (See Lines 3 or 4 below)
+                            </li>
+                        </ul>
+                        <span class="bold">Important.</span> If you plan to claim N.C. itemized deductions or plan to claim other N.C. deductions (other than the N.C. Child Deduction Amount), you must complete Form NC-4. If you are a nonresident alien, you must complete Form NC-4 NRA. In general, a nonresident alien is an alien (not a U.S. citizen) who has not passed the green card test or the substantial presence test. <span class="italic">(See Publication 519, U.S. Tax Guide for Aliens, for more information on the green card test and the substantial presence test.)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    If you plan to claim the N.C. Child Deduction Amount, use the table below for your filing status, amount of income, and number of children under age 17 to determine the number of allowances to enter on Line 1. For married taxpayers, only one spouse may claim the allowance for the N.C. Child Deduction Amount for each child.
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 col-lg-4 lifesuite__clearfix text">
+                    <div style="overflow-x:auto;">
+                        <table class="matrix-table">
+                            <tr>
+                                <td colspan="11">Single & Married Filing Separately</td>
+                            </tr>
+                            <tr>
+                                <td>Income</td>
+                                <td colspan="10"># of Children under age 17</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="10"># of Allowances</td>
+                            </tr>
+                            <tr>
+                                <td>0 - 20,000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>20,001 - 30,000</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <td>30,001 - 40,000</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>40,001 - 50,000</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>50,001 - 60,000</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>60,001 and over</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-12 col-lg-4 lifesuite__clearfix text">
+                    <div style="overflow-x:auto;">
+                        <table class="matrix-table">
+                            <tr>
+                                <td colspan="11">Married Filing Jointly & Surviving Spouse</td>
+                            </tr>
+                            <tr>
+                                <td>Income</td>
+                                <td colspan="10"># of Children under age 17</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="10"># of Allowances</td>
+                            </tr>
+                            <tr>
+                                <td>0 - 40,000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>40,001 - 60,000</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <td>60,001 - 80,000</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>80,001 -100,000</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>100,001 -120,000</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>120,001 and over</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-12 col-lg-4 lifesuite__clearfix text">
+                    <div style="overflow-x:auto;">
+                        <table class="matrix-table">
+                            <tr>
+                                <td colspan="11">Head of Household</td>
+                            </tr>
+                            <tr>
+                                <td>Income</td>
+                                <td colspan="10"># of Children under age 17</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="10"># of Allowances</td>
+                            </tr>
+                            <tr>
+                                <td>0 - 30,000</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                                <td>9</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>30,001 - 45,000</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                                <td>7</td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <td>45,001 - 60,000</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>60,001 - 75,000</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>75,001 - 90,000</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>90,001 and over</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-10 lifesuite__clearfix text">
+                    <div class="bold list-item">1.</div>
+                    <div class="list-content"><span class="bold">Total number of allowances you are claiming</span> <span class="italic">(Enter zero (0), or the number of allowances from the table above)</span></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-2 lifesuite__clearfix">
+                    <$client.env.FormField.Allowances.HTML>
+                </div>
+            </div>
+            <div class="small-screen-only" style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-9 lifesuite__clearfix text">
+                    <div class="bold list-item">2.</div>
+                    <div class="list-content"><span class="bold">Additional amount, if any, you want withheld from each pay period</span> <span class="italic">(Enter whole dollars)</span></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 lifesuite__clearfix">
+                    <span class="inline-block"><$client.env.FormField.AdditionalWithholding.HTML></span><span class="inline-block">.00</span>
+                </div>
+            </div>
+            <div class="small-screen-only" style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                    <div class="bold list-item">3.</div>
+                    <div class="list-content">
+                        <span class="bold">I certify that I am exempt from North Carolina withholding because I meet both of the following conditions:</span>
+                        <ul>
+                            <li>
+                                Last year I was entitled to a refund of all State income tax withheld because I had no tax liability; <span class="bold">and</span>
+                            </li>
+                            <li>
+                                This year, I expect a refund of all State income tax withheld because I expect to have no tax liability.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-offset-0 col-xs-12 col-md-offset-2 col-md-2 lifesuite__clearfix">
+                    <span class="inline-block text">Check Here</span> <span style="position: relative; top: 5px;" class="inline-block"><$client.env.FormField.CertifyLine3.HTML></span>
+                </div>
+            </div>
+            <div class="small-screen-only" style="min-height: 20px; height: 20px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-10 lifesuite__clearfix bold text">
+                    <div class="list-item">4.</div>
+                    <div class="list-content">I certify that I am exempt from North Carolina withholding because I meet the requirements set forth in the Servicemembers Civil Relief Act, as amended by the Military Spouses Residency Relief Act and Veterans Benefits and Transition Act. <em>(See Form D-401, North Carolina Individual Income Tax Instructions, for more information.)</em></div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-2 lifesuite__clearfix">
+                    <span class="inline-block text">Check Here</span> <span style="position: relative; top: 5px;" class="inline-block"><$client.env.FormField.CertifyLine4.HTML></span>
+                </div>
+            </div>
+            <div class="small-screen-only" style="min-height: 20px; height: 20px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix bold text">
+                    <div class="list-item"></div>
+                    <div class="list-content">If an exemption on Line 3 or Line 4 applies to you, enter the year the exemption became effective</div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-2 lifesuite__clearfix">
+                    <$client.env.FormField.EffectiveYear.HTML>
+                    <div class="center italic text">YYYY</div>
+                </div>
+            </div>
+            <div class="small-screen-only" style="min-height: 20px; height: 20px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-10 lifesuite__clearfix text">
+                    <div class="bold list-item">5.</div>
+                    <div class="list-content">
+                        <span class="bold">I certify that I no longer meet the requirements for an exemption on Line 3 </span><span style="vertical-align: top;" class="inline-block"><$client.env.FormField.RequirementLine3.HTML></span> <span class="bold inline-block"> or Line 4 </span> <span style="vertical-align: top;" class="inline-block"><$client.env.FormField.RequirementLine4.HTML></span> <span class="italic inline-block">(Check applicable box)</span><br>
+                        <span class="bold">Therefore, I revoke my exemption and request that my employer withhold North Carolina income tax based on the number of allowances entered on Line 1 and any additional amount entered on Line 2.</span>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-2 lifesuite__clearfix">
+                    <span class="inline-block text">Check Here</span> <span style="position: relative; top: 5px;" class="inline-block"><$client.env.FormField.CheckHere.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 20px; height: 20px;"></div>
+            <div class="section">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix bold italic text">
+                        CAUTION: If you furnish an employer with an Employee’s Withholding Allowance Certificate that contains information which has no reasonable basis and results in a lesser amount of tax being withheld than would have been withheld had you furnished reasonable information, you are subject to a penalty of 50% of the amount not properly withheld.
+                    </div>
+                </div>
+                <div style="min-height: 30px; height: 30px;"></div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <$client.env.FormField.Signer.HTML>
+                </div>
+                <div class="row">
+                    <div class="col-xs-offset-0 col-xs-12 col-sm-offset-4 col-sm-8 col-md-offset-3 col-md-9 lifesuite__clearfix italic tiny-text">
+                        I certify, under penalties provided by law, that I am entitled to the number of withholding allowances claimed on Line 1 above, or if claiming exemption from withholding, that I am entitled to claim the exempt status on Line 3 or 4, whichever applies.
+                    </div>
+                </div>
+            </div>
+            <hr class="lifesuite__hr">
+            <div class="row" id="formButtons" style="display: none;">
+                <div class="lifesuite__clearfix lifesuite__float-right">               
+                    <$client.env.FormButtons>
+                </div>             
+            </div>
+        </div>
+    </div>
+    <div style="display:none;">
+        <$client.env.FormField.SignatureVerification.HTML>
+    </div>
+</form>
+
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+angular.element(window).ready(function() {
+    // SERVICES-40716 | jjucutan | add keyboard sign
+    angular.element('[ng-controller="SignerController"]')
+        .on('click', '[id^="btnSigTypedSign"]', function() {
+            setTimeout(function() {
+                angular.element('#sv').val(angular.element('[ng-bind="signatureStatement"]').text());
+            }, 1000);
+        });
+    angular.element('#divLoader').hide();
+});
+</SCRIPT>

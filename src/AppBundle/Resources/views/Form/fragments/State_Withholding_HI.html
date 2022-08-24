@@ -1,0 +1,718 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+	<div class="modal-content">
+		<h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+		<p style="fontweight:normal;padding:0px">
+			<$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+		</p>
+		<br>
+		<div class="row">
+			<div class="lifesuite__clearfix">
+				<b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+              		</div>
+		</div>
+		<div class="row">
+			<div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+				<input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullname','modal','over','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+				<input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp;
+				<input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+			</div>
+		</div>
+	</div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+	<div class="fb-spinner">
+		<i class="fa fa-2x fa-spinner fa-pulse"></i>
+	</div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+<$client.env.FormField.AdditionalWithholding.prompt>
+<$client.env.FormField.Address.prompt>
+<$client.env.FormField.Allowances.prompt>
+<$client.env.FormField.CityStateZip.prompt>
+<$client.env.FormField.DateSigned.prompt>
+<$client.env.FormField.EmployerAddress.prompt>
+<$client.env.FormField.EmployerCityStateZip.prompt>
+<$client.env.FormField.EmployerName.prompt>
+<$client.env.FormField.FullName.prompt>
+<$client.env.FormField.Line1.prompt>
+<$client.env.FormField.Line2.prompt>
+<$client.env.FormField.Line3.prompt>
+<$client.env.FormField.Line4.prompt>
+<$client.env.FormField.Line5.prompt>
+<$client.env.FormField.Line6.prompt>
+<$client.env.FormField.Line7.prompt>
+<$client.env.FormField.Line8.prompt>
+<$client.env.FormField.LineA.prompt>
+<$client.env.FormField.LineB.prompt>
+<$client.env.FormField.LineC.prompt>
+<$client.env.FormField.LineD.prompt>
+<$client.env.FormField.LineE.prompt>
+<$client.env.FormField.LineF.prompt>
+<$client.env.FormField.LineG.prompt>
+<$client.env.FormField.LineH.prompt>
+<$client.env.FormField.LineI.prompt>
+<$client.env.FormField.FilingStatus.prompt>
+<$client.env.FormField.SSN.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.TaxID1.prompt>
+<$client.env.FormField.TaxID2.prompt>
+<$client.env.FormField.TaxID3.prompt>
+<$client.env.FormField.TaxID4.prompt>
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<div class="container-fluid"> 
+    <div class="form-group">
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix bold text">
+                    FORM HW-4<br>(REV. 2021)
+                </div>
+      </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix center bold">
+                  <div class="text">STATE OF HAWAII — DEPARTMENT OF TAXATION</div>
+                    <div style="min-height: 10px; height: 10px;"></div>
+                        <div class="largeHeader">EMPLOYEE’S WITHHOLDING ALLOWANCE AND STATUS CERTIFICATE</div>
+                    <div class="larger-text">INSTRUCTIONS</div>
+                    <div style="min-height: 10px; height: 10px;"></div>
+                    <div class="text">(NOTE: References to “married” and “spouse” are also references to “in a civil union” and “civil union partner,” respectively.)</div>
+                </div>
+      </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <div class="two-column">
+                      <div class="section">
+                            <span class="bold">MARITAL STATUS</span>—If you are legally separated from your spouse under a decree of divorce or separate maintenance, check the Single box.
+                            <br><br>
+              If you file as <span class="bold">head of household</span> on your tax return, you are treated as Single for withholding tax purposes. However, an additional withholding allowance may be claimed for this filing status.
+            </div>
+                        <div class="section">
+                            <span class="bold">NUMBER OF WITHHOLDING ALLOWANCES</span>—Do not claim more than the correct number of withholding allowances. However, if by claiming the correct number of withholding allowances you still expect to owe more income tax for the year than will be withheld, you may increase the amount withheld either by claiming fewer withholding allowances or by entering into an agreement with your employer to withhold an additional dollar amount.
+                            <br><br>
+                            <div class="bold">Note: <span class="italic">Hawaii law does NOT allow “exempt” status for withholding purposes.</span></div>
+            </div>
+                        <div class="section">
+                            <span class="bold">NONWAGE INCOME</span>—If you have a large amount of nonwage income, from sources such as interest or dividends, you should consider making estimated tax payments using Form N-200V or you may find that you owe additional tax at the end of the year.
+            </div>
+                        <div class="section">
+                            <span class="bold">TWO-EARNER/TWO JOBS</span>—If you have a working spouse or more than one job, figure the total number of allowances you are entitled to claim on all jobs using worksheets from only one Form HW-4. This total should be divided among all jobs. Your withholding will usually be most accurate when all allowances are claimed on the HW-4 filed for the highest paying job and zero allowances are claimed for the others.
+            </div>
+                        <div class="section">
+                            <span class="bold">FILING THE CERTIFICATE</span>—You must file this form with your employer or your employer must withhold tax from your wages as if you were single and claimed no withholding allowances.
+            </div>
+                        <div class="section">
+                            <span class="bold">FILING A NEW CERTIFICATE</span>—You SHOULD file a new certificate if you get married or are entitled to claim more withholding allowances. You MUST file a new certificate within 10 days if ANY of the following occurs:
+                            <br><br>
+                            <div class="indented">
+                              <div class="bold list-item">(a)</div><div class="list-content">If you are divorced or legally separated.</div>
+                                <br><br>
+                                <div class="bold list-item">(b)</div><div class="list-content">If your spouse, for whom you have been claiming a withholding allowance, commences claiming his or her own withholding allowance on a separate certificate.</div>
+                                <br><br>
+                                <div class="bold list-item">(c)</div><div class="list-content">If a dependent for whom you claimed a withholding allowance no longer qualifies as a dependent.</div>
+                                <br><br>
+                            </div>
+                            You MUST file a new certificate on or before December 1 in case of the death of your spouse or the death of a dependent, unless such event occurs in December.
+            </div>
+                        <div class="section">
+                            <span class="bold">WITHHOLDING ALLOWANCE FOR AGE</span>—You may claim an additional withholding allowance for age if you are at least 65 years old and no one can claim you as a dependent. If you are married and filing a joint return, you may also claim an additional withholding allowance if your spouse is at least 65 years old, no one else can claim your spouse as a dependent, and your spouse is not already claiming such withholding allowance for himself / herself on a Form HW-4.
+            </div>
+                        <div class="section">
+                            <span class="bold">HEAD OF HOUSEHOLD</span>—Generally, you may claim head of household filing status on your tax return only if you are unmarried and pay more than 50% of the costs of keeping up a home for yourself and your qualifying child or any other person who is your dependent.
+            </div>
+                        <div class="section">
+                            <span class="bold">PENALTIES</span>—Penalties are imposed for willfully supplying false or fraudulent information or for willfully failing to supply information.
+            </div>
+                        <div class="section">
+                            <span class="bold">CERTIFIED DISABLED PERSON</span>—See the section, “What Is Not Subject to Withholding” in <span class="italic">Booklet A, Employer’s Tax Guide.</span>
+            </div>
+                        <div class="section">
+                            <span class="bold">NONRESIDENT MILITARY SPOUSE</span>—Under federal law, the State is prohibited from subjecting the income received by a service member’s nonresident spouse for services performed (i.e., wages) in Hawaii to Hawaii’s income tax beginning tax year 2009 if certain conditions are met. See Tax Information Release No. 2010-01 and Tax Announcement No. 2019-01 for further details.
+            </div>
+                        <div class="section">
+                            <span class="bold">FOR FURTHER INFORMATION</span>—Contact your employer or the Department of Taxation at 808-587-4242 (toll-free at 1-800-222-3229).
+            </div>
+                    </div>
+                </div>
+      </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix center bold text">
+                    Cut here and give the certificate to your employer. Keep the top portion and a copy of page 2 for your records.
+                </div>
+      </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-2 lifesuite__clearfix align-left bold text">
+                    FORM HW-4<br>(REV. 2021)
+                </div>
+                <div class="col-xs-12 col-md-9 lifesuite__clearfix center bold">
+                  <div class="text">STATE OF HAWAII — DEPARTMENT OF TAXATION</div>
+                    <div style="min-height: 10px; height: 10px;"></div>
+                  <div class="largeHeader">EMPLOYEE’S WITHHOLDING ALLOWANCE AND STATUS CERTIFICATE</div>
+                </div>
+                <div class="col-xs-12 col-md-1 lifesuite__clearfix">
+                    <div class="image-container">
+                        <img class="img-responsive" src="images/qrcode_version_10.png"> 
+                    </div>
+                </div>
+      </div>
+        <div class="outer-border">
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text bordered">
+                        <span class="bold">Section A</span> (to be completed by the employee)
+                    </div>
+                </div>
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-6 lifesuite__clearfix text bordered">
+                      <div class="inner-border">
+                            <div style="padding-left: 3px;" class="row bordered">
+                                <div class="bold list-item">1</div><div class="list-content">Type or print your full name</div>
+                                <$client.env.FormField.FullName.HTML> 
+                            </div>
+                            <div style="padding-left: 3px;" class="row bordered">
+                                Home address (number and street or rural route)
+                                <$client.env.FormField.Address.HTML>
+                            </div>
+                            <div style="padding-left: 3px;" class="row bordered">
+                                City or town, state, and Postal/ZIP code
+                                <$client.env.FormField.CityStateZip.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6 lifesuite__clearfix text bordered">
+                      <div class="inner-border">
+                            <div style="padding-left: 3px;" class="row bordered">
+                                <div class="bold list-item">2</div><div class="list-content">Your social security number</div>
+                                <$client.env.FormField.SSN.HTML>
+                            </div>
+                            <div style="padding-left: 3px;" class="row bordered">
+                                <div class="bold list-item">3</div><div class="list-content">Marital Status</div>
+                                <div class="indented">
+                                    <$client.env.FormField.FilingStatus.HTML>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-9 lifesuite__clearfix text bordered adjust-height remove-bottom-border-xs">
+                        <div class="bold list-item">4</div><div class="list-content">Total number of allowances you are claiming (from line I of the worksheet on page 2). <span class="bold">(Note: <span class="italic">Hawaii law does</span> NOT <span class="italic">allow “EXEMPT” status for withholding purposes.)</span></span></div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 lifesuite__clearfix text bordered">
+                      <span class="input-label-bordered">4.</span><span class="input-field-bordered"><$client.env.FormField.Allowances.HTML></span>
+                    </div>
+                </div>
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-9 lifesuite__clearfix text bordered adjust-height remove-bottom-border-xs">
+                        <div class="bold list-item">5</div><div class="list-content">Additional amount, if any, you want deducted each pay period</div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 lifesuite__clearfix text bordered">
+                      <span class="input-label-bordered">5.</span><span class="input-field-bordered"><$client.env.FormField.AdditionalWithholding.HTML></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                        I declare, under the penalties set forth in section 231-36, HRS, that I have correctly indicated my marital status and that the number of withholding allowances claimed on this certificate does not exceed the number to which I am entitled.
+                    </div>
+                </div>
+
+                <div style="min-height: 20px; height: 20px;"></div>
+                <div class="row">
+ <!--                  <div class="col-xs-12 col-sm-1 col-md-1 lifesuite__clearfix text">
+                        (Date)
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-md-5 lifesuite__clearfix text">
+                        <$client.env.FormField.DateSigned.HTML>
+                    </div>
+                    <div class="col-xs-12 col-sm-1 col-md-1 lifesuite__clearfix text">
+                        (Signed)
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-md-5 lifesuite__clearfix text">
+                        <$client.env.FormField.Signature.HTML>
+                    </div> -->
+                <div class="forSigner">
+                     <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 lifesuite__clearfix text">
+                            <$client.env.FormField.Signer.HTML>
+                     </div>
+                     <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 lifesuite__clearfix text">
+                            &nbsp;
+                     </div>
+                </div>
+             </div>
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text bordered">
+                        <span class="bold">Section B</span> (to be completed by the employer)
+                    </div>
+                </div>
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-7 lifesuite__clearfix text bordered">
+                        <div class="bold list-item">1</div><div class="list-content">Employer’s name</div>
+                        <$client.env.FormField.EmployerName.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-5 lifesuite__clearfix text bordered">
+                        <div class="bold list-item">2</div><div class="list-content">Hawaii tax identification number</div>
+                        <span class="inline-block">WH -</span> <span class="inline-block"><$client.env.FormField.TaxID1.HTML></span>- <span class="inline-block"><$client.env.FormField.TaxID2.HTML></span>- <span class="inline-block"><$client.env.FormField.TaxID3.HTML></span>- <span class="inline-block"><$client.env.FormField.TaxID4.HTML></span>
+                    </div>
+                </div>
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-7 lifesuite__clearfix text bordered">
+                        Employer’s address
+                        <$client.env.FormField.EmployerAddress.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-5 lifesuite__clearfix text bordered">
+                        City or town, state, and Postal/ZIP code
+                        <$client.env.FormField.EmployerCityStateZip.HTML>
+                    </div>
+                </div>
+        </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row bordered">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix justify text bordered">
+          <span class="bold">EMPLOYER:</span> Keep this certificate with your records. If you believe that an employee has claimed excess allowances for the employee’s situation (generally more than 10) or misstated the employee’s marital status, you must send a copy of the Form HW-4 for that employee to the Hawaii Department of Taxation, P. O. Box 3827, Honolulu, Hawaii 96812-3827.
+                </div>
+            </div>
+            <div style="min-height: 20px; height: 20px;"></div>
+      <div class="row bordered-top bordered-bottom">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix center bold">
+          <div class="header-sub">HW-4 Worksheet to Figure Your Withholding Allowances</div>
+                </div>
+            </div>
+            <div style="min-height: 20px; height: 20px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                  <div class="bold list-item">A.</div><div class="list-content">Enter “1” for <span class="bold">yourself</span> if no one else can claim you as a dependent</div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">A.</span><span class="input-field"><$client.env.FormField.LineA.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                  <div class="bold list-item">B.</div>
+                    <div class="list-content">
+                      <div style="vertical-align: top;" class="inline-block">Enter “1” if:</div>
+                        <div class="inline-block indented">
+                          <div class="row">
+                <div class="bold list-item">1.</div>
+                                <div class="list-content">
+                                    You are single and have only one job <span class="bold">OR</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="bold list-item">2.</div>
+                                <div class="list-content">
+                                    You are married, have only one job, and your spouse does not work
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">B.</span><span class="input-field"><$client.env.FormField.LineB.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                  <div class="bold list-item">C.</div>
+                    <div class="list-content">
+                      <div style="vertical-align: top;" class="inline-block">Enter “1” for your <span class="bold">spouse</span> if:</div>
+                        <div class="inline-block indented">
+                            <div class="row">
+                <div class="bold list-item">1.</div>
+                                <div class="list-content">
+                                     No one else can claim your spouse as a dependent <span class="bold">AND</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="bold list-item">2.</div>
+                                <div class="list-content">
+                                    Your spouse is not claiming a withholding allowance for himself / herself on a Form HW-4
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">C.</span><span class="input-field"><$client.env.FormField.LineC.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                  <div class="bold list-item">D.</div>
+                    <div class="list-content">
+                      You may be able to claim additional withholding allowances for <span class="bold">age</span>. See Instructions on page 1.
+                        Enter “1” if you or your spouse qualifies. Enter “2” if both you and your spouse qualify
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">D.</span><span class="input-field"><$client.env.FormField.LineD.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                  <div class="bold list-item">E.</div>
+                    <div class="list-content">
+                      Enter the number of <span class="bold">dependents</span> that you will claim on your tax return. (State qualifications are the same as the federal)
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">E.</span><span class="input-field"><$client.env.FormField.LineE.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                  <div class="bold list-item">F.</div>
+                    <div class="list-content">
+                      Enter “1” if you will file as <span class="bold">head of household</span> on your tax return. See Instructions on page 1
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">F.</span><span class="input-field"><$client.env.FormField.LineF.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                  <div class="bold list-item">G.</div>
+                    <div class="list-content">
+                      Enter “1” if you estimate that you will have at least $250 of <span class="bold">total tax credits</span>
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">G.</span><span class="input-field"><$client.env.FormField.LineG.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                  <div class="bold list-item">H.</div>
+                    <div class="list-content">
+                      If you plan to <span class="bold">itemize or claim adjustments to income</span>, complete the worksheet below and enter the number of withholding allowances here from line 8
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">H.</span><span class="input-field"><$client.env.FormField.LineH.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                  <div class="bold list-item">I.</div>
+                    <div class="list-content">
+                      Total. Add lines A through H. Enter the total here and on line 4 of Form HW-4 on page 1. (<span class="bold">Note:</span> <span class="italic">This amount may be different from the number of exemptions you claim on your return)</span>
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">I.</span><span class="input-field"><$client.env.FormField.LineI.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 50px; height: 50px"></div>
+            <div class="row bordered-top bordered-bottom">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix center bold">
+          <div class="header-sub">Deductions and Adjustments Worksheet</div>
+                </div>
+            </div>
+            <div style="min-height: 5px; height: 5px"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+          <span class="bold">NOTE:</span> Use this worksheet only if you plan to itemize deductions or claim adjustments to income.
+                </div>
+            </div>
+            <div style="min-height: 5px; height: 5px"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+          <div class="bold list-item">1.</div>
+                    <div class="list-content">
+                      Enter an estimate of your current year’s itemized deductions. These include: qualifying home mortgage interest, charitable contributions, state and local taxes, medical expenses in excess of 7.5% of your adjusted gross income for taxable years beginning after December 31, 2018, and miscellaneous deductions. (You may have to reduce your itemized deductions if your income is over $166,800 ($83,400 if married filing separately))
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">1.</span><span class="currency">$</span><span class="input-field-currency"><$client.env.FormField.Line1.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+          <div class="bold list-item">2.</div>
+                    <div class="list-content">
+                      <div style="position: relative; top: -25px;" class="inline-block">Enter</div>
+                        <div class="bracket inline-block">{</div>
+                        <div class="inline-block">
+                          $4,400* if married filing jointly or surviving spouse<br>
+                            $3,212* if head of household<br>
+                            $2,200* if single<br>
+                            $2,200* if married filing separately<br>
+                        </div>
+                        <div class="bracket inline-block">}</div>
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">2.</span><span class="currency">$</span><span class="input-field-currency"><$client.env.FormField.Line2.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+          <div class="bold list-item">3.</div>
+                    <div class="list-content">
+                      Line 1 minus line 2. Enter the result, but not less than zero
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">3.</span><span class="currency">$</span><span class="input-field-currency"><$client.env.FormField.Line3.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+          <div class="bold list-item">4.</div>
+                    <div class="list-content">
+                      Enter an estimate of your current year’s adjustments to income
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">4.</span><span class="currency">$</span><span class="input-field-currency"><$client.env.FormField.Line4.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+          <div class="bold list-item">5.</div>
+                    <div class="list-content">
+                      Add lines 3 and 4 and enter the total
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">5.</span><span class="currency">$</span><span class="input-field-currency"><$client.env.FormField.Line5.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+          <div class="bold list-item">6.</div>
+                    <div class="list-content">
+                      Enter an estimate of your current year’s nonwage income (such as dividends or interest income)
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">6.</span><span class="currency">$</span><span class="input-field-currency"><$client.env.FormField.Line6.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+          <div class="bold list-item">7.</div>
+                    <div class="list-content">
+                      Line 5 minus line 6. Enter the result, but not less than zero
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">7.</span><span class="currency">$</span><span class="input-field-currency"><$client.env.FormField.Line7.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 10px; height: 10px"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+          <div class="bold list-item">8.</div>
+                    <div class="list-content">
+                      Divide the amount on line 7 by $1,144**. (Use whole numbers only). Enter the result here and on the HW-4 worksheet, line H above
+          </div>
+                </div>
+                <div class="col-xs-6 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">8.</span><span class="currency">$</span><span class="input-field-currency"><$client.env.FormField.Line8.HTML></span>
+                </div>
+            </div>
+            <div style="min-height: 20px; height: 20px"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+          <div class="bold list-item">*</div>
+                    <div class="list-content">
+                      Nonresidents and part-year residents: On line 2, enter the amount appropriate to your filing status multiplied by the ratio of your Hawaii adjusted gross income to total adjusted gross income from all sources.
+                    </div>
+                </div>
+            </div>
+            <div style="min-height: 20px; height: 20px"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+          <div class="bold list-item">**</div>
+                    <div class="list-content">
+                      Nonresidents and part-year residents: Divide the amount on line 7 by $1,144 multiplied by the ratio of your Hawaii adjusted gross income to total adjusted gross income from all sources.
+                    </div>
+                </div>
+            </div>
+            <hr class="divider">
+            <div class="row">
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix align-left">
+                   HW4_I 2021A 01 VID01
+                </div>
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix align-center text">
+                    ID NO 01
+                </div>
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix bold align-right text">
+                    FORM HW-4
+                </div>
+            </div>
+            <hr class="lifesuite__hr">
+            <div class="row" id="formButtons" style="display: none;">
+              <div class="lifesuite__clearfix lifesuite__float-right">               
+          <$client.env.FormButtons>
+        </div>             
+      </div>
+    </div>
+  </div>
+    <div style="display:none;">
+	<$client.env.FormField.SignatureVerification.HTML>
+	<$client.env.FormField.LoginID.HTML>
+	<$client.env.FormField.AuthParam.HTML>
+	<$client.env.FormField.Employee_ID.HTML>
+	<$client.env.FormField.MonthDay.HTML>
+	<$client.env.FormField.Year.HTML>
+    </div>
+</form>
+
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');		 
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+
+
+
+}); 
+$( window ).resize(function() { 
+
+document.getElementById('over').style.width=''; 
+
+}); 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+setTimeout(function(){  
+$('[id^=Sig_Typed_Date]').blur( 'change', function () {
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+var tDate = new Date();
+var getMonthDay = monthNames[tDate.getMonth()] + ' ' + tDate.getDate();
+var getYear = tDate.getFullYear();
+console.log(getMonthDay);
+console.log(getYear);
+document.getElementById("monthday").value = getMonthDay ;
+document.getElementById("year").value = getYear;
+});
+
+$('[name$="Signer_date"]').each( function () {
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+var tDate = new Date(this.value);
+var getMonthDay = monthNames[tDate.getMonth()] + ' ' + tDate.getDate();
+var getYear = tDate.getFullYear();
+console.log(getMonthDay);
+console.log(getYear);
+document.getElementById("monthday").value = getMonthDay ;
+document.getElementById("year").value = getYear;
+});
+
+  if(strFormCompleted ==''){ //Check if eForm is completed. '' means incomplete.  
+    $("#ButtonPrint")[0].onclick = null; 
+      $("#ButtonPrint").click(function() {  
+        /* Add your code/function here */ 
+        $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+        void(funcPrint()); // default print function 
+      }); 
+
+    if($("#ButtonSaveAndComplete").length){  
+      $("#ButtonSaveAndComplete")[0].onclick = null; 
+        $("#ButtonSaveAndComplete").click(function() {  
+            /* Add your code/function here */ 
+            $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+            void(funcSaveAndComplete());  //default Save function 
+        }); 
+    } 
+  } 
+
+}, 300); 
+
+
+
+
+</SCRIPT>

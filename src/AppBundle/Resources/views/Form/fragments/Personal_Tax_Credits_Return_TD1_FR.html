@@ -1,0 +1,543 @@
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'Je comprends qu’en signant ce document électroniquement en écrivant mon nom complet ci-dessous, je reconnais, conviens et atteste que les renseignements que j’ai moi-même fournis sont véridiques et exacts et que je suis libre de créer et d’adopter une signature électronique légale portant le même effet juridique et caractère exécutoire que ma signature manuscrite.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 300px;">
+                <input type="button" class="lifesuite__button primary" value="Signer" onClick="validateSignature('signature','eSignature1','fname,mi,lname','modal','over','sv','DateSigned');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp;
+                <input type="button" class="lifesuite__button" value="Annuler" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+    <$client.env.FormField.Form_Name.prompt>
+    <$client.env.FormField.Form_Name.HTML>
+    <$client.env.FormField.Form_Type.prompt>
+    <$client.env.FormField.Form_Type.HTML>
+    <$client.env.FormField.Form_Owner.prompt>
+    <$client.env.FormField.Form_Owner.HTML>
+    <$client.env.FormField.Form_CreateDate.prompt>
+    <$client.env.FormField.Form_CreateDate.HTML>
+    <$client.env.FormField.Form_Completed.prompt>
+    <$client.env.FormField.Form_Completed.HTML>
+    <$client.env.FormField.Form_Delivered.prompt>
+    <$client.env.FormField.Form_Delivered.HTML>
+    <$client.env.FormField.Form_TaskId.prompt>
+    <$client.env.FormField.Form_TaskId.HTML>
+    <$client.env.FormField.display_version.HTML>
+
+
+    <$client.env.FormField.AdditionalTax.prompt>
+    <$client.env.FormField.Address.prompt>
+    <$client.env.FormField.Country.prompt>
+    <$client.env.FormField.DateOfBirth.prompt>
+    <$client.env.FormField.DateSigned.prompt>
+    <$client.env.FormField.EmployeeNumber.prompt>
+    <$client.env.FormField.FirstName.prompt>
+    <$client.env.FormField.LastName.prompt>
+    <$client.env.FormField.Line10.prompt>
+    <$client.env.FormField.Line11.prompt>
+    <$client.env.FormField.Line12.prompt>
+    <$client.env.FormField.Line13.prompt>
+    <$client.env.FormField.Line2.prompt>
+    <$client.env.FormField.Line3.prompt>
+    <$client.env.FormField.Line4.prompt>
+    <$client.env.FormField.Line5.prompt>
+    <$client.env.FormField.Line6.prompt>
+    <$client.env.FormField.Line7.prompt>
+    <$client.env.FormField.Line8.prompt>
+    <$client.env.FormField.Line9.prompt>
+    <$client.env.FormField.MiddleInitial.prompt>
+    <$client.env.FormField.MultipleEmployers.prompt>
+    <$client.env.FormField.NonResidents.prompt>
+    <$client.env.FormField.SIN.prompt>
+    <$client.env.FormField.TotalIncome.prompt>
+    <$client.env.FormField.ZoneDudction.prompt>
+    <$client.env.FormField.signature.prompt>
+
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<div class="container-fluid"> 
+    <div class="form-group">
+       <div class="header-container">
+        <div class="row">
+            <div class="col-sm-3 header-image-container">
+                <img src="<$link;/main/RedCarpet/FormTemplates/Personal_Tax_Credits_Return_TD1/TD1French.JPG>" class="img-responsive" alt="">
+            </div>
+            <div class="col-sm-6 header">
+
+            </div>
+            <div class="col-sm-3 header-text">   
+                <span class="bold">Protégé B</span> une fois rempli<br>
+                TD1
+            </div>
+        </div>
+        <div class="row">
+            <div class="header text-center">
+                <p>
+                    Déclaration des crédits d'impôt personnels pour 2022
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 lifesuite__clearfix text">
+            <div class="bold">
+                Lisez la page 2 de ce formulaire avant de le remplir. Votre employeur ou payeur utilisera ce formulaire pour déterminer l'impôt à retenir.
+            </div>
+            <p>
+                Remplissez ce formulaire en vous basant sur l'information qui correspond le mieux à votre situation.
+            </p>
+            <p>
+                Si vous ne remplissez pas ce formulaire, vos retenues d'impôt seront calculées uniquement en fonction du montant personnel de base estimé par votre employeur ou payeur selon le revenu qu'il vous paie.
+            </p>
+        </div>
+    </div>
+    <div class="border">
+        <div class="row bordered">
+            <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                Nom de famille
+                <$client.env.FormField.LastName.HTML>
+            </div>
+            <div class="col-xs-12 col-md-4 lifesuite__clearfix text bordered">
+                Prénom et initiale(s) 
+                <div style="white-space: nowrap;">
+                    <span style="display: inline-block; width: 70%;"><$client.env.FormField.FirstName.HTML></span>
+                    <span style="display: inline-block; width: 30%;"><$client.env.FormField.MiddleInitial.HTML></span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                Date de naissance (AAAA/MM/JJ)
+                <$client.env.FormField.DateOfBirth.HTML>
+            </div>
+            <div class="col-xs-12 col-md-2 lifesuite__clearfix text">
+                Numéro d'employé
+                <$client.env.FormField.EmployeeNumber.HTML>
+            </div>
+        </div>
+        <div class="row bordered" style="min-height:150px; height: 150px;">
+            <div class="col-xs-12 col-md-4 lifesuite__clearfix text bordered" style="min-height:150px; height: 150px;">
+                Adresse <br class="hidden-xs"><br class="hidden-xs">
+                <$client.env.FormField.Address.HTML>
+            </div>
+            <div class="col-xs-12 col-md-2 lifesuite__clearfix text bordered" style="min-height:150px; height: 150px;">
+                Code postal <br class="hidden-xs"><br class="hidden-xs">
+                <$client.env.FormField.postal_code.HTML>
+            </div>
+            <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered" style="min-height:150px; height: 150px;">
+                <span class="bold">Réservé aux non-résidents</span> – <br>
+                Pays de résidence permanente
+                <$client.env.FormField.Country.HTML>
+            </div>
+            <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                Numéro d'assurance sociale <br class="hidden-xs"><br class="hidden-xs">
+                <$client.env.FormField.SIN.HTML>
+            </div>
+        </div>
+        <div class="row bordered">
+            <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                <span class="bold">1. Montant personnel de base</span> – Toute personne qui réside au Canada peut demander le montant personnel de base de 14 398 $. Toutefois, si votre revenu net de toutes provenances sera supérieur à 155 625 $ et que vous indiquez 14 398 $, vous pourriez avoir un solde dû dans votre déclaration de revenus et de prestations à la fin de l'année d'imposition. Si vous prévoyez avoir un revenu supérieur à 155 625 $, vous pouvez demander un montant partiel. Pour calculer ce montant, remplissez la section appropriée du formulaire TD1-WS, Feuille de calcul pour la déclaration des crédits d'impôt personnels pour 2022, et inscrivez le montant calculé ici.
+            </div>
+            <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                <p><br><$client.env.FormField.Line1.HTML></p>
+            </div>
+        </div>
+        <div class="row bordered">
+            <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                <span class="bold">2. Montant canadien pour aidants pour enfants âgés de moins de 18 ans ayant une déficience</span> –  Un seul des parents pourra demander le crédit de 2 350 $ pour chaque enfant ayant une déficience né en 2005 ou après, si l'enfant réside avec ceux-ci tout au long de l'année. Si l'enfant ne réside pas avec ses deux parents tout au long de l'année, le parent qui a droit au « Montant pour une personne à charge admissible » à la Ligne 8 pourra aussi demander le montant canadien pour aidants pour le même enfant âgé de moins de 18 ans.</div>
+            <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                <p><br><$client.env.FormField.Line2.HTML></p>
+            </div>
+        </div>
+        <div class="row bordered">
+            <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                <span class="bold">3. Montant en raison de l'âge</span> –  Si votre revenu net pour l'année de toutes provenances sera de 39 826 $ ou moins et que vous aurez 65 ans ou plus le 31 décembre 2022, inscrivez 7 898 $. Si votre revenu net pour l'année se situera entre 39 826 $ et 92 480 $ et que vous voulez calculer un montant partiel, procurez-vous le formulaire TD1-WS, Feuille de calcul pour la déclaration des crédits d'impôt personnels pour 2022, et remplissez la section appropriée.</div>
+            <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                <p><br><$client.env.FormField.Line3.HTML></p>
+            </div>
+        </div>
+        <div class="row bordered">
+            <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                <span class="bold">4. Montant pour revenu de pension</span> –  Si vous recevez des paiements réguliers d'une caisse de retraite ou d'un régime de pension (sauf les prestations du Régime de pensions du Canada ou du Régime de rentes du Québec, la pension de la Sécurité de la vieillesse et le Supplément de revenu garanti), inscrivez le moins élevé des montants suivants : le montant estimatif de pension que vous recevrez dans l'année ou 2 000 $.</div>
+            <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                <p><br><$client.env.FormField.Line4.HTML></p>
+            </div>
+        </div>
+        <div class="row bordered">
+            <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                <span class="bold">5. Frais de scolarité (temps plein ou temps partiel)</span> –  Si vous êtes un étudiant à l'université, au collège ou dans un établissement d'enseignement reconnu par Emploi et Développement social Canada et que vous paierez plus de 100 $ de frais de scolarité par établissement, remplissez cette section. Si vous êtes un étudiant à temps plein ou partiel, inscrivez les frais de scolarité que vous paierez.
+            </div>
+            <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                <p><br><$client.env.FormField.Line5.HTML></p>
+            </div>
+        </div>
+        <div class="row bordered">
+            <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                <span class="bold">6. Montant pour personnes handicapées</span> – Si, dans votre déclaration de revenus et de prestations, vous demandez le montant pour personnes handicapées au moyen du formulaire T2201, Certificat pour le crédit d'impôt pour personnes handicapées, inscrivez 8 870 $.</div>
+            <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                <p><br><$client.env.FormField.Line6.HTML></p>
+            </div>
+        </div>
+        <div class="row bordered">
+            <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                <span class="bold">7. Montant pour époux ou conjoint de fait</span> – Si vous subvenez aux besoins de votre époux ou de votre conjoint de fait qui demeure avec vous et que son revenu net pour l'année sera inférieur à Ligne 1 (Ligne 1 plus 2 350 $ s'il a une <strong>déficience</strong>), inscrivez la différence entre ce montant et son revenu net estimatif pour l'année. Si son revenu net sera de Ligne 1 ou plus (Ligne 1 plus 2 350 $ ou plus s'il a une <strong>déficience</strong>), vous ne pouvez pas demander ce montant. Dans tous les cas, si son revenu net pour l'année sera de 25 195 $ ou moins et qu'il a une <strong>déficience</strong>, allez à la Ligne 9.</div>
+                <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <p><br><$client.env.FormField.Line7.HTML></p>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">8. Montant pour une personne à charge admissible</span> – Si vous n'avez pas d'époux ou de conjoint de fait et que vous subvenez aux besoins d'une personne qui vous est apparentée, qui demeure avec vous et dont le revenu net pour l'année sera inférieur à Ligne 1 (Ligne 1 plus 2 350 $ si elle a une <strong>déficience</strong> et que vous <strong>ne pouvez pas demander pour cette personne le montant canadien pour aidants pour enfants âgés de moins de 18 ans</strong>), inscrivez la différence entre ce montant et son revenu net estimatif pour l'année. Si son revenu net sera de Ligne 1 ou plus (Ligne 1 plus 2 350 $ ou plus s'il a une <strong>déficience</strong>), vous ne pouvez pas demander ce montant.  Dans tous les cas, si son revenu net pour l'année sera de 25 195 $ ou moins <strong>et</strong> qu'il a une <strong>déficience et est âgée de 18 ans ou plus</strong>, allez à la Ligne 9.
+                </div>
+                <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <p><br><$client.env.FormField.Line8.HTML></p>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">9. Montant canadien pour aidants naturels pour une personne à charge admissible ou époux ou conjoint de fait</span> – Si, à un moment quelconque de l'année, vous subvenez aux besoins d'une personne à charge admissible ayant une <strong>déficience</strong> (âgée de 18 ans ou plus) ou d'un époux <strong>ou</strong> d'un conjoint de fait ayant une <strong>déficience</strong> dont le revenu net pour l'année sera de 25 195 $ ou moins, obtenez le formulaire TD1-WS et remplissez la section appropriée.
+                </div>
+                <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <p><br><$client.env.FormField.Line9.HTML></p>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">10. Montant canadien pour aidants naturels pour personnes à charge âgées de 18 ans ou plus</span> –  Si, à un moment quelconque de l'année, vous subvenez aux besoins d'une personne de 18 ans ou plus ayant une <strong>déficience</strong> (<strong>autre que l'époux ou le conjoint de fait ou la personne à charge admissible pour laquelle vous avez demandé un montant à la Ligne 9, ou pour laquelle vous avez pu demander un montant si leur revenu net pour l'année était moins que 16 748 $</strong>) dont le revenu net pour l'année sera de 17 670 $ ou moins, inscrivez 7 525 $. Si son revenu net pour l'année sera entre 17 670 $ et 25 195 $ et que vous voulez calculer un montant partiel, obtenez le formulaire TD1-WS et remplissez la section appropriée. Vous pouvez demander ce montant pour plus d'une personne à charge âgées de 18 ans ou plus ayant une déficience. Si vous partagez ce montant avec un autre aidant naturel qui subvient aux besoins de la même personne à charge, obtenez le formulaire TD1-WS et remplissez la section appropriée.
+                </div>
+                <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <p><br><$client.env.FormField.Line10.HTML></p>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">11. Montants transférés de votre époux ou conjoint de fait</span> – Si votre époux ou conjoint de fait n'utilise pas en totalité certains de ses montants (frais de scolarité, montant en raison de l'âge, montant pour revenu de pension, montant pour personnes handicapées) dans sa déclaration de revenus et de prestations, inscrivez le montant qu'il n'utilise pas.
+                </div>
+                <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <p><br><$client.env.FormField.Line11.HTML></p>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">12. Montants transférés d'une personne à charge</span> – Si une personne à votre charge n'utilise pas en totalité son <strong>montant pour personnes handicapées</strong> dans sa déclaration de revenus et de prestations, inscrivez le montant qu'elle n'utilise pas. Si votre enfant à charge ou un de vos petits-enfants à charge ou celui de votre époux ou conjoint de fait n'utilise pas en totalité ses <strong>frais</strong> de scolarité dans sa déclaration de revenus et de prestations, inscrivez le montant qu'il n'utilise pas.
+                </div>
+                <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <p><br><$client.env.FormField.Line12.HTML></p>
+                </div>
+            </div>            
+            <div class="row bordered">
+                <div class="col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">13. MONTANT TOTAL DE LA DEMANDE</span> – Additionnez les montants des lignes 1 à 12.<br>
+                    Votre employeur ou payeur utilisera ce montant pour déterminer l'impôt à retenir.
+                </div>
+                <div class="col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <p><br><$client.env.FormField.Line13.HTML></p>
+                </div>
+            </div>
+        </div>
+        <div style="min-height: 20px; height: 20px;"></div>
+        <div class="footer-container">
+            <div class="row">
+                <div class="footer-text">   
+                  TD1 F (01/22)
+              </div>
+              <div class="footer">
+                  (This form is available in English.)
+              </div>
+              <div class="footer-image-container">
+                <img src="<$link;/main/RedCarpet/FormTemplates/Personal_Tax_Credits_Return_TD1/Canada.JPG>" class="img-responsive" alt="">
+            </div>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="section-container">
+        <div class="section row">
+            <div class="col-md-12 lifesuite__clearfix text">
+                <div class="section-header">Remplir le formulaire TD1</div>
+                Remplissez ce formulaire <strong>seulement</strong> si l'une des situations suivantes s'applique a vous :</strong> 
+                <ul>
+                  <li>vous avez un nouvel employeur ou un nouveau payeur et vous recevrez un traitement, un salaire, des commissions, des prestations
+                  d'assurance-emploi, une pension ou toute autre rémunération;</li>
+                  <li>vous voulez faire un changement aux montants déjà demandés (par exemple, le nombre de personnes à votre charge admissibles a changé);</li>
+                  <li>vous demandez une déduction pour les habitants de zones visées par règlement;</li>
+                  <li>vous voulez augmenter le montant d'impôt que vous faites retenir à la source.</li>
+              </ul>
+              <br>
+              Signez et datez votre formulaire, et remettez-le à votre employeur ou payeur.<br>
+              Si vous ne remplissez pas ce formulaire, vos retenues d'impôt seront calculées uniquement en fonction du montant personnel de base estimé par votre employeur ou payeur selon le revenu qu'il vous paie.
+          </div>
+      </div>
+      <div class="section row">
+        <div class="col-md-12 lifesuite__clearfix text">
+            <div class="section-header">Plus d'un employeur ou payeur en même temps</div>
+            <table>
+                <tr>
+                    <td style="padding-right: 15px; vertical-align: top;">
+                        <$client.env.FormField.MultipleEmployers.HTML>
+                    </td>
+                    <td>
+                       Si vous avez plus d'un employeur ou payeur en même temps et que vous avez déjà demandé des crédits d'impôt personnels sur un autre formulaire
+                       TD1 pour 2022, <strong>vous ne pouvez pas les demander de nouveau</strong>. Si votre revenu total de toutes provenances sera <strong>plus</strong> élevé que les crédits
+                       d'impôt personnels que vous avez déjà demandés sur un autre formulaire TD1, <strong>cochez</strong> cette case, et inscrivez « 0 » à la ligne 13 et ne remplissez
+                       pas les lignes 2 à 12.
+                   </td>
+               </tr>
+           </table>
+       </div>
+   </div>
+   <div class="section row">
+    <div class="col-md-12 lifesuite__clearfix text">
+        <div class="section-header">Total des revenus inférieur au montant total de la demande</div>
+        <table>
+            <tr>
+                <td style="padding-right: 15px; vertical-align: top;">
+                    <$client.env.FormField.TotalIncome.HTML>
+                </td>
+                <td>
+                    Cochez cette case si le total de vos revenus pour l'année de <strong>tous</strong> vos employeurs et payeurs sera <strong>inférieur</strong> au montant inscrit à la ligne 13.
+                    Votre employeur ou payeur ne retiendra pas d'impôt sur vos gains.
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="section row">
+    <div class="col-md-12 lifesuite__clearfix text">
+        <div class="section-header">Non-résidents (Remplissez seulement si vous êtes un non-résident du Canada.)</div>
+        En tant que non-résident du Canada, est-ce que 90 % ou plus de votre revenu de toutes provenances sera inclus dans le calcul de votre revenu imposable au Canada pour 2021?
+        <table width="100%">
+            <tr>
+                <td width="6%" style="padding-right: 15px; vertical-align: top;">&nbsp;
+
+                </td>
+                <td width="94%"><$client.env.FormField.NonResidents.HTML></td>
+            </tr>
+        </table>
+        Si vous êtes incertain de votre statut de résidence, communiquez avec les demandes de renseignements relatives à l’impôt et aux non-résidents,
+        au <strong>1-800-959-7383</strong>.<br><br>
+    </div>
+</div>
+<div class="section row">
+    <div class="col-md-12 lifesuite__clearfix text">
+        <div class="section-header">Déclaration provinciale ou territoriale des crédits d'impôt personnels</div>
+        Si le montant inscrit à la Ligne 13 est supérieur à 14 398 $, remplissez aussi un formulaire TD1 provincial ou territorial. Si vous êtes un employé, utilisez le formulaire TD1 de votre province ou territoire d'emploi. Si vous recevez une pension, utilisez celui de votre province ou territoire de résidence. Votre employeur ou payeur utilisera ce formulaire fédéral et le formulaire TD1 provincial ou territorial le plus récent pour déterminer l'impôt à retenir.<br> 
+        <br>
+        Si vous demandez le montant personnel de base <strong>seulement</strong>, votre employeur ou payeur retiendra l'impôt provincial ou territorial en vous accordant le
+        montant personnel de base de la province ou du territoire.
+    </div>
+</div>
+<div class="section row" style="padding-left:50px;">
+    <div class="col-md-12 lifesuite__clearfix text">
+        <strong>Remarque : </strong> Si vous résidez en Saskatchewan et que vous avez des enfants âgés de moins de 18 ans en 2022, vous pourriez demander le montant pour
+        enfants sur le formulaire TD1SK, Déclaration des crédits d'impôt personnels de la Saskatchewan pour 2022. Par conséquent, vous voudrez peut-être
+        remplir le formulaire TD1SK même si vous demandez <strong>seulement</strong> le montant personnel de base au recto du présent formulaire
+    </div>
+</div>
+<div class="section row">
+    <div class="col-md-12 lifesuite__clearfix text">
+        <div class="section-header">Déduction pour les habitants de zones visées par règlement</div>
+        Si vous vivez au Nunavut, dans les Territoires du Nord-Ouest, au Yukon ou dans une autre zone <strong>nordique</strong> visée par règlement pendant plus de six mois
+        consécutifs commençant ou finissant en 2022, vous pouvez demander l'une des déductions suivantes :
+    </div>
+</div>                        
+<div class="section row">
+    <div class="col-md-8 lifesuite__clearfix text">
+        <ul style="padding-left:50px;">
+            <li>11,00 $ pour chaque jour où vous vivez dans une zone nordique visée par règlement;</li>
+            <li>22,00 $ pour chaque jour où vous vivez dans une zone nordique visée par règlement si, durant cette période, vous maintenez
+            et occupez une habitation et que vous êtes la seule personne de cette habitation à demander cette déduction.</li>
+        </ul>
+        Le montant pour la résidence d'un employé qui habite dans une zone <strong>intermédiaire</strong> visée par règlement est égal à 50 % du total des montants ci-dessus.
+        Pour en savoir plus, allez à <strong><a href="https://www.canada.ca/impots-habitants-regions-eloignees" target="_blank">canada.ca/impots-habitants-regions-eloignees</a></strong>.    
+    </div>
+    <div class="col-md-4 lifesuite__clearfix text" style="text-align:center">
+        <table width="70%" style="border:1px solid #000;" class="table-responsive">
+            <tr>
+                <td width="91%" style="text-align:right; padding:3px;" class="zero-btm-input"><$client.env.FormField.PrescribedZone.HTML>
+
+                </td>
+                <td width="9%"><strong>$</strong></td>
+            </tr>
+        </table>    
+    </div>
+</div>    
+<div class="section row">
+    <div class="col-md-8 lifesuite__clearfix text">
+        <div class="section-header">Impôt additionnel à retenir</div>
+        Vous pouvez faire augmenter les retenues d'impôt, particulièrement si vous recevez d'autres revenus, y compris ceux qui ne
+        proviennent pas d'un emploi (par exemple, prestations du RPC ou du RRQ ou pension de sécurité de la vieillesse). En faisant
+        ce choix, il est possible que vous ayez moins d'impôt à payer lorsque vous produirez votre déclaration de revenus et de
+        prestations. Pour faire ce choix, indiquez le montant additionnel d'impôt que vous voulez que l'on retienne sur chaque paiement.
+        Si vous désirez modifier ce montant plus tard, vous devrez remplir ce formulaire à nouveau.
+    </div>
+    <div class="col-md-4 lifesuite__clearfix text" style="text-align:center">
+        <table width="70%" style="border:1px solid #000;" class="table-responsive">
+            <tr>
+                <td width="91%" style="text-align:right; padding:3px;" class="zero-btm-input"><$client.env.FormField.AdditionalDeductions.HTML>
+
+                </td>
+                <td width="9%"><strong>$</strong></td>
+            </tr>
+        </table>    
+    </div>
+</div>
+
+<div class="section row">
+    <div class="col-md-12 lifesuite__clearfix text">
+        <div class="section-header">Réduction des retenues d'impôt</div>
+        Vous pouvez demander une réduction de vos retenues d'impôt dans votre déclaration de revenus et de prestations si vous avez droit à des déductions ou à
+        des crédits d'impôt non remboursables qui ne figurent pas sur ce formulaire (par exemple, versements périodiques à un régime enregistré d'épargne-retraite
+        (REER), frais de garde d'enfant, dépenses d'emploi, dons de bienfaisance, frais de scolarité et montant relatif aux études inutilisés qui proviennent de l'année
+        précédente). Pour ce faire, remplissez le formulaire T1213, Demande de réduction des retenues d'impôt à la source, pour obtenir une lettre d'autorisation de
+        votre bureau des services fiscaux. Remettez la lettre d'autorisation à votre employeur ou payeur. Vous n'avez pas besoin d'une lettre si votre employeur
+        retient des cotisations à un REER sur votre salaire.
+    </div>
+</div>
+
+<div class="section row">
+    <div class="col-md-12 lifesuite__clearfix text">
+        <div class="section-header">Formulaires et publications</div>
+        Pour obtenir nos formulaires et publications, allez à <strong><a href="https://www.canada.ca/arc-formulaires-publications" target="_blank">canada.ca/arc-formulaires-publications</a></strong> ou composez le <strong>1-800-959-7775</strong>.
+    </div>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-12 lifesuite__clearfix text">
+        <small>Les renseignements personnels (y compris le NAS) sont recueillis aux fins de l’administration ou de l’application de la Loi de l’impôt sur le revenu et des programmes et activités
+            connexes incluant l’administration de l’impôt, des prestations, la vérification, l’observation et le recouvrement. Les renseignements recueillis peuvent être utilisés et communiqués
+            aux fins d’autres lois fédérales qui prévoient l’imposition et la perception d’un impôt, d’une taxe ou d’un droit. Ils peuvent aussi être communiqués à une autre institution
+            gouvernementale fédérale, provinciale, territoriale ou étrangère dans la mesure où le droit l’autorise. Le défaut de fournir ces renseignements pourrait entraîner des intérêts à payer,
+            des pénalités ou d’autres mesures. Selon la Loi sur la protection des renseignements personnels, les particuliers ont le droit à la protection, à l’accès et à la correction de leurs
+renseignements personnels ou de déposer une plainte auprès du Commissaire à la protection de la vie privée du Canada concernant le traitement de leurs renseignements
+personnels. Consultez le fichier de renseignements personnels ARC PPU 120 sur Info Source en allant à <strong><a href="https://www.canada.ca/arc-info-source" target="_blank">canada.ca/arc-info-source</a></strong>.</small>
+        </div>
+    </div>
+    <div style="min-height: 100px; height: 100px;"></div>
+    <div class="section-container">
+        <div class="row">
+            <div class="col-md-12 lifesuite__clearfix text">
+                <div class="section-header">Attestation</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 lifesuite__clearfix text">
+                J'atteste que les renseignements fournis dans ce formulaire sont exacts et complets.
+            </div>
+        </div>
+        <div style="min-height: 20px; height: 20px;"></div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 lifesuite__clearfix text">
+                <$client.env.FormField.Signer.HTML>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 lifesuite__clearfix text">
+                <b>Faire une fausse déclaration constitue une infraction grave.</b>
+            </div>
+
+ <!--                    
+                    <div class="col-sm-12 col-md-8 lifesuite__clearfix text">
+                        Signature
+                        <$client.env.FormField.Signature.HTML>
+                        <div class="center bold"><strong>Faire une fausse déclaration constitue une infraction grave.</strong></div>
+                    </div>
+                    <div class="col-sm-4 col-md-4 lifesuite__clearfix text">
+                        Date
+                        <$client.env.FormField.DateSigned.HTML>
+                         <div class="center bold">AAAA/MM/JJ</div>
+                     </div> -->
+                 </div>
+             </div>
+             <div style="text-align:center;">Sur ce formulaire, les expressions désignant des personnes visent les individus de tous genres.<br><br>   
+                <$client.env.FormButtons>
+            </div>
+        </div>
+
+
+        <div style="display:none;">
+            <$client.env.FormField.signatureverification.HTML>
+            <$client.env.formfield.Login_ID.html>
+            <$client.env.formfield.Auth_Param.html>
+            <$client.env.formfield.EmployeeID.html>
+        </div>
+
+        <br> <br>
+    </form>
+    <SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+//disableCalButton("ng-invalid SignDT");
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+   $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+   $("#buttonCancel").addClass("lifesuite__button");
+   $('#buttonCancel').attr('id','ButtonCancel');
+   $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+   $("#buttonSave").addClass("lifesuite__button primary");
+   $('#buttonSave').attr('id','ButtonSave');
+   $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+   $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+   $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+   $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+   $("#buttonPrint").addClass("lifesuite__button");
+   $('#buttonPrint').attr('id','ButtonPrint');
+   $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+   $("#buttonPreviewDelete").addClass("lifesuite__button");
+   $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+   $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+   $("#buttonPreviewSave").addClass("lifesuite__button primary");
+   $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+   $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+   $("#buttonComplete").addClass("lifesuite__button primary"); 
+   $('#buttonComplete').attr('id','ButtonComplete');
+
+   /*document.getElementById('formButtons').style.display = "block";*/
+
+   $("input[type=text]").addClass('lifesuite__text-input');
+   $("input[type=text].hasDatepicker").addClass('dateField');
+   $("select").addClass('lifesuite__select-input');
+   $("input[type=radio]").addClass('lifesuite__radio');
+   $("input[type=checkbox]").addClass('lifesuite__checkbox');
+   $("textarea").addClass('lifesuite__textarea-input');
+   $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+</SCRIPT>

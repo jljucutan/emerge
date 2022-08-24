@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentElement targetNamespace="/eprise/contentelement.xsd">
+<TextField Name="SectionVIDesktop" FieldOrder="80" Prompt="VI Desktop Information" ReadOnly="true" FormOptions="style='display:none;'"/>
+<TextField Name="ApplicantID" FieldOrder="90" Prompt="Applicant ID Number" HTML="STRIP_ALL" Cols="50" Rows="1"/>
+<TextField Name="ApplicationID" FieldOrder="100" Prompt="Application ID" HTML="STRIP_ALL" Cols="30" Rows="1"/>
+<SelectionField Name="Practice_Group" FieldOrder="110" Prompt="Practice Group" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Practice_Group"/>
+<SelectionField Name="Practice_Area" FieldOrder="120" Prompt="Practice Area" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Practice Area"/>
+<SelectionField Name="Office" FieldOrder="130" Prompt="Office" OptionsFromList="true" OptionType="DropDown" Options="EUP_Office"/>
+<SelectionField Name="Position_Title_Code" FieldOrder="140" Prompt="Position/Job Title" OptionsFromList="true" OptionType="DropDown" Options="EUP_Position/Job Title Code US"/>
+<TextField Name="DOB" FieldOrder="150" Prompt="Date of Birth" Visual="DATE" ValidationType="JavaScriptFunction" Cols="10" Rows="1" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormPastDate':'CheckDate')&gt;" DisplayFormat="enabled m/d/yyyy" DisplayLabel="Date of Birth"/>
+<TextField Name="Name_of_Spouse_Partner" FieldOrder="160" Prompt="Name of Spouse/Partner" Cols="20" Rows="1"/>
+<SelectionField Name="MaritalStatus" FieldOrder="170" Prompt="Marital Status" OptionsFromList="true" OptionType="DropDown" Options="EUP_Marital Status" DisplayLabel="Marital Status"/>
+<SelectionField Name="Attorney_Point_of_Contact" FieldOrder="190" Prompt="Attorney Point of Contact" OptionsFromList="true" OptionType="DropDown" Options="EUP_Attorney"/>
+<SelectionField Name="Address_Type" FieldOrder="200" Prompt="Address Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Address Type"/>
+<SelectionField Name="Current_Country" FieldOrder="210" Prompt="Country" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<TextField Name="Current_Address1" FieldOrder="220" Prompt="Home Address 1" HTML="STRIP_ALL" Cols="55" Rows="1"/>
+<TextField Name="Current_Address2" FieldOrder="230" Prompt="Home Address 2" HTML="STRIP_ALL" Cols="55" Rows="1"/>
+<TextField Name="Current_Address3" FieldOrder="240" Prompt="Home Address 3" HTML="STRIP_ALL" Cols="55" Rows="1"/>
+<TextField Name="Current_Address4" FieldOrder="250" Prompt="Home Address 4" HTML="STRIP_ALL" Cols="55" Rows="1"/>
+<TextField Name="Current_City" FieldOrder="260" Prompt="City" HTML="STRIP_ALL" ValidationType="JavaScriptFunction" Cols="30" Rows="1" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;"/>
+<SelectionField Name="Current_State" FieldOrder="270" Prompt="State" OptionsFromList="true" OptionType="SimpleDropDown" ValidationType="JavaScriptFunction" Options="EUP_State" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;"/>
+<TextField Name="Current_Postal_Code" FieldOrder="280" Prompt="Postal Code" HTML="STRIP_ALL" ValidationType="JavaScriptFunction" Cols="12" Rows="1" ValidationExtraInfo="&lt;$client.env.eval(client.content.name.indexOf('EditProfile')&gt;=0?'eFormRequiredField':'doNothing')&gt;"/>
+<SelectionField Name="current_publish" FieldOrder="290" Prompt="Would you like this Address to be published?" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Mailing_Address_Type" FieldOrder="300" Prompt="Address Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Address Type"/>
+<SelectionField Name="Mail_Country" FieldOrder="310" Prompt="Mailing Country" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<TextField Name="Mail_Address1" FieldOrder="320" Prompt="Mailing Address 1" Cols="55" Rows="1"/>
+<TextField Name="Mail_Address2" FieldOrder="330" Prompt="Mailing Address 2" Cols="55" Rows="1"/>
+<TextField Name="Mail_Address3" FieldOrder="340" Prompt="Mailing Address 3" Cols="55" Rows="1"/>
+<TextField Name="Mail_Address4" FieldOrder="350" Prompt="Mailing Address 4" Cols="55" Rows="1"/>
+<TextField Name="Mail_City" FieldOrder="360" Prompt="Mailing City" HTML="STRIP_ALL" ValidationType="JavaScriptFunction" Cols="30" Rows="1"/>
+<SelectionField Name="Mail_State" FieldOrder="370" Prompt="Mailing State" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_State"/>
+<TextField Name="Mail_Postal_Code" FieldOrder="380" Prompt="Mailing Postal Code" Cols="12" Rows="1"/>
+<SelectionField Name="Mail_Publish" FieldOrder="390" Prompt="Would you like this Mailing Address to be published?" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Gender" FieldOrder="400" Prompt="Gender" OptionsFromList="true" OptionType="DropDown" Options="EUP_Gender" DisplayLabel="Gender"/>
+<SelectionField Name="Disability_Status" FieldOrder="420" Prompt="Disabled" OptionsFromList="true" OptionType="DropDown" Options="EUP_Disabled" DisplayLabel="Disabled"/>
+<SelectionField Name="Veteran_Status" FieldOrder="430" Prompt="Veteran" OptionsFromList="true" OptionType="DropDown" Options="EUP_Veteran"/>
+<SelectionField Name="Attorney_Referral_1" FieldOrder="440" Prompt="Attorney Referral 1" OptionsFromList="true" OptionType="DropDown" Options="EUP_Attorney"/>
+<SelectionField Name="Referral_Bonus_Eligible_1" FieldOrder="450" Prompt="Referral Bonus Eligible" OptionsFromList="true" Horizontal="true" OptionType="DropDown" Options="EUP_Referral Bonus Eligible"/>
+<TextField Name="Referral_Eligibility_Date_1" FieldOrder="460" Prompt="Referral Eligibility Date 1" Cols="10" Rows="1"/>
+<SelectionField Name="Home_Phone_Type" FieldOrder="470" Prompt="Phone Type Home" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Type"/>
+<SelectionField Name="Home_Phone_Country_Code" FieldOrder="480" Prompt="Home Phone Country Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Country_Code"/>
+<TextField Name="Home_Phone" FieldOrder="490" Prompt="Home Phone Number" Cols="24" Rows="1"/>
+<SelectionField Name="Publish_home_phone" FieldOrder="500" Prompt="Would you like your home number published?" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Personal_Phone_Type" FieldOrder="510" Prompt="Phone Type - Personal Cell" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Type"/>
+<SelectionField Name="Mobile_Phone_Country_Code" FieldOrder="520" Prompt="Country Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Country_Code"/>
+<TextField Name="Mobile" FieldOrder="530" Prompt="Personal Cell Phone" HTML="STRIP_ALL" Cols="24" Rows="1"/>
+<SelectionField Name="Publish_mobile" FieldOrder="540" Prompt="Would you like your personal cell number published?" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Phone_Type" FieldOrder="550" Prompt="Phone Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Type"/>
+<SelectionField Name="Cell_business_Country_code" FieldOrder="560" Prompt="Cell Business Phone Country Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Country_Code"/>
+<TextField Name="mobile_business" FieldOrder="570" Prompt="mobile_business" Cols="24" Rows="1"/>
+<SelectionField Name="Publish_mobile_Business" FieldOrder="580" Prompt="Would you like your Business cell number published?" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Preferred_Phone" FieldOrder="590" Prompt="Preferred Phone" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Type"/>
+<SelectionField Name="Recruiter_ID" FieldOrder="600" Prompt="Recruiter ID" OptionsFromList="true" OptionType="DropDown" Options="EUP_Recruiter"/>
+<SelectionField Name="Mentor_ID_1" FieldOrder="610" Prompt="Mentor ID 1" OptionsFromList="true" OptionType="DropDown" Options="EUP_Mentor"/>
+<SelectionField Name="Mentor_ID_2" FieldOrder="620" Prompt="Mentor ID 2" OptionsFromList="true" OptionType="DropDown" Options="EUP_Mentor"/>
+<TextField Name="Split_City_KE_Office" FieldOrder="630" Prompt="Split City/KE Office" Cols="20" Rows="1"/>
+<SelectionField Name="Former_Kirkland_Attorney" FieldOrder="640" Prompt="Former Kirkland Attorney" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<TextField Name="Employment_ID_1_Org" FieldOrder="650" Prompt="Employment Organization" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_1_City" FieldOrder="660" Prompt="City" Cols="20" Rows="1"/>
+<SelectionField Name="Employment_ID_1_State_Prov" FieldOrder="670" Prompt="Employment ID 1 State/Province" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<TextField Name="Employment_ID_1_Country" FieldOrder="680" Prompt="Employment ID 1 Country" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_1_Title" FieldOrder="690" Prompt="Employment ID 1 Title" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_1_Salary" FieldOrder="700" Prompt="Employment ID 1 Salary" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_1_From_Year" FieldOrder="710" Prompt="Year Employment Began" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_1_From_Month" FieldOrder="720" Prompt="Month Employment Began" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_1_To_Year" FieldOrder="730" Prompt="Year Employment Ended" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_1_To_Month" FieldOrder="740" Prompt="Month Employment Ended" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_1_Comments" FieldOrder="750" Prompt="Comments" Cols="50" Rows="5"/>
+<TextField Name="Employment_ID_2_Org" FieldOrder="760" Prompt="Employment ID 2 Organization" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_2_City" FieldOrder="770" Prompt="Employment ID 2 City" Cols="20" Rows="1"/>
+<SelectionField Name="Employment_ID_2_State_Prov" FieldOrder="780" Prompt="State/Province" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<TextField Name="Employment_ID_2_Country" FieldOrder="790" Prompt="Employment ID 2 Country" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_2_Title" FieldOrder="800" Prompt="Employment ID 2 Title" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_2_Salary" FieldOrder="810" Prompt="Employment ID 2 Salary" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_2_From_Year" FieldOrder="820" Prompt="Employment ID 2 From Year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_2_From_Month" FieldOrder="830" Prompt="Employment ID 2 From Month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_2_To_Year" FieldOrder="840" Prompt="Employment ID 2 To year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_2_To_Month" FieldOrder="850" Prompt="Employment ID 2 To month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_2_Comments" FieldOrder="860" Prompt="Employment ID 2 Comments" Cols="50" Rows="5"/>
+<TextField Name="Employment_ID_3_Org" FieldOrder="870" Prompt="Employment ID 3 Organization" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_3_City" FieldOrder="880" Prompt="Employment ID 3 City" Cols="20" Rows="1"/>
+<SelectionField Name="Employment_ID_3_State_Prov" FieldOrder="890" Prompt="Employment ID 3 State/Province" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<TextField Name="Employment_ID_3_Country" FieldOrder="900" Prompt="Employment ID 3 Country" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_3_Title" FieldOrder="910" Prompt="Employment ID 3 Title" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_3_Salary" FieldOrder="920" Prompt="Employment ID 3 Salary" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_3_From_Year" FieldOrder="930" Prompt="Employment ID 3 From Year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_3_From_Month" FieldOrder="940" Prompt="Employment ID 3 From Month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_3_To_Year" FieldOrder="950" Prompt="Employment ID 3 To year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_3_To_Month" FieldOrder="960" Prompt="Employment ID 3 To month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_3_Comments" FieldOrder="970" Prompt="Employment ID 3 Comments" Rows="2"/>
+<TextField Name="Employment_ID_4_Org" FieldOrder="980" Prompt="Employment ID 4 Organization" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_4_City" FieldOrder="990" Prompt="Employment ID 4 City" Cols="20" Rows="1"/>
+<SelectionField Name="Employment_ID_4_State_Prov" FieldOrder="1000" Prompt="Employment ID 4 State/Province" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<TextField Name="Employment_ID_4_Country" FieldOrder="1010" Prompt="Employment ID 4 Country" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_4_Title" FieldOrder="1020" Prompt="Employment ID 4 Title" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_4_Salary" FieldOrder="1030" Prompt="Employment ID 4 Salary" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_4_From_Year" FieldOrder="1040" Prompt="Employment ID 4 From Year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_4_From_Month" FieldOrder="1050" Prompt="Employment ID 4 From Month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_4_To_Year" FieldOrder="1060" Prompt="Employment ID 4 To year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_4_To_Month" FieldOrder="1070" Prompt="Employment ID 4 To month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_4_Comments" FieldOrder="1080" Prompt="Employment ID 4 Comments" Cols="50" Rows="5"/>
+<TextField Name="Employment_ID_5_Org" FieldOrder="1090" Prompt="Employment ID 5 Organization" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_5_City" FieldOrder="1100" Prompt="Employment ID 5 City" Cols="20" Rows="1"/>
+<SelectionField Name="Employment_ID_5_State_Prov" FieldOrder="1110" Prompt="Employment ID 5 State/Province" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<TextField Name="Employment_ID_5_Country" FieldOrder="1120" Prompt="Employment ID 5 Country" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_5_Title" FieldOrder="1130" Prompt="Employment ID 5 Title" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_5_Salary" FieldOrder="1140" Prompt="Employment ID 5 Salary" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_5_From_Year" FieldOrder="1150" Prompt="Employment ID 5 From Year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_5_From_Month" FieldOrder="1160" Prompt="Employment ID 5 From Month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_5_To_Year" FieldOrder="1170" Prompt="Employment ID 5 To year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_5_To_Month" FieldOrder="1180" Prompt="Employment ID 5 To month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_5_Comments" FieldOrder="1190" Prompt="Employment ID 5 Comments" Cols="50" Rows="5"/>
+<TextField Name="Employment_ID_6_Org" FieldOrder="1200" Prompt="Employment ID 6 Organization" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_6_City" FieldOrder="1210" Prompt="Employment ID 6 City" Cols="20" Rows="1"/>
+<SelectionField Name="Employment_ID_6_State_Prov" FieldOrder="1220" Prompt="Employment ID 6 State/Province" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<TextField Name="Employment_ID_6_Country" FieldOrder="1230" Prompt="Employment ID 6 Country" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_6_Title" FieldOrder="1240" Prompt="Employment ID 6 Title" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_6_Salary" FieldOrder="1250" Prompt="Employment ID 6 Salary" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_6_From_Year" FieldOrder="1260" Prompt="Employment ID 6 From Year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_6_From_Month" FieldOrder="1270" Prompt="Employment ID 6 From Month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_6_To_Year" FieldOrder="1280" Prompt="Employment ID 6 To year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_6_To_Month" FieldOrder="1290" Prompt="Employment ID 6 To month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_6_Comments" FieldOrder="1300" Prompt="Employment ID 6 Comments" Cols="50" Rows="5"/>
+<TextField Name="Employment_ID_7_Org" FieldOrder="1310" Prompt="Employment ID 7 Organization" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_7_City" FieldOrder="1320" Prompt="Employment ID 7 City" Cols="20" Rows="1"/>
+<SelectionField Name="Employment_ID_7_State_Prov" FieldOrder="1330" Prompt="Employment ID 7 State/Province" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<TextField Name="Employment_ID_7_Country" FieldOrder="1340" Prompt="Employment ID 7 Country" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_7_Title" FieldOrder="1350" Prompt="Employment ID 7 Title" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_7_Salary" FieldOrder="1360" Prompt="Employment ID 7 Salary" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_7_From_Year" FieldOrder="1370" Prompt="Employment ID 7 From Year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_7_From_Month" FieldOrder="1380" Prompt="Employment ID 7 From Month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_7_To_Year" FieldOrder="1390" Prompt="Employment ID 7 To year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_7_To_Month" FieldOrder="1400" Prompt="Employment ID 7 To month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_7_Comments" FieldOrder="1410" Prompt="Employment ID 7 Comments" Cols="50" Rows="5"/>
+<TextField Name="Employment_ID_8_Org" FieldOrder="1420" Prompt="Employment ID 8 Organization" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_8_City" FieldOrder="1430" Prompt="Employment ID 8 City" Cols="20" Rows="1"/>
+<SelectionField Name="Employment_ID_8_State_Prov" FieldOrder="1440" Prompt="Employment ID 8 State/Province" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<TextField Name="Employment_ID_8_Country" FieldOrder="1450" Prompt="Employment ID 8 Country" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_8_Title" FieldOrder="1460" Prompt="Employment ID 8 Title" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_8_Salary" FieldOrder="1470" Prompt="Employment ID 8 Salary" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_8_From_Year" FieldOrder="1480" Prompt="Employment ID 8 From Year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_8_From_Month" FieldOrder="1490" Prompt="Employment ID 8 From Month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_8_To_Year" FieldOrder="1500" Prompt="Employment ID 8 To year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_8_To_Month" FieldOrder="1510" Prompt="Employment ID 8 To month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_8_Comments" FieldOrder="1520" Prompt="Employment ID 8 Comments" Cols="50" Rows="5"/>
+<TextField Name="Employment_ID_9_Org" FieldOrder="1530" Prompt="Employment ID 9 Organization" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_9_City" FieldOrder="1540" Prompt="Employment ID 9 City" Cols="20" Rows="1"/>
+<SelectionField Name="Employment_ID_9_State_Prov" FieldOrder="1550" Prompt="Employment ID 9 State/Province" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<TextField Name="Employment_ID_9_Country" FieldOrder="1560" Prompt="Employment ID 9 Country" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_9_Title" FieldOrder="1570" Prompt="Employment ID 9 Title" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_9_Salary" FieldOrder="1580" Prompt="Employment ID 9 Salary" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_9_From_Year" FieldOrder="1590" Prompt="Employment ID 9 From Year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_9_From_Month" FieldOrder="1600" Prompt="Employment ID 9 From Month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_9_To_Year" FieldOrder="1610" Prompt="Employment ID 9 To year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_9_To_Month" FieldOrder="1620" Prompt="Employment ID 9 To month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_9_Comments" FieldOrder="1630" Prompt="Employment ID 9 Comments" Cols="50" Rows="5"/>
+<TextField Name="Employment_ID_10_Org" FieldOrder="1640" Prompt="Employment ID 10 Organization" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_10_City" FieldOrder="1650" Prompt="Employment ID 10 City" Cols="20" Rows="1"/>
+<SelectionField Name="Employment_ID_10_State_Prov" FieldOrder="1660" Prompt="Employment ID 10 State/Province" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<TextField Name="Employment_ID_10_Country" FieldOrder="1670" Prompt="Employment ID 10 Country" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_10_Title" FieldOrder="1680" Prompt="Employment ID 10 Title" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_10_Salary" FieldOrder="1690" Prompt="Employment ID 10 Salary" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_10_From_Year" FieldOrder="1700" Prompt="Employment ID 10 From Year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_10_From_Month" FieldOrder="1710" Prompt="Employment ID 10 From Month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_10_To_Year" FieldOrder="1720" Prompt="Employment ID 10 To year" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_10_To_Month" FieldOrder="1730" Prompt="Employment ID 10 To month" Cols="20" Rows="1"/>
+<TextField Name="Employment_ID_10_Comments" FieldOrder="1740" Prompt="Employment ID 10 Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Clerkship_ID_1_Court" FieldOrder="1750" Prompt="Clerkship Court" OptionsFromList="true" OptionType="DropDown" Options="EUP_Clerkship Court"/>
+<TextField Name="Clerkship_ID_1_Judge" FieldOrder="1760" Prompt="Judge" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_1_From_year" FieldOrder="1770" Prompt="Year Clerkship Began" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_1_To_year" FieldOrder="1780" Prompt="Year Clerkship Ended" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_1_Comments" FieldOrder="1790" Prompt="Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Clerkship_ID_2_Court" FieldOrder="1800" Prompt="Clerkship 2 Court" OptionsFromList="true" OptionType="DropDown" Options="EUP_Clerkship Court"/>
+<TextField Name="Clerkship_ID_2_Judge" FieldOrder="1810" Prompt="ClerkshipID 2 Judge" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_2_From_year" FieldOrder="1820" Prompt="Year Clerkship Began" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_2_To_year" FieldOrder="1830" Prompt="Year Clerkship Ended" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_2_Comments" FieldOrder="1840" Prompt="ClerkshipID 2 Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Clerkship_ID_3_Court" FieldOrder="1850" Prompt="Clerkship 3 Court" OptionsFromList="true" OptionType="DropDown" Options="EUP_Clerkship Court"/>
+<TextField Name="Clerkship_ID_3_Judge" FieldOrder="1860" Prompt="ClerkshipID 3 Judge" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_3_From_year" FieldOrder="1870" Prompt="Year Clerkship Began" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_3_To_year" FieldOrder="1880" Prompt="Year Clerkship Ended" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_3_Comments" FieldOrder="1890" Prompt="ClerkshipID 3 Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Clerkship_ID_4_Court" FieldOrder="1900" Prompt="Clerkship 4 Court" OptionsFromList="true" OptionType="DropDown" Options="EUP_Clerkship Court"/>
+<TextField Name="Clerkship_ID_4_Judge" FieldOrder="1910" Prompt="ClerkshipID 4 Judge" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_4_From_year" FieldOrder="1920" Prompt="Year Clerkship Began" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_4_To_year" FieldOrder="1930" Prompt="Year Clerkship Ended" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_4_Comments" FieldOrder="1940" Prompt="ClerkshipID 4 Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Clerkship_ID_5_Court" FieldOrder="1950" Prompt="Clerkship 5 Court" OptionsFromList="true" OptionType="DropDown" Options="EUP_Clerkship Court"/>
+<TextField Name="Clerkship_ID_5_Judge" FieldOrder="1960" Prompt="ClerkshipID 5 Judge" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_5_From_year" FieldOrder="1970" Prompt="Year Clerkship Began" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_5_To_year" FieldOrder="1980" Prompt="Year Clerkship Ended" Cols="20" Rows="1"/>
+<TextField Name="Clerkship_ID_5_Comments" FieldOrder="1990" Prompt="ClerkshipID 5 Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Education_1_JD_Grad_Season" FieldOrder="2000" Prompt="Education 1 JD Grad Season" OptionsFromList="true" OptionType="DropDown" Options="EUP_ JD Grad Season"/>
+<SelectionField Name="Education_1_Law_Review" FieldOrder="2010" Prompt="Education 1 Law Review" OptionsFromList="true" OptionType="DropDown" Options="EUP_Law Review"/>
+<SelectionField Name="Education_1_Degree_Code" FieldOrder="2020" Prompt="Education Degree " OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Education_1_Code" FieldOrder="2030" Prompt="Education School Name" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Education_1_Type" FieldOrder="2040" Prompt="Education 1 Type" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Education Type"/>
+<SelectionField Name="Education_1_Major_Code" FieldOrder="2050" Prompt="Major" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Major"/>
+<TextField Name="Education_1_Comments" FieldOrder="2060" Prompt="Education 1 Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Education_1_Second_Major" FieldOrder="2070" Prompt="Education Second Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_1_GPA" FieldOrder="2080" Prompt="Education 1 GPA" Cols="20" Rows="1"/>
+<TextField Name="Education_1_Graduation_Year" FieldOrder="2090" Prompt="Education Graduation Year" Cols="20" Rows="1"/>
+<SelectionField Name="Education_1_Graduation_Country" FieldOrder="2100" Prompt="Graduation Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<SelectionField Name="Education_2_JD_Grad_Season" FieldOrder="2110" Prompt="Education 2 JD Grad Season" OptionsFromList="true" OptionType="DropDown" Options="EUP_ JD Grad Season"/>
+<SelectionField Name="Education_2_Law_Review" FieldOrder="2120" Prompt="Education 2 Law Review" OptionsFromList="true" OptionType="DropDown" Options="EUP_Law Review"/>
+<SelectionField Name="Education_2_Degree_Code" FieldOrder="2130" Prompt="Education Degree" OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Education_2_Code" FieldOrder="2140" Prompt="Education School Name" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Education_2_Type" FieldOrder="2150" Prompt="Education 2 Type" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Education Type"/>
+<SelectionField Name="Education_2_Major_Code" FieldOrder="2160" Prompt="Major" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Major"/>
+<TextField Name="Education_2_Comments" FieldOrder="2170" Prompt="Education 2 Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Education_2_Second_Major" FieldOrder="2180" Prompt="Education Second Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_2_GPA" FieldOrder="2190" Prompt="Education 2 GPA" Cols="20" Rows="1"/>
+<TextField Name="Education_2_Graduation_Year" FieldOrder="2200" Prompt="Education Graduation Year" Cols="20" Rows="1"/>
+<SelectionField Name="Education_2_Graduation_Country" FieldOrder="2210" Prompt="Education Graduation Country" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<SelectionField Name="Education_3_JD_Grad_Season" FieldOrder="2220" Prompt="Education 3 JD Grad Season" OptionsFromList="true" OptionType="DropDown" Options="EUP_ JD Grad Season"/>
+<SelectionField Name="Education_3_Law_Review" FieldOrder="2230" Prompt="Education 3 Law Review" OptionsFromList="true" OptionType="DropDown" Options="EUP_Law Review"/>
+<SelectionField Name="Education_3_Degree_Code" FieldOrder="2240" Prompt="Education Degree" OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Education_3_Code" FieldOrder="2250" Prompt="Education School Name" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Education_3_Type" FieldOrder="2260" Prompt="Education 3 Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education Type"/>
+<SelectionField Name="Education_3_Major_Code" FieldOrder="2270" Prompt="Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_3_Comments" FieldOrder="2280" Prompt="Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Education_3_Second_Major" FieldOrder="2290" Prompt="Education Second Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_3_GPA" FieldOrder="2300" Prompt="GPA" Cols="20" Rows="1"/>
+<TextField Name="Education_3_Graduation_Year" FieldOrder="2310" Prompt="Education Graduation Year" Cols="20" Rows="1"/>
+<SelectionField Name="Education_3_Graduation_Country" FieldOrder="2320" Prompt="Graduation Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<SelectionField Name="Education_4_JD_Grad_Season" FieldOrder="2330" Prompt="Education 4 JD Grad Season" OptionsFromList="true" OptionType="DropDown" Options="EUP_ JD Grad Season"/>
+<SelectionField Name="Education_4_Law_Review" FieldOrder="2340" Prompt="Education 4 Law Review" OptionsFromList="true" OptionType="DropDown" Options="EUP_Law Review"/>
+<SelectionField Name="Education_4_Degree_Code" FieldOrder="2350" Prompt="Education Degree " OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Education_4_Code" FieldOrder="2360" Prompt="Education School Name" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Education_4_Type" FieldOrder="2370" Prompt="Education Type" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Education Type"/>
+<SelectionField Name="Education_4_Major_Code" FieldOrder="2380" Prompt="Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_4_Comments" FieldOrder="2390" Prompt="Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Education_4_Second_Major" FieldOrder="2400" Prompt="Education Second Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_4_GPA" FieldOrder="2410" Prompt="GPA" Cols="20" Rows="1"/>
+<SelectionField Name="Education_4_Graduation_Country" FieldOrder="2420" Prompt="Graduation Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<TextField Name="Education_4_Graduation_Year" FieldOrder="2430" Prompt="Education Graduation Year" Cols="20" Rows="1"/>
+<SelectionField Name="Education_5_JD_Grad_Season" FieldOrder="2440" Prompt="Education 5 JD Grad Season" OptionsFromList="true" OptionType="DropDown" Options="EUP_ JD Grad Season"/>
+<SelectionField Name="Education_5_Law_Review" FieldOrder="2450" Prompt="Education 5 Law Review" OptionsFromList="true" OptionType="DropDown" Options="EUP_Law Review"/>
+<SelectionField Name="Education_5_Degree_Code" FieldOrder="2460" Prompt="Education Degree" OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Education_5_Code" FieldOrder="2470" Prompt="Education School Name" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Education_5_Type" FieldOrder="2480" Prompt="Education Type" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Education Type"/>
+<SelectionField Name="Education_5_Major_Code" FieldOrder="2490" Prompt="Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_5_Comments" FieldOrder="2500" Prompt="Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Education_5_Second_Major" FieldOrder="2510" Prompt="Education Second Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_5_GPA" FieldOrder="2520" Prompt="GPA" Cols="20" Rows="1"/>
+<TextField Name="Education_5_Graduation_Year" FieldOrder="2530" Prompt="Education Graduation Year" Cols="20" Rows="1"/>
+<SelectionField Name="Education_5_Graduation_Country" FieldOrder="2540" Prompt="Graduation Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<SelectionField Name="Education_6_JD_Grad_Season" FieldOrder="2550" Prompt="Education 6 JD Grad Season" OptionsFromList="true" OptionType="DropDown" Options="EUP_ JD Grad Season"/>
+<SelectionField Name="Education_6_Law_Review" FieldOrder="2560" Prompt="Education 6 Law Review" OptionsFromList="true" OptionType="DropDown" Options="EUP_Law Review"/>
+<SelectionField Name="Education_6_Degree_Code" FieldOrder="2570" Prompt="Education Degree " OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Education_6_Code" FieldOrder="2580" Prompt="Education School Name" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Education_6_Type" FieldOrder="2590" Prompt="Education 6 Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education Type"/>
+<SelectionField Name="Education_6_Major_Code" FieldOrder="2600" Prompt="Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_6_Comments" FieldOrder="2610" Prompt="Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Education_6_Second_Major" FieldOrder="2620" Prompt="Education Second Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_6_GPA" FieldOrder="2630" Prompt="GPA" Cols="20" Rows="1"/>
+<TextField Name="Education_6_Graduation_Year" FieldOrder="2640" Prompt="Education Graduation Year" Cols="20" Rows="1"/>
+<SelectionField Name="Education_6_Graduation_Country" FieldOrder="2650" Prompt="Graduation Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<SelectionField Name="Education_7_JD_Grad_Season" FieldOrder="2660" Prompt="Education 7 JD Grad Season" OptionsFromList="true" OptionType="DropDown" Options="EUP_ JD Grad Season"/>
+<SelectionField Name="Education_7_Law_Review" FieldOrder="2670" Prompt="Education 7 Law Review" OptionsFromList="true" OptionType="DropDown" Options="EUP_Law Review"/>
+<SelectionField Name="Education_7_Degree_Code" FieldOrder="2680" Prompt="Education Degree" OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Education_7_Code" FieldOrder="2690" Prompt="Education School Name" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Education_7_Type" FieldOrder="2700" Prompt="Education 7 Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education Type"/>
+<SelectionField Name="Education_7_Major_Code" FieldOrder="2710" Prompt="Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_7_Comments" FieldOrder="2720" Prompt="Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Education_7_Second_Major" FieldOrder="2730" Prompt="Education Second Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_7_GPA" FieldOrder="2740" Prompt="GPA" Cols="20" Rows="1"/>
+<TextField Name="Education_7_Graduation_Year" FieldOrder="2750" Prompt="Education Graduation Year" Cols="20" Rows="1"/>
+<SelectionField Name="Education_7_Graduation_Country" FieldOrder="2760" Prompt="Graduation Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<SelectionField Name="Education_8_JD_Grad_Season" FieldOrder="2770" Prompt="Education 8 JD Grad Season" OptionsFromList="true" OptionType="DropDown" Options="EUP_ JD Grad Season"/>
+<SelectionField Name="Education_8_Law_Review" FieldOrder="2780" Prompt="Education 8 Law Review" OptionsFromList="true" OptionType="DropDown" Options="EUP_Law Review"/>
+<SelectionField Name="Education_8_Degree_Code" FieldOrder="2790" Prompt="Education Degree" OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Education_8_Code" FieldOrder="2800" Prompt="Education School Name" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Education_8_Type" FieldOrder="2810" Prompt="Education 8 Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education Type"/>
+<SelectionField Name="Education_8_Major_Code" FieldOrder="2820" Prompt="Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_8_Comments" FieldOrder="2830" Prompt="Comments" Cols="50" Rows="5"/>
+<SelectionField Name="Education_8_Second_Major" FieldOrder="2840" Prompt="Education Second Major" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<TextField Name="Education_8_GPA" FieldOrder="2850" Prompt="GPA" Cols="20" Rows="1"/>
+<TextField Name="Education_8_Graduation_Year" FieldOrder="2860" Prompt="Education Graduation Year" Cols="20" Rows="1"/>
+<SelectionField Name="Education_8_Graduation_Country" FieldOrder="2870" Prompt="Graduation Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<TextField Name="SectionPeopleSoft" FieldOrder="2880" Prompt="PeopleSoft Data" ReadOnly="true" FormOptions="style='display:none;'"/>
+<TextField Name="Country_Name_Format" FieldOrder="2890" Prompt="Country Name Format" ForceDefault="true" Default="English" Cols="10" Rows="1"/>
+<TextField Name="Prefix" FieldOrder="2900" Prompt="Prefix" Cols="4" Rows="1"/>
+<TextField Name="Legal_First_Name" FieldOrder="2910" Prompt="Legal First Name" Cols="30" Rows="1"/>
+<TextField Name="Legal_Middle_Name" FieldOrder="2920" Prompt="Legal Middle Name" Cols="30" Rows="1"/>
+<TextField Name="Legal_Last_Name" FieldOrder="2930" Prompt="Legal Last Name" Cols="30" Rows="1"/>
+<TextField Name="Preferred_First_Name" FieldOrder="2940" Prompt="Preferred First Name " HTML="STRIP_ALL" Cols="30" Rows="1"/>
+<TextField Name="Preferred_Middle_Name" FieldOrder="2950" Prompt="Preferred Middle Name" Cols="30" Rows="1"/>
+<TextField Name="Preferred_Last_Name" FieldOrder="2960" Prompt="Preferred Last Name" Cols="30" Rows="1"/>
+<SelectionField Name="Birth_Country" FieldOrder="2970" Prompt="Birth Country" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<TextField Name="Birth_Location" FieldOrder="2980" Prompt="Birth Location" Cols="50" Rows="1"/>
+<SelectionField Name="HIGHEST_EDUC_LVL" FieldOrder="2990" Prompt="Highest Education Level" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education Level"/>
+<SelectionField Name="National_ID_Country-1" FieldOrder="3000" Prompt="National Identification Country" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<SelectionField Name="National_ID_Type_1" FieldOrder="3010" Prompt="National Identification Type" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_National ID Type"/>
+<TextField Name="National_ID_Number_1" FieldOrder="3020" Prompt="National Identification Number" Cols="50" Rows="1"/>
+<SelectionField Name="National_ID_Country-2" FieldOrder="3030" Prompt="National Identification Country" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<SelectionField Name="National_ID_Type_2" FieldOrder="3040" Prompt="National Identification Type" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_National ID Type"/>
+<TextField Name="National_ID_Number_2" FieldOrder="3050" Prompt="National Identification Number" Cols="50" Rows="1"/>
+<SelectionField Name="National_ID_Country-3" FieldOrder="3060" Prompt="National Identification Country" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<SelectionField Name="National_ID_Type_3" FieldOrder="3070" Prompt="National Identification Type" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_National ID Type"/>
+<TextField Name="National_ID_Number_3" FieldOrder="3080" Prompt="National Identification Number" Cols="50" Rows="1"/>
+<SelectionField Name="National_ID_Country-4" FieldOrder="3090" Prompt="National Identification Country" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<SelectionField Name="National_ID_Type_4" FieldOrder="3100" Prompt="National Identification Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_National ID Type"/>
+<TextField Name="National_ID_Number_4" FieldOrder="3110" Prompt="National Identification Number" Cols="50" Rows="1"/>
+<TextField Name="Expected_Job_End_Date" FieldOrder="3120" Prompt="Expected Job End Date" Cols="20" Rows="1"/>
+<SelectionField Name="Regulatory_Region" FieldOrder="3130" Prompt="Regulatory Region" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<SelectionField Name="Job_Function" FieldOrder="3140" Prompt="Job Function" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Job_Function"/>
+<TextField Name="Supervisor_ID" FieldOrder="3150" Prompt="Supervisor ID" Cols="20" Rows="1"/>
+<SelectionField Name="Regular_Temporary" FieldOrder="3160" Prompt="Regular/Temporary" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Regular/Temporary" DisplayLabel="Job Type"/>
+<SelectionField Name="Regular_Shift" FieldOrder="3170" Prompt="Regular Shift" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Regular Shift"/>
+<SelectionField Name="Full_Part" FieldOrder="3180" Prompt="Full/Part" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Full/Part"/>
+<SelectionField Name="Officer_Code" FieldOrder="3190" Prompt="Officer Code" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Personnel Level"/>
+<TextField Name="Work_Schedule" FieldOrder="3200" Prompt="Work Schedule" Cols="50" Rows="5"/>
+<SelectionField Name="Standard_Hours" FieldOrder="3210" Prompt="Standard Hours" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Standard Hours"/>
+<SelectionField Name="FTE" FieldOrder="3220" Prompt="FTE" OptionsFromList="true" OptionType="DropDown" Options="EUP_FTE"/>
+<SelectionField Name="Work_Period" FieldOrder="3230" Prompt="Work Period" OptionsFromList="true" OptionType="DropDown" Options="EUP_Work_Period"/>
+<SelectionField Name="Payroll_System" FieldOrder="3240" Prompt="Payroll System" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Payroll System"/>
+<SelectionField Name="Permanent_Remote" FieldOrder="3250" Prompt="The New Joiner will work from a location that is somewhere other than the office location" Horizontal="true" OptionType="CheckBox" Options="Yes"/>
+<SelectionField Name="Tax_Location_Code" FieldOrder="3260" Prompt="Tax Location Code" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_ Tax Location Code"/>
+<SelectionField Name="Holiday_Schedule" FieldOrder="3270" Prompt="Holiday Schedule" OptionsFromList="true" OptionType="DropDown" Options="EUP_Holiday_Schedule"/>
+<SelectionField Name="Absence_Pay_Group" FieldOrder="3280" Prompt="Absence Pay Group" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Absence_Pay_Group"/>
+<SelectionField Name="Use_Pay_Group_Eligibility" FieldOrder="3290" Prompt="User Pay Group Eligibility" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Eligibility_Group" FieldOrder="3300" Prompt="Eligibility Group" OptionsFromList="true" OptionType="DropDown" Options="EUP_YesNo"/>
+<TextField Name="Compensation_Rate" FieldOrder="3310" Prompt="Compensation Rate" Cols="20" Rows="1"/>
+<SelectionField Name="Annual_Salary_Currency_Code" FieldOrder="3320" Prompt="Annual Salary Currency Code" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Comp_Frequency" FieldOrder="3330" Prompt="Pay Frequency" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Compensation Frequency"/>
+<SelectionField Name="Salary_Rate_Code" FieldOrder="3340" Prompt="Salary Rate Code" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Salary Rate Code"/>
+<TextField Name="Comp_Rate" FieldOrder="3350" Prompt="Comp Rate" Cols="13" Rows="1"/>
+<TextField Name="Annual_Compensation" FieldOrder="3360" Prompt="Annual Compensation" Cols="20" Rows="1"/>
+<SelectionField Name="Currency" FieldOrder="3370" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Currency_Code_List"/>
+<TextField Name="Probation_Date" FieldOrder="3380" Prompt="Probation Date" Cols="10" Rows="1"/>
+<TextField Name="Business_Title" FieldOrder="3390" Prompt="Business Title" Cols="80" Rows="1"/>
+<SelectionField Name="Time_Reporter" FieldOrder="3400" Prompt="Time Reporter Type" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Time Reporter"/>
+<SelectionField Name="Task_Group" FieldOrder="3410" Prompt="Task Group" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Task Group"/>
+<TextField Name="Time_Zone" FieldOrder="3420" Prompt="Time Zone" Cols="50" Rows="1"/>
+<TextField Name="Earnings_Distribution_Type" FieldOrder="3430" Prompt="Earnings Distribution Type" Cols="50" Rows="1"/>
+<SelectionField Name="Benefit_System" FieldOrder="3440" Prompt="Benefit System" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Benefits System"/>
+<SelectionField Name="BAS_Group_ID" FieldOrder="3450" Prompt="BAS Group ID" OptionsFromList="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_BAS Group ID"/>
+<TextField Name="Benefit_Program" FieldOrder="3460" Prompt="Benefit Program" Cols="20" Rows="1"/>
+<SelectionField Name="Language_1" FieldOrder="3470" Prompt="1-Language" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Language"/>
+<SelectionField Name="Native_Language_1" FieldOrder="3480" Prompt="Native Language" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_reading_1" FieldOrder="3490" Prompt="1-Reading Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_speaking_1" FieldOrder="3500" Prompt="1-Speaking Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_writing_1" FieldOrder="3510" Prompt="1-Writing Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Able_To_Teach_1" FieldOrder="3520" Prompt="Able to Teach" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_2" FieldOrder="3530" Prompt="2-Language" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Language"/>
+<SelectionField Name="Native_Language_2" FieldOrder="3540" Prompt="Native Language" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_reading_2" FieldOrder="3550" Prompt="2-Reading Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_speaking_2" FieldOrder="3560" Prompt="2-Speaking Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_writing_2" FieldOrder="3570" Prompt="2-Writing Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Able_To_Teach_2" FieldOrder="3580" Prompt="Able to Teach" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_3" FieldOrder="3590" Prompt="3-Language" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Language"/>
+<SelectionField Name="Native_Language_3" FieldOrder="3600" Prompt="Native Language" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_reading_3" FieldOrder="3610" Prompt="3-Reading Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_speaking_3" FieldOrder="3620" Prompt="3-Speaking Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_writing_3" FieldOrder="3630" Prompt="3-Writing Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Able_To_Teach_3" FieldOrder="3640" Prompt="Able to Teach" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_4" FieldOrder="3650" Prompt="4-Language" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Language"/>
+<SelectionField Name="Native_Language_4" FieldOrder="3660" Prompt="Native Language" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_reading_4" FieldOrder="3670" Prompt="4-Reading Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_speaking_4" FieldOrder="3680" Prompt="4-Speaking Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_writing_4" FieldOrder="3690" Prompt="4-Writing Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Able_To_Teach_4" FieldOrder="3700" Prompt="Able to Teach" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_5" FieldOrder="3710" Prompt="5-Language" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Language"/>
+<SelectionField Name="Native_Language_5" FieldOrder="3720" Prompt="Native Language" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_reading_5" FieldOrder="3730" Prompt="5-Reading Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_speaking_5" FieldOrder="3740" Prompt="5-Speaking Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_writing_5" FieldOrder="3750" Prompt="5-Writing Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Able_To_Teach_5" FieldOrder="3760" Prompt="Able to Teach" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_6" FieldOrder="3770" Prompt="6-Language" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Language"/>
+<SelectionField Name="Native_Language_6" FieldOrder="3780" Prompt="Native Language" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_reading_6" FieldOrder="3790" Prompt="6-Reading Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_speaking_6" FieldOrder="3800" Prompt="6-Speaking Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_writing_6" FieldOrder="3810" Prompt="6-Writing Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Able_To_Teach_6" FieldOrder="3820" Prompt="Able to Teach" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_7" FieldOrder="3830" Prompt="7-Language" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Language"/>
+<SelectionField Name="Native_Language_7" FieldOrder="3840" Prompt="Native Language" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_reading_7" FieldOrder="3850" Prompt="7-Reading Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_speaking_7" FieldOrder="3860" Prompt="7-Speaking Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_writing_7" FieldOrder="3870" Prompt="7-Writing Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Able_To_Teach_7" FieldOrder="3880" Prompt="Able to Teach" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_8" FieldOrder="3890" Prompt="8-Language" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Language"/>
+<SelectionField Name="Native_Language_8" FieldOrder="3900" Prompt="Native Language" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_reading_8" FieldOrder="3910" Prompt="8-Reading Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_speaking_8" FieldOrder="3920" Prompt="8-Speaking Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_writing_8" FieldOrder="3930" Prompt="8-Writing Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Able_To_Teach_8" FieldOrder="3940" Prompt="Able to Teach" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_9" FieldOrder="3950" Prompt="9-Language" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Language"/>
+<SelectionField Name="Native_Language_9" FieldOrder="3960" Prompt="Native Language" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Language_reading_9" FieldOrder="3970" Prompt="9-Reading Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_writing_9" FieldOrder="3980" Prompt="9-Writing Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Language_speaking_9" FieldOrder="3990" Prompt="9-Speaking Proficiency" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_Proficiency"/>
+<SelectionField Name="Able_To_Teach_9" FieldOrder="4000" Prompt="Able to Teach" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Citizenship_Country_1" FieldOrder="4010" Prompt="Country of Citizenship-1" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<SelectionField Name="Citizenship_Status" FieldOrder="4020" Prompt="Citizenship Status" OptionsFromList="true" OptionType="DropDown" Options="EUP_Yes_No"/>
+<TextField Name="Passport_Number_1" FieldOrder="4030" Prompt="Passport Number-1" Cols="20" Rows="1"/>
+<TextField Name="Passport_Issue_date_1" FieldOrder="4040" Prompt="Passport Issue Date-1" Visual="DATE" ValidationType="Date" Cols="20" Rows="1"/>
+<TextField Name="Passport_Expiration_Date_1" FieldOrder="4050" Prompt="Passport Expiration Date-1" Visual="DATE" ValidationType="Date" Cols="20" Rows="1"/>
+<SelectionField Name="Visa_1" FieldOrder="4060" Prompt="Visa-1" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_YesNo"/>
+<TextField Name="Visa_Country_1" FieldOrder="4070" Prompt="Visa Country-1" Cols="20" Rows="1"/>
+<SelectionField Name="Visa_Type_1" FieldOrder="4080" Prompt="Visa Type-1" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Visa Type"/>
+<SelectionField Name="Citizenship_Country_2" FieldOrder="4090" Prompt="Country of Citizenship-2 " OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<TextField Name="Passport_Number_2" FieldOrder="4100" Prompt="Passport Number-2" Cols="20" Rows="1"/>
+<TextField Name="Passport_Issue_date_2" FieldOrder="4110" Prompt="Passport Issue Date-2" Visual="DATE" ValidationType="Date" Cols="20" Rows="1"/>
+<TextField Name="Passport_Expiration_Date_2" FieldOrder="4120" Prompt="Passport Expiration Date-2" Visual="DATE" ValidationType="Date" Cols="20" Rows="1"/>
+<SelectionField Name="Visa_2" FieldOrder="4130" Prompt="Visa-2" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_YesNo"/>
+<TextField Name="Visa_Country_2" FieldOrder="4140" Prompt="Visa Country-2" Cols="20" Rows="1"/>
+<SelectionField Name="Visa_Type_2" FieldOrder="4150" Prompt="Visa Type-2" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Visa Type"/>
+<SelectionField Name="Citizenship_Country_3" FieldOrder="4160" Prompt="Country of Citizenship-3" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<TextField Name="Passport_Number_3" FieldOrder="4170" Prompt="Passport Number-3" Cols="20" Rows="1"/>
+<TextField Name="Passport_Issue_date_3" FieldOrder="4180" Prompt="Passport Issue Date-3" Visual="DATE" ValidationType="Date" Cols="20" Rows="1"/>
+<TextField Name="Passport_Expiration_Date_3" FieldOrder="4190" Prompt="Passport Expiration Date-3" Visual="DATE" ValidationType="Date" Cols="20" Rows="1"/>
+<SelectionField Name="Visa_3" FieldOrder="4200" Prompt="Visa-3" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_YesNo"/>
+<TextField Name="Visa_Country_3" FieldOrder="4210" Prompt="Visa Country-3" Cols="20" Rows="1"/>
+<SelectionField Name="Visa_Type_3" FieldOrder="4220" Prompt="Visa Type-3" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Visa Type"/>
+<SelectionField Name="Citizenship_Country_4" FieldOrder="4230" Prompt="Country of Citizenship-4" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<TextField Name="Passport_Number_4" FieldOrder="4240" Prompt="Passport Number-4" Cols="20" Rows="1"/>
+<TextField Name="Passport_Issue_date_4" FieldOrder="4250" Prompt="Passport Issue Date-4" Visual="DATE" ValidationType="Date" Cols="20" Rows="1"/>
+<TextField Name="Passport_Expiration_Date_4" FieldOrder="4260" Prompt="Passport Expiration Date-4" Visual="DATE" ValidationType="Date" Cols="20" Rows="1"/>
+<SelectionField Name="Visa_4" FieldOrder="4270" Prompt="Visa-4" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_YesNo"/>
+<TextField Name="Visa_Country_4" FieldOrder="4280" Prompt="Visa Country-4" Cols="20" Rows="1"/>
+<SelectionField Name="Visa_Type_4" FieldOrder="4290" Prompt="Visa Type-4" OptionsFromList="true" OptionType="DropDown" Options="EUP_Visa Type"/>
+<SelectionField Name="Greencard" FieldOrder="4300" Prompt="Greencard" OptionsFromList="true" OptionType="DropDown" Options="EUP_YesNo"/>
+<SelectionField Name="HK_Perm_Res_1" FieldOrder="4310" Prompt="Hong Kong Permanent Resident" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_YesNo"/>
+<SelectionField Name="Local_Foreign_National" FieldOrder="4320" Prompt="Local Foreign National" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Local Foreign National"/>
+<TextField Name="Non_share_Partner_Class" FieldOrder="4330" Prompt="Non-share Partner Class" Cols="10" Rows="1"/>
+<TextField Name="Share_Partner_Class" FieldOrder="4340" Prompt="Share Partner Class" Cols="10" Rows="1"/>
+<TextField Name="Of_Counsel_Class" FieldOrder="4350" Prompt="Of Counsel Class" Cols="10" Rows="1"/>
+<SelectionField Name="Bar_Country" FieldOrder="4360" Prompt="Bar Counrty" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<SelectionField Name="Bar_Category" FieldOrder="4370" Prompt="Bar Category" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_BAR_Category"/>
+<SelectionField Name="Bar_State" FieldOrder="4380" Prompt="Bar State" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_State"/>
+<SelectionField Name="Bar_Jurisdiction" FieldOrder="4390" Prompt="Bar Jurisdiction" OptionsFromList="true" OptionType="DropDown" Options="EUP_Jurisdiction"/>
+<TextField Name="Bar_Admission_Date" FieldOrder="4400" Prompt="Bar Admission Date" Cols="20" Rows="1"/>
+<TextField Name="Bar_Registration_Number" FieldOrder="4410" Prompt="Bar Registration Number" Cols="50" Rows="1"/>
+<SelectionField Name="Bar_Status" FieldOrder="4420" Prompt="Bar Status" OptionsFromList="true" OptionType="DropDown" Options="EUP_BAR_Status"/>
+<TextField Name="Name_Barred_with" FieldOrder="4430" Prompt="Name Barred with" Cols="20" Rows="1"/>
+<TextField Name="Bar_Effective_Date" FieldOrder="4440" Prompt="Bar Effective Date" Cols="20" Rows="1"/>
+<SelectionField Name="Bar_Reason" FieldOrder="4450" Prompt="Reason for Pending or Suspended?" OptionsFromList="true" OptionType="DropDown" Options="EUP_Reason"/>
+<SelectionField Name="Bar_Country_2" FieldOrder="4460" Prompt="Bar Country" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<SelectionField Name="Bar_Category_2" FieldOrder="4470" Prompt="Bar Category" OptionsFromList="true" OptionType="DropDown" Options="EUP_Null_Yes_No"/>
+<SelectionField Name="Bar_State2" FieldOrder="4480" Prompt="Bar State" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bar State"/>
+<SelectionField Name="Bar_Jurisdiction2" FieldOrder="4490" Prompt="Bar Jurisdiction" OptionsFromList="true" OptionType="DropDown" Options="EUP_Jurisdiction"/>
+<TextField Name="Bar_Admission_Date2" FieldOrder="4500" Prompt="Bar Admission Date" Cols="20" Rows="1"/>
+<TextField Name="Bar_Registration_Number2" FieldOrder="4510" Prompt="Bar Registration Number" Cols="50" Rows="1"/>
+<SelectionField Name="Bar_Status2" FieldOrder="4520" Prompt="Bar Status" OptionsFromList="true" OptionType="DropDown" Options="EUP_BAR_Status"/>
+<TextField Name="Name_Barred_with2" FieldOrder="4530" Prompt="Name Barred with" Cols="20" Rows="1"/>
+<TextField Name="Bar_Effective_Date2" FieldOrder="4540" Prompt="Bar Effective Date" Cols="20" Rows="1"/>
+<SelectionField Name="Bar_Reason2" FieldOrder="4550" Prompt="Reason for Pending or Suspended?" OptionsFromList="true" OptionType="DropDown" Options="EUP_Action Reason"/>
+<SelectionField Name="Bar_Country_3" FieldOrder="4560" Prompt="Bar Country" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<SelectionField Name="Bar_Category_3" FieldOrder="4570" Prompt="Bar Category" OptionsFromList="true" OptionType="DropDown" Options="EUP_Null_Yes_No"/>
+<SelectionField Name="Bar_State3" FieldOrder="4580" Prompt="Bar State" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bar State"/>
+<SelectionField Name="Bar_Jurisdiction3" FieldOrder="4590" Prompt="Bar Jurisdiction" OptionsFromList="true" OptionType="DropDown" Options="EUP_Jurisdiction"/>
+<TextField Name="Bar_Admission_Date3" FieldOrder="4600" Prompt="Bar Admission Date" Cols="20" Rows="1"/>
+<TextField Name="Bar_Registration_Number3" FieldOrder="4610" Prompt="Bar Registration Number" Cols="50" Rows="1"/>
+<SelectionField Name="Bar_Status3" FieldOrder="4620" Prompt="Bar Status" OptionsFromList="true" OptionType="DropDown" Options="EUP_BAR_Status"/>
+<TextField Name="Name_Barred_with3" FieldOrder="4630" Prompt="Name Barred with" Cols="20" Rows="1"/>
+<TextField Name="Bar_Effective_Date3" FieldOrder="4640" Prompt="Bar Effective Date" Cols="20" Rows="1"/>
+<SelectionField Name="Bar_Reason3" FieldOrder="4650" Prompt="Reason for Pending or Suspended?" OptionsFromList="true" OptionType="DropDown" Options="EUP_Action Reason"/>
+<SelectionField Name="Building_Location" FieldOrder="4660" Prompt="Building Location " OptionsFromList="true" OptionType="DropDown" Options="EUP_Building_Location"/>
+<TextField Name="Cube_Number" FieldOrder="4670" Prompt="Cube Number" Cols="10" Rows="1"/>
+<TextField Name="Establishment_ID" FieldOrder="4680" Prompt="Establishment ID" Cols="15" Rows="1"/>
+<TextField Name="BLDG_LOCN" FieldOrder="4690" Prompt="Bluilding Location" Cols="10" Rows="1"/>
+<TextField Name="Emergency_Contact_Name_1" FieldOrder="4700" Prompt="1-Emergency Contact Name" Cols="50" Rows="1"/>
+<SelectionField Name="Emergency_Contact_Primary_1" FieldOrder="4710" Prompt="1-Will this be your primary emergency contact?" OptionsFromList="true" Horizontal="true" OptionType="RadioClearOnDisabled" ValidationType="JavaScriptFunction" Options="EUP_Yes/No"/>
+<SelectionField Name="Emergency_Contact_Relationship_1" FieldOrder="4720" Prompt="1-Relationship to Employee" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_EC Relationship"/>
+<SelectionField Name="Emergency_Contact_Phone_Country_Code_1" FieldOrder="4730" Prompt="1-Country Code" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<TextField Name="Emergency_Contact_Phone_1" FieldOrder="4740" Prompt="1-Primary Phone Number" Cols="24" Rows="1"/>
+<SelectionField Name="Emergency_Contact_Phone_Add_Country_Code_1" FieldOrder="4750" Prompt="1-Country Code" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Country"/>
+<TextField Name="Emergency_Contact_Phone_Add_1" FieldOrder="4760" Prompt="1-Additional Phone Number" Cols="24" Rows="1"/>
+<TextField Name="Emergency_Contact_Name_2" FieldOrder="4770" Prompt="Emergency Contact Name" Cols="50" Rows="1"/>
+<TextField Name="Emergency_Contact_Phone_2" FieldOrder="4780" Prompt="Primary Phone Number" Cols="24" Rows="1"/>
+<SelectionField Name="Emergency_Contact_Phone_Country_Code_2" FieldOrder="4790" Prompt="Emergency_Contact_Phone_Country_Code_2" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<TextField Name="Emergency_Contact_Phone_Add_2" FieldOrder="4800" Prompt="Additional Phone Number" Cols="24" Rows="1"/>
+<SelectionField Name="Emergency_Contact_Phone_Add_Country_Code_2" FieldOrder="4810" Prompt="Emergency_Contact_Phone_Add_Country_Code_2" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<SelectionField Name="Emergency_Contact_Relationship_2" FieldOrder="4820" Prompt="Emergency_Contact_Relationship_2" OptionsFromList="true" OptionType="DropDown" Options="EUP_EC Relationship"/>
+<SelectionField Name="Emergency_Contact_Primary_2" FieldOrder="4830" Prompt="Will this be your primary emergency contact?" OptionsFromList="true" Horizontal="true" OptionType="RadioClearOnDisabled" Options="EUP_YesNo"/>
+<TextField Name="Emergency_Contact_Name_3" FieldOrder="4840" Prompt="Emergency Contact Name" Cols="50" Rows="1"/>
+<TextField Name="Emergency_Contact_Phone_3" FieldOrder="4850" Prompt="Primary Phone Number" Cols="24" Rows="1"/>
+<SelectionField Name="Emergency_Contact_Phone_Country_Code_3" FieldOrder="4860" Prompt="Emergency_Contact_Phone_Country_Code_2" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<TextField Name="Emergency_Contact_Phone_Add_3" FieldOrder="4870" Prompt="Additional Phone Number" Cols="24" Rows="1"/>
+<SelectionField Name="Emergency_Contact_Phone_Add_Country_Code_3" FieldOrder="4880" Prompt="Emergency_Contact_Phone_Add_Country_Code_3" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<SelectionField Name="Emergency_Contact_Relationship_3" FieldOrder="4890" Prompt="Emergency_Contact_Relationship_3" OptionsFromList="true" OptionType="DropDown" Options="EUP_EC Relationship"/>
+<SelectionField Name="Emergency_Contact_Primary_3" FieldOrder="4900" Prompt="Will this be your primary emergency contact?" OptionsFromList="true" Horizontal="true" OptionType="RadioClearOnDisabled" Options="EUP_YesNo"/>
+<SelectionField Name="Ok_To_Pay" FieldOrder="4910" Prompt="Ok to Pay" ForceDefault="true" OptionType="CheckBox" ValidationType="JavaScriptFunction" Default="Yes" Options="Yes"/>
+<SelectionField Name="Sep_Check_Number" FieldOrder="4920" Prompt="Sep Check Number" ForceDefault="true" OptionType="SimpleDropDown" Default="1" Options="1"/>
+<SelectionField Name="Applied_to_Pay_period_First" FieldOrder="4930" Prompt="Applied to Pay periods - First" ForceDefault="true" OptionType="CheckBox" Default="Yes" Options="Yes"/>
+<SelectionField Name="Applied_to_Pay_Periods_Second" FieldOrder="4940" Prompt="Applied to Pay periods - Second" ForceDefault="true" OptionType="CheckBox" Default="Yes" Options="Yes"/>
+<SelectionField Name="Ethnicity" FieldOrder="4950" Prompt="Ethnicity" OptionsFromList="true" OptionType="DropDown" Options="EUP_Ethnicity" DisplayLabel="Ethnicity"/>
+<TextField Name="SectionKELI" FieldOrder="4960" Prompt="KELI Section" FormOptions="style='display:none;'"/>
+<TextField Name="KELIURL" FieldOrder="4970" Prompt="KELI New Joiner URL for iFrame" HTML="ALLOWED" Cols="30" Rows="1"/>
+<SelectionField Name="KELI_Status" FieldOrder="4980" Prompt="KELI Conflicts Status" OptionType="DropDown" Options="pass,pass,fail,fail"/>
+<TextField Name="SectionOfferLetter" FieldOrder="4990" Prompt="Offer Letter Details" FormOptions="style='display:none;'"/>
+<TextField Name="Offer_Letter_Date" FieldOrder="5000" Prompt="Offer Letter Date" Visual="DATE" ValidationType="Date" Cols="13" Rows="1"/>
+<TextField Name="offer_writer_name" FieldOrder="5010" Prompt="Offer Writer Name" Cols="30" Rows="1"/>
+<TextField Name="offer_writer_number" FieldOrder="5020" Prompt="Offer Writer Number" Cols="30" Rows="1"/>
+<TextField Name="offer_writer_email" FieldOrder="5030" Prompt="Offer Writer Email" Cols="30" Rows="1"/>
+<TextField Name="offer_writer_title" FieldOrder="5040" Prompt="Offer Writer Title" Cols="30" Rows="1"/>
+<SelectionField Name="Salary_Amount" FieldOrder="5050" Prompt="Salary Amount" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Salary Amount"/>
+<SelectionField Name="Salary_Amount_Currency_Code" FieldOrder="5060" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Guaranteed_Bonus_Eligible" FieldOrder="5070" Prompt="Is Candidate Eligible for a Guaranteed Bonus?" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Guaranteed_Bonus_Type" FieldOrder="5080" Prompt="Guaranteed Bonus Type" OptionsFromList="true" Horizontal="true" OptionType="DropDown" Options="EUP_Guaranteed Bonus Types"/>
+<TextField Name="Guaranteed_Bonus_Amount" FieldOrder="5090" Prompt="Guaranteed Bonus Amount" Cols="20" Rows="1"/>
+<SelectionField Name="Guaranteed_Bonus_Amount_Currency" FieldOrder="5100" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Currency_Code_List"/>
+<TextField Name="GB_Year_Paid" FieldOrder="5110" Prompt="GB Year Paid" Cols="10" Rows="1"/>
+<SelectionField Name="Signing_Bonus_Description" FieldOrder="5120" Prompt="Signing Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Signing_Bonus_Code"/>
+<SelectionField Name="Signing_Bonus_Eligible" FieldOrder="5130" Prompt="Eligible for Signing Bonus" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_YesNo"/>
+<TextField Name="Signing_Bonus_Amount" FieldOrder="5140" Prompt="Signing Bonus Amount" Cols="20" Rows="1"/>
+<SelectionField Name="Signing_Bonus_Currency_Code" FieldOrder="5150" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Signing_Bonus_Date" FieldOrder="5160" Prompt="Signing Bonus Date" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bonus_Date"/>
+<SelectionField Name="Clerkship_Bonus_Eligible_1" FieldOrder="5170" Prompt="Eligible for Clerkship Bonus" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_YesNo"/>
+<TextField Name="Clerkship_Bonus_Amount_1" FieldOrder="5180" Prompt="Clerkship Bonus Amount" Cols="30" Rows="1"/>
+<SelectionField Name="Clerkship_Bonus_Currency_Code_1" FieldOrder="5190" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Expiration_Language" FieldOrder="5200" Prompt="Expiration Language" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Relocation" FieldOrder="5210" Prompt="Eligible for Relocation" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_YesNo"/>
+<TextField Name="Relocation_Bonus_Amount" FieldOrder="5220" Prompt="Relocation Bonus Amount" Cols="20" Rows="1"/>
+<SelectionField Name="Relocation_Bonus_Currency_Code" FieldOrder="5230" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Currency_Code_List"/>
+<TextField Name="Offer_Letter_Revision_UK" FieldOrder="5240" Prompt="Offer Letter Revision UK" Visual="TINY_MCE" Cols="30" Rows="15"/>
+<TextField Name="Offer_Letter_Revision_US" FieldOrder="5250" Prompt="Offer Letter Revisions US" Visual="TINY_MCE" Cols="30" Rows="15" FormOptions="class='revisionLetter'"/>
+<TextField Name="SectionWestLaw" FieldOrder="5260" Prompt="WestLaw Account Information" ReadOnly="true" FormOptions="style='display:none;'"/>
+<TextField Name="Westlaw_Account_User_Name" FieldOrder="5270" Prompt="Westlaw Account User Name" Cols="20" Rows="1"/>
+<TextField Name="Westlaw_Account_Password" FieldOrder="5280" Prompt="Westlaw Account Password" Cols="20" Rows="1"/>
+<TextField Name="Test_iframe_link" FieldOrder="5290" Prompt="Test iFrame Link" ShowDefault="true" Default="https://www.surveymonkey.com/r/MBTSG93"/>
+<SelectionField Name="Name_Type" FieldOrder="5300" Prompt="Name Type" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Name Type"/>
+<SelectionField Name="Name_Type2" FieldOrder="5310" Prompt="Name Type Preferred" OptionsFromList="true" OptionType="DropDown" Options="EUP_Name Type"/>
+<TextField Name="SilkRoad_ID" FieldOrder="5320" Prompt="SilkRoad ID" Cols="75" Rows="1"/>
+<SelectionField Name="Mailing_Address_Same" FieldOrder="5330" Prompt="Mailing_Address_Same" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<TextField Name="Personal_Email_Address" FieldOrder="5340" Prompt="Personal Email Address" Cols="70" Rows="1"/>
+<SelectionField Name="Preferred_Email" FieldOrder="5350" Prompt="Preferred Email" ShowDefault="true" OptionType="CheckBox" Default="Yes" Options="Yes,Yes"/>
+<SelectionField Name="Previous_KE" FieldOrder="5360" Prompt="Have you formerly worked for Kirkland as a Contract Worker?" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Previous_KE_Employee" FieldOrder="5370" Prompt="Have you formerly worked for Kirkland as an Employee?" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Action" FieldOrder="5380" Prompt="Action" OptionsFromList="true" OptionType="SimpleDropDown" Options="EUP_Action"/>
+<SelectionField Name="Company" FieldOrder="5390" Prompt="Company" OptionsFromList="true" OptionType="DropDown" Options="EUP_Company"/>
+<SelectionField Name="Action_Reason" FieldOrder="5400" Prompt="Action Reason" OptionsFromList="true" OptionType="DropDown" ValidationType="JavaScriptFunction" Options="EUP_Action Reason"/>
+<SelectionField Name="Location" FieldOrder="5410" Prompt="Location" OptionsFromList="true" OptionType="DropDown" Options="EUP_Location"/>
+<SelectionField Name="Position_Job_Title_Code" FieldOrder="5420" Prompt="Position/Job Title" OptionsFromList="true" OptionType="DropDown" Options="EUP_Position/Job Title Code US"/>
+<SelectionField Name="Suffix" FieldOrder="5430" Prompt="Suffix" OptionsFromList="true" OptionType="DropDown" Options="EUP_Suffix"/>
+<SelectionField Name="Preferred_Suffix" FieldOrder="5440" Prompt="Preferred Suffix" OptionsFromList="true" OptionType="DropDown" Options="EUP_Suffix"/>
+<SelectionField Name="Additional_Phone_Type_1" FieldOrder="5450" Prompt="Additional Phone Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Type"/>
+<SelectionField Name="Additional_Phone_Type_2" FieldOrder="5460" Prompt="Additional Phone Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Type"/>
+<SelectionField Name="Additional_Phone_Type_3" FieldOrder="5470" Prompt="Additional Phone Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Type"/>
+<TextField Name="Associate_Class" FieldOrder="5480" Prompt="Associate Class" Cols="10" Rows="1"/>
+<TextField Name="Earnings_Code" FieldOrder="5490" Prompt="Earnings Code" Cols="10" Rows="1"/>
+<TextField Name="Earnings" FieldOrder="5500" Prompt="Earnings" Cols="10" Rows="1"/>
+<SelectionField Name="ID_JPM_Profiles_Honor_Awards" FieldOrder="5510" Prompt="Honor or Awards" OptionsFromList="true" OptionType="DropDown" Options="EUP_Honor and Awards"/>
+<SelectionField Name="Country_JPM_Profiles_Honor_Awards" FieldOrder="5520" Prompt="Country " OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<SelectionField Name="School_JPM_Profiles_Honor_Awards" FieldOrder="5530" Prompt="School Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Able_To_Translate_1" FieldOrder="5540" Prompt="Able to Translate" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Able_To_Translate_2" FieldOrder="5550" Prompt="Able to Translate" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Able_To_Translate_3" FieldOrder="5560" Prompt="Able to Translate" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Able_To_Translate_4" FieldOrder="5570" Prompt="Able to Translate" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Able_To_Translate_5" FieldOrder="5580" Prompt="Able to Translate" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Able_To_Translate_6" FieldOrder="5590" Prompt="Able to Translate" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Able_To_Translate_7" FieldOrder="5600" Prompt="Able to Translate" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Able_To_Translate_8" FieldOrder="5610" Prompt="Able to Translate" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Able_To_Translate_9" FieldOrder="5620" Prompt="Able to Translate" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Level_Secondary_Education_EDLVLACHV" FieldOrder="5630" Prompt="Education Level" ShowDefault="true" OptionType="SimpleDropDown" Default="High School" Options="High School"/>
+<SelectionField Name="Country_Secondary_Education_EDLVLACHV" FieldOrder="5640" Prompt="Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<SelectionField Name="School_Name_Secondary_Education_EDLVLACHV" FieldOrder="5650" Prompt="School Name" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Completed_Secondary_Education_EDLVLACHV" FieldOrder="5660" Prompt="Completed" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="State_Secondary_Education_EDLVLACHV" FieldOrder="5670" Prompt="State" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<SelectionField Name="School_Type_Secondary_Education_EDLVLACHV" FieldOrder="5680" Prompt="School Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_School Type"/>
+<TextField Name="Earning_Code" FieldOrder="5690" Prompt="Earning code" Rows="1"/>
+<TextField Name="Practice_Assistant_Assignment" FieldOrder="5700" Prompt="Practice Assistant Assignment" Cols="50" Rows="1"/>
+<SelectionField Name="Degree_Post_Secondary_Education_DEG_1" FieldOrder="5710" Prompt="Degree" OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Major_Code_Post_Secondary_Education_DEG_1" FieldOrder="5720" Prompt="Major Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<SelectionField Name="Country_Code_Post_Secondary_Education_DEG_1" FieldOrder="5730" Prompt="Counrty" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<TextField Name="Year_Acquired_Post_Secondary_Education_DEG_1" FieldOrder="5740" Prompt="Year Acquired" Cols="10" Rows="1"/>
+<TextField Name="GPA_Post_Secondary_Education_DEG_1" FieldOrder="5750" Prompt="GPA" Cols="10" Rows="1"/>
+<SelectionField Name="State_Post_Secondary_Education_DEG_1" FieldOrder="5760" Prompt="State" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<SelectionField Name="School_Code_Post_Secondary_Education_DEG_1" FieldOrder="5770" Prompt="School Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Minor_Code_Post_Secondary_Education_DEG_1" FieldOrder="5780" Prompt="Minor Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<SelectionField Name="Degree_Post_Secondary_Education_DEG_2" FieldOrder="5790" Prompt="Degree" OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Major_Code_Post_Secondary_Education_DEG_2" FieldOrder="5800" Prompt="Major Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<SelectionField Name="Country_Code_Post_Secondary_Education_DEG_2" FieldOrder="5810" Prompt="Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<TextField Name="Year_Acquired_Post_Secondary_Education_DEG_2" FieldOrder="5820" Prompt="Year Acquired" Cols="10" Rows="1"/>
+<TextField Name="GPA_Post_Secondary_Education_DEG_2" FieldOrder="5830" Prompt="GPA" Cols="10" Rows="1"/>
+<SelectionField Name="State_Post_Secondary_Education_DEG_2" FieldOrder="5840" Prompt="State" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<SelectionField Name="School_Code_Post_Secondary_Education_DEG_2" FieldOrder="5850" Prompt="School Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Minor_Code_Post_Secondary_Education_DEG_2" FieldOrder="5860" Prompt="Minor Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<SelectionField Name="Degree_Post_Secondary_Education_DEG_3" FieldOrder="5870" Prompt="Degree" OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Major_Code_Post_Secondary_Education_DEG_3" FieldOrder="5880" Prompt="Major Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<SelectionField Name="Country_Code_Post_Secondary_Education_DEG_3" FieldOrder="5890" Prompt="Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<TextField Name="Year_Acquired_Post_Secondary_Education_DEG_3" FieldOrder="5900" Prompt="Year Acquired" Cols="10" Rows="1"/>
+<TextField Name="GPA_Post_Secondary_Education_DEG_3" FieldOrder="5910" Prompt="GPA" Cols="10" Rows="1"/>
+<SelectionField Name="State_Post_Secondary_Education_DEG_3" FieldOrder="5920" Prompt="State" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<SelectionField Name="School_Code_Post_Secondary_Education_DEG_3" FieldOrder="5930" Prompt="School Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Minor_Code_Post_Secondary_Education_DEG_3" FieldOrder="5940" Prompt="Minor Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<SelectionField Name="Degree_Post_Secondary_Education_DEG_4" FieldOrder="5950" Prompt="Degree" OptionsFromList="true" OptionType="DropDown" Options="EUP_Degree"/>
+<SelectionField Name="Major_Code_Post_Secondary_Education_DEG_4" FieldOrder="5960" Prompt="Major Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<SelectionField Name="Country_Code_Post_Secondary_Education_DEG_4" FieldOrder="5970" Prompt="Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<TextField Name="Year_Acquired_Post_Secondary_Education_DEG_4" FieldOrder="5980" Prompt="Year Acquired" Cols="10" Rows="1"/>
+<TextField Name="GPA_Post_Secondary_Education_DEG_4" FieldOrder="5990" Prompt="GPA" Cols="10" Rows="1"/>
+<SelectionField Name="State_Post_Secondary_Education_DEG_4" FieldOrder="6000" Prompt="State" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<SelectionField Name="School_Code_Post_Secondary_Education_DEG_4" FieldOrder="6010" Prompt="School Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+<SelectionField Name="Minor_Code_Post_Secondary_Education_DEG_4" FieldOrder="6020" Prompt="Minor Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Major"/>
+<SelectionField Name="License_Licenses_Certifications_LLC" FieldOrder="6030" Prompt="License" OptionsFromList="true" OptionType="DropDown" Options="EUP_License"/>
+<TextField Name="Issue_Date_Licenses_Certifications_LLC" FieldOrder="6040" Prompt="Issue Date" Cols="10" Rows="1"/>
+<SelectionField Name="Country_Licenses_Certifications_LLC" FieldOrder="6050" Prompt="Country" OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<TextField Name="License_Certification_Number_Licenses_Certifications_LLC" FieldOrder="6060" Prompt="License Certification Number" Cols="150" Rows="1"/>
+<TextField Name="Issued_By_Licenses_Certifications_LLC" FieldOrder="6070" Prompt="Issued By" Cols="150" Rows="1"/>
+<SelectionField Name="Email_Type" FieldOrder="6080" Prompt="Email Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Email_Type"/>
+<SelectionField Name="Designation" FieldOrder="6090" Prompt="Designation" OptionsFromList="true" OptionType="DropDown" Options="EUP_Designation"/>
+<SelectionField Name="Salary_Type" FieldOrder="6100" Prompt="Salary Type" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_Salary Type"/>
+<SelectionField Name="Bar_Group" FieldOrder="6110" Prompt="Bar Group" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_Bar Group"/>
+<SelectionField Name="Awaiting_National_ID_Number1" FieldOrder="6120" Prompt="Awaiting National Identification Number" OptionType="CheckBox" Options="Yes"/>
+<SelectionField Name="Great_Britain_County" FieldOrder="6130" Prompt="County" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<TextField Name="Offer_Letter_US" FieldOrder="6140" Prompt="Offer Letter US" Cols="50" Rows="5" FormOptions="id='Offer_Letter_US'"/>
+<TextField Name="Offer_Letter_Revision_US_Temp" FieldOrder="6150" Prompt="Offer_Letter_Revision_US_TEMP TEXTAREA" Cols="50" Rows="5" FormOptions="id='Offer_Letter_Revision_US'"/>
+<TextField Name="UK_BGContact_Name" FieldOrder="6160" Prompt="Name" Cols="50" Rows="1"/>
+<TextField Name="UK_BGContact_Title" FieldOrder="6170" Prompt="Position Title of Contact" Cols="50" Rows="1"/>
+<TextField Name="UK_BGContact_Email" FieldOrder="6180" Prompt="Email Address" Cols="50" Rows="1"/>
+<TextField Name="UK_BGContact_Phone" FieldOrder="6190" Prompt="Phone Number" Cols="50" Rows="1"/>
+<TextField Name="SigningAttorneySignature" FieldOrder="6200" Prompt="Signing Attorney Signature" ValidationType="JavaScriptFunction" Cols="50" Rows="1" FormOptions="id='signature2' onChange=signatureVerification('sv2'); onFocus=openESig('modal2','over',this);document.getElementById('eSignature2').focus();document.getElementById('over').style.width='';"/>
+<TextField Name="SigningAttorneySignatureDate" FieldOrder="6210" Prompt="Date" Visual="DATE" ValidationType="JavaScriptFunction" Cols="15" Rows="1" FormOptions="readonly class='signDate2'" DisplayFormat="enabled mm/dd/yyyy"/>
+<TextField Name="SigningAttorneyName" FieldOrder="6220" Prompt="Signing Attorney Name" ValidationType="JavaScriptFunction" Cols="50" Rows="1" FormOptions="id='printed-signatory-name'"/>
+<TextField Name="SignatureVerification2" FieldOrder="6230" Prompt="SignatureVerification 2" FormOptions="id='sv2'"/>
+<SelectionField Name="State_By_Licenses_Certifications_LLC" FieldOrder="6240" Prompt="State" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<SelectionField Name="HK_Perm_Res_2" FieldOrder="6250" Prompt="Hong Kong Permanent Resident" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="HK_Perm_Res_3" FieldOrder="6260" Prompt="Hong Kong Permanent Resident" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="HK_Perm_Res_4" FieldOrder="6270" Prompt="Hong Kong Permanent Resident" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Passport" FieldOrder="6280" Prompt="Do you have Passport Information to enter?" OptionsFromList="true" Horizontal="true" OptionType="Radio" Options="EUP_YesNo"/>
+<SelectionField Name="Emergency_Contact_Phone_Type_1" FieldOrder="6290" Prompt="Contact Phone Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Type"/>
+<SelectionField Name="Emergency_Contact_Phone_Type_2" FieldOrder="6300" Prompt="Contact Phone Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Type"/>
+<SelectionField Name="Emergency_Contact_Phone_Type_3" FieldOrder="6310" Prompt="Contact Phone Type" OptionsFromList="true" OptionType="DropDown" Options="EUP_Phone_Type"/>
+<SelectionField Name="Mailing_Address_County" FieldOrder="6320" Prompt="County" OptionsFromList="true" OptionType="DropDown" Options="EUP_State"/>
+<SelectionField Name="Awaiting_National_ID_Number2" FieldOrder="6330" Prompt="Awaiting National Identification Number" OptionType="CheckBox" Options="Yes"/>
+<SelectionField Name="Awaiting_National_ID_Number3" FieldOrder="6340" Prompt="Awaiting National Identification Number" OptionType="CheckBox" Options="Yes"/>
+<SelectionField Name="Awaiting_National_ID_Number4" FieldOrder="6350" Prompt="Awaiting National Identification Number" OptionType="CheckBox" Options="Yes"/>
+<TextField Name="GB_Paid_Class_Year" FieldOrder="6360" Prompt="GB Paid Class Year" Cols="10" Rows="1"/>
+<TextField Name="Class_Year" FieldOrder="6370" Prompt="Associate Class Year" Cols="10" Rows="1"/>
+<TextField Name="Raise_Year" FieldOrder="6380" Prompt="Year when available for raise" Cols="10" Rows="1"/>
+<SelectionField Name="Attorney_Referral_2" FieldOrder="6390" Prompt="Attorney Referral 2" OptionsFromList="true" OptionType="DropDown" Options="EUP_Attorney"/>
+<SelectionField Name="Attorney_Referral_3" FieldOrder="6400" Prompt="Attorney Referral 3" OptionsFromList="true" OptionType="DropDown" Options="EUP_Attorney"/>
+<SelectionField Name="Referral_Bonus_Eligible_2" FieldOrder="6410" Prompt="Referral Bonus Eligible" OptionsFromList="true" OptionType="DropDown" Options="EUP_Referral Bonus Eligible"/>
+<SelectionField Name="Referral_Bonus_Eligible_3" FieldOrder="6420" Prompt="Referral Bonus Eligible" OptionsFromList="true" OptionType="DropDown" Options="EUP_Referral Bonus Eligible"/>
+<TextField Name="Referral_Eligibility_Date_2" FieldOrder="6430" Prompt="Referral Eligibility Date" Cols="20" Rows="1"/>
+<TextField Name="Referral_Eligibility_Date_3" FieldOrder="6440" Prompt="Referral Eligibility Date" Cols="20" Rows="1"/>
+<SelectionField Name="Clerkship_Bonus_Code_1" FieldOrder="6450" Prompt="Clerkship Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Clerkship_Bonus_Code"/>
+<SelectionField Name="Clerkship_Bonus_Date_1" FieldOrder="6460" Prompt="Clerkship Bonus Date" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bonus_Date"/>
+<SelectionField Name="Clerkship_Bonus_Eligible_2" FieldOrder="6470" Prompt="Eligible for Clerkship Bonus" OptionsFromList="true" Horizontal="true" OptionType="Radio" ValidationType="JavaScriptFunction" Options="EUP_YesNo"/>
+<TextField Name="Clerkship_Bonus_Amount_2" FieldOrder="6480" Prompt="Clerkship Bonus Amount" Cols="30" Rows="1"/>
+<SelectionField Name="Clerkship_Bonus_Currency_Code_2" FieldOrder="6490" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Clerkship_Bonus_Code_2" FieldOrder="6500" Prompt="Clerkship Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Clerkship_Bonus_Code"/>
+<SelectionField Name="Clerkship_Bonus_Date_2" FieldOrder="6510" Prompt="Clerkship Bonus Date" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bonus_Date"/>
+<SelectionField Name="Relocation_Bonus_Code" FieldOrder="6520" Prompt="Relocation Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Relocation_Bonus_Code"/>
+<SelectionField Name="Relocation_Bonus_Date" FieldOrder="6530" Prompt="Relocation Bonus Date" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bonus_Date"/>
+<SelectionField Name="Referral_Bonus_Code_1" FieldOrder="6540" Prompt="Referral Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Referral_Bonus_Code"/>
+<SelectionField Name="Referral_Bonus_Code_2" FieldOrder="6550" Prompt="Referral Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Referral_Bonus_Code"/>
+<SelectionField Name="Referral_Bonus_Code_3" FieldOrder="6560" Prompt="Referral Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Referral_Bonus_Code"/>
+<SelectionField Name="Additional_Bonus_Code_1" FieldOrder="6570" Prompt="Additional Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Additional_Bonus_Code"/>
+<SelectionField Name="Additional_Bonus_Code_2" FieldOrder="6580" Prompt="Additional Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Additional_Bonus_Code"/>
+<SelectionField Name="Additional_Bonus_Code_3" FieldOrder="6590" Prompt="Additional Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Additional_Bonus_Code"/>
+<SelectionField Name="Additional_Bonus_Code_4" FieldOrder="6600" Prompt="Additional Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Additional_Bonus_Code"/>
+<SelectionField Name="Additional_Bonus_Code_5" FieldOrder="6610" Prompt="Additional Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Additional_Bonus_Code"/>
+<SelectionField Name="Additional_Bonus_Code_6" FieldOrder="6620" Prompt="Additional Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Additional_Bonus_Code"/>
+<SelectionField Name="Additional_Bonus_Code_7" FieldOrder="6630" Prompt="Additional Bonus Description" OptionsFromList="true" OptionType="DropDown" Options="EUP_Additional_Bonus_Code"/>
+<TextField Name="Additional_Bonus_Amount_1" FieldOrder="6640" Prompt="Additional Bonus Amount" Cols="20" Rows="1"/>
+<TextField Name="Additional_Bonus_Amount_2" FieldOrder="6650" Prompt="Additional Bonus Amount" Cols="20" Rows="1"/>
+<TextField Name="Additional_Bonus_Amount_3" FieldOrder="6660" Prompt="Additional Bonus Amount" Cols="20" Rows="1"/>
+<TextField Name="Additional_Bonus_Amount_4" FieldOrder="6670" Prompt="Additional Bonus Amount" Cols="20" Rows="1"/>
+<TextField Name="Additional_Bonus_Amount_5" FieldOrder="6680" Prompt="Additional Bonus Amount" Cols="20" Rows="1"/>
+<TextField Name="Additional_Bonus_Amount_6" FieldOrder="6690" Prompt="Additional Bonus Amount" Cols="20" Rows="1"/>
+<TextField Name="Additional_Bonus_Amount_7" FieldOrder="6700" Prompt="Additional Bonus Amount" Cols="20" Rows="1"/>
+<SelectionField Name="Additional_Bonus_Currency_Code_1" FieldOrder="6710" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Additional_Bonus_Currency_Code_2" FieldOrder="6720" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Additional_Bonus_Currency_Code_3" FieldOrder="6730" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Additional_Bonus_Currency_Code_4" FieldOrder="6740" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Additional_Bonus_Currency_Code_5" FieldOrder="6750" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Additional_Bonus_Currency_Code_6" FieldOrder="6760" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Additional_Bonus_Currency_Code_7" FieldOrder="6770" Prompt="Currency" OptionsFromList="true" OptionType="DropDown" Options="EUP_Currency_Code_List"/>
+<SelectionField Name="Additional_Bonus_Date_1" FieldOrder="6780" Prompt="Additional Bonus Date" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bonus_Date"/>
+<SelectionField Name="Additional_Bonus_Date_2" FieldOrder="6790" Prompt="Additional Bonus Date" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bonus_Date"/>
+<SelectionField Name="Additional_Bonus_Date_3" FieldOrder="6800" Prompt="Additional Bonus Date" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bonus_Date"/>
+<SelectionField Name="Additional_Bonus_Date_4" FieldOrder="6810" Prompt="Additional Bonus Date" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bonus_Date"/>
+<SelectionField Name="Additional_Bonus_Date_5" FieldOrder="6820" Prompt="Additional Bonus Date" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bonus_Date"/>
+<SelectionField Name="Additional_Bonus_Date_6" FieldOrder="6830" Prompt="Additional Bonus Date" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bonus_Date"/>
+<SelectionField Name="Additional_Bonus_Date_7" FieldOrder="6840" Prompt="Additional Bonus Date" OptionsFromList="true" OptionType="DropDown" Options="EUP_Bonus_Date"/>
+<SelectionField Name="Clerkship_ID_1_From_Month" FieldOrder="6850" Prompt="Month Clerkship Began" OptionsFromList="true" OptionType="DropDown" Options="Clerkship_Month"/>
+<SelectionField Name="Clerkship_ID_1_To_month" FieldOrder="6860" Prompt="Month Clerkship Ended" OptionsFromList="true" OptionType="DropDown" Options="Clerkship_Month"/>
+<SelectionField Name="Clerkship_ID_2_From_Month" FieldOrder="6870" Prompt="Month Clerkship Began" OptionsFromList="true" OptionType="DropDown" Options="Clerkship_Month"/>
+<SelectionField Name="Clerkship_ID_2_To_month" FieldOrder="6880" Prompt="Month Clerkship Ended" OptionsFromList="true" OptionType="DropDown" Options="Clerkship_Month"/>
+<SelectionField Name="Clerkship_ID_3_From_Month" FieldOrder="6890" Prompt="Month Clerkship Began" OptionsFromList="true" OptionType="DropDown" Options="Clerkship_Month"/>
+<SelectionField Name="Clerkship_ID_3_To_month" FieldOrder="6900" Prompt="Month Clerkship Ended" OptionsFromList="true" OptionType="DropDown" Options="Clerkship_Month"/>
+<SelectionField Name="Clerkship_ID_4_From_Month" FieldOrder="6910" Prompt="Month Clerkship Began" OptionsFromList="true" OptionType="DropDown" Options="Clerkship_Month"/>
+<SelectionField Name="Clerkship_ID_4_To_month" FieldOrder="6920" Prompt="Month Clerkship Ended" OptionsFromList="true" OptionType="DropDown" Options="Clerkship_Month"/>
+<SelectionField Name="Clerkship_ID_5_From_Month" FieldOrder="6930" Prompt="Month Clerkship Began" OptionsFromList="true" OptionType="DropDown" Options="Clerkship_Month"/>
+<SelectionField Name="Clerkship_ID_5_To_month" FieldOrder="6940" Prompt="Month Clerkship Ended" OptionsFromList="true" OptionType="DropDown" Options="Clerkship_Month"/>
+<TextField Name="Offer_Letter_Annual_Compensation" FieldOrder="6950" Prompt="Offer Letter Annual Compensation" Cols="25" Rows="1"/>
+<SelectionField Name="ID_JPM_Profiles_Honor_Awards_2" FieldOrder="6960" Prompt="Honor or Awards" OptionsFromList="true" OptionType="DropDown" Options="EUP_Honor and Awards"/>
+<SelectionField Name="Country_JPM_Profiles_Honor_Awards_2" FieldOrder="6970" Prompt="Country " OptionsFromList="true" OptionType="DropDown" Options="EUP_Country"/>
+<SelectionField Name="School_JPM_Profiles_Honor_Awards_2" FieldOrder="6980" Prompt="School Code" OptionsFromList="true" OptionType="DropDown" Options="EUP_Education_School_Code"/>
+</ContentElement>

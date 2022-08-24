@@ -1,0 +1,276 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'a03_Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a03_Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+		<$client.env.FormField.SignatureVerification.prompt>
+		<$client.env.FormField.a01_Employee_Name.prompt>
+		<$client.env.FormField.a02_Signature.prompt>
+		<$client.env.FormField.a03_Date.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+	<header class="row mb-20">
+		<div class="col-lg-3 col-sm-3 col-xs-8">
+			<img src="<$link;/main/RedCarpet/FormTemplates/Santander_CA_Invention_Assignment_Agreement/img/santander_logo.jpg>" alt="Santander Logo" class="img-responsive">
+		</div>
+	</header>
+	<div class="row mb-20">
+		<div class="col-lg-12">
+			<h4 class="text-center">
+				<strong>SANTANDER GLOBAL TECHNOLOGY S.L. <br class="hidden-sm hidden-xs">PROPRIETARY INFORMATION AND INVENTIONS AGREEMENT</strong>
+			</h4>
+		</div>
+	</div>
+	<div class="row mb-20">
+		<div class="col-lg-12">
+			<div class="i-block">
+				Name of Employee:
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a01_Employee_Name.HTML>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<p class="text-indent">
+				In consideration and as a condition of my employment with SANTANDER GLOBAL TECHNOLOGY S.L. (hereinafter referred to as the "Company" and defined in <strong>Exhibit A</strong> hereto), I hereby enter into this Proprietary Information and Inventions Agreement (the “Agreement”) as follows:
+			</p>
+			<p>
+				1. I shall not at any time, whether during or after the termination of my employment with the Company, reveal or disclose to any person or entity any Confidential Information (as defined in <strong>Exhibit A</strong> hereto), except to employees of the Company who need to know such Confidential Information for the purposes of their employment, or as otherwise authorized by the Company in writing, and I shall keep secret and in trust all matters entrusted to me and shall not use or attempt to use or disclose any Confidential Information except as may be required in the ordinary course of performing my duties as an employee of the Company, nor shall I use or disclose any Confidential Information in any manner that may injure or cause loss or may be calculated to injure or cause loss to the Company, whether directly or indirectly.
+			</p>
+			<p>
+				2. I agree that during my employment I shall not make, use or permit to be used any Company Documentation (as defined <strong>Exhibit A</strong> hereto) other than for the benefit of the Company. I further agree that I shall not, after the termination of my employment, use or permit others to use any such Company Documentation, it being agreed that all Company Documentation shall be and remain the sole and exclusive property of the Company. Immediately upon the termination of my employment I shall deliver all Company Documentation (including copies thereof) in my possession to the Company.
+			</p>
+			<p>
+				3. If at any time during my employment (including, any period of my employment with the Company prior to my signing this Agreement), I shall (either alone or with others) make, conceive, create, author, discover, invent or reduce to practice any Development (as defined in <strong>Exhibit A</strong> hereto) that (a) relates to the business of the Company or any of the products or services being developed, manufactured or sold by the Company; or (b) results from the use of premises or personal property (whether tangible or intangible) owned, leased or contracted for by the Company, then all such Developments and the benefits thereof are and shall immediately become the sole and exclusive property of the Company and its assigns, as works made for hire or otherwise, to the fullest extent allowed by California Labor Code Section 2870 (which is attached as <strong>Exhibit B</strong> hereto) (collectively, the “Company Developments”). I shall promptly disclose to the Company (or any persons designated by it) each Company Development and any such Development that I believe is excluded by Section 2870 so that the Company may make an independent assessment.
+			</p>
+			<ol class="ml-20" type="a">
+				<li>
+					I hereby assign all rights (including, but not limited to, rights to inventions, patentable subject matter, patents, copyrights, trade secrets, trademarks and other intellectual property rights) I may have or may acquire in the Company Developments and all benefits and/or rights resulting therefrom to the Company and its assigns without further compensation and shall communicate, without cost or delay, and without disclosing to others the same, all available information relating thereto (with all necessary plans and models) to the Company.
+				</li>
+				<li>
+					I agree to keep and maintain adequate and current written records of all Company Developments made by me (in the form of notes, sketches, drawings and other records as may be specified by the Company), which records shall be available to and remain the sole property of the Company at all times.
+				</li>
+			</ol>
+			<p>
+				4. I shall not incorporate into any Company Development any discovery, process, design, software code, technology, device, trade secret, improvement in any of the foregoing or other ideas, whether or not patentable and whether or not reduced to practice, made or conceived by me (whether solely or jointly with others) that does not result from any work performed by me for the Company or which I made prior to my employment by the Company ("<em>Other Inventions</em>"). I will notify the Company in writing before I make any disclosure or perform work on behalf of the Company that appears to threaten or conflict with any Other Inventions.
+			</p>
+			<p>
+				5. I shall, during my employment and at any time thereafter, at the request and cost of the Company, promptly sign, execute, make and do all such deeds, documents, acts and things as the Company and its duly authorized officers may reasonably require:
+			</p>
+			<ol class="ml-20" type="a">
+				<li>
+					to apply for, obtain, register and vest in the name of the Company alone (unless the Company otherwise directs) patents, copyrights, trademarks or other analogous protection in any country throughout the world relating to a Company Development and when so obtained or vested to renew and restore the same;
+				</li>
+				<li>
+					to defend any judicial, opposition or other proceedings in respect of such application and any judicial, opposition or other proceeding, petition or application for revocation of any such patent, copyright, trademark or other analogous protection; and
+				</li>
+				<li>
+					to evidence, perfect, maintain, defend and enforce all of Company’s rights in patents, copyrights, trademarks, trade secrets, or other intellectual property rights relating to the Company Developments in any and all countries.
+				</li>
+			</ol>
+			<p>
+				6. If the Company is unable to secure my signature on any application for patent, copyright, trademark or other analogous registration or other documents regarding any legal protection relating to a Company Development, I hereby irrevocably designate and appoint the Company and its duly authorized officers and agents as my agent and attorney-in-fact, to act for and in my behalf and stead to execute and file any such application or applications or other documents and to do all other lawfully permitted acts to further the prosecution and issuance of patent, copyright or trademark registrations or any other legal protection thereon with the same legal force and effect as if executed by me. The Company acknowledges that the scope of the agency and power of attorney created under this Agreement is limited to the furtherance of the prosecution and issuance of patent, copyright or trademark registrations or other legal protection thereon.
+			</p>
+			<p>
+				7. I agree that any breach of this Agreement by me will cause irreparable damage to the Company and that in the event of such breach the Company shall have, in addition to any and all remedies of law, the right to an injunction, specific performance or other equitable relief to prevent the violation of my obligations hereunder. I also agree that the Company shall be entitled to recover its reasonable attorneys’ fees, costs, and interest incurred in connection with any action, suit, or other proceeding instituted by the Company to enforce any of the terms of this Agreement.
+			</p>
+			<p>
+				8. I understand that this Agreement does not create (a) a contract of employment for any particular period or on any particular terms other than those stated herein or (b) an obligation on the Company or any other person or entity to continue my employment. I understand that my employment arrangement with the Company is at-will, which means that either party may terminate it at any time, with or without notice and with or without cause.
+			</p>
+			<p>
+				9. I acknowledge and represent that my performance under this Agreement and as an employee of the Company does not and will not breach any agreement to keep in confidence proprietary information acquired by me in confidence or in trust prior to my employment by the Company. I have not entered into, and I shall not enter into, any agreement or commitment either written or oral in conflict with any provision of this Agreement.
+			</p>
+			<p>
+				10. Any waiver by the Company of a breach of any provision of this Agreement shall not operate or be construed as a waiver of any subsequent breach of such provision or any other provision hereof.
+			</p>
+			<p>
+				11. I hereby agree that each provision herein shall be treated as a separate and independent clause, and the unenforceability of any one clause shall in no way impair the enforceability of any of the other clauses of the Agreement. Moreover, if one or more of the provisions contained in this Agreement shall for any reason be held to be excessively broad as to scope, activity, subject or otherwise so as to be unenforceable at law, such provision or provisions shall be construed by the appropriate judicial body by limiting or reducing it or them so as to be enforceable to the maximum extent compatible with the applicable law as it shall then appear.
+			</p>
+			<p>
+				12. Any amendment to or modification of this Agreement, or any waiver of any provision hereof, shall be in writing and signed by the Company.
+			</p>
+			<p>
+				13. This Agreement shall be effective as of the date entered below. My obligations under this Agreement shall survive the termination of my employment regardless of the manner of such termination and shall be binding upon my heirs, executors, administrators and legal representatives.
+			</p>
+			<p>
+				14. The Company shall have the right to assign this Agreement to its successors and assigns, and all covenants and agreements hereunder shall inure to the benefit of and be enforceable by said successors or assigns.
+			</p>
+			<p>
+				15. This Agreement shall be governed by and construed in accordance with the laws of the State of California and shall in all respects be interpreted, enforced and governed under the internal and domestic laws of such state, without giving effect to the principles of conflicts of laws of such state.
+			</p>
+			<p>
+				16. I have had a full and complete opportunity to discuss, consider and understand each provision of this Agreement, agree that the terms of this Agreement are fair and reasonable, and enter into this agreement freely, voluntarily, and without duress or coercion.
+			</p>
+			<p class="mb-40">
+				IN WITNESS WHEREOF, the undersigned has executed this Agreement as of the date written below.
+			</p>
+		</div>
+	</div>
+	<div class="row mb-10">
+		<div class="col-lg-1 col-sm-1 col-xs-12">
+			Signature:
+		</div>
+		<div class="col-lg-6 col-sm-6 col-xs-12">
+			<$client.env.FormField.a02_Signature.HTML>
+		</div>
+	</div>
+	<div class="row mb-40">
+		<div class="col-lg-1 col-sm-1 col-xs-12">
+			Date:
+		</div>
+		<div class="col-lg-3 col-sm-3 col-xs-12">
+			<$client.env.FormField.a03_Date.HTML>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<h4 class="text-center">
+				<strong>
+					<u>EXHIBIT A</u>
+				</strong>
+			</h4>
+			<h4 class="text-center">
+				<strong>
+					<u>DEFINITIONS</u>
+				</strong>
+			</h4>
+			<p>
+				The term “<em>Company</em>” means SANTANDER GLOBAL TECHNOLOGY S.L., and includes any of its parents, subsidiaries, divisions, or affiliates.
+			</p>
+			<p>
+				The term “<em>Company Documentation</em>” means notes, files, memoranda, reports, lists, records, manuals, drawings, sketches, specifications, software programs and electronic media, data, documentation or other materials of any nature and in any form, whether written, printed, or in digital format or otherwise, relating to any matter within the scope of the business of the Company or concerning any of its dealings or affairs including without limitation all tangible embodiments of Confidential Information.
+			</p>
+			<p>
+				The term “<em>Confidential Information</em>” means any information concerning the organization, business (including products and technology) or finances of the Company or of any third party that the Company is under an obligation to keep confidential that is maintained by the Company as confidential. Such Confidential Information shall include, but is not limited to, trade secrets or confidential information respecting inventions, products, technology, data, test results, designs, methods, formulae, know-how, show-how, techniques, systems, processes, software programs, works of authorship, research and development, agreements with customers or other entities or individuals, data, specifications, customer (existing and prospective) and supplier identification, financials, product cost and profit information, projects, plans and proposals.
+			</p>
+			<p class="mb-40">
+				The term “<em>Developments</em>” shall mean any invention, idea, modification, discovery, design, development, process, software program, work of authorship, documentation, formula, data, technique, know-how, show-how, trade secret or intellectual property right whatsoever or any interest therein (whether or not patentable or registrable under patent, copyright, trademark or similar statutes or subject to analogous protection).
+			</p>
+			<h4 class="text-center">
+				<strong>
+					<u>EXHIBIT B</u>
+				</strong>
+			</h4>
+			<h4 class="text-center">
+				<strong>
+					<u>CALIFORNIA LABOR CODE SECTION 2870</u>
+				</strong>
+			</h4>
+			<p>
+				<strong>Section 2870. Employment agreements; assignment of rights.</strong>
+			</p>
+			<p class="text-indent">
+				(a) Any provision in an employment agreement which provides that an employee shall assign, or offer to assign, any of his or her rights in an invention to his or her employer shall not apply to an invention that the employee developed entirely on his or her own time without using the employer’s equipment, supplies, facilities, or trade secret information except for those inventions that either:
+			</p>
+			<p class="ml-2">
+				(1) Relate at the time of conception or reduction to practice of the invention to the employer’s business, or actual or demonstrably anticipated research or development of the employer; or
+			</p>
+			<p class="ml-2">
+				(2) Result from any work performed by the employee for his employer.
+			</p>
+			<p class="text-indent mb-40">
+				(b) To the extent a provision in an employment agreement purports to require an employee to assign an invention otherwise excluded from being required to be assigned under subdivision (a), the provision is against the public policy of this state and is unenforceable.
+			</p>
+		</div>
+	</div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Santander_CA_Invention_Assignment_Agreement/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

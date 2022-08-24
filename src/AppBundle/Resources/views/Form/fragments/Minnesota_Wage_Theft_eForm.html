@@ -1,0 +1,889 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','Employee','modal','over','sv', 'WTF_Employee_Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','WTF_Employee_Date');">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal E-Signature box 2: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','','modal2','over','sv2');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.WTF_Additional_rates.prompt>
+        <$client.env.FormField.WTF_Address.prompt>
+        <$client.env.FormField.WTF_Allowances_claimed.prompt>
+        <$client.env.FormField.WTF_Date_Employment_Began.prompt>
+        <$client.env.FormField.WTF_Deductions.prompt>
+        <$client.env.FormField.WTF_Email_Address.prompt>
+        <$client.env.FormField.WTF_Employee_Date.prompt>
+        <$client.env.FormField.WTF_Employee_Exempt_From.prompt>
+        <$client.env.FormField.WTF_Employee_Status_exempt.prompt>
+        <$client.env.FormField.WTF_Employee_Status_non_exempt.prompt>
+        <$client.env.FormField.WTF_Employee_signature.prompt>
+        <$client.env.FormField.WTF_Employer_Date.prompt>
+        <$client.env.FormField.WTF_Employer_Email_Address.prompt>
+        <$client.env.FormField.WTF_Employer_Mailing_address.prompt>
+        <$client.env.FormField.WTF_Employer_Phone_number.prompt>
+        <$client.env.FormField.WTF_Employer_signature.prompt>
+        <$client.env.FormField.WTF_How_applied.prompt>
+        <$client.env.FormField.WTF_Language_Amharic.prompt>
+        <$client.env.FormField.WTF_Language_Chinese.prompt>
+        <$client.env.FormField.WTF_Language_Hmong.prompt>
+        <$client.env.FormField.WTF_Language_Karen.prompt>
+        <$client.env.FormField.WTF_Language_Korean.prompt>
+        <$client.env.FormField.WTF_Language_Laotian.prompt>
+        <$client.env.FormField.WTF_Language_Oromo.prompt>
+        <$client.env.FormField.WTF_Language_Russian.prompt>
+        <$client.env.FormField.WTF_Language_Somali.prompt>
+        <$client.env.FormField.WTF_Language_Spanish.prompt>
+        <$client.env.FormField.WTF_Language_Tagalog.prompt>
+        <$client.env.FormField.WTF_Language_Vietnamese.prompt>
+        <$client.env.FormField.WTF_Leave_benefits_Sick_Leave.prompt>
+        <$client.env.FormField.WTF_Leave_benefits_Paid_vacation.prompt>
+        <$client.env.FormField.WTF_Leave_benefits_Other_paid_time_off.prompt>
+        <$client.env.FormField.WTF_Legal_basis_for_exemption.prompt>
+        <$client.env.FormField.WTF_Legal_name_of_employer.prompt>
+        <$client.env.FormField.WTF_Operating_name_of_employer.prompt>
+        <$client.env.FormField.WTF_Other_information_relevant_to_this_position.prompt>
+        <$client.env.FormField.WTF_Overtime.prompt>
+        <$client.env.FormField.WTF_Overtime_per_day.prompt>
+        <$client.env.FormField.WTF_Overtime_per_meal.prompt>
+        <$client.env.FormField.WTF_Paid_by_Commission.prompt>
+        <$client.env.FormField.WTF_Paid_by_Day.prompt>
+        <$client.env.FormField.WTF_Paid_by_Hour.prompt>
+        <$client.env.FormField.WTF_Paid_by_Other_method.prompt>
+        <$client.env.FormField.WTF_Paid_by_Piece.prompt>
+        <$client.env.FormField.WTF_Paid_by_Salary.prompt>
+        <$client.env.FormField.WTF_Paid_by_Shift.prompt>
+        <$client.env.FormField.WTF_Paid_by_Week.prompt>
+        <$client.env.FormField.WTF_Phone_Number.prompt>
+        <$client.env.FormField.WTF_Rate.prompt>
+        <$client.env.FormField.WTF_Regularly_scheduled_payday.prompt>
+        <$client.env.FormField.WTF_SignatureVerification.prompt>
+        <$client.env.FormField.WTF_SignatureVerification2.prompt>
+        <$client.env.FormField.WTF_Terms_of_use.prompt>
+        <$client.env.FormField.WTF_WTF_Employee.prompt>
+        <$client.env.FormField.WTF_benefits_accrued.prompt>
+        <$client.env.FormField.WTF_business_address.prompt>
+        <$client.env.FormField.WTF_copy_of_this_notice.prompt>
+        <$client.env.FormField.WTF_days_benefits_accrued.prompt>
+        <$client.env.FormField.WTF_days_in_pay_period.prompt>
+        <$client.env.FormField.WTF_fair_market_value.prompt>
+        <$client.env.FormField.WTF_first_payment_of_wages_earned_date.prompt>
+        <$client.env.FormField.WTF_hours_benefits_accrued.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"><main class="container-fluid">
+<main class="container-fluid">
+    <header class="row">
+        <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+            <img src="<$link;/main/RedCarpet/FormTemplates/Minnesota_Wage_Theft_eForm/img/wtf_logo.jpg>" alt="Minnesota Wage Theft Form" class="img-responsive">
+        </div>
+    </header>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="text-center">
+                <strong>Employee notice</strong>
+            </h4>
+        </div>
+    </div>
+    <div class="box mb-40">
+        <div class="row b-bottom">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                1. Employee:
+                <$client.env.FormField.WTF_Employee.HTML>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                Address:  
+                <$client.env.FormField.WTF_Address.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                Phone number:
+                <$client.env.FormField.WTF_Phone_Number.HTML>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                Email address:
+                <$client.env.FormField.WTF_Email_Address.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                Date employment began:
+                <$client.env.FormField.WTF_Date_Employment_Began.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                2. Legal name of employer:
+                <$client.env.FormField.WTF_Legal_name_of_employer.HTML>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                Main office/principal place of business address:
+                <$client.env.FormField.WTF_business_address.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                Phone number:
+                <$client.env.FormField.WTF_Employer_Phone_number.HTML>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                Email address:
+                <$client.env.FormField.WTF_Employer_Email_Address.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                Operating name of employer (if different):
+                <$client.env.FormField.WTF_Operating_name_of_employer.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                Mailing address (if different):
+                <$client.env.FormField.WTF_Employer_Mailing_address.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                3. Employment status (exempt or non-exempt):
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <$client.env.FormField.WTF_Employee_Status_exempt.HTML>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_Employee_Exempt_From_minimum_wage.HTML>
+                </div>
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_Employee_Exempt_From_overtime.HTML>
+                </div>
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_Employee_Exempt_From_other.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                Legal basis for exemption:
+                <$client.env.FormField.WTF_Legal_basis_for_exemption.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <$client.env.FormField.WTF_Employee_Status_non_exempt.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+                <div class="i-block">
+                    4.  Rate:  
+                </div>
+                <div>
+                    <div class="i-block">
+                        $
+                    </div>
+                    <div class="i-block">
+                        <$client.env.FormField.WTF_Rate.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+                Additional rates (if applicable):
+                <$client.env.FormField.WTF_Additional_rates.HTML>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+                How applied:
+                <$client.env.FormField.WTF_How_applied.HTML>
+            </div>
+        </div>
+        <div class="r-table">
+            <div class="r-row b-bottom">
+                <div class="r-cell b-right">
+                    Paid by:
+                </div>
+                <div class="r-cell b-right">
+                    <$client.env.FormField.WTF_Paid_by_Hour.HTML>
+                </div>
+                <div class="r-cell b-right">
+                    <$client.env.FormField.WTF_Paid_by_Shift.HTML>
+                </div>
+                <div class="r-cell b-right">
+                    <$client.env.FormField.WTF_Paid_by_Day.HTML>
+                </div>
+                <div class="r-cell">
+                    <$client.env.FormField.WTF_Paid_by_Week.HTML>
+                </div>
+            </div>
+            <div class="r-row b-bottom">
+                <div class="r-cell b-right">
+                    &nbsp;
+                </div>
+                <div class="r-cell b-right">
+                    <$client.env.FormField.WTF_Paid_by_Salary.HTML>
+                </div>
+                <div class="r-cell b-right">
+                        <$client.env.FormField.WTF_Paid_by_Piece.HTML>
+                </div>
+                <div class="r-cell b-right">
+                        <$client.env.FormField.WTF_Paid_by_Commission.HTML>
+                </div>
+                <div class="r-cell">
+                    <div class="i-block v-middle">
+                        <$client.env.FormField.WTF_Paid_by_Other_method.HTML>
+                    </div>
+                    <div class="i-block v-middle">
+                        <$client.env.FormField.WTF_Other_Method.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="i-block v-middle">
+                    Overtime is owed after:
+                </div>
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_Overtime.HTML>
+                </div>
+                <div class="i-block v-middle">
+                    hours
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="i-block v-middle">
+                    Allowances claimed:
+                </div>
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_Allowances_claimed.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+                <div class="i-block">
+                    $
+                </div>
+                <div class="i-block">
+                    <$client.env.FormField.WTF_Overtime_per_meal.HTML>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                per meal for meal allowance (max = 60% of one hour of adult minimum wage per meal)
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+                <div class="i-block">
+                    $
+                </div>
+                <div class="i-block">
+                    <$client.env.FormField.WTF_Overtime_per_day.HTML>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                per day for lodging allowance (max = 75% of one hour of adult minimum wage per day)
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+                <div class="i-block">
+                    <$client.env.FormField.WTF_fair_market_value.HTML>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                (or fair market value)
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                5.  Leave benefits available: 
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_Leave_benefits_Sick_Leave.HTML>
+                </div>
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_Leave_benefits_Paid_vacation.HTML>
+                </div>
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_Leave_benefits_Other_paid_time_off.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="i-block">
+                    How benefits are accrued: Number of hours 
+                </div>
+                <div class="i-block">
+                    <$client.env.FormField.WTF_hours_benefits_accrued.HTML>
+                </div>
+                <div class="i-block">
+                    or days
+                </div>
+                <div class="i-block">
+                    <$client.env.FormField.WTF_days_benefits_accrued.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_benefits_accrued_Per_year.HTML>
+                </div>
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_benefits_accrued_Per_month.HTML>
+                </div>
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_benefits_accrued_Per_pay_period.HTML>
+                </div>
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_benefits_accrued_Per_hours_worked.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                Terms of use:
+                <$client.env.FormField.WTF_Terms_of_use.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                6.  Deductions that may be made from employee’s pay and amounts: <br>
+                <div class="ml-2">
+                    <strong>Only as Authorized by Employee or Required by Law. Amounts may be found on earnings statement.</strong>
+                </div>
+                <div class="text-left">
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Federal_Taxes.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_State_Taxes.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_FICA_Taxes.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Health_Care_Plan.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Dental_Plan.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Vision_Plan.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_FSA.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Uniforms.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_401k.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Short_term_disability.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_401k_loans.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Life_Insurance.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Charitable_giving.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Car_Benefits.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Voluntary_insurances.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Accounts_receivable.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Loan_pay.HTML>
+                    </div>
+                    <div class="col-20 v-top">
+                        <$client.env.FormField.WTF_Deductions_Garnishments.HTML>
+                    </div>
+                    <div class="clearfix">
+                        <div class="col-20 v-top">
+                            <$client.env.FormField.WTF_Deductions_Other.HTML>
+                        </div>
+                        <div class="col-80 v-top">
+                            <$client.env.FormField.WTF_Deductions_Other_text.HTML>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                7. Number of days in the pay period:
+                <$client.env.FormField.WTF_days_in_pay_period.HTML>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                Regularly scheduled payday:
+                <$client.env.FormField.WTF_Regularly_scheduled_payday.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                Date employee will receive first payment of wages earned:
+                <$client.env.FormField.WTF_first_payment_of_wages_earned_date.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                8.  Other information relevant to this position:
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <$client.env.FormField.WTF_Other_information_relevant_to_this_position.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <strong>
+                    I, the employee, have received a copy of this notice.
+                </strong>
+                <br>
+                <div class="i-block v-middle">
+                    <$client.env.FormField.WTF_copy_of_this_notice.HTML>
+                </div>
+                <div class="i-block v-middle">
+                    By checking this box I acknowledge that I have received a copy of the Minnesota Wage Theft Prevention Act Notice.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+                Employer signature
+                <$client.env.FormField.WTF_Employer_signature.HTML>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                Date
+                <$client.env.FormField.WTF_Employer_Date.HTML>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+                Employee signature
+                <$client.env.FormField.WTF_Employee_signature.HTML>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                Date
+                <$client.env.FormField.WTF_Employee_Date.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <p>This document contains important information about your employment. Check the box at left to receive this information in this language.</p>
+        </div>
+    </div>
+
+    <div id="languages-table" class="box mb-20">
+        <div class="row r-table">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                <div class="r-row b-bottom">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Spanish.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Spanish / Español
+                    </div>
+                    <div class="r-cell">
+                        Este documento contiene información importante sobre su acuerdo de empleo. Marque la casilla a la izquierda para recibir esta información en este idioma.
+                    </div>
+                </div>
+                <div class="r-row b-bottom">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Hmong.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Hmong / Hmoob
+                    </div>
+                    <div class="r-cell">
+                        Daim ntawv no muaj coy xov tseem ceeb txog koj txoj cog lus ua hauj lwm. Khij lub npauv ntawm sab laug kom tau txais cov xov tseem ceeb no yam siv hom lus no.
+                    </div>
+                </div>
+                <div class="r-row b-bottom">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Vietnamese.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Vietnamese / Việt ngử
+                    </div>
+                    <div class="r-cell">
+                        Tài liệu này chứa thông tin quan trọng về thỏa thuận việc làm của quý vị. Đánh dấu vào ô bên trái để nhận thông tin này bằng Việt ngữ.
+                    </div>
+                </div>
+                <div class="r-row b-bottom">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Chinese.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Simp. Chinese／简体中文
+                    </div>
+                    <div class="r-cell">
+                        本文件包含与您的雇用协议相关的重要信息。勾选左边的方框将按收以这种语占提 仁七的信息。
+                    </div>
+                </div>
+                <div class="r-row b-bottom">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Russian.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Russian/русский
+                    </div>
+                    <div class="r-cell">
+                        Данный документ содержит важную информацию о вашем трудовом договоре. Отметьте галочкой квадрат слева для получения этой информации на данном языке. 
+                    </div>
+                </div>
+                <div class="r-row b-bottom">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Somali.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Somali / Soomaali
+                    </div>
+                    <div class="r-cell">
+                        Dukumentigan waxaa ku goran macluumaad muhiim ah oo ku saabsan heshiiska shaqadaada. Calaamadi sanduuqan haddii aad rabto inaad macluumaadkan ku hesho luqaddan.
+                    </div>
+                </div>
+                <div class="r-row b-bottom">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Laotian.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Laotian / ພາສາລາວ
+                    </div>
+                    <div class="r-cell">
+                        ເອກະສານນີມີຂໍມູນທີ່ສໍາຄັນກຽວກັບສັນຍາການຈ້າງງານຂອງທານ. ກວດເບິງກອງທີຢູ່ເືອງຊໍາຍເພື່ອຮັບຂໍມູນນີໃນພາສານີ.
+                    </div>
+                </div>
+                <div class="r-row b-bottom">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Korean.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Korean / 한국어
+                    </div>
+                    <div class="r-cell">
+                        이 문서에는 귀하의 고용 계약 조건에 대한 중요한 정보가 담겨있습니다. 이 언어로 이 정보롤 받기를 원하시면 왼쪽 상자에 체크하여 주세요.
+                    </div>
+                </div>
+                <div class="r-row b-bottom">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Tagalog.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Tagalog / Tagalog 
+                    </div>
+                    <div class="r-cell">
+                        Ang dokumentong ito ay nagtataglay ng mahalagang impormasyon tungkol sa kasaunduan sa iyong pagtatrabaho. Lagyan ng tsek ang kahon sa kaliwa upang matanggap ang impormasyong ito sa wikang ito.
+                    </div>
+                </div>
+                <div class="r-row b-bottom">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Oromo.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Oromo / Oromoo
+                    </div>
+                    <div class="r-cell">
+                        Waraqaan kun waayee wailiigaltee hojii keetii odeeffannoo barbaachisoo ta’an qabatee jira. Saaxinnii karaa bitaatti argamu kana irratti mallattoo godhi yoo afaan Kanaan barreeffama argachuu barbaadde.
+                    </div>
+                </div>
+                <div class="r-row b-bottom">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Amharic.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Amharic / አማርኛ
+                    </div>
+                    <div class="r-cell">
+                        ይህ ዶኩመንት አቀጣጠሮን በሚመለከት ስለተደረሰው ስምምነት አስፈላጊ መረጃ የያዘ ነው፡፡ ይህንን ዶኩመንት በስተግራ በኩል ባለው ቋንቋ ተተርጉሞ እንዲሰጦት ከፈለጉ በዛው በስተግራ በኩል ባለው ሳጥን ውስጥ ምልከት ያድርጉ፡፡
+                    </div>
+                </div>
+                <div class="r-row">
+                    <div class="b-right r-cell">
+                        <$client.env.FormField.WTF_Language_Karen.HTML>
+                    </div>
+                    <div class="b-right r-cell">
+                        Karen / ကညီကျိာ်
+                    </div>
+                    <div class="r-cell">
+                        လ်ာ်တီလ်္လာ်မီတခါ အံၤဟ်ဿဃုာ်တၢ်၇်တၢ်ကျိၤလၢအရူဒိ ်ဘဉ်ဃးနတၢ်ဖံးတၢ်မၤႈအတၢ်အၢ်လီၤအီ လီၤန်လီၤ. တိၤနီ်တၢ်ဒၢဖိလၢအအိဉ်လၢအစ္စဉ်လၢတၢာ်ကဒိးနူတၢ်ဂ့်တၢ်ကိုၤလၢက်္ကျာ်တခါ အံၤအင်္ဂါန်တကၠ်.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 mb-20">
+            <h4 class="text-center translation-header">
+                <strong>Translation providers approved by the Minnesota Department of Administration</strong>
+            </h4>
+        </div>
+    </div>
+    <div class="row translators-addresses">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <strong>
+                Betmar Languages, Inc. 
+            </strong>
+            <p>
+                6260 Hwy. 65 N.E., #308 <br>
+                Minneapolis, MN 55432 <br>
+                763-572-9711 <br>
+                <a href="mailto:best@betmar.com">best@betmar.com</a>
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <strong>
+                The Bridge World Language Center, Inc. 
+            </strong>
+            <p>
+                110 Second Street S., #213 <br>
+                Waite Park, MN 56387 <br>
+                320-259-9239 <br>
+                <a href="mailto:mini@bridgelanguage.com">mini@bridgelanguage.com</a>
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <strong>
+                Fox Translation Services
+            </strong>
+            <p>
+                1152 Mae Street, #122 <br>
+                Hummelstown, PA 17033 <br>
+                866-369-1646 or 407-733-3720 <br>
+                <a href="mailto:dina@foxfoxcasemanagement.com">dina@foxfoxcasemanagement.com</a>
+            </p>
+        </div>
+    </div>
+    <div class="row translators-addresses">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <strong>
+                Global Translation and Interpreter
+            </strong>
+            <p>
+                913 E. Franklin Ave., #206 <br>
+                Minneapolis, MN 55404 <br>
+                612-722-1244 <br>
+                <a href="mailto:sandor@globaltranslations.com">sandor@globaltranslations.com</a>
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <strong>
+                Latin American Translators Network, Inc.
+            </strong>
+            <p>
+                1720 Peachtree Street N.W., #532 <br>
+                Atlanta, GA 30309 <br>
+                800-943-5286, ext. 8641, <a href="mailto:translations@latn.com">translations@latn.com</a><br>
+                800-943-5286, ext. 8620, <a href="mailto:idenis@latn.com">idenis@latn.com</a>
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <strong>
+                Latitude Prime, LLC
+            </strong>
+            <p>
+                80 S. Eighth Street, #900 <br>
+                Minneapolis, MN 55402 <br>
+                888-341-9080, ext. 501 <br>
+                <a href="mailto:elle@latitude.com">elle@latitude.com</a>
+            </p>
+        </div>
+    </div>
+    <div class="row translators-addresses">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <strong>
+                Lingualinx Language Solutions, Inc.
+            </strong>
+            <p>
+                433 River Street, #6001 <br>
+                Troy, NY 12180 <br>
+                518-388-9000 <br>
+                <a href="mailto:abartlett@lingualinx.com">abartlett@lingualinx.com</a>
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <strong>
+                Prisma International, Inc.
+            </strong>
+            <p>
+                1128 Harmon Place, #310 <br>
+                Minneapolis, MN 55403 <br>
+                612-349-3111 <br>
+                <a href="mailto:jromano@prisma.com">jromano@prisma.com</a>
+            </p>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <strong>
+                Swits, LTD
+            </strong>
+            <p>
+                110 S. Third Street <br>
+                Delavan, WI 53115 <br>
+                262-740-2590 <br>
+                <a href="mailto:translations@swits.us">translations@swits.us</a>
+            </p>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.WTF_SignatureVerification.HTML>
+    <$client.env.FormField.WTF_SignatureVerification2.HTML>
+    <$client.env.formfield.Login_ID.html>
+    <$client.env.formfield.Auth_Param.html>
+    <$client.env.formfield.EmployeeID.html>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/responsive/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input input-sm');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input input-sm');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+$( window ).resize(function() { 
+document.getElementById('over').style.width=''; 
+}); 
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+    "use strict";
+    $(".modal").hide();
+    $('[data-checkbox-group]:checkbox').on('change', function() {
+        let groupId = $(this).data('checkbox-group');
+        let checked = $(this).is(':checked');
+        $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+        $(this).prop('checked', checked);
+    });
+    disableCalButton($('.disable-date'));
+    let focusSigFields = setInterval(function(){
+      "use strict";
+      if(document.getElementById('modal').style.display=='block') {
+        document.getElementById('languages-table').focus();
+        document.getElementById('eSignature1').focus();
+        clearInterval(focusSigFields);
+      }
+      if(document.getElementById('modal2').style.display=='block') {
+        document.getElementById('languages-table').focus();
+        document.getElementById('eSignature2').focus();
+        clearInterval(focusSigFields);
+      }
+    }, 500);
+});
+<$include;/main/RedCarpet/FormTemplates/Minnesota_Wage_Theft_eForm/WTF_Includes>
+</script>

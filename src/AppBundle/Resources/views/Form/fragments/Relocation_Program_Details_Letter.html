@@ -1,0 +1,160 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.mobility_next_steps.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main id="container" class="container-fluid">
+
+    <header class="row mb-20">
+      <div class="col-lg-3 col-md-3 col-sm-4 col-sm-12">
+        <img src="<$link;/map_images/main/RedCarpet/FormTemplates/Relocation_Program_Details_Letter/img/santander_logo.jpg>" class="img-responsive" alt="Santander Logo">
+      </div>
+    </header>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- incomplete offer letter renders here -->
+        <div id="incomplete">
+            <!-- dynamic offer letter contents -->
+            <div id="markup"></div>
+        </div>
+        <!-- completed offer letter renders here -->
+        <div id="complete"></div>
+      </div>
+    </div>
+    <div id="fields" class="row">
+      <div class="col-lg-12">
+        <$client.env.FormField.mobility_next_steps.HTML>
+      </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.todate.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script>
+<script type="text/javascript">
+    const offerLetter = {
+        // employee EUP
+        "First_Name": "<$client.tForWhomUserInfo.First_Name>",
+        "Last_Name": "<$client.tForWhomUserInfo.Last_Name>",
+        "Recruiter": "<$client.tForWhomUserInfo.Recruiter>",
+        "Relo_Policy": "<$client.tForWhomUserInfo.Relo_Policy_Description>",
+        "Band_Role": "<$client.tForWhomUserInfo.Band_Role>",
+        "Family_Size": "<$client.tForWhomUserInfo.Family_Size>",
+        "Est_Cost_Bank": "<$client.tForWhomUserInfo.Est_Cost_Bank_Description>",
+        "Lump_Sum": "<$client.tForWhomUserInfo.Lump_Sum>",
+        "Lump_Sum_Override": "<$client.tForWhomUserInfo.Lump_Sum_Override>",
+        "Cost_Bank_Override": "<$client.tForWhomUserInfo.Cost_Bank_Override>",
+        "PDF_Program": "#",
+        "attached_flyer": "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/welcome_to_springboard.pdf>",
+
+        // event fields data 
+        "Recruiter_First_Name": "<$client.tEventManagers_Person_10.First_Name>",
+        "Mobility_Coordinator": "<$client.tEventManagers_Person_9.FormattedName>",
+        "Mobility_Locations": "<$client.tEventCategories_Category_21.Value>"
+    }
+    // update pdf link as per Relocation Policy
+    switch(offerLetter.Relo_Policy) {
+      case "Santander Lump Sum - Voluntary Move":
+      offerLetter.PDF_Program = "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Lump_Sum_Voluntary_Moves_2020.pdf>";
+      break;
+      case "Santander Lump Sum - Business Initiated Move":
+      offerLetter.PDF_Program = "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Lump_Sum_for_Business_Initiated_Moves_2020.pdf>";
+      break;
+      case "Santander Lump Sum - Business Initiated Executive Move":
+      offerLetter.PDF_Program = "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Lump_Sum_for_Business_Initiated_Executive_Moves_2020.pdf>";
+      break;
+      case "Santander Senior Executive Program":
+      offerLetter.PDF_Program = "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Senior_Executive_Program_-Final_April_2020.pdf>";
+      break;
+    }
+
+    const disableCalButton = function(el) {
+        "use strict";
+        el.parent().find('input').prop('disabled', 'disabled');
+    }
+
+    showScreen('over');
+    ChangeCalendarIcons(); //for popup calendar
+    /* RESPONSIVE eFORM BUTTONS STYLE */
+    $(window).on('load', function() {
+        $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+        $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+        $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+        $('#formButtons').show();
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    });
+
+    $(document).on('ready', function() {
+        $('#container input[type="radio"][value=""]').closest('tr').remove();
+        $(".modal").hide();
+    });
+</script>
+<script type="text/javascript" src="<$link;/map_images/main/RedCarpet/FormTemplates/Relocation_Program_Details_Letter/js/script_version_3.js>" defer></script>

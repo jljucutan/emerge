@@ -1,0 +1,548 @@
+{
+  "fields": [
+    {
+      "name": "National_ID_IssuedBy",
+      "validation": "required",
+      "title": "National ID Issued By",
+      "readonly": true,
+      "validateByCountry": {
+        "GTM": {
+          "readonly": true
+        },
+        "USA": {
+          "readonly": false
+        },
+        "CAN": {
+          "readonly": false
+        }
+      }
+    },
+    {
+      "name": "National_ID_Type",
+      "validation": "required",
+      "title": "National ID Type",
+      "readonly": true,
+      "validateByCountry": {
+        "MEX": {
+          "readonly": false
+        }
+      },
+      "actionBasedValidation": {
+          "validateByValueOf": [
+            {
+              "field": "National_ID_IssuedBy",
+              "values": {
+                "NLD": {
+                  "readonly": false
+                },
+                "ESP": {
+                  "readonly": false,
+                  "defaultValue": "ESP-NIF"
+                },
+                "DEU": {
+                  "readonly": true,
+                  "defaultValue": "DEU-SVNR"
+                },
+                "BEL": {
+                  "readonly": true,
+                  "defaultValue": "BEL-NN"
+                },
+                "POL": {
+                  "readonly": true,
+                  "defaultValue": "POL-PESEL"
+                },
+                "LUX": {
+                  "defaultValue": "LUX-CCSS",
+                  "readonly": true
+                },
+                "MEX": {
+                  "defaultValue": "MEX-RFC",
+                  "readonly": true
+                },
+                "GTM": {
+                  "fixedValue": "GTM-NSS",
+                  "readonly": true
+                },
+                "USA": {
+                  "defaultValue": "USA-SSN",
+                  "readonly": false
+                },
+                "CAN": {
+                  "defaultValue": "CAN-SIN",
+                  "readonly": false
+                },
+                "ARG": {
+                  "defaultValue": "ARG-DNI",
+                  "readonly": true
+                }
+              }
+            }
+          ]
+      }
+    },
+    {
+      "name": "SSNO",
+      "validation": "required",
+      "readonly": false,
+      "title": "National ID/SSN",
+      "validateByCountry": {
+        "ESP": {
+          "validation": "required,regex-optional",
+          "regex": "^[A-Za-z0-9]{8,9}$",
+          "message": "8-9 alphanumeric characters"
+        },
+        "NLD": {
+          "validation": "required,regex-optional",
+          "regex": "^[0-9]{9}$",
+          "message": "9 digits"
+        },
+        "USA": {
+          "validation": "required,regex-optional",
+          "regex": "^[0-9]{9}$",
+          "message": "9 digits"
+        },
+        "CAN": {
+          "validation": "required,regex-optional",
+          "regex": "^[0-9]{9}$",
+          "message": "9 digits"
+        },
+        "ARG": {
+          "validation": "required,regex-optional",
+          "regex": "^[0-9]{2}\\.[0-9]{3}\\.[0-9]{3}$",
+          "message": "8 digits (XX.XXX.XXX) Numbers only"
+        }
+      },
+      "actionBasedValidation": {
+        "validateByValueOf": [
+          {
+            "field": "National_ID_Type",
+            "values": {
+              "ESP-NIF": {
+                "validation": "regex-optional,required",
+                "regex": "^[A-Za-z0-9]{8,9}$",
+                "message": "8-9 alphanumeric characters"
+              },
+              "ESP-NSS": {
+                "validation": "regex-optional,required",
+                "regex": "^[0-9]{12}$",
+                "message": "12 digits"
+              },
+              "NLD-BSN": {
+                "validation": "regex-optional,required",
+                "regex": "^[0-9]{8}$",
+                "message": "8 digits"
+              },
+              "BEL-NN": {
+                "validation": "regex-optional,required",
+                "regex": "^[0-9]{11}$",
+                "message": "11 digits"
+              },
+              "LUX-CCSS": {
+                "validation": "regex-optional,required",
+                "regex": "^[0-9]{13}$",
+                "message": "13 digits"
+              },
+              "POL-PESEL": {
+                "validation": "regex-optional,required",
+                "regex": "^[0-9]{11}$",
+                "message": "11 digits"
+              },
+              "MEX-RFC": {
+                "validation": "regex-optional,required",
+                "regex": "^[A-Z]{4}[0-9]{6}[A-Z0-9]{3}$",
+                "message": "13 character (four upper-case letter, followed by 6 digits and ending in 3 alphanumeric characters)"
+              },
+              "USA-SSN": {
+                "validation": "required,regex-optional",
+                "regex": "^[0-9]{9}$",
+                "message": "9 digits"
+              },
+              "CAN-SIN": {
+                "validation": "required,regex-optional",
+                "regex": "^[0-9]{9}$",
+                "message": "9 digits"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "National_ID_IssuedBy2",
+      "validation": "required",
+      "title": "Second National ID Issued By",
+      "readonly": true
+    },
+    {
+      "name": "National_ID_Type2",
+      "validation": "required",
+      "title": "Second National ID Type",
+      "readonly": false,
+      "validateByCountry": {
+        "GTM": {
+          "fixedValue": "GTM-NIT"
+        },
+        "MEX": {
+          "fixedValue": "MEX-CURP"
+        },
+        "BRA": {
+          "fixedValue": "BRA-RG"
+        },
+        "ARG": {
+          "fixedValue": "ARG-CUIL"
+        }
+      },
+      "validateByValueOf": [
+        {
+          "field": "National_ID_IssuedBy2",
+          "values": {
+            "GTM": {
+              "fixedValue": "GTM-NIT"
+            },
+            "MEX": {
+              "fixedValue": "MEX-CURP"
+            },
+            "BRA": {
+              "fixedValue": "BRA-RG"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "National_ID2",
+      "validation": "required",
+      "title": "Second National ID/SSN",
+      "readonly": false,
+      "actionBasedValidation": {
+        "validateByValueOf": [
+          {
+            "field": "National_ID_Type2",
+            "values": {
+              "MEX-CURP": {
+                "validation": "regex-optional,required",
+                "regex": "^[A-Z]{4}[0-9]{6}[A-Z]{6}[A-Z0-9]{1}[0-9]{1}$",
+                "message": "18 characters (four letters followed by six digits, six letters, one letter or digit, and one digit (all letters upper-case)"
+              },
+              "BRA-RG": {
+                "validation": "regex-optional,required",
+                "regex": "^[A-Za-z0-9]{8}-[A-Za-z0-9]{1}$",
+                "message": "9 characters (numbers and letters) with dash after first 8"
+              },
+              "ARG-CUIL": {
+                "validation": "regex-optional,required",
+                "regex": "^[0-9]{2}\\.[0-9]{8}\\.[0-9]{1}$",
+                "message": "11 characters (numbers only) (XX.XXXXXXXX.X)"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "NationalIDIssuedBy3",
+      "validation": "required",
+      "title": "Third National ID Issued By",
+      "readonly": true
+    },
+    {
+      "name": "NationalID3Type",
+      "validation": "required",
+      "title": "Third National ID Type",
+      "readonly": true,
+      "validateByCountry": {
+        "GTM": {
+          "fixedValue": "GTM-DPI"
+        },
+        "MEX": {
+          "fixedValue": "MEX-NSS"
+        }
+      },
+      "validateByValueOf": [
+        {
+          "field": "NationalIDIssuedBy3",
+          "values": {
+            "GTM": {
+              "fixedValue": "GTM-DPI"
+            },
+            "MEX": {
+              "fixedValue": "MEX-NSS"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "NationalID3",
+      "validation": "required,regex-optional",
+      "title": "Third National ID",
+      "readonly": false,
+      "actionBasedValidation": {
+        "validateByValueOf": [
+          {
+            "field": "NationalID3Type",
+            "values": {
+              "GTM-DPI": {
+                "validation": "regex-optional,required",
+                "regex": "^[0-9]{13}$",
+                "message": "13 digits"
+              },
+              "MEX-NSS": {
+                "validation": "regex-optional,required",
+                "regex": "^[0-9]{11}$",
+                "message": "11 digits"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "MaritalStatus",
+      "validation": "required",
+      "title": "Marital Status"
+    },
+    {
+      "name": "Nationality",
+      "validation": "required",
+      "title": "Nationality (Country of Birth)"
+    },
+    {
+      "name": "Guatemala_Ethnicity",
+      "validation": "required",
+      "title": "Ethnicity"
+    },
+    {
+      "name": "Gender",
+      "validation": "required",
+      "title": "Gender"
+    },
+    {
+      "name": "CountryOfBirth",
+      "title": "Country of Birth",
+      "validation": "required"
+    },
+    {
+      "name": "CityOfBirth",
+      "validation": "required,regex-optional",
+      "title": "City of Birth",
+      "regex": "^[A-Za-z\\s]+$",
+      "message": "letters only"
+    },
+    {
+      "name": "EC_First_Name",
+      "validation": "required",
+      "title": "First Name",
+      "readonly": false
+    },
+    {
+      "name": "EC_Last_Name",
+      "validation": "required",
+      "title": "Last Name"
+    },
+    {
+      "name": "EC_Relationship",
+      "validation": "required",
+      "title": "Relationship"
+    },
+    {
+      "name": "EC_Address_Line1",
+      "validation": "required,regex-optional",
+      "title": "Address Line 1",
+      "regex": "^.{1,60}$",
+      "message": "up to 60 characters. Please use Address Line 2 to complete your address."
+    },
+    {
+      "name": "EC_Address_Line2",
+      "title": "Address Line 2"
+    },
+    {
+      "name": "EC_Country",
+      "validation": "required",
+      "title": "Country"
+    },
+    {
+      "name": "EC_City",
+      "validation": "required",
+      "title": "City"
+    },
+    {
+      "name": "EC_State",
+      "validation": "required",
+      "title": "State/County",
+      "actionBasedValidation": {
+          "validateByValueOf": [
+            {
+              "field": "EC_Country",
+              "values": {
+                "BEL": {
+                  "validation": " "
+                },
+                "POL": {
+                  "validation": " "
+                },
+                "LUX": {
+                  "validation": " "
+                },
+                "MEX": {
+                  "validation": " "
+                }
+              }
+            }
+          ]
+      }
+    },
+    {
+      "name": "EC_Zip",
+      "validation": "required",
+      "title": "Postal Code"
+    },
+    {
+      "name": "EC_Primary_Country_Code",
+      "validation": "required",
+      "title": "Primary Country Phone Code"
+    },
+    {
+      "name": "EC_Primary_Phone_Number_Type",
+      "validation": "required",
+      "title": "Phone type"
+    },
+    {
+      "name": "EC_Primary_Phone_Number",
+      "validation": "required,regex-optional",
+      "title": "Primary Phone Number",
+      "regex": "^[0-9]{7,13}$",
+      "message": "7-13 digits",
+      "actionBasedValidation": {
+          "validateByValueOf": [
+            {
+              "field": "EC_Primary_Country_Code",
+              "values": {
+                "BEL|32": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{6,11}$",
+                  "message": "6-11 digits"
+                },
+                "POL|48": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{9,11}$",
+                  "message": "9-11 digits"
+                },
+                "LUX|352": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{5,10}$",
+                  "message": "5-10 digits"
+                },
+                "GTM|502": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{8}$",
+                  "message": "8 digits"
+                },
+                "PHL|63": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{10}$",
+                  "message": "10 digits"
+                },
+                "MEX|52": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{10}$",
+                  "message": "10 digits"
+                },
+                "BRA|55": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{10,11}$",
+                  "message": "10 or 11 digits"
+                }
+              },
+              "fallback": {
+                  "validation": "required,regex-optional",
+                  "title": "Secondary Phone Number",
+                  "regex": "^[0-9]{7,13}$",
+                  "message": "7-13 digits"
+              }
+            }
+          ]
+      }
+    },
+    {
+      "name": "EC_Mobile_Country_Code",
+      "validation": "",
+      "title": "Secondary Country Phone Code",
+      "actionBasedValidation": {
+          "requiredBy": "EC_Mobile_Phone_Number"
+      }
+    },
+    {
+      "name": "EC_Secondary_phone_type",
+      "validation": "",
+      "title": "Secondary Phone Type",
+      "actionBasedValidation": {
+          "requiredBy": "EC_Mobile_Phone_Number"
+      }
+    },
+    {
+      "name": "EC_Mobile_Phone_Number",
+      "validation": "regex-optional",
+      "title": "Secondary Phone Number",
+      "regex": "^[0-9]{7,13}$",
+      "message": "7-13 digits",
+      "actionBasedValidation": {
+          "requiredByEitherOf": ["EC_Secondary_phone_type"],
+          "validateByValueOf": [
+            {
+              "field": "EC_Mobile_Country_Code",
+              "values": {
+                "BEL|32": {
+                  "validation": "regex-optional",
+                  "regex": "^[0-9]{6,11}$",
+                  "message": "6-11 digits"
+                },
+                "POL|48": {
+                  "validation": "regex-optional",
+                  "regex": "^[0-9]{9,11}$",
+                  "message": "9-11 digits"
+                },
+                "LUX|352": {
+                  "validation": "regex-optional",
+                  "regex": "^[0-9]{5,10}$",
+                  "message": "5-10 digits"
+                },
+                "GTM|502": {
+                  "validation": "regex-optional",
+                  "regex": "^[0-9]{8}$",
+                  "message": "8 digits"
+                },
+                "PHL|63": {
+                  "validation": "regex-optional",
+                  "regex": "^[0-9]{10}$",
+                  "message": "10 digits"
+                },
+                "MEX|52": {
+                  "validation": "regex-optional",
+                  "regex": "^[0-9]{10}$",
+                  "message": "10 digits"
+                },
+                "BRA|55": {
+                  "validation": "regex-optional",
+                  "regex": "^[0-9]{10,11}$",
+                  "message": "10 or 11 digits"
+                }
+              },
+              "fallback": {
+                  "validation": "regex-optional",
+                  "title": "Secondary Phone Number",
+                  "regex": "^[0-9]{7,13}$",
+                  "message": "7-13 digits"
+              }
+            }
+          ]
+      }
+    },
+    {
+      "name": "license_plate_number"
+    },
+    {
+      "name": "abono_transport_zone"
+    }
+  ]
+}

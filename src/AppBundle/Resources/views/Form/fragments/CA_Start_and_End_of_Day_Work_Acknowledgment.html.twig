@@ -1,0 +1,335 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value=''; toggleRequired('Employee_Signature'); toggleRequired('Date_display');">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}; toggleRequired('Employee_Signature'); toggleRequired('Date_display');">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Employee_Printed_Name.prompt>
+        <$client.env.FormField.Employee_Signature.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="text-center">
+                <strong>CA ACKNOWLEDGEMENT OF START OF DAY/WORK AND END OF DAY/WORK</strong><br>
+                <strong>CA ACKNOWLEDGEMENT OF OVERTIME HOURS</strong><br>
+                <strong>CA ACKNOWLEDGEMENT OF ENTITLEMENT TO REST AND MEAL PERIODS</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <strong>Start of Day/Work &amp; End of Day/Work</strong>
+        </div>
+    </div>
+
+    <div class="row box mb-10">
+        <div class="col-lg-12 padded">
+            <p>
+                Field clinician/therapist <strong>start time</strong> should begin at the first visit of the day and/or Company meeting. No work including but not limited to chart time, no making appointments, etc. is authorized prior to start of day/work.
+            </p>
+            <p>
+                <strong>End of day/work</strong> is acceptable for charting, syncing of current day’s work, and syncing schedule for next day of work, as well as phone calls to patients, office, and doctor’s office to confirm visits for the following day.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <strong>Overtime Hours</strong>
+        </div>
+    </div>
+
+    <div class="row box mb-10">
+        <div class="col-lg-12 padded">
+            <p>
+                Your manager must approve overtime work in advance of you working any overtime hours.While you will be paid for all hours worked, including overtime, whether or not the time was approved in advanced, your failure to obtain appropriate preapproval may result in disciplinary action, up to and including termination.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <strong>Schedule of Rest Breaks</strong>
+        </div>
+    </div>
+
+    <div class="box mb-10">
+        <div class="row b-bottom hidden-xs">
+            <div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+                <strong>No. of Hours Per Shift</strong>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <strong>No. of Rest Periods</strong>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+                <strong class="visible-xs">No. of Hours Per Shift</strong>
+                Less than 3 &half; hours
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <strong class="visible-xs">No. of Rest Periods</strong>
+                No rest period
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+                <strong class="visible-xs">No. of Hours Per Shift</strong>
+                3 &half; hours, up to 6 hours
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <strong class="visible-xs">No. of Rest Periods</strong>
+                One 10-min. rest period
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+                <strong class="visible-xs">No. of Hours Per Shift</strong>
+                More than 6 hours, up to 10 hours
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <strong class="visible-xs">No. of Rest Periods</strong>
+                Two total 10-min. rest periods
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+                <strong class="visible-xs">No. of Hours Per Shift</strong>
+                More than 10 hours, up to 14 hours
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <strong class="visible-xs">No. of Rest Periods</strong>
+                Three total 10-min. rest periods
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                All employees whose work time is more than 3.5 hours are entitled to one paid 10-minute rest period (break) with additional breaks as shown above. These breaks should be taken as close to the middle of any 4-hour work period as is operationally possible. <u><em>Approval to waive rest break must be preapproved by your manager.</em></u>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <strong>Schedule of Meal Breaks</strong>
+        </div>
+    </div>
+    <div class="box mb-10">
+        <div class="row b-bottom hidden-xs">
+            <div class="col-lg-4 col-sm-4 col-xs-12 b-right">
+                <strong>No. of Hours Per Shift</strong>
+            </div>
+            <div class="col-lg-8 col-sm-8 col-xs-12">
+                <strong>No. of Meal Periods</strong>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-4 col-sm-4 col-xs-12 b-right">
+                <strong class="visible-xs">No. of Hours Per Shift</strong>
+                5 hours or less
+            </div>
+            <div class="col-lg-8 col-sm-8 col-xs-12">
+                <strong class="visible-xs">No. of Rest Periods</strong>
+                No meal period
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-4 col-sm-4 col-xs-12 b-right">
+                <strong class="visible-xs">No. of Hours Per Shift</strong>
+                More than 5 hours, up to 6 hours
+            </div>
+            <div class="col-lg-8 col-sm-8 col-xs-12">
+                <strong class="visible-xs">No. of Rest Periods</strong>
+                1 unpaid 30 min. meal period
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-4 col-sm-4 col-xs-12 b-right">
+                <strong class="visible-xs">No. of Hours Per Shift</strong>
+                More than 10 hours, up to 12 hours
+            </div>
+            <div class="col-lg-8 col-sm-8 col-xs-12">
+                <strong class="visible-xs">No. of Rest Periods</strong>
+                2 unpaid 30 min. meal periods (may not be combined; 1 may be waived)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-4 col-xs-12 b-right">
+                <strong class="visible-xs">No. of Hours Per Shift</strong>
+                More than 12 hours
+            </div>
+            <div class="col-lg-8 col-sm-8 col-xs-12">
+                <strong class="visible-xs">No. of Rest Periods</strong>
+                2 unpaid 30 min. meal periods (may not be combined; may not be waived)
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-30">
+        <div class="col-lg-12">
+            <p>
+                I understand that when I work more than a five (5) hour period, I also have the legal right to an unpaid thirty (30) minute uninterrupted meal period that I may take on or off the premises. This meal period <u>must</u> begin prior to completing my first five (5) hours of work.When a work period of not more than six (6) hours will complete the day's work, I understand that this meal period may be waived if consented to by the Company and me by completing a Meal Break Waiver form. <u><em>Missing a Meal Break should only take place under rare circumstances and must be preapproved by your manager.</em></u>
+            </p>
+            <p>
+                <u>Clinicians Only:</u><br>
+                I also understand that when I work more than a ten (10) hour period, I have the right to a second unpaid thirty (30) minute uninterrupted meal period. This second meal period must begin prior to completing my first ten (10) hours of work. I understand that I may voluntarily waive one of the two meal periods for days on which they work ten (10) hours in a workday by completing a Meal Break Waiver form.
+            </p>
+            <p>
+                <u>Administrative Employees</u>: I also understand that when I work more than a ten (10) hour period, I have the right to a second unpaid thirty (30) minute uninterrupted meal period. This second meal period must begin prior to completing my first ten (10) hours of work. When a work period of not more than twelve (12) hours will complete the day's work, this meal period may be waived if consented to by the Company and me by completing a Meal Break Waiver form.
+            </p>
+            <p>
+                The law and Company policy provide that employees will suffer no retaliation for exercising these rights.
+            </p>
+            <p>
+                I acknowledge and understand that in the event I am unable to take my rest breaks and/or meal periods within the time periods outlined above, I must notify my supervisor immediately in writing on a payroll form.
+            </p>
+            <p>
+                <em>Working off the clock and unauthorized overtime is strictly prohibited. Working off the clock or unauthorized overtime will result in discipline up to and including termination.</em>
+            </p>
+            <p>
+                I acknowledge and understand that I am not authorized to start my day/work until my first visit of the day and/or Company meeting. This includes but is not limited to no chart time, no making appointments, etc. prior to start of day/work.
+            </p>
+            <p>
+                By signing this Acknowledgement, I am specifically representing that I have read and understand its contents and I understand that I am required and agree to comply with these policies.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 col-sm-8 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.Employee_Signature.HTML>
+                Employee Signature
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.Date.HTML>
+                Date
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 col-sm-8 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.Employee_Printed_Name.HTML>
+                Employee Printed Name
+            </div>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+const toggleRequired = function(target) {
+    const targetElem = document.querySelector('[name$="' + target + '"]');
+    if (targetElem.value.length > 0) {
+        targetElem.classList.remove('ng-invalid');
+        return; 
+    }
+    targetElem.classList.add('ng-invalid');
+    return;
+}
+
+$(document).on('ready', function() {
+    toggleRequired('Employee_Signature');
+    toggleRequired('Date_display');
+    // form is ready
+    $(".modal").hide();
+});
+
+angular.element('document', function() {
+    angular.element('#divLoader').remove();
+});
+</script>

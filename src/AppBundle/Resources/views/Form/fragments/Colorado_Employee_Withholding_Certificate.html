@@ -1,0 +1,722 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Additional_Withholding.prompt>
+        <$client.env.FormField.Additional_Withholding_Per_Job.prompt>
+        <$client.env.FormField.Additional_Withholding_Per_Period.prompt>
+        <$client.env.FormField.Annual_WAllowance.prompt>
+        <$client.env.FormField.Annual_Withholding_Allowance.prompt>
+        <$client.env.FormField.Child_Tax_Allowance.prompt>
+        <$client.env.FormField.City.prompt>
+        <$client.env.FormField.Expected_Year_Income.prompt>
+        <$client.env.FormField.First_Name.prompt>
+        <$client.env.FormField.IRS_Amount.prompt>
+        <$client.env.FormField.Last_Name.prompt>
+        <$client.env.FormField.Mailing_Address.prompt>
+        <$client.env.FormField.Middle_Initial.prompt>
+        <$client.env.FormField.Non_Business_Income.prompt>
+        <$client.env.FormField.Non_Wage_Income.prompt>
+        <$client.env.FormField.Number_of_Jobs.prompt>
+        <$client.env.FormField.SSN.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.Standard_Allowance.prompt>
+        <$client.env.FormField.State.prompt>
+        <$client.env.FormField.Total_Additional_Income.prompt>
+        <$client.env.FormField.Total_Additional_Withholding.prompt>
+        <$client.env.FormField.Total_Withholding_Allowance.prompt>
+        <$client.env.FormField.ZIP_Code.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <small>
+                DR 0004 (11/05/21) <br>
+                <strong>COLORADO DEPARTMENT OF REVENUE</strong> <br>
+                <em>Tax.Colorado.gov</em>
+            </small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p class="h5 text-center">
+                <strong>2022 Colorado Employee Withholding Certificate</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 pe-2">
+            <strong>This Certificate Is Optional for Employees</strong>
+            <p class="text-justify">If you do not complete this certificate, then your employer will calculate your Colorado withholding based on your IRS Form W-4. That calculation is designed to withhold the required Colorado income tax due on your wages throughout the year, and it will generally result in a refund when you file your Colorado income tax return.</p>
+            <strong>Reasons to Complete This Certificate</strong>
+            <p class="text-justify">Complete this certificate if you want to adjust your Colorado withholding for one or more of the following reasons:</p>
+            <ol>
+                <li>You earn most of your income from one job,</li>
+                <li>You expect to claim federal itemized deductions and/ or the Colorado child tax credit, or</li>
+                <li>You expect significant income from other sources.</li>
+            </ol>
+            <p class="text-justify">For most taxpayers, completing this certificate will likely increase your take-home pay, reduce your Colorado withholding, and reduce your refund when you file your Colorado income tax return. Consider the amounts you enter carefully. If too little is withheld, then you will owe tax when you file your Colorado return, and you may owe a penalty.</p>
+        </div>
+        <div class="col-sm-6">
+            <strong>When to Complete a New Certificate</strong>
+            <p>You may adjust your withholding at any time. Consider completing a new certificate for the following reasons:</p>
+            <ol>
+                <li>You last completed a certificate three or more years ago;</li>
+                <li>Your wages or other income changes significantly;</li>
+                <li>Your number of jobs changes;</li>
+                <li>Your expected filing status (single, married filing jointly, etc.) changes;</li>
+                <li>Your expected federal deductions change significantly;</li>
+                <li>You have a new qualifying child for the child tax credit; or</li>
+                <li>You or your child will no longer qualify for the Colorado child tax credit, including if your child will turn 6 years old this year.</li>
+            </ol>
+            <strong>If You Complete This Certificate</strong>
+            <ol>
+                <li>Give it to your employer; then they must calculate your Colorado withholding based on the amounts you entered.</li>
+                <li>If you (and your spouse, if filing jointly) have multiple jobs, complete a separate certificate for each one.</li>
+                <li>In order to prevent evasion of Colorado income tax, the Department of Revenue may review and adjust your withholding.</li>
+            </ol>
+        </div>
+    </div>
+    <div class="border border-dark mb-3">
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-12">
+                <strong>1. Personal Information</strong>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-5 border-end border-end-sm-0 border-dark">
+                <small>Last Name</small><br>
+                <$client.env.FormField.Last_Name.HTML>           
+            </div>
+            <div class="col-sm-5 border-end border-end-sm-0 border-dark">
+                <small>First Name</small><br>
+                <$client.env.FormField.First_Name.HTML>           
+            </div>
+            <div class="col-sm-2">
+                <small>Middle Initial</small><br>
+                <$client.env.FormField.Middle_Initial.HTML>           
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-9 border-end border-end-sm-0 border-dark">
+                <small>Mailing Address</small><br>
+                <$client.env.FormField.Mailing_Address.HTML>           
+            </div>
+            <div class="col-sm-3">
+                <small>SSN or ITIN</small><br>
+                <$client.env.FormField.SSN.HTML>           
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-9 border-end border-end-sm-0 border-dark">
+                <small>City</small><br>
+                <$client.env.FormField.City.HTML>           
+            </div>
+            <div class="col-sm-1 border-end border-end-sm-0 border-dark">
+                <small>State</small><br>
+                <$client.env.FormField.State.HTML>           
+            </div>
+            <div class="col-sm-2">
+                <small>ZIP Code</small><br>
+                <$client.env.FormField.ZIP_Code.HTML>           
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <strong>2. Annual Withholding Allowance</strong>
+                <ol type="a">
+                    <li>If you want to reduce your Colorado withholding based on the federal standard deduction and your number of jobs, enter the appropriate amount from Table 1 below. <em><strong>If you have multiple jobs but earn most of your income from one job, complete Worksheet 1 instead and enter the result here.</strong></em></li>
+                    <li>If you also want to reduce your Colorado withholding based on the additional federal deductions and/or Colorado child tax credit you expect to claim, complete Worksheet 1 and enter the result here.</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10 ps-4">
+                <em>
+                    <strong>If you want a greater amount withheld, you may enter a smaller amount than either calculation.</strong>
+                </em>
+            </div>
+            <div class="col-sm-2 border-top border-start border-start-sm-0 border-dark">
+                <div class="d-flex align-items-center">
+                    <div class="ps-2">$</div>
+                    <div class="flex-grow-1">
+                        <$client.env.FormField.Annual_WAllowance.HTML>           
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <strong>3. Additional Withholding Per Pay Period</strong>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10 ps-4">
+                Enter any additional tax you want withheld from each paycheck. <em><strong>If you expect to receive other income that will not have withholding, you may complete Worksheet 2 and include the result here.</strong></em>
+            </div>
+            <div class="col-sm-2 border-top border-start border-start-sm-0 border-dark">
+                <div class="d-flex align-items-center">
+                    <div class="ps-2">$</div>
+                    <div class="flex-grow-1">
+                        <$client.env.FormField.Additional_Withholding.HTML>           
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-12">
+                <strong>4. Sign Here.</strong> This form is not valid unless you sign this declaration: <em>I declare that the amounts on this certificate have not been presented to willfully evade Colorado income tax or obstruct its collection.</em>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 border-end border-end-sm-0 border-dark">
+                <$client.env.FormField.Signer.HTML>           
+            </div>
+        </div>
+    </div>
+
+    <div class="border border-dark">
+        <div class="row">
+            <div class="col-sm-9">
+                <strong>Table 1: Standard Allowance</strong>
+                <p>
+                    Go down the first column to your expected filing status from IRS Form W-4 Step 1(c). <br>
+                    Then go across that row to the column with the number of jobs that you (and your spouse, if filing jointly) currently have.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered border-dark">
+                    <tbody class="text-center">
+                        <tr>
+                            <td rowspan="2" valign="middle">
+                                <strong>Filing Status from IRS Form W-4 Step 1(c)</strong>
+                            </th>
+                            <td colspan="4">
+                                <strong>Standard Allowance for:</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>1 Job</strong>
+                            </td>
+                            <td>
+                                <strong>2 Job</strong>
+                            </td>
+                            <td>
+                                <strong>3 Job</strong>
+                            </td>
+                            <td>
+                                <strong>4 or More Jobs</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Single or Married Filing Separately</td>
+                            <td>$10,500</td>
+                            <td>$5,000</td>
+                            <td>$3,500</td>
+                            <td>$2,500</td>
+                        </tr>
+                        <tr>
+                            <td>Head of Household</td>
+                            <td>$16,500</td>
+                            <td>$8,500</td>
+                            <td>$5,500</td>
+                            <td>$4,000</td>
+                        </tr>
+                        <tr>
+                            <td>Married Filing Jointly or Qualifying Widow(er)</td>
+                            <td>$23,000</td>
+                            <td>$11,500</td>
+                            <td>$7,500</td>
+                            <td>$5,500</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p class="h5 text-center">
+                <strong>Worksheet 1: Withholding Allowance</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 pe-2">
+            <p class="text-justify"><strong>This worksheet is optional.</strong> You may complete the Colorado Employee Withholding Certificate without completing this worksheet. Complete this worksheet only if you want to adjust your Colorado withholding for one or both of the following reasons:</p>
+            <ol>
+                <li>You expect to claim additional federal deductions and/ or the Colorado child tax credit; or</li>
+                <li>You (and your spouse, if filing jointly) have multiple jobs but earn more income from one job.</li>
+            </ol>
+            <p>To use the electronic <em>DR 0004 Withholding Calculator</em>, go to <a class="link-dark" href="http://tax.colorado.gov/Withholding-Forms" target="_blank">Tax.Colorado.gov/Withholding-Forms</a>.</p>
+        </div>
+        <div class="col-sm-6">
+            <p class="text-justify">You (and your spouse, if filing jointly) only need to complete this worksheet once regardless of your number of jobs.  However, you will need to give a separate Colorado Employee Withholding Certificate to each of your employers. <strong>Do not give this worksheet to your employers.</strong></p>
+            <p>For more information about itemized deductions, see IRS Topic No. 501. For more information about qualifying for the child tax credit, see IRS Publication 972. Please note that the Colorado child tax credit is allowed for qualifying children who do not have a work-eligible social security number.</p>
+        </div>
+    </div>
+
+    <div class="border border-dark mb-3">
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10">
+                <ol class="m-0">
+                    <li>Enter the amount of income you (and your spouse, if filing jointly) expect to receive this year from all sources.</li>
+                </ol>
+            </div>
+            <div class="border-start border-start-sm-0 border-dark col-sm-2">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.Expected_Year_Income.HTML>           
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10">
+                <ol start="2" class="m-0">
+                    <li>Enter your Standard Allowance, based on your expected filing status from IRS Form W-4 Step 1(c):</li>
+                </ol>
+                <ol type="a">
+                    <li>$10,500 if single or married filing separately;</li>
+                    <li>$16,500 if head of household; or</li>
+                    <li>$23,000 if married filing jointly or qualifying widow(er).</li>
+                </ol>
+            </div>
+            <div class="border-start border-start-sm-0 border-top border-dark col-sm-2 mt-auto">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.Standard_Allowance.HTML>           
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10">
+                <ol start="3" class="m-0">
+                    <li>Enter the amount from IRS Form W-4 Step 4(b), if any, which is your estimated federal deductions that exceed the standard deduction.</li>
+                </ol>
+            </div>
+            <div class="border-start border-start-sm-0 border-dark col-sm-2">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.IRS_Amount.HTML>           
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10 border-end border-end-sm-0 border-dark">
+                <ol start="4" class="m-0">
+                    <li>
+                        Enter your Child Tax Credit Allowance from Table 2 below. <br>
+                        <strong>
+                            <em>If you do not want to reduce your withholding for the Colorado child tax credit, you may enter zero on this line, even if you expect to claim the credit.</em>
+                        </strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-sm-2">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.Child_Tax_Allowance.HTML>           
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10 border-end border-end-sm-0 border-dark">
+                <ol start="5" class="m-0">
+                    <li>Add Lines 2, 3, and 4. This is your Total Withholding Allowance.</li>
+                </ol>
+            </div>
+            <div class="col-sm-2">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.Total_Withholding_Allowance.HTML>           
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10 border-end border-end-sm-0 border-dark">
+                <ol start="6" class="m-0">
+                    <li>Enter the number of jobs that you (and your spouse, if filing jointly) currently have.</li>
+                </ol>
+            </div>
+            <div class="col-sm-2">
+                <$client.env.FormField.Number_of_Jobs.HTML>           
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <ol start="7" class="m-0">
+                    <li>Divide Line 5 by Line 6. This is your Annual Withholding Allowance for each job.</li>
+                </ol>
+            </div>
+            <div class="col-sm-2 border-start border-start-sm-0 border-bottom border-dark">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.Annual_Withholding_Allowance.HTML>           
+                </div>
+            </div>
+        </div>
+        <dv class="row border-bottom border-dark">
+            <div class="col-sm-12">
+                <ol type="a">
+                    <li>
+                        <strong>
+                            <em>If you (and your spouse, if filing jointly) have multiple jobs but earn most of your income from one job, you may want to divide the Total Withholding Allowance on Line 5 unevenly between your jobs. For example, if you earn 75% of your income from one job, you could use 75% of Line 5 for that job and the remaining 25% of Line 5 for your other job(s). If you choose to divide Line 5 unevenly, you will need to complete a separate Colorado Employee Withholding Certificate for each job.</em>
+                        </strong>
+                    </li>
+                    <li>
+                        <strong>
+                            <em>If you want a greater amount withheld, you may enter a smaller amount than your calculation.</em>
+                        </strong>
+                    </li>
+                </ol>
+                <strong>Enter the amount you choose on Line 2 of your Colorado Employee Withholding Certificate.</strong>
+            </div>
+        </dv>
+    </div>
+
+    <div class="border border-dark">
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="m-0">
+                    Table 2: Child Tax Credit Allowance <br>
+                    Go down the first column to your expected filing status from IRS Form W-4 Step 1(c). <br>
+                    Then select the corresponding row in the second column with your expected income from Line 1 of Worksheet 1. <br>
+                    Finally, go across that row to the column with your number of qualifying children.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-12 table-responsive">
+            <table class="table table-bordered table-hover border-dark text-center">
+                <tbody>
+                    <tr>
+                        <td rowspan="2" valign="middle">
+                            <strong>Filing Status from IRS <br> Form W-4 Step 1(c)</strong>
+                        </td>
+                        <td rowspan="2" valign="middle">
+                            <strong>Income from Line 1 <br> of Worksheet 1</strong>
+                        </td>
+                        <td colspan="3">
+                            <strong>Allowance for Qualifying Children Under Age 6 on December 31 of this year:</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>1 Child</strong>
+                        </td>
+                        <td>
+                            <strong>2 Children</strong>
+                        </td>
+                        <td>
+                            <strong>3 or More Children</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" valign="middle">Single, Married Filing Separately, or Head of Household</td>
+                        <td>$0 - $25,000</td>
+                        <td>$9,000</td>
+                        <td>$13,000</td>
+                        <td>$11,500</td>
+                    </tr>
+                    <tr>
+                        <td>$25,001 - $50,000</td>
+                        <td>$7,000</td>
+                        <td>$13,000</td>
+                        <td>$17,000</td>
+                    </tr>
+                    <tr>
+                        <td>$50,001 - $75,000</td>
+                        <td>$2,500</td>
+                        <td>$5,000</td>
+                        <td>$7,000</td>
+                    </tr>
+                    <tr>
+                        <td>$75,001 or more</td>
+                        <td>$0</td>
+                        <td>$0</td>
+                        <td>$0</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" valign="middle">Married Filing Jointly or Qualifying Widow(er)</td>
+                        <td>$0 - $35,000</td>
+                        <td>$10,000</td>
+                        <td>$17,500</td>
+                        <td>$20,000</td>
+                    </tr>
+                    <tr>
+                        <td>$35,001 - $60,000</td>
+                        <td>$7,000</td>
+                        <td>$14,000</td>
+                        <td>$19,000</td>
+                    </tr>
+                    <tr>
+                        <td>$60,001 - $85,000</td>
+                        <td>$2,500</td>
+                        <td>$5,000</td>
+                        <td>$7,000</td>
+                    </tr>
+                    <tr>
+                        <td>$85,001 or more</td>
+                        <td>$0</td>
+                        <td>$0</td>
+                        <td>$0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p class="h5 text-center">
+                <strong>Worksheet 2: Additional Withholding</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 pe-2">
+            <p class="text-justify">
+                <strong>This worksheet is optional.</strong> You may complete the Colorado Employee Withholding Certificate without completing this worksheet. Complete this worksheet only if you would like to calculate additional wage withholding to cover other types of taxable income that you (and your spouse, if filing jointly) expect to receive this year. This may include interest, dividends, retirement income, rental income, or income from self-employment or as an independent contractor.
+            </p>
+            <p>
+                To use the electronic <em>DR 0004 Withholding Calculator</em>, go to <em><a href="http://tax.colorado.gov/Withholding-Forms" class="link-dark" target="_blank">Tax.Colorado.gov/Withholding-Forms</a></em>.
+            </p>
+            <p class="text-justify">Complete a separate copy of this worksheet for each job to which you would like to add withholding. <strong>Do not give this worksheet to your employer</strong>.</p>
+        </div>
+        <div class="col-sm-6">
+            <p class="text-justify">Alternatively, you may use form DR 0104EP to submit estimated tax payments for any non-wage income that you receive. If you do not ensure that you have enough withholding and estimated tax payments, then you will owe tax when you file your return, and you may owe a penalty.  For more information about withholding and estimated tax payments, see parts 6 and 7 of the <em>Colorado Individual Income Tax Guide</em>.</p>
+            <p>For more information about taxable and nontaxable income, see IRS Publication 525. For information about the Colorado pension and annuity subtraction, go to <em><a href="http://tax.colorado.gov/Individual-Income-Tax-Guidance-Publications" class="link-dark" target="_blank">Tax.Colorado.gov/Individual-Income-Tax-Guidance-Publications</a></em>.</p>
+        </div>
+    </div>
+
+    <div class="border border-dark mb-3">
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10">
+                <ol class="m-0">
+                    <li>Enter the amount from IRS Form W-4 Step 4(a), which is your estimated non-business income for this year.</li>
+                </ol>
+            </div>
+            <div class="col-sm-2 border-start border-start-sm-0 border-dark">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.Non_Business_Income.HTML>           
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10">
+                <ol class="m-0" start="2">
+                    <li>Enter any other non-wage income that you (and your spouse, if filing jointly) expect to receive this year, but is not included in the amount from IRS Form W-4 Step 4(a). This may include income from self-employment or as an independent contractor.</li>
+                </ol>
+            </div>
+            <div class="col-sm-2 border-start border-start-sm-0 border-dark">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.Non_Wage_Income.HTML>           
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10">
+                <ol class="m-0" start="3">
+                    <li>Add Lines 1 and 2. This is your Total Additional Income.</li>
+                </ol>
+            </div>
+            <div class="col-sm-2 border-start border-start-sm-0 border-dark">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.Total_Additional_Income.HTML>           
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10">
+                <ol class="m-0" start="4">
+                    <li>Multiply Line 3 by 4.55% (0.0455). This is your Total Additional Withholding.</li>
+                </ol>
+            </div>
+            <div class="col-sm-2 border-start border-start-sm-0 border-dark">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.Total_Additional_Withholding.HTML>           
+                </div>
+            </div>
+        </div>
+        <div class="row border-bottom border-dark">
+            <div class="col-sm-10">
+                <ol class="m-0" start="5">
+                    <li>Divide Line 4 by the number of jobs to which you would like to add withholding. This is your Additional Withholding Per Job.</li>
+                </ol>
+            </div>
+            <div class="col-sm-2 border-start border-start-sm-0 border-dark">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.Additional_Withholding_Per_Job.HTML>           
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <ol class="m-0" start="6">
+                    <li>Divide Line 5 by the number of pay periods during the year for this job (see Table 3 below).  This is your Additional Withholding Per Pay Period.</li>
+                </ol>
+                <strong>Enter this amount on Line 3 of your Colorado Employee Withholding Certificate.</strong>
+            </div>
+            <div class="col-sm-2 border-start border-start-sm-0 border-dark">
+                <div class="d-flex align-items-center">
+                    $
+                    <$client.env.FormField.Additional_Withholding_Per_Period.HTML>           
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="border border-dark">
+        <div class="row">
+            <div class="col-sm-12">
+                <strong>Table 3: Pay Periods During the Year</strong> <br>
+                Semimonthly means twice a month, usually on the 15th and 30th. <br>
+                Biweekly means every other week, usually on Fridays, regardless of the month.
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-12 table-responsive">
+            <table class="table table-bordered table-hover border-dark text-center">
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Annually</strong>
+                        </td>
+                        <td>
+                            <strong>Semiannually</strong>
+                        </td>
+                        <td>
+                            <strong>Quarterly</strong>
+                        </td>
+                        <td>
+                            <strong>Monthly</strong>
+                        </td>
+                        <td>
+                            <strong>Semimonthly</strong>
+                        </td>
+                        <td>
+                            <strong>Biweekly</strong>
+                        </td>
+                        <td>
+                            <strong>Weekly</strong>
+                        </td>
+                        <td>
+                            <strong>Daily</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>24</td>
+                        <td>26</td>
+                        <td>52</td>
+                        <td>260</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Colorado_Employee_Withholding_Certificate/js/bootstrap.min.js>"></script>
+<script>
+<$include;/main/RedCarpet/FormTemplates/Colorado_Employee_Withholding_Certificate/CEWC_Includes>
+
+$(document).on('ready', function() {
+    if (strFormCompleted == '') { // if eForm is incomplete 
+        $("#ButtonPrint")[0].onclick = null; 
+        $("#ButtonPrint").click(function() {  
+            /* Add your code/function here */ 
+            $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+            void(funcPrint()); // default print function 
+        }); 
+        if ($("#ButtonSaveAndComplete").length) {  
+            $("#ButtonSaveAndComplete")[0].onclick = null; 
+            $("#ButtonSaveAndComplete").click(function() {  
+                /* Add your code/function here */ 
+                $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+                void(funcSaveAndComplete());  //default Save function 
+            }); 
+        } 
+    }
+});
+</script>

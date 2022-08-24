@@ -1,0 +1,1063 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input id="sign-form" type="button" class="lifesuite__button primary" value="Sign">&nbsp;
+        <input id="clear-form" type="button" class="lifesuite__button" value="Clear">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="na-expense-form" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a01_Full_Name.prompt>
+        <$client.env.FormField.a02_Department_Name.prompt>
+        <$client.env.FormField.a03_Current_Date.prompt>
+        <$client.env.FormField.a04_Entity.prompt>
+        <$client.env.FormField.a05_Date.prompt>
+        <$client.env.FormField.a06_Description.prompt>
+        <$client.env.FormField.a07_Amount.prompt>
+        <$client.env.FormField.a08_Miles_Drive.prompt>
+        <$client.env.FormField.a09_Reimbursement_Amount.prompt>
+        <$client.env.FormField.a10_Airfair.prompt>
+        <$client.env.FormField.a11_Car_Rental_Total.prompt>
+        <$client.env.FormField.a12_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.a12_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.a13_Hotel_Total.prompt>
+        <$client.env.FormField.a14_Hotel_Total_From.prompt>
+        <$client.env.FormField.a14_Hotel_Total_To.prompt>
+        <$client.env.FormField.a15_Parking_Total.prompt>
+        <$client.env.FormField.a16_Parking_Total_From.prompt>
+        <$client.env.FormField.a16_Parking_Total_To.prompt>
+        <$client.env.FormField.a17_Meals.prompt>
+        <$client.env.FormField.a18_Cellular.prompt>
+        <$client.env.FormField.a19_Employee_Relations.prompt>
+        <$client.env.FormField.a20_Team_Staff_Events.prompt>
+        <$client.env.FormField.a21_Business_Meals.prompt>
+        <$client.env.FormField.a22_Other.prompt>
+        <$client.env.FormField.a23_Date.prompt>
+        <$client.env.FormField.a24_Description.prompt>
+        <$client.env.FormField.a25_Amount.prompt>
+        <$client.env.FormField.a26_Miles_Drive.prompt>
+        <$client.env.FormField.a27_Reimbursement_Amount.prompt>
+        <$client.env.FormField.a28_Airfair.prompt>
+        <$client.env.FormField.a29_Car_Rental_Total.prompt>
+        <$client.env.FormField.a30_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.a30_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.a31_Hotel_Total.prompt>
+        <$client.env.FormField.a32_Hotel_Total_From.prompt>
+        <$client.env.FormField.a32_Hotel_Total_To.prompt>
+        <$client.env.FormField.a33_Parking_Total.prompt>
+        <$client.env.FormField.a34_Parking_Total_From.prompt>
+        <$client.env.FormField.a34_Parking_Total_To.prompt>
+        <$client.env.FormField.a35_Meals.prompt>
+        <$client.env.FormField.a36_Cellular.prompt>
+        <$client.env.FormField.a37_Employee_Relations.prompt>
+        <$client.env.FormField.a38_Team_Staff_Events.prompt>
+        <$client.env.FormField.a39_Business_Meals.prompt>
+        <$client.env.FormField.a40_Other.prompt>
+        <$client.env.FormField.a41_Date.prompt>
+        <$client.env.FormField.a42_Description.prompt>
+        <$client.env.FormField.a43_Amount.prompt>
+        <$client.env.FormField.a44_Miles_Drive.prompt>
+        <$client.env.FormField.a45_Reimbursement_Amount.prompt>
+        <$client.env.FormField.a46_Airfair.prompt>
+        <$client.env.FormField.a47_Car_Rental_Total.prompt>
+        <$client.env.FormField.a48_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.a48_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.a49_Hotel_Total.prompt>
+        <$client.env.FormField.a50_Hotel_Total_From.prompt>
+        <$client.env.FormField.a50_Hotel_Total_To.prompt>
+        <$client.env.FormField.a51_Parking_Total.prompt>
+        <$client.env.FormField.a52_Parking_Total_From.prompt>
+        <$client.env.FormField.a52_Parking_Total_To.prompt>
+        <$client.env.FormField.a53_Meals.prompt>
+        <$client.env.FormField.a54_Cellular.prompt>
+        <$client.env.FormField.a55_Employee_Relations.prompt>
+        <$client.env.FormField.a56_Team_Staff_Events.prompt>
+        <$client.env.FormField.a57_Business_Meals.prompt>
+        <$client.env.FormField.a58_Other.prompt>
+        <$client.env.FormField.a59_Date.prompt>
+        <$client.env.FormField.a60_Description.prompt>
+        <$client.env.FormField.a61_Amount.prompt>
+        <$client.env.FormField.a62_Miles_Drive.prompt>
+        <$client.env.FormField.a63_Reimbursement_Amount.prompt>
+        <$client.env.FormField.a64_Airfair.prompt>
+        <$client.env.FormField.a65_Car_Rental_Total.prompt>
+        <$client.env.FormField.a66_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.a66_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.a67_Hotel_Total.prompt>
+        <$client.env.FormField.a68_Hotel_Total_From.prompt>
+        <$client.env.FormField.a68_Hotel_Total_To.prompt>
+        <$client.env.FormField.a69_Parking_Total.prompt>
+        <$client.env.FormField.a70_Parking_Total_From.prompt>
+        <$client.env.FormField.a70_Parking_Total_To.prompt>
+        <$client.env.FormField.a71_Meals.prompt>
+        <$client.env.FormField.a72_Cellular.prompt>
+        <$client.env.FormField.a73_Employee_Relations.prompt>
+        <$client.env.FormField.a74_Team_Staff_Events.prompt>
+        <$client.env.FormField.a75_Business_Meals.prompt>
+        <$client.env.FormField.a76_Other.prompt>
+        <$client.env.FormField.a77_Date.prompt>
+        <$client.env.FormField.a78_Description.prompt>
+        <$client.env.FormField.a79_Amount.prompt>
+        <$client.env.FormField.a80_Miles_Drive.prompt>
+        <$client.env.FormField.a81_Reimbursement_Amount.prompt>
+        <$client.env.FormField.a82_Airfair.prompt>
+        <$client.env.FormField.a83_Car_Rental_Total.prompt>
+        <$client.env.FormField.a84_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.a84_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.a85_Hotel_Total.prompt>
+        <$client.env.FormField.a86_Hotel_Total_From.prompt>
+        <$client.env.FormField.a86_Hotel_Total_To.prompt>
+        <$client.env.FormField.a87_Parking_Total.prompt>
+        <$client.env.FormField.a88_Parking_Total_From.prompt>
+        <$client.env.FormField.a88_Parking_Total_To.prompt>
+        <$client.env.FormField.a89_Meals.prompt>
+        <$client.env.FormField.a90_Cellular.prompt>
+        <$client.env.FormField.a91_Employee_Relations.prompt>
+        <$client.env.FormField.a92_Team_Staff_Events.prompt>
+        <$client.env.FormField.a93_Business_Meals.prompt>
+        <$client.env.FormField.a94_Other.prompt>
+        <$client.env.FormField.a95_Date.prompt>
+        <$client.env.FormField.a96_Description.prompt>
+        <$client.env.FormField.a97_Amount.prompt>
+        <$client.env.FormField.a98_Miles_Drive.prompt>
+        <$client.env.FormField.a99_Reimbursement_Amount.prompt>
+        <$client.env.FormField.b00_Airfair.prompt>
+        <$client.env.FormField.b01_Car_Rental_Total.prompt>
+        <$client.env.FormField.b02_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.b02_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.b03_Hotel_Total.prompt>
+        <$client.env.FormField.b04_Hotel_Total_From.prompt>
+        <$client.env.FormField.b04_Hotel_Total_To.prompt>
+        <$client.env.FormField.b05_Parking_Total.prompt>
+        <$client.env.FormField.b06_Parking_Total_From.prompt>
+        <$client.env.FormField.b06_Parking_Total_To.prompt>
+        <$client.env.FormField.b07_Meals.prompt>
+        <$client.env.FormField.b08_Cellular.prompt>
+        <$client.env.FormField.b09_Employee_Relations.prompt>
+        <$client.env.FormField.b10_Team_Staff_Events.prompt>
+        <$client.env.FormField.b11_Business_Meals.prompt>
+        <$client.env.FormField.b12_Other.prompt>
+        <$client.env.FormField.b13_Date.prompt>
+        <$client.env.FormField.b14_Description.prompt>
+        <$client.env.FormField.b15_Amount.prompt>
+        <$client.env.FormField.b16_Miles_Drive.prompt>
+        <$client.env.FormField.b17_Reimbursement_Amount.prompt>
+        <$client.env.FormField.b18_Airfair.prompt>
+        <$client.env.FormField.b19_Car_Rental_Total.prompt>
+        <$client.env.FormField.b20_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.b20_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.b21_Hotel_Total.prompt>
+        <$client.env.FormField.b22_Hotel_Total_From.prompt>
+        <$client.env.FormField.b22_Hotel_Total_To.prompt>
+        <$client.env.FormField.b23_Parking_Total.prompt>
+        <$client.env.FormField.b24_Parking_Total_From.prompt>
+        <$client.env.FormField.b24_Parking_Total_To.prompt>
+        <$client.env.FormField.b25_Meals.prompt>
+        <$client.env.FormField.b26_Cellular.prompt>
+        <$client.env.FormField.b27_Employee_Relations.prompt>
+        <$client.env.FormField.b28_Team_Staff_Events.prompt>
+        <$client.env.FormField.b29_Business_Meals.prompt>
+        <$client.env.FormField.b30_Other.prompt>
+        <$client.env.FormField.b31_Date.prompt>
+        <$client.env.FormField.b32_Description.prompt>
+        <$client.env.FormField.b33_Amount.prompt>
+        <$client.env.FormField.b34_Miles_Drive.prompt>
+        <$client.env.FormField.b35_Reimbursement_Amount.prompt>
+        <$client.env.FormField.b36_Airfair.prompt>
+        <$client.env.FormField.b37_Car_Rental_Total.prompt>
+        <$client.env.FormField.b38_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.b38_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.b39_Hotel_Total.prompt>
+        <$client.env.FormField.b40_Hotel_Total_From.prompt>
+        <$client.env.FormField.b40_Hotel_Total_To.prompt>
+        <$client.env.FormField.b41_Parking_Total.prompt>
+        <$client.env.FormField.b42_Parking_Total_From.prompt>
+        <$client.env.FormField.b42_Parking_Total_To.prompt>
+        <$client.env.FormField.b43_Meals.prompt>
+        <$client.env.FormField.b44_Cellular.prompt>
+        <$client.env.FormField.b45_Employee_Relations.prompt>
+        <$client.env.FormField.b46_Team_Staff_Events.prompt>
+        <$client.env.FormField.b47_Business_Meals.prompt>
+        <$client.env.FormField.b48_Other.prompt>
+        <$client.env.FormField.b49_Date.prompt>
+        <$client.env.FormField.b50_Description.prompt>
+        <$client.env.FormField.b51_Amount.prompt>
+        <$client.env.FormField.b52_Miles_Drive.prompt>
+        <$client.env.FormField.b53_Reimbursement_Amount.prompt>
+        <$client.env.FormField.b54_Airfair.prompt>
+        <$client.env.FormField.b55_Car_Rental_Total.prompt>
+        <$client.env.FormField.b56_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.b56_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.b57_Hotel_Total.prompt>
+        <$client.env.FormField.b58_Hotel_Total_From.prompt>
+        <$client.env.FormField.b59_Hotel_Total_To.prompt>
+        <$client.env.FormField.b60_Parking_Total.prompt>
+        <$client.env.FormField.b61_Parking_Total_From.prompt>
+        <$client.env.FormField.b61_Parking_Total_To.prompt>
+        <$client.env.FormField.b62_Meals.prompt>
+        <$client.env.FormField.b63_Cellular.prompt>
+        <$client.env.FormField.b64_Employee_Relations.prompt>
+        <$client.env.FormField.b65_Team_Staff_Events.prompt>
+        <$client.env.FormField.b66_Business_Meals.prompt>
+        <$client.env.FormField.b67_Other.prompt>
+        <$client.env.FormField.b68_Date.prompt>
+        <$client.env.FormField.b69_Description.prompt>
+        <$client.env.FormField.b70_Amount.prompt>
+        <$client.env.FormField.b71_Miles_Drive.prompt>
+        <$client.env.FormField.b72_Reimbursement_Amount.prompt>
+        <$client.env.FormField.b73_Airfair.prompt>
+        <$client.env.FormField.b74_Car_Rental_Total.prompt>
+        <$client.env.FormField.b75_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.b75_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.b76_Hotel_Total.prompt>
+        <$client.env.FormField.b77_Hotel_Total_From.prompt>
+        <$client.env.FormField.b77_Hotel_Total_To.prompt>
+        <$client.env.FormField.b78_Parking_Total.prompt>
+        <$client.env.FormField.b79_Parking_Total_From.prompt>
+        <$client.env.FormField.b79_Parking_Total_To.prompt>
+        <$client.env.FormField.b80_Meals.prompt>
+        <$client.env.FormField.b81_Cellular.prompt>
+        <$client.env.FormField.b82_Employee_Relations.prompt>
+        <$client.env.FormField.b83_Team_Staff_Events.prompt>
+        <$client.env.FormField.b84_Business_Meals.prompt>
+        <$client.env.FormField.b85_Other.prompt>
+        <$client.env.FormField.b86_Date.prompt>
+        <$client.env.FormField.b87_Description.prompt>
+        <$client.env.FormField.b88_Amount.prompt>
+        <$client.env.FormField.b89_Miles_Drive.prompt>
+        <$client.env.FormField.b90_Reimbursement_Amount.prompt>
+        <$client.env.FormField.b91_Airfair.prompt>
+        <$client.env.FormField.b92_Car_Rental_Total.prompt>
+        <$client.env.FormField.b93_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.b93_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.b94_Hotel_Total.prompt>
+        <$client.env.FormField.b95_Hotel_Total_From.prompt>
+        <$client.env.FormField.b95_Hotel_Total_To.prompt>
+        <$client.env.FormField.b96_Parking_Total.prompt>
+        <$client.env.FormField.b97_Parking_Total_From.prompt>
+        <$client.env.FormField.b97_Parking_Total_To.prompt>
+        <$client.env.FormField.b98_Meals.prompt>
+        <$client.env.FormField.b99_Cellular.prompt>
+        <$client.env.FormField.c00_Employee_Relations.prompt>
+        <$client.env.FormField.c01_Team_Staff_Events.prompt>
+        <$client.env.FormField.c02_Business_Meals.prompt>
+        <$client.env.FormField.c03_Other.prompt>
+        <$client.env.FormField.c04_Date.prompt>
+        <$client.env.FormField.c05_Description.prompt>
+        <$client.env.FormField.c06_Amount.prompt>
+        <$client.env.FormField.c07_Miles_Drive.prompt>
+        <$client.env.FormField.c08_Reimbursement_Amount.prompt>
+        <$client.env.FormField.c09_Airfair.prompt>
+        <$client.env.FormField.c10_Car_Rental_Total.prompt>
+        <$client.env.FormField.c11_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.c11_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.c12_Hotel_Total.prompt>
+        <$client.env.FormField.c13_Hotel_Total_From.prompt>
+        <$client.env.FormField.c13_Hotel_Total_To.prompt>
+        <$client.env.FormField.c14_Parking_Total.prompt>
+        <$client.env.FormField.c15_Parking_Total_From.prompt>
+        <$client.env.FormField.c15_Parking_Total_To.prompt>
+        <$client.env.FormField.c16_Meals.prompt>
+        <$client.env.FormField.c17_Cellular.prompt>
+        <$client.env.FormField.c18_Employee_Relations.prompt>
+        <$client.env.FormField.c19_Team_Staff_Events.prompt>
+        <$client.env.FormField.c20_Business_Meals.prompt>
+        <$client.env.FormField.c21_Other.prompt>
+        <$client.env.FormField.c22_Date.prompt>
+        <$client.env.FormField.c23_Description.prompt>
+        <$client.env.FormField.c24_Amount.prompt>
+        <$client.env.FormField.c25_Miles_Drive.prompt>
+        <$client.env.FormField.c26_Reimbursement_Amount.prompt>
+        <$client.env.FormField.c27_Airfair.prompt>
+        <$client.env.FormField.c28_Car_Rental_Total.prompt>
+        <$client.env.FormField.c29_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.c29_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.c30_Hotel_Total.prompt>
+        <$client.env.FormField.c31_Hotel_Total_From.prompt>
+        <$client.env.FormField.c31_Hotel_Total_To.prompt>
+        <$client.env.FormField.c32_Parking_Total.prompt>
+        <$client.env.FormField.c33_Parking_Total_From.prompt>
+        <$client.env.FormField.c33_Parking_Total_To.prompt>
+        <$client.env.FormField.c34_Meals.prompt>
+        <$client.env.FormField.c35_Cellular.prompt>
+        <$client.env.FormField.c36_Employee_Relations.prompt>
+        <$client.env.FormField.c37_Team_Staff_Events.prompt>
+        <$client.env.FormField.c38_Business_Meals.prompt>
+        <$client.env.FormField.c39_Other.prompt>
+        <$client.env.FormField.c40_Date.prompt>
+        <$client.env.FormField.c41_Description.prompt>
+        <$client.env.FormField.c42_Amount.prompt>
+        <$client.env.FormField.c43_Miles_Drive.prompt>
+        <$client.env.FormField.c44_Reimbursement_Amount.prompt>
+        <$client.env.FormField.c45_Airfair.prompt>
+        <$client.env.FormField.c46_Car_Rental_Total.prompt>
+        <$client.env.FormField.c47_Car_Rental_Date_From.prompt>
+        <$client.env.FormField.c47_Car_Rental_Date_To.prompt>
+        <$client.env.FormField.c48_Hotel_Total.prompt>
+        <$client.env.FormField.c49_Hotel_Total_From.prompt>
+        <$client.env.FormField.c49_Hotel_Total_To.prompt>
+        <$client.env.FormField.c50_Parking_Total.prompt>
+        <$client.env.FormField.c51_Parking_Total_From.prompt>
+        <$client.env.FormField.c51_Parking_Total_To.prompt>
+        <$client.env.FormField.c52_Meals.prompt>
+        <$client.env.FormField.c53_Cellular.prompt>
+        <$client.env.FormField.c54_Employee_Relations.prompt>
+        <$client.env.FormField.c55_Team_Staff_Events.prompt>
+        <$client.env.FormField.c56_Business_Meals.prompt>
+        <$client.env.FormField.c57_Other.prompt>
+        <$client.env.FormField.c58_Notes.prompt>
+        <$client.env.FormField.c59_Full_Name.prompt>
+        <$client.env.FormField.c60_Date.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+   <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="imgr">
+            <img src="<$link;/main/RedCarpet/FormTemplates/North_America_Manual_Expense_Report_Form/img/logo.png>" class="img-responsive">
+        </div>
+      </div>
+   </div>
+    <div class="mid-wrapper center-block">
+        <div class="row">
+            <div class="col-lg-12 mb-20">
+                <h3>North America Manual Expense Report Form</h3>
+                <ol>
+                    <li>
+                        Fill out Expense Report, with Date, Description, Amount
+                    </li>
+                    <li>
+                        Attach original receipts in the next task.
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row mb-15">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                <label class="control-label lifesuite__input-label lifesuite__input—block">
+                    Full Name:
+                </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <$client.env.FormField.a01_Full_Name.HTML>
+            </div>
+        </div>
+
+        <div class="row mb-15">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                <label class="control-label lifesuite__input-label lifesuite__input—block">
+                    Department Name:
+                </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <$client.env.FormField.a02_Department_Name.HTML>
+            </div>
+        </div>
+        <div class="row mb-15">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                <label class="control-label lifesuite__input-label lifesuite__input—block">
+                    Current Date:
+                </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <input type="text" class="is-date-field" name="a03_Current_Date_pseudo_date" data-target-date-field="a03_Current_Date" data-title="Current Date" data-validation="required,date-today" readonly>
+            </div>
+        </div>
+        <div class="row mb-15">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                <label class="control-label lifesuite__input-label lifesuite__input—block">
+                    Paypal Company:
+                </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <$client.env.FormField.a04_Entity.HTML>
+            </div>
+        </div>
+        <div id="form-inner"></div>
+        <div class="row mb-25">
+            <div class="col-lg-12 text-right clearfix">
+                <div class="pull-right">
+                    <button id="add-expense" class="lifesuite__button primary" type="button" role="button">
+                        Add Expense
+                    </button>
+                    <button id="delete-section" class="lifesuite__button" type="button" role="button">
+                        Delete Expense
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-15">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                <label for="c57_Total_Amount_Due" class="control-label lifesuite__input-label lifesuite__input—block">
+                    TOTAL AMOUNT DUE EMPLOYEE:
+                </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <$client.env.FormField.c57_Total_Amount_Due.HTML>
+            </div>
+        </div>
+        <div class="row mb-25">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                <label for="c58_Notes" class="control-label lifesuite__input-label lifesuite__input—block">
+                    Notes:
+                </label>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <$client.env.FormField.c58_Notes.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-20">
+        <div class="col-lg-12">
+            <strong>Employee:</strong>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <label class="control-label" for="signature">Signature: <span class="font-red">*</span> </label>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.c59_Signature.html>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+            <label class="control-label">Date: </label>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <input type="text" class="is-date-field date-disabled" name="c60_Date_pseudo_date" data-target-date-field="c60_Date" data-title="Date" data-validation="" data-date-enabled="false" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-15">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <label class="control-label">Name: </label>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.c59_Full_Name.html>
+            </div>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.a03_Current_Date.HTML>
+    <$client.env.FormField.c60_Date.html>
+    <$client.env.FormField.c62_Date.html>
+
+    <$client.env.FormField.a05_Date.HTML>
+    <$client.env.FormField.a06_Description.HTML>
+    <$client.env.FormField.a07_Amount.HTML>
+    <$client.env.FormField.a08_Miles_Drive.HTML>
+    <$client.env.FormField.a09_Reimbursement_Amount.HTML>
+    <$client.env.FormField.a10_Airfair.HTML>
+    <$client.env.FormField.a11_Car_Rental_Total.HTML>
+    <$client.env.FormField.a12_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.a12_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.a13_Hotel_Total.HTML>
+    <$client.env.FormField.a14_Hotel_Total_From.HTML>
+    <$client.env.FormField.a14_Hotel_Total_To.HTML>
+    <$client.env.FormField.a15_Parking_Total.HTML>
+    <$client.env.FormField.a16_Parking_Total_From.HTML>
+    <$client.env.FormField.a16_Parking_Total_To.HTML>
+    <$client.env.FormField.a17_Meals.HTML>
+    <$client.env.FormField.a18_Cellular.HTML>
+    <$client.env.FormField.a19_Employee_Relations.HTML>
+    <$client.env.FormField.a20_Team_Staff_Events.HTML>
+    <$client.env.FormField.a21_Business_Meals.HTML>
+    <$client.env.FormField.a22_Other.HTML>
+    <$client.env.FormField.a23_Date.HTML>
+    <$client.env.FormField.a24_Description.HTML>
+    <$client.env.FormField.a25_Amount.HTML>
+    <$client.env.FormField.a26_Miles_Drive.HTML>
+    <$client.env.FormField.a27_Reimbursement_Amount.HTML>
+    <$client.env.FormField.a28_Airfair.HTML>
+    <$client.env.FormField.a29_Car_Rental_Total.HTML>
+    <$client.env.FormField.a30_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.a30_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.a31_Hotel_Total.HTML>
+    <$client.env.FormField.a32_Hotel_Total_From.HTML>
+    <$client.env.FormField.a32_Hotel_Total_To.HTML>
+    <$client.env.FormField.a33_Parking_Total.HTML>
+    <$client.env.FormField.a34_Parking_Total_From.HTML>
+    <$client.env.FormField.a34_Parking_Total_To.HTML>
+    <$client.env.FormField.a35_Meals.HTML>
+    <$client.env.FormField.a36_Cellular.HTML>
+    <$client.env.FormField.a37_Employee_Relations.HTML>
+    <$client.env.FormField.a38_Team_Staff_Events.HTML>
+    <$client.env.FormField.a39_Business_Meals.HTML>
+    <$client.env.FormField.a40_Other.HTML>
+    <$client.env.FormField.a41_Date.HTML>
+    <$client.env.FormField.a42_Description.HTML>
+    <$client.env.FormField.a43_Amount.HTML>
+    <$client.env.FormField.a44_Miles_Drive.HTML>
+    <$client.env.FormField.a45_Reimbursement_Amount.HTML>
+    <$client.env.FormField.a46_Airfair.HTML>
+    <$client.env.FormField.a47_Car_Rental_Total.HTML>
+    <$client.env.FormField.a48_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.a48_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.a49_Hotel_Total.HTML>
+    <$client.env.FormField.a50_Hotel_Total_From.HTML>
+    <$client.env.FormField.a50_Hotel_Total_To.HTML>
+    <$client.env.FormField.a51_Parking_Total.HTML>
+    <$client.env.FormField.a52_Parking_Total_From.HTML>
+    <$client.env.FormField.a52_Parking_Total_To.HTML>
+    <$client.env.FormField.a53_Meals.HTML>
+    <$client.env.FormField.a54_Cellular.HTML>
+    <$client.env.FormField.a55_Employee_Relations.HTML>
+    <$client.env.FormField.a56_Team_Staff_Events.HTML>
+    <$client.env.FormField.a57_Business_Meals.HTML>
+    <$client.env.FormField.a58_Other.HTML>
+    <$client.env.FormField.a59_Date.HTML>
+    <$client.env.FormField.a60_Description.HTML>
+    <$client.env.FormField.a61_Amount.HTML>
+    <$client.env.FormField.a62_Miles_Drive.HTML>
+    <$client.env.FormField.a63_Reimbursement_Amount.HTML>
+    <$client.env.FormField.a64_Airfair.HTML>
+    <$client.env.FormField.a65_Car_Rental_Total.HTML>
+    <$client.env.FormField.a66_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.a66_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.a67_Hotel_Total.HTML>
+    <$client.env.FormField.a68_Hotel_Total_From.HTML>
+    <$client.env.FormField.a68_Hotel_Total_To.HTML>
+    <$client.env.FormField.a69_Parking_Total.HTML>
+    <$client.env.FormField.a70_Parking_Total_From.HTML>
+    <$client.env.FormField.a70_Parking_Total_To.HTML>
+    <$client.env.FormField.a71_Meals.HTML>
+    <$client.env.FormField.a72_Cellular.HTML>
+    <$client.env.FormField.a73_Employee_Relations.HTML>
+    <$client.env.FormField.a74_Team_Staff_Events.HTML>
+    <$client.env.FormField.a75_Business_Meals.HTML>
+    <$client.env.FormField.a76_Other.HTML>
+    <$client.env.FormField.a77_Date.HTML>
+    <$client.env.FormField.a78_Description.HTML>
+    <$client.env.FormField.a79_Amount.HTML>
+    <$client.env.FormField.a80_Miles_Drive.HTML>
+    <$client.env.FormField.a81_Reimbursement_Amount.HTML>
+    <$client.env.FormField.a82_Airfair.HTML>
+    <$client.env.FormField.a83_Car_Rental_Total.HTML>
+    <$client.env.FormField.a84_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.a84_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.a85_Hotel_Total.HTML>
+    <$client.env.FormField.a86_Hotel_Total_From.HTML>
+    <$client.env.FormField.a86_Hotel_Total_To.HTML>
+    <$client.env.FormField.a87_Parking_Total.HTML>
+    <$client.env.FormField.a88_Parking_Total_From.HTML>
+    <$client.env.FormField.a88_Parking_Total_To.HTML>
+    <$client.env.FormField.a89_Meals.HTML>
+    <$client.env.FormField.a90_Cellular.HTML>
+    <$client.env.FormField.a91_Employee_Relations.HTML>
+    <$client.env.FormField.a92_Team_Staff_Events.HTML>
+    <$client.env.FormField.a93_Business_Meals.HTML>
+    <$client.env.FormField.a94_Other.HTML>
+    <$client.env.FormField.a95_Date.HTML>
+    <$client.env.FormField.a96_Description.HTML>
+    <$client.env.FormField.a97_Amount.HTML>
+    <$client.env.FormField.a98_Miles_Drive.HTML>
+    <$client.env.FormField.a99_Reimbursement_Amount.HTML>
+    <$client.env.FormField.b00_Airfair.HTML>
+    <$client.env.FormField.b01_Car_Rental_Total.HTML>
+    <$client.env.FormField.b02_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.b02_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.b03_Hotel_Total.HTML>
+    <$client.env.FormField.b04_Hotel_Total_From.HTML>
+    <$client.env.FormField.b04_Hotel_Total_To.HTML>
+    <$client.env.FormField.b05_Parking_Total.HTML>
+    <$client.env.FormField.b06_Parking_Total_From.HTML>
+    <$client.env.FormField.b06_Parking_Total_To.HTML>
+    <$client.env.FormField.b07_Meals.HTML>
+    <$client.env.FormField.b08_Cellular.HTML>
+    <$client.env.FormField.b09_Employee_Relations.HTML>
+    <$client.env.FormField.b10_Team_Staff_Events.HTML>
+    <$client.env.FormField.b11_Business_Meals.HTML>
+    <$client.env.FormField.b12_Other.HTML>
+    <$client.env.FormField.b13_Date.HTML>
+    <$client.env.FormField.b14_Description.HTML>
+    <$client.env.FormField.b15_Amount.HTML>
+    <$client.env.FormField.b16_Miles_Drive.HTML>
+    <$client.env.FormField.b17_Reimbursement_Amount.HTML>
+    <$client.env.FormField.b18_Airfair.HTML>
+    <$client.env.FormField.b19_Car_Rental_Total.HTML>
+    <$client.env.FormField.b20_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.b20_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.b21_Hotel_Total.HTML>
+    <$client.env.FormField.b22_Hotel_Total_From.HTML>
+    <$client.env.FormField.b22_Hotel_Total_To.HTML>
+    <$client.env.FormField.b23_Parking_Total.HTML>
+    <$client.env.FormField.b24_Parking_Total_From.HTML>
+    <$client.env.FormField.b24_Parking_Total_To.HTML>
+    <$client.env.FormField.b25_Meals.HTML>
+    <$client.env.FormField.b26_Cellular.HTML>
+    <$client.env.FormField.b27_Employee_Relations.HTML>
+    <$client.env.FormField.b28_Team_Staff_Events.HTML>
+    <$client.env.FormField.b29_Business_Meals.HTML>
+    <$client.env.FormField.b30_Other.HTML>
+    <$client.env.FormField.b31_Date.HTML>
+    <$client.env.FormField.b32_Description.HTML>
+    <$client.env.FormField.b33_Amount.HTML>
+    <$client.env.FormField.b34_Miles_Drive.HTML>
+    <$client.env.FormField.b35_Reimbursement_Amount.HTML>
+    <$client.env.FormField.b36_Airfair.HTML>
+    <$client.env.FormField.b37_Car_Rental_Total.HTML>
+    <$client.env.FormField.b38_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.b38_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.b39_Hotel_Total.HTML>
+    <$client.env.FormField.b40_Hotel_Total_From.HTML>
+    <$client.env.FormField.b40_Hotel_Total_To.HTML>
+    <$client.env.FormField.b41_Parking_Total.HTML>
+    <$client.env.FormField.b42_Parking_Total_From.HTML>
+    <$client.env.FormField.b42_Parking_Total_To.HTML>
+    <$client.env.FormField.b43_Meals.HTML>
+    <$client.env.FormField.b44_Cellular.HTML>
+    <$client.env.FormField.b45_Employee_Relations.HTML>
+    <$client.env.FormField.b46_Team_Staff_Events.HTML>
+    <$client.env.FormField.b47_Business_Meals.HTML>
+    <$client.env.FormField.b48_Other.HTML>
+    <$client.env.FormField.b49_Date.HTML>
+    <$client.env.FormField.b50_Description.HTML>
+    <$client.env.FormField.b51_Amount.HTML>
+    <$client.env.FormField.b52_Miles_Drive.HTML>
+    <$client.env.FormField.b53_Reimbursement_Amount.HTML>
+    <$client.env.FormField.b54_Airfair.HTML>
+    <$client.env.FormField.b55_Car_Rental_Total.HTML>
+    <$client.env.FormField.b56_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.b56_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.b57_Hotel_Total.HTML>
+    <$client.env.FormField.b58_Hotel_Total_From.HTML>
+    <$client.env.FormField.b59_Hotel_Total_To.HTML>
+    <$client.env.FormField.b60_Parking_Total.HTML>
+    <$client.env.FormField.b61_Parking_Total_From.HTML>
+    <$client.env.FormField.b61_Parking_Total_To.HTML>
+    <$client.env.FormField.b62_Meals.HTML>
+    <$client.env.FormField.b63_Cellular.HTML>
+    <$client.env.FormField.b64_Employee_Relations.HTML>
+    <$client.env.FormField.b65_Team_Staff_Events.HTML>
+    <$client.env.FormField.b66_Business_Meals.HTML>
+    <$client.env.FormField.b67_Other.HTML>
+    <$client.env.FormField.b68_Date.HTML>
+    <$client.env.FormField.b69_Description.HTML>
+    <$client.env.FormField.b70_Amount.HTML>
+    <$client.env.FormField.b71_Miles_Drive.HTML>
+    <$client.env.FormField.b72_Reimbursement_Amount.HTML>
+    <$client.env.FormField.b73_Airfair.HTML>
+    <$client.env.FormField.b74_Car_Rental_Total.HTML>
+    <$client.env.FormField.b75_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.b75_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.b76_Hotel_Total.HTML>
+    <$client.env.FormField.b77_Hotel_Total_From.HTML>
+    <$client.env.FormField.b77_Hotel_Total_To.HTML>
+    <$client.env.FormField.b78_Parking_Total.HTML>
+    <$client.env.FormField.b79_Parking_Total_From.HTML>
+    <$client.env.FormField.b79_Parking_Total_To.HTML>
+    <$client.env.FormField.b80_Meals.HTML>
+    <$client.env.FormField.b81_Cellular.HTML>
+    <$client.env.FormField.b82_Employee_Relations.HTML>
+    <$client.env.FormField.b83_Team_Staff_Events.HTML>
+    <$client.env.FormField.b84_Business_Meals.HTML>
+    <$client.env.FormField.b85_Other.HTML>
+    <$client.env.FormField.b86_Date.HTML>
+    <$client.env.FormField.b87_Description.HTML>
+    <$client.env.FormField.b88_Amount.HTML>
+    <$client.env.FormField.b89_Miles_Drive.HTML>
+    <$client.env.FormField.b90_Reimbursement_Amount.HTML>
+    <$client.env.FormField.b91_Airfair.HTML>
+    <$client.env.FormField.b92_Car_Rental_Total.HTML>
+    <$client.env.FormField.b93_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.b93_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.b94_Hotel_Total.HTML>
+    <$client.env.FormField.b95_Hotel_Total_From.HTML>
+    <$client.env.FormField.b95_Hotel_Total_To.HTML>
+    <$client.env.FormField.b96_Parking_Total.HTML>
+    <$client.env.FormField.b97_Parking_Total_From.HTML>
+    <$client.env.FormField.b97_Parking_Total_To.HTML>
+    <$client.env.FormField.b98_Meals.HTML>
+    <$client.env.FormField.b99_Cellular.HTML>
+    <$client.env.FormField.c00_Employee_Relations.HTML>
+    <$client.env.FormField.c01_Team_Staff_Events.HTML>
+    <$client.env.FormField.c02_Business_Meals.HTML>
+    <$client.env.FormField.c03_Other.HTML>
+    <$client.env.FormField.c04_Date.HTML>
+    <$client.env.FormField.c05_Description.HTML>
+    <$client.env.FormField.c06_Amount.HTML>
+    <$client.env.FormField.c07_Miles_Drive.HTML>
+    <$client.env.FormField.c08_Reimbursement_Amount.HTML>
+    <$client.env.FormField.c09_Airfair.HTML>
+    <$client.env.FormField.c10_Car_Rental_Total.HTML>
+    <$client.env.FormField.c11_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.c11_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.c12_Hotel_Total.HTML>
+    <$client.env.FormField.c13_Hotel_Total_From.HTML>
+    <$client.env.FormField.c13_Hotel_Total_To.HTML>
+    <$client.env.FormField.c14_Parking_Total.HTML>
+    <$client.env.FormField.c15_Parking_Total_From.HTML>
+    <$client.env.FormField.c15_Parking_Total_To.HTML>
+    <$client.env.FormField.c16_Meals.HTML>
+    <$client.env.FormField.c17_Cellular.HTML>
+    <$client.env.FormField.c18_Employee_Relations.HTML>
+    <$client.env.FormField.c19_Team_Staff_Events.HTML>
+    <$client.env.FormField.c20_Business_Meals.HTML>
+    <$client.env.FormField.c21_Other.HTML>
+    <$client.env.FormField.c22_Date.HTML>
+    <$client.env.FormField.c23_Description.HTML>
+    <$client.env.FormField.c24_Amount.HTML>
+    <$client.env.FormField.c25_Miles_Drive.HTML>
+    <$client.env.FormField.c26_Reimbursement_Amount.HTML>
+    <$client.env.FormField.c27_Airfair.HTML>
+    <$client.env.FormField.c28_Car_Rental_Total.HTML>
+    <$client.env.FormField.c29_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.c29_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.c30_Hotel_Total.HTML>
+    <$client.env.FormField.c31_Hotel_Total_From.HTML>
+    <$client.env.FormField.c31_Hotel_Total_To.HTML>
+    <$client.env.FormField.c32_Parking_Total.HTML>
+    <$client.env.FormField.c33_Parking_Total_From.HTML>
+    <$client.env.FormField.c33_Parking_Total_To.HTML>
+    <$client.env.FormField.c34_Meals.HTML>
+    <$client.env.FormField.c35_Cellular.HTML>
+    <$client.env.FormField.c36_Employee_Relations.HTML>
+    <$client.env.FormField.c37_Team_Staff_Events.HTML>
+    <$client.env.FormField.c38_Business_Meals.HTML>
+    <$client.env.FormField.c39_Other.HTML>
+    <$client.env.FormField.c40_Date.HTML>
+    <$client.env.FormField.c41_Description.HTML>
+    <$client.env.FormField.c42_Amount.HTML>
+    <$client.env.FormField.c43_Miles_Drive.HTML>
+    <$client.env.FormField.c44_Reimbursement_Amount.HTML>
+    <$client.env.FormField.c45_Airfair.HTML>
+    <$client.env.FormField.c46_Car_Rental_Total.HTML>
+    <$client.env.FormField.c47_Car_Rental_Date_From.HTML>
+    <$client.env.FormField.c47_Car_Rental_Date_To.HTML>
+    <$client.env.FormField.c48_Hotel_Total.HTML>
+    <$client.env.FormField.c49_Hotel_Total_From.HTML>
+    <$client.env.FormField.c49_Hotel_Total_To.HTML>
+    <$client.env.FormField.c50_Parking_Total.HTML>
+    <$client.env.FormField.c51_Parking_Total_From.HTML>
+    <$client.env.FormField.c51_Parking_Total_To.HTML>
+    <$client.env.FormField.c52_Meals.HTML>
+    <$client.env.FormField.c53_Cellular.HTML>
+    <$client.env.FormField.c54_Employee_Relations.HTML>
+    <$client.env.FormField.c55_Team_Staff_Events.HTML>
+    <$client.env.FormField.c56_Business_Meals.HTML>
+    <$client.env.FormField.c57_Other.HTML>
+    <$client.env.FormField.dummy_date.HTML>
+    <$client.env.FormField.expensorStamp.HTML>
+    <$client.env.FormField.EmployeeStamp.HTML>
+    <$client.env.FormField.a06_Expense_Type.HTML>
+    <$client.env.FormField.a42_Expense_Type.HTML>
+    <$client.env.FormField.a60_Expense_Type.HTML>
+    <$client.env.FormField.a78_Expense_Type.HTML>
+    <$client.env.FormField.a96_Expense_Type.HTML>
+    <$client.env.FormField.b14_Expense_Type.HTML>
+    <$client.env.FormField.b32_Expense_Type.HTML>
+    <$client.env.FormField.b50_Expense_Type.HTML>
+    <$client.env.FormField.b69_Expense_Type.HTML>
+    <$client.env.FormField.b87_Expense_Type.HTML>
+    <$client.env.FormField.c05_Expense_Type.HTML>
+    <$client.env.FormField.c23_Expense_Type.HTML>
+    <$client.env.FormField.c41_Expense_Type.HTML>
+    <$client.env.FormField.a24_Expense_Type.HTML>
+    <input id="config-path" type="text" value="<$link;/main/RedCarpet/FormTemplates/North_America_Manual_Expense_Report_Form/js/section_fields_Version_5.json>">
+    <$client.env.FormField.a09_Out_of_Pocket.HTML>
+    <$client.env.FormField.a10_Out_of_Pocket.HTML>
+    <$client.env.FormField.a12_Out_of_Pocket.HTML>
+    <$client.env.FormField.a14_Out_of_Pocket.HTML>
+    <$client.env.FormField.a16_Out_of_Pocket.HTML>
+    <$client.env.FormField.a17_Out_of_Pocket.HTML>
+    <$client.env.FormField.a18_Out_of_Pocket.HTML>
+    <$client.env.FormField.a19_Out_of_Pocket.HTML>
+    <$client.env.FormField.a20_Out_of_Pocket.HTML>
+    <$client.env.FormField.a21_Out_of_Pocket.HTML>
+    <$client.env.FormField.a22_Out_of_Pocket.HTML>
+    <$client.env.FormField.a27_Out_of_Pocket.HTML>
+    <$client.env.FormField.a28_Out_of_Pocket.HTML>
+    <$client.env.FormField.a30_Out_of_Pocket.HTML>
+    <$client.env.FormField.a32_Out_of_Pocket.HTML>
+    <$client.env.FormField.a34_Out_of_Pocket.HTML>
+    <$client.env.FormField.a35_Out_of_Pocket.HTML>
+    <$client.env.FormField.a36_Out_of_Pocket.HTML>
+    <$client.env.FormField.a37_Out_of_Pocket.HTML>
+    <$client.env.FormField.a38_Out_of_Pocket.HTML>
+    <$client.env.FormField.a39_Out_of_Pocket.HTML>
+    <$client.env.FormField.a40_Out_of_Pocket.HTML>
+    <$client.env.FormField.a45_Out_of_Pocket.HTML>
+    <$client.env.FormField.a46_Out_of_Pocket.HTML>
+    <$client.env.FormField.a48_Out_of_Pocket.HTML>
+    <$client.env.FormField.a50_Out_of_Pocket.HTML>
+    <$client.env.FormField.a52_Out_of_Pocket.HTML>
+    <$client.env.FormField.a53_Out_of_Pocket.HTML>
+    <$client.env.FormField.a54_Out_of_Pocket.HTML>
+    <$client.env.FormField.a55_Out_of_Pocket.HTML>
+    <$client.env.FormField.a56_Out_of_Pocket.HTML>
+    <$client.env.FormField.a57_Out_of_Pocket.HTML>
+    <$client.env.FormField.a58_Out_of_Pocket.HTML>
+    <$client.env.FormField.a63_Out_of_Pocket.HTML>
+    <$client.env.FormField.a64_Out_of_Pocket.HTML>
+    <$client.env.FormField.a66_Out_of_Pocket.HTML>
+    <$client.env.FormField.a68_Out_of_Pocket.HTML>
+    <$client.env.FormField.a70_Out_of_Pocket.HTML>
+    <$client.env.FormField.a71_Out_of_Pocket.HTML>
+    <$client.env.FormField.a72_Out_of_Pocket.HTML>
+    <$client.env.FormField.a73_Out_of_Pocket.HTML>
+    <$client.env.FormField.a74_Out_of_Pocket.HTML>
+    <$client.env.FormField.a75_Out_of_Pocket.HTML>
+    <$client.env.FormField.a76_Out_of_Pocket.HTML>
+    <$client.env.FormField.a81_Out_of_Pocket.HTML>
+    <$client.env.FormField.a82_Out_of_Pocket.HTML>
+    <$client.env.FormField.a84_Out_of_Pocket.HTML>
+    <$client.env.FormField.a86_Out_of_Pocket.HTML>
+    <$client.env.FormField.a88_Out_of_Pocket.HTML>
+    <$client.env.FormField.a89_Out_of_Pocket.HTML>
+    <$client.env.FormField.a90_Out_of_Pocket.HTML>
+    <$client.env.FormField.a91_Out_of_Pocket.HTML>
+    <$client.env.FormField.a92_Out_of_Pocket.HTML>
+    <$client.env.FormField.a93_Out_of_Pocket.HTML>
+    <$client.env.FormField.a94_Out_of_Pocket.HTML>
+    <$client.env.FormField.a99_Out_of_Pocket.HTML>
+    <$client.env.FormField.b00_Out_of_Pocket.HTML>
+    <$client.env.FormField.b04_Out_of_Pocket.HTML>
+    <$client.env.FormField.b02_Out_of_Pocket.HTML>
+    <$client.env.FormField.b06_Out_of_Pocket.HTML>
+    <$client.env.FormField.b07_Out_of_Pocket.HTML>
+    <$client.env.FormField.b08_Out_of_Pocket.HTML>
+    <$client.env.FormField.b09_Out_of_Pocket.HTML>
+    <$client.env.FormField.b10_Out_of_Pocket.HTML>
+    <$client.env.FormField.b11_Out_of_Pocket.HTML>
+    <$client.env.FormField.b12_Out_of_Pocket.HTML>
+    <$client.env.FormField.b17_Out_of_Pocket.HTML>
+    <$client.env.FormField.b18_Out_of_Pocket.HTML>
+    <$client.env.FormField.b20_Out_of_Pocket.HTML>
+    <$client.env.FormField.b22_Out_of_Pocket.HTML>
+    <$client.env.FormField.b24_Out_of_Pocket.HTML>
+    <$client.env.FormField.b25_Out_of_Pocket.HTML>
+    <$client.env.FormField.b26_Out_of_Pocket.HTML>
+    <$client.env.FormField.b27_Out_of_Pocket.HTML>
+    <$client.env.FormField.b28_Out_of_Pocket.HTML>
+    <$client.env.FormField.b29_Out_of_Pocket.HTML>
+    <$client.env.FormField.b30_Out_of_Pocket.HTML>
+    <$client.env.FormField.b35_Out_of_Pocket.HTML>
+    <$client.env.FormField.b36_Out_of_Pocket.HTML>
+    <$client.env.FormField.b38_Out_of_Pocket.HTML>
+    <$client.env.FormField.b40_Out_of_Pocket.HTML>
+    <$client.env.FormField.b42_Out_of_Pocket.HTML>
+    <$client.env.FormField.b43_Out_of_Pocket.HTML>
+    <$client.env.FormField.b44_Out_of_Pocket.HTML>
+    <$client.env.FormField.b45_Out_of_Pocket.HTML>
+    <$client.env.FormField.b46_Out_of_Pocket.HTML>
+    <$client.env.FormField.b47_Out_of_Pocket.HTML>
+    <$client.env.FormField.b48_Out_of_Pocket.HTML>
+    <$client.env.FormField.b53_Out_of_Pocket.HTML>
+    <$client.env.FormField.b54_Out_of_Pocket.HTML>
+    <$client.env.FormField.b56_Out_of_Pocket.HTML>
+    <$client.env.FormField.b58_Out_of_Pocket.HTML>
+    <$client.env.FormField.b61_Out_of_Pocket.HTML>
+    <$client.env.FormField.b62_Out_of_Pocket.HTML>
+    <$client.env.FormField.b63_Out_of_Pocket.HTML>
+    <$client.env.FormField.b64_Out_of_Pocket.HTML>
+    <$client.env.FormField.b65_Out_of_Pocket.HTML>
+    <$client.env.FormField.b66_Out_of_Pocket.HTML>
+    <$client.env.FormField.b67_Out_of_Pocket.HTML>
+    <$client.env.FormField.b72_Out_of_Pocket.HTML>
+    <$client.env.FormField.b73_Out_of_Pocket.HTML>
+    <$client.env.FormField.b75_Out_of_Pocket.HTML>
+    <$client.env.FormField.b77_Out_of_Pocket.HTML>
+    <$client.env.FormField.b79_Out_of_Pocket.HTML>
+    <$client.env.FormField.b80_Out_of_Pocket.HTML>
+    <$client.env.FormField.b81_Out_of_Pocket.HTML>
+    <$client.env.FormField.b82_Out_of_Pocket.HTML>
+    <$client.env.FormField.b83_Out_of_Pocket.HTML>
+    <$client.env.FormField.b84_Out_of_Pocket.HTML>
+    <$client.env.FormField.b85_Out_of_Pocket.HTML>
+    <$client.env.FormField.b90_Out_of_Pocket.HTML>
+    <$client.env.FormField.b91_Out_of_Pocket.HTML>
+    <$client.env.FormField.b93_Out_of_Pocket.HTML>
+    <$client.env.FormField.b95_Out_of_Pocket.HTML>
+    <$client.env.FormField.b97_Out_of_Pocket.HTML>
+    <$client.env.FormField.b98_Out_of_Pocket.HTML>
+    <$client.env.FormField.b99_Out_of_Pocket.HTML>
+    <$client.env.FormField.c00_Out_of_Pocket.HTML>
+    <$client.env.FormField.c01_Out_of_Pocket.HTML>
+    <$client.env.FormField.c02_Out_of_Pocket.HTML>
+    <$client.env.FormField.c03_Out_of_Pocket.HTML>
+    <$client.env.FormField.c08_Out_of_Pocket.HTML>
+    <$client.env.FormField.c09_Out_of_Pocket.HTML>
+    <$client.env.FormField.c11_Out_of_Pocket.HTML>
+    <$client.env.FormField.c13_Out_of_Pocket.HTML>
+    <$client.env.FormField.c15_Out_of_Pocket.HTML>
+    <$client.env.FormField.c16_Out_of_Pocket.HTML>
+    <$client.env.FormField.c17_Out_of_Pocket.HTML>
+    <$client.env.FormField.c18_Out_of_Pocket.HTML>
+    <$client.env.FormField.c19_Out_of_Pocket.HTML>
+    <$client.env.FormField.c20_Out_of_Pocket.HTML>
+    <$client.env.FormField.c21_Out_of_Pocket.HTML>
+    <$client.env.FormField.c26_Out_of_Pocket.HTML>
+    <$client.env.FormField.c27_Out_of_Pocket.HTML>
+    <$client.env.FormField.c29_Out_of_Pocket.HTML>
+    <$client.env.FormField.c31_Out_of_Pocket.HTML>
+    <$client.env.FormField.c33_Out_of_Pocket.HTML>
+    <$client.env.FormField.c34_Out_of_Pocket.HTML>
+    <$client.env.FormField.c35_Out_of_Pocket.HTML>
+    <$client.env.FormField.c36_Out_of_Pocket.HTML>
+    <$client.env.FormField.c37_Out_of_Pocket.HTML>
+    <$client.env.FormField.c38_Out_of_Pocket.HTML>
+    <$client.env.FormField.c39_Out_of_Pocket.HTML>
+    <$client.env.FormField.c44_Out_of_Pocket.HTML>
+    <$client.env.FormField.c45_Out_of_Pocket.HTML>
+    <$client.env.FormField.c47_Out_of_Pocket.HTML>
+    <$client.env.FormField.c49_Out_of_Pocket.HTML>
+    <$client.env.FormField.c51_Out_of_Pocket.HTML>
+    <$client.env.FormField.c52_Out_of_Pocket.HTML>
+    <$client.env.FormField.c53_Out_of_Pocket.HTML>
+    <$client.env.FormField.c54_Out_of_Pocket.HTML>
+    <$client.env.FormField.c55_Out_of_Pocket.HTML>
+    <$client.env.FormField.c56_Out_of_Pocket.HTML>
+    <$client.env.FormField.c57_Out_of_Pocket.HTML>
+    <$client.env.FormField.a17_Attendees.HTML>
+    <$client.env.FormField.a19_Attendees.HTML>
+    <$client.env.FormField.a20_Attendees.HTML>
+    <$client.env.FormField.a21_Attendees.HTML>
+    <$client.env.FormField.a35_Attendees.HTML>
+    <$client.env.FormField.a37_Attendees.HTML>
+    <$client.env.FormField.a38_Attendees.HTML>
+    <$client.env.FormField.a39_Attendees.HTML>
+    <$client.env.FormField.a53_Attendees.HTML>
+    <$client.env.FormField.a55_Attendees.HTML>
+    <$client.env.FormField.a56_Attendees.HTML>
+    <$client.env.FormField.a57_Attendees.HTML>
+    <$client.env.FormField.a71_Attendees.HTML>
+    <$client.env.FormField.a73_Attendees.HTML>
+    <$client.env.FormField.a74_Attendees.HTML>
+    <$client.env.FormField.a75_Attendees.HTML>
+    <$client.env.FormField.a89_Attendees.HTML>
+    <$client.env.FormField.a91_Attendees.HTML>
+    <$client.env.FormField.a92_Attendees.HTML>
+    <$client.env.FormField.a93_Attendees.HTML>
+    <$client.env.FormField.b07_Attendees.HTML>
+    <$client.env.FormField.b09_Attendees.HTML>
+    <$client.env.FormField.b10_Attendees.HTML>
+    <$client.env.FormField.b11_Attendees.HTML>
+    <$client.env.FormField.b25_Attendees.HTML>
+    <$client.env.FormField.b27_Attendees.HTML>
+    <$client.env.FormField.b28_Attendees.HTML>
+    <$client.env.FormField.b29_Attendees.HTML>
+    <$client.env.FormField.b43_Attendees.HTML>
+    <$client.env.FormField.b45_Attendees.HTML>
+    <$client.env.FormField.b46_Attendees.HTML>
+    <$client.env.FormField.b47_Attendees.HTML>
+    <$client.env.FormField.b62_Attendees.HTML>
+    <$client.env.FormField.b64_Attendees.HTML>
+    <$client.env.FormField.b65_Attendees.HTML>
+    <$client.env.FormField.b66_Attendees.HTML>
+    <$client.env.FormField.b80_Attendees.HTML>
+    <$client.env.FormField.b82_Attendees.HTML>
+    <$client.env.FormField.b83_Attendees.HTML>
+    <$client.env.FormField.b84_Attendees.HTML>
+    <$client.env.FormField.b98_Attendees.HTML>
+    <$client.env.FormField.c00_Attendees.HTML>
+    <$client.env.FormField.c01_Attendees.HTML>
+    <$client.env.FormField.c02_Attendees.HTML>
+    <$client.env.FormField.c16_Attendees.HTML>
+    <$client.env.FormField.c18_Attendees.HTML>
+    <$client.env.FormField.c19_Attendees.HTML>
+    <$client.env.FormField.c20_Attendees.HTML>
+    <$client.env.FormField.c34_Attendees.HTML>
+    <$client.env.FormField.c36_Attendees.HTML>
+    <$client.env.FormField.c37_Attendees.HTML>
+    <$client.env.FormField.c38_Attendees.HTML>
+    <$client.env.FormField.c52_Attendees.HTML>
+    <$client.env.FormField.c54_Attendees.HTML>
+    <$client.env.FormField.c55_Attendees.HTML>
+    <$client.env.FormField.c56_Attendees.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator_V2.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>"></script> 
+<script type="text/javascript" src="<$link;/map_images/main/RedCarpet/FormTemplates/North_America_Manual_Expense_Report_Form/js/script_version_5.js>" defer></script> 
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = $('#na-expense-form');
+const sectionsRoot = $('#form-inner');
+// signature section clearing on task reopen
+const isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const employeeStamp = "<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>";
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonSaveAndComplete', 'onclick': null});
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonPrint', 'onclick': null});
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonComplete', 'onclick': null});
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    angular.element(window).ready(function() {angular.element('#divLoader').hide();});
+});
+$( window ).resize(function() { 
+    document.getElementById('over').style.width=''; 
+}); 
+</script>

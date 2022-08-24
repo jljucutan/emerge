@@ -1,0 +1,531 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <p class="h5"><strong>Electronic Signature</strong></p>
+    <p>
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <div class="row">
+      <div class="col-lg-12">
+        <strong>Type your Name:</strong> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'a41_date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a41_date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a01_name.prompt>
+        <$client.env.FormField.a02_outside_employment.prompt>
+        <$client.env.FormField.a03_name_of_employer.prompt>
+        <$client.env.FormField.a04_position.prompt>
+        <$client.env.FormField.a05_principal_responsibilities.prompt>
+        <$client.env.FormField.a06_outside_business_interest.prompt>
+        <$client.env.FormField.a07_outside_business_interest_1.prompt>
+        <$client.env.FormField.a08_nature_of_interest_1.prompt>
+        <$client.env.FormField.a09_nature_of_interest_2.prompt>
+        <$client.env.FormField.a09_outside_business_interest_2.prompt>
+        <$client.env.FormField.a10_outside_business_interest_3.prompt>
+        <$client.env.FormField.a11_nature_of_interest_3.prompt>
+        <$client.env.FormField.a12_outside_positions.prompt>
+        <$client.env.FormField.a13_name_of_organization_1.prompt>
+        <$client.env.FormField.a14_your_title_1.prompt>
+        <$client.env.FormField.a15_beginning_date_of_service_1.prompt>
+        <$client.env.FormField.a16_end_date_of_service_1.prompt>
+        <$client.env.FormField.a17_name_of_organization_2.prompt>
+        <$client.env.FormField.a18_your_title_2.prompt>
+        <$client.env.FormField.a19_beginning_date_of_service_2.prompt>
+        <$client.env.FormField.a20_end_date_of_service_2.prompt>
+        <$client.env.FormField.a20_name_of_organization_3.prompt>
+        <$client.env.FormField.a21_your_title_3.prompt>
+        <$client.env.FormField.a22_beginning_date_of_service_3.prompt>
+        <$client.env.FormField.a23_end_date_of_service_3.prompt>
+        <$client.env.FormField.a24_name_of_organization_4.prompt>
+        <$client.env.FormField.a25_name_of_organization_5.prompt>
+        <$client.env.FormField.a25_your_title_4.prompt>
+        <$client.env.FormField.a26_beginning_date_of_service_4.prompt>
+        <$client.env.FormField.a26_your_title_5.prompt>
+        <$client.env.FormField.a27_beginning_date_of_service_5.prompt>
+        <$client.env.FormField.a27_end_date_of_service_4.prompt>
+        <$client.env.FormField.a28_end_date_of_service_5.prompt>
+        <$client.env.FormField.a28_interest_in_amica_companies.prompt>
+        <$client.env.FormField.a29_organization_and_details_1.prompt>
+        <$client.env.FormField.a30_organization_and_details_2.prompt>
+        <$client.env.FormField.a31_organization_and_details_3.prompt>
+        <$client.env.FormField.a31_relationship_impair_judgment_concerning_amica.prompt>
+        <$client.env.FormField.a32_relationship_impair_judgment_concerning_amica_explanation.prompt>
+        <$client.env.FormField.a33_personal_financial_interest_impair_judgment_concerning_amica.prompt>
+        <$client.env.FormField.a34_personal_financial_interest_impair_judgment_concerning_amica_explanation.prompt>
+        <$client.env.FormField.a35_accepted_gifts_impair_judgment_concerning_amica.prompt>
+        <$client.env.FormField.a36_accepted_gifts_impair_judgment_concerning_amica_explanation.prompt>
+        <$client.env.FormField.a37_transaction_involving_family_members.prompt>
+        <$client.env.FormField.a38_transaction_involving_family_members_explanation.prompt>
+        <$client.env.FormField.a39_family_member_materially_conflict.prompt>
+        <$client.env.FormField.a40_family_member_materially_conflict_explanation.prompt>
+        <$client.env.FormField.a41_date.prompt>
+        <$client.env.FormField.a42_print_name.prompt>
+        <$client.env.FormField.a43_signature.prompt>
+        <$client.env.FormField.a44_position.prompt>
+        <$client.env.FormField.a45_made_changes_this_year.prompt>
+        <$client.env.FormField.a46_Agree.prompt>
+        <$client.env.FormField.a47_review.prompt>
+        <$client.env.FormField.Code_of_Ethics.prompt>
+        <$client.env.FormField.NonProfit_Board_Service.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-12">
+
+      <p class="text-center h5 bg-dark-blue py-1 border-bottom border-10 border-light-blue text-white">Conflict of Interest and Disclosure Statement</p>
+
+      <p>As leaders and decision makers at Amica Mutual Insurance Company and its affiliated entities (Amica), you are in a position to influence the course and outcome of the operations of the company. When you are engaged in any activities related to Amica, you owe a primary duty to put the interests of Amica and its policyholders over your own. It is imperative that you avoid any investment, interest, association or relationship that interferes with or might reasonably appear to interfere with your independent exercise of judgment in Amica’s best interest.</p>
+
+      <p>In Amica’s regulated and complex business environment, we are required to document our administration of and adherence to our Code of Ethics, and disclose any potential conflicts of interest. The attached Conflict of Interest Compliance and Disclosure Statement (Statement) is required to be completed annually by each Officer and others in positions that could encounter potential conflicts of interest. You are also required to update your Statement if your circumstances as reported on the Statement change.</p>
+
+      <p>In the course of daily business operations, employers may be faced with new or unique ethical situations or circumstances. It is the company’s policy that prudent business judgment be employed in applying company policies. Any questions regarding conflict of interest or adherence to the Code of Ethics may be posed in confidence to the Ethics Officer.</p>
+
+      <p>The information provided in the Statement will remain confidential and will be used only to administer Amica’s Code of Ethics in accordance with various laws and regulations to which the Company is subject. The Statements will be reviewed annually by the Ethics Officer.</p>
+
+      <p class="mb-5">Please complete and submit the below Conflict of Interest Compliance and Disclosure Questionnaire.</p>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <p class="text-center h5 bg-dark-blue py-1 mb-4 border-bottom border-10 border-light-blue text-white">Amica Conflict of Interest<br>Compliance and Disclosure Questionnare</p>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-sm-1 pt-2">Name:</div>
+    <div class="col-sm-7">
+      <$client.env.FormField.a01_name.HTML>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <p>
+        <strong>1) Outside Employment</strong>
+      </p>
+      <p>Do you have any outside employment other than your employment by Amica?</p>
+      <$client.env.FormField.a02_outside_employment.HTML>
+    </div>
+  </div>
+
+  <fieldset>
+    <div class="row mb-2">
+      <div class="col-sm-3 col-sm-offset-1 pt-2">Name of Employer</div>
+      <div class="col-sm-6">
+        <$client.env.FormField.a03_name_of_employer.HTML>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-sm-3 col-sm-offset-1 pt-2">Position</div>
+      <div class="col-sm-6">
+        <$client.env.FormField.a04_position.HTML>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-sm-3 col-sm-offset-1 pt-2">Principal Responsibilities</div>
+      <div class="col-sm-6">
+        <$client.env.FormField.a05_principal_responsibilities.HTML>
+      </div>
+    </div>
+  </fieldset>
+
+<br>&nbsp;
+  <div class="row">
+    <div class="col-sm-12">
+      <p>
+        <strong>2) Outside Business Interest</strong><br>
+        Are you involved in any outside business interests (i.e, owner, investor, officer, trustee, director, partner, etc.)? Investments in securities of publicly held companies in which you are not an employee, director or officer and do not hold a substantial or controlling interest need not be disclosed.
+      </p>
+      <$client.env.FormField.a06_outside_business_interest.HTML>
+    </div>
+  </div>
+
+  <fieldset class="row mb-3">
+    <div class="col-sm-offset-1 col-sm-10">
+      Outside Business Interest
+      <$client.env.FormField.a07_outside_business_interest_1.HTML>
+      Nature of Interest
+      <$client.env.FormField.a08_nature_of_interest_1.HTML>
+      Outside Business Interest
+      <$client.env.FormField.a09_outside_business_interest_2.HTML>
+      Nature of Interest
+      <$client.env.FormField.a09_nature_of_interest_2.HTML>
+      Outside Business Interest
+      <$client.env.FormField.a10_outside_business_interest_3.HTML>
+      Nature of Interest
+      <$client.env.FormField.a11_nature_of_interest_3.HTML>
+    </div>
+  </fieldset>
+
+<br>&nbsp;
+  <div class="row">
+    <div class="col-sm-12">
+      <p>
+        <strong>3) Outside Positions</strong><br>
+        Do you hold any Board of Trustee positions in any “for-profit” as well as “not-for-profit” entities and governmental boards, commissions, elected or appointed governmental offices or task forces that are related to your employment at Amica? Do not include religious, civic, or political organizations if the organization does not do business with Amica.
+      </p>
+      <$client.env.FormField.a12_outside_positions.HTML>
+    </div>
+  </div>
+
+  <fieldset class="mb-2">
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Name of Organization</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a13_name_of_organization_1.HTML>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Your Title</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a14_your_title_1.HTML>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Beginning Date of Service</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a15_beginning_date_of_service_1.HTML>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Ending Date (if applicable)</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a16_end_date_of_service_1.HTML>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Name of Organization</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a17_name_of_organization_2.HTML>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Your Title</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a18_your_title_2.HTML>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Beginning Date of Service</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a19_beginning_date_of_service_2.HTML>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Ending Date (if applicable)</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a20_end_date_of_service_2.HTML>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Name of Organization</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a20_name_of_organization_3.HTML>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Your Title</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a21_your_title_3.HTML>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Beginning Date of Service</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a22_beginning_date_of_service_3.HTML>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Ending Date (if applicable)</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a23_end_date_of_service_3.HTML>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Name of Organization</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a24_name_of_organization_4.HTML>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Your Title</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a25_your_title_4.HTML>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Beginning Date of Service</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a26_beginning_date_of_service_4.HTML>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Ending Date (if applicable)</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a27_end_date_of_service_4.HTML>
+      </div>
+    </div>
+
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Name of Organization</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a25_name_of_organization_5.HTML>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Your Title</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a26_your_title_5.HTML>
+      </div>
+    </div>
+    <div class="row mb-1">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Beginning Date of Service</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a27_beginning_date_of_service_5.HTML>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-offset-1 col-sm-3 pt-2">Ending Date (if applicable)</div>
+      <div class="col-sm-7">
+        <$client.env.FormField.a28_end_date_of_service_5.HTML>
+      </div>
+    </div>
+
+  </fieldset>
+
+<br>&nbsp;
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <p>
+        <strong>4) Interest in companies doing business with Amica</strong><br>
+        Do you or any family members (members of your immediate family or household such as parents, spouse, children or other relatives with which you share any common and substantial financial interests) have any interests in any company that you know to be doing business with Amica? Investments in securities of publicly held companies in which the family member is not an employee, director or officer and does not hold a substantial or controlling interest need not be disclosed.
+      </p>
+      <$client.env.FormField.a28_interest_in_amica_companies.HTML>
+      <fieldset>
+        Name of Organization and Details
+        <$client.env.FormField.a29_organization_and_details_1.HTML>
+        Name of Organization and Details
+        <$client.env.FormField.a30_organization_and_details_2.HTML>
+        Name of Organization and Details
+        <$client.env.FormField.a31_organization_and_details_3.HTML>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <p>
+        <strong>5) To the best of your knowledge, have you or any family member (as previously defined in this document)</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-sm-offset-1 col-sm-11">
+      A) had any relationships or engage in any activities that might impair your independence of judgment concerning Amica business?
+      <$client.env.FormField.a31_relationship_impair_judgment_concerning_amica.HTML>
+      <fieldset class="mb-2">
+        Explanatory comments or additional information necessary for appropriate full disclosure.
+        <$client.env.FormField.a32_relationship_impair_judgment_concerning_amica_explanation.HTML>
+      </fieldset>
+      B) had any personal financial interests that might impair your independence of judgment or influence decisions or actions concerning Amica business in the direction of such personal financial interest?
+      <$client.env.FormField.a33_personal_financial_interest_impair_judgment_concerning_amica.HTML>
+      <fieldset class="mb-2">
+        Explanatory comments or additional information necessary for appropriate full disclosure.
+        <$client.env.FormField.a34_personal_financial_interest_impair_judgment_concerning_amica_explanation.HTML>
+      </fieldset>
+      C) accepted gifts, benefits, or unusual hospitality that might tend in any way to impair your independence of judgment or affect your decisions or actions concerning Amica business?
+      <$client.env.FormField.a35_accepted_gifts_impair_judgment_concerning_amica.HTML>
+      <fieldset>
+        Explanatory comments or additional information necessary for appropriate full disclosure.
+        <$client.env.FormField.a36_accepted_gifts_impair_judgment_concerning_amica_explanation.HTML>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <p>
+        <strong>6) To the best of your knowledge, is any transaction contemplated, involving you or a family member, which, if consummated, would require you to answer yes to any of the preceding items?</strong>
+      </p>
+      <$client.env.FormField.a37_transaction_involving_family_members.HTML>
+      <fieldset>
+        Explanatory comments or additional information necessary for appropriate full disclosure.
+        <$client.env.FormField.a38_transaction_involving_family_members_explanation.HTML>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <p>
+        <strong>7) To the best of your knowledge, are you aware of any interest or activity on your part, or on the part of any family member, which is materially in conflict with the interest of Amica?</strong>
+        <$client.env.FormField.a39_family_member_materially_conflict.HTML>
+        <fieldset>
+          Explanatory comments or additional information necessary for appropriate full disclosure.
+          <$client.env.FormField.a40_family_member_materially_conflict_explanation.HTML>
+        </fieldset>
+      </p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-sm-12">
+      <p>
+        <strong>Additional Information:</strong><br>  
+      </p>
+      Please use this section to include any additional information necessary for full disclosure. The question or section number should be referenced.
+      <$client.env.FormField.additional_information.HTML>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-offset-1 col-sm-11">
+      <div class="d-sm-flex align-items-center">
+        <div><$client.env.FormField.Code_of_Ethics.HTML></div>
+        <a class="policy-link" href="https://amicamutual.sharepoint.com/sites/intranet/corporateexecutive/ethics/Documents/1856%20(1_22)%20Amica%208.5x11%20Code%20of%20Ethics_FAR.pdf" target="_blank">Click here to view the Amica Code of Ethics</a>
+      </div>
+      <div class="d-sm-flex align-items-center">
+        <div><$client.env.FormField.NonProfit_Board_Service.HTML></div>
+        <a class="policy-link" href="https://amicamutual.sharepoint.com/sites/intranet/corporateexecutive/Pages/NonProfitBoardService.aspx" target="_blank">Click here to read the Non-profit Board Service</a>
+      </div>
+    </div>
+  </div>
+<br>&nbsp;
+<br>&nbsp;
+<div class="row">
+    <div class="col-sm-offset-1 col-sm-11">
+      <p>
+        <strong>Affirmations:</strong>
+      </p>
+      <p>
+        <strong>By My Signature below, I certify that I have:</strong>
+      </p>
+      <ul class="list-bullet">
+        <li>
+          read Amica’s Code of Ethics 
+        </li>
+        <li>
+          read Amica’s policy on Non-profit Board Service
+        </li>
+        <li>agreed to abide by the policies summarized therein; and</li>
+        <li>truthfully answered all the questions asked in this Statement</li>
+      </ul>
+    </div>
+  </div>
+
+<br>&nbsp;
+
+  <div class="row mb-2">
+    <div class="col-sm-offset-1 col-sm-2 pt-2 ps-sm-3">Signature</div>
+    <div class="col-sm-5">
+      <$client.env.FormField.a43_signature.HTML>
+    </div>
+    <div class="col-sm-1 pt-2 ps-sm-3">Date</div>
+    <div class="col-sm-3">
+      <$client.env.FormField.a41_date.HTML>
+    </div>
+  </div>
+
+<br>&nbsp;
+<br>&nbsp;
+
+  <hr class="lifesuite__hr">
+  <div class="row" id="formButtons" style="display: none;">
+      <div class="sign-btn-group">
+          <$client.env.FormButtons>
+      </div>
+  </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.a42_print_name.HTML>
+    <$client.env.FormField.a44_position.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Conflict_of_Interest/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Conflict_of_Interest/js/bluebird.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Conflict_of_Interest/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const SECTION_CONFIG_PATH = '<$link;/main/RedCarpet/FormTemplates/Conflict_of_Interest/js/config.json>';
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

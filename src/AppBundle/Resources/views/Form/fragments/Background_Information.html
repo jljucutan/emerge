@@ -1,0 +1,648 @@
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','a49_Date');xbObj('eSignature1').value='';" style="margin-top: 10px;">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a49_Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>
+/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return
+SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.a06_Company.prompt>
+<$client.env.FormField.a07_Position.prompt>
+<$client.env.FormField.a08_Department.prompt>
+<$client.env.FormField.a09_JobPosting_Date.prompt>
+<$client.env.FormField.a10_First_Name.prompt>
+<$client.env.FormField.a12_Last_Name.prompt>
+<$client.env.FormField.a14_Street_Address.prompt>
+<$client.env.FormField.a15_City.prompt>
+<$client.env.FormField.a18_State.prompt>
+<$client.env.FormField.a19_Postal_Code.prompt>
+<$client.env.FormField.a20_Primary_Phone.prompt>
+<$client.env.FormField.a21_Secondary_Phone.prompt>
+<$client.env.FormField.a22_Email.prompt>
+<$client.env.FormField.a23_Have_you_ever_been_convicted.prompt>
+<$client.env.FormField.a24_Date_Convicted.prompt>
+<$client.env.FormField.a25_City_Convicted.prompt>
+<$client.env.FormField.a26_State_Convicted.prompt>
+<$client.env.FormField.a27_Conviction.prompt>
+<$client.env.FormField.a28_Date_Convicted.prompt>
+<$client.env.FormField.a29_City_Convicted.prompt>
+<$client.env.FormField.a30_State_Convicted.prompt>
+<$client.env.FormField.a31_Conviction.prompt>
+<$client.env.FormField.a32_Date_Convicted.prompt>
+<$client.env.FormField.a33_City_Convicted.prompt>
+<$client.env.FormField.a34_State_Convicted.prompt>
+<$client.env.FormField.a35_Conviction.prompt>
+<$client.env.FormField.a36_Date_Convicted.prompt>
+<$client.env.FormField.a37_City_Convicted.prompt>
+<$client.env.FormField.a38_State_Convicted.prompt>
+<$client.env.FormField.a39_Conviction.prompt>
+<$client.env.FormField.a40_Date_Convicted.prompt>
+<$client.env.FormField.a41_City_Convicted.prompt>
+<$client.env.FormField.a42_State_Convicted.prompt>
+<$client.env.FormField.a43_Conviction.prompt>
+<$client.env.FormField.a44_Date_Convicted.prompt>
+<$client.env.FormField.a45_City_Convicted.prompt>
+<$client.env.FormField.a46_State_Convicted.prompt>
+<$client.env.FormField.a47_Conviction.prompt>
+<$client.env.FormField.a48_Name.prompt>
+<$client.env.FormField.a49_Date.prompt>
+<$client.env.FormField.a50_Signature.prompt>
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+              <div id="container" class="form-group">  
+
+<!--mainTable-->
+               <div class="row h1margin blueBackGround">
+                <div class="col-xs-12 col-md-12">
+                  <h1 class="h1Title" style="font-size:25pt"><strong>BACKGROUND INFORMATION</strong></h1>
+                </div>  
+              </div>
+
+<div class="row">
+                <div class="col-xs-7 col-md-10">
+                </div>
+                <div class="col-xs-1 col-md-1">
+                <div class="pull-right triangle-5">
+                </div>
+                </div>
+              </div>
+
+              <div class="row">
+              <div class="col-xs-12 col-md-12">
+                &nbsp;
+              </div>
+              </div>
+          <div class="content">
+
+            <div class="row">
+              <div class="col-lg-12">
+                <template id="intro-nyulh">In connection with the offer of employment, you are required to complete a background check. Please carefully review and complete this form and submit as soon as possible.</template>
+                <template id="intro-ntv">In connection with the offer of your unpaid volunteer assignment, you are required to complete a background check. Please carefully review and complete the below fields.</template>
+                <p id="intro"></p>
+              </div>
+            </div>
+
+              <div class="row"><div class="col-xs-12 col-md-12">&nbsp;</div></div>
+ 
+              <div class="row boxed">
+                  <div class="col-xs-12 col-md-12">
+                    <h5 class="blueFont"><b>Personal Information</b></h5>
+                  </div>
+              </div>
+              
+              <div class="row boxed">
+                  <div class="col-xs-12 col-md-3 bordered2 verticalAlign">
+                    <h6>First Name</h6>
+                  </div>
+                  <div class="col-xs-12 col-md-3 bordered2 verticalAlign textInput">
+                    <$client.env.FormField.a10_First_Name.HTML>
+                  </div>
+                  <div class="col-xs-12 col-md-3 bordered2 verticalAlign">
+                    <h6>Last Name</h6>
+                  </div>
+                  <div class="col-xs-12 col-md-3 bordered2 verticalAlign textInput">
+                    <$client.env.FormField.a12_Last_Name.HTML>
+                  </div>
+              </div>
+
+              <div class="row boxed">
+                  <div class="col-xs-12 col-md-3 bordered2 verticalAlign">
+                    <h6>Street Address</h6>
+                  </div>
+                  <div class="col-xs-12 col-md-9 bordered2 verticalAlign textInput">
+                    <$client.env.FormField.a14_Street_Address.HTML>
+                  </div>
+              </div>
+  
+              <div class="row boxed">
+                  <div class="col-xs-12 col-md-3 bordered2 verticalAlign">
+                    <h6>City</h6>
+                  </div>
+                  <div class="col-xs-12 col-md-3 bordered2 verticalAlign textInput">
+                    <$client.env.FormField.a15_City.HTML>
+                  </div>
+                  <div class="col-xs-12 col-md-3 bordered2 verticalAlign">
+                    <h6>State</h6>
+                  </div>
+                  <div class="col-xs-12 col-md-3 bordered2 verticalAlign textInput">
+                    <$client.env.FormField.a18_State.HTML>
+                  </div>
+              </div>             
+  
+              <div class="row boxed">
+                  <div class="col-xs-12 col-md-3 bordered2 verticalAlign">
+                    <h6>Postal Code</h6>
+                  </div>
+                  <div class="col-xs-12 col-md-9 bordered2 verticalAlign textInput">
+                    <$client.env.FormField.a19_Postal_Code.HTML>
+                  </div>
+              </div>
+
+              <div class="row boxed">
+                  <div class="col-xs-12 col-md-3 bordered2 verticalAlign">
+                    <h6>Email Address</h6>
+                  </div>
+                  <div class="col-xs-12 col-md-9 bordered2 verticalAlign textInput">
+                    <$client.env.FormField.a22_Email.HTML>
+                  </div>
+              </div>
+ 
+              <div class="row boxed">
+                  <div class="col-xs-12 col-md-3 bordered2 bordered2bottom verticalAlign">
+                    <h6>Primary Phone #</h6>
+                  </div>
+                  <div class="col-xs-12 col-md-3 bordered2 bordered2bottom verticalAlign textInput">
+                    <$client.env.FormField.a20_Primary_Phone.HTML>
+                  </div>
+                  <div class="col-xs-12 col-md-3 bordered2 bordered2bottom verticalAlign">
+                    <h6>Secondary Phone #</h6>
+                  </div>
+                  <div class="col-xs-12 col-md-3 bordered2 bordered2bottom verticalAlign textInput">
+                    <$client.env.FormField.a21_Secondary_Phone.HTML>
+                  </div>
+              </div>
+
+              <div class="row"><div class="col-xs-12 col-md-12">&nbsp;</div></div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                    <ol type="1">
+                        <li>
+                            <p>
+                               Have you ever been convicted of, pled guilty to, or entered a plea of “no contest” to a felony or misdemeanor?  In your response, you need not disclose misdemeanor traffic violations as long as: (i) the violation did not cause injury or death to another; (ii) the violation was not a conviction for driving under the influence or driving while intoxicated; or (iii) you are not applying for a position that involves driving as part of your employment responsibilities.
+                            </p>
+                            <br>
+                            <$client.env.FormField.a23_Have_you_ever_been_convicted.HTML>
+                            <br>
+                            <p>
+                                If yes, please list any convictions, including but not limited to those stated in the initial question above.
+                            </p>
+                        </li>
+                    </ol>
+                </div>
+              </div>
+
+              <div class="row"><div class="col-xs-12 col-md-12">&nbsp;</div></div>
+
+              <div id="convictions">
+                <div class="row">
+                  <div class="col-md-2 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Date:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a24_Date_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>City:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a25_City_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>State:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a26_State_Convicted.HTML>
+                      </div>
+                  </div>
+                  
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Conviction:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a27_Conviction.HTML>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="row"><div class="col-xs-12 col-md-12">&nbsp;</div></div>
+
+                <div class="row">
+                  <div class="col-md-2 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Date:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a28_Date_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>City:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a29_City_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>State:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a30_State_Convicted.HTML>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Conviction:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a31_Conviction.HTML>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="row"><div class="col-xs-12 col-md-12">&nbsp;</div></div>
+
+                <div class="row">
+                  <div class="col-md-2 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Date:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a32_Date_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>City:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a33_City_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>State:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a34_State_Convicted.HTML>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Conviction:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a35_Conviction.HTML>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="row"><div class="col-xs-12 col-md-12">&nbsp;</div></div>
+
+
+                <div class="row">
+                  <div class="col-md-2 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Date:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a36_Date_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>City:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a37_City_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>State:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a38_State_Convicted.HTML>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Conviction:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a39_Conviction.HTML>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="row"><div class="col-xs-12 col-md-12">&nbsp;</div></div>
+
+
+                <div class="row">
+                  <div class="col-md-2 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Date:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a40_Date_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>City:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a41_City_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>State:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a42_State_Convicted.HTML>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Conviction:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a43_Conviction.HTML>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="row"><div class="col-xs-12 col-md-12">&nbsp;</div></div>
+
+
+                <div class="row">
+                  <div class="col-md-2 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Date:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a44_Date_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>City:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a45_City_Convicted.HTML>
+                      </div>
+                  </div>
+                  <div class="col-md-3 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>State:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a46_State_Convicted.HTML>
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="i-block">
+                          <h6>Conviction:</h6>
+                      </div>
+                      <div class="i-block">
+                          <$client.env.FormField.a47_Conviction.HTML>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row"><div class="col-xs-12 col-md-12">&nbsp;</div></div>
+
+              <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                      <template id="sig-p-nyulh-1">Please note: NY Law prohibits unjustified discrimination on the basis of criminal history. Failure to list a conviction will be considered falsification of the application. </template>
+                      <strong></strong>
+                    </p>
+                    <p>
+                      <template id="sig-p-nyulh-2">By electronically signing this form, I attest that the information provided is truthful and complete. I further acknowledge that provision of incorrect or incomplete information shall be a basis for rescission of the offer of employment or termination of employment.</template>
+                      <template id="sig-p-ntv-2">By electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.</template>
+                      <strong></strong>
+                    </p>
+                    <p id="sig-p-ntv-1">
+                        <strong></strong>
+                    </p>
+                </div>
+              </div>
+              <div class="row"><div class="col-xs-12 col-md-12">&nbsp;</div></div>
+ 
+              <div class="row">
+                <div class="col-xs-12 col-md-7">
+                  <$client.env.FormField.a48_Name.HTML>
+                  <label class="blueFont"><b>Name</b></label>
+                </div>
+                <div class="col-xs-12 col-md-5">
+                  <$client.env.FormField.a49_Date.HTML>
+                  <label class="blueFont"><b>Date</b></label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-7">
+                  <$client.env.FormField.a50_Signature.HTML>
+                  <label class="blueFont"><b>Signature</b></label>
+                </div>
+                <div class="visible-md visible-lg col-xs-12 col-md-1">
+                  &nbsp;
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                    <div class="footer-image-wrapper pull-right">
+                        <img src="<$link;/main/RedCarpet/FormTemplates/FormSupport/bottomLogo.png>" alt="NYU Langone Health footer logo" class="img-responsive">
+                    </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12 text-right">
+                     <span style="font-size:8pt; color: #53565a;">Last Revision: 6/8/2021</span>
+                </div>
+              </div>
+
+             </div><!-- end content -->
+
+
+<!--mainTable-->    <div class="content">
+        <div class="col-xs-12 col-md-12">
+          <hr class="lifesuite__hr"> 
+        </div>   
+                             </div>
+                    
+             
+    </div>
+
+
+<div style="display:none;">
+<$client.env.FormField.SignatureVerification.HTML>
+<$client.env.FormField.a01_Intro.HTML>
+<$client.env.FormField.Sig_paragraph_1.HTML>
+<$client.env.FormField.Sig_paragraph_2.HTML>
+</div>
+<div class="content">
+<$client.env.FormButtons> 
+<div>
+</form>
+<script>
+ChangeCalendarIcons(); //for popup calendar
+
+
+const IS_NTV = <$client.env.eval(client.tEventManagers_Person_10.UserGuid.Length()<1?'true':'false')>;
+$(window).load(function() { 
+  $("input[type=text]").addClass('lifesuite__text-input');  
+ $("input[type=text].hasDatepicker").addClass('dateField'); 
+   $("select").addClass('lifesuite__select-input'); 
+   $("input[type=radio]").addClass('lifesuite__radio'); 
+        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+        $("textarea").addClass('lifesuite__textarea-input'); 
+        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+        if (window.NodeList && !NodeList.prototype.forEach) {
+            NodeList.prototype.forEach = Array.prototype.forEach;
+        }
+        var chks = document.querySelectorAll('.myClass');
+        chks.forEach(function(el) {
+            el.addEventListener('change', function(){
+                var chkd = el.checked;
+                chks.forEach(function(el2){
+                    el2.checked = false;
+                });
+                el.checked = chkd;
+            });
+        });
+  const updateOptionalRequired = function(el) {
+    "use strict";
+    let fieldOptionalRequired = '[name$=".a25_City_Convicted"], [name$=".a24_Date_Convicted_display"], [name$=".a26_State_Convicted"], [name$=".a27_Conviction"]';
+    if (el.value == 'Yes' && el.checked) {
+      document.querySelectorAll(fieldOptionalRequired).forEach(function(elmTarget,k) {
+        elmTarget.classList.add('ng-invalid');
+      });
+      return;
+    }
+    document.querySelectorAll(fieldOptionalRequired).forEach(function(elmTarget,k) {
+      elmTarget.classList.remove('ng-invalid');
+    });
+    return;
+  };
+  document.querySelectorAll('[name$=".a23_Have_you_ever_been_convicted"]').forEach(function(el,k){
+    el.addEventListener('change', function() {
+      updateOptionalRequired(el);
+    });
+    updateOptionalRequired(el);
+  });
+  $('.disable-date').parent().find('input').prop('disabled', 'disabled');
+  if ( !$('[name$=".a49_Date_display"]').datepicker('getDate') ) {
+    $('[name$=".a49_Date_display"]').datepicker('setDate', new Date());
+  }
+});  
+
+
+//Fixes to modal issue when viewing in mobile devices 
+
+$( window ).resize(function() { 
+document.getElementById('over').style.width=''; 
+}); 
+
+const setSigParagraphs = function(el) {
+  console.log(el.innerHTML)
+  switch(el.id) {
+    case 'sig-p-ntv-1':
+    $('[name$=".Sig_paragraph_1"]').val("")
+    break;
+    case 'sig-p-ntv-2':
+    $('[name$=".Sig_paragraph_2"]').val(el.innerHTML)
+    break;
+    case 'sig-p-nyulh-1':
+    $('[name$=".Sig_paragraph_1"]').val(el.innerHTML)
+    break;
+    case 'sig-p-nyulh-2':
+    $('[name$=".Sig_paragraph_2"]').val(el.innerHTML)
+    break;
+  }
+}
+const introText = IS_NTV ? $('#intro-ntv').html() : $('#intro-nyulh').html()
+if (IS_NTV) {
+  $('#sig-p-ntv-1, #sig-p-ntv-2').each(function() {
+    $(this).parent().find('strong').append($(this).html());
+    setSigParagraphs(this);
+  })
+}
+if (!IS_NTV) {
+  $('#sig-p-nyulh-1, #sig-p-nyulh-2').each(function() {
+    $(this).parent().find('strong').append($(this).html());
+    setSigParagraphs(this);
+  })
+}
+$('#intro').text(introText);
+$('[name$=".a01_Intro"]').val(introText);
+</script>

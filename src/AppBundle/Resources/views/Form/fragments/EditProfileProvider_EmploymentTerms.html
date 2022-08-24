@@ -1,0 +1,388 @@
+<div id="task_summary_outer">
+    <div id="EditProfile_container">
+        <div id="EditProfile_wrapper">
+            <div id="EditProfile">
+              <h2>Terms of Employment</h2>
+
+              <div class="input_wrapper" data-fieldgroup-title="Legal first name" data-fieldgroup-validation="required">
+                <span class="floating-label">Legal first name</span>
+                <input type="text" id="First_Name" name="First_Name" value="<$client.tForWhomUserInfo.First_Name>" disabled>
+              </div>
+
+              <div class="input_wrapper" data-fieldgroup-title="Legal last name" data-fieldgroup-validation="required">
+                <span class="floating-label">Legal last name</span>
+                <input type="text" id="Last_Name" name="Last_Name" value="<$client.tForWhomUserInfo.Last_Name>" disabled>
+              </div>
+
+
+              <div class="input_wrapper" data-fieldgroup-title="Personal Email address" data-fieldgroup-validation="required">
+                <span class="floating-label">Personal Email address</span>
+                <input type="text" id="Email" name="Email" value="<$client.tForWhomUserInfo.Email>">
+              </div> 
+
+              <div class="input_wrapper" data-fieldgroup-title="Position Title" data-fieldgroup-validation="required">
+                <span class="floating-label">Position Title</span>
+                 <$client.env.inputPosition>
+              </div>
+
+              <div class="input_wrapper" data-fieldgroup-title="Hiring Manager" data-fieldgroup-validation="required">
+                <span class="floating-label">Hiring Manager</span>
+                 <$client.env.inputHiring_Manager>
+              </div>
+
+              <div class="input_wrapper" data-fieldgroup-title="Job Type" data-fieldgroup-validation="required">
+                <span class="floating-label">Job Type</span>
+                 <$client.env.inputPosition_Type>
+              </div>
+
+                    <div class="input_wrapper" data-fieldgroup-title="Offer Date" data-fieldgroup-validation="required">
+                <span class="floating-label">Offer Date</span>
+                 <$client.env.inputOffer_Date>
+              </div>
+
+              <div class="input_wrapper" data-fieldgroup-title="Work Schedule" data-fieldgroup-validation="required">
+                <span class="floating-label">Work Schedule</span>
+                 <$client.env.inputWork_Schedule>
+              </div>
+
+              <div class="input_wrapper" data-fieldgroup-title="Salary Amount" data-fieldgroup-validation="required">
+                <span class="floating-label">Salary Amount (format ####.##)</span>
+                 <$client.env.inputSalary_Amount>
+              </div>
+
+              <div class="input_wrapper" data-fieldgroup-title="Salary Type" data-fieldgroup-validation="required">
+                <span class="floating-label">Salary Type</span>
+                 <$client.env.inputSalary_Type>
+              </div>
+
+                    <div class="input_wrapper" data-fieldgroup-title="Union Membership" data-fieldgroup-validation="required">
+                <span class="floating-label">Union Membership</span>
+                 <$client.env.inputUnion>
+              </div>
+
+
+
+              <div style='display:none'>
+<$client.tForWhomUserInfo.Full_Name>
+<$client.tForWhomUserInfo.Last_Name>
+<$client.tForWhomUserInfo.First_Name>
+<$client.tForWhomUserInfo.Email>
+             </div>            
+
+              <div class="button_group">
+                <div id="save" class="input_wrapper clearfix mb-15"></div>
+                <div id="saveandcomplete" class="input_wrapper clearfix"></div>
+                <div id="cancel" class="input_wrapper clearfix"></div>
+              </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/jquery.mask.min.js>"></script>
+<script src="<$link;/map_images/main/SiteGen/RC_RapidStart/Content/UnplacedPages/EditProfileProvider_EmploymentTerms/plugin.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>" defer></script>
+<script type="text/javascript">
+    const providerContext = document.getElementById('EditProfile');
+    const focusInputLabel = function(el, isFocused) {
+        "use strict";
+        let label = el.closest('.input_wrapper')
+            .find('span.floating-label')
+            .removeClass('label-focus')
+            .css({"color": "#1C1C1C"});
+        if (el.is('select') && el.val() === null) {
+            return;
+        }
+        if (el.val().trim().length > 0 || isFocused) {
+            label.addClass('label-focus');
+        }
+        if (isFocused === true) {
+            label.css({"color": "#1C1C1C"});
+        }
+    }
+    const fieldHasVal = function(el) {
+        "use strict";
+        let hasVal = false;
+        $.each(el, function(k, v) {
+            if ($(v).val().length) {
+                hasVal = true;
+            }
+        });
+        return hasVal;
+    }
+    const isCheckboxChecked = function(el) {
+        "use strict";
+        let hasChecked = false;
+        $.each(el, function(k,v){
+            if ($(v).is(':checked')) {
+                hasChecked = true;
+            }
+        });
+        return hasChecked;
+    }
+
+
+    // email validator
+    const EMAIL_REG = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    const emailFormatValidator = function() {
+      "use strict";
+      let isValid = true;
+      let message = '';
+      if (!EMAIL_REG.test($('#Email').val())) {
+        isValid = false;
+        message = 'Please enter a valid email address.';
+      }
+      return {
+        "isValid": isValid,
+        "message": message
+      }
+    }
+
+
+
+    //vex.defaultOptions.className = 'vex-theme-top';
+
+    $(window).on('load', function() {
+        "use strict";
+        $('.floating-label span').css('color', 'rgb(102, 102, 102)');
+        $('.cal_and_button').prop({'cellpadding': 0, 'cellspacing': 0});
+        let isProfileCompleted = sTaskComplete;
+        // replace default submit button with paypal styled
+        $('#TaskSummary_ButtonCancel').appendTo('#cancel').show();
+        if (!isProfileCompleted) {
+            $('#TaskSummary_ButtonSave').appendTo('#saveandcomplete').prop('onclick', null).show().text('Continue');
+            $('#EUPDefaultSaveButton').prop('onclick', null).appendTo('#save').show();
+        }
+        $('textarea').addClass('lifesuite__textarea-input');
+
+        // remove all empty radio
+        // $('#EditProfile input[type="radio"][value=""]').closest('.horizontal_radio_item').remove();
+
+        // load form when all set
+        $('#EditProfile_wrapper').fadeIn();
+
+        //<$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>
+
+        // Show Severance Eligible
+        if ("<$client.tEventCategories_Category_33.Value>" != "GA - Calculation" && "<$client.tEventCategories_Category_33.Value>" != "GA - Lump Sum" && "<$client.tEventCategories_Category_33.Value>" != "Ind - Calculation"   && "<$client.tEventCategories_Category_33.Value>" != "Ind - Lump Sum") {
+            $('[name$="Severance_Eligible"]').val('');
+            $('[name$="Severance_Eligible"]').closest('.input_wrapper').hide();
+        }
+
+         // Show ADEA/OWBPA
+        if ("<$client.tEventCategories_Category_33.Value>" != "GA - Calculation" && "<$client.tEventCategories_Category_33.Value>" != "GA - Lump Sum") {
+            $('[name$="ADEA_Owbpa"]').val('');
+            $('[name$="ADEA_Owbpa"]').closest('.input_wrapper').hide();
+        }
+
+           $('#Notification_Date, #Original_Hire_Date_pseudo, #Final_PayPeriod_pseudo, #Next_PayCycle_pseudo').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+100",
+            onSelect: function(dateText, instance) {
+              validateField($(this)); 
+              focusInputLabel($(this));
+            }
+          });
+        //set default value 
+        $('#Notification_Date').datepicker('setDate', new Date('<$client.tEventDates_Date_11.Value>'));
+
+
+        if ('<$client.tForWhomUserInfo.Original_Hire_Date>'.length) {
+          $('#Original_Hire_Date_pseudo').datepicker('setDate', new Date('<$client.tForWhomUserInfo.Original_Hire_Date>'));
+        }
+
+        //set default value 
+        $('#Separation_Date').val('<$client.env.eval(client.tEventDates_10.Value.subString(5,6))>/<$client.env.eval(client.tEventDates_10.Value.subString(8,9))>/<$client.env.eval(client.tEventDates_10.Value.subString(0,3))>');
+
+        if('<$client.tForWhomUserInfo.Final_PayPeriod>'.length) {
+            $('#Final_PayPeriod_pseudo').datepicker('setDate', new Date('<$client.tForWhomUserInfo.Final_PayPeriod>'));
+        }
+
+        $('#Final_PayPeriod_pseudo').datepicker("option", "onSelect", function(dateText, instance) {
+          $('[name$=".Final_PayPeriod_display"]', providerContext).datepicker('setDate', $(this).datepicker('getDate'));
+          validateField($(this)); 
+          focusInputLabel($(this));
+        });
+
+
+
+        if ('<$client.tForWhomUserInfo.Next_PayCycle>'.length) {
+            $('#Next_PayCycle_pseudo').datepicker('setDate', new Date('<$client.tForWhomUserInfo.Next_PayCycle>'));
+        }
+
+        $('#Next_PayCycle_pseudo').datepicker("option", "onSelect", function(dateText, instance) {
+          $('[name$=".Next_PayCycle_display"]', providerContext).datepicker('setDate', $(this).datepicker('getDate'));
+          validateField($(this)); 
+          focusInputLabel($(this));
+        });
+
+       
+
+
+        // Year_Service calculation
+       $('#Original_Hire_Date_pseudo').datepicker("option", "onSelect", function(dateText, instance) {
+        $('[name$=".Original_Hire_Date_display"]', providerContext).datepicker('setDate', $(this).datepicker('getDate'));
+            validateField($(this)); 
+            focusInputLabel($(this));
+            var Original_Hire_Date_Year = $('#Original_Hire_Date_pseudo').val().toString().slice(6,10);
+            var Today_Date_Year = "<$client.env.eval(date.now('%Y'))>";
+            var Original_Hire_Date_Month = $('#Original_Hire_Date_pseudo').val().toString().slice(0,2);
+            var Today_Date_Month = "<$client.env.eval(date.now('%m'))>";
+
+            var getMonthsDifference = 12 - (parseInt(Original_Hire_Date_Month) - parseInt(Today_Date_Month));
+
+            var getYearDifference = parseInt(Today_Date_Year) - parseInt(Original_Hire_Date_Year);
+
+            if(getMonthsDifference == 12){
+                getMonthsDifference = 0;
+                getYearDifference + 1;
+            }else if(getMonthsDifference > 12){
+                getYearDifference + 1;
+                getMonthsDifference = getMonthsDifference - 12;
+            }else if(getMonthsDifference < 12){
+                getYearDifference = getYearDifference - 1;
+            }
+        
+
+
+            
+            $('[name$=".Year_Service"]').val(getYearDifference + '.' + getMonthsDifference);
+            console.log('running');
+            focusInputLabel($('[name$=".Year_Service"]'));
+        });
+
+        $('#Original_Hire_Date_pseudo').on('change', function() {
+            var Original_Hire_Date_Year = $('#Original_Hire_Date_pseudo').val().toString().slice(6,10);
+          var Today_Date_Year = "<$client.env.eval(date.now('%Y'))>";
+          var Original_Hire_Date_Month = $('#Original_Hire_Date_pseudo').val().toString().slice(0,2);
+          var Today_Date_Month = "<$client.env.eval(date.now('%m'))>";
+
+          var getMonthsDifference = 12 - (parseInt(Original_Hire_Date_Month) - parseInt(Today_Date_Month));
+
+          var getYearDifference = parseInt(Today_Date_Year) - parseInt(Original_Hire_Date_Year);
+
+          if(getMonthsDifference == 12){
+            getMonthsDifference = 0;
+            getYearDifference + 1;
+          }else if(getMonthsDifference > 12){
+            getYearDifference + 1;
+            getMonthsDifference = getMonthsDifference - 12;
+          }else if(getMonthsDifference < 12){
+            getYearDifference = getYearDifference - 1;
+          }
+     
+         
+          $('[name$=".Year_Service"]').val(getYearDifference + '.' + getMonthsDifference);
+          console.log('running');
+          focusInputLabel($('[name$=".Year_Service"]'));
+        });
+
+        $('#Original_Hire_Date_pseudo').trigger('change');
+
+        $('[name$=".Salary_Amount"]').maskMoney({prefix:'$'});
+
+
+        // save and complete laters
+        $('#EUPDefaultSaveButton').on('click', function(e) {
+            e.preventDefault();
+            var original_Email = "<$client.tForWhomUserInfo.Email>";
+            if ($('#Email').val().length < 1) {
+                $('#Email').val(original_Email);
+                focusInputLabel($('[name$=".Email"]'));
+            }
+            if (!EMAIL_REG.test($('#Email').val())) {
+                $('#Email').val(original_Email);
+                focusInputLabel($('[name$=".Email"]'));
+            }
+            DisableValidation();doSave_Custom('refer-Save');
+        });
+
+      
+        // focus style text and select fields
+        $('form').on('focus', 'input[type="text"], select, textarea', function() {
+            focusInputLabel($(this), true);
+        }).on('blur', 'input[type="text"], select, textarea', function() {
+            focusInputLabel($(this));
+        });
+        // focus field labels
+        $.each($('form input[type="text"], form select, textarea'),function(k,v) {
+            focusInputLabel($(v));
+        });
+
+        // pass validation data to each fields
+        $.each($('[data-fieldgroup-validation]'), function(k,v) {
+            $(v).find('input, select, textarea').data('validation', $(v).data('fieldgroup-validation'));
+        });
+        // pass regex data to each fields
+        $.each($('[data-fieldgroup-regex]'), function(k,v) {
+            $(v).find('input, textarea').data('regex', $(v).data('fieldgroup-regex'));
+        });
+        // pass regex message to each fields
+        $.each($('[data-fieldgroup-message]'), function(k,v) {
+            $(v).find('input, textarea').data('message', $(v).data('fieldgroup-message'));
+        });
+        // pass validation data length to each fields
+        $.each($('[data-fieldgroup-minlength]'), function(k,v) {
+            $(v).find('input, textarea').data('minlength', $(v).data('fieldgroup-minlength'));
+        });
+        $.each($('[data-fieldgroup-maxlength]'), function(k,v) {
+            $(v).find('input, textarea').data('maxlength', $(v).data('fieldgroup-maxlength'));
+        });
+        // pass target label to each radio or checkbox fields
+        $.each($('[data-fieldgroup-targetlabel]'), function(k,v) {
+            $(v).find('input[type="checkbox"], input[type="radio"]').data('label', $(v).data('fieldgroup-targetlabel'));
+        });
+        // pass title data to each fields
+        $.each($('[data-fieldgroup-title]'), function(k,v) {
+            $(v).find('input, select, textarea').data('title', $(v).data('fieldgroup-title'));
+        });
+
+        // validate each field by event and field type
+        $('input:not(".datepicker_button"), select, textarea', providerContext).on('blur click', function() {
+            if($(this).is(':visible') && !$(this).is(':disabled') && !validateField($(this))) {
+                $(this).parent().find('.text-error').css({'display': 'inline-block', 'margin-bottom': '-2px'}); 
+            }
+
+
+          if ($(this).prop('name') == 'Email' && this.value.length > 0) {
+                validateField($(this), false, emailFormatValidator);
+                return;
+            }
+        });
+
+        // submit the form if no errors
+        $('#TaskSummary_ButtonSave', providerContext).on('click', function(e) {
+            e.preventDefault();
+            let formIsValid = true;
+            errorMapping.clear();
+            $.each($('input:not(".datepicker_button"), select, textarea', providerContext), function(k,v) {
+                if($(v).is(':visible') && !$(v).is(':disabled') && !validateField($(v))) {
+                    formIsValid = false;
+                }
+
+              // employee id validation
+              /*if ($(v).prop('name') == 'Employee_HRISID' && !validateField($('#Employee_HRISID'), false, employeeIDValidator)) {
+                formIsValid = false;
+              }*/
+
+               if ($(v).prop('name') == 'Email' && $(v).val().length > 0 && !validateField($(v), false, emailFormatValidator)) {
+                    formIsValid = false;
+                }
+            });
+            if (formIsValid) {
+                doSave_Custom('refer-Complete');
+                return true;
+            }
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            
+        });
+        if (isProfileCompleted) {
+            $('[data-add-section], [data-remove-section]').removeClass('bg-jade bg-ignite').addClass('disabled').prop('disabled', 'disabled');
+            $('input,select', providerContext).prop('disabled', 'disabled');
+            $('textarea', providerContext).prop('readonly', true);
+        }
+    });
+</script>

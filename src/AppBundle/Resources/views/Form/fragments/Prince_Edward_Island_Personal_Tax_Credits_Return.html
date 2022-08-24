@@ -1,0 +1,503 @@
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                    </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','first_name,middle_name,last_name','over','modal','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}"> &nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+
+<$client.env.FormField.Address.prompt>
+<$client.env.FormField.Country.prompt>
+<$client.env.FormField.DateSigned.prompt>
+<$client.env.FormField.DateOfBirth.prompt>
+<$client.env.FormField.EmployeeNumber.prompt>
+<$client.env.FormField.FirstName.prompt>
+<$client.env.FormField.LastName.prompt>
+<$client.env.FormField.Line10.prompt>
+<$client.env.FormField.Line11.prompt>
+<$client.env.FormField.Line12.prompt>
+
+<$client.env.FormField.Line2.prompt>
+<$client.env.FormField.Line3.prompt>
+<$client.env.FormField.Line4.prompt>
+<$client.env.FormField.Line5.prompt>
+<$client.env.FormField.Line6.prompt>
+<$client.env.FormField.Line7.prompt>
+<$client.env.FormField.Line8.prompt>
+<$client.env.FormField.Line9.prompt>
+<$client.env.FormField.MiddleInitial.prompt>
+<$client.env.FormField.SIN.prompt>
+<$client.env.FormField.TotalIncome.prompt>
+<$client.env.FormField.signature.prompt>
+<$client.env.FormField.MoreThanOnePayer.prompt>
+<$client.env.FormField.Postal_Code.prompt>
+
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+    <div class="container-fluid"> 
+        <div class="form-group">
+            <div class="header-container">
+                <div class="row">
+                    <div class="header-image-container">
+                        <img class="img-responsive" src="<$link;/main/RedCarpet/FormTemplates/Prince_Edward_Island_Personal_Tax_Credits_Return/Prince.png>" border="0" style="width: 125px;">
+                    </div>
+                    <div class="header">
+                        2021 Prince Edward Island<br>Personal Tax Credits Return
+                    </div>
+                    <div class="header-text">   
+                        <span class="bold">Protected B</span> when completed<br><br>
+                        TD1PE
+                    </div>
+                </div>
+            </div>
+            <div style="min-height: 20px; height: 20px;"></div>
+            <div class="row">
+                <div class="col-md-12 lifesuite__clearfix text">
+                    <div class="bold">
+                        Read page 2 before filling out this form. Your employer or payer will use this form to determine the amount of your provincial tax deductions.
+                    </div>
+                    Fill out this form based on the best estimate of your circumstances.
+                </div>
+            </div>
+            <div style="min-height: 20px; height: 20px;"></div>
+            <div class="row bordered bordered-top">
+                <div class="bordered col-xs-12 col-md-3 lifesuite__clearfix text">
+                    Last name<br>
+                    <$client.env.FormField.LastName.HTML>
+                </div>
+                <div class="bordered col-xs-12 col-md-4 lifesuite__clearfix text">
+                    First name and initial(s) 
+                    <div style="white-space: nowrap;">
+                    <span style="display: inline-block; width: 70%;"><$client.env.FormField.FirstName.HTML></span>
+                    <span style="display: inline-block; width: 30%;"><$client.env.FormField.MiddleInitial.HTML></span>
+                    </div>
+                </div>
+                <div class="bordered col-xs-12 col-md-3 lifesuite__clearfix text">
+                    Date of birth (YYYY/MM/DD)
+                    <$client.env.FormField.DateOfBirth.HTML>
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text">
+                    Employee number
+                    <$client.env.FormField.EmployeeNumber.HTML>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-4 lifesuite__clearfix text">
+                    Address<br><br>
+                    <$client.env.FormField.Address.HTML>
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text">
+                    Postal code<br><br>
+                    <$client.env.FormField.Postal_Code.HTML>
+                </div>
+                <div class="bordered col-xs-12 col-md-3 lifesuite__clearfix text">
+                    <span class="bold">For non-residents only</span> – <br>
+                    Country of permanent residence
+                    <$client.env.FormField.Country.HTML>
+                </div>
+                <div class="bordered col-xs-12 col-md-3 lifesuite__clearfix text">
+                    Social insurance number<br><br>
+                    <$client.env.FormField.SIN.HTML>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">1. Basic personal amount</span> – Every person employed in Prince Edward Island and every pensioner residing in Prince Edward Island can claim this
+amount. If you will have more than one employer or payer at the same time in 2021, see "More than one employer or payer at the
+same time" on page 2.
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line1.HTML>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">2. Age amount</span> – If you will be 65 or older on December 31, 2021, and your net income from all sources will be $28,019 or less,
+enter $3,764. If your net income for the year will be between $28,019 and $53,112 and you want to calculate a partial claim, get
+Form TD1PE-WS, Worksheet for the 2021 Prince Edward Island Personal Tax Credits Return, and fill in the appropriate section. </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line2.HTML>
+                </div>
+            </div>
+<!--
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">3. Senior Supplementary amount</span> - If you are a resident of Prince Edward Island who will be 65 or older on December 31, 2019,
+enter $1,292.
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line3.HTML>
+                </div>
+            </div>-->
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">3. Pension income amount</span> – If you will receive regular pension payments from a pension plan or fund (excluding Canada Pension
+Plan, Quebec Pension Plan, Old Age Security, or Guaranteed Income Supplement payments), enter $1,000, or your estimated
+annual pension income, whichever is less.</div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line3.HTML>
+                </div>
+            </div>
+          <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">4. Tuition and education amounts (full time and part time)</span> - If you are a student enrolled at a university, college, or educational institution certified by Employment and Social Development Canada, and you will pay more than $100 per institution in tuition fees, fill in this section. If you are enrolled full time, or if you have a mental or physical disability and are enrolled part time, enter the total of the tuition fees you will pay, plus $400 for each month that you will be enrolled. If you are enrolled part time and do not have a mental or physical disability, enter the total of the tuition fees you will pay, plus $120 for each month that you will be enrolled part time.
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line4.HTML>
+                </div>
+            </div>
+
+
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">5. Disability amount</span> – If you will claim the disability amount on your income tax return by using Form T2201, Disability Tax
+Credit Certificate, enter $6,890.
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line5.HTML>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">6. Spouse or common-law partner amount</span> – If you are supporting your spouse or common-law partner who lives with you and
+whose net income for the year will be $849 or less, enter $8,493. If their net income for the year will be between $849 and
+$9,342 and you want to calculate a partial claim, get Form TD1PE-WS and fill in the appropriate section.
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line6.HTML>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">7. Amount for an eligible dependant</span> – If you do not have a spouse or common-law partner and you support a dependent relative
+who lives with you and whose net income for the year will be $849 or less, enter $8,493. If their net income for the year will be between
+$849 and $9,342 and you want to calculate a partial claim, get Form TD1PE-WS and fill in the appropriate section.</div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line7.HTML>
+                </div>
+            </div>
+<div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">8. Caregiver amount</span> – If you are taking care of a dependant who lives with you, whose net income for the year will be $11,953
+or less, and who is either your or your spouse's or common-law partner's:<br>
+                        <ul style="padding-left:20px;">
+                            <li>parent or grandparent (aged 65 or older)</li>
+                            <li>relative (aged 18 or older) who is dependent on you because of an infirmity, enter $2,446.</li>
+                        </ul>
+                        If the dependant's net income for the year will be between $11,953 and $14,399 and you want to calculate a partial claim, get
+Form TD1PE-WS and fill in the appropriate section.
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line8.HTML>
+                </div>
+            </div>
+<!--
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">8. Child amount</span> – If you are supporting a child who will be under the age of 18 at any time during 2019, enter $6,094 for each child.
+You cannot claim an amount for a child you claimed on line 7 or a child claimed by anyone else as a dependant. If you have a spouse
+or common-law partner, the parent with the lower net income must make the claim.
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line8.HTML>
+                </div>
+            </div>
+            -->
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">9. Amount for infirm dependants age 18 or older</span> – If you are supporting an infirm dependant aged 18 or older who is your or
+your spouse's or common-law partner's relative, who lives in Canada, and whose net income for the year will be $4,966 or less,
+enter $2,446. You cannot claim an amount for a dependant you claimed on line 8. If the dependant's net income for the year will be
+between $4,966 and $7,412 and you want to calculate a partial claim, get Form TD1PE-WS and fill in the appropriate section.
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line9.HTML>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">10. Amounts transferred from your spouse or common-law partner</span> – If your spouse or common-law partner will not use all of
+their age amount, pension income amount, tuition and education amounts, or disability amount on their income tax and benefit return,
+enter the unused amount.
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line10.HTML>
+                </div>
+            </div>
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">11. Amounts transferred from a dependant</span> – If your dependant will not use all of their <strong>disability amount</strong> on their income tax
+and benefit return, enter the unused amount. If your or your spouse's or common-law partner's dependent child or grandchild will not
+use all of their <strong>tuition and education amounts</strong> on their income tax return and benefit, enter the unused amount.
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line11.HTML>
+                </div>
+            </div>            
+            <div class="row bordered">
+                <div class="bordered col-xs-12 col-md-10 lifesuite__clearfix text line-padding">
+                    <span class="bold">12. TOTAL CLAIM AMOUNT</span> – Add lines 1 to 11.<br>
+                    Your employer or payer will use this amount to determine the amount of your provincial tax deductions.
+                </div>
+                <div class="bordered col-xs-12 col-md-2 lifesuite__clearfix text line-field-padding">
+                    <$client.env.FormField.Line12.HTML>
+                </div>
+            </div>
+            <div style="min-height: 20px; height: 20px;"></div>
+            <div class="footer-container">
+                <div class="row">
+                    <div class="footer-text">   
+                        TD1PE E (19)
+                    </div>
+                    <div class="footer">
+                        (Ce formulaire est disponible en français.)
+                    </div>
+                    <div class="footer-image-container">
+                        <img src="CanadaLogo2.png" class="img-responsive" alt=""/>
+                    </div>
+                </div>
+            </div>
+            <hr class="lifesuite__hr">
+            <div class="section-container">
+                <div class="section row">
+                    <div class="col-md-12 lifesuite__clearfix text">
+                        <div class="section-header">Filling out Form TD1PE</div>
+                        Fill out this form <strong>only</strong> if you are an employee working in Prince Edward Island or a pensioner residing in Prince Edward Island and any of the following apply:
+                        <ul>
+                            <li>
+                                you have a new employer or payer and you will receive salary, wages, commissions, pensions, employment insurance benefits, or any other
+remuneration
+                            </li>
+                            <li>
+                                you want to change amounts you previously claimed (for example, the number of your eligible dependants has changed); or
+                            </li>
+                            <li>
+                                you want to increase the amount of tax deducted at source.
+                            </li>
+                        </ul>
+                        Sign and date it, and give it to your employer or payer.<br>
+                        If you do not fill out Form TD1PE, your employer or payer will deduct taxes after allowing the basic personal amount<strong> only</strong>.
+                    </div>
+                </div>
+                <div class="section row">
+                    <div class="col-md-12 lifesuite__clearfix text">
+                        <div class="section-header">More than one employer or payer at the same time</div>
+                        <table>
+                            <tr>
+                                <td style="padding-right: 15px; vertical-align: top;">
+                                    <$client.env.FormField.MoreThanOnePayer.HTML>
+                                </td>
+                                <td>
+                                    If you have more than one employer or payer at the same time and you have already claimed personal tax credit amounts on another Form TD1PE
+for 2021, you <strong>cannot claim them again.</strong> If your total income from all sources will be <strong>more</strong> than the personal tax credits you claimed on another
+Form TD1PE, <strong>check</strong> this box, enter "0" on line 12 and do not fill in lines 2 to 11.
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="section row">
+                    <div class="col-md-12 lifesuite__clearfix text">
+                        <div class="section-header">Total income less than total claim amount</div>
+                        <table>
+                            <tr>
+                                <td style="padding-right: 15px; vertical-align: top;">
+                                    <$client.env.FormField.TotalIncome.HTML>
+                                </td>
+                                <td>
+                                    Check this box if your total income for the year from <strong>all</strong> employers and payers will be <strong>less</strong> than your total claim amount on line 12. Then your employer
+or payer will not deduct tax from your earnings.
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="section row">
+                    <div class="col-md-12 lifesuite__clearfix text">
+                        <div class="section-header">Additional tax to be deducted</div>
+                        If you wish to have more tax deducted, fill in "Additional tax to be deducted" on the federal Form TD1.
+                    </div>
+                </div>
+                <div class="section row">
+                    <div class="col-md-12 lifesuite__clearfix text">
+                        <div class="section-header">Reduction in tax deductions</div>
+                        You can ask to have less tax deducted on your income tax and benefit return if you are eligible for deductions or non-refundable tax credits that are not listed
+on this form (for example, periodic contributions to a registered retirement savings plan (RRSP), child care or employment expenses, charitable donations,
+and tuition and education amounts carried forward from the previous year). To make this request, fill out Form T1213, Request to Reduce Tax Deductions at
+Source, to get a letter of authority from your tax services office. Give the letter of authority to your employer or payer. You do not need a letter of authority if
+your employer deducts RRSP contributions from your salary.
+                    </div>
+                </div>
+                <div class="section row">
+                    <div class="col-md-12 lifesuite__clearfix text">
+                        <div class="section-header">Forms and publications</div>
+                        To get our forms and publications, go to  <strong>canada.ca/cra-forms-publications</strong> or call <strong>1-800-959-5525.</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 lifesuite__clearfix text">
+                   Personal information (including the SIN) is collected for the purposes of the administration or enforcement of the Income Tax Act and related programs and
+activities including administering tax, benefits, audit, compliance, and collection. The information collected may be used or disclosed for purposes of other
+federal acts that provide for the imposition and collection of a tax or duty. It may also be disclosed to other federal, provincial, territorial or foreign government
+institutions to the extent authorized by law. Failure to provide this information may result in interest payable, penalties or other actions. Under the Privacy Act,
+individuals have the right to access their personal information, request correction, or file a complaint to the Privacy Commissioner of Canada regarding the
+handling of the individual’s personal information. Refer to Personal Information Bank CRA PPU 120 on Info Source at <strong>canada.ca/cra-info-source</strong>.
+                </div>
+            </div>
+            <div style="min-height: 100px; height: 100px;"></div>
+            <div class="section-container">
+                <div class="row">
+                    <div class="col-md-12 lifesuite__clearfix text">
+                        <div class="section-header">Certification</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 lifesuite__clearfix text">
+                        I certify that the information given on this form is correct and complete.
+                    </div>
+                </div>
+                <div style="min-height: 20px; height: 20px;"></div>
+               <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 lifesuite__clearfix text">
+                        <$client.env.FormField.Signer.HTML>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 lifesuite__clearfix text">
+                        <b>It is a serious offence to make a false return.</b>
+                    </div>
+                </div>
+                
+            </div>
+            <hr class="lifesuite__hr">
+            <div class="row" id="formButtons" style="display: none;">
+                <div class="lifesuite__clearfix lifesuite__float-right">               
+                    <$client.env.FormButtons>
+                </div>             
+            </div>
+        </div>
+    </div>
+
+<div style="display:none;">
+<$client.env.FormField.SignatureVerification.HTML>
+<$client.env.FormField.Login_ID.HTML>
+<$client.env.FormField.Auth_Param.HTML>
+<$client.env.FormField.EmployeeID.HTML>
+</div>
+
+<br> <br>
+</form>
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+//disableCalButton("disableThis");
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+       $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');    
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+        document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+</SCRIPT>
+
+<SCRIPT>
+//calcTotal();
+
+$(function(){
+$('a[href^="http://www.cra"]').css("color","purple");
+})
+
+//Fixes to modal issue when viewing in mobile devices 
+$( window ).resize(function() { 
+document.getElementById('over').style.width=''; 
+}); 
+</SCRIPT>

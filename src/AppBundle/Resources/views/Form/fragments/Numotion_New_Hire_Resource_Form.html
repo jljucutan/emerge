@@ -1,0 +1,444 @@
+<div class="modal" id="modal" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                            <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                                    </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature','','modal','over','sv');xbObj('eSignature').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature').value='';"> 
+                                           </div> 
+                            </div> 
+              </div> 
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+    showScreen('over') 
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+              <div class="fb-spinner"> 
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+              </div> 
+</div> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'> 
+
+    <div style="display:none;"> 
+        <$client.env.FormField.Form_Name.prompt> 
+        <$client.env.FormField.Form_Name.HTML> 
+        <$client.env.FormField.Form_Type.prompt> 
+        <$client.env.FormField.Form_Type.HTML> 
+        <$client.env.FormField.Form_Owner.prompt> 
+        <$client.env.FormField.Form_Owner.HTML> 
+        <$client.env.FormField.Form_CreateDate.prompt> 
+        <$client.env.FormField.Form_CreateDate.HTML> 
+        <$client.env.FormField.Form_Completed.prompt> 
+        <$client.env.FormField.Form_Completed.HTML> 
+        <$client.env.FormField.Form_Delivered.prompt> 
+        <$client.env.FormField.Form_Delivered.HTML> 
+        <$client.env.FormField.Form_TaskId.prompt> 
+        <$client.env.FormField.Form_TaskId.HTML> 
+        <$client.env.FormField.display_version.HTML>
+
+<$client.env.FormField.AccessLocations.prompt>
+<$client.env.FormField.Carrier.prompt>
+<$client.env.FormField.CurrentPhoneNo.prompt>
+<$client.env.FormField.DBList.prompt>
+<$client.env.FormField.Department.prompt>
+<$client.env.FormField.DeskPhone.prompt>
+<$client.env.FormField.DirectManager.prompt>
+<$client.env.FormField.DistroLists.prompt>
+<$client.env.FormField.DockingLaptop.prompt>
+<$client.env.FormField.DockingTablet.prompt>
+<$client.env.FormField.EmployeeName.prompt>
+<$client.env.FormField.EndDate.prompt>
+<$client.env.FormField.Existing.prompt>
+<$client.env.FormField.Ext.prompt>
+<$client.env.FormField.HeadsetUSB.prompt>
+<$client.env.FormField.HeadsetWired.prompt>
+<$client.env.FormField.HeadsetWireless.prompt>
+<$client.env.FormField.IPhone.prompt>
+<$client.env.FormField.JobTitle.prompt>
+<$client.env.FormField.Keyboard.prompt>
+<$client.env.FormField.Lightweight.prompt>
+<$client.env.FormField.Location.prompt>
+<$client.env.FormField.MakeModel.prompt>
+<$client.env.FormField.Monitor.prompt>
+<$client.env.FormField.MonitorQuantity.prompt>
+<$client.env.FormField.Mouse.prompt>
+<$client.env.FormField.NewDevice.prompt>
+<$client.env.FormField.NewExt.prompt>
+<$client.env.FormField.Other.prompt>
+<$client.env.FormField.Otterbox.prompt>
+<$client.env.FormField.Provider.prompt>
+<$client.env.FormField.ReuseExt.prompt>
+<$client.env.FormField.ReusingDevice.prompt>
+<$client.env.FormField.SerialNumber.prompt>
+<$client.env.FormField.SharedCalendars.prompt>
+<$client.env.FormField.Sharepoint.prompt>
+<$client.env.FormField.ShippingAddress1.prompt>
+<$client.env.FormField.ShippingAddress2.prompt>
+<$client.env.FormField.Software.prompt>
+<$client.env.FormField.Standard.prompt>
+<$client.env.FormField.StartDate.prompt>
+<$client.env.FormField.Tablet.prompt>
+<$client.env.FormField.Temporary.prompt>
+<$client.env.FormField.Venue.prompt>
+<$client.env.FormField.rehire.prompt>
+<$client.env.FormField.Email.prompt>
+<$client.env.FormField.Workfromhome.prompt>
+
+
+
+
+
+
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+
+  </div> 
+
+  <div class="container-fluid">  
+    <div class="form-group">  
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 headerOne center">
+          NUMOTION NEW HIRE EQUIPMENT ORDER SHEET
+        </div>
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 headerOne center">
+          &nbsp;
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 center">
+          Please complete necessary fields below and send to RVP for approval. RVP’s need to approve or reject equipment order and forward to <a href="mailto:EquipmentApprovals@Numotion.com" target="blank">EquipmentApprovals@Numotion.com</a>.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-1 col-lg-1 col-xs-12 col-sm-12">
+          Start Date:
+        </div>
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12">
+          <$client.env.FormField.StartDate.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 input50Per">
+          Employee Name: <$client.env.FormField.EmployeeName.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 input50Per">
+          Email: <$client.env.FormField.Email.HTML>&nbsp;Please add preferred Numotion email address.
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 input50Per">
+          Location: <$client.env.FormField.Location.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12 input50Per">
+          Does this employee work from home?
+        </div>
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12">
+          <$client.env.FormField.Workfromhome.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 input50Per">
+          Direct Manager: <$client.env.FormField.DirectManager.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 input50Per">
+          Job Title and Department: <$client.env.FormField.JobTitle.HTML> <$client.env.FormField.Department.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 input30Per">
+          Numotion or Fedex Shipping Address:<$client.env.FormField.ShippingAddress1.HTML> <$client.env.FormField.ShippingAddress2.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12 input50Per">
+          <u>Is this a rehire?</u>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12">
+          <$client.env.FormField.rehire.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-xs-12 col-sm-12 input50Per">
+          <u>Is this a contractor or temporary employee?</u><br><span class="smallfontItalaic"><Strong>(If Yes, Must Include End date)</Strong></span>
+        </div>
+        <div class="col-md-5 col-lg-5 col-xs-12 col-sm-12 input70Per textright">
+          <$client.env.FormField.Temporary.HTML>  &nbsp; &nbsp; &nbsp; <u>End Date:</u> 
+        </div>
+        <div class="col-md-3 col-lg-3 col-xs-12 col-sm-12 input50Per">
+          <$client.env.FormField.EndDate.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+          <strong>1. Computer Equipment</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl">a.</label> <$client.env.FormField.Existing.HTML><br>
+            <em>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Please log device into IT Help once accounts are created for remote setup)</em>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+              i.What is the make and model of the computer? <$client.env.FormField.MakeModel.HTML>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+              ii.What is the serial number? <$client.env.FormField.SerialNumber.HTML>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl">b.</label> <$client.env.FormField.Standard.HTML> <label class="lbl">Standard Laptop - <strong>$1300</strong></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl">c.</label> <$client.env.FormField.Lightweight.HTML> <label class="lbl">Executive Laptop - <strong>$1800</strong></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl">d.</label> <$client.env.FormField.Tablet.HTML> <label class="lbl">Tablet - <strong>$1550</strong></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl">e.</label> <$client.env.FormField.DockingLaptop.HTML> <label class="lbl">Docking Station (Laptop/Tablet) - <strong>$150</strong></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl">f.</label> <$client.env.FormField.Monitor.HTML> <label class="lbl">Monitor - <strong>$110 each</strong> 
+        </div>
+		<div class='row'>
+	           <div class="col-lg-1 col-sm-12 col-xs-12 indenct50 AlignMergeStringText">Quantity:</div>
+		   <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.MonitorQuantity.html></div>
+		</div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl">g.</label> <$client.env.FormField.Keyboard.HTML> <label class="lbl">Keyboard</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl">h.</label> <$client.env.FormField.Mouse.HTML> <label class="lbl">Mouse</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+          <strong>2. Mobility Device</strong>
+        </div>
+      </div>
+		<div class='row'>
+	           <div class="col-lg-3 col-sm-12 col-xs-12 indenct50 AlignMergeStringText">a. Carrier for mobility device</div>
+		   <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.Carrier.html></div>
+		</div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl"  style="vertical-align: middle !important;">b.</label> <span class="withtextbox"><$client.env.FormField.NewDevice.HTML></span> <label class="lbl" style="vertical-align: middle !important;">New Device </label><span class="withtextbox"><$client.env.FormField.ReusingDevice.HTML> <label class="lbl">Reusing device, provide current number <$client.env.FormField.CurrentPhoneNo.HTML></label> </span><br> <$client.env.FormField.IPhone.HTML><label class="lbl"><!-- i. iPhone with hotspot - <strong>$150 with 2-year contract; $80 average monthly cost</strong> --></label><br>
+          <em>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<span class="smallfontItalaic">(Access to email <strong>is necessary</strong> at all times)</span></em>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+              <$client.env.FormField.Otterbox.HTML><label class="lbl"><!--  iPhone Otterbox case <span class=\'smallfontItalaic\'>(Highly recommended)</span> - <Strong>$40</Strong> --></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+          <strong>3. Phone Equipment</strong>
+        </div>
+      </div>
+		<div class='row'>
+	           <div class="col-lg-3 col-sm-12 col-xs-12 indenct50 AlignMergeStringText"> a. Phone Service Provider</div>
+		   <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.Provider.html></div>
+		</div>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+             <label class="lbl">i</label> <$client.env.FormField.NewExt.HTML> <label class="lbl">Needs new extension</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+             <label class="lbl" style="vertical-align: middle !important;">ii</label> <!-- <span class="withtextbox"> --><$client.env.FormField.ReuseExt.HTML><!-- </span> --> <label class="lbl" style="display:inline-block !important;"> <$client.env.FormField.Ext.HTML></label>
+            </div>
+          </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl">b.</label> <$client.env.FormField.DeskPhone.HTML> <label class="lbl">Desk Phone - <Strong>$230 (Shoretel)</Strong></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+         c.  Desk Headset
+         <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+              <label class="lbl">i</label> <$client.env.FormField.HeadsetWired.HTML> <label class="lbl">Wired - <strong>$75</strong></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+              <label class="lbl">ii</label> <$client.env.FormField.HeadsetWireless.HTML> <label class="lbl">Wireless - <Strong>$200</Strong></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl">d.</label> <$client.env.FormField.HeadsetUSB.HTML> <label class="lbl">USB Headset for softphone - <strong>$40</strong></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+          <strong>4. System Access</strong>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          <label class="lbl">a.</label> <$client.env.FormField.Venue.HTML> <label class="lbl">Venu/Laserfische</label>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+              i. What locations do they need access to? <$client.env.FormField.AccessLocations.HTML>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          b. List any email distribution lists below:
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+              i.  <$client.env.FormField.DistroLists.HTML>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          c. List any databases or shared drives below:
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+              i.  <$client.env.FormField.DBList.HTML>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          d. List any shared calendars below:
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+              i.  <$client.env.FormField.SharedCalendars.HTML>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          e. List any specific SharePoint sites for access below:
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+              i.  <$client.env.FormField.Sharepoint.HTML>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+          f. List any non-standard software below:
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 indenct50">
+              i.  <$client.env.FormField.Software.HTML>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+          5. Please write type of equipment below if not found above along with reason for order:
+          <$client.env.FormField.Other.HTML>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+      <hr class="lifesuite__hr">
+      </div>
+
+<!--mainTable-->
+
+
+                   
+                  <$client.env.FormButtons> 
+    </div>
+</div>
+
+<div style="display:none;">
+<$client.env.FormField.a20_signatureVerification.HTML>
+</div>
+
+</form> 
+
+<script src="<$link;/main/RedCarpet/FormTemplates/Numotion_New_Hire_Resource_Form/js/bluebird.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Numotion_New_Hire_Resource_Form/js/script.js>" defer></script>
+
+<SCRIPT> 
+
+    ChangeCalendarIcons(); //for popup calendar  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+
+$(window).load(function() { 
+  $("input[type=text]").addClass('lifesuite__text-input');  
+/* $("input[type=text].hasDatepicker").addClass('dateField'); */
+   $("select").addClass('lifesuite__select-input'); 
+   $("input[type=radio]").addClass('lifesuite__radio'); 
+        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+        $("textarea").addClass('lifesuite__textarea-input'); 
+        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+});  
+
+
+//Fixes to modal issue when viewing in mobile devices 
+
+$( window ).resize(function() { 
+document.getElementById('over').style.width=''; 
+}); 
+
+const EVENT_JOB_TITLE = '<$client.tEventCategories_Category_23.Code>';
+const CONFIG_PATH = '<$link;/main/RedCarpet/FormTemplates/Numotion_New_Hire_Resource_Form/js/config.json>';
+</SCRIPT>

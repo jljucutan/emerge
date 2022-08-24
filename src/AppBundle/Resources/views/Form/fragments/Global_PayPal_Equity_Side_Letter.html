@@ -1,0 +1,335 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','date');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12"> 
+                <strong>Type your Name:</strong> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','SignerMan','modal2','over','sv2','date2');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp; 
+                    <input id="clear-sig-2" type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','date2');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <template id="fragment-1"></template>
+    <template id="fragment-2">
+        <p>
+            <mark><%= Current_Date %></mark>
+        </p>
+        <p><mark><%= First_Name %>&nbsp;<%= Middle_Name %><%= Last_Name %></mark></p>
+
+        <p>Re: Your Awards of PayPal Stock</p>
+
+        <p>Welcome to PayPal, <mark><%= Preferred_First_Name.length ? Preferred_First_Name : First_Name %></mark>!</p>
+
+        <p class="text-justify">We are thrilled to have you join us at this exciting time for PayPal as we continue our journey to democratize financial services and improve the financial health of individuals, families, businesses and communities around the world. Together, we are transforming the world’s digital economy.</p>
+
+        <p class="text-justify">PayPal is a company that is deeply committed to living our values, and we believe that our ability to serve our customers and fulfill our mission starts with putting our employees first. The only way we can fully live our mission – providing access to affordable financial services and improving the financial health of our customers – is to focus on those same objectives within PayPal. Every employee who works here should have financial security, feel deeply connected to PayPal, and to share in our success as a company.</p>
+
+        <p class="text-justify">That’s why we make every employee an owner of the company by granting PayPal stock to everyone who works here. This puts every employee on the path toward building financial security and gives us all the opportunity to benefit from PayPal’s performance.</p>
+
+        <p class="text-justify">With that in mind, it is my sincere pleasure to tell you that, as a new member of the PayPal community, you will be granted PayPal restricted stock units (RSUs).*</p>
+
+        <p class="text-justify">Below you will find details about your stock grant, including legal terms and conditions. Please review this content and sign where noted.</p>
+
+        <p class="text-justify">
+            <strong>About Your Stock Grant*</strong>
+        </p>
+
+        <p class="text-justify">The anticipated grant date for RSUs is on or around the 15th of the month following the month of your first day of employment.  You will be notified by E*TRADE to set up your account and will be prompted to accept your grant online.</p>
+
+        <p class="text-justify">Please see Exhibit A below for important additional information about the Awards.</p>
+
+        <p>
+            <strong>
+                <u>Vesting Schedule</u>
+            </strong>
+        </p>
+
+        <strong>Grant</strong>
+        <ul class="bulleted-list">
+            <li>Restricted Stock Units (“RSUs”)</li>
+        </ul>
+        <strong>Value</strong>
+        <ul class="bulleted-list">
+            <li>USD $<mark><%= NEW_HIRE_REST_STOCK_UNITS %></mark></li>
+        </ul>
+        <strong>Vesting Schedule</strong>
+        <ul class="bulleted-list">
+            <li>The value of the RSUs will be converted into the number of shares to be granted, as determined based on PayPal policies on the date of grant.  One-third (1/3) of the shares subject to the RSUs will vest (conditioned upon your continued employment with a PayPal company) on each anniversary of the grant date, less applicable taxes and withholdings.</li>
+        </ul>
+
+        <p>
+            <em>* Stock awards are subject to approval by the Compensation Committee of PayPal Holdings Inc. Board of Directors.</em>
+        </p>
+
+        <p>At PayPal, we believe the opportunities ahead of us are greater than ever, and I am delighted you are on this journey with us.</p>
+        <p>&nbsp;</p>
+        <p>Sincerely,</p>
+        <p>Alice Chung<br>VP, Compensation</p>
+        <p>&nbsp;</p>
+
+        <p class="hide"></p>
+
+    </template>
+    
+    <div id="offer-letter-body" class="row">
+        <div class="col-sm-2">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+        <div class="col-sm-8">
+            <div id="incomplete2">
+                <div id="markup2"></div>
+            </div>
+            <div id="complete2"></div>
+        </div>
+    </div>
+    <template id="fragment-3">
+        <p class="ml-lg-4">
+            <strong>ACKNOWLEDGED AND AGREED:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete3">
+                <div id="markup3"></div>
+            </div>
+            <div id="complete3"></div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-3 text-sm-right pr-1">
+            <label for="signature" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature.HTML>
+        </div>
+        <div class="col-sm-1 text-sm-right pt-3 pr-1">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-3 text-sm-right pr-1">
+            <label for="full_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name.HTML>
+        </div>
+    </div>
+
+    <template id="fragment-4">
+        <p>&nbsp;</p>
+        <p class="bg-darkblue text-center text-white">
+            <strong>Exhibit A</strong>
+        </p>
+
+        <p class="text-justify">The PayPal Holdings, Inc. Amended and Restated 2015 Equity Incentive Award Plan (the “Plan”), the equity award agreement and other related policies and agreements set forth the terms and conditions that govern your Awards.  You will be required to sign (or electronically accept) the grant materials which PayPal will provide to you.</p>
+
+        <p class="text-justify">PayPal, in its sole discretion, may suspend, modify, cancel or terminate the Plan at any time without any compensation to you.  Your participation in the Plan is entirely voluntary and the benefits afforded under the Plan do not form an employment contract with PayPal or any of its affiliates.  The grant of the Awards is a one-time benefit which will not give you a right to any future grants under the Plan.  The Awards and any shares acquired under the Plan are an additional benefit that may be given to you by PayPal and not by your employer or any other affiliate of PayPal.  Therefore, the Awards and any shares acquired under the Plan are not part of your employment relationship with your employer and are completely separate from your salary or any other remuneration or benefits provided to you by your employer.  This means any gain you realize from the Awards will not be included if and when any bonuses, termination compensation, severance payments, payments during a notice period or indemnity that you may receive from your employer are calculated.</p>
+
+        <p class="text-justify">If Awards are granted to you, you will be responsible for any tax or social insurance contribution obligations arising from the Awards and any shares acquired under the Plan.  You will need to seek advice from your personal advisor at your own expense regarding the tax implications of any Awards granted to you.</p>
+
+        <p class="text-justify">All disputes relating to the Awards or this letter shall be governed by U.S. federal and California state law (but not including the choice of law rules thereof).  For purposes of litigating any dispute that arises from the Awards or this letter, you consent to the exclusive jurisdiction of the State of California and agree that such litigation shall be conducted in the courts of the County of Santa Clara, California, or the U.S. federal courts for the Northern District of California, and no other courts, where the grant of Awards, if any, shall be made and/or performed.</p>
+
+        <p class="text-justify">
+            <strong><em>PayPal and your employer collect, process and use certain personal information about you, such as your name, home address and telephone number, email address, date of birth, social insurance number, tax ID number, passport or other identification number in a government issued document, salary, nationality, job title, any shares or directorships held in PayPal, and details of all entitlement to PayPal shares awarded, canceled, exercised, vested, unvested or outstanding in your favor (“Personal Data”), for the purposes of implementing, administering and managing the Plan.</em></strong>
+        </p>
+
+        <p class="text-justify">
+            <strong>
+                <em>PayPal transfers Personal Data to E*TRADE Financial Corporate Services, Inc. and E*TRADE Securities LLC (collectively, “E*Trade”), an independent service provider based in the United States, which is assisting the Company with the implementation, administration and management of the Plan.  PayPal may select a different service provider or additional service providers and share Personal Data with such other provider serving in a similar manner.  PayPal’s legal basis, where required, for the transfer of Personal Data to E*TRADE or such different or additional service providers as PayPal may select is your consent.  By signing this letter, you are declaring that you agree with the transfer of Personal Data to E*TRADE and other service providers as described herein and consent to such transfer of Personal Data by PayPal for the purposes of the Plan.</em>
+            </strong>
+        </p>
+
+        <p class="text-justify">
+            <strong>
+                <em>Participation in the Plan is voluntary, and you are providing the consent herein on a purely voluntary basis.  If you do not consent, or if you later seek to revoke your consent, your salary from or employment with your employer will not be affected; the only consequence of refusing or withdrawing your consent is that PayPal would not be able to administer or maintain your participation in the Plan.</em>
+            </strong>
+        </p>
+
+        <p>&nbsp;</p>
+
+    </template>
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-8">
+            <div id="incomplete4">
+                <div id="markup4"></div>
+            </div>
+            <div id="complete4"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-8">
+            <div id="incomplete5">
+                <div id="markup5"></div>
+            </div>
+            <div id="complete5"></div>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>     
+    <$client.env.FormField.hidden_pg3.HTML>     
+    <$client.env.FormField.hidden_pg4.HTML>     
+    <$client.env.FormField.hidden_pg5.HTML>     
+    <$client.env.formfield.EmployeeStamp.html>
+    <$client.env.formfield.SignatoryStamp.html>
+    <$client.env.formfield.RecruiterStamp.html>
+    <$client.env.formfield.SignerMan.html>
+    <$client.env.formfield.CoordinatorStamp.html>
+    <$client.env.formfield.Current_Date.html>
+    <$client.env.formfield.EventLocation.html>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Global_PayPal_Equity_Side_Letter/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Global_PayPal_Equity_Side_Letter/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Global_PayPal_Equity_Side_Letter/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.signDate, .dateField').parent().find('input').prop('disabled', true);
+});
+
+const formatMomentDate = function(dateObj, format) {
+    switch(format) {
+        case "long":
+        return dateObj.format('D MMMM YYYY')
+        break;
+        case "short":
+        return dateObj.format('DD/MM/YYYY')
+        break;
+    }
+}
+
+const BASEPATH = '<$link;/main/RedCarpet/FormTemplates/Global_PayPal_Equity_Side_Letter>';
+const CONFIG = BASEPATH + '/js/config.json';
+const EventLocationField = document.querySelector('[name$=".EventLocation"]')
+if (!EventLocationField.readOnly) {
+    EventLocationField.value = '<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>';
+}
+const eventStartDate = '<$client.tEventDates_Date_2.Value>';
+const _Event_Start_Date = moment(eventStartDate);
+const _Event_Start_Date_7 = moment(eventStartDate).add(7, 'days');
+const data = {
+    'First_Name': '<$client.tForWhomUserInfo.First_Name>',
+    'Middle_Name': '<$client.tForWhomUserInfo.Middle_Name> ',
+    'Last_Name': '<$client.tForWhomUserInfo.Last_Name>',
+    'Preferred_First_Name': '<$client.tForWhomUserInfo.Preferred_First_Name>',
+    'NEW_HIRE_REST_STOCK_UNITS': '<$client.tForWhomUserInfo.NEW_HIRE_REST_STOCK_UNITS>',
+    'Current_Date': document.getElementById('Current_Date').value,
+    'Current_Date_Intl': document.getElementById('Current_Date').value,
+    'Event_Start_Date': _Event_Start_Date,
+    'Event_Start_Date_7': _Event_Start_Date_7,
+    'HAS_AIP_PCT':  ('<$client.tForWhomUserInfo.eIP_Target_Pct>'!=0 && '<$client.tForWhomUserInfo.eIP_Target_Pct>'.length),
+    'HAS_CS_RSU':  ('<$client.tForWhomUserInfo.Cash_Settled_Restricted_Stock_Units_CSU>'!=0 && '<$client.tForWhomUserInfo.Cash_Settled_Restricted_Stock_Units_CSU>'.length),
+    'signatory': '<$client.tEventManagers_Person_22.FormattedName>'
+};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+// signature section clearing on task reopen variables
+const isCoordinator = <$client.env.eval((client.role.rc_hrcoordinators==1)?'true':'false')>;
+const isRecruiter = <$client.env.eval((client.tEventManagers_Person_22.UserGuid==account.userguid)?'true':'false')>;
+const isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const EmployeeStamp = "<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>"; 
+if (isRecruiter) {
+    $('#SignerMan').val('<$client.tEventManagers_Person_22.FormattedName>');
+}
+</script>

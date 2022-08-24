@@ -1,0 +1,211 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary removeNgInvalid" data-target="signature" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button addNgInvalid" data-target="signature" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Name.prompt>
+        <$client.env.FormField.SSN.prompt>
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a01_Hepa_B_Vaccination.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+    <div class="row">
+        <header class="col-lg-12">
+            <h4 class="text-center">
+                <strong>HEPATITIS B VACCINE DECLINATION</strong>
+            </h4>
+        </header>
+    </div>
+    <div class="box mb-20">
+        <div class="row">
+            <div class="col-lg-12">
+                <ol class="mb-20">
+                    <li>
+                        <p class="text-justify">
+                            I understand that due to my occupational exposure to blood or other potentially infectious materials, I may be at risk of acquiring hepatitis B virus, (HBV) infection. I have been given the opportunity to be vaccinated with hepatitis B vaccine, at no charge to myself. However, I decline hepatitis B vaccination at this time. I understand that by declining this vaccine, I continue to be at risk of acquiring hepatitis B, a serious disease. If in the future I continue to have occupational exposure to blood or other potentially infectious materials and I want to be vaccinated with hepatitis B vaccine, I can receive the vaccination series at no charge to me.
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Please check the box that best describes your decision to decline:
+                        </p>
+                        <div class="form-group">
+                            <$client.env.FormField.a01_Hepa_B_Vaccination.HTML>
+                        </div>
+                    </li>
+                    <li>
+                        <p class="text-justify">
+                            Because of the confidential nature of my medical records, I understand that if I so chose, I can provide the Company with backup medical documentation relating to my prior vaccination and/or testing.
+                        </p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.Signature.HTML>
+                    <em>Employee Signature</em>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.SSN.HTML>
+                    <em>Social Security #</em>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.Date.HTML>
+                    <em>Date</em>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-40">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.Name.HTML>
+                    <em>Employee's Printed Name</em>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <strong>
+                <em>(Place in Confidential Employee Medical File)</em>
+            </strong>
+        </div>
+    </div>
+
+    
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/Red_Border.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+    $(".addNgInvalid").each(function() {
+      $(".addNgInvalid").click(function() {
+      var targetID = $(this).data('target');
+      $('#' + targetID + ', [name$=".Date_display"]').addClass("ng-invalid");
+      });
+    });
+
+    $(".removeNgInvalid").each(function() {
+      $(".removeNgInvalid").click(function() {
+      var targetID = $(this).data('target');
+      if($("#"+targetID+"").val() != ""){
+          $('#' + targetID + ', [name$=".Date_display"]').removeClass("ng-invalid");
+      }
+      });
+    });
+    $('input[type="radio"]').on('change', function() {
+        const radioGroup = $('[name="' + $(this).prop('name') + '"]');
+        let checked = false;
+        radioGroup.each(function(k, v) {
+            if (v.checked) {
+                checked = v.checked;
+            }
+        });
+        if (checked) {
+            radioGroup.removeClass('required');
+            return;
+        }
+        radioGroup.addClass('required');
+    });
+    $('input[type="radio"]').trigger('change');
+
+    $(".modal").hide();
+});
+
+angular.element(document).ready(function() {
+    angular.element('#divLoader').remove();
+});
+</script>

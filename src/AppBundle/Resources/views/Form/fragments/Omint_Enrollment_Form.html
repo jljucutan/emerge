@@ -1,0 +1,159 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <h3>Medical and Dental Enrollment Form (Omint)</h3>
+            <p class="mb-3">PayPal provides you and your dependents with 100% company-paid health care benefits. Your spouse, domestic partner, and children up to age 21 (age 24 if a student) are eligible for coverage, too.</p>
+            <ul class="bulleted-list">
+                <li class="mb-3">The medical plans (Omint SE3 and Omint C40) provide comprehensive inpatient and outpatient coverage. In-network provider visits are covered at 100%; out-of-network coverage depends on the plan and service.</li>
+                <li class="mb-3">The dental plans (Omint OS1 and D22) cover all basic specialties, orthodontic X-rays, tomography, and home bleaching. The D22 plan also covers laser bleaching and Omint’s dental clinic.</li>
+            </ul>
+            <p class="mb-3">Please complete this application form to enroll in this benefit:</p>
+            <p class="mb-3">
+                <a href="#" id="enrollment-link">
+                    <strong>Omint Enrollment Form</strong>
+                </a>
+            </p>
+            <p>Once completed, save this document. You will be required to upload it in a later task.</p>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.enrolllment_link.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Omint_Enrollment_Form/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+const ENROLLMENT_FORMS = {
+    brazilRegular: '<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/2021/Omint_Enrollment_Form_PayPal_2020v3.xlsx>',
+    brazilIntern: '<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/2021/Omint_Enrollment_Form_Interns_PayPal_2020v3.xlsx>',
+    iBrazilRegular: '<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/2021/Omint_Enrollment_Form_iZettle_2020v3.xlsx>',
+    iBrazilIntern: '<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/2021/Omint_Enrollment_Form_Interns_iZettle_2020v3.xlsx>'
+}
+const EMPLOYEE_GROUP_CD = '<$client.tForWhomUserInfo.EMPLOYEE_GROUP_CD>';
+const ENTITY_NAME = '<$client.tForWhomUserInfo.EnityName>';
+
+document.onreadystatechange = function() {
+    const enrollmentLinkField = document.querySelector('[name$=".enrolllment_link"]');
+    let link = '#';
+    if (['T','R'].indexOf(EMPLOYEE_GROUP_CD) >= 0 && ENTITY_NAME == 'PayPal Brazil') {
+        link = ENROLLMENT_FORMS['brazilRegular'];
+    }
+    if (EMPLOYEE_GROUP_CD == 'I' && ENTITY_NAME == 'PayPal Brazil') {
+        link = ENROLLMENT_FORMS['brazilIntern'];
+    }
+    if (['T','R'].indexOf(EMPLOYEE_GROUP_CD) >= 0 && ENTITY_NAME == 'iZettle Brazil') {
+        link = ENROLLMENT_FORMS['iBrazilRegular'];
+    }
+    if (EMPLOYEE_GROUP_CD == 'I' && ENTITY_NAME == 'iZettle Brazil') {
+        link = ENROLLMENT_FORMS['iBrazilIntern'];
+    }
+    if (!enrollmentLinkField.readOnly) {
+        enrollmentLinkField.value = link;
+        enrollmentLinkField.target = '_blank';
+    }
+    document.getElementById('enrollment-link').href = enrollmentLinkField.value;
+}
+
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

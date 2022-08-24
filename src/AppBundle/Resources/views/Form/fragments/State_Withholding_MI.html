@@ -1,0 +1,534 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.AdditionalWithholding.prompt>
+        <$client.env.FormField.Address.prompt>
+        <$client.env.FormField.City.prompt>
+        <$client.env.FormField.DOB.prompt>
+        <$client.env.FormField.DateOfHire.prompt>
+        <$client.env.FormField.EIN.prompt>
+        <$client.env.FormField.EmployerAddress.prompt>
+        <$client.env.FormField.EmployerCity.prompt>
+        <$client.env.FormField.EmployerContact.prompt>
+        <$client.env.FormField.EmployerName.prompt>
+        <$client.env.FormField.EmployerPhone.prompt>
+        <$client.env.FormField.EmployerState.prompt>
+        <$client.env.FormField.EmployerZip.prompt>
+        <$client.env.FormField.Exempt1.prompt>
+        <$client.env.FormField.Exempt2.prompt>
+        <$client.env.FormField.Exempt3.prompt>
+        <$client.env.FormField.Exemptions.prompt>
+        <$client.env.FormField.FirstName.prompt>
+        <$client.env.FormField.LastName.prompt>
+        <$client.env.FormField.MiddleInitial.prompt>
+        <$client.env.FormField.NewEmployee.prompt>
+        <$client.env.FormField.RenaissanceZone.prompt>
+        <$client.env.FormField.SSN.prompt>
+        <$client.env.FormField.State.prompt>
+        <$client.env.FormField.WageExemptExplain.prompt>
+        <$client.env.FormField.Zip.prompt>
+        <$client.env.FormField.DriversLicense.prompt>
+        <$client.env.FormField.Signer.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+
+      <h4 class="mb-0">
+        <strong>MI-W4</strong><br>
+      </h4>
+
+      <p class="mb-3">
+        <small>(Rev. 12-20)</small>
+      </p>
+
+      <h4 class="mb-3">
+        <strong>EMPLOYEE'S MICHIGAN WITHHOLDING EXEMPTION CERTIFICATE <br>
+        STATE OF MICHIGAN - DEPARTMENT OF TREASURY</strong>
+      </h4>
+
+      <p class="mb-3">
+        <small>
+          <em>
+            This certificate is for Michigan income tax withholding purposes only. <strong>Read instructions on page 2 before completing this form.</strong>
+          </em>
+        </small>
+      </p>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-sm-6 col-xs-12">
+      <small>Issued under P.A. 281 of 1967.</small>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-xs-12 border-left border-top border-right border-dark border-thick">
+      <div class="d-flex align-items-center">
+        <span class="lead">▸</span> <small>1. Full Social Security Number</small>
+      </div>
+      <$client.env.FormField.SSN.HTML>
+    </div>
+    <div class="col-lg-3 col-sm-3 col-xs-12 border-top border-right border-dark border-thick border-left-xs">
+      <div class="d-flex align-items-center">
+        <span class="lead">▸</span> <small>2. Date of Birth</small>
+      </div>
+      <$client.env.FormField.DOB.HTML>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-sm-6 col-xs-12 border-top border-left border-bottom border-dark border-thick border-right-xs">
+      <div class="d-flex align-items-center">
+        <span class="lead">▸</span> <small>3. Name (First, Middle Initial, Last)</small>
+      </div>
+      <div class="d-lg-flex">
+        <div class="flex-grow-1">
+          <$client.env.FormField.FirstName.HTML>
+        </div>
+        <div class="flex-grow-0">
+          <$client.env.FormField.MiddleInitial.HTML>
+        </div>
+        <div class="flex-grow-1">
+          <$client.env.FormField.LastName.HTML>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-sm-6 col-xs-12 border-left border-top border-right border-dark border-thick">
+      <div class="d-flex align-items-center">
+        <small>Driver’s License Number or State ID</small> <span class="lead invisible">▸</span>
+      </div>
+      <$client.env.FormField.DriversLicense.HTML>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-sm-6 col-xs-12 border-left border-bottom border-dark border-right-xs border-thick-xs">
+      <div class="row border-bottom border-dark border-left-xs">
+        <div class="col-12">
+          <div class="d-flex align-items-center">
+            <small>Home Address (No., Street, P.O. Box or Rural Route)</small><span class="lead invisible">▸</span>
+          </div>
+          <$client.env.FormField.Address.HTML>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 d-lg-flex border-left-xs">
+          <div class="flex-grow-1 border-right border-dark border-right-0-xs">
+            <div class="d-flex align-items-center">
+              <small>City or Town</small><span class="lead invisible">▸</span>
+            </div>
+            <$client.env.FormField.City.HTML>
+          </div>
+          <div class="border-right border-dark border-right-0-xs pl-sm-2">
+            <div class="d-flex align-items-center">
+              <small>State</small><span class="lead invisible">▸</span>
+            </div>
+            <$client.env.FormField.State.HTML>
+          </div>
+          <div class="pl-sm-2">
+            <div class="d-flex align-items-center">
+              <small>ZIP Code</small><span class="lead invisible">▸</span>
+            </div>
+            <$client.env.FormField.Zip.HTML>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 col-sm-6 col-xs-12 border-left border-top border-right border-bottom border-dark">
+      <div class="d-flex">
+        <div class="pl-1 flex-fill">
+          <div class="d-flex align-items-center">
+            <span class="lead">▸</span> <small>Are you a new employee?</small>
+          </div>
+          <$client.env.FormField.NewEmployee.HTML>
+        </div>
+        <div class="border border-dark border-thick flex-fill pl-1">
+          <div class="d-lg-flex align-items-center">
+            <small>(mm/dd/yyyy)</small><span class="lead invisible">▸</span>
+          </div>
+          <$client.env.FormField.DateOfHire.HTML>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-9 col-sm-9 col-xs-12 pt-2 border-left border-dark border-left-xs border-right-xs">
+      6. Enter the number of personal and dependent exemptions (see instructions)
+    </div>
+    <div class="col-lg-3 col-sm-3 col-xs-12 border-right border-left-xs border-dark">
+      <div class="d-flex">
+        <div class="d-flex align-items-center pr-1">
+          <span class="lead">▸</span> <small>6.</small>
+        </div>
+        <div class="border border-dark border-thick flex-fill">
+          <$client.env.FormField.Exemptions.HTML>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-9 col-sm-9 col-xs-12 pt-2 border-left border-dark border-right-xs">
+      7. Additional amount you want deducted from each pay (if employer agrees)
+    </div>
+    <div class="col-lg-3 col-sm-3 col-xs-12 border-right border-left-xs border-dark">
+      <div class="d-flex">
+        <div class="d-flex align-items-center pr-1">
+          <span class="lead invisible">▸</span> <small>7.</small>
+        </div>
+        <div class="border border-dark flex-fill d-flex align-items-center px-1">
+          <div>
+            $
+          </div>
+          <div class="flex-fill">
+            <$client.env.FormField.AdditionalWithholding.HTML>
+          </div>
+          <div>
+            .00
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 border-left border-right border-bottom border-dark">
+      <p class="mb-2">
+        8. I claim exemption from withholding because (see instructions):
+      </p>
+      <div class="d-sm-flex align-items-center">
+        <div class="px-2 d-inline align-middle">
+          a.
+        </div>
+        <div class="d-inline-block align-middle">
+          <$client.env.FormField.Exempt1.HTML>
+        </div>
+        <div class="d-inline align-middle">
+          A Michigan income tax liability is not expected this year.
+        </div>
+      </div>
+      <div class="d-sm-flex align-items-center">
+          <div class="px-2 d-inline d-sm-block align-middle">
+            b.
+          </div>
+          <div class="d-inline-block d-sm-block align-middle">
+            <$client.env.FormField.Exempt2.HTML>
+          </div>
+          <div class="d-inline d-sm-block align-middle">
+            Wages are exempt from withholding. Explain:
+          </div>
+          <div class="flex-grow-1">
+            <$client.env.FormField.WageExemptExplain.HTML>
+          </div>
+      </div>
+      <div class="mb-2 d-sm-flex align-items-center">
+        <div class="px-2 d-inline d-sm-block align-middle">
+          c.
+        </div>
+        <div class="d-inline-block d-sm-block align-middle">
+          <$client.env.FormField.Exempt3.HTML>
+        </div>
+        <div class="d-inline d-sm-block align-middle">
+          Permanent home (domicile) is located in the following Renaissance Zone:
+        </div>
+        <div class="flex-grow-1">
+          <$client.env.FormField.RenaissanceZone.HTML>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 border-left border-right border-bottom border-dark py-1">
+      <strong>EMPLOYEE:</strong> If you fail or refuse to file this form, your employer must withhold Michigan income tax from your wages without allowance for any exemptions. Keep a copy of this form for your records. See additional instructions on page 2.
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 border-left border-right border-bottom border-dark py-1">
+      <em>Under penalty of perjury, I certify that the number of withholding exemptions claimed on this certificate does not exceed the number I am allowed to claim. If claiming exemption from withholding, I certify that I do not anticipate a Michigan income tax liability this year.</em>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-12 border-left border-right border-bottom border-dark py-1">
+      <$client.env.FormField.Signer.HTML>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 border border-dark py-1">
+      <strong>EMPLOYER:</strong> Complete the below section.
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-sm-6 col-xs-12 border-left border-right border-bottom border-dark">
+      <div class="d-flex align-items-center">
+        <small>10. Employer’s Name</small><span class="lead invisible">▸</span>
+      </div>
+      <$client.env.FormField.EmployerName.HTML>
+    </div>
+    <div class="col-lg-6 col-sm-6 col-xs-12 border border-dark">
+      <div class="d-flex align-items-center">
+        <span class="lead">▸</span> <small>11. Federal Employer Identification Number</small>
+      </div>
+      <$client.env.FormField.EIN.HTML>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-sm-6 col-xs-12 border-left border-right border-bottom border-dark">
+      <div class="d-flex align-items-center">
+        <small>Address (No., Street, P.O. Box or Rural Route)</small><span class="lead invisible">▸</span>
+      </div>
+      <$client.env.FormField.EmployerAddress.HTML>
+    </div>
+    <div class="col-lg-2 col-sm-2 col-xs-12 border-right border-bottom border-top border-dark border-left-xs">
+      <div class="d-flex align-items-center">
+        <small>City or Town</small><span class="lead invisible">▸</span>
+      </div>
+      <$client.env.FormField.EmployerCity.HTML>
+    </div>
+    <div class="col-lg-2 col-sm-2 col-xs-12 border-right border-bottom border-top border-dark border-left-xs">
+      <div class="d-flex align-items-center">
+        <small>State</small><span class="lead invisible">▸</span>
+      </div>
+      <$client.env.FormField.EmployerState.HTML>
+    </div>
+    <div class="col-lg-2 col-sm-2 col-xs-12 border-right border-bottom border-top border-dark border-left-xs">
+      <div class="d-flex align-items-center">
+        <small>ZIP Code</small><span class="lead invisible">▸</span>
+      </div>
+      <$client.env.FormField.EmployerZip.HTML>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-sm-6 col-xs-12 border-left border-right border-bottom border-dark">
+      <div class="d-flex align-items-center">
+        <small>Name of Contact Person</small><span class="lead invisible">▸</span>
+      </div>
+      <$client.env.FormField.EmployerContact.HTML>
+    </div>
+    <div class="col-lg-6 col-sm-6 col-xs-12 border-right border-bottom border-dark border-left-xs">
+      <div class="d-flex align-items-center">
+        <small>Contact Phone Number</small><span class="lead invisible">▸</span>
+      </div>
+      <$client.env.FormField.EmployerPhone.HTML>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-12 border-left border-right border-bottom border-dark py-1">
+      <p class="mb-2">
+        <strong>INSTRUCTIONS TO EMPLOYER:</strong> Keep a copy of this certificate with your records. All new hires must be reported to the State of Michigan. See <strong><a class="text-dark" href="http://www.mi-newhire.com" target="_blank">www.mi-newhire.com</a></strong> for information.
+      </p>
+      <p class="mb-0">
+        In addition, a copy of this form must be sent to the Michigan Department of Treasury if the employee claims 10 or more exemptions or claims they are exempt from withholding. Send a copy to:
+      </p>
+      <p class="ml-lg-4">
+        Michigan Department of Treasury <br>
+        Tax Technical Section <br>
+        P.O. Box 30477 <br>
+        Lansing, MI 48909
+      </p>
+    </div>
+  </div>
+
+
+  <div class="row mb-3">
+    <div class="col-12">
+      <h4 class="text-center">
+        <strong>INSTRUCTIONS TO <em>EMPLOYEE’S <br>MICHIGAN WITHHOLDING EXEMPTION CERTIFICATE</em> (Form MI-W4)</strong>
+      </h4>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-lg-6 col-sm-6 col-xs-12">
+      <p class="text-justify">
+        You must submit a Michigan withholding exemption certificate (form MI-W4) to your employer on or before the date that employment begins. If you fail or refuse to submit this certificate, your employer must withhold tax from your compensation without allowance for any exemptions. Your employer is required to notify the Michigan Department of Treasury if you have claimed 10 or more personal or dependency exemptions or claimed that you are exempt from withholding.
+      </p>
+      <p class="text-justify">
+        You MUST provide a new MI-W4 to your employer within 10 days if your residency status changes or if your exemptions decrease because: a) your spouse, for whom you have been claiming an exemption, is divorced or legally separated from you or claims his/her own exemption(s) on a separate certificate, or b) a dependent no longer qualifies under the Internal Revenue Code.
+      </p>
+      <p class="text-justify">
+        <strong>Line 5:</strong> If you check “Yes,” enter your date of hire.
+      </p>
+      <p class="text-justify">
+        <strong>Line 6:</strong> Personal and dependency exemptions. The number of exemptions claimed here may not exceed the number of exemptions you are entitled to claim on a <em>Michigan Individual Income Tax Return</em> (Form MI-1040). Dependents include qualifying children and qualifying relatives under the Internal Revenue Code, even if your AGI exceeds the limits to claim federal tax credits for them.
+      </p>
+      <p>
+        Do not claim the same exemptions more than once or tax will be under-withheld. Specifically, <strong>do not claim</strong>:
+      </p>
+      <ul class="list-bulleted">
+        <li class="text-justify mb-2">
+          Your personal exemption if someone else will claim you as their dependent.
+        </li>
+        <li class="text-justify mb-2">
+          Your personal exemption with more than one employer at a time.
+        </li>
+        <li class="text-justify mb-2">
+          Your spouse’s personal exemption if they claim it with their employer.
+        </li>
+        <li class="text-justify mb-2">
+          Your dependency exemptions if someone else (for example, your spouse) is claiming them with their employer.
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-6 col-sm-6 col-xs-12">
+      <p>
+        <strong>Line 7:</strong> You may designate additional withholding if you expect to owe more than the amount withheld.
+      </p>
+      <p>
+        <strong>Line 8a:</strong> You may claim exemption from Michigan income tax withholding if all of the following conditions are met:
+      </p>
+      <ul>
+        <li class="text-justify mb-2">
+          i) Your employment is intermittent, temporary, or less than full time;
+        </li>
+        <li class="text-justify mb-2">
+          ii) Your personal and dependency exemptions exceed your annual taxable compensation;
+        </li>
+        <li class="text-justify mb-2">
+          iii) You claimed exemption from federal withholding; and
+        </li>
+        <li class="mb-2">
+          iv) You did not incur a Michigan income tax liability for the previous year.
+        </li>
+      </ul>
+      <p>
+        <strong>Line 8b:</strong> Reasons wages might be exempt from withholding include:
+      </p>
+      <ul class="list-bulleted">
+        <li class="text-justify mb-2">
+          You are a nonresident spouse of military personnel stationed in Michigan.
+        </li>
+        <li class="text-justify mb-2">
+          You are a resident of one of the following reciprocal states while working in Michigan: Illinois, Indiana, Kentucky, Minnesota, Ohio, or Wisconsin.
+        </li>
+        <li class="text-justify mb-2">
+          You are an enrolled member of a federally-recognized tribe that does not have a tax agreement with the state of Michigan, you reside within that tribe’s Indian Country (as defined in 18 USC 1151), and compensation from this job will be earned within that Indian Country.
+        </li>
+      </ul>
+      <p>
+        <strong>Line 8c:</strong> For questions about Renaissance Zones, contact your local assessor’s office.
+      </p>
+    </div>
+  </div>
+
+  <hr class="lifesuite__hr">
+  <div class="row" id="formButtons" style="display: none;">
+    <div class="col-12">
+      <div class="sign-btn-group">
+          <$client.env.FormButtons>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<!-- script src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_MI/assets/b4/bootstrap.min.js>"></script --><!-- no need for this for now -->
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(elemClass) {
+    "use strict";
+    $(elemClass).parent().find('input').prop('disabled', 'disabled');
+}
+
+const disableRadioButton = function(elemClass) {
+    "use strict";
+    $(elemClass).parent().find('input[type="radio"]').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+    angular.element('.middle').addClass('mx-auto');
+    angular.element('.fa-calendar').length && setInterval(function() {
+      const sv1 = angular.element('[ng-controller="SignerController"]').find('[ng-bind="signatureStatement"]');
+      if (!!sv1) {
+        angular.element('#sv').val(sv1.text());
+      }
+    }, 1000);
+});
+</script>

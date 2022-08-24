@@ -1,0 +1,488 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+
+<div class="modal" id="modal" style="display:none;"> 
+
+              <div class="modal-content"> 
+
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+
+                             <p style="fontweight:normal;padding:0px"> 
+
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+
+                             </p> 
+
+                             <br> 
+
+                             <div class="row"> 
+
+                                           <div class="lifesuite__clearfix"> 
+
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+
+                             </div> 
+
+                             </div> 
+
+                             <div class="row"> 
+
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+
+                                           </div> 
+
+                             </div> 
+
+              </div> 
+
+</div> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+
+<div class="modal" id="modal2" style="display:none;"> 
+
+              <div class="modal-content"> 
+
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+
+                             <p style="fontweight:normal;padding:0px"> 
+
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+
+                             </p> 
+
+                             <br> 
+
+                             <div class="row"> 
+
+                                           <div class="lifesuite__clearfix"> 
+
+                                                          <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+
+                             </div> 
+
+                             </div> 
+
+                             <div class="row"> 
+
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','','modal2','over','sv2');xbObj('eSignature2').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+
+                                           </div> 
+
+                             </div> 
+
+              </div> 
+
+</div> 
+
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+
+    showScreen('over') 
+
+</SCRIPT> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+  
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+
+              <div class="fb-spinner"> 
+
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+
+              </div> 
+
+</div> 
+
+  
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form''> 
+
+    <div style="display:none;"> 
+
+        <$client.env.FormField.Form_Name.prompt> 
+
+        <$client.env.FormField.Form_Name.HTML> 
+
+        <$client.env.FormField.Form_Type.prompt> 
+
+        <$client.env.FormField.Form_Type.HTML> 
+
+        <$client.env.FormField.Form_Owner.prompt> 
+
+        <$client.env.FormField.Form_Owner.HTML> 
+
+        <$client.env.FormField.Form_CreateDate.prompt> 
+
+        <$client.env.FormField.Form_CreateDate.HTML> 
+
+        <$client.env.FormField.Form_Completed.prompt> 
+
+        <$client.env.FormField.Form_Completed.HTML> 
+
+        <$client.env.FormField.Form_Delivered.prompt> 
+
+        <$client.env.FormField.Form_Delivered.HTML> 
+
+        <$client.env.FormField.Form_TaskId.prompt> 
+
+        <$client.env.FormField.Form_TaskId.HTML> 
+
+        <$client.env.FormField.display_version.HTML> 
+
+<!--$client.env.FormField.DateItemsOrdered.prompt-->
+<$client.env.FormField.EmployeeNo.prompt>
+<$client.env.FormField.Location.prompt>
+<$client.env.FormField.Name.prompt>
+<$client.env.FormField.TeamMemberEmailAddress.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.Signature2.prompt>
+<$client.env.FormField.SignatureDate2.prompt>
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.SignatureVerification2.prompt>
+<$client.env.FormField.a01_LastName.prompt>
+<$client.env.FormField.a02_FirstName.prompt>
+<$client.env.FormField.a03_MI.prompt>
+<$client.env.FormField.a04_MemberNo.prompt>
+<$client.env.FormField.a05_Title.prompt>
+<$client.env.FormField.a06_Location.prompt>
+<$client.env.FormField.a07_Supervisor.prompt>
+<$client.env.FormField.a08_BASCIssued.prompt>
+<$client.env.FormField.a09_Date.prompt>
+<$client.env.FormField.a09_KeysIssued.prompt>
+<$client.env.FormField.a09_ToAccess.prompt>
+<$client.env.FormField.a10_CreditCardIssued.prompt>
+<$client.env.FormField.a11_LaptopIssued.prompt>
+<$client.env.FormField.a12_CPIssued.prompt>
+
+
+
+
+
+    </div> 
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+
+  
+
+<div class="container-fluid">  
+
+              <div class="form-group">  
+
+ 
+
+<div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <img class="img-responsive" src="logo.png" style="max-width: 80%; margin: 0 auto;">
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <p style="font-size: 20px;"><strong>RECEIPT OF COMPANY PROPERTY</strong></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <$client.env.FormField.a01_LastName.HTML>
+        <p class="text-center">Team Member Last Name</p>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <$client.env.FormField.a02_FirstName.HTML>
+        <p class="text-center">First Name</p>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-4 col-xs-4">
+        <$client.env.FormField.a03_MI.HTML>
+        <p class="text-center">MI</p>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <!--<$client.env.FormField.a04_MemberNo.HTML>
+        <p class="text-center">Team Member #</p-->
+      </div>
+    </div><!-- end of row -->
+
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <$client.env.FormField.a05_Title.HTML>
+        <p class="text-center">Title</p>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <$client.env.FormField.a06_Location.HTML>
+        <p class="text-center">Location</p>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <$client.env.FormField.a07_Supervisor.HTML>
+        <p class="text-center">Supervisor/Manager</p>
+      </div>
+    </div><!-- end of row -->
+
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ul style="list-style-type: disc;">
+          <li>
+            <strong>Building Access Security Card and/or Key(s):</strong>
+            <ul class="arrowed">
+              <li>
+                I understand that it is my responsibility to keep this security card and/or key safe
+                from damage or theft. I will not share my card/and or key with any other person. If
+                the card/and or key should become lost or stolen, I will notify my
+                supervisor/manager immediately, so the card may be inactivated. Failure to comply
+                with either of these items may result in disciplinary action up to and including
+                termination of my employment. 
+              </li>
+              <li>
+                I authorize Arrow Stage Lines to withhold up to $20 from my paycheck following the
+                loss or theft of the security card and/or key(s) issued to me.
+                <ul style="list-style-type: square; margin-top: 10px;margin-bottom: 10px;">
+                  <li class="inline-items">
+                    <span>Building Access Security Card Issued</span> <$client.env.FormField.a08_BASCIssued.HTML>
+                  </li>
+                  <li class="inline-items">
+                    <span>Key(s) Issued</span>   <$client.env.FormField.a09_KeysIssued.HTML> <br>If yes, list doors and/or buildings able to access:
+                    <$client.env.FormField.a09_ToAccess.HTML>
+                  </li>
+                  <li class="inline-items2">
+                    <span>Key(s) received on </span> <$client.env.FormField.a09_Date.HTML>
+                  </li>
+                </ul>
+                <span class="col-lg-4 col-md-4 col-sm-5 col-xs-12" style="padding : 10px 0 0 0!important;">If no items were issued, please mark N/A</span><span class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding-left: 0px!important;"><$client.env.FormField.NA1.HTML></span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div><!-- end of row -->
+
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ul>
+          <li>
+            <strong>Corporate Credit Card:</strong>
+            <ul class="arrowed">
+              <li>
+                I understand that this card is a privilege given to team members that have shown good judgment of company property and money.  I agree to the following guidelines for use of this card.
+              </li>
+              <li>
+                I understand that it is my responsibility to protect the security of this card and should the card become lost or stolen I will notify my supervisor/manager immediately.  Failure to do so may result in disciplinary action up to and including termination of my employment.  Company may also deduct any lost funds from my earnings.
+              </li>
+              <li>
+                The card will be used for company business use only.  No personal items will be purchased with this credit card.  I understand that personal use of the company card could be considered grounds for termination and unauthorized charges will be deducted from my earnings.
+              </li>
+              <li>
+                Any and all cash advances must receive prior authorization from management.
+              </li>
+              <li>
+                Any time the card is used I will supply a receipt with all the necessary information for accounting purposes (date, charter number, employee number, price and gallons of fuel purchased, location and signature) in accordance with company policy.  Failure to do so may result in the full amount being deducted from my earnings.  
+              </li>
+              <li>
+                Should my employment with Arrow Stage Lines be terminated, I will immediately return the card along with any outstanding receipts.  Failure to do so may result in the full amount being deducted from my earnings.    
+              </li>
+              <li>
+                Upon termination of my employment with Arrow Stage Lines, I understand that Arrow Stage Lines will retain $100.00 from my last paycheck, and until the final credit card statements have been received and validated.   Once all charges have been verified, any balance due me, will be paid within 30 days from receipt of the final credit card statement.
+                <ul style="list-style-type: square; margin-top: 10px;">
+                  <li class="inline-items">
+                    <span>Credit Card Issued</span> <$client.env.FormField.a10_CreditCardIssued.HTML>
+                  </li>
+                </ul>
+                <span class="col-lg-4 col-md-4 col-sm-5 col-xs-12" style="padding : 10px 0 0 0!important;">If no card is being issued, please mark N//A</span><span class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding-left: 0px!important;"><$client.env.FormField.NA2.HTML></span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div><!-- end of row -->
+
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ul>
+          <li>
+            <strong>Laptop:</strong>
+            <ul class="arrowed">
+              <li>
+                I understand that it is my responsibility to keep this laptop safe from damage or theft. I agree to use this laptop for Busco, Inc. business purposes only. I will follow Arrow Stage Lines’ Social Media Policy.   I will not allow any other person to use this laptop.  If I remove this laptop from company property, I will take all feasible precautions to safeguard this laptop and the data on it.  If this laptop should become lost or stolen, I will notify my supervisor/manager immediately. Failure to comply with either of these items may result in disciplinary action up to and including termination of my employment.  
+                <ul style="list-style-type: square; margin-top: 10px;">
+                  <li class="inline-items">
+                    <span>Laptop Issued</span> <$client.env.FormField.a11_LaptopIssued.HTML>
+                  </li>
+                </ul>
+                <span class="col-lg-4 col-md-4 col-sm-5 col-xs-12" style="padding : 10px 0 0 0!important;">If no laptop is being issued, please mark N/A</span><span class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding-left: 0px!important;"><$client.env.FormField.NA3.HTML></span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div><!-- end of row -->
+
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <ul>
+          <li>
+            <strong>Cell Phone:</strong>
+            <ul class="arrowed">
+              <li>
+                I understand that it is my responsibility to keep this cell phone safe from damage
+                or theft. I agree to use this cell phone for Busco, Inc. business purposes only. I will
+                follow Arrow Stage Lines’ Social Media Policy. I will not allow any other person to
+                use this cell phone. I will take all feasible precautions to safeguard this cell phone
+                and the data on it. If this cell phone should become lost or stolen, I will notify my
+                supervisor/manager immediately, so the phone may be deactivated. Failure to
+                comply with either of these items may result in disciplinary action up to and
+                including termination of my employment. 
+                <ul style="list-style-type: square; margin-top: 10px;">
+                  <li class="inline-items">
+                    <span>Cell Phone Issued</span> <$client.env.FormField.a12_CPIssued.HTML>
+                  </li>
+                </ul>
+                <span class="col-lg-4 col-md-4 col-sm-5 col-xs-12" style="padding : 10px 0 0 0!important;">If no cellphone is being issued, please mark N/A</span><span class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding-left: 0px!important;"><$client.env.FormField.NA4.HTML></span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div><!-- end of row -->
+
+    <div class="row" style="margin-top: 40px!important;">
+      <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+        <$client.env.FormField.Name.HTML>
+        <p class="text-center">Printed Team Member Name (as you would like on the credit card) </p>
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+        <$client.env.FormField.Location.HTML>
+        <p class="text-center">Location</p>
+      </div>
+    </div><!-- end of row -->
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <$client.env.FormField.TeamMemberEmailAddress.HTML>
+        <p class="text-center">Team Member E-mail Address</p>
+      </div>
+    </div><!-- end of row -->
+
+    <div class="row">
+      <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+        <$client.env.FormField.Signature.HTML>
+        <p class="text-center">Team Member Signature</p>
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+        <$client.env.FormField.EmployeeNo.HTML>
+        <p class="text-center">Employee #</p>
+      </div>
+    </div><!-- end of row -->
+
+    <div class="row">
+      <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+        <$client.env.FormField.Signature2.HTML>
+        <p class="text-center">Regional Director/Manager Approval</p>
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
+        <$client.env.FormField.SignatureDate2.HTML>
+        <p class="text-center">Date</p>
+      </div>
+    </div><!-- end of row -->
+    <!--div class="row">
+      <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 lbl-2b">
+        <p style="margin-bottom: 0px!important;">Date Items Ordered</p>
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+        <$client.env.FormField.DateItemsOrdered.HTML>
+      </div>
+    </div-->
+    <!-- end of row -->
+
+ 
+
+                  <br><hr class="lifesuite__hr"> 
+
+                  <$client.env.FormButtons> 
+
+              </div> 
+
+</div> 
+
+<div style="display:none;">
+<$client.env.FormField.SignatureVerification.HTML>
+<$client.env.FormField.SignatureVerification2.HTML>
+</div> 
+
+</form> 
+
+<SCRIPT> 
+
+    ChangeCalendarIcons(); //for popup calendar  
+
+  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+/* RESPONSIVE eFORM FIELDS STYLE */ 
+
+$(window).load(function() { 
+
+        $("input[type=text]").addClass('lifesuite__text-input'); 
+
+        $("input[type=text].hasDatepicker").addClass('dateField'); 
+
+        $("select").addClass('lifesuite__select-input'); 
+
+        $("input[type=radio]").addClass('lifesuite__radio'); 
+
+        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+
+        $("textarea").addClass('lifesuite__textarea-input'); 
+
+        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+
+});  
+
+  
+
+//Fixes to modal issue when viewing in mobile devices 
+
+$( window ).resize(function() { 
+
+document.getElementById('over').style.width=''; 
+
+}); 
+
+ 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+ 
+
+</SCRIPT>
+<script>
+<$client.env.eval((url.forWhom==account.userguid)?'disableCalButton(\'hrDate\')':'disableCalButton(\'newHireDate\')')>
+<$client.env.eval((client.role.CFO)?'disableCalButton(\'hrDate\')':'')>
+<$client.env.eval((client.role.CFO)?'disableCalButton(\'newHireDate\')':'')>
+disableCalButton('staticDate');
+</script>

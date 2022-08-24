@@ -1,0 +1,475 @@
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+    <div id="box">
+        <b>Electronic Signature</b>
+        <p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <br>
+        <b>Type your Name:</b> 
+        <input type=text id="eSignature1">&nbsp;
+        <input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','over','modal','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp;
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">      
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>
+/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return
+SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML> 
+
+<!--START:  PROMPT -->
+<$client.env.FormField.ADR_LINE_1_TX.prompt>
+<$client.env.FormField.ADR_LINE_2_TX.prompt>
+<$client.env.FormField.ADR_LINE_3_TX.prompt>
+<$client.env.FormField.BRTH_DT.prompt>
+<$client.env.FormField.CITY_NM.prompt>
+<$client.env.FormField.CNDDT_RDD.prompt>
+<$client.env.FormField.CNDDT_SRC_TYPE_CD.prompt>
+<$client.env.FormField.CTRY_CD.prompt>
+<$client.env.FormField.CUR_BD_APP_QSTN.prompt>
+<$client.env.FormField.DM_ADV_ID.prompt>
+<$client.env.FormField.DM_LGL_FULL_NM.prompt>
+<$client.env.FormField.DM_RDD.prompt>
+<$client.env.FormField.EXPRNC_LVL_APP_QSTN.prompt>
+<$client.env.FormField.LGL_FRST_NM.prompt>
+<$client.env.FormField.LGL_LAST_NM.prompt>
+<$client.env.FormField.LGL_MID_NM.prompt>
+<$client.env.FormField.LGL_MID_NM_FL.prompt>
+<$client.env.FormField.LGL_PFIX_NM.prompt>
+<$client.env.FormField.LGL_SFX_NM.prompt>
+<$client.env.FormField.LIMRA_SCRE_TYPE_CD.prompt>
+<$client.env.FormField.MP_ADV_ID.prompt>
+<$client.env.FormField.MP_LGL_FULL_NM.prompt>
+<$client.env.FormField.MP_RDD.prompt>
+<$client.env.FormField.OFC_USE_CNDDT_FULL_NM.prompt>
+<$client.env.FormField.OFC_USE_PRSNL_EMAIL_COM_TX.prompt>
+<$client.env.FormField.PRSNL_BOOK_BUS_APP_QSTN_FL.prompt>
+<$client.env.FormField.PRSNL_EMAIL_COM_TX.prompt>
+<$client.env.FormField.PRSNL_WBSTE_COM_TX.prompt>
+<$client.env.FormField.PRTCOL_FIRM_APP_QSTN_FL.prompt>
+<$client.env.FormField.PRTC_TYPE_APP_QSTN.prompt>
+<$client.env.FormField.PSTL_CD.prompt>
+<$client.env.FormField.RAP_PLTFRM_TYPE_CD.prompt>
+<$client.env.FormField.RAP_ROLE_TYPE_CD.prompt>
+<$client.env.FormField.RVP_ADV_ID.prompt>
+<$client.env.FormField.RVP_LGL_FULL_NM.prompt>
+<$client.env.FormField.RVP_RDD.prompt>
+<$client.env.FormField.SEL_EXAM_TYPE_CD.prompt>
+<$client.env.FormField.ST_CD.prompt>
+<$client.env.FormField.TAX_ID.prompt>
+<$client.env.FormField.a01a_ch.prompt>
+<$client.env.FormField.a01b_ch.prompt>
+<$client.env.FormField.a01c_ch.prompt>
+
+
+<!--END:  PROMPT -->
+
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<!--START:  HTML PAGE -->
+    <table width="900" cellpadding=0 cellspacing=0 class="tbl_outer bold" >
+        <tr>
+            <td colspan=4 class='title center bg-title' style='border-bottom: 3px solid #000 !important;'>Personal Information</td>
+        </tr>
+        <tr>
+            <td colspan=4 id='part_hr' class='hide'>
+                <table width=100% cellspacing="0" cellpadding="0" class='tbl_nonborder'>
+                        <tr>
+                            <td colspan=4 class='underlined subtitle padding_top padding_bottom'>For Office Use Only</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Candidate Name:</td>
+                            <td colspan="2"><$client.env.FormField.OFC_USE_CNDDT_FULL_NM.HTML></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Personal Email Address:</td>
+                            <td colspan="2"><$client.env.FormField.OFC_USE_PRSNL_EMAIL_COM_TX.HTML></td>
+                        </tr>
+                        <tr>
+                            <td colspan=4 class='underlined subtitle padding_top'>Recruiting Manager(check one):</td>
+                        </tr>
+                        <tr>
+                            <td colspan=4>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan=4>
+                                <table width='100%' cellspacing=0 cellpadding="0" class='tbl_nonborder'>
+                                     <tr>
+                            <td width="9%" class='ch_position'><$client.env.FormField.a01a_ch.HTML></td>
+                            <td width="41%">Regional Vice-President Name:</td>
+                            <td  colspan=2><$client.env.FormField.RVP_LGL_FULL_NM.HTML></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>Advisor ID: </td>
+                            <td colspan=2><$client.env.FormField.RVP_ADV_ID.HTML></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>RDD (RRDD-DD):</td>
+                            <td  colspan=2><$client.env.FormField.RVP_RDD.HTML></td>
+                        </tr>
+                        
+                        
+                        <!-- ************************************************************  -->
+                        <tr><td colspan=4>&nbsp;  </td></tr>
+                        <!-- ************************************************************  -->
+                        
+                        <tr>
+                            <td class='ch_position'><$client.env.FormField.a01b_ch.HTML></td>
+                            <td>Complex Manager/Managing Principal/Associate<br/> Managing Principal Name:</td>
+                            <td colspan="2" class="valign_bottom"><$client.env.FormField.MP_LGL_FULL_NM.HTML></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Advisor ID: </td>
+                            <td  colspan=2><$client.env.FormField.MP_ADV_ID.HTML></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>RDD (RRDD-DD):</td>
+                            <td  colspan=2><$client.env.FormField.MP_RDD.HTML></td>
+                        </tr>
+                        
+                        <!-- ************************************************************  -->
+                        <tr><td colspan=4>&nbsp;  </td></tr>
+                        <!-- ************************************************************  -->
+                        
+                        
+                        <tr>
+                            <td class='ch_position'><$client.env.FormField.a01c_ch.HTML></td>
+                            <td>District Manager/District Branch Manager Name:</td>
+                            <td colspan="2"><$client.env.FormField.DM_LGL_FULL_NM.HTML></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Advisor ID: </td>
+                            <td  colspan=2><$client.env.FormField.DM_ADV_ID.HTML></td>
+                            
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>RDD (RRDD-DD):</td>
+                            <td  colspan=2><$client.env.FormField.DM_RDD.HTML></td>
+                            
+                        </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                        <!-- ************************************************************  -->
+                        <tr><td colspan=4>&nbsp;</td></tr>
+                        <!-- ************************************************************  -->
+                        
+                        <tr>
+                            <td colspan="2">Region / Division / District # where Candidate will be located: </td>
+                            <td width="25%"><$client.env.FormField.CNDDT_RDD.HTML></td>
+                            <td width="25%"></td>
+                        </tr>
+                        <tr>
+                            <td width="2%"></td>
+                            <td width="48%">Recruiting Source:</td>
+                            <td colspan="2" ><$client.env.FormField.CNDDT_SRC_TYPE_CD.HTML></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Personal book of Business? (Y/N)</td>
+                            <td><$client.env.FormField.PRSNL_BOOK_BUS_APP_QSTN_FL.HTML></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Current Broker Dealer:</td>
+                            <td  colspan="2"><$client.env.FormField.CUR_BD_APP_QSTN.HTML></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Protocol firm? (Y/N)</td>
+                            <td><$client.env.FormField.PRTCOL_FIRM_APP_QSTN_FL.HTML></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Platform:</td>
+                            <td colspan="2"><$client.env.FormField.RAP_PLTFRM_TYPE_CD.HTML></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Candidate Type:</td>
+                            <td colspan="2"><$client.env.FormField.RAP_ROLE_TYPE_CD.HTML></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Experience Level:</td>
+                            <td colspan="2"><$client.env.FormField.EXPRNC_LVL_APP_QSTN.HTML></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Practice Type:</td>
+                            <td colspan="2"><$client.env.FormField.PRTC_TYPE_APP_QSTN.HTML></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">LIMRA Score:</td>
+                            <td colspan="2"><$client.env.FormField.LIMRA_SCRE_TYPE_CD.HTML></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Selection Exam Type Completed:</td>
+                            <td colspan="2"><$client.env.FormField.SEL_EXAM_TYPE_CD.HTML></td>
+                        </tr>
+                
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan=4 id='part_new_hire'  class='hide'>
+                <table width=100% cellspacing="0" cellpadding="0" class='tbl_nonborder'>
+                        </tr>
+                            <td colspan=4 class='subtitle underlined'>Personal Information:</td>
+                        </tr>
+                        <tr>
+                            <td colspan=4>
+                                <table width=100% cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td width="25%">Salutation:</td>
+                                        <td width="25%"><$client.env.FormField.LGL_PFIX_NM.HTML></td>
+                                        <td width="50%" colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Legal First Name:</td>
+                                        <td colspan="2" ><$client.env.FormField.LGL_FRST_NM.HTML></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Legal Middle Name:</td>
+                                        <td colspan="2"><$client.env.FormField.LGL_MID_NM.HTML></td>
+                                         <td><div class='radio-field'><$client.env.FormField.LGL_MID_NM_FL.HTML></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Legal Last Name:</td>
+                                        <td colspan="2"><$client.env.FormField.LGL_LAST_NM.HTML></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="25%">Suffix:</td>
+                                        <td width="25%"><$client.env.FormField.LGL_SFX_NM.HTML></td>
+                                        <td width="50%" colspan="2"></td>
+                                    </tr>                       
+                                    <!-- ************************************************************  -->
+                                    <tr><td colspan=4>&nbsp;  </td></tr>
+                                    <!-- ************************************************************  -->
+                                    <tr>
+                                        <td width="25%">Social Security # (xxx-xx-xxxx):</td>
+                                        <td width="25%"><$client.env.FormField.TAX_ID.HTML></td>
+                                        <td width="50%" colspan="2"></td>
+                                    </tr>   
+                                    <tr>
+                                        <td width="25%">Date of Birth (mm/dd/yyyy):</td>
+                                        <td width="25%"><$client.env.FormField.BRTH_DT.HTML></td>
+                                        <td width="50%" colspan="2"></td>
+                                    </tr>     
+                                    <!-- ************************************************************  -->
+                                    <tr><td colspan=4>&nbsp;  </td></tr>
+                                    <!-- ************************************************************  -->
+                                    <tr>
+                                        <td>Street Address (1)</td>
+                                        <td colspan=3><$client.env.FormField.ADR_LINE_1_TX.HTML></td>
+                                    </tr>   
+                                    <tr>
+                                        <td>Street Address (2)</td>
+                                        <td colspan=3><$client.env.FormField.ADR_LINE_2_TX.HTML></td>
+                                    </tr>   
+                                    <tr>
+                                        <td>Street Address (3)</td>
+                                        <td colspan=3><$client.env.FormField.ADR_LINE_3_TX.HTML></td>
+                                    </tr>   
+                                    <!-- ************************************************************  -->
+                                    <tr><td colspan=4>&nbsp;  </td></tr>
+                                    <!-- ************************************************************  -->
+                                    <tr>
+                                        <td colspan=4>
+                                            <table width=100% cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td width="15%">City:</td>
+                                                    <td width="34%"><$client.env.FormField.CITY_NM.HTML></td>
+                                                    <td width="3%">&nbsp;</td>
+                                                    <td width="13%">State:</td>
+                                                    <td width="35%"><$client.env.FormField.ST_CD.HTML></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Zip Code:</td>
+                                                    <td><$client.env.FormField.PSTL_CD.HTML></td>
+                                                    <td>&nbsp;</td>
+                                                    <td colspan="2"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Country:</td>
+                                                    <td><$client.env.FormField.CTRY_CD.HTML></td>
+                                                    <td>&nbsp;</td>
+                                                    <td colspan="2"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- ************************************************************  -->
+                                    <tr><td colspan=4>&nbsp;  </td></tr>
+                                    <!-- ************************************************************  -->
+                                    <tr>
+                                        <td>Personal Email Address:</td>
+                                        <td colspan="2" ><$client.env.FormField.PRSNL_EMAIL_COM_TX.HTML></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Personal Website:</td>
+                                        <td colspan="2" ><$client.env.FormField.PRSNL_WBSTE_COM_TX.HTML></td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                </table>
+            </td>
+        <tr>
+
+    </table>
+<!--END:  HTML PAGE -->
+
+<$client.env.FormButtons>
+<div style="display:none;">
+<$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script>
+
+ChangeCalendarIcons(); //for popup calendar
+
+function disableCalButton(disableList)
+{
+ frm = document.frmForm
+ for (i=0;i<frm.elements.length;i++)
+ {
+  el = frm.elements[i];
+  strID = el.id;
+  strIDAddOn = "";
+  //check for calendar button
+  if (strID.indexOf("_display")>=0)
+  {
+   strIDAddOn = el.className;
+  }
+
+  if ((disableList.indexOf(strIDAddOn)>=0)&&(strIDAddOn!=''))
+  {
+   //Check for calendar button
+   elName = el.name;
+   if (elName.indexOf("_display")>=0)
+   {
+    strNewName = "bt_" + elName.replace(".","_").replace("_display","");
+    elButton = document.getElementById(strNewName);
+    if (elButton)
+    {
+     elButton.disabled = true;
+    }
+   }
+  }
+ }
+}
+
+function reqCheckboxOne(el){
+    var rdoName = el.className;
+    var rdoID = el.id;
+
+    var r1=rdoName.split(" ")[0];
+    var rdoGroup = document.getElementsByClassName(r1);
+    
+    for (i=0;i<rdoGroup.length;i++){
+        el_ch = rdoGroup[i];
+        if(el_ch.value != el.value)
+        {
+           var obj_fields = document.getElementsByClassName(el_ch.id);
+/*
+           for (f=0;f<obj_fields.length;f++){
+                 var field = obj_fields[f];
+                 field.value = '';
+           }
+ */         
+           el_ch.checked=false; 
+           
+        }
+     }
+}
+
+
+
+function evnt_middle_name(el){
+    if(el.checked)
+    {
+         document.getElementById('middle_name').disabled=true;
+         document.getElementById('middle_name').value='';
+    }else{
+        document.getElementById('middle_name').disabled=false;
+    }
+}
+
+
+
+function evntHideHr(){
+
+ if(document.getElementById('indicator').getAttribute('data-value') == 1)
+     $('#part_new_hire').removeClass('hide');
+ else{
+     $('#part_new_hire, #part_hr').removeClass('hide');
+ }
+
+
+   if(document.getElementById('ch_middle_name').checked)
+    {
+         document.getElementById('middle_name').disabled=true;
+         document.getElementById('middle_name').value='';
+    }else{
+        document.getElementById('middle_name').disabled=false;
+    }
+
+
+}
+
+evntHideHr();
+$('.datepicker_button').addClass('calendar_button');
+disableCalButton('DisableDate');
+
+// SERVICES-38871 | Waddell & Reed, Inc. - RC - Special Characters
+const replaceSpecialChars = function(el) {
+    "use strict";
+    el.value = el.value.replace(/[“]/g, "\"")
+                    .replace(/[”]/g, "\"")
+                    .replace(/[‘]/g, "\'")
+                    .replace(/[’]/g, "\'")
+                    .replace(/[‚]/g, ",");
+};
+let cities = ['CITY_NM'];
+for (let i = 0; i < cities.length; i++) {
+  replaceSpecialChars(document.querySelector('[name$=".' + cities[i] + '"]'));
+}
+
+</script>
+
+<!-- <script type="text/javascript" src="jFunctions.js"></script> -->

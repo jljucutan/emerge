@@ -1,0 +1,304 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <p class="text-heading mb-2"><strong>Electronic Signature</strong></p>
+    <p>
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'a05_SignDate');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a05_SignDate');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal E-Signature box 2: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+  <div class="modal-content">
+    <p class="text-heading mb-2"><strong>Electronic Signature</strong></p>
+    <p>
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature2','eSignature2','mgrName','modal2','over','sv2', 'a08_SignDate');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','a08_SignDate');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.SignatureVerification2.prompt>
+        <$client.env.FormField.a00_Immediate_Family_Member.prompt>
+        <$client.env.FormField.a01_Physician_Name.prompt>
+        <$client.env.FormField.a02_Relation_to_Physician.prompt>
+        <$client.env.FormField.a03_Current_Medical_Staff_Affiliations.prompt>
+        <$client.env.FormField.a04_Signature.prompt>
+        <$client.env.FormField.a05_SignDate.prompt>
+        <$client.env.FormField.a06_Name.prompt>
+        <$client.env.FormField.a07_Title.prompt>
+        <$client.env.FormField.a08_SignDate.prompt>
+        <$client.env.FormField.a09_Signature.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid pt-4">
+    <div class="row mb-3">
+        <div class="col-12">
+            <p class="text-center">
+                Employment Stark Inquiry Form
+            </p>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-12">
+            <p>
+                Dear Employee,
+            </p>
+            <p class="text-justify">
+                In order to ensure that United Surgical Partners International, and/or their respective parents, subsidiaries, affiliates, other related entities, successors, and/or assigns (the “Company”), complies with federal law and USPI’s policies and procedures concerning the employment of “immediate family members” of physicians and entities that provide certain health care services, we require all individuals who have been extended conditional offers of employment to provide us with information about family relationships with physicians.
+            </p>
+            <p class="text-justify">
+                For purposes of answering these questions, the term “<strong>immediate family member</strong>” means the following individuals: husband or wife; natural or adoptive parent, child, or sibling; stepparent, stepchild, stepbrother, or stepsister; father-in-law, mother-in-law, son-in-law, daughter-in-law, brother-in-law, or sister-in-law; grandparent or grandchild; and spouse of a grandparent or grandchild. And “<strong>Physician</strong>” means a doctor of medicine or osteopathy, a doctor of dental surgery or dental medicine, a doctor of podiatric medicine, a doctor of optometry or a chiropractor.
+            </p>
+            <div class="text-justify mb-2">
+                Are you an “immediate family member” of a physician who is a member of 401-Staff Medical Staff or of an individual who may refer patients or treat patients at 401-Staff?
+                <$client.env.FormField.a00_Immediate_Family_Member.HTML>
+            </div>
+            <p>
+                If you answered “YES” above, please complete the following:
+            </p>
+            <ol class="ml-3 mb-3" style="max-width: 540px;">
+                <li class="mb-2">
+                    <div class="d-sm-flex">
+                        <div class="pr-2">
+                            Physician Name:
+                        </div>
+                        <div class="flex-grow-1">
+                            <$client.env.FormField.a01_Physician_Name.HTML>
+                        </div>
+                    </div>
+                </li>
+                <li class="mb-2">
+                    <div class="d-sm-flex">
+                        <div class="pr-2">
+                            Relationship to Physician:
+                        </div>
+                        <div class="flex-grow-1">
+                            <$client.env.FormField.a02_Relation_to_Physician.HTML>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    Current Medical Staff Affiliations (to the best of your knowledge):
+                    <$client.env.FormField.a03_Current_Medical_Staff_Affiliations.HTML>
+                </li>
+            </ol>
+            <p class="text-justify">
+                USPI requires that each USPI facility ensure that employees and contractors who are immediate family members of physicians comply with the term of USPI’s Standards of Conduct and Compliance Program and certify that they will not violate the Anti-Kickback Statute or the Stark Law. By signing this form, you are agreeing that the information on this form is correct.
+            </p>
+            <p>
+                Thank you.
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-sm-2 pt-1">
+            Signature:
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.a04_Signature.HTML>
+        </div>
+        <div class="col-sm-1 pt-1">
+            Date:
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a05_SignDate.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="border border-dark p-3">
+                <div class="text-center">
+                    <strong>Administrator Conflict of Interest Certification Form</strong>
+                </div>
+                <p>
+                    I certify that I have received the Conflict of Interest Disclosure form for this new hire and have taken appropriate action if required.
+                </p>
+                <div class="row border border-dark">
+                    <div class="col-sm-6 border-right border-dark border-bottom">
+                        <div>
+                            <strong>Name:</strong>
+                        </div>
+                        <div>
+                            <$client.env.FormField.a06_Name.HTML>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 border-bottom border-dark">
+                        <div>
+                            <strong>Title:</strong>
+                        </div>
+                        <div>
+                            <$client.env.FormField.a07_Title.HTML>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 border-right border-dark">
+                        <div>
+                            <strong>Date:</strong>
+                        </div>
+                        <div>
+                            <$client.env.FormField.a08_SignDate.HTML>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div>
+                            <strong>Signature:</strong>
+                        </div>
+                        <div>
+                            <$client.env.FormField.a09_Signature.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-12">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.FullName.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Employee_Stark_Form_USPI/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+if (window.NodeList && !NodeList.prototype.forEach) {
+   NodeList.prototype.forEach = Array.prototype.forEach;
+}
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+const physicianFields = ['a01_Physician_Name', 'a02_Relation_to_Physician', 'a03_Current_Medical_Staff_Affiliations'];
+const togglePhysicianFields = function(controlVal) {
+    "use strict";
+    if (controlVal == 'Yes') {
+        physicianFields.forEach(function(fName) {
+            const field = document.querySelector('[name$=".' + fName + '"]');
+            field.disabled = false;
+            field.classList.add('ng-invalid');
+        });
+        return true;
+    }
+    physicianFields.forEach(function(fName) {
+        const field = document.querySelector('[name$=".' + fName + '"]');
+        field.value = '';
+        field.classList.remove('ng-invalid');
+        field.disabled = true;
+    });
+    return true;
+}
+let immediateFamilyVal = 'No';
+let isNewHire = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+document.querySelectorAll('[name$=".a00_Immediate_Family_Member"]').forEach(function(rdo) {
+    // radio event toggling
+    rdo.addEventListener('change', function(e) {
+        togglePhysicianFields(e.target.value);
+    });
+    // on load toggling
+    if (!!rdo.checked) {
+        immediateFamilyVal = rdo.value;
+    }
+});
+if (!!isNewHire) {
+    togglePhysicianFields(immediateFamilyVal);
+}
+</script>

@@ -1,0 +1,421 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content" style="margin: 20% auto 0 !important; max-width: 480px !important;">
+    <p class="fs-5 mb-2"><strong>Electronic Signature</strong></p>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.BirthDate.prompt>
+        <$client.env.FormField.City.prompt>
+        <$client.env.FormField.County.prompt>
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.FirstName.prompt>
+        <$client.env.FormField.Initial.prompt>
+        <$client.env.FormField.LastName.prompt>
+        <$client.env.FormField.MiddleName.prompt>
+        <$client.env.FormField.OtherNames.prompt>
+        <$client.env.FormField.PresentAddress.prompt>
+        <$client.env.FormField.PreviousStates.prompt>
+        <$client.env.FormField.SSNO.prompt>
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.State.prompt>
+        <$client.env.FormField.Suffix.prompt>
+        <$client.env.FormField.TelephoneNums.prompt>
+        <$client.env.FormField.Zip.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <div class="d-sm-flex bg-dark text-white align-items-center py-2">
+                <div class="px-3">
+                    <div style="max-width: 200px;">
+                        <img src="<$link;/main/RedCarpet/FormTemplates/Background_Release_Form/img/pearson_logo_black.png>" alt="Pearson Logo" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p class="text-center">
+                <strong>EMPLOYEE DISCLOSURE AND RELEASE <br> FOR CONSUMER AND INVESTIGATIVE CONSUMER REPORTS</strong>
+            </p>
+            <p>In connection with my employment with Pearson Inc. or its affiliates, I understand that a consumer report and/or investigative consumer report, as defined by the Fair Credit Reporting Act (FCRA), may be obtained from Hireright, its agents or employees, and I authorize all corporations, employers, co-workers, references, credit reporting agencies, educational institutions, licensing bodies, courts, law enforcement agencies, governmental agencies or departments, and military services to provide information about my background, including but not limited to driving records, court records, credit report, academic records, professional license record and employment related information or records. I agree to release the aforesaid from any liability for collecting that information.</p>
+            <p>I understand that an investigative consumer report is a special type of consumer report that is obtained through interviews and may contain information about my character, general reputation, personal characteristics, and/or mode of living. Upon my written request within a reasonable period of time, a complete disclosure of the nature and scope of that investigation will be made to me in writing within five days of the date on which the request was received.</p>
+            <p>I further authorize Pearson Inc. (or its affiliate) to request a consumer report and/or investigative consumer report about me, for employment related purposes, at any time during the course of my employment to the extent allowed by law. I agree that this Disclosure and Release will be valid, now or in the future, in original, faxed, copied or electronic form.</p>
+            <p>I acknowledge that I have received a copy of the “Summary of Your Rights under the Fair Credit Reporting Act.”</p>
+            <p>I understand that my date of birth will be used solely for identification purposes.</p>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            First Name
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.FirstName.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Full Middle
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.MiddleName.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Last Name
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.LastName.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Suffix
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.Suffix.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Any other name(s) used
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.OtherNames.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Date of Birth
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.BirthDate.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Social Security Number #
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.SSNO.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Present Address
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.PresentAddress.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            City
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.City.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            State
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.State.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Zip
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.Zip.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            County
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.County.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Telephone Number(s)
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.TelephoneNums.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Previous States of Residence During Last 7 Years
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.PreviousStates.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Employee Signature
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.Signature.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-sm-3 text-sm-end pt-2 pe-2">
+            Date
+        </div>
+        <div class="col-sm-7">
+            <$client.env.FormField.Date.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-12">
+            <strong>California, Minnesota, and Oklahoma residents only:</strong> <br>
+            <p>
+                Please initial here only if you are requesting a copy of the consumer report prepared on you 
+                <span class="d-inline-block" style="max-width: 200px;;"><$client.env.FormField.Initial.HTML></span>. 
+                <br>
+                <strong><em>Para informacion en espanol, visite <a href="http://www.ftc.gov/credit" target="_blank">www.ftc.gov/credit</a> o escribe a la FTC Consumer Response Center, Room 130-A 600 Pennsylvania Ave. N.W., Washington, D.C. 20580.</em></strong>
+            </p>
+            <p class="text-center mb-0">
+                <strong>
+                    <u>A Summary of Your Rights Under the Fair Credit Reporting Act</u>
+                </strong>
+            </p>
+            <p>The federal Fair Credit Reporting Act (FCRA) promotes the accuracy, fairness, and privacy of information in the files of consumer reporting agencies. There are many types of consumer reporting agencies, including credit bureaus and specialty agencies (such as agencies that sell information about check writing histories, medical records, and rental history records). Here is a summary of your major rights under the FCRA. <strong>For more information, including information about additional rights, go to <a href="http://www.ftc.gov/credit" target="_blank">www.ftc.gov/credit</a> or write to: Consumer Response Center, Room 130-A, Federal Trade Commission, 600 Pennsylvania Ave. N.W., Washington, D.C.  20580.</strong></p>
+            <ul class="ms-2">
+                <li><strong>You must be told if information in your file has been used against you.</strong> Anyone who uses a credit report or another type of consumer report to deny your application for credit, insurance,or employment – or to take another adverse action against you – must tell you, and must giveyou the name, address, and phone number of the agency that provided the information.</li>
+                <li>
+                    You have the right to know what is in your file. You may request and obtain all theinformation about you in the files of a consumer reporting agency (your “file disclosure”). You willbe required to provide proper identification, which may include your Social Security number. Inmany cases, the disclosure will be free. You are entitled to a free file disclosure if:
+                    <ul class="ms-3">
+                        <li>a person has taken adverse action against you because of information in your creditreport;</li>
+                        <li>you are the victim of identify theft and place a fraud alert in your file;</li>
+                        <li>your file contains inaccurate information as a result of fraud;</li>
+                        <li>you are on public assistance;</li>
+                        <li>you are unemployed but expect to apply for employment within 60 days.</li>
+                    </ul>
+                    In addition, by September 2005 all consumers will be entitled to one free disclosure every 12 months upon request from each nationwide credit bureau and from nationwide specialty consumer reporting agencies. See <a href="http://www.ftc.gov/credit" target="_blank">www.ftc.gov/credit</a> for additional information.
+                </li>
+                <li><strong>You have the right to ask for a credit score.</strong> Credit scores are numerical summaries of your credit-worthiness based on information from credit bureaus. You may request a credit score from consumer reporting agencies that create scores or distribute scores used in residential real property loans, but you will have to pay for it. In some mortgage transactions, you will receive credit score information for free from the mortgage lender.</li>
+                <li><strong>You have the right to dispute incomplete or inaccurate information.</strong> If you identify information in your file that is incomplete or inaccurate, and report it to the consumer reporting agency, the agency must investigate unless your dispute is frivolous. See <a href="http://www.ftc.gov/credit" target="_blank">www.ftc.gov/credit</a> for an explanation of dispute procedures.</li>
+                <li><strong>Consumer reporting agencies must correct or delete inaccurate, incomplete, or unverifiable information.</strong> Inaccurate, incomplete or unverifiable information must be removed or corrected, usually within 30 days. However, a consumer reporting agency may continue to report information it has verified as accurate.</li>
+                <li><strong>Consumer reporting agencies may not report outdated negative information.</strong> In most cases, a consumer reporting agency may not report negative information that is more than seven years old, or bankruptcies that are more than 10 years old.</li>
+                <li><strong>Access to your file is limited.</strong> A consumer reporting agency may provide information about you only to people with a valid need -- usually to consider an application with a creditor, insurer, employer, landlord, or other business. The FCRA specifies those with a valid need for access.</li>
+                <li><strong>You must give your consent for reports to be provided to employers.</strong> A consumer reporting agency may not give out information about you to your employer, or a potential employer, without your written consent given to the employer. Written consent generally is not required in the trucking industry. For more information, go to <a href="http://www.ftc.gov/credit" target="_blank">www.ftc.gov/credit</a>.</li>
+                <li><strong>You may limit “prescreened” offers of credit and insurance you get based on information in your credit report.</strong> Unsolicited “prescreened” offers for credit and insurance must include a toll-free phone number you can call if you choose to remove your name and address from the lists these offers are based on. You may opt-out with the nationwide credit bureaus at 1-888-5-OPTOUT (1-888-567-8688).</li>
+                <li><strong>You may seek damages from violators.</strong> If a consumer reporting agency, or, in some cases, a user of consumer reports or a furnisher of information to a consumer reporting agency violates the FCRA, you may be able to sue in state or federal court.</li>
+                <li><strong>Identity theft victims and active duty military personnel have additional rights.</strong> For more information, visit <a href="http://www.ftc.gov/credit" target="_blank">www.ftc.gov/credit</a>.</li>
+            </ul>
+            <p>
+                <STRONG>STATES MAY ENFORCE THE FCRA, AND MANY STATES HAVE THEIR OWN CONSUMER REPORTING LAWS. IN SOME CASES, YOU MAY HAVE MORE RIGHTS UNDER STATE LAW. FOR MORE INFORMATION, CONTACT YOUR STATE OR LOCAL CONSUMER PROTECTION AGENCY OR YOUR STATE ATTORNEY GENERAL. FEDERAL ENFORCERS ARE:</STRONG>
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 table-responsive">
+            <table class="table table-bordered table-hover border-dark">
+                <thead>
+                    <tr>
+                        <th>TYPE OF BUSINESS:</th>
+                        <th>CONTACT:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Consumer reporting agencies, creditors and others not listed below</td>
+                        <td>Federal Trade Commission: Consumer Response Center - FCRA Washington, DC 20580 1-877-382-4357</td>
+                    </tr>
+                    <tr>
+                        <td>National banks, federal branches/agencies of foreign banks (word "National" or initials "N.A." appear in or after bank's name)</td>
+                        <td>
+                            Office of the Comptroller of the Currency <br>
+                            Compliance Management, Mail Stop 6-6 <br>
+                            Washington, DC 20219 800-613-6743
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Federal Reserve System member banks (except national banks, and federal branches/agencies of foreign banks)</td>
+                        <td>
+                            Federal Reserve Board <br>
+                            Division of Consumer &amp; Community Affairs <br>
+                            Washington, DC 20551 202-452-3693
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Savings associations and federally chartered savings banks (word "Federal" or initials "F.S.B." appear in federal institution's name)</td>
+                        <td>
+                            Office of Thrift Supervision <br>
+                            Consumer Complaints <br>
+                            Washington, DC 20552 800-842-6929
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Federal credit unions (words "Federal Credit Union" appear in institution's name)</td>
+                        <td>
+                            National Credit Union Administration <br>
+                            1775 Duke Street <br>
+                            Alexandria, VA 22314 703-519-4600
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>State-chartered banks that are not members of the Federal Reserve System</td>
+                        <td>
+                            Federal Deposit Insurance Corporation <br>
+                            Consumer Response Center, 2345 Grand Avenue, Suite 100
+                            Kansas City, Missouri 64108-2638 1-877-275-3342
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Air, surface, or rail common carriers regulated by former Civil Aeronautics Board or Interstate Commerce Commission</td>
+                        <td>Department of Transportation , Office of Financial Management Washington, DC 20590 202-366-1306</td>
+                    </tr>
+                    <tr>
+                        <td>Activities subject to the Packers and Stockyards Act, 1921</td>
+                        <td>
+                            Department of Agriculture <br>
+                            Office of Deputy Administrator - GIPSA <br>
+                            Washington, DC 20250 202-720-7051
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.Full_Name.HTML>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Background_Release_Form/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+const populateFullName = function(first, mid, last) {
+    document.querySelector('[name$=".Full_Name"]').value = first.trim() + ' ' + mid.trim() + ' ' + last.trim();
+}
+document.onreadystatechange = function() {
+    const fullNameFields = document.querySelectorAll('[name$=".FirstName"], [name$=".MiddleName"], [name$=".LastName"]');
+    fullNameFields.forEach(function(f) {
+        ['keyup', 'blur', 'paste'].forEach(function(e) {
+            f.addEventListener(e, function() {
+                populateFullName(fullNameFields[0].value, fullNameFields[1].value, fullNameFields[2].value)
+            })
+        })
+    });
+    populateFullName(fullNameFields[0].value, fullNameFields[1].value, fullNameFields[2].value);
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

@@ -1,0 +1,536 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type="text" id="eSignature1" class="lifesuite__text-input ng-invalid">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input id="sign-form" type="button" class="lifesuite__button primary" value="Sign">&nbsp;
+        <input id="clear-form" type="button" class="lifesuite__button" value="Clear">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a01_Confidential_Information.prompt>
+        <$client.env.FormField.a02_Insider_Trader_Policy.prompt>
+        <$client.env.FormField.Trader_Policy.prompt>
+        <$client.env.FormField.a03_Reporting_Transactions.prompt>
+        <$client.env.FormField.a04_Retention_of_Proprietary.prompt>
+        <$client.env.FormField.a05_Anti_Harassment_Policy.prompt>
+        <$client.env.FormField.a06_Personal_Account_Policy.prompt>
+        <$client.env.FormField.a07_Acceptable_Use_Policy.prompt>
+        <$client.env.FormField.a08_Copyright_Laws.prompt>
+        <$client.env.FormField.a10_Conflict_of_Interest.prompt>
+        <$client.env.FormField.a11_Conflict_of_Interest.prompt>
+        <$client.env.FormField.a12_Anti_Bribery_Policy_and_Procedures.prompt>
+        <$client.env.FormField.a13_HIPAA_Privacy_and_Security_Policy.prompt>
+        <$client.env.FormField.a14_Personal_Accounts_Policy.prompt>
+        <$client.env.FormField.a14_Records_Management.prompt>
+        <$client.env.FormField.a15_Authority_to_make_deduction_from_wages.prompt>
+        <$client.env.FormField.a16_Prior_Acts_Claims_Acknowledgement.prompt>
+        <$client.env.FormField.a17_Time_Reporting_Policy.prompt>
+        <$client.env.FormField.a18_Anti_Money_Laundering_Policy_and_Procedures.prompt>
+        <$client.env.FormField.a22_SMA_Building_Pass_Memo.prompt>
+        <$client.env.FormField.a24_Anti_Bribery_Policy.prompt>
+        <$client.env.FormField.a25_Bonus_Credit_for_Office_Hours_Policy.prompt>
+        <$client.env.FormField.a27_Social_Media_Policy.prompt>
+        <$client.env.FormField.a28_Confidentiality_Policy.prompt>
+        <$client.env.FormField.Employment_at_Will.prompt>
+        <$client.env.FormField.Equal_Employment_Opportunity.prompt>
+        <$client.env.FormField.Professional_Conduct.prompt>
+        <$client.env.FormField.Retention_of_Proprietary_and_Confidential_Materials_By_Departing_Persons.prompt>
+        <$client.env.FormField.Data_Protection_Policy.prompt>
+        <$client.env.FormField.Data_Transfer_and_Privacy_Policy.prompt>
+        <$client.env.FormField.Sentry_MPN.prompt>
+        <$client.env.FormField.Professional_Conduct_Firearms.prompt>
+        <$client.env.FormField.Prior_Acts_Claim.prompt>
+        <$client.env.FormField.a22_Name.prompt>
+        <$client.env.FormField.a23_Signature.prompt>
+        <$client.env.FormField.a24_Date.prompt>
+        <$client.env.FormField.a25_Agree.prompt>
+        <$client.env.FormField.Records_Management_Policy.prompt>
+        <$client.env.FormField.Ethical_Vendor_Policy.prompt>
+        <$client.env.FormField.Sexual_Harassment_London.prompt>
+        <$client.env.FormField.Covid19_Office_Practices_Policy.prompt>
+       </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"><main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="text-center">
+                New Hire Policy Acknowledgement Form
+            </h3>
+            <p>Please click each linked policy to review. Once you have reviewed the policy, be sure the box next to that policy is checked to acknowledge that you have read and understand how this policy affects you and the guidelines and requirements. After all policies have been reviewed and checked, a signature is required at the bottom of this page.</p>
+            <section id="checkbox-group" class="center-block mb-20"></section>
+        </div>
+    </div>
+    <div class="row mb-20">
+        <div class="col-lg-12">
+            <p class="text-justify">I acknowledge that I have reviewed and understand the documents listed above. Further I understand that, as an employee, partner or of counsel of Kirkland &amp; Ellis LLP ("Kirkland"), I am expected to comply fully with the policies set forth and any acknowledgment I have made are true and accurate to the best of my knowledge.  Furthermore, I agree to notify Human Resources if, in the future, I become aware of a violation of these policies.  I realize that failure to observe and comply with these policies could result in discipline, up to and including termination of employment or relationship with Kirkland.</p>
+            <p class="text-justify">No set of policies, however comprehensive or specific, can provide a direct response to every kind of situation or problem that might occur in the conduct of day-to-day employee relations. Accordingly, K&amp;E, at its sole discretion, may change or terminate its plans, policies, and procedures at any time, and may or may not give notice of these changes, except that K&amp;E will not change or terminate its "Employment at Will" policy. No representative of K&amp;E, other than the Firm Committee, the Chief Administrative Officer, or a Director of Administration, has the authority to enter into any agreement for a specified period of time or to make any agreement contrary to the foregoing. Any such agreement must be by individual agreement, in writing and signed by the employee and the Firm Committee, Chief Administrative Officer, or Director of Administration, whichever is applicable. No other written or verbal communication by a Firm attorney, management representative, or other employee of the Firm is intended to, or can, create a contract of employment or guarantee of benefits. No one has the authority to make any verbal statements of any kind at any time which are legally binding on the Firm.</p>
+            <p class="text-justify">While some of K&amp;E’s contractual employee benefit plans are mentioned in these policies, it is important to remember that all rights and benefits under them are governed by legal documents which are available in the Benefit Services and Financial Benefits areas of the Chicago office and online. The policies and benefits described herein may vary from office to office in order to conform with state law. The benefit policies contained here may be added to, deleted, or changed by K&amp;E at its sole discretion.</p>
+            <p class="text-justify">In the case of benefits subject to the Employee Retirement Income Security Act ("ERISA"), the K&amp;E Plan Administrator has full discretion to construe and interpret all benefit plans, as well as the authority and responsibility to make all factual and legal determinations. The decisions of the Plan Administrator are final, conclusive, and binding.</p>
+            <p class="text-justify">With respect to my use of Kirkland's electronic communications systems, I fully understand that I should not have any expectation of privacy and I agree and consent to Kirkland's monitoring and electronic communications, which can include reading, printing and sharing my e-mail and recorded voicemail as it sees fit.</p>
+        </div>
+    </div>
+    <div class="row mb-10">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a22_Name.HTML>
+                Name
+            </div>
+        </div>
+    </div>
+    <div class="row mb-20">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a23_Signature.HTML>
+                Electronic Signature
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a24_Date.HTML>
+                Date
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a25_Agree.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="text-justify">
+                If you are submitting this form electronically, type your name on the Electronic Signature line, enter or select today's date and check the box to the left of "I agree". This is your electronic signature.  By electronically signing this form, you agree to all the terms contained herein. 
+            </p>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.event_office_location.HTML>
+    <$client.env.FormField.fake_date.HTML>
+    <$client.env.FormField.a01_Confidential_Information.HTML>
+    <$client.env.FormField.a02_Insider_Trader_Policy.HTML>
+    <$client.env.FormField.Trader_Policy.HTML>
+    <$client.env.FormField.a03_Reporting_Transactions.HTML>
+    <$client.env.FormField.a04_Retention_of_Proprietary.HTML>
+    <$client.env.FormField.a05_Anti_Harassment_Policy.HTML>
+    <$client.env.FormField.a06_Personal_Account_Policy.HTML>
+    <$client.env.FormField.a07_Acceptable_Use_Policy.HTML>
+    <$client.env.FormField.a08_Copyright_Laws.HTML>
+    <$client.env.FormField.a10_Conflict_of_Interest.HTML>
+    <$client.env.FormField.a11_Conflict_of_Interest.HTML>
+    <$client.env.FormField.a12_Anti_Bribery_Policy_and_Procedures.HTML>
+    <$client.env.FormField.a13_HIPAA_Privacy_and_Security_Policy.HTML>
+    <$client.env.FormField.a14_Personal_Accounts_Policy.HTML>
+    <$client.env.FormField.a15_Authority_to_make_deduction_from_wages.HTML>
+    <$client.env.FormField.a16_Prior_Acts_Claims_Acknowledgement.HTML>
+    <$client.env.FormField.a17_Time_Reporting_Policy.HTML>
+    <$client.env.FormField.a18_Anti_Money_Laundering_Policy_and_Procedures.HTML>
+    <$client.env.FormField.a22_SMA_Building_Pass_Memo.HTML>
+    <$client.env.FormField.a23_Granting_Access_To_A_Confidential_Matter.HTML>
+    <$client.env.FormField.a24_Anti_Bribery_Policy.HTML>
+    <$client.env.FormField.a25_Bonus_Credit_for_Office_Hours_Policy.HTML>
+    <$client.env.FormField.a27_Social_Media_Policy.HTML>
+    <$client.env.FormField.a28_Confidentiality_Policy.HTML>
+    <$client.env.FormField.Employment_at_Will.HTML>
+    <$client.env.FormField.Equal_Employment_Opportunity.HTML>
+    <$client.env.FormField.Professional_Conduct.HTML>
+    <$client.env.FormField.Retention_of_Proprietary_and_Confidential_Materials_By_Departing_Persons.HTML>
+    <$client.env.FormField.Data_Protection_Policy.HTML>
+    <$client.env.FormField.Data_Transfer_and_Privacy_Policy.HTML>
+    <$client.env.FormField.Sentry_MPN.HTML>
+    <$client.env.FormField.Prior_Acts_Claim.HTML>
+    <$client.env.FormField.Professional_Conduct_Firearms.HTML>
+    <$client.env.FormField.Records_Management_Policy.HTML>
+    <$client.env.FormField.Ethical_Vendor_Policy.HTML>
+    <$client.env.FormField.Sexual_Harassment_London.HTML>
+    <$client.env.FormField.Covid19_Office_Practices_Policy.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_formatter.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+// SERVICES-39177 | Kirkland & Ellis Policy Acknowledgement Form
+const checkboxesConfig = [
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "Employment_at_Will",
+        label: "Employment at Will",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/HR_02.02_-_Employment_at_Will.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "Equal_Employment_Opportunity",
+        label: "Equal Employment Opportunity",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/HR_02.03_-_Equal_Employment_Opportunity.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "Professional_Conduct",
+        label: "Professional Conduct",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/HR_04.09_-_Professional_Conduct.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "a01_Confidential_Information",
+        label: "Confidential Information",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/HR_04.06_-_Confidential_Information.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "a02_Insider_Trader_Policy",
+        label: "Insider Trader Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Insider_Trading_Policy_2021.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "Trader_Policy",
+        label: "Insider Trader Policy, Exhibit A - Form Letter",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/RM_05.03_-_Exhibit_A_-_Form_Letter.doc>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C."],
+        name: "a03_Reporting_Transactions",
+        label: "Reporting Transactions in Non-Publicly Traded Securities of Clients and Related Parties",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Reporting_Transactions_in_Non-Publicly_Traded_Securities_of_Clients_and_Related_Parties.pdf>"
+    },
+     {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "a05_Anti_Harassment_Policy",
+        label: "Anti-Harassment Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/HR_04.03_-_Anti-Harassment_Policy.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C."],
+        name: "a06_Personal_Account_Policy",
+        label: "Personal Accounts Policy (US Offices)",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Personal_Accounts_Policy_US_Offices.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "a07_Acceptable_Use_Policy",
+        label: "Acceptable Use Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/SG_01.01_-_Acceptable_Use_Policy.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "a08_Copyright_Laws",
+        label: "Copyright Laws (Compliance with)",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/HR_04.08_-_Copyright_Laws.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C."],
+        name: "a10_Conflict_of_Interest",
+        label: "Conflict of Interest",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/HR_04.07_-_Conflict_of_Interest.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "a11_Conflict_of_Interest",
+        label: "Conflict of Interest International Offices",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Conflict_of_Interest_International.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C."],
+        name: "a12_Anti_Bribery_Policy_and_Procedures",
+        label: "Anti-Bribery Policy and Procedures",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/FA_06.03_-_Anti-Bribery_Policy_and_Procedures.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "a13_HIPAA_Privacy_and_Security_Policy",
+        label: "HIPAA Privacy and Security Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/RM_12.01_-_HIPAA_Privacy_and_Security_Policy.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C."],
+        name: "Records_Management_Policy",
+        label: "Records Management Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/RM_11.01_-_Records_Management_Policy.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "Retention_of_Proprietary_and_Confidential_Materials_By_Departing_Persons",
+        label: "Retention of Proprietary and Confidential Materials by Departing Persons",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/RM_11.03_Retention_of_Proprietary_and_Confidential_Materials_By_Departing_Persons.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "Data_Protection_Policy",
+        label: "Data Protection Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/RM_15.01_Data_Protection_Policy.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "Data_Transfer_and_Privacy_Policy",
+        label: "Data Transfer and Privacy Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/RM_15.02_Data_Transfer_and_Privacy_Policy.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Salt Lake City", "Palo Alto", "Washington, D.C.", "London"],
+        name: "a27_Social_Media_Policy",
+        label: "Social Media Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Social_Media_Policy.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Salt Lake City", "Palo Alto", "Washington, D.C."],
+        name: "a28_Confidentiality_Policy",
+        label: "Confidentiality Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Confidentiality_Policy.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "a14_Personal_Accounts_Policy",
+        label: "Personal Accounts Policy (International)",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Personal_Accounts_Policy_International.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "a15_Authority_to_make_deduction_from_wages",
+        label: "Authority to make deduction from wages",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Authority_to_make_deduction_from_wages.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "a16_Prior_Acts_Claims_Acknowledgement",
+        label: "Prior Acts Claims Acknowledgement",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Prior_Acts_Claims_Acknowledgement.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "a17_Time_Reporting_Policy",
+        label: "Time Reporting Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/FA_01.01_-_Time_Reporting_Policy.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "a18_Anti_Money_Laundering_Policy_and_Procedures",
+        label: "Anti-Money Laundering Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Anti-Money_Laundering_Policy_and_Procedures.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "a24_Anti_Bribery_Policy",
+        label: "Anti-Bribery Policy and Procedures",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/FA_06.03_-_Anti-Bribery_Policy_and_Procedures.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "Ethical_Vendor_Policy",
+        label: "Ethical Vendor Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/FA_03.04_-_Ethical_Vendor_Policy.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "Sexual_Harassment_London",
+        label: "Sexual Harassment - London",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/HR_04.03_a_-_Sexual_Harassment_-_London.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "a22_SMA_Building_Pass_Memo",
+        label: "SMA Building Pass Memo",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/SMA_Building_Pass_Memo.pdf>"
+    },
+    {
+        location: ["London"],
+        name: "a25_Bonus_Credit_for_Office_Hours_Policy",
+        label: "Bonus Credit for Office Hours - Associates",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Bonus_Credit_for_Office_Hours.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C.", "London"],
+        name: "Covid19_Office_Practices_Policy",
+        label: "Covid-19 Practices Policy",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/HR_13.01_-_COVID-19_Practices_Policy.pdf>"
+    },
+    {
+        location: ["Bay Area", "Los Angeles"],
+        name: "Sentry_MPN",
+        label: "Sentry MPN Info and Time of Hire Pamphlet",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Sentry_MPN_Info_and_Time_of_Hire_Pamphlet.pdf>"
+    },
+    {
+        location: ["Austin", "Bay Area", "Boston", "Chicago", "Dallas", "Houston", "Los Angeles", "New York", "Palo Alto", "Salt Lake City", "Washington, D.C."],
+        name: "Prior_Acts_Claim",
+        label: "Prior Acts Claims Acknowledgement",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/Prior_Acts_Claims_Acknowledgment.pdf>"
+    },
+    {
+        location: ["Austin", "Dallas", "Houston", "Salt Lake City"],
+        name: "Professional_Conduct_Firearms",
+        label: "Professional Conduct - Firearms",
+        link: "<$link;/RedCarpet/Onboarding/Uploads/Unplaced_Documents/HR_04.09_-_Professional_Conduct_-_Firearms.pdf>"
+    }
+];
+
+$(document).on('ready', function() {
+    "use strict";
+
+    // get office location from event if not completed yet
+    if (!$('#event-office-location').prop('readonly')) {
+        $('#event-office-location').val('<$client.tEventCategories_Category_21.Value>');
+    }
+
+    // SERVICES-39177 | Kirkland & Ellis Policy Acknowledgement Form
+    const root = $('#checkbox-group');
+    checkboxesConfig.forEach(function(cb) {
+        const field = $('[name$=".' + cb.name + '"]')
+        // if (cb.location.indexOf($('#event-office-location').val()) < 0) {
+            // field.prop('checked', false);
+            // return;
+        // }
+        if (cb.location.indexOf($('#event-office-location').val()) >= 0) {
+        $('<a target="_blank" class="policy-link" />').prop('href', cb.link)
+            .text(cb.label)
+            .appendTo($('[for="' + field.prop('id') + '"]'));
+        field.closest('table').prop('class', 'mb-10').appendTo(root);
+        }
+    })
+    $('input[type="checkbox"]', root).on('click', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    $('a', root).on('click', function() {
+        $(this).closest('table').find('input[type="checkbox"]').prop('checked', 'checked');
+    });
+
+    // datepicker config
+    <$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>
+    const officeLocationTerritory = {
+        "London": "GBR",
+        "Beijing": "CHN",
+        "Shanghai": "CHN",
+        "Hong Kong": "HKG",
+        "Munich": "DEU",
+        "Paris": "GBR",
+        "Austin": "USA",
+        "Bay Area": "USA",
+        "Boston": "USA",
+        "Chicago": "USA",
+        "Dallas": "USA",
+        "Houston": "USA",
+        "Los Angeles": "USA",
+        "New York": "USA",
+        "Palo Alto": "USA",
+        "Salt Lake City": "USA",
+        "San Francisco": "USA",
+        "Washington, D.C.": "USA"
+    };
+    // initiate formatted datepicker
+    var office_location = officeLocationTerritory[$('#event-office-location').val()]==undefined? "USA":officeLocationTerritory[$('#event-office-location').val()];
+    if(officeLocationTerritory[$('#event-office-location').val()])
+    $('[name$=".a24_Date"]').formatDatePicker(dateConfig, office_location, true);
+
+    // custom form signing
+    $('#modal').on('click', '#sign-form', function(e) {
+        e.preventDefault();
+        if (validateSignature('signature','eSignature1','fullName','modal','over','sv')) {
+            $('[name$=".a24_Date"]').datepicker('setDate', new Date());
+        }
+        xbObj('eSignature1').value='';
+        $('#eSignature1').focus();
+    });
+
+    $('#signature').on('click blur', function() {
+        setInterval(function() {
+            $('#eSignature1').focus();
+        }, 500);
+    });
+
+    // custom form clearing
+    $('#modal').on('click', '#clear-form', function() {
+        xbObj('signature').value='';
+        showHide('modal');
+        showHide('over');
+        xbObj('eSignature1').value='';
+        $('[name$=".a24_Date"]').datepicker('setDate', null);
+    });
+
+    // show form when all scripts are ready
+    $(".modal").hide();
+
+    const focusSigFields = setInterval(function(){
+      "use strict";
+      if(document.getElementById('modal').style.display=='block') {
+        document.getElementById('ButtonPrint').focus();
+        document.getElementById('eSignature1').focus();
+        clearInterval(focusSigFields);
+      }
+    }, 500);
+});
+</script>

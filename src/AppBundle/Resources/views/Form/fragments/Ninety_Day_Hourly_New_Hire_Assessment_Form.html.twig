@@ -1,0 +1,587 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" class="form-horizontal" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+		<$client.env.FormField.Form_Name.prompt>
+		<$client.env.FormField.Form_Name.HTML>
+		<$client.env.FormField.Form_Type.prompt>
+		<$client.env.FormField.Form_Type.HTML>
+		<$client.env.FormField.Form_Owner.prompt>
+		<$client.env.FormField.Form_Owner.HTML>
+		<$client.env.FormField.Form_CreateDate.prompt>
+		<$client.env.FormField.Form_CreateDate.HTML>
+		<$client.env.FormField.Form_Completed.prompt>
+		<$client.env.FormField.Form_Completed.HTML>
+		<$client.env.FormField.Form_Delivered.prompt>
+		<$client.env.FormField.Form_Delivered.HTML>
+		<$client.env.FormField.Form_TaskId.prompt>
+		<$client.env.FormField.Form_TaskId.HTML>
+		<$client.env.FormField.display_version.HTML>
+		<!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+		<$client.env.FormField.a01_Date.prompt>
+		<$client.env.FormField.a01_Employee_Name.prompt>
+		<$client.env.FormField.a02_EMPLID.prompt>
+		<$client.env.FormField.a03_Organization.prompt>
+		<$client.env.FormField.a04_Job_Title.prompt>
+		<$client.env.FormField.a05_Hire_Date.prompt>
+		<$client.env.FormField.a06_Supervisor.prompt>
+		<$client.env.FormField.a07_HR_Director.prompt>
+		<$client.env.FormField.a08_Learning_Job.prompt>
+		<$client.env.FormField.a09_Learning_Job.prompt>
+		<$client.env.FormField.a10_Current_Knowledge.prompt>
+		<$client.env.FormField.a11_Current_Knowledge.prompt>
+		<$client.env.FormField.a12_Actions_Taken.prompt>
+		<$client.env.FormField.a13_Actions_Taken.prompt>
+		<$client.env.FormField.a14_Knowledge_Retention.prompt>
+		<$client.env.FormField.a15_Knowledge_Retention.prompt>
+		<$client.env.FormField.a16_Quantity_and_Quality_of_Work.prompt>
+		<$client.env.FormField.a17_Quantity_and_Quality_of_Work.prompt>
+		<$client.env.FormField.a18_Initiative.prompt>
+		<$client.env.FormField.a19_Initiative.prompt>
+		<$client.env.FormField.a20_Adaptability.prompt>
+		<$client.env.FormField.a21_Adaptability.prompt>
+		<$client.env.FormField.a22_Dependability.prompt>
+		<$client.env.FormField.a23_Dependability.prompt>
+		<$client.env.FormField.a24_Safety_Environmental_Housekeeping.prompt>
+		<$client.env.FormField.a25_Safety_Environmental_Housekeeping.prompt>
+		<$client.env.FormField.a26_Communication.prompt>
+		<$client.env.FormField.a27_Communication.prompt>
+		<$client.env.FormField.a28_Collaboration.prompt>
+		<$client.env.FormField.a29_Collaboration.prompt>
+		<$client.env.FormField.a30_Critical_Thinking_Skills.prompt>
+		<$client.env.FormField.a31_Critical_Thinking_Skills.prompt>
+		<$client.env.FormField.a32_Comments.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+	<header class="row">
+		<div class="col-lg-12 text-center">
+			<h5>
+				<strong>Enterprise Products</strong>
+			</h5>
+			<h5>
+				<strong>90 Day Hourly New Hire Assessment Form</strong>
+			</h5>
+		</div>
+	</header>
+	<div class="row mb-10">
+		<div class="col-lg-1 col-md-1 col-sm-6 col-xs-12">
+			<label class="control-label">
+				Date
+			</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+			<$client.env.FormField.a01_Date.html>
+		</div>
+	</div>
+	<div class="box mb-20">
+		<div class="row b-bottom hidden-xs">
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-right">
+				Employee Name
+			</div>
+			<div class="col-lg-1 col-md-1 col-xs-12 col-sm-12 b-right">
+				EMPLID
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-right">
+				Organization
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-right">
+				Job Title
+			</div>
+			<div class="col-lg-1 col-md-1 col-xs-12 col-sm-12 b-right">
+				Date of Hire
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-right">
+				Supervisor
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+				HR Director
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-right">
+				<div class="visible-xs">
+					Employee Name
+				</div>
+				<$client.env.FormField.a01_Employee_Name.html>
+			</div>
+			<div class="col-lg-1 col-md-1 col-xs-12 col-sm-12 b-right">
+				<div class="visible-xs">
+					EMPLID
+				</div>
+				<$client.env.FormField.a02_EMPLID.html>
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-right">
+				<div class="visible-xs">
+					Organization
+				</div>
+				<$client.env.FormField.a03_Organization.html>
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-right">
+				<div class="visible-xs">
+					Job Title
+				</div>
+				<$client.env.FormField.a04_Job_Title.html>
+			</div>
+			<div class="col-lg-1 col-md-1 col-xs-12 col-sm-12 b-right">
+				<div class="visible-xs">
+					Date of Hire
+				</div>
+				<$client.env.FormField.a05_Hire_Date.html>
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-right">
+				<div class="visible-xs">
+				Supervisor
+				</div>
+				<$client.env.FormField.a06_Supervisor.html>
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+				<div class="visible-xs">
+					HR Director
+				</div>
+				<$client.env.FormField.a07_HR_Director.html>
+			</div>
+		</div>
+	</div>
+	<div class="box mb-20">
+		<div class="row b-bottom header-bg">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				<h6 class="text-center">
+					<strong>Assessment Component</strong>
+				</h6>
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left hidden-xs">
+				<div class="b-bottom text-center">
+					Expectations
+				</div>
+				<div class="row">
+					<div class="col-lg-6 col-md-6 text-center">
+						Meets
+					</div>
+					<div class="col-lg-6 col-md-6 text-center b-left">
+						Does Not Meet
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				1. Learning Job Knowledge (learning and retaining all phases of job tasks)
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a08_Learning_Job.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a09_Learning_Job.html>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				<div class="ml-20">
+					Current knowledge
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a10_Current_Knowledge.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a11_Current_Knowledge.html>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				<div class="ml-20">
+					Actions taken to learn/retain (Example: Takes notes/reviews)
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a12_Actions_Taken.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a13_Actions_Taken.html>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				<div class="ml-20">
+					Knowledge retention and comprehension
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a14_Knowledge_Retention.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a15_Knowledge_Retention.html>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				2. Quantity and Quality of Work (output and performance of work meets standards)
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a16_Quantity_and_Quality_of_Work.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a17_Quantity_and_Quality_of_Work.html>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				3. Initiative (thinks constructively and initiates actions; self-motivation)
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a18_Initiative.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a19_Initiative.html>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				4. Adaptability (ability to learn and meet changing conditions)
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a20_Adaptability.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a21_Adaptability.html>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				5. Dependability/Attendance/Punctuality (demonstrates good attendance; is at the work station and ready to begin work; follows instructions)
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a22_Dependability.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a23_Dependability.html>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				6. Safety/Environmental/Housekeeping (demonstrates good safety, environmental, and housekeeping awareness)
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a24_Safety_Environmental_Housekeeping.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a25_Safety_Environmental_Housekeeping.html>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				7. Communication (ability to clearly communicate ideas/issues)
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a26_Communication.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a27_Communication.html>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				8. Collaboration/Teamwork (ability to get along with others and displays appropriate views of work, management, and feedback. Respectful toward co-workers and supervision)
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a28_Collaboration.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a29_Collaboration.html>
+						</div><br class="hidden-xs"><br clear="hidden-xs">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-10 col-md-10 col-xs-12 col-sm-12">
+				9. Critical Thinking Skills (ability to reason and make appropriate decisions)
+			</div>
+			<div class="col-lg-2 col-md-2 col-xs-12 col-sm-12 b-left">
+				<div class="row text-center">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+						<div class="visible-xs b-top">
+							Meets
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a30_Critical_Thinking_Skills.html>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 b-left">
+						<div class="visible-xs b-top">
+							Does not meet
+						</div>
+						<div class="i-block">
+							<$client.env.FormField.a31_Critical_Thinking_Skills.html>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+				<h5 class="text-center text-danger">
+					<strong>IMPORTANT: Comments are mandatory for components checked as “Does Not Meet”.</strong>
+				</h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+				COMMENTS: <em>(Maximum of 864 Characters)</em>
+				<$client.env.FormField.a32_Comments.html>
+			</div>
+		</div>
+	</div>
+	<div class="box mb-10">
+		<div class="row b-bottom header-bg">
+			<div class="col-lg-12 text-center">
+				<h6>
+					<strong>EXPECTATION DEFINITIONS</strong>
+				</h6>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-12">
+				Meets: Employee meets the minimum requirements and expectations of the job
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				Does Not Meet: Employee does not meet the minimum requirements and expectations of the job
+			</div>
+		</div>
+	</div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input input-sm');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+    "use strict";  
+    $('[data-checkbox-group]:checkbox').on('click', function() {
+	    let groupId = $(this).data('checkbox-group');
+	    let checked = $(this).is(':checked');
+	    $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+	    $(this).prop('checked', checked);
+	});
+	$('[name$=".a05_Hire_Date"]').datepicker({
+		'dateFormat': 'mm/dd/yy'
+	})
+    $(".modal").hide();
+});
+</script>

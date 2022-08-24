@@ -1,0 +1,106 @@
+<table border="0">
+          <tr>
+            <td>Legal First Name &#47; Forename</td>
+            <td colspan="3"><input type="text" name="First_Name" value="<$client.tForWhomUserInfo.First_Name>" /></td>
+        </tr>
+        <tr>
+            <td>Legal Middle Name &#40;if exists&#41;</td>
+            <td colspan="3"><input type="text" name="Middle_Name" value="<$client.tForWhomUserInfo.Middle_Name>" /></td>
+        </tr>
+        <tr>
+            <td>Legal Last Name &#47; Surname</td>
+            <td colspan="3"><input type="text" name="Last_Name" value="<$client.tForWhomUserInfo.Last_Name>" /></td>
+          </tr>
+   <tr>
+            <td id="sin_tax">SIN</td>
+            <td colspan="3"><$client.env.inputnational_identification>  </td>
+        </tr>  
+  <tr>
+            <td><$client.env.promptDOB></td>
+            <td colspan="3"><$client.env.inputDOB></td>
+        </tr>  
+
+        <tr>
+            <td><$client.env.promptPhone_UK></td>
+            <td colspan="3"><$client.env.inputPhone_UK></td>
+        </tr>
+          <tr>
+            <td>Email Address</td>
+            <td colspan="3"><input type="text" name="Email" value="<$client.tForWhomUserInfo.Email>" /> </td>
+          </tr>
+          <tr>
+            <td><$client.env.promptAddress1></td>
+            <td colspan="3"><$client.env.inputAddress1> </td>
+          </tr>
+          <tr>
+            <td><$client.env.promptAddress2></td>
+            <td colspan="3"><$client.env.inputAddress2> </td>
+          </tr>
+          <tr>
+            <td><$client.env.promptAddress3></td>
+            <td colspan="3"><$client.env.inputAddress3> </td>
+          </tr>
+          <tr>
+            <td><$client.env.promptCity></td>
+        <td colspan="3"><$client.env.inputCity> </td>
+        </tr>
+          <tr>
+            <td>Home County/District</td>
+            <td colspan="3"><$client.env.inputcounty_parish>    </td>
+          </tr>
+        <tr>
+            <td><$client.env.promptState></td>
+        <td><$client.env.inputState></td>
+            <td><$client.env.promptZip></td>
+        <td><$client.env.inputZip></td>
+          </tr>
+          <tr>
+            <td><$client.env.promptCountry></td>
+            <td colspan="3"><$client.env.inputCountry></td>
+          </tr>
+<tr>
+<td colspan="3">*Please complete Mailing Address fields only if different from Home Address</td>
+</tr>
+<tr>
+            <td><$client.env.promptMailing_Street></td>
+            <td colspan="3"><$client.env.inputMailing_Street></td>
+          </tr> 
+<tr>
+            <td><$client.env.promptMailing_Street_2></td>
+            <td colspan="3"><$client.env.inputMailing_Street_2></td>
+          </tr> 
+<tr>
+            <td><$client.env.promptMailing_County></td>
+            <td colspan="3"><$client.env.inputMailing_County></td>
+          </tr>  
+<tr>
+            <td><$client.env.promptMailing_City></td>
+            <td colspan="3"><$client.env.inputMailing_City></td>
+          </tr>  
+<tr>
+            <td><$client.env.promptMailing_State2></td>
+            <td colspan="3"><$client.env.inputMailing_State2></td>
+          </tr>  
+<tr>
+            <td><$client.env.promptMailing_Zip></td>
+            <td colspan="3"><$client.env.inputMailing_Zip></td>
+          </tr>  
+
+
+</table>
+
+<script type="text/javascript">
+    if(self.LoadCallback) {
+        LoadCallback(document.forms['frmExtendedUserProfile']);
+    }
+    // SERVICES-38928 | WoodGroup Test- Canada event
+    let countryInput = document.querySelector('[name$=".Country"]')
+    countryInput.addEventListener('blur', function(e){
+      if (this.value.toLowerCase() === 'Canada'.toLowerCase()) {
+        document.getElementById('sin_tax').innerHTML = 'SIN';
+        return;
+      }
+      document.getElementById('sin_tax').innerHTML = 'National Insurance No./Tax ID No.';
+    });
+    countryInput.blur();
+</script>

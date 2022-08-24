@@ -1,0 +1,240 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+  <$client.env.FormField.Prefix.HTML>
+  <$client.env.FormField.Legal_Last_Name.HTML>
+  <$client.env.FormField.Legal_First_Name.HTML>
+  <$client.env.FormField.Legal_Middle_Name.HTML>
+  <$client.env.FormField.Preferred_Last_Name.HTML>
+  <$client.env.FormField.Preferred_First_Name.HTML>
+  <$client.env.FormField.Preferred_Middle_Name.HTML>
+  <$client.env.FormField.DOB.HTML>
+  <$client.env.FormField.Birth_Location.HTML>
+  <$client.env.FormField.National_ID_Number_1.HTML>
+  <$client.env.FormField.Awaiting_National_ID_Number1.HTML>
+  <$client.env.FormField.Awaiting_National_ID_Number1.HTML>
+  <$client.env.FormField.National_ID_Number_2.HTML>
+  <$client.env.FormField.Awaiting_National_ID_Number2.HTML>
+  <$client.env.FormField.Awaiting_National_ID_Number2.HTML>
+  <$client.env.FormField.National_ID_Number_3.HTML>
+  <$client.env.FormField.Awaiting_National_ID_Number3.HTML>
+  <$client.env.FormField.Awaiting_National_ID_Number3.HTML>
+  <$client.env.FormField.National_ID_Number_4.HTML>
+  <$client.env.FormField.Awaiting_National_ID_Number4.HTML>
+  <$client.env.FormField.Awaiting_National_ID_Number4.HTML>
+  <$client.env.FormField.Current_Address1.HTML>
+  <$client.env.FormField.Current_Address2.HTML>
+  <$client.env.FormField.Current_Address3.HTML>
+  <$client.env.FormField.Current_Address4.HTML>
+  <$client.env.FormField.Current_City.HTML>
+  <$client.env.FormField.Current_Postal_Code.HTML>
+  <$client.env.FormField.current_publish.HTML>
+  <$client.env.FormField.current_publish.HTML>
+  <$client.env.FormField.current_publish.HTML>
+  <$client.env.FormField.Mailing_Address_Same.HTML>
+  <$client.env.FormField.Mailing_Address_Same.HTML>
+  <$client.env.FormField.Mailing_Address_Same.HTML>
+  <$client.env.FormField.Mail_Address1.HTML>
+  <$client.env.FormField.Mail_Address2.HTML>
+  <$client.env.FormField.Mail_Address3.HTML>
+  <$client.env.FormField.Mail_Address4.HTML>
+  <$client.env.FormField.Mail_City.HTML>
+  <$client.env.FormField.Mail_Postal_Code.HTML>
+  <$client.env.FormField.Mail_Publish.HTML>
+  <$client.env.FormField.Mail_Publish.HTML>
+  <$client.env.FormField.Mail_Publish.HTML>
+  <$client.env.FormField.mobile_business.HTML>
+  <$client.env.FormField.Publish_mobile_Business.HTML>
+  <$client.env.FormField.Publish_mobile_Business.HTML>
+  <$client.env.FormField.Publish_mobile_Business.HTML>
+  <$client.env.FormField.Mobile.HTML>
+  <$client.env.FormField.Publish_mobile.HTML>
+  <$client.env.FormField.Publish_mobile.HTML>
+  <$client.env.FormField.Publish_mobile.HTML>
+  <$client.env.FormField.Home_Phone.HTML>
+  <$client.env.FormField.Publish_home_phone.HTML>
+  <$client.env.FormField.Publish_home_phone.HTML>
+  <$client.env.FormField.Publish_home_phone.HTML>
+  <$client.env.FormField.Personal_Email_Address.HTML>
+  <$client.env.FormField.Previous_KE_Employee.HTML>
+  <$client.env.FormField.Previous_KE_Employee.HTML>
+  <$client.env.FormField.Previous_KE_Employee.HTML>
+  <$client.env.FormField.Previous_KE.HTML>
+  <$client.env.FormField.Previous_KE.HTML>
+  <$client.env.FormField.Previous_KE.HTML>
+  <$client.env.FormField.Expected_Job_End_Date.HTML>
+  <$client.env.FormField.Supervisor_ID.HTML>
+  <$client.env.FormField.Permanent_Remote.HTML>
+  <$client.env.FormField.Permanent_Remote.HTML>
+  <$client.env.FormField.Comp_Rate.HTML>
+  <$client.env.FormField.Annual_Compensation.HTML>
+  <$client.env.FormField.Offer_Letter_Annual_Compensation.HTML>
+  <$client.env.FormField.Probation_Date.HTML>
+  <$client.env.FormField.Earnings_Distribution_Type.HTML>
+  <$client.env.FormField.Emergency_Contact_Name_1.HTML>
+  <$client.env.FormField.Emergency_Contact_Phone_1.HTML>
+  <$client.env.FormField.Emergency_Contact_Phone_Add_1.HTML>
+  <$client.env.FormField.Emergency_Contact_Primary_1.HTML>
+  <$client.env.FormField.Emergency_Contact_Primary_1.HTML>
+  <$client.env.FormField.Emergency_Contact_Primary_1.HTML>
+  <$client.env.FormField.Emergency_Contact_Name_2.HTML>
+  <$client.env.FormField.Emergency_Contact_Phone_2.HTML>
+  <$client.env.FormField.Emergency_Contact_Phone_Add_2.HTML>
+  <$client.env.FormField.Emergency_Contact_Primary_2.HTML>
+  <$client.env.FormField.Emergency_Contact_Primary_2.HTML>
+  <$client.env.FormField.Emergency_Contact_Primary_2.HTML>
+  <$client.env.FormField.Emergency_Contact_Name_3.HTML>
+  <$client.env.FormField.Emergency_Contact_Phone_3.HTML>
+  <$client.env.FormField.Emergency_Contact_Phone_Add_3.HTML>
+  <$client.env.FormField.Emergency_Contact_Primary_3.HTML>
+  <$client.env.FormField.Emergency_Contact_Primary_3.HTML>
+  <$client.env.FormField.Emergency_Contact_Primary_3.HTML>
+  <$client.env.FormField.Associate_Class.HTML>
+  <$client.env.FormField.Non_share_Partner_Class.HTML>
+  <$client.env.FormField.Share_Partner_Class.HTML>
+  <$client.env.FormField.Of_Counsel_Class.HTML>
+  <$client.env.FormField.Earning_Code.HTML>
+  <$client.env.FormField.Earnings.HTML>
+  <$client.env.FormField.Signing_Bonus_Eligible.HTML>
+  <$client.env.FormField.Signing_Bonus_Eligible.HTML>
+  <$client.env.FormField.Signing_Bonus_Eligible.HTML>
+  <$client.env.FormField.Signing_Bonus_Amount.HTML>
+  <$client.env.FormField.Clerkship_Bonus_Eligible_1.HTML>
+  <$client.env.FormField.Clerkship_Bonus_Eligible_1.HTML>
+  <$client.env.FormField.Clerkship_Bonus_Eligible_1.HTML>
+  <$client.env.FormField.Clerkship_Bonus_Amount_1.HTML>
+  <$client.env.FormField.Clerkship_Bonus_Eligible_2.HTML>
+  <$client.env.FormField.Clerkship_Bonus_Eligible_2.HTML>
+  <$client.env.FormField.Clerkship_Bonus_Eligible_2.HTML>
+  <$client.env.FormField.Clerkship_Bonus_Amount_2.HTML>
+  <$client.env.FormField.Relocation.HTML>
+  <$client.env.FormField.Relocation.HTML>
+  <$client.env.FormField.Relocation.HTML>
+  <$client.env.FormField.Relocation_Bonus_Amount.HTML>
+  <$client.env.FormField.Guaranteed_Bonus_Eligible.HTML>
+  <$client.env.FormField.Guaranteed_Bonus_Eligible.HTML>
+  <$client.env.FormField.Guaranteed_Bonus_Eligible.HTML>
+  <$client.env.FormField.Guaranteed_Bonus_Amount.HTML>
+  <$client.env.FormField.Class_Year.HTML>
+  <$client.env.FormField.GB_Year_Paid.HTML>
+  <$client.env.FormField.Additional_Bonus_Amount_1.HTML>
+  <$client.env.FormField.Additional_Bonus_Amount_2.HTML>
+  <$client.env.FormField.Additional_Bonus_Amount_3.HTML>
+  <$client.env.FormField.Additional_Bonus_Amount_4.HTML>
+  <$client.env.FormField.Additional_Bonus_Amount_5.HTML>
+  <$client.env.FormField.Additional_Bonus_Amount_6.HTML>
+  <$client.env.FormField.Additional_Bonus_Amount_7.HTML>
+  <$client.env.FormField.Referral_Eligibility_Date_1.HTML>
+  <$client.env.FormField.Referral_Eligibility_Date_2.HTML>
+  <$client.env.FormField.Referral_Eligibility_Date_3.HTML>
+  <$client.env.FormField.SilkRoad_ID.HTML>
+  <$client.env.FormField.ApplicantID.HTML>
+  <$client.env.FormField.ApplicationID.HTML>
+  <$client.env.FormField.DOB.HTML>
+  <$client.env.FormField.DOB_display.HTML>
+  <$client.env.FormField.Country_Name_Format.HTML>
+  <$client.env.FormField.Offer_Letter_Date.HTML>
+  <$client.env.FormField.Offer_Letter_Date_display.HTML>
+  <$client.env.FormField.Preferred_Email.HTML>
+  <$client.env.FormField.Preferred_Email.HTML>
+  <$client.env.FormField.Time_Zone.HTML>
+  <$client.env.FormField.hire_date.HTML>
+  <$client.env.FormField.Start_Date.HTML>
+  <$client.env.FormField.Employee_HRISID.HTML>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).ready(function() {
+  angular.element('#divLoader').hide();
+});
+</script>

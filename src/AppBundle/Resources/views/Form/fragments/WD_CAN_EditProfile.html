@@ -1,0 +1,94 @@
+<table border="0">
+  <tr>
+    <td>&nbsp</td>
+  </tr>
+</table>
+<table border="0">
+  <tr>
+    <td id="First_Name_promptx">Legal First Name</td>
+    <td colspan="3"><input type="text" name="First_Name" value="<$client.tForWhomUserInfo.First_Name>" /></td>
+  </tr>
+  <tr>
+    <td id="Middle_Name_promptx">Middle Name</td>
+    <td colspan="3"><input type="text" name="Middle_Name" value="<$client.tForWhomUserInfo.Middle_Name>" /></td>
+  </tr>
+  <tr>
+    <td id="Last_Name_promptx">Legal Last Name</td>
+    <td colspan="3"><input type="text" name="Last_Name" value="<$client.tForWhomUserInfo.Last_Name>" /></td>
+  </tr>
+  <tr>
+    <td id="Preferred_Name_promptx">Preferred Given Name</td>
+    <td colspan="3"><$client.env.inputPreferred_Name></td>
+  </tr>
+  <tr>
+    <td id="Preferred_Last_Name_promptx">Preferred Last Name</td>
+    <td colspan="3"><$client.env.inputPreferred_Last_Name></td>
+  </tr>
+  <tr>
+    <td id="Phone_Device_promptx"><$client.env.promptPhone_Device></td>
+    <td colspan="3"><$client.env.inputPhone_Device></td>
+  </tr>
+  <tr>
+    <td id="Phone_Country_Code_promptx"><$client.env.promptPhone_Country_Code></td>
+    <td colspan="3"><$client.env.inputPhone_Country_Code></td>
+  </tr>
+  <tr>
+    <td id="Phone_promptx"><$client.env.promptPhone></td>
+    <td colspan="3"><$client.env.inputPhone></td>
+  </tr>
+  <tr>
+    <td id="Email_promptx">Email Address</td>
+    <td colspan="3"><input type="text" name="Email" value="<$client.tForWhomUserInfo.Email>"  size="40"/>   </td>
+  </tr>
+  <tr>
+    <td id="Address1_promptx"><$client.env.promptAddress1></td>
+    <td colspan="3"><$client.env.inputAddress1> </td>
+  </tr>
+  <tr>
+    <td><$client.env.promptAddress2></td>
+    <td colspan="3"><$client.env.inputAddress2> </td>
+  </tr>
+  <tr>
+    <td><$client.env.promptAddress3></td>
+    <td colspan="3"><$client.env.inputAddress3> </td>
+  </tr>
+  <tr>
+    <td id="City_promptx"><$client.env.promptCity></td>
+    <td colspan="3"><$client.env.inputCity> </td>
+  </tr>
+  <tr>
+    <td><$client.env.promptProvince></td>
+    <td colspan="3"><$client.env.inputProvince> </td>
+  </tr>
+  </tr>
+  <td id="Zip_promptx"><$client.env.promptZip></td>
+  <td colspan="3"><$client.env.inputZip></td>
+  </tr>
+  <tr>
+    <td id="Country_promptx"><$client.env.promptCountry></td>
+    <td colspan="3"><$client.env.inputCountry></td>
+  </tr>
+</table>
+<div id="label-container" hidden></div>
+<!-- Format Dates on load -->
+<script type="text/javascript">
+  if(self.LoadCallback) {
+     LoadCallback(document.forms['frmExtendedUserProfile']);
+  }
+  if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+      thisArg = thisArg || window
+      for (var i = 0; i < this.length; i++) {
+        callback.call(thisArg, this[i], i, this)
+      }
+    }
+  }
+  document.onreadystatechange = function() {
+    document.querySelectorAll('[id$="_promptx"]').forEach(function(f) {
+      const div = document.createElement('div')
+      div.id = f.id.replace(/x$/, '')
+      div.innerHTML = f.innerHTML.replace(/:/, '')
+      document.getElementById('label-container').appendChild(div)
+    })
+  }
+</script>

@@ -1,0 +1,183 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Dose.prompt>
+        <$client.env.FormField.IsVaccinated.prompt>
+        <$client.env.FormField.Vaccine_type.prompt>
+        <$client.env.FormField.Vaccine_date.prompt>
+        <$client.env.FormField.Vaccine_type2.prompt>
+        <$client.env.FormField.Vaccine_date2.prompt>
+        <$client.env.FormField.Vaccine_dose.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row mb-3">
+        <div class="col-sm-2 col-xs-5">
+            <img src="<$link;/main/RedCarpet/FormTemplates/Vaccine_Questionnaire/img/logo.png>" alt="ABB Logo" class="img-fluid">
+        </div>
+    </div>
+    <p class="text-center h5 mb-4 mt-3">
+        <strong>
+            <u>Vaccine Questionnaire</u>
+        </strong>
+    </p>
+    <div class="row mb-5">
+        <div class="col">
+            <div class="d-sm-flex align-items-center mb-2">
+                <div class="me-3">Have you been fully vaccinated against COVID-19?</div>
+                <div>
+                    <$client.env.FormField.IsVaccinated.HTML>
+                </div>
+               
+            </div>
+            <div id="vaccine-type">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-sm-flex align-items-center mb-2">
+                            <div class="me-3">First/Single Vaccine Type</div>
+                            <div>
+                                <$client.env.FormField.Vaccine_type.HTML>
+                            </div>
+                           
+                        </div>
+                        <div class="d-sm-flex align-items-center mb-2">
+                            <div class="me-3">First/Single Vaccine Date</div>
+                            <div>
+                                <$client.env.FormField.Vaccine_date.HTML>
+                            </div>
+                           
+                        </div>
+                        <div class="d-sm-flex align-items-center mb-2">
+                            <div class="me-3">Second Vaccine Type</div>
+                            <div>
+                                <$client.env.FormField.Vaccine_type2.HTML>
+                            </div>
+                           
+                        </div>
+                        <div class="d-sm-flex align-items-center mb-2">
+                            <div class="me-3">Second Vaccine Date</div>
+                            <div>
+                                <$client.env.FormField.Vaccine_date2.HTML>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="upload">
+                <div class="mb-2">
+                    <div class="text-danger">
+                        Please upload a copy of your vaccine record
+                    </div>
+                    <div class="d-flex">
+                        <$client.env.FormField.UploadDocument.HTML>
+                    </div>
+                    <div id="upload-container"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group p-0">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.Dose.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Vaccine_Questionnaire/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/upload.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Vaccine_Questionnaire/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $(".uploadpicker_button").addClass("lifesuite__button");
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input w-100');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input w-100');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input w-100');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const BASE_PATH = '<$link;>';
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $('[name$=".UploadDocument"], .modal').hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

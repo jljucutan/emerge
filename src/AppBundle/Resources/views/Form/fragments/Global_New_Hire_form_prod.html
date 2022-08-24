@@ -1,0 +1,1160 @@
+<script>
+/********************************************************************************************************************************************************************************************************/
+// SERVICES-35790|ldalangin|added new field permanent_resident
+// SERVICES-35790|ldalangin|remove v6 text used for reference while testing
+// SERVICES-35790|ldalangin|show "Do you have a national or foreign passport?" if and only if "Do you have citizenship in China?" is set to "No"
+// SERVICES-35790|jjucutan|update philippines sections
+// SERVICES-40585|jjucutan|update philippines identifications
+// SERVICES-40829|ldalangin|Singapore Visa Type Update 
+/********************************************************************************************************************************************************************************************************/
+</script>
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+     <div class="modal-content"> 
+          <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+          <p style="fontweight:normal;padding:0px"> 
+          <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+          </p> 
+          <br> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                             </div> 
+
+                             </div> 
+
+                             <div class="row"> 
+
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+
+                                                         <input id="signature-submit" type="button" class="lifesuite__button primary" value="Sign">&nbsp; 
+
+                                                          <input  id="signature-clear" type="button" class="lifesuite__button" value="Clear">&nbsp;
+
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+
+                                           </div> 
+
+                             </div> 
+
+              </div> 
+
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+
+    showScreen('over');
+
+</SCRIPT> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+<div class="modal" style="display:block; background: #002E6D;"> 
+   <div class="fb-spinner"> 
+      <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+   </div> 
+</div> 
+
+  
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<form id="global-new-hire-form" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form"> 
+
+    <div style="display:none;"> 
+
+        <$client.env.FormField.Form_Name.prompt> 
+        <$client.env.FormField.Form_Name.HTML> 
+        <$client.env.FormField.Form_Type.prompt> 
+        <$client.env.FormField.Form_Type.HTML> 
+        <$client.env.FormField.Form_Owner.prompt> 
+        <$client.env.FormField.Form_Owner.HTML> 
+        <$client.env.FormField.Form_CreateDate.prompt> 
+        <$client.env.FormField.Form_CreateDate.HTML> 
+        <$client.env.FormField.Form_Completed.prompt> 
+        <$client.env.FormField.Form_Completed.HTML> 
+        <$client.env.FormField.Form_Delivered.prompt> 
+        <$client.env.FormField.Form_Delivered.HTML> 
+        <$client.env.FormField.Form_TaskId.prompt> 
+        <$client.env.FormField.Form_TaskId.HTML> 
+        <$client.env.FormField.display_version.HTML> 
+
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+        <$client.env.FormField.country.prompt>
+        <$client.env.FormField.govdoc_expiration.prompt>
+        <$client.env.FormField.govdoc_id.prompt>
+        <$client.env.FormField.govdoc_issued.prompt>
+        <$client.env.FormField.govdoc_type.prompt>
+        <$client.env.FormField.rtw.prompt>
+        <$client.env.FormField.name.prompt>
+        <$client.env.FormField.date.prompt>
+        <$client.env.FormField.signature.prompt>
+        <$client.env.FormField.firstEmployerYN.prompt>
+    </div> 
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+<main class="container-fluid">
+   <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgr">
+         <img src="<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/img/logo.png>" class="img-responsive" style="max-width: 120px;">
+      </div>
+   </div>
+   <div class="row margin-bottom">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+         <h3>New Hire Form</h3>
+         <p>
+            All employees are obliged to provide documentary evidence of their right to work in <span data-text="country2"></span>, prior to commencing employment.
+         </p>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+      </div>
+   </div>
+   <section class="margin-bottom">
+      <!--//Section 1 -->
+      <div class="row margin-bottom">
+         <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+            <h5 class="margin-bottom form-heading"><span>CITIZENSHIP STATUS</span></h5>
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelcitizenship_status">
+                  <p class="text-indent">Do you have citizenship in <span data-text="country"></span> <span class="font-red">*</span></p>
+               </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="text-indent">
+                     <$client.env.FormField.citizenship_status.HTML>
+                  </div>
+               </div>
+            </div>
+            <div id="permanent_resident-container" class="row hide">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelpermanent_resident">
+                  <p class="text-indent">Are you a permanent resident in <span data-text="country"></span> <span class="font-red">*</span></p>
+               </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="text-indent">
+                     <$client.env.FormField.permanent_resident.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelpassport_available">
+                  <p class="text-indent">Do you have a national or foreign passport? <span class="font-red">*</span></p>
+               </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="text-indent">
+                     <$client.env.FormField.passport_available.HTML>
+                  </div>
+               </div>
+            </div>
+            <div id="rtw_status-container" class="row hide">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelrtw_status">
+                  <p class="text-indent">Do you have the right to work in <span data-text="country"></span> <span class="font-red">*</span></p>
+               </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="text-indent">
+                     <$client.env.FormField.rtw_status.HTML>
+                  </div>
+               </div>
+            </div>
+            <div id="rtw_restrictions-container" class="row hide">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelrtw_restrictions">
+                  <p class="text-indent">Are there any restrictions on your right to work? <span class="font-red">*</span></p>
+               </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="text-indent">
+                     <$client.env.FormField.rtw_restrictions.HTML>
+                  </div>
+               </div>
+            </div>
+            <div id="nid_status-container" class="row hide">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelnid_status">
+                  <p class="text-indent">Do you have a National Identification card/letter in <span data-text="country"></span> <span class="font-red">*</span></p>
+               </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="text-indent">
+                     <$client.env.FormField.nid_status.HTML>
+                  </div>
+               </div>
+            </div>
+            <div id="rtw_support-container" class="row hide">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="labelrtw_support">
+                  <p class="text-indent">Do you require support from PayPal to maintain your work authorization? <span class="font-red">*</span></p>
+               </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="text-indent">
+                     <$client.env.FormField.rtw_support.HTML>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--//Section 2 -->
+      <div id="national-identification-container" class="row margin-bottom hide">
+         <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+            <h5 class="margin-bottom form-heading"><span>NATIONAL IDENTIFICATION</span></h5>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Identification Type: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.nid_type.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label id="nid_label" class="control-label">Identification Number: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.nid_number.HTML>
+                  </div>
+               </div>
+            </div>
+            <div data-section="PHL" class="row hide">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  &nbsp;
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.sss_verification.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label for="nid_series_number" class="control-label">Series Number: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.nid_series_number.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label for="nid_issuing_agency" class="control-label">Issuing Agency: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.nid_issuing_agency.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Issued Date: <span class="font-red nid-issued-date-required">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                   <div class="form-group">
+                       <$client.env.FormField.nid_issued_date_mapped.HTML>
+                   </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Expiration Date: </label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.nid_expiration_date_mapped.HTML>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--//Section 3 -->
+      <div id="passport-information-container" class="row margin-bottom hide">
+         <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+            <h5 class="margin-bottom form-heading"><span>PASSPORT INFORMATION</span></h5>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Issuing Country: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.passport_country.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Identification Number: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.passport_number.HTML>
+                  </div>
+               </div>
+            </div>
+            <div data-section="PHL" class="row hide">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  &nbsp;
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.PPID_verification.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Issued Date: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.passport_issued_date_mapped.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Expiration Date: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.passport_expiration_date_mapped.HTML>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--//Section 4 -->
+      <div id="noncitizen-identification-container" class="row margin-bottom hide">
+         <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+            <h5 class="margin-bottom form-heading"><span>NON-CITIZEN IDENTIFICATION</span></h5>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Issuing Country: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.fid_country.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Identification Type: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.fid_type.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Identification Number: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.fid_number.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Issued Date: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.fid_issued_date_mapped.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Expiration Date: </label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.fid_expiration_date_mapped.HTML>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--//Section 5 -->
+      <div id="visa-identification-container" class="row margin-bottom hide">
+         <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+            <h5 class="margin-bottom form-heading"><span>VISA IDENTIFICATION</span></h5>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Issuing Country: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                   <div class="form-group">
+                       <$client.env.FormField.visa_country.HTML>
+                   </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Work Permit Type: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.visa_permit_type.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Identification Number: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.visa_number.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Issued Date: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.visa_issued_date_mapped.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Expiration Date: <span class="font-red">* </span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                   <div class="form-group">
+                       <$client.env.FormField.visa_expiration_date_mapped.HTML>
+                   </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Philippine specific section -->
+      <div id="PHL" class="row margin-bottom hide">
+         <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-0 col-lg-8 col-md-8 col-sm-8 col-xs-12 inner-wrapper">
+            <h5 class="margin-bottom form-heading"><span>PHILIPPINES SPECIFIC SECTION</span></h5>
+            <div id="rtw_restrictions-container" class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top" id="firstEmployerYN_label">
+                  <p class="text-indent">Is PayPal your first employer in the current calendar year? <span class="font-red">*</span></p>
+               </div>
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="text-indent">
+                     <$client.env.FormField.firstEmployerYN.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Tax Identification: <span class="font-red">*</span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                   <div class="form-group">
+                       <$client.env.FormField.tin_number.HTML>
+                   </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">&nbsp;</div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                   <div class="form-group">
+                       <$client.env.FormField.tin_number_verification.HTML>
+                   </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">Pag-IBIG MID: <span class="font-red">*</span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.pibig_mid_number.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">&nbsp;</div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.pibig_mid_number_verification.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">
+                  <label class="control-label">PhilHealth Identification: <span class="font-red">*</span></label>
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.pin_number.HTML>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 padding-top">&nbsp;</div>
+               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                  <div class="form-group">
+                      <$client.env.FormField.pin_number_verification.HTML>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+   </section>
+   <!--Employee Signature -->
+   <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+         <label class="control-label">Signature: <span class="font-red">*</span> </label> 
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <$client.env.FormField.signature.html>
+        </div>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><label class="control-label">Date: </label></div>
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <$client.env.FormField.date_mapped.html>
+        </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-sm-12">&nbsp;</div>
+   </div>
+   <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+         <label class="control-label">Name: </label>
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12"><$client.env.FormField.name.html></div>
+   </div>
+   <hr class="lifesuite__hr">
+   <div class="row" id="formButtons" style="display: none;">
+      <div class="lifesuite__clearfix lifesuite__float-right">                
+         <$client.env.FormButtons> 
+      </div>
+   </div>
+</main>
+
+<div class="hide">
+     <$client.env.FormField.SignatureVerification.HTML> 
+     <$client.env.FormField.EventLocation.HTML>  
+     <$client.env.FormField.nid_country.HTML>  
+     <$client.env.FormField.Country.HTML>  
+     <$client.env.FormField.Country2.HTML>  
+     <$client.env.FormField.Work_Permit_Type_Global.HTML>
+     <$client.env.FormField.National_ID_Type.HTML>
+     <$client.env.FormField.date.HTML>
+     <$client.env.FormField.fid_expiration_date.HTML>
+     <$client.env.FormField.fid_issued_date.HTML>
+     <$client.env.FormField.nid_number_label.HTML>
+     <$client.env.FormField.nid_expiration_date.HTML>
+     <$client.env.FormField.nid_issued_date.HTML>
+     <$client.env.FormField.passport_expiration_date.HTML>
+     <$client.env.FormField.passport_issued_date.HTML>
+     <$client.env.FormField.visa_expiration_date.HTML>
+     <$client.env.FormField.visa_issued_date.HTML>
+</div>
+
+</form> 
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator_V2.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/section_toggler.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+<script type="text/javascript"> 
+ChangeCalendarIcons(); //for popup calendar
+$(document).on('ready', function() { 
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+        $("#buttonCancel").addClass("lifesuite__button"); 
+        $('#buttonCancel').attr('id','ButtonCancel'); 
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonSave").addClass("lifesuite__button primary"); 
+        $('#buttonSave').attr('id','ButtonSave'); 
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary"); 
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete'); 
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+        $("#buttonPrint").addClass("lifesuite__button"); 
+        $('#buttonPrint').attr('id','ButtonPrint'); 
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed"); 
+        $("#buttonPreviewDelete").addClass("lifesuite__button"); 
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete'); 
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonPreviewSave").addClass("lifesuite__button primary"); 
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave'); 
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete'); 
+
+       document.getElementById('formButtons').style.display = "block"; 
+
+        $("input[type=text]").addClass('lifesuite__text-input'); 
+        $("select").addClass('lifesuite__select-input'); 
+        $("input[type=radio]").addClass('lifesuite__radio'); 
+        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+        $("textarea").addClass('lifesuite__textarea-input'); 
+        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+
+  var countries = {
+    'ARG'   : 'Argentina',
+    'AUS'   : 'Australia',
+    'AUT'   : 'Austria',
+    'BEL'   : 'Belgium',
+    'BRA'   : 'Brazil',
+    'CAN'   : 'Canada',
+    'CHN'   : 'China',
+    'HRV'   : 'Croatia',
+    'CZE'   : 'Czech Republic',
+    'DNK'   : 'Denmark',
+    'EST'   : 'Estonia',
+    'FRA'   : 'France',
+    'DEU'   : 'Germany',
+    'GTM'   : 'Guatemala',
+    'HKG'   : 'Hong Kong',
+    'IND'   : 'India',
+    'IDN'   : 'Indonesia',
+    'IRL'   : 'Ireland',
+    'ISR'   : 'Israel',
+    'ITA'   : 'Italy',
+    'JPN'   : 'Japan',
+    'LUX'   : 'Luxembourg',
+    'MYS'   : 'Malaysia',
+    'MEX'   : 'Mexico',
+    'NLD'   : 'Netherlands',
+    'NOR'   : 'Norway',
+    'PHL'   : 'Philippines',
+    'POL'   : 'Poland',
+    'RUS'   : 'Russia',
+    'SGP'   : 'Singapore',
+    'ZAF'   : 'South Africa',
+    'KOR'   : 'South Korea',
+    'ESP'   : 'Spain',
+    'SWE'   : 'Sweden',
+    'CHE'   : 'Switzerland',
+    'TWN'   : 'Taiwan',
+    'THA'   : 'Thailand',
+    'TUR'   : 'Turkey',
+    'UKR'   : 'Ukraine',
+    'GBR'   : 'United Kingdom',
+    'USA'   : 'USA'
+  }
+
+  // default values onload
+  $('#nid_number_label').val("Identification Number:");
+
+  var eventLocation = $('#EventLocation').prop('readonly') ? $('#EventLocation').val() :  $('#EventLocation').val("<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>").val();
+  //$('#fid_country, #nid_country, #visa_country, #passport_country').val(eventLocation);
+  $('#nid_country').val(eventLocation);
+  $('[data-text="country"]').html(countries[eventLocation] + "?");
+  $('[data-text="country2"]').html(countries[eventLocation]);
+  $('#Country').val(countries[eventLocation] + "?");
+  $('#Country2').val(countries[eventLocation] + ", prior to commencing employment.");
+
+  // nid date not require if country is Australia
+  if (eventLocation === "AUS") {
+    $('.nid-issued-date-required').hide();
+    $('#nid_issued_date_mapped').data('validation', 'past-date');
+  }
+  // remove validation for some country
+  if (['ITA','DEU','NLD'].indexOf(eventLocation) >= 0) {
+    $('.nid-issued-date-required').remove();
+    $('[name$=".nid_issued_date_mapped"]').data('validation', 'past-date');
+  }
+
+  // populate countries
+  var removeCountriesWithNoOption = function(allOptionsObj, countryOptionsObj) {
+    var existingOptions = [];
+    allOptionsObj.each(function(k,v) {
+      if ($(v).val().length < 1) {
+        return true;
+      }
+      var countryCode = $(v).val().substring(0, 3);
+      if (existingOptions.indexOf(countryCode) < 0) {
+        existingOptions.push(countryCode);
+      }
+    });
+    $.each(countryOptionsObj, function(k,v) {
+      if($(v).val().length > 0 && existingOptions.indexOf($(v).val()) < 0 ) {
+        $(v).remove();
+      }
+    });
+  }
+
+  var sectionToggler = new SectionToggler({"config": "<$link;/main/RedCarpet/FormTemplates/Global_New_Hire_form/toggler_config.json>"});
+  // display allowed form input groups based on selected citizen status
+  setTimeout(function() {
+    sectionToggler.run();
+  }, 100);
+
+  var populateByLocation = function(targetObj, source, loc) {
+    var location = (loc && loc.length > 0) ? loc : eventLocation;
+    var optionVal = targetObj.val();
+    targetObj.html(source.clone());
+    targetObj.find('option').not('[value=""]').not('[value^="' + location + '"]').remove();
+
+    // set default value for italy
+    if (eventLocation == 'ITA' && targetObj.prop('name').indexOf('nid_type') >= 0) {
+      optionVal = 'ITA-CF';
+    }
+
+    // Specific to Philippines only
+    if (loc === "PHL" && targetObj.prop('name').indexOf('nid_type') >= 0) {
+       targetObj.find('option').not('[value=""]').not('[value^="PHL-SSS"]').remove();
+    }
+    if (eventLocation == 'DEU') {
+      optionVal = 'DEU-SVNR';
+    }
+
+    setTimeout(function() {
+       if (targetObj) {
+         targetObj.val(optionVal)
+       }
+       if (targetObj.val() == null) {
+        targetObj.find('option').first().prop('selected', 'selected');
+       }
+      if (eventLocation == 'DEU' && targetObj.prop('name').indexOf('nid_type') >= 0) {
+         targetObj.val('DEU-SVNR').prop('disabled', 'disabled');
+      }
+      if (eventLocation == 'ITA' && targetObj.prop('name').indexOf('nid_type') >= 0) {
+         targetObj.val('ITA-CF');
+      }
+    }, 1000);
+  }
+
+  var setDefaultCountry = function(obj) {
+    if (obj && obj.val().length < 1) {
+      obj.val(eventLocation);
+    }
+  }
+
+  var showCountrySectionByEventLocation = function(eventLocationCode) {
+   if (document.getElementById(eventLocationCode) !== null) {
+      $(document.getElementById(eventLocationCode)).removeClass('hide');
+   }
+  }
+
+  /**
+   * SERVICES-35790 | jjucutan | renamed from toggleBrazilFields to toggleIDPropsByCountry to make it more general purpose
+   */
+  var toggleIDPropsByCountry = function(nationalID) {
+    switch (nationalID) {
+      case "BRA-CTPS":
+        $('#nid_series_number').closest('.row').show();
+        $('#nid_issuing_agency').closest('.row').show();
+      break;
+      case "BRA-VRN":
+        validateField($('#nid_issuing_agency'), true);
+        $('#nid_series_number').closest('.row').show();
+        $('#nid_issuing_agency').val('').closest('.row').hide();
+      break;
+      case "BRA-RNE":
+      case "BRA-RG":
+        validateField($('#nid_series_number'), true);
+        $('#nid_series_number').val('').closest('.row').hide();
+        $('#nid_issuing_agency').closest('.row').show();
+      break;
+      case "RUS-VTK":
+      case "RUS-TK":
+          validateField($('#nid_issuing_agency'), true);
+        $('#nid_series_number').data("validation", "required").closest('.row').show();
+        $('label[for="nid_series_number"] span.font-red').show();
+        $('#nid_issuing_agency').data("validation", null).closest('.row').show();
+        $('label[for="nid_issuing_agency"] span.font-red').hide();
+      break;
+      case "RUS-INT":
+        $('#nid_series_number').data("validation", "required").closest('.row').show();
+        $('label[for="nid_series_number"] span.font-red').show();
+        $('#nid_issuing_agency').data("validation", "required").closest('.row').show();
+        $('label[for="nid_issuing_agency"] span.font-red').show();
+      break;
+      case "RUS-PIFC":
+      case "RUS-YHH":
+          validateField($('#nid_series_number'), true);
+          validateField($('#nid_issuing_agency'), true);
+        $('#nid_series_number').data("validation", null).closest('.row').show();
+        $('label[for="nid_series_number"] span.font-red').hide();
+        $('#nid_issuing_agency').data("validation", null).closest('.row').show();
+        $('label[for="nid_issuing_agency"] span.font-red').hide();
+      break;
+      default:
+        validateField($('#nid_series_number'), true);
+        validateField($('#nid_issuing_agency'), true);
+        $('#nid_series_number, #nid_issuing_agency').val('').closest('.row').hide();
+    }
+    if ($('#nid_series_number').is(":visible") && $('#nid_series_number').length < 1) {
+      $('#nid_series_number').val("<$client.tForWhomUserInfo.Series_Number>");
+    }
+    if ($('#nid_issuing_agency').is(":visible") && $('#nid_issuing_agency').length < 1) {
+      $('#nid_issuing_agency').val("<$client.tForWhomUserInfo.nid_issuing_agency>");
+    }
+  }
+  toggleIDPropsByCountry($('#nid_type').val());
+
+  // show country specific sections
+  showCountrySectionByEventLocation(eventLocation);
+
+  // show only countries with option
+  removeCountriesWithNoOption($('#visa_permit_type option'), $('#visa_country option'));
+  removeCountriesWithNoOption($('#fid_type option'), $('#fid_country option'));
+
+  // show only list of permits per country by default
+  populateByLocation($('#visa_permit_type'), $('#Work_Permit_Type_Global option'), $('#visa_country').val());
+
+  // show only list of id types per country by default
+  populateByLocation($('#fid_type'), $('#National_ID_Type option'), $('#fid_country').val());
+
+// show only list of id types per country by default
+  populateByLocation($('#nid_type'), $('#National_ID_Type option'), $('#EventLocation').val());
+
+  // set default country
+  setDefaultCountry($('#passport_country'));
+  setDefaultCountry($('#visa_country'));
+  setDefaultCountry($('#fid_country'));
+  setDefaultCountry($('#EventLocation'));
+
+//////////////////////////////////////////////////////////////////////////////////
+// Removes Alpha and Special characters from the input field
+// Only accepts numeric input
+//////////////////////////////////////////////////////////////////////////////////
+  $('.remove-alpha').keyup(function () {
+    // Specific to Malaysia SOSCO Number
+    if ($(this).prop("id") == 'nid_number') {
+      if ($('#nid_type').val() == 'MYS-SOSCO') {
+        if (!this.value.match(/^[0-9]$/)) {
+          this.value = this.value.replace(/[^0-9]/g, '');
+        }
+      }
+      // Specific to germany ta id
+      if ($('#nid_type').val() == 'DEU-SID') {
+        if (!this.value.match(/^[0-9]$/)) {
+          this.value = this.value.replace(/[^0-9]/g, '');
+        }
+      }
+    }
+    if ($(this).prop("id") == 'fid_number') {
+      if ($('#fid_type').val() == 'MYS-SOSCO') {
+        if (!this.value.match(/^[0-9]$/)) {
+          this.value = this.value.replace(/[^0-9]/g, '');
+        }
+      }
+    }
+    // Philippine specific section fields
+    if (["tin_number","pin_number","pibig_mid_number"].indexOf($(this).prop("id")) > -1) {
+     if (!this.value.match(/^([0-9]?)+([-]?)+$/)) {
+       this.value = this.value.replace(/[^0-9-]/g, '');
+     }
+    }
+  });
+
+  $('#global-new-hire-form').on('change', '#fid_country', function() {
+    populateByLocation($('#fid_type'), $('#National_ID_Type option'), $(this).val());
+    $('#National_ID_Type').val($(this)).val();
+  });
+
+  $('#global-new-hire-form').on('change', '#visa_country', function() {
+    populateByLocation($('#visa_permit_type'), $('#Work_Permit_Type_Global option'), $(this).val());
+    $('#Work_Permit_Type_Global').val($(this).val());
+  });
+
+  $('#global-new-hire-form').on('change', 'input:radio:visible', function() {
+    sectionToggler.run(function() {
+      $('#global-new-hire-form input[type="radio"]:hidden').prop('checked', false);
+      $('.dateField').each(function(k, v) {
+          $($(v).data('date-mapped')).val($(v).val());
+      });
+      toggleIDPropsByCountry($('#nid_type').val()); 
+    });
+    if ($('#visa_permit_type').is(':visible')) {
+      populateByLocation($('#visa_permit_type'), $('#Work_Permit_Type_Global option'), $('#visa_country').val());
+    }
+    if ($('#fid_type').is(':visible')) {
+      populateByLocation($('#fid_type'), $('#National_ID_Type option'), $('#fid_country').val());
+    }
+    if ($('#nid_type').is(':visible')) {
+      populateByLocation($('#nid_type'), $('#National_ID_Type option'), $('#EventLocation').val());
+      populateByLocation($('#National_ID_Type'), $('#National_ID_Type option'), $('#EventLocation').val());
+    }
+    setDefaultCountry($('#passport_country'));
+    setDefaultCountry($('#visa_country'));
+    setDefaultCountry($('#fid_country'));
+    setDefaultCountry($('#EventLocation'));
+
+    setTimeout(function() {
+      if ($('#national-identification-container').hasClass('hide')) {
+        $('#national-identification-container').find('input:radio:checked').prop('checked', false);
+        $('#national-identification-container').find('input').val('');
+      }else{
+        if ($('#nid_type option[value="<$client.tForWhomUserInfo.National_ID_Type>"]').length > 0) {
+          if (['DEU','ITA'].indexOf(eventLocation) < 0) {
+            $('#nid_type').val('<$client.tForWhomUserInfo.National_ID_Type>');
+          }
+          if (eventLocation == 'ITA') {
+            $('#nid_type').val('ITA-CF');
+          }
+        }
+        if (eventLocation == 'DEU') {
+          $('#nid_number').val('<$client.tForWhomUserInfo.National_ID2>');
+        }
+        if (!$('#nid_number').val().length) {
+          $('#nid_number').val('<$client.tForWhomUserInfo.SSNO>');    
+        }
+      }
+      if ($('#passport-information-container').hasClass('hide')) {
+        $('#passport-information-container').find('input:radio:checked').prop('checked', false);
+        $('#passport-information-container').find('input').val('');
+      }
+      if ($('#noncitizen-identification-container').hasClass('hide')) {
+        $('#noncitizen-identification-container').find('input:radio:checked').prop('checked', false);
+        $('#noncitizen-identification-container').find('input').val('');
+        $('#fid_type').find('select').val('');
+      }
+      if ($('#visa-identification-container').hasClass('hide')) {
+        $('#visa-identification-container').find('input:radio:checked').prop('checked', false);
+        $('#visa-identification-container').find('input').val('');
+        $('#visa_permit_type').find('select').val('');
+      }
+      toggleIDPropsByCountry($('#nid_type').val());
+    }, 1000);
+    if (!strFormCompleted) {
+      validateField($(this));
+    }
+  });
+
+  $('#global-new-hire-form').on('blur change', 'input:visible:not(#signature):not(:button):not(.dateField):not([data-must-match]), select:visible', function() {
+    // Specific to Malaysia SOSCO Number
+    // Modifies validation and error message
+    if ($('#nid_type').val() == 'MYS-SOSCO') {
+      $('#nid_number').data('validation', 'required,regex');
+      $('#nid_number').data('regex', '^\\d*$');
+      $('#nid_number').data('message', 'digits only');
+    }
+    
+    if (!strFormCompleted) {
+      validateField($(this));
+    }
+    toggleIDPropsByCountry($('#nid_type').val());
+  });
+
+  $('#global-new-hire-form').on('change', 'input.dateField:visible', function() {
+    $($(this).data('date-mapped')).val($(this).val());
+    if (!strFormCompleted) {
+      validateField($(this));
+    }
+  });
+
+  $('#global-new-hire-form').on('change', 'input.hasDatepicker:visible', function() {
+    $("[data-id='"+$(this).data('date-mapped')+"']").val($(this).data("realdate"));
+  });
+
+  $('#modal').on('click', '#signature-submit', function() {
+    if (validateSignature('signature','eSignature1','fullName','modal','over','sv')) {
+        $('#date_mapped').setFormattedDate(new Date());
+        $("[data-id='date']").val($('#date_mapped').data("realdate"));
+    }
+    xbObj('eSignature1').value='';
+    validateField($('#signature'));
+    document.getElementById('eSignature1').focus();
+  });
+  $('#modal').on('click', '#signature-clear', function() {
+    xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';
+    if (typeof targetdatecheckCLEAR == 'function' ){$('#date_mapped').setFormattedDate(null);$("[data-id='date']").val("");}
+    validateField($('#signature'));
+  });
+
+   // re-enter fields matching validator
+   var reverifyEntry = function(el) { 
+      "use strict";
+      let isValid = true; 
+      let message = ""; 
+
+      // do some awesome coding here 
+      const targetMatch = $("#" + el.data('must-match'));
+      if (el.val().length && (targetMatch.val() != el.val())) {
+         isValid = false;
+         message = "Entries for " + targetMatch.data('title') + " must be identical.";
+      }
+      // if the logic hasn't met the condition then set isValid to false 
+      // set the custom message to message variable 
+      return { 
+         "isValid": isValid, 
+         "message": message 
+      } 
+   }; 
+
+   $('#global-new-hire-form').on('blur', '[data-must-match]', function() {
+      let fld = $(this);
+      validateField($(this), false, function() {
+         return reverifyEntry(fld);
+      });
+   });
+
+  $('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete').on('click', function(e) {
+    var formIsValid = true, btn = $(this);
+    e.preventDefault();
+    $.each($('#global-new-hire-form input:visible:not(:button), #global-new-hire-form select:visible'), function(k, v) {
+      if(strFormCompleted) formIsValid = true;
+      else{
+            if(false == validateField($(v)) && $(v).is(':visible')) {
+              formIsValid = false;
+            }
+            if ($(v).data('must-match') && !validateField($(v), false, function() {return reverifyEntry($(v));})) {
+              formIsValid = false;
+            }
+      }
+    });
+
+    if (formIsValid) {
+      switch (btn.attr('id')) {
+        case 'ButtonPrint':
+          funcPrint();
+        break;
+        case 'ButtonSaveAndComplete':
+          funcSaveAndComplete();
+        break;
+      }
+    }
+    else {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    }
+  });
+  // china specific configurations outside global config above
+  const loadChinaConfig = function() {
+    if ($('[name$=".citizenship_status"]:checked').val() === "Yes" && eventLocation === "CHN") {
+      $('[name$=".passport_available"][value="Neither"]')
+        .prop("checked", true)
+        .closest(".row")
+        .hide();
+    }
+    if ($('[name$=".citizenship_status"]:checked').length <=0 && eventLocation === "CHN") {
+      $('[name$=".passport_available"]')
+        .closest(".row")
+        .hide();
+    }
+    if ($('[name$=".citizenship_status"]:checked').val() == "No" && eventLocation === "CHN") {
+      $('[name$=".passport_available"]')
+        .closest(".row")
+        .show();
+    }
+    sectionToggler.run();
+  }
+  setTimeout(function() {
+    loadChinaConfig();
+  }, 500);
+  // Country specific change events (Do you have citizenship...)
+  $('[name$=".citizenship_status"]').on("change", function() {
+    "use strict";
+    // Philipine specific
+    if ($('[name$=".citizenship_status"]:checked').val() === "Yes" && eventLocation === "PHL") {
+      $('[name$=".passport_available"][value="National"]').prop("checked", true);
+    }
+    // China specific
+    loadChinaConfig();
+  });
+
+  // Work Permit Type specific change events
+  $('[name$=".visa_permit_type"]').on("change", function() {
+    "use strict";
+    // Singapore specific
+    if ($('[name$=".citizenship_status"]:checked').val() === "No" && $('[name$=".permanent_resident"]:checked').val() === "No" && $('[name$=".visa_permit_type"] option:selected').val() === "SGP_VIP" && eventLocation === "SGP") {
+      $('[name$=".visa_number"]').data("validation", "");
+      $('[name$=".visa_issued_date_mapped"]').data("validation", "past-date");
+      $('[name$=".visa_expiration_date_mapped"]').data("validation", "future-date");
+      validateField($('[name$=".visa_number"]'), true);
+      validateField($('[name$=".visa_issued_date_mapped"]'), true);
+      validateField($('[name$=".visa_expiration_date_mapped"]'), true);
+      $('[name$=".visa_number"]').closest('div.row').find('span.font-red').html('');
+      $('[name$=".visa_issued_date_mapped"]').closest('div.row').find('span.font-red').html('');
+      $('[name$=".visa_expiration_date_mapped"]').closest('div.row').find('span.font-red').html('');
+    }
+    else {
+      $('[name$=".visa_number"]').data("validation", "required");
+      $('[name$=".visa_issued_date_mapped"]').data("validation", "required,past-date");
+      $('[name$=".visa_expiration_date_mapped"]').data("validation", "required,future-date");
+      $('[name$=".visa_number"]').closest('div.row').find('span.font-red').html('* ');
+      $('[name$=".visa_issued_date_mapped"]').closest('div.row').find('span.font-red').html('* ');
+      $('[name$=".visa_expiration_date_mapped"]').closest('div.row').find('span.font-red').html('* ');
+    }
+  });
+
+  // country specific load events
+  if (eventLocation == "PHL") {
+      // change mapped id number
+      $('#nid_number_label').val("Social Security System (SSS) Number:");
+      $('#nid_label').html('').append('Social Security System (SSS) Number ', $('<span class="font-red"/>').text('*')); // if country is philippines
+       // show philippines specific sections
+       $('[data-section="PHL"]').removeClass('hide');
+       // modify fields to attributes that now belong to philippines
+       $('#global-new-hire-form #nid_number').data({
+        'validation': 'required,regex-optional',
+        'title': 'Social Security System (SSS) Number',
+        'regex': '^[0-9]{10}$',
+        'message': 'exactly 10 digits'
+      });
+      $('[name$=".passport_number"]').data({
+        'validation': 'required,regex-optional',
+        'regex': '^[A-Za-z0-9]{9}$',
+        'message': 'exactly 9 Characters'
+      });
+      $('[name$=".tin_number"]').data({
+        'validation': 'required,regex-optional',
+        'regex': '^[0-9]{12}$',
+        'message': 'exactly 12 digits'
+      });
+      $('[name$=".pibig_mid_number"]').data({
+        'validation': 'required,regex-optional',
+        'regex': '^[0-9]{12}$',
+        'message': 'exactly 12 digits'
+      });
+      $('[name$=".pin_number"]').data({
+        'validation': 'required,regex-optional',
+        'regex': '^[0-9]{12}$',
+        'message': 'exactly 12 digits'
+      });
+  }
+
+  // germany event
+  if (eventLocation == 'DEU') {
+    $('#nid_number').val('<$client.tForWhomUserInfo.National_ID2>').prop('readonly','readonly');
+  }
+
+  $('#tin_number').on('blur', function() {
+    "use strict";
+    if ($(this).val().length === 9 && /^\d+$/.test($(this).val())) {
+      $(this).val($(this).val()+"000");
+    }
+  });
+
+  $(".modal").hide(); 
+  <$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js> 
+  if (!$("#sv").prop('readonly')) {
+  $('#date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+  $('#fid_expiration_date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+  $('#fid_issued_date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+  $('#nid_expiration_date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+  $('#nid_issued_date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+  $('#passport_expiration_date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+  $('#passport_issued_date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+  $('#visa_expiration_date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+  $('#visa_issued_date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+  }
+}); 
+
+$(window).ready(function() { 
+  setTimeout(function() {
+    $('[name$=".visa_permit_type"]').trigger("change");
+  }, 1500);
+});
+$('#buttonPrint').removeAttr('onclick');
+$('#buttonSaveAndComplete').removeAttr('onclick');
+disableCalButton('date-disabled'); 
+</script>

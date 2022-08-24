@@ -1,0 +1,109 @@
+<table id="SelfIDEPtable" border="0">
+   <tr>
+    <td class="SID_title" id='Date_Entered_Workforce_prompt'>Date Entered Workforce:</td>
+    <td><$client.env.inputDate_Entered_Workforce></td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='WD_Gender_IND_prompt'>Gender:</td>
+    <td><$client.env.inputWD_Gender_IND></td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='Marital_Status_IND_prompt'>Marital Status:</td>
+    <td colspan="3"><$client.env.inputMarital_Status_IND></td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='Citizenship_Status_prompt'>Citizenship Status:</td>
+    <td colspan="3"><$client.env.inputCitizenship_Status></td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='Nationality_Primary_prompt'>Nationality:</td>
+    <td colspan="3"><$client.env.inputNationality_Primary></td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='National_ID_Number_prompt'>AADHAR Number:</td>
+    <td colspan="3"><$client.env.inputNational_ID_Number></td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='National_ID_Number_1_prompt'>
+      PAN Number:
+      <small class="text-normal">
+        <em>(If you don’t have a PAN Number you can leave the field blank)</em>
+      </small>
+    </td>
+    <td colspan="3">
+      <$client.env.inputNational_ID_Number_1>
+      </td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='National_ID_Number_2_prompt'>
+      UAN Number:
+      <small class="text-normal">
+        <em>(If you don’t have a UAN Number you can leave the field blank)</em>
+      </small>
+    </td>
+    <td colspan="3"><$client.env.inputNational_ID_Number_2></td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='National_ID_Number_3_prompt'>
+      EPF Number:
+      <small class="text-normal">
+        <em>(If you don’t have a EPF Number you can leave the field blank)</em>
+      </small>
+    </td>
+    <td colspan="3"><$client.env.inputNational_ID_Number_3></td>
+  </tr>
+  <tr style="display:none;">
+    <td class="SID_title" id='National_ID_Country_prompt'>National ID Country:</td>
+    <td colspan="3"><$client.env.inputNational_ID_Country></td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='Passport_Country_prompt'>Passport Country:</td>
+    <td colspan="3"><$client.env.inputPassport_Country></td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='Passport_ID_Number_prompt'>Passport ID Number:</td>
+    <td colspan="3"><$client.env.inputPassport_ID_Number></td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='Passport_Issued_Date_prompt'>Passport Issued Date:</td>
+    <td colspan="3"><$client.env.inputPassport_Issued_Date></td>
+  </tr>
+  <tr>
+    <td class="SID_title" id='Passport_Expiration_Date_prompt'>Passport Expiration Date:</td>
+    <td colspan="3"><$client.env.inputPassport_Expiration_Date></td>
+  </tr>
+<!-- SERVICES-43197 24/11/2021 ndugang-->
+  <tr style="display:none">
+    <td class="SID_title" id='Visa_Country_prompt'>Visa Country:</td>
+    <td colspan="3"><$client.env.inputVisa_Country></td>
+  </tr>
+  <tr style="display:none">
+    <td class="SID_title" id='Visa_ID_Type_IND_prompt'>Visa ID Type:</td>
+    <td colspan="3"><$client.env.inputVisa_ID_Type_IND></td>
+  </tr>
+  <tr style="display:none">
+    <td class="SID_title" id='Visa_ID_Number_prompt'>Visa ID Number:</td>
+    <td colspan="3"><$client.env.inputVisa_ID_Number></td>
+  </tr>
+  <tr style="display:none">
+    <td class="SID_title" id='Visa_Issued_Date_prompt'>Visa Issued Date:</td>
+    <td colspan="3"><$client.env.inputVisa_Issued_Date></td>
+  </tr>
+  <tr style="display:none">
+    <td class="SID_title" id='Visa_Expiration_Date_prompt'>Visa Expiration Date:</td>
+    <td colspan="3"><$client.env.inputVisa_Expiration_Date></td>
+  </tr> 
+</table>
+
+<div hidden>
+    <$client.env.inputNational_ID_Type_IND>
+</div>
+<!-- Format Dates on load --> 
+<script type="text/javascript">
+   if(self.LoadCallback) {
+      LoadCallback(document.forms['frmExtendedUserProfile']);
+   }
+   $('[name$=".National_ID_Country"] option[value="IND"]').attr("selected",true);
+   $('[name$=".National_ID_Type_IND"]').val('IND-AAD');
+</script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/FormScript_RadioCheck2.js>"></script>

@@ -1,0 +1,806 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                    </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','name','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over');
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!-- ////////////////////////eForm Prompts/////////////////// -->
+
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form''>
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+ 
+
+<!--////////////////////////////////////////////////////////Custom Prompts for each form /////////////////////////////////////////////////////////////////// -->
+<$client.env.FormField.Date.prompt>
+<$client.env.FormField.Name.prompt>
+<$client.env.FormField.Refusal.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.Private_Plan_Options.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+        <!-- Replace With eForm Specific HTML -->
+
+
+<!--////////////////////////////////////////////////////////Put your structure here /////////////////////////////////////////////////////////////////// -->
+                   
+<div class="container-fluid"> 
+    <div class="form-group"> 
+        <div class="row">
+
+
+<div class=row>
+<div class=col-sm-12><H3><strong>Employer Notice to Employee</strong></H3></div>
+<div class=col-sm-12><H4>Rights and Obligations under the Massachusetts Family and Medical<br>Leave Law, M.G.L. c. 175M</H4></div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+
+<div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+
+<!--////////////////////////////////////////////////////////MetroWest Medical Center - Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='912'?'block':'none')>">
+
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12> <u>VHS ACQUISITION SUB #9</u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u> 115 Lincoln Street</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12><u>Farmingham, MA 1702</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>62-1861200</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////MetroWest Medical Center - End /////////////////////////////////////////////////////////////////// -->
+<!--////////////////////////////////////////////////////////St Vincent - Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='813'?'block':'none')>">
+
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12> <u>VHS ACQUISITION SUB #7</u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>123 Summer Street</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Worsester, MA 1608</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>62-1861198</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////St Vincent - End /////////////////////////////////////////////////////////////////// -->
+<!--////////////////////////////////////////////////////////TPR 402 Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='402'?'block':'none')>">
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12> <u>VHS PHYSICIAN SERVS LLC</u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>1445 Ross Ave</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Dallas, Texas 75202</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>26-4693055</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////TPR 402 - End /////////////////////////////////////////////////////////////////// -->
+<!--////////////////////////////////////////////////////////TPR 226 Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='226'?'block':'none')>">
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12> <u>VHS PHYSICIAN SERVS LLC</u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>1445 Ross Ave</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Dallas, Texas 75202</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>26-4693055</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////TPR 226 - End /////////////////////////////////////////////////////////////////// -->
+<!--////////////////////////////////////////////////////////TPR 417 Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='417'?'block':'none')>">
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12> <u>VHS PHYSICIAN SERVS LLC</u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>1445 Ross Ave</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Dallas, Texas 75202</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>26-4693055</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////TPR 417 - End /////////////////////////////////////////////////////////////////// -->
+<!--////////////////////////////////////////////////////////Physicians - Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='194'?'block':'none')>">
+
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12> <u>VHS PHYSICIAN SERVS LLC</u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>1445 Ross Ave</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Dallas, Texas 75202</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>26-4693055</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////Physicians - End /////////////////////////////////////////////////////////////////// -->
+<!--////////////////////////////////////////////////////////Exec/Homeoffice - Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='963'?'block':'none')>">
+
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12><u>TENET HLTHSYSTEM MED INC</u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> 1445 Ross Ave.</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Dallas, Texas 75202</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>95-2111054</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////Exec/Homeoffice - End /////////////////////////////////////////////////////////////////// -->
+
+<!--////////////////////////////////////////////////////////Exec/Homeoffice - Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='984'?'block':'none')>">
+
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12><u>TENET HLTHSYSTEM MED INC</u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> 1445 Ross Ave.</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Dallas, Texas 75202</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>95-2111054</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////Exec/Homeoffice - End /////////////////////////////////////////////////////////////////// -->
+<!--////////////////////////////////////////////////////////Conifer 574 - Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='574'?'block':'none')>">
+
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12><u>CONIFER REV CYCL SOL LLC</u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>3560 Dallas Parkway</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Frisco, Texas 75034</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>75-2965456</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////Conifer 574  - End /////////////////////////////////////////////////////////////////// -->
+<!--////////////////////////////////////////////////////////Conifer 273 - Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='273'?'block':'none')>">
+
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12><u>Hospital RCM Services LLC </u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>3560 Dallas Parkway</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Frisco, Texas 75034</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>46-1055000</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////Conifer 273 - End /////////////////////////////////////////////////////////////////// -->
+<!--////////////////////////////////////////////////////////Conifer 523 - Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='523'?'block':'none')>">
+
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12><u>Conifer Value Based Care LLC </u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>3560 Dallas Parkway</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Frisco, Texas 75034</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>52-1964905</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////Conifer 523 - End /////////////////////////////////////////////////////////////////// -->
+<!--////////////////////////////////////////////////////////Conifer 527 - Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='527'?'block':'none')>">
+
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12><u>Conifer Physician Services Inc </u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>3560 Dallas Parkway</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Frisco, Texas 75034</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>37-1207854</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////Conifer 527 - End /////////////////////////////////////////////////////////////////// -->
+<!--////////////////////////////////////////////////////////Conifer 533 - Start/////////////////////////////////////////////////////////////////// -->
+<div style="display:<$client.env.eval(client.tForWhomUserInfo.Facility_Number=='533'?'block':'none')>">
+
+<div class=row>
+<div class="col-sm-3">&nbsp;</div>
+<div class="col-sm-6" align="center"><div class="bordered">
+   <div class=row>
+    <div class=col-sm-12><u>Conifer Care Continuum Solutions LLC</u><br><font size="1">(Employer Name)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>3560 Dallas Parkway</u><br><font size="1">(Employer Street Address)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>Frisco, Texas 75034</u><br><font size="1">(Employer City, State, Zip)</font></div>
+    </div>
+<br>
+   <div class=row>
+    <div class=col-sm-12> <u>26-3993963</u><br><font size="1">(Employer ID Number)</font></div>
+    </div>
+</div>
+</div>
+<div class="col-sm-3">&nbsp;</div>
+</div>
+</div>
+<!--////////////////////////////////////////////////////////Conifer 574  - End /////////////////////////////////////////////////////////////////// -->
+   
+<div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12><h5><strong>Explanation of Benefits</strong></h5></div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>
+    <ul class="a">
+    <li><strong> Beginning January 1, 2021,</strong>
+        <ul class="b">
+        <li>employees may be entitled to up to 12 weeks of paid family leave in a benefit year for the birth, adoption, or foster care placement of a child, or because of a qualifying exigency arising out of the fact that a family member is on active duty or has been notified of an impending call to active duty in the Armed Forces;</li>
+        <li>employees may be entitled to up to 20 weeks of paid medical leave in a benefit year if they have a serious health condition that incapacitates them from work</li>
+        <li>employees may be entitled to up to 26 weeks of paid family leave in a benefit year to care for a family member who is a covered service member undergoing medical treatment or otherwise addressing consequences of a serious health condition relating to the family member’s military service.</li>
+        </ul>
+    <li><strong> Beginning July 1, 2021,</strong>
+        <ul class="b">
+        <li>employees may be entitled to up to 12 weeks of paid family leave in a benefit year to care for a family member with a serious health condition.</li>
+        </ul>
+    <li>Employees may be eligible for up to 26 total weeks, in the aggregate, of paid family and medical leave in a single benefit year.</li>
+    <li>An employee’s weekly benefit amount will be based on the employee’s earnings, with a maximum benefit of $850 per week. </li>
+</ul>
+</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12><h5><strong>Job Protection, Continuation of Health Insurance, No Retaliation</strong></h5></div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>
+    <ul class="a">
+        <li><strong>Job Protection:</strong> Generally, an employee who has taken family or medical leave under the law must be restored to the employee’s previous position or to an equivalent position, with the same status, pay, employment benefits, length-of-service credit and seniority as of the date of leave. </li>
+        <li><strong>Continuation of Health Insurance:</strong> The employer must continue to provide for and contribute to the employee’s employment-related health insurance benefits, if any, at the level and under the conditions coverage would have been provided if the employee had continued working continuously for the duration of such leave.</li>
+        <li><strong>No Retaliation:</strong> It is unlawful for any employer to discriminate or retaliate against an employee for exercising any right to which such employee is entitled under the paid family and medical leave law.  An employee or former employee who is discriminated or retaliated against for exercising rights under the law may, not more than three years after the violation occurs, institute a civil action in the superior court.</li>
+</ul>
+</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12><h5><strong>Employer/Employee Contributions to the DFML Family and Employment Security Trust Fund</strong></h5></div>
+</div>
+
+
+<div class=row>
+<div class=col-sm-12>
+On July 1, 2019, contributions to the Department of Family and Medical Leave (DFML) Employment Security Trust Fund will begin. An employer will be responsible for sending contributions to the DFML for all employees.
+ <br><br>
+Currently, the total contribution amount is 00.63% of wages.  Of that 00.63% total contribution amount, there is a split: 17.5% is a family leave contribution and 82.5% is a medical leave contribution. 
+ <br><br>
+Under the law, employers are permitted to deduct from employees’ wages up to 40% of the medical leave contribution (82.5% of 00.63% of wages) and up to 100% of the family leave contribution (17.5% of 00.63% of wages).  
+</div>
+</div>
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class="bordered">
+
+<table>
+<tr>
+<td bgcolor="#00008b" height="100" width="50"><div class="rotateBlue"><font color=#ffffff><center><strong>Medical Leave</strong></center></font></div></td>
+
+<td height="100" width="250"><center>
+<u>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='574')?'CONIFER REV CYCL SOL LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='984')?'TENET HLTHSYSTEM MED INC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='963')?'TENET HLTHSYSTEM MED INC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='402')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='226')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='417')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='912')?'VHS ACQUISITION SUB #9':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='813')?'VHS ACQUISITION SUB #7':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='194')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='273')?'Hospital RCM Services LLC ':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='523')?'Conifer Value Based Care LLC ':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='527')?'Conifer Physician Services Inc ':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='533')?'Conifer Care Continuum Solutions LLC ':'')>
+</u><br><font size="1">(Employer Name)</font></center></td>
+<td height="100">will contribute <strong>60%</strong> of the medical leave contribution
+<br><br>and the remaining<strong> 40%</strong> will be deducted from your earnings</td>
+</tr>
+</table>
+</div>
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class="bordered">
+
+<table>
+<tr>
+<td bgcolor="#006400" height="100" width="50"><div class="rotateBlue"><font color=#ffffff><center><strong>Family Leave</strong></center></font></div></td>
+<td height="100" width="250"><center><u>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='574')?'CONIFER REV CYCL SOL LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='984')?'TENET HLTHSYSTEM MED INC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='963')?'TENET HLTHSYSTEM MED INC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='402')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='226')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='417')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='912')?'VHS ACQUISITION SUB #9':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='813')?'VHS ACQUISITION SUB #7':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='194')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='273')?'Hospital RCM Services LLC ':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='523')?'Conifer Value Based Care LLC ':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='527')?'Conifer Physician Services Inc ':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='533')?'Conifer Care Continuum Solutions LLC ':'')>
+</u><br><font size="1">(Employer Name)</font></center></td>
+<td height="100">will contribute <strong>0%</strong> of the family leave contribution
+    <br><br> and the remaining<strong> 100%</strong> will be deducted from your earnings</td>
+<tr>
+</table>
+</div>
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12><h5><strong>How to File a Claim</strong></h5></div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>
+Employees must file claims for paid family and medical leave benefits with the DFML using the Department’s forms. Forms and claim instructions will be available on the Department’s website www.mass.gov/DFML before January 2021.
+<br><br>
+Employees are required to provide at least 30 days’ notice to their employer of the anticipated starting date of any leave, the anticipated length of the leave and the expected date of return. An employee who is unable to provide 30 days’ notice due to circumstances beyond his or her control is required to provide notice as soon as practicable.
+</div>
+</div>
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12><h5><strong>Private Plan Exemption</strong></h5></div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>
+An employer that offers paid leave with benefits that are at least as generous as those provided under the law may apply for an exemption from paying the Department of Family and Medical Leave Family and Employment Security Trust Fund contribution. An employer may apply for an exemption from the medical leave contribution, family leave contribution, or both. Employees must file claims for paid family and medical leave benefits with the DFML using the Department’s forms. Forms and claim instructions will be available on the Department’s website www.mass.gov/DFML before January 2021.
+<br><br>
+The details of any private plan must be provided to employees by an employer at the same time as this Notice.
+<br><br>
+Employees enjoy rights to job-protected leave and from discrimination and retaliation under the law even if their employer is approved to provide leave benefits through a private plan.  
+</div>
+</div>
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class="bordered">
+
+<table>
+<tr>
+<td><center><u>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='574')?'CONIFER REV CYCL SOL LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='984')?'TENET HLTHSYSTEM MED INC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='963')?'TENET HLTHSYSTEM MED INC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='402')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='226')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='417')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='912')?'VHS ACQUISITION SUB #9':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='813')?'VHS ACQUISITION SUB #7':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='194')?'VHS PHYSICIAN SERVS LLC':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='273')?'Hospital RCM Services LLC ':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='523')?'Conifer Value Based Care LLC ':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='527')?'Conifer Physician Services Inc ':'')>
+<$client.env.eval((client.tForWhomUserInfo.Facility_Number=='533')?'Conifer Care Continuum Solutions LLC ':'')>
+</u><br><font size="1">(Employer Name)</font></center></td>
+<td>
+<$client.env.FormField.Private_Plan_Options.HTML>
+</td>
+<tr>
+</table>
+</div>
+
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+
+
+<div class=row>
+<div class=col-sm-12><h5><strong>Department of Family and Medical Leave (DFML) Contact Information</strong></h5></div>
+</div>
+
+<div class=row>
+<div class=col-sm-1>&nbsp;</div>
+<div class=col-sm-11><strong>The Massachusetts Department of Family and Medical Leave</strong><br>
+Charles F. Hurley Building 
+<br>19 Staniford Street, 1st Floor
+<br>Boston, MA 02114
+<br>(617) 626-6565 
+<br><a href="https://www.mass.gov/DFML">https://www.mass.gov/DFML</a>
+</div>
+</div>
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12><h5><strong>Payment for Concurrent Leave</strong></h5></div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>Any paid leave provided under a collective bargaining agreement or employer policy and paid at the same or higher rate than paid leave available under this law shall count against the allotment of leave benefits available under this law.
+</div></div>
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12><h5><strong>More Information is Available</strong></h5></div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>
+For more detailed information, please consult the Department’s website: <a href="https://www.mass.gov/DFML">https://www.mass.gov/DFML</a>.
+</div></div>
+
+            <br><hr class="lifesuite__hr"> 
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12><h5><strong><center>Acknowledgement</center></strong></h5></div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>
+Your signature below acknowledges your receipt of the information above within 30 days from the start date of your employment or at least 30 days prior to July 1, 2019, whichever is later.  
+</div></div>
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+        <div class=row>
+<div class=col-sm-6>Signature <$client.env.FormField.Signature.HTML></div>
+<div class=col-sm-2>&nbsp;</div>
+<div class=col-sm-3>Date <$client.env.FormField.Date.HTML></div>
+</div>
+
+        <div class=row>
+<div class=col-sm-6>Name (Print) <$client.env.FormField.Name.HTML></div>
+<div class=col-sm-6>&nbsp;</div>
+</div>
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+        <div class=row>
+<div class=col-sm-12><$client.env.FormField.Refusal.HTML></div>
+</div>
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+        <div class=row>
+<div class=col-sm-12>Your signed acknowledgement will be retained by your employer. Please retain a copy for your own reference. In the event that you refuse to sign this acknowledgement, your employer must permit you to sign a statement indicating your refusal to sign this acknowledgement, and that will be retained by your employer</div>
+</div>
+
+        <div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+</div>
+</div>
+</div>
+<!--/////////////////////Form Buttons and Verification ////////////////////// -->
+<br><hr class="lifesuite__hr"> 
+                  <div class="row" id="formButtons" style="display: none;"> 
+                      <div class="lifesuite__clearfix lifesuite__float-right">                
+                              <$client.env.FormButtons> 
+                       </div>              
+                  </div> 
+           </div>  
+      </div>  
+</div>
+<div style="display:none">
+     <$client.env.FormField.SignatureVerification.HTML>    
+</div>
+</form>
+
+
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+        const toggleSignature = function(checked) {
+          if (checked) {
+            $('#signature').parent().find('input').prop('disabled', 'disabled').val('');
+            return;
+          }
+          $('#signature').parent().find('input').prop('disabled', false);
+        }
+        toggleSignature($('[name$=".Refusal"]').is(':checked'));
+        $('[name$=".Refusal"]').on('click', function() {
+          toggleSignature($(this).is(':checked'));
+        });
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+</SCRIPT>

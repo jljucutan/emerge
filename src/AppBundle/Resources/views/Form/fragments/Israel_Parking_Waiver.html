@@ -1,0 +1,337 @@
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+   <div class="modal-content">
+      <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+      <p style="fontweight:normal;padding:0px"> 
+         <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+      </p>
+      <br> 
+      <div class="row">
+         <div class="lifesuite__clearfix"> 
+            <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+         </div>
+      </div>
+      <div class="row">
+         <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+            <input id="signature-submit" type="button" class="lifesuite__button primary" value="Sign">&nbsp; 
+            <input  id="signature-clear" type="button" class="lifesuite__button" value="Clear">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+         </div>
+      </div>
+   </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+<div class="modal" style="display:block; background: #002E6D;"> 
+    <div class="fb-spinner"> 
+        <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+    </div> 
+</div> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<form id="israel--parking-waiver" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form"> 
+
+    <div class="hide"> 
+        <$client.env.FormField.Form_Name.prompt> 
+        <$client.env.FormField.Form_Name.HTML> 
+        <$client.env.FormField.Form_Type.prompt> 
+        <$client.env.FormField.Form_Type.HTML> 
+        <$client.env.FormField.Form_Owner.prompt> 
+        <$client.env.FormField.Form_Owner.HTML> 
+        <$client.env.FormField.Form_CreateDate.prompt> 
+        <$client.env.FormField.Form_CreateDate.HTML> 
+        <$client.env.FormField.Form_Completed.prompt> 
+        <$client.env.FormField.Form_Completed.HTML> 
+        <$client.env.FormField.Form_Delivered.prompt> 
+        <$client.env.FormField.Form_Delivered.HTML> 
+        <$client.env.FormField.Form_TaskId.prompt> 
+        <$client.env.FormField.Form_TaskId.HTML> 
+        <$client.env.FormField.display_version.HTML> 
+
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Employee_Name.prompt>
+        <$client.env.FormField.Employee_Signature.prompt>
+        <$client.env.FormField.Waive_Eligibility_to_use_Electra_Parking.prompt>
+    </div> 
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+   <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgr mb-20">
+         <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" class="img-responsive" style="max-width: 120px;">
+      </div>
+   </div>
+   <div class="row">
+      <div class="center-block inner-wrapper">
+         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+           <p class="mb-30"><strong>Israel Parking Waiver</strong></p>
+         </div>
+      </div>
+   </div>
+   <section class="margin-bottom">
+      <!--//Section 1 -->
+      <div class="row">
+         <div class="inner-wrapper center-block">
+
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top">
+                  <p><span data-text="first-name"></span></p>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top">
+                  <p>PayPal Israel offers its employees one of the following two options:</p>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top">
+                 <ul class="list-indented mb-20">
+                   <li>
+                     <p>To be eligible to park their vehicle in the Electra parking lot while in employment with Paypal Israel Ltd.</p>
+                     <p><strong>OR</strong></p>
+                   </li>
+                   <li>
+                     <p>To waive their eligibility to use the Electra parking lot. In lieu of the eligibility to use the Electra parking lot, the employee shall receive an additional payment in the amount of 300NIS gross on a monthly basis. This payment will be subject to the required taxes.</p>
+                     <ul class="list-indented">
+                       <li>The abovementioned payment shall not constitute salary components for any purpose, including for the purpose of calculating any severance payment to which the Employee may be entitled according to any law or agreement, and shall not be subject to any fringe benefits and/or social contributions of any kind”.</li>
+                       <li>Employees who waive the eligibility to park their vehicle in Electra’s parking lot may still use the parking lot throughout the year <u>at their own expense</u>.</li>
+                     </ul>
+                   </li>
+                 </ul>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top">
+                  <p>Please fill in the appendix below accordingly to reflect your decision.</p>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top">
+                  <p>If you change your mind in the future, please submit a case to MyHR to request the change and attach a new signed appendix. Requests to reinstate eligibility to use the Electra Building parking space (after said eligibility has been waived) is subject to availability of parking spaces at time of request as the amount of parking spaces available to employees is limited.</p>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top mb-30 border-bottom">
+                  <p class="mb-30">Sincerely,<br>MyHR EMEA & IL Operations team</p>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top">
+                  <p id="waive-eligibility"><strong>Please choose one of the following options:</strong></p>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding-top">
+                  <div class="text-indent"><$client.env.FormField.Waive_Eligibility_to_use_Electra_Parking.html></div>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label class="control-label">Car License Plate:</label>
+               </div>
+               <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+                  <div class="text-indent"><$client.env.FormField.Car_License_Plate.html></div>
+               </div>
+            </div>
+
+         </div>
+      </div>
+
+   </section>
+   <!--Employee Signature -->
+   <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+         <label class="control-label">Signature: <span class="font-red">*</span></label> 
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <$client.env.FormField.Employee_Signature.html>
+        </div>
+      </div>
+      <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12"><label class="control-label">Date: </label></div>
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="form-group">
+            <$client.env.FormField.Date.html>
+        </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-sm-12">&nbsp;</div>
+   </div>
+   <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+         <label class="control-label">Name:</label>
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 mb-60"><$client.env.FormField.Employee_Name.html></div>
+   </div>
+   <div class="row">
+     <div class="center-block inner-wrapper">
+        <div class="col-lg-12">
+           <p class="text-center"><em>**Requests to reinstate eligibility to use the Electra Building parking space (after said eligibility has been waived) is subject to availability of parking spaces at time of request as the amount of parking spaces available to employees is limited</em></p>
+        </div>
+     </div>
+   </div>
+   <hr class="lifesuite__hr">
+   <div class="row" id="formButtons" style="display: none;">
+      <div class="lifesuite__clearfix lifesuite__float-right">                
+         <$client.env.FormButtons> 
+      </div>
+   </div>
+</main>
+
+<div class="hide">
+     <$client.env.FormField.SignatureVerification.HTML> 
+     <$client.env.FormField.First_Name.HTML> 
+     <$client.env.FormField.EmployeeStamp.HTML> 
+</div>
+</form> 
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+<script type="text/javascript"> 
+    var completeStamp = function(id) {
+      if(id.length) {
+        document.getElementById(id).value = 0;
+      }
+    }
+    showScreen('over') 
+    ChangeCalendarIcons(); //for popup calendar 
+$(document).on('ready', function() { 
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    document.getElementById('formButtons').style.display = "block";
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+ 
+  if (!strFormCompleted) {
+    $('#First_Name').val("Dear <$client.env.eval((client.tForWhomUserInfo.Preferred_First_Name.length()>1)?client.tForWhomUserInfo.Preferred_First_Name:client.tForWhomUserInfo.First_Name)>" + ",");
+  }
+  $('[data-text="first-name"]').text($('#First_Name').val());
+
+  $('#israel--parking-waiver').on('blur change', 'input:visible:not(#signature):not(:button):not(.dateField)', function() {
+    if (!strFormCompleted) {
+      validateField($(this));
+    }
+  });
+
+  $('#israel--parking-waiver').on('change', 'input.dateField:visible', function() {
+    $($(this).data('date-mapped')).val($(this).val());
+    if (!strFormCompleted) {
+      validateField($(this));
+    }
+  });
+
+  $('[name$=".Waive_Eligibility_to_use_Electra_Parking"]').on('change', function() {
+    if ($('[name$=".Waive_Eligibility_to_use_Electra_Parking"]:checked').val() == 'Do Not Waive') {
+        $('[name$=".Car_License_Plate"]').closest('.row').show();
+        return;
+    }
+    $('[name$=".Car_License_Plate"]').val('').closest('.row').hide();
+  });
+  $('[name$=".Waive_Eligibility_to_use_Electra_Parking"]').trigger('change');
+
+  $('#modal').on('click', '#signature-submit', function() {
+    validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');
+    xbObj('eSignature1').value='';
+    validateField($('#signature'));
+    document.getElementById('eSignature1').focus();
+  });
+  $('#modal').on('click', '#signature-clear', function() {
+    xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';
+    if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}
+    validateField($('#signature'));
+  });
+
+  $('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete').on('click', function(e) {
+    var formIsValid = true, btn = $(this);
+    e.preventDefault();
+    $.each($('#israel--parking-waiver input:visible:not(:button):not(:disabled)'), function(k, v) {
+      if(strFormCompleted) formIsValid = true;
+      else{
+            if(false == validateField($(v))) {
+              formIsValid = false;
+            }
+      }
+    });
+    if (formIsValid) {
+      switch (btn.attr('id')) {
+        case 'ButtonPrint':
+          funcPrint();
+        break;
+        case 'ButtonSaveAndComplete':
+          completeStamp("<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>");
+          funcSaveAndComplete();
+        break;
+      }
+    }
+    else {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+    }
+  });
+
+  var isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+
+  var init = function() {
+    if (isEmployee &&  parseInt($('#EmployeeStamp').val()) === 0) {
+      $('#signature, #sv').val('');
+      $('#fullName').val("<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Initial><$client.env.eval(client.tForWhomUserInfo.Middle_Initial.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>");
+      $('#EmployeeStamp').val(1);
+      setTimeout(function() {
+        targetdatecheckCLEAR('signature','Date');
+      }, 400);
+    }
+   if(!isEmployee) {
+      $('#signature, #sv, #fullName').val('');
+      setTimeout(function() {
+        $('[name$="Date_display"], [name$="Date"]').val('');
+      }, 400);
+    }
+  }
+  if (!strFormCompleted) {
+    setTimeout(init(),400);
+  }
+
+  // signature focus fix by cdy
+  var myVar = setInterval(function(){ 
+    if(document.getElementById('modal').style.display=='block') {
+      document.getElementById('ButtonSaveAndComplete').focus();
+      document.getElementById('eSignature1').focus();
+      clearInterval(myVar);
+    }
+  }, 500);
+
+  $(".modal").hide(); 
+}); 
+
+var disableCalButton = function(el) {
+  el.parent().find('input').prop('disabled', true);
+};
+$('#buttonPrint').removeAttr('onclick');
+$('#buttonSaveAndComplete').removeAttr('onclick');
+disableCalButton($('[name$="Date_display"]')); 
+</script>

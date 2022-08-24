@@ -1,0 +1,253 @@
+<div id="task_summary_outer">
+    <div id="bg-image">.</div>
+    <div id="EditProfile_container">
+        <div id="EditProfile_wrapper">
+            <div id="EditProfile">
+
+                <h2>Kirkland &amp; Ellis Personal Profile Edit Profile Page</h2>
+
+                <div class="heading">
+                    <span class="heading-inner">
+                        Personal Information
+                    </span>
+                </div>
+                <div class="input_wrapper mb-30" data-fieldgroup-title="Prefix" data-fieldgroup-validation="required">
+                    <span class="floating-label">Prefix</span>
+                    <$client.env.inputPrefix>
+                </div>
+
+                
+                <div class="button_group">
+                    <div id="save"></div>
+                    <div id="saveandcomplete"></div>
+                    <div id="cancel"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display: none;">
+    <$client.env.inputDOB>
+    <$client.env.inputOffer_Letter_Date>
+    <input type="text">
+</div>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>" defer></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/jquery.mask.min.js>" defer></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_formatter.js>" defer></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>" defer></script>
+<script type="text/javascript">
+    const focusInputLabel = function(el, isFocused) {
+        "use strict";
+        let label = el.closest('.input_wrapper')
+            .find('span.floating-label')
+            .removeClass('label-focus')
+            .css({"color": "#666666"});
+        if (el.val().trim().length > 0 || isFocused) {
+            label.addClass('label-focus');
+        }
+        if (isFocused === true) {
+            label.css({"color": "#2354E8"});
+        }
+    }
+    const fieldHasVal = function(el) {
+        "use strict";
+        let hasVal = false;
+        $.each(el, function(k, v) {
+            if ($(v).val().length) {
+                hasVal = true;
+            }
+        });
+        return hasVal;
+    }
+    const isCheckboxChecked = function(el) {
+        "use strict";
+        let hasChecked = false;
+        $.each(el, function(k,v){
+            if ($(v).is(':checked')) {
+                hasChecked = true;
+            }
+        });
+        return hasChecked;
+    }
+
+    $(window).on('load', function() {
+        "use strict";
+        $('.floating-label span').css('color', 'rgb(102, 102, 102)');
+        $('.cal_and_button').prop('cellpadding', 0).prop('cellspacing', 0);
+        let isProfileCompleted = sTaskComplete;
+        // replace default submit button with paypal styled
+        $('#TaskSummary_ButtonCancel').appendTo('#cancel').show();
+        if (!isProfileCompleted) {
+            $('#TaskSummary_ButtonSave').appendTo('#saveandcomplete').prop('onclick', null).show().text('Continue');
+            $('#EUPDefaultSaveButton').appendTo('#save').show();
+        }
+
+        // load form when all set
+        $('#EditProfile_wrapper').fadeIn();
+
+        <$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>
+
+        // set default values
+        $('[name$=".Offer_Letter_Date_display"]').on('change');
+        $('[name$=".Offer_Letter_Date_display"]').datepicker("option", "onSelect", function(dateText, instance) {
+            let offerLetterDate = $(this).datepicker('getDate');
+            $('[name$=".Raise_Year"]').val(offerLetterDate.getFullYear() + 2);
+        });
+        if ($('[name$=".Raise_Year"]').val().length > 0) {
+            $('[name$=".Raise_Year"]').val(moment($('[name$=".Offer_Letter_Date"]').val()).add(2, 'years').format('YYYY'));
+        }
+
+        // toggle hide/show bar group section if condition is met
+        $('[name$=".Bar_State"]').on('change', function() {
+            $('[data-optional-section="bar-group"]').hide();
+            if ($(this).val() !== "Not Applicable") {
+                $('[data-optional-section="bar-group"]').show();
+            }
+        });
+        $('[name$=".Bar_State"]').trigger('change');
+        // toggle hide/show Raise_Year section if condition is met
+        $('[name$=".Salary_Type"]').on('change', function() {
+            $('[data-optional-section="Raise_Year"]').hide();
+            $('[name$=".Raise_Year"]').prop('disabled', 'disabled');
+            if (isCheckboxChecked($('[name$=".Salary_Type"]:checked'))) {
+                $('[data-optional-section="Raise_Year"]').show();
+            }
+            if ($('[name$=".Salary_Type"]:checked').val() === "Higher annualized salary") {
+                $('[name$=".Raise_Year"]').prop('disabled', false);
+            }
+        });
+        $('[name$=".Salary_Type"]').trigger('change');
+        // toggle hide/show bar signing bonus eligible section if condition is met
+        $('[name$=".Signing_Bonus_Eligible"]').on('change', function() {
+            $('[data-optional-section="Signing_Bonus_Amount"]').hide();
+            if ($('[name$=".Signing_Bonus_Eligible"]:checked').val() === "Yes") {
+                $('[data-optional-section="Signing_Bonus_Amount"]').show();
+            }
+        });
+        $('[name$=".Signing_Bonus_Eligible"]').trigger('change');
+        // toggle hide/show bar clerkship section if condition is met
+        $('[name$=".Clerkship_Bonus_Eligible"]').on('change', function() {
+            $('[data-optional-section="Clerkship_Bonus_Amount"]').hide();
+            if ($(this).val() === "Yes") {
+                $('[data-optional-section="Clerkship_Bonus_Amount"]').show();
+            }
+        });
+        $('[name$=".Clerkship_Bonus_Eligible"]').trigger('change');
+        // toggle hide/show bar Guaranteed_Bonus_Type section if condition is met
+        $('[name$=".Guaranteed_Bonus_Eligible"]').on('change', function() {
+            $('[data-optional-section="Guaranteed_Bonus_Type"]').hide();
+            if ($(this).val() === "Yes") {
+                $('[data-optional-section="Guaranteed_Bonus_Type"]').show();
+            }
+        });
+        $('[name$=".Guaranteed_Bonus_Eligible"]').trigger('change');
+        // toggle hide/show bar GB_Year_Paid section if condition is met
+        $('[name$=".Guaranteed_Bonus_Type"]').on('change', function() {
+            $('[data-optional-section="GB_Year_Paid"], [data-optional-section="GB_Paid_Class_Year"], [data-optional-section="Guaranteed_Bonus_Amount"]').hide();
+            let bonusType = $('[name$=".Guaranteed_Bonus_Type"]:checked').val();
+            if (isCheckboxChecked($(this))) {
+                $('[data-optional-section="GB_Year_Paid"]').show();
+            }
+            if ($(this).is(':visible') && bonusType === 'NY Market') {
+                $('[data-optional-section="GB_Paid_Class_Year"]').show();
+            }
+            if ($(this).is(':visible') && bonusType === 'Specific Amount') {
+                $('[data-optional-section="Guaranteed_Bonus_Amount"]').show();
+            }
+        });
+        $('[name$=".Guaranteed_Bonus_Type"]').trigger('change');
+
+        // currency masking
+        $('[name$=".Guaranteed_Bonus_Amount"], [name$=".Signing_Bonus_Amount"]').on('change keyup paste', function() {
+            $(this).mask("#,##0", {reverse: true});
+        }).trigger('change');
+
+        // focus style text and select fields
+        $('form').on('focus', 'input[type="text"], select', function() {
+            focusInputLabel($(this), true);
+        }).on('blur', 'input[type="text"], select', function() {
+            focusInputLabel($(this));
+        });
+        // focus style date fields
+        $('form').on('focus change', 'input.hasDatepicker', function() {
+            focusInputLabel($(this), true);
+        }).on('blur change', 'input.hasDatepicker', function() {
+            focusInputLabel($(this));
+        });
+        $('form').on('focus change', '.datepicker_button', function() {
+            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'), true);
+        }).on('blur change', '.datepicker_button', function() {
+            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'));
+            $(this).parent().find('.hasDatepicker').trigger('change'); 
+        });
+        // focus field labels
+        $.each($('form input[type="text"], form select'),function(k,v) {
+            focusInputLabel($(v));
+        });
+
+        // pass validation data to each fields
+        $.each($('[data-fieldgroup-validation]'), function(k,v) {
+            $(v).find('input, select').data('validation', $(v).data('fieldgroup-validation'));
+        });
+        // pass regex data to each fields
+        $.each($('[data-fieldgroup-regex]'), function(k,v) {
+            $(v).find('input').data('regex', $(v).data('fieldgroup-regex'));
+        });
+        // pass regex message to each fields
+        $.each($('[data-fieldgroup-message]'), function(k,v) {
+            $(v).find('input').data('message', $(v).data('fieldgroup-message'));
+        });
+
+        // pass validation data length to each fields
+        $.each($('[data-fieldgroup-minlength]'), function(k,v) {
+            $(v).find('input').data('minlength', $(v).data('fieldgroup-minlength'));
+        });
+        $.each($('[data-fieldgroup-maxlength]'), function(k,v) {
+            $(v).find('input').data('maxlength', $(v).data('fieldgroup-maxlength'));
+        });
+        
+        // pass target label to each radio or checkbox fields
+        $.each($('[data-fieldgroup-targetlabel]'), function(k,v) {
+            $(v).find('input[type="checkbox"]:not(":hidden"), input[type="radio"]:not(":hidden")').data('label', $(v).data('fieldgroup-targetlabel'));
+        });
+
+        // pass title data to each fields
+        $.each($('[data-fieldgroup-title]'), function(k,v) {
+            $(v).find('input, select').data('title', $(v).data('fieldgroup-title'));
+        });
+
+        // validate each field by event and field type
+        $('form').on('blur click', 'input[type="text"]:not(":hidden"):not([name$=".German_Previous_End_Date"]), input[type="radio"]:not(":hidden"), select', function() {
+            if(!validateField($(this))) {
+                $(this).parent().find('.text-error').css({'display': 'inline-block', 'margin-bottom': '-2px'}); // style hack since IE is such a reliable browser ;-) // changed block to inline-block
+            }
+        });
+
+        // validate each date fields
+        $('form').on('change', 'input[name$="_display"]:not(":hidden"), input.hasDatepicker', function() {
+            validateField($(this)); 
+        });
+
+        // submit the form if no errors
+        $('form').on('click', '#TaskSummary_ButtonSave', function(e) {
+            e.preventDefault();
+            let formIsValid = true;
+            $('[name$="employee-role-type"]:visible').trigger('change'); // special validation case
+            $.each($('form input:not(":hidden"):not(".datepicker_button"), form select:not(":hidden")'), function(k,v) {
+                if(!validateField($(v))) {
+                    formIsValid = false;
+                }
+            });
+            if (formIsValid) {
+                doSave_Custom('refer-Complete');
+            }
+            else {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        });
+
+    });
+</script>

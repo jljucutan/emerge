@@ -1,0 +1,562 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal E-Signature box 2: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','employerName','modal2','over','sv2');xbObj('eSignature2').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Employee_Name.prompt>
+        <$client.env.FormField.Employee_Signature.prompt>
+        <$client.env.FormField.Employer_Name.prompt>
+        <$client.env.FormField.Employer_Signature.prompt>
+        <$client.env.FormField.Place_of_Viewing_Video.prompt>
+        <$client.env.FormField.Read_Document.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.SignatureVerification2.prompt>
+        <$client.env.FormField.Viewed_Video.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+            <div class="center-wrapper center-block mb-20">
+                <img src="<$link;/main/RedCarpet/FormTemplates/Nevada_Rights_and_Responsibilities/img/kindred_workplace.jpg>" alt="Kindred Workplace" class="img-responsive">
+            </div>
+            <h5 class="text-center">
+                <strong>Stop and Learn Your Rights and Responsibilities</strong>
+            </h5>
+            <h5 class="text-center mb-20">
+                The Division of Industrial Relations of the Nevada Department of Business &amp; Industry helps employers provide a safe and healthful workplace. This document explains the rights and responsibilities of both employers and employees in creating a safe working environment.
+            </h5>
+            <div class="mb-20">
+                <img src="<$link;/main/RedCarpet/FormTemplates/Nevada_Rights_and_Responsibilities/img/kindred_workers.jpg>" alt="Kindred Workers" class="img-responsive">
+            </div>
+        </div>
+        <div class="col-lg-8 col-sm-8 col-xs-12 padded-left">
+            <div class="row mb-20">
+                <div class="col-lg-7 col-sm-7 col-xs-12">
+                    <img src="<$link;/main/RedCarpet/FormTemplates/Nevada_Rights_and_Responsibilities/img/kindred_rights_responsibilities.jpg>" alt="Kindred Rights Responsibilities" class="img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <p>
+                        The Nevada Occupational Safety and Health Act was created to allow you to do your job in a safe and healthy workplace. But it is up to you to make sure that job safety works. Here are some tips to help you stay safe on the job.
+                    </p>
+                    <div class="mb-10">
+                        <img src="<$link;/main/RedCarpet/FormTemplates/Nevada_Rights_and_Responsibilities/img/kindred_working.jpg>" alt="Kindred Working People" class="img-responsive">
+                    </div>
+                    <p>
+                        Know and follow all safety rules set by:
+                    </p>
+                    <ul class="list-dagger">
+                        <li>
+                            Your employer
+                        </li>
+                        <li>
+                            The Nevada Occupational Safety and Health Act
+                        </li>
+                        <li>
+                            State of Nevada Occupational and Health Administration (NVOSHA)
+                        </li>
+                    </ul>
+                    <p>
+                        You can get copies of all Nevada safety and health standards from the Safety Consultation and Training Section of the Division of Industrial Relations or on the web at www.4safenv.state.nv.us. Also, your employer may be required to have a written workplace safety program.
+                    </p>
+                    <p>
+                        If your employer requires personal protective equipment, such as hard hats, safety shoes, safety glasses, respirators, or hearing protection, you are responsible to wear and/or use the equipment.
+                    </p>
+                    <p>
+                        If you do not know how to safely use tools, equipment or machinery, be sure to ask your supervisor.
+                    </p>
+                    <p>
+                        If you see something that’s unsafe,report it to your supervisor. That’s part of your job. Give your employer a chance to fix the problem. If you think the unsafe condition still exists, it is your right to file a complaint with NVOSHA. The Division will not give your name to your employer.
+                    </p>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12 padded-left">
+                    <p>
+                        There are laws that protect you if you are punished for filing a safety and health complaint. If you feel you have been treated unfairly for making a safety and health complaint, you have 30 days from the date of the punishment to file a discrimination complaint with NVOSHA
+                    </p>
+                    <p>
+                        Whistle Blower Hotline – (702) 486-9097
+                    </p>
+                    <p>
+                        Most on-the-job injuries are covered by Workers’ Compensation Insurance. From cuts and bruises to serious accidents, coverage begins the first minute you’re on the job.
+                    </p>
+                    <p>
+                        It is your responsibility to report any on-the-job injury or occupational disease immediately to your supervisor or foreman using the “Notice of Injury or Occupational Disease” C-1 Form. You have 7 days from the date of injury or knowledge of the occupational disease to turn in the completed C-1 Form to your employer. If you seek medical treatment for a work-related injury you must complete a “Claim for Compensation” C-4 Form at the emergency room or medical provider’s office to initiate a claim for workers compensation.
+                    </p>
+                    <p>
+                        But remember, filing a false claim will result not only in a loss of benefits, but could mean costly fines and/or jail time.
+                    </p>
+                    <p>
+                        If there is a dangerous situation at work and an employee, with no reasonable alternative, refuses in good faith to expose themselves to a dangerous condition, they would be protected from subsequent retaliation. The condition must be of such a nature that a reasonable person would conclude that there is a real danger of death or serious harm and that there is not enough time to contact NVOSHA and for NVOSHA to inspect. Where possible, the employee must have also sought from the employer, and been unable to obtain, a correction of the condition.
+                    </p>
+                    <p>
+                        During a NVOSHA inspection, you have the right to talk privately with the inspector and take part in meetings with the inspector before and after the inspection. You are encouraged to point out hazards, describe injuries and illnesses from these hazards, discuss past worker complaints and inform the inspector of working conditions that are not normal during the inspection. If after the inspection citations are proposed to the employer, the employer is required to post the citations where employees can see them.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashed-line mb-10">&nbsp;</div>
+
+    <section id="waiver">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="waiver-wrapper center-block mb-20">
+                    <img src="<$link;/main/RedCarpet/FormTemplates/Nevada_Rights_and_Responsibilities/img/kindred_workplace_safety.jpg>" alt="Kindred Workplace Safety" class="img-responsive">
+                </div>
+            </div>
+        </div>
+        <div class="row mb-10">
+            <div class="col-lg-12">
+                <div class="i-block">
+                I have (check one)
+                    </div>
+                <div class="i-block">
+                    <$client.env.FormField.Read_Document.html>
+                </div>
+                <div class="i-block">
+                    read this document or 
+                </div>
+                <div class="i-block">
+                    <$client.env.FormField.Viewed_Video.html>
+                </div>
+                <div class="inline">
+                    viewed the video, entitled “Nevada Workplace Safety: Your Rights and Responsibilities” and I understand my rights and responsibilities for safety in the workplace.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                        Employee Name (please print)
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.Employee_Name.html>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-sm-1 col-xs-12">
+                        Date
+                    </div>
+                    <div class="col-lg-3 col-sm-3 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.Date.html>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-3 col-xs-12">
+                        Employee's Signature
+                    </div>
+                    <div class="col-lg-9 col-sm-9 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.Employee_Signature.html>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-3 col-xs-12">
+                        Place of Viewing Video
+                    </div>
+                    <div class="col-lg-9 col-sm-9 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.Place_of_Viewing_Video.html>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-4 col-xs-12">
+                        Employer's Name (please print)
+                    </div>
+                    <div class="col-lg-8 col-sm-8 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.Employer_Name.html>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-5 col-sm-5 col-xs-12">
+                        Employer's Signature (or representative)
+                    </div>
+                    <div class="col-lg-7 col-sm-7 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.Employer_Signature.html>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p class="text-center">
+                            Note: This portion must be maintained in the employee's personnel file
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12 padded-left">
+                <p>
+                    Any employee who does not understand this document should contact his or her supervisor, employee representative or the Division of Industrial Relations of the Nevada Department of
+                </p>
+                <p>
+                    Business &amp; Industry.
+                </p>
+                <p>
+                    Las Vegas: (702) 486-9140
+                </p>
+                <p>
+                    Reno: (775) 688-3730
+                </p>
+                <p>
+                    Elko: (775) 778-3312
+                </p>
+                <p>
+                    Toll-Free: (877) 472-3368
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="dashed-line mb-20">&nbsp;</div>
+
+    <div class="row">
+        <div class="col-lg-9 col-sm-9 col-xs-12">
+            <div class="row mb-20">
+                <div class="col-lg-5">
+                    <img src="<$link;/main/RedCarpet/FormTemplates/Nevada_Rights_and_Responsibilities/img/kindred_rights_responsibilities_employer.jpg>" alt="Kindred Employer Rights Responsibilities" class="img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-4 col-xs-12">
+                    <p>
+                        The Safety Consultation and Training Section (SCATS) was created to assist employers in complying with Nevada laws which govern occupational safety and health. They are available to provide a workplace hazard assessment. This service can assist employers in minimizing on-the-job hazards, and is provided at no charge. The Division also offers no cost safety training and informational programs for Nevada employers.
+                    </p>
+                    <p>
+                        A Nevada employer with 11 or more employees must establish a written workplace safety program. A safety committee is required if you have more than 25 employees or if an employer’s employees are engaged in the manufacturing of explosives.
+                    </p>
+                    <p>
+                        You must maintain a workplace that is free from unsafe conditions.
+                    </p>
+                    <p>
+                        As an employer you are responsible for complying with all Nevada safety and health standards and regulations found in the:
+                    </p>
+                    <ul class="list-dagger">
+                        <li>
+                            Nevada Occupational Safety and Health Act
+                        </li>
+                        <li>
+                            Occupational Safety and Health Standards and Regulations
+                        </li>
+                    </ul>
+                    <p>
+                        Copies of all occupational safety and health standards and regulations are available from the Division of Industrial Relations (SCATS and NVOSHA) or on the web at www.4safenv.state.nv.us.
+                    </p>
+                    <div class="mb-20">
+                        <img src="<$link;/main/RedCarpet/FormTemplates/Nevada_Rights_and_Responsibilities/img/kindred_meeting.jpg>" alt="Kindred People Meeting" class="img-responsive">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-4 col-xs-12 padded-left">
+                    <p>
+                        You are also responsible for ensuring that your employees comply with these same rules, standards and regulations. You must select someone to administer and enforce occupational safety and health programs in your workplace.
+                    </p>
+                    <p>
+                        Before assigning an employee to a job, you must provide proper training in a language and format that is understandable to each employee:
+                    </p>
+                    <ul class="list-dagger">
+                        <li>
+                            Safe use of equipment and machinery
+                        </li>
+                        <li>
+                            Personal protective gear
+                        </li>
+                        <li>
+                            Hazard recognition
+                        </li>
+                        <li>
+                            Emergency procedures
+                        </li>
+                        <li>
+                            Hazardous chemicals and substances found at the jobsite or in the workplace
+                        </li>
+                    </ul>
+                    <p>
+                        You must also inform all employees of the safety rules, regulations and standards which apply to their respective duties.
+                    </p>
+                    <p>
+                        It is your responsibility to maintain accurate accident, injury and safety records and reports. These files must be made available, upon request, to the affected employee and representatives of NVOSHA.
+                    </p>
+                    <p>
+                        The Nevada Safety and Health Poster, provided by the Division of Industrial Relations, must be posted in a prominent place on the job site.
+                    </p>
+                    <p>
+                        Any accident or motor vehicle crash occurring in the course of employment which results in the inpatient hospitalization of one or more employees, the amputation of a part of an employee's body or an employee's loss of an eye must be reported by the employer orally to the nearest office of NV OSHA within 24 hours hours after the time that the accident or crash is reported to any agent or employee of the employer.
+                    </p>
+                </div>
+                <div class="col-lg-4 col-sm-4 col-xs-12 padded-left">
+                    <p>
+                        Any accident or motor vehicle crash occurring in the course of employment which is fatal to one or more employees must be reported by the employer orally to the nearest office of NV OSHA within 8 hours after the time that the accident or crash is reported to any agent or employee of the employer.
+                    </p>
+                    <p>
+                        Nevada employers are required to secure and maintain workers' compensation insurance unless excluded by Nevada Revised Statute (NRS). There are few exceptions to this requirement. In the event of an injury or at the onset of an occupational disease, the employer must provide the C-1 Form, "Notice of Injury or Occupational Disease - Incident Report" to the injured worker. The employer is also responsible for filing an "Employer's Report of Injury" (C-3 Form) within six working days with your insurer after the receipt of a "Claim for Compensation" (C-4 Form) from a physician or chiropractor.
+                    </p>
+                    <p>
+                        Additional employer responsibilities:
+                    </p>
+                    <ul class="list-dagger">
+                        <li>
+                            Perform tests such as air sampling and noise monitoring.
+                        </li>
+                        <li>
+                            Prevent employee exposure to harmful substances to include chemicals, lead, asbestos, and sharps.
+                        </li>
+                        <li>
+                            Provide hearing exams, medical testing, fall protection, machine guarding, cave-in and confined space safety equipment and protection, respirators, personal protective equipment, etc., as required by NVOSHA and OSHA standards
+                        </li>
+                    </ul>
+                    <p>
+                        The law requires that employers shall provide newly-hired employees with a copy of this document or with a video setting forth the rights and responsibilities of employers and employees to promote safety in the workplace.
+                    </p>
+                    <div class="media">
+                        <div class="media-body">
+                            <p>
+                                Employers shall keep a signed copy of the attached receipt in the employee’s personnel file to show he or she has been made aware of these rights and responsibilities.
+                            </p>
+                        </div>
+                        <div class="media-right">
+                            <img src="<$link;/main/RedCarpet/FormTemplates/Nevada_Rights_and_Responsibilities/img/nevada_seal.jpg>" alt="Nevada Seal" class="media-object">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-3 col-xs-12 padded-left">
+            <div class="row mb-20">
+                <div class="col-lg-12">
+                    <img src="<$link;/main/RedCarpet/FormTemplates/Nevada_Rights_and_Responsibilities/img/kindred_additional_information.jpg>" alt="Kindred Additional Information" class="img-responsive">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        If you require further information or would like to obtain copies of safety and health standards, videos of this pamphlet in English and Spanish or more copies of the pamphlet, contact the following:
+                    </p>
+                    <p>
+                        State of Nevada Department of Business &amp; Industry, Division of Industrial Relations, Safety Consultation and Training Section
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 col-xs-12">
+                    <p>
+                        <u>Southern Nevada</u> <br>
+                        3360 W. Sahara Avenue <br>
+                        Suite 100 <br>
+                        Las Vegas, NV 89102 <br>
+                        (702) 486-9140 <br>
+                        Fax: (702) 486-8711
+                    </p>
+                    <p>
+                        <u>Northeastern Nevada</u> <br>
+                        350 West Silver Street <br>
+                        Suite 210 <br>
+                        Elko, NV 89801 <br>
+                        (775) 778-3312 <br>
+                        Fax: (775) 778-3412
+                    </p>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-xs-12">
+                    <p>
+                        <u>Northern/Central Nevada</u> <br>
+                        4600 Kietzke Lane <br>
+                        Suite E-144 <br>
+                        Reno, NV 89502 <br>
+                        (775) 688-3730 <br>
+                        Fax: (775) 688-1478
+                    </p>
+                    <p>
+                        <u>Or Call, Toll-Free</u> <br>
+                        1 (877) 4SAFENV (472-3368) <br>
+                        www.4safenv.state.nv.us
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        State of Nevada Department of Business &amp; Industry Division of Industrial Relations NVOSHA
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 col-xs-12">
+                    <p>
+                        <u>Southern Nevada</u> <br>
+                        3360 W. Sahara Avenue <br>
+                        Suite 100 <br>
+                        Las Vegas, NV 89102 <br>
+                        (702) 486-9020 <br>
+                        Fax: (702) 486-7214
+                    </p>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-xs-12">
+                    <p>
+                        <u>Northern Nevada</u> <br>
+                        4600 Kietzke Lane <br>
+                        Suite F-153 <br>
+                        Reno, NV 89502 <br>
+                        (775) 688-3700 <br>
+                        Fax: (775) 688-1378
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>
+                        <small>A video of this information is available in English and Spanish through the Division of Industrial Relations, Safety Consultation and Training Section.</small>
+                    </p>
+                    <p>
+                        <small>This document may be copied. For additional copies, contact the Division of Industrial Relations or visit www.4safenv.state.nv.us.</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+$(window).resize(function() { 
+    document.getElementById('over').style.width=''; 
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+    "use strict";
+    $('[data-checkbox-group]').on('change', function() {
+        let checked = $(this).is(':checked');
+        $('[data-checkbox-group="' + $(this).data('checkbox-group') + '"]').each(function(k,v) {
+            v.checked = false;
+        });
+        $(this).prop('checked', checked);
+    });
+
+    // disabled date fields that should be disabled
+    disableCalButton($('.date-disabled'));
+
+    // form is ready
+    $(".modal").hide();
+});
+
+angular.element(document).ready(function() {
+    angular.element('#divLoader').remove();
+});
+</script>

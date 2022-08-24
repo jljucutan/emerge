@@ -1,0 +1,44 @@
+<% if (section.type == 'h2') { %>
+  <h2><%= section.content %></h2>
+<% } %>
+
+<% if (section.type == 'h4') { %>
+  <h4><%= section.content %></h4>
+<% } %>
+
+<% if (section.type == 'heading') { %>
+  <div class="heading">
+    <span class="heading-inner"><%= section.content %></span>
+  </div>
+<% } %>
+
+<% if (section.type == 'single-field') { %>
+  <div class="input_wrapper">
+    <span class="floating-label"><%= section.label %></span>
+    <%- section.field %>
+  </div>
+<% } %>
+
+<% if (section.type == 'single-field-radio') { %>
+  <div class="input_wrapper">
+    <label id="<%= section.labelID %>">
+      <strong><%= section.label %></strong>
+    </label>
+    <%- section.field %>
+  </div>
+<% } %>
+
+<% if (section.type == 'double-field') { %>
+  <div class="merge">
+    <% for (let i = 0; i < section.fields.length; i++) { %>
+      <div class="input_wrapper">
+        <span class="floating-label"><%= section.fields[i].label %></span>
+        <%- section.fields[i].field %>
+      </div>
+    <% } %>
+  </div>
+<% } %>
+
+<% if (section.type == 'spacer') { %>
+  <div class="<%= section.class %>"></div>
+<% } %>

@@ -1,0 +1,249 @@
+<!--/////////////////////Page Loader ///////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!-- /////////////////////E-Signature Box ////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;"">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <br>
+        <div class="row">
+        <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> 
+        <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width:99%">&nbsp;</div>
+        </div> 
+        <div class="row">
+        <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','name','over','modal','sv');xbObj('eSignature1').value='';"> 
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">        
+</div>
+</div>    
+</div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+
+<!-- ////////////////////////eForm Prompts/////////////////// -->
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form''>
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+
+<!--/////////////////////////////Custom Prompts ////////////////////////////// -->
+
+<$client.env.FormField.Company.prompt>
+<$client.env.FormField.Date.prompt>
+<$client.env.FormField.Email.prompt>
+<$client.env.FormField.Name.prompt>
+<$client.env.FormField.Phone.prompt>
+<$client.env.FormField.Question1.prompt>
+<$client.env.FormField.Question2.prompt>
+<$client.env.FormField.Question3.prompt>
+<$client.env.FormField.Question4.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.cruisedate.prompt>
+<$client.env.FormField.traveldate.prompt>
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<div class="container-fluid"> 
+    <div class="form-group"> 
+<div id="DefaultFont">
+    
+<p><img src="<$link;/main/RedCarpet/FormTemplates/Conifer_Handbook_Acknowledgment/logo.png>" border="0"></p>
+
+   
+<div class="row">
+<div class="col-sm-12">
+<h3><strong><center>COVID-19<br>
+TEAM MEMBER SCREENING FORM
+</center></strong></h3>
+</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-12>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-2>First and Last Name:</div>
+<div class=col-sm-6><$client.env.FormField.Name.HTML></div>
+<div class=col-sm-4>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-2>Company:</div>
+<div class=col-sm-6><$client.env.FormField.Company.HTML></div>
+<div class=col-sm-4>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-2>Email:</div>
+<div class=col-sm-6><$client.env.FormField.Email.HTML></div>
+<div class=col-sm-4>&nbsp;</div>
+</div>
+
+<div class=row>
+<div class=col-sm-2>Mobile Phone:</div>
+<div class=col-sm-6><$client.env.FormField.Phone.HTML></div>
+<div class=col-sm-4>&nbsp;</div>
+</div>
+
+<div class="row">
+<div class=" col-sm-12">&nbsp;
+</div>
+</div>
+
+<div class="row">
+<div class=" col-sm-12">Please answer each of the following questions below.
+<br><br>
+   <ol>
+      <li>Have you had, or do you have, a fever or symptoms of lower respiratory illness within the last 14 days (for example:  cough, shortness of breath)?<br><$client.env.FormField.Question1.HTML></li>
+      <br>
+       <li>Have you or a member of your household had close contact with a coronavirus patient within the last 14 days?<br><$client.env.FormField.Question2.HTML></li>
+      <br>
+      <li>Have you or a member of your household traveled for any reason to or through an <a href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/map-and-travel-notices.html"  target="_blank">area flagged by the CDC as high risk</a> within the last 14 days?<br><$client.env.FormField.Question3.HTML>
+      <br>
+       If yes, when and where? (<i>If no, enter "NA"</i>) <$client.env.FormField.traveldate.HTML></li>
+      <br>
+      <li>Have you or a member of your household taken a cruise within the last 14 days? <br><$client.env.FormField.Question4.HTML>
+      <br>
+       If yes, when and where?(<i>If no, enter "NA"</i>) <$client.env.FormField.cruisedate.HTML></li>
+</div></div>
+
+<div class="row">
+<div class=" col-sm-12">&nbsp;
+</div>
+</div>
+
+<strong>I agree to notify my supervisor immediately should my circumstances change. </strong>
+
+<div class="row">
+<div class=" col-sm-12">&nbsp;
+</div>
+</div>
+
+<div class="row">
+<div class=" col-sm-12">&nbsp;
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-6"><$client.env.FormField.Signature.HTML>Signature</div>
+<div class="col-sm-6"><$client.env.FormField.Date.HTML>Date (mm/dd/yyyy)</div>
+</div>
+
+
+
+<!--/////////////////////Form Buttons and Verification ////////////////////// -->
+<br><hr class="lifesuite__hr"> 
+                  <div class="row" id="formButtons" style="display: none;"> 
+                      <div class="lifesuite__clearfix lifesuite__float-right">                
+                              <$client.env.FormButtons> 
+                       </div>              
+                  </div> 
+           </div>  
+      </div>  
+</div>
+
+    <div style="display:none;">
+<$client.env.FormField.SignatureVerification.HTML>
+</div>
+</form>
+
+
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const radioToggleEnabled = function(originRadios, targetTextField, needs) {
+  "use strict" // SERVICES-40743 | Conifer: Advanced Validation to eform Conifer_COVID-19_Responses
+  const origins = document.querySelectorAll('[name$=".' + originRadios + '"]')
+  const target = document.querySelector('[name$=".' + targetTextField + '"]')
+  const toggleTarget = function(radioField) {
+    if (radioField.checked && radioField.value == needs) {
+      target.disabled = false
+      return
+    }
+    target.value = ''
+    target.disabled = true
+  }
+  origins.forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      toggleTarget(this)
+    })
+    toggleTarget(radio)
+  })
+}
+radioToggleEnabled('Question3', 'traveldate', 'Yes')
+radioToggleEnabled('Question4', 'cruisedate', 'Yes')
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+</SCRIPT>

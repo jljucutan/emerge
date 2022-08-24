@@ -1,0 +1,602 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','first_name,middle_initial,last_name','modal','over','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+<$client.env.FormField.AdditionalWithholding.prompt>
+<$client.env.FormField.Address.prompt>
+<$client.env.FormField.City.prompt>
+<$client.env.FormField.DOB.prompt>
+<$client.env.FormField.DateSigned.prompt>
+<$client.env.FormField.Date_of_Hire.prompt>
+<$client.env.FormField.EIN.prompt>
+<$client.env.FormField.EmployerAddress.prompt>
+<$client.env.FormField.EmployerCity.prompt>
+<$client.env.FormField.EmployerCompletedBy.prompt>
+<$client.env.FormField.EmployerEmail.prompt>
+<$client.env.FormField.EmployerName.prompt>
+<$client.env.FormField.EmployerPhoneNumber.prompt>
+<$client.env.FormField.EmployerState.prompt>
+<$client.env.FormField.EmployerTitle.prompt>
+<$client.env.FormField.EmployerZip.prompt>
+<$client.env.FormField.Exempt.prompt>
+<$client.env.FormField.Exempt1.prompt>
+<$client.env.FormField.Exempt2.prompt>
+<$client.env.FormField.Exempt3.prompt>
+<$client.env.FormField.Exemptions.prompt>
+<$client.env.FormField.FilingStatus.prompt>
+<$client.env.FormField.FirstName.prompt>
+<$client.env.FormField.LastName.prompt>
+<$client.env.FormField.MiddleInitial.prompt>
+<$client.env.FormField.SSN.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.State.prompt>
+<$client.env.FormField.Zip.prompt>
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+    <div class="container-fluid"> 
+        <div class="form-group">       
+            <div class="row">
+                <div class="col-xs-12 col-xs-offset-0 col-md-10 col-md-offset-1 lifesuite__clearfix bold center header-text">
+                    Employee’s Wisconsin Withholding Exemption Certificate/New Hire Reporting
+                </div>
+                <div class="col-xs-12 col-md-1 lifesuite__clearfix center bold text">
+                    WT-4
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <span class="bold">Employee’s Section</span> (Print clearly)
+                </div>
+            </div>
+            <div class="outer-border">
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-6 lifesuite__clearfix text bordered">
+                        <div class="inner-border">
+                            <div class="row bordered">
+                                <div class="col-xs-12 col-md-12 lifesuite__clearfix text bordered">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                                            Employee’s legal name <span class="italic">(first name, middle initial, last name)</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-5 lifesuite__clearfix text">
+                                            <$client.env.FormField.FirstName.HTML>
+                                        </div>
+                                        <div class="col-xs-12 col-md-2 lifesuite__clearfix text">
+                                            <$client.env.FormField.MiddleInitial.HTML>
+                                        </div>
+                                        <div class="col-xs-12 col-md-5 lifesuite__clearfix text">
+                                            <$client.env.FormField.LastName.HTML>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row bordered">
+                                <div class="col-xs-12 col-md-12 lifesuite__clearfix text bordered">
+                                    Employee’s address <span class="italic">(number and street)</span>
+                                    <$client.env.FormField.Address.HTML>
+                                </div>
+                            </div>
+                            <div class="row bordered">
+                                <div class="col-xs-12 col-md-6 lifesuite__clearfix text bordered">
+                                    City<br>
+                                    <$client.env.FormField.City.HTML>
+                                </div>
+                                <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                                    State
+                                    <$client.env.FormField.State.HTML>
+                                </div>
+                                <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                                    Zip code
+                                    <$client.env.FormField.Zip.HTML>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                        <div class="inner-border">
+                            <div class="row bordered">
+                                <div class="col-xs-12 col-md-12 lifesuite__clearfix text bordered">
+                                    Social security number
+                                    <$client.env.FormField.SSN.HTML>
+                                </div>
+                            </div>
+                            <div class="row bordered">
+                                <div class="col-xs-12 col-md-12 lifesuite__clearfix text bordered">
+                                    Date of birth
+                                    <$client.env.FormField.DOB.HTML>
+                                </div>
+                            </div>
+                            <div class="row bordered">
+                                <div class="col-xs-12 col-md-12 lifesuite__clearfix text bordered">
+                                    Date of hire
+                                    <$client.env.FormField.Date_of_Hire.HTML>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                        <$client.env.FormField.FilingStatus.HTML>
+                        <br><br><br>
+                        <span class="bold">Note</span>: If married, but legally separated, check the Single box.
+                    </div>
+                </div>
+            </div>
+            <div class="section-container">
+                <div class="section">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix bold text">
+                            FIGURE YOUR TOTAL WITHHOLDING EXEMPTIONS BELOW
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            Complete Lines 1 through 3
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text section">
+                            <div class="bold list-item">1.</div>
+                            <div class="list-content">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-10 lifesuite__clearfix text">
+                                        (a) Exemption for yourself – enter 1
+                                    </div>
+                                    <div class="col-xs-12 col-md-2 lifesuite__clearfix text">
+                                        <$client.env.FormField.Exempt1.HTML>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-10 lifesuite__clearfix text">
+                                        (b) Exemption for your spouse – enter 1
+                                    </div>
+                                    <div class="col-xs-12 col-md-2 lifesuite__clearfix text">
+                                        <$client.env.FormField.Exempt2.HTML>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-10 lifesuite__clearfix text">
+                                        (c) Exemption(s) for dependent(s) – you are entitled to claim an exemption for each dependent
+                                    </div>
+                                    <div class="col-xs-12 col-md-2 lifesuite__clearfix text">
+                                        <$client.env.FormField.Exempt3.HTML>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-10 lifesuite__clearfix text">
+                                        (d) Total – add lines (a) through (c)
+                                    </div>
+                                    <div class="col-xs-12 col-md-2 lifesuite__clearfix text">
+                                        <$client.env.FormField.Exemptions.HTML>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text section">
+                            <div class="bold list-item">2.</div>
+                            <div class="list-content">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-10 lifesuite__clearfix text">
+                                        Additional amount per pay period you want deducted (if your employer agrees)
+                                    </div>
+                                    <div class="col-xs-12 col-md-2 lifesuite__clearfix text">
+                                        <$client.env.FormField.AdditionalWithholding.HTML>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text section">
+                            <div class="bold list-item">3.</div>
+                            <div class="list-content">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-10 lifesuite__clearfix text">
+                                        I claim complete exemption from withholding (see instructions). Enter “Exempt”
+                                    </div>
+                                    <div class="col-xs-12 col-md-2 lifesuite__clearfix text">
+                                        <$client.env.FormField.Exempt.HTML>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            I CERTIFY that the number of withholding exemptions claimed on this certificate does not exceed the number to which I am entitled. If claiming complete exemption from withholding, I certify that I incurred no liability for Wisconsin income tax for last year and that I anticipate that I will incur no liability for Wisconsin income tax for this year.
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-8 col-lg-12 col-sm-12 lifesuite__clearfix text">
+                            Signature
+                            <$client.env.FormField.Signer.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blue-container">
+                <div class="two-column text">
+                    <div class="two-column-content-1">
+                        <div class="section-header">
+                            EMPLOYEE INSTRUCTIONS:
+                        </div>
+                        <div class="section-container">
+                            <div class="section-header">
+                                • WHO MUST COMPLETE:
+                            </div>
+                            <div class="section">
+                                Effective on or after January 1, 2020, every newly-hired employee is required to provide a completed Form WT-4 to each of his or her employers. Form WT-4 will be used by your employer to determine the amount of Wisconsin income tax to be withheld from your paychecks. If you have more than one employer, you should claim a smaller number or no exemptions on each Form WT-4 provided to employers other than your principal employer so that the total amount withheld will be closer to your actual income tax liability.
+                            </div>
+                            <div class="section">
+                                You must complete and provide your employer a new Form WT-4 within 10 days if the number of exemptions previously claimed DECREASES.
+                            </div>
+                            <div class="section">
+                                You may complete and provide to your employer a new form WT-4 at any time if the number of your exemptions INCREASES.
+                            </div>
+                            <div class="section">
+                                Your employer may also require you to complete this form to report your hiring to the Department of Workforce Development.
+                            </div>                            
+                        </div>
+                        <div class="section-container">
+                            <div class="section-header">
+                                • UNDER WITHHOLDING:
+                            </div>
+                            <div class="section">
+                                If sufficient tax is not withheld from your wages, you may incur additional interest charges under the tax laws. In general, 90% of the net tax shown on your income tax return should be withheld.
+                            </div>
+                        </div>
+                        <div class="section-container">
+                            <div class="section-header">
+                                • OVER WITHHOLDING:
+                            </div>
+                            <div class="section">
+                                If you are using Form WT-4 to claim the maximum number of exemptions to which you are entitled and your withholding exceeds your expected income tax liability, you may use Form WT-4A to minimize the over withholding.
+                            </div>
+                        </div>
+ <!--                        <div class="section-container">
+                            <div class="section-header">
+                                • WHEN TO FILE IF YOUR EXEMPTIONS CHANGE:
+                            </div>
+                            <div class="section">
+                                You must file a new certificate within 10 days if the number of exemptions previously claimed by you DECREASES.
+                            </div>
+                            <div class="section">
+                                You may file a new certificate at any time if the number of your exemptions INCREASES.
+                            </div>
+                        </div> -->
+                        <div class="section-header">
+                            WT-4 Instructions – <span class="normal">Provide your information in the employee section.</span>
+                        </div>
+                        <div class="section-container">
+                            <div class="section-header">
+                                • LINE 1:
+                            </div>
+                            <div class="section">
+                                (a)-(c) Number of exemptions – Do not claim more than the correct number of exemptions. If you expect to owe more income tax for the year than will be withheld if you claim every exemption to which you are entitled, you may increase your withholding by claiming a smaller number of exemptions on lines 1(a)‑(c) or you may enter into an agreement with your employer to have additional amounts withheld (see instruction for line 2).
+                            </div>
+
+                        </div>                       
+                    </div>
+                    <div class="two-column-content-1">
+
+                        <div class="section-container">
+                            <div class="section">
+                                (c) Dependents – Those persons who qualify as your dependents for federal income tax purposes may also be claimed as dependents for Wisconsin purposes. The term “dependents” does not include you or your spouse. Indicate the number of dependents that you are claiming in the space provided.
+                            </div>
+                        </div>
+                        <div class="section-container">
+                            <div class="section-header">
+                                • LINE 2:
+                            </div>
+                            <div class="section">
+                                Additional withholding – If you have claimed “zero” exemptions on line 1, but still expect to have a balance due on your tax return for the year, you may wish to request your employer to withhold an additional amount of tax for each pay period. If your employer agrees to this additional withholding, enter the additional amount you want deducted from each of your paychecks on line 2.
+                            </div>
+                        </div>
+                        <div class="section-container">
+                            <div class="section-header">
+                                • LINE 3:
+                            </div>
+                            <div class="section">
+                                Exemption from withholding – You may claim exemption from withholding of Wisconsin income tax if you had no liability for income tax for last year, and you expect to incur no liability for income tax for this year. You may not claim exemption if your return shows tax liability before the allowance of any credit for income tax withheld. If you are exempt, your employer will not withhold Wisconsin income tax from your wages.
+                            </div>
+                            <div class="section">
+                                You must revoke this exemption (1) within 10 days from the time you expect to incur income tax liability for the year or (2) on or before December 1 if you expect to incur Wisconsin income tax liabilities for the next year. If you want to stop or are required to revoke this exemption, you must complete and provide a new Form WT‑4 to your employer showing the number of withholding exemptions you are entitled to claim. This certificate for exemption from withholding will expire on April 30 of next year unless a new Form WT‑4 is completed and provided to your employer before that date.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <span class="bold">Employer’s Section</span>
+                </div>
+            </div>
+            <div class="bordered-section">
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-9 lifesuite__clearfix text bordered">
+                        Employer’s name<br>
+                        <$client.env.FormField.EmployerName.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                        Federal Employer ID Number
+                        <$client.env.FormField.EIN.HTML>
+                    </div>
+                </div>
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-6 lifesuite__clearfix text bordered">
+                        Employer’s payroll address <span class="italic">(number and street)</span>
+                        <$client.env.FormField.EmployerAddress.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-2 lifesuite__clearfix text bordered">
+                        City
+                        <$client.env.FormField.EmployerCity.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-2 lifesuite__clearfix text bordered">
+                        State
+                        <$client.env.FormField.EmployerState.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-2 lifesuite__clearfix text bordered">
+                        Zip code
+                        <$client.env.FormField.EmployerZip.HTML>
+                    </div>
+                </div>
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                        Completed by
+                        <$client.env.FormField.EmployerCompletedBy.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                        Title<br>
+                        <$client.env.FormField.EmployerTitle.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                        Phone number
+                        <$client.env.FormField.EmployerPhoneNumber.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                        Email
+                        <$client.env.FormField.EmployerEmail.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="blue-container">
+                <div class="two-column text">
+                    <div class="two-column-content-2">
+                        <div class="section-header">
+                            EMPLOYER INSTRUCTIONS for Department of Revenue:
+                        </div>
+                        <div class="section-container">
+                            <div class="section">
+                                <ul style="list-style:disc; list-style-position: outside; padding-left: 20px;">
+                                    <li>
+                                        If you do not have a Federal Employer Identification Number (FEIN), contact the Internal Revenue Service to obtain a FEIN.
+                                    </li>
+                                    <li>
+                                        If the Employee has claimed more than 10 exemptions OR has claimed complete exemption from withholding and earns more than $200.00 a week or is believed to have claimed more exemptions than he or she is entitled to, mail a copy of this certificate to: Wisconsin Department of Revenue, Audit Bureau, PO Box 8906, Madison WI 53708 or fax (608) 267‑0834.
+                                    </li>
+                                    <li>
+                                        Keep a copy of this certificate with your records. If you have questions about the Department of Revenue requirements, call (608) 266‑2772 or (608) 266‑2776.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="two-column-content-2">
+                        <div class="section-header">
+                            EMPLOYER INSTRUCTIONS for New Hire Reporting:
+                        </div>
+                        <div class="section-container">
+                            <div class="section">
+                                <ul style="list-style:disc; list-style-position: outside; padding-left: 20px;">
+                                    <li>
+                                        This report contains the required information for reporting a New Hire to Wisconsin. If you are reporting new hires electronically, you do not need to forward a copy of this report to the Department of Workforce Development. Visit <a href="https://dwd.wi.gov/uinh/" target="blank">https://dwd.wi.gov/uinh/</a> to report new hires.
+                                    </li>
+                                    <li>
+                                        If you do not report new hires electronically, mail the original form to the Department of Workforce Development, New Hire Reporting, PO Box 14431, Madison WI 53708-0431 or fax toll free to 1‑800‑277‑8075.
+                                    </li>
+                                    <li>
+                                        If you have questions about New Hire requirements, call toll free (888) 300‑HIRE (888‑300‑4473). Visit dwd.wi.gov/uinh/ for more information.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 col-lg-6 lifesuite__clearfix text"> 
+                            W‑204 (R. 12‑21)
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-6 lifesuite__clearfix text alignRight_LG"> 
+                            Wisconsin Department of Revenue
+                        </div>                      
+                    </div>            
+            <div style="min-height: 50px; height: 50px;"></div>
+            <div class="row inner-border" style="border: 1px solid #000000;"> 
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text" style="background-color: #A9A9A9">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text center"> 
+                            <strong>Applicable Laws and Rules</strong> 
+                        </div>
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text" style="padding: 5px 5px 5px 5px; text-align: justify;">
+                         This document provides statements or interpretations of the following laws and regulations in enacted as of December 4, 2021: Section 71.66, Wis. Stats., and Section Tax 2.92, Wis. Adm. Code.
+                        </div>                      
+                    </div>                  
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    &nbsp;
+                    <br>
+                </div>
+            </div>   
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    &nbsp;
+                    <br>
+                </div>
+            </div>                                  
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    The address will be displayed appropriately in a left window envelope.
+                </div>
+            </div>
+            <div style="min-height: 100px; height: 100px;"></div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix indented bold text">
+                    DEPARTMENT OF WORKFORCE DEVELOPMENT<br> NEW HIRE REPORTING<br>
+                    PO BOX 14431<br>
+                    MADISON WI 53708-0431
+                </div>
+            </div>
+            <hr class="lifesuite__hr">
+            <div class="row" id="formButtons" style="display: none;">
+                <div class="lifesuite__clearfix lifesuite__float-right">               
+                    <$client.env.FormButtons>
+                </div>             
+            </div>
+        </div>
+    </div>
+    <div style="display: none;">
+        <$client.env.FormField.Login_ID.HTML>
+        <$client.env.FormField.SignatureVerification.HTML>
+        <$client.env.FormField.Auth_Param.HTML>
+        <$client.env.FormField.EmployeeID.HTML>
+    </div>
+</form>
+
+<!-- script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_WI/js/bootstrap.min.js>"></script-->
+<$include;/main/RedCarpet/FormTemplates/State_Withholding_WI/WI2_Includes>
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+exemptChanged();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+$(function() {
+    setTimeout(function() {  
+        if (strFormCompleted == '') { // if eForm is incomplete 
+            $("#ButtonPrint")[0].onclick = null; 
+            $("#ButtonPrint").click(function() {  
+                /* Add your code/function here */ 
+                $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+                void(funcPrint()); // default print function 
+            }); 
+            if ($("#ButtonSaveAndComplete").length) {  
+                $("#ButtonSaveAndComplete")[0].onclick = null; 
+                $("#ButtonSaveAndComplete").click(function() {  
+                    /* Add your code/function here */ 
+                    $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+                    void(funcSaveAndComplete());  //default Save function 
+                }); 
+            } 
+        }
+    }, 300); 
+});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+</SCRIPT>

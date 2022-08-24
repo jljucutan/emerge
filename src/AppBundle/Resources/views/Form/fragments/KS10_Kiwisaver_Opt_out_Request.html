@@ -1,0 +1,561 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                    </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fname,sname','modal','over','sv','a26_Date_WishToOptOutOfKiwiSaver');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature','a26_Date_WishToOptOutOfKiwiSaver').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+<$client.env.FormField.a01_IRD.prompt>
+<$client.env.FormField.a04_title.prompt>
+<$client.env.FormField.a05_otherTitle.prompt>
+<$client.env.FormField.a06_FirstName.prompt>
+<$client.env.FormField.a07_SurName.prompt>
+<$client.env.FormField.a08_StreetNumber.prompt>
+<$client.env.FormField.a09_StreetAddressOrPObox.prompt>
+<$client.env.FormField.a10_Suburb.prompt>
+<$client.env.FormField.a11_TownOrCity.prompt>
+<$client.env.FormField.a12_Postcode.prompt>
+<$client.env.FormField.a13_DayPhone.prompt>
+<$client.env.FormField.a16_Mobile.prompt>
+<$client.env.FormField.a19_email.prompt>
+<$client.env.FormField.a20_Bank.prompt>
+<$client.env.FormField.a21_Branch.prompt>
+<$client.env.FormField.a22_AccountNumber.prompt>
+<$client.env.FormField.a23_Suffix.prompt>
+<$client.env.FormField.a24_NameOfAccountHolder.prompt>
+<$client.env.FormField.a25_Signature.prompt>
+<$client.env.FormField.a26_Date_WishToOptOutOfKiwiSaver.prompt>
+<$client.env.FormField.b01_Employers_IRD.prompt>
+<$client.env.FormField.b04_Employers_BusinessName.prompt>
+<$client.env.FormField.b05_Date.prompt>
+<$client.env.FormField.b08_Reason.prompt>
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<div class="container-fluid"> 
+        <div class="form-group">
+            <div class="header-container">
+                <div class="image-container-1">
+                    <img class="img-responsive" src="images/ir.png" width="80"> 
+                </div>
+                <div class="image-container-2">
+                    <img class="img-responsive" src="images/InlandRevenue.png" width="200"> 
+                </div>
+                <div class="image-container-3">
+                    <img class="img-responsive" src="images/KS100509.png" width="150"> 
+                </div>
+                <div class="header-right">
+                    <div class="header-1">
+                         <div style="font-size: 25px; font-weight: bold;">KS10</div>
+                         <div style="font-size: 14px; font-weight: normal;">March 2017</div>
+                    </div>
+                    <div class="image-container-4">
+                        <img class="img-responsive" src="images/KiwiSaver.png" width="200"> 
+                    </div>
+                </div>
+            </div>
+            <div class="header-2 text">
+               <span style="font-size: 20px; font-weight: bold;">Opt-out request</span>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix align-right italic smaller-text">
+                    KiwiSaver Act 2006
+                </div>
+            </div>
+            <div class="section-container">
+                <div class="section">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            Use this form to opt out if you have been automatically enrolled, are a minor who was incorrectly enrolled, and you don’t want to be a member of KiwiSaver. Or go to <span class="bold">www.kiwisaver.govt.nz</span> to complete our online form. <span class="bold">Please read the notes on the back to help you fill in this form.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section section-header">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix bold text">
+                           Section A
+                        </div>
+                        <div class="col-xs-12 col-md-10 lifesuite__clearfix text">
+                           <span class="bold">Personal details</span> Please use <span class="letters">B</span><span class="letters">L</span><span class="letters">O</span><span class="letters">C</span><span class="letters">K</span><span class="letters">L</span><span class="letters">E</span><span class="letters">T</span><span class="letters">T</span><span class="letters">E</span><span class="letters">R</span><span class="letters">S</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            <div class="list-item">1.</div>
+                            <div class="list-content">
+                                <div class="inline-block">Your IRD number</div>
+                                <div class="inline-block"><$client.env.FormField.a01_IRD.HTML></div>
+                                <div class="inline-block">If you don’t know your IRD number or you don’t have one, call us on 0800 549 472</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="min-height: 10px; height: 10px;"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            <div class="list-item">2.</div>
+                            <div class="list-content">
+                                <div class="row">
+                                    <div class="inline-block">Your name</div>
+                                    <div class="inline-block"><$client.env.FormField.a04_title.HTML></div>
+                                    <div class="inline-block"><$client.env.FormField.a05_otherTitle.HTML></div>
+                                </div>
+                                <div class="row">
+                                    <$client.env.FormField.a06_FirstName.HTML>
+                                    <div class="label-bottom">First names</div>
+                                </div>
+                                <div class="row">
+                                    <$client.env.FormField.a07_SurName.HTML>
+                                    <div class="label-bottom">Surname</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="min-height: 10px; height: 10px;"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            <div class="list-item">3.</div>
+                            <div class="list-content">
+                                <div class="list-item-inner">Your postal address</div>
+                                <div class="list-content-inner">
+                                    <div class="row">
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a08_StreetNumber.HTML>
+                                            <div class="label-bottom">Street number</div>
+                                        </div>
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a09_StreetAddressOrPObox.HTML>
+                                            <div class="label-bottom">Street address or PO Box number</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <$client.env.FormField.a10_Suburb.HTML>
+                                        <div class="label-bottom">Suburb, box lobby or RD</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a11_TownOrCity.HTML>
+                                            <div class="label-bottom">Town or city</div>
+                                        </div>
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a12_Postcode.HTML>
+                                            <div class="label-bottom">Postcode</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="min-height: 10px; height: 10px;"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            <div class="list-item">4.</div>
+                            <div class="list-content">
+                                <div class="list-item-inner">Your contact numbers</div>
+                                <div class="list-content-inner">
+                                    <div class="row">
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a13_DayPhone.HTML>
+                                            <div class="label-bottom">Day</div>
+                                        </div>
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a16_Mobile.HTML>
+                                            <div class="label-bottom">Mobile</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="min-height: 10px; height: 10px;"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            <div class="list-item">5.</div>
+                            <div class="list-content">
+                                <div class="list-item-inner">Your email address</div>
+                                <div class="list-content-inner">
+                                    <div class="row">
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a19_email.HTML>
+                                            <div class="label-bottom">If you give an email address you may receive KiwiSaver information by email</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="min-height: 10px; height: 10px;"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            <div class="list-item">6.</div>
+                            <div class="list-content">
+                                <div class="list-item-inner">Bank account details</div>
+                                <div class="list-content-inner">
+                                    <div class="row">
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a20_Bank.HTML>
+                                            <div class="label-bottom">Bank</div>
+                                        </div>
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a21_Branch.HTML>
+                                            <div class="label-bottom">Branch</div>
+                                        </div>
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a22_AccountNumber.HTML>
+                                            <div class="label-bottom">Account number</div>
+                                        </div>
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a23_Suffix.HTML>
+                                            <div class="label-bottom">Suffix</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a24_NameOfAccountHolder.HTML>
+                                            <div class="label-bottom">Name of account holder</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="min-height: 10px; height: 10px;"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            <div class="list-item">7.</div>
+                            <div class="list-content">
+                                <div class="list-item-inner">I wish to opt out of KiwiSaver</div>
+                                <div class="list-content-inner">
+                                    <div class="row">
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a25_Signature.HTML>
+                                            <div class="label-bottom">Signature</div>
+                                        </div>
+                                        <div class="inline-block">
+                                            <$client.env.FormField.a26_Date_WishToOptOutOfKiwiSaver.HTML>
+                                            <div class="label-bottom">Day  Month  Year</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section section-header">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix bold text">
+                           Section B
+                        </div>
+                        <div class="col-xs-12 col-md-10 lifesuite__clearfix text">
+                           <span class="bold">Employment details</span> Please use <span class="letters">B</span><span class="letters">L</span><span class="letters">O</span><span class="letters">C</span><span class="letters">K</span><span class="letters">L</span><span class="letters">E</span><span class="letters">T</span><span class="letters">T</span><span class="letters">E</span><span class="letters">R</span><span class="letters">S</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            <div class="list-item">8.</div>
+                            <div class="list-content">
+                                <div class="inline-block">Employer’s IRD number</div>
+                                <div class="inline-block"><$client.env.FormField.b01_Employers_IRD.HTML></div>
+                                <div class="inline-block">If you don’t have your employer’s IRD number ask them for it.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="min-height: 10px; height: 10px;"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            <div class="list-item">9.</div>
+                            <div class="list-content">
+                                <div class="inline-block">Employer’s business name</div>
+                                <div class="inline-block"><$client.env.FormField.b04_Employers_BusinessName.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="min-height: 10px; height: 10px;"></div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            <div class="list-item">10.</div>
+                            <div class="list-content">
+                                <div class="list-item-inner">Employment start date</div>
+                                <div class="list-content-inner">
+                                    <div class="row">
+                                        <div class="inline-block">
+                                            <$client.env.FormField.b05_Date.HTML>
+                                            <div class="label-bottom">Day Month Year</div>
+                                        </div>
+                                        <div class="inline-block">
+                                            Give this form to your employer or send it to Inland Revenue.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section section-header">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-2 lifesuite__clearfix bold text">
+                           Section C
+                        </div>
+                        <div class="col-xs-12 col-md-10 lifesuite__clearfix bold text">
+                           <span class="bold">Late opt-out</span> Please read the notes on the back of this form
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                            <div class="list-item">11.</div>
+                            <div class="list-content">
+                                <div class="row">
+                                    If your request to opt out is more than eight weeks after you started employment, or you are a minor who was incorrectly enrolled, please give a reason for your late opt-out request.
+                                </div>
+                                <div class="row">
+                                    <$client.env.FormField.b08_Reason.HTML>
+                                </div>
+                            </div>
+                        </div>
+                    </div>            
+                </div>
+            </div>
+            <hr class="divider">
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <div class="two-column">
+                        <div class="column-section">
+                            <div class="column-header">Use this form if:</div>
+                            <div class="column-content">
+                                <ul>
+                                    <li>if you are a new employee who wants to opt out of KiwiSaver</li>
+                                    <li>if you were incorrectly enrolled in KiwiSaver under 18 years of age</li>
+                                </ul>
+                            </div>
+                            <div class="column-content">
+                                You can opt out on or after day 14 and on or before day 56 of starting new employment.
+                            </div>
+                            <div class="column-content">
+                                You can’t opt out in the first 13 days.
+                            </div>
+                            <div class="column-content">
+                                Every time you start new employment, you’ll need to opt out again.
+                            </div>
+                        </div>
+                        <div class="column-section">
+                            <div class="column-header">Complete the form then, either:</div>
+                            <div class="column-content">
+                                <ul>
+                                    <li>give this form to your employer so they can stop deductions immediately (for prompt return of your contributions, your employer can direct refund any KiwiSaver deductions they haven’t sent to us), or</li>
+                                    <li>send this form to Inland Revenue—see address below.</li>
+                                </ul>
+                            </div>
+                            <div class="column-content">
+                                If you were under 18 and enrolled in KiwiSaver without the consent of a parent or legal guardian, you may be able to opt out:
+                                <ul>
+                                    <li>with the consent of a legal guardian if you’re under 16</li>
+                                    <li>without the consent of a legal guardian if you’re between 16 and 18.</li>
+                                </ul>
+                            </div>
+                            <div class="column-content">
+                                Send your completed form confirming the reason you’re opting out (Section C), and your parent or legal guardian’s written consent (if required) to Inland Revenue at the address below.
+                            </div>
+                        </div>
+                        <div class="column-section">
+                            <div class="column-header">Late opt-out request</div>
+                            <div class="column-content">
+                                We may accept late opt-out applications if:
+                                <ul>
+                                    <li>your employer didn’t give you a KiwiSaver information pack within seven days of starting employment</li>
+                                    <li>we didn’t send you an investment statement when we’ve allocated you to a default scheme</li>
+                                    <li>your employer didn’t give you an investment statement (for their chosen KiwiSaver scheme)</li>
+                                    <li>events outside your control meant you couldn’t give us your opt-out application within the eight-week time limit</li>
+                                    <li>you chose to opt in or were opted in to KiwiSaver but you did not meet the criteria to (see Employee information pack (KS3) for criteria)</li>
+                                    <li>you were incorrectly enrolled under the age of 18.</li>
+                                </ul>
+                            </div>
+                            <div class="column-content">
+                                <span class="bold">Note:</span> Give this form to your employer, or send it directly to Inland Revenue, if you are making a late opt-out application. Your request can only be considered if it’s received by Inland Revenue or your employer within three months from the day Inland Revenue receives your first contribution. We will advise you if your opt-out request has been accepted or declined.
+                            </div>
+                        </div>
+                        <div class="column-section">
+                            <div class="column-header">Minors incorrectly enrolled</div>
+                            <div class="column-content">
+                                <ul>
+                                    <li>enrolled before your 18th birthday without the necessary guardians/parents consent</li>
+                                    <li>Have not reached your 19th birthday</li>
+                                    <li>under 16 years old will need the consent from a parent or legal guardian to opt out</li>
+                                    <li>complete the panel at he bottom of the form with reasons why you can opt out and attach consent from parent or legal guardian if you are under 16.</li>
+                                </ul>
+                            </div>
+                            <div class="column-content">
+                               We will send confirmation as to whether your opt out have been approved or not.
+                            </div>
+                            <div class="column-content">
+                               We will also advise your employer. If approved your employer will stop deductions.
+                            </div>
+                            <div class="column-content">
+                               Either Inland Revenue or your employer will refund any deductions that have been made.
+                            </div>
+                        </div>
+                        <div class="column-section">
+                            <div class="column-header">Bank account details</div>
+                            <div class="column-content">
+                                We need your bank account details so we can direct credit any KiwiSaver funds we are holding for you to your bank account. If you don’t have these details, send the form to us anyway.
+                            </div>
+                            <div class="column-content">
+                                You’ll find more information in your <span class="italic">Employee information pack (KS3)</span> or by going to <span class="bold">www.kiwisaver.govt.nz</span>
+                            </div>
+                        </div>
+                        <div class="column-section">
+                            <div class="column-header">Privacy</div>
+                            <div class="column-content">
+                                Meeting your tax obligations means giving us accurate information so we can assess your liabilities or your entitlements under the Acts we administer. We may charge penalties if you don’t.
+                            </div>
+                            <div class="column-content">
+                                We may also exchange information about you with:
+                                <ul>
+                                    <li>some government agencies</li>
+                                    <li>another country, if we have an information supply agreement with them</li>
+                                    <li>Statistics New Zealand (for statistical purposes only).</li>
+                                </ul>
+                            </div>
+                            <div class="column-content">
+                                If you ask to see the personal information we hold about you, we’ll show you and correct any errors, unless we have a lawful reason not to. Call us on 0800 549 472 for more information. For full details of our privacy policy go to <span class="bold">www.ird.govt.nz</span> (keyword: privacy).
+                            </div>
+                        </div>
+                        <div class="column-section">
+                            <div class="column-header">What an employer should do with this completed form</div>
+                            <div class="column-content">
+                                Send this form to Inland Revenue no later than the next time you’re required to send an Employer monthly schedule (IR348) to Inland Revenue at the address below, or you can send the information through ir-File (see <span class="bold">www.ird.govt.nz</span> for details about ir-File).
+                            </div>
+                        </div>
+                        <div class="column-section">
+                            <div class="column-header">Please send this completed form to:</div>
+                            <div class="column-content">
+                                <span class="bold">Inland Revenue</span><br>
+                                <span class="bold">PO Box 39090</span><br>
+                                <span class="bold">Wellington Mail Centre</span><br>
+                                <span class="bold">Lower Hutt 5045</span>
+                            </div>
+                            <div class="column-content">
+                                For more information about KiwiSaver go to <span class="bold">www.kiwisaver.govt.nz</span> or call us on 0800 549 472.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            <hr class="lifesuite__hr">
+            <div class="row" id="formButtons" style="display: none;">
+                <div class="lifesuite__clearfix lifesuite__float-right">               
+                    <$client.env.FormButtons>
+                </div>             
+            </div>
+        </div>
+    </div>
+    <div style="display:none;">
+        <$client.env.FormField.SignatureVerification.HTML>
+    </div>
+</form>
+
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+</SCRIPT>

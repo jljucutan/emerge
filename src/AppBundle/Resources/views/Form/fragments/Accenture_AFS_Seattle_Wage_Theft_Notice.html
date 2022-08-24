@@ -1,0 +1,512 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <div class="row">
+        <div class="col-12">
+            <h5 class="mb-3"><strong>Electronic Signature</strong></h5>
+            <p style="font-weight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'a16_Employee_Signature_Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a16_Employee_Signature_Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a01_Effective_Date.prompt>
+        <$client.env.FormField.a02_Hiring_Status.prompt>
+        <$client.env.FormField.a03_Employee_Name.prompt>
+        <$client.env.FormField.a04_Employee_Position.prompt>
+        <$client.env.FormField.a05_Manager_or_Supervisor_Name.prompt>
+        <$client.env.FormField.a06_Manager_or_Supervisor_Email.prompt>
+        <$client.env.FormField.a07_Per_Hour.prompt>
+        <$client.env.FormField.a08_Annually.prompt>
+        <$client.env.FormField.a09_Overtime_Eligibility.prompt>
+        <$client.env.FormField.a10_Pay_Basis.prompt>
+        <$client.env.FormField.a12_Other.prompt>
+        <$client.env.FormField.a13_Tip_Policy.prompt>
+        <$client.env.FormField.a14_Acknowledgement.prompt>
+        <$client.env.FormField.a14_Other.prompt>
+        <$client.env.FormField.a15_Employee_Signature.prompt>
+        <$client.env.FormField.a16_Employee_Signature_Date.prompt>
+        <$client.env.FormField.a17_Employer_Signature.prompt>
+        <$client.env.FormField.a18_Employer_Signature_Date.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+    <header class="row mb-2">
+        <div class="col-lg-12">
+            <h5 class="text-center">
+                <strong>
+                    Seattle\Washington Office of Labor Standards Wage Theft Notice <br class="d-none d-sm-block">
+                    Ordinance SMC14.20<br class="d-none d-sm-block">
+                    Notice of Employment Information
+                </strong>
+            </h5>
+        </div>
+    </header>
+
+    <div class="row mb-2">
+        <div class="col-lg-12">
+            <div class="box pt-2">
+                <p class="text-center">
+                    <strong>Employee</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12 d-flex flex-row flex-wrap align-items-center">
+            <div class="mr-2">
+                Effective Date of this notice
+            </div>
+            <div>
+                <$client.env.FormField.a01_Effective_Date.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2 pt-2">
+        <div class="col-lg-12">
+            <$client.env.FormField.a02_Hiring_Status.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-3 col-sm-3 col-xs-12">
+            1. Employee name
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+            <$client.env.FormField.a03_Employee_Name.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-3 col-sm-3 col-xs-12">
+            2. Employee position(s)
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+            <$client.env.FormField.a04_Employee_Position.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12">
+            <div class="box pt-2">
+                <p class="text-center">
+                    <strong>Employer</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12 d-flex flex-row flex-wrap">
+            <div class="mr-1">1.</div>
+            <div>
+                Name: <strong>Accenture Federal Services, LLC</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12 d-flex flex-row flex-wrap">
+            <div class="mr-1">2.</div>
+            <div>
+                <p>
+                    Physical address <br>
+                    <strong>
+                        1191 2nd Ave Street, #100 <br class="d-none d-sm-block">
+                        Seattle, WA 98101-2923
+                    </strong>
+                </p>
+                Mailing address: <br>
+                <strong>
+                    800 N Glebe Rd #700 <br class="d-none d-sm-block">
+                    Arlington, VA 22203
+                </strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12 d-flex flex-row flex-wrap">
+            <div class="mr-1">3.</div>
+            <div class="mr-3">
+                General phone number <strong><u>1-855-397-1210</u></strong>
+            </div>
+            <div>
+                Email <strong><u>AFS.Help@accenturefederal.com</u></strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12 d-flex flex-row flex-wrap">
+            <div class="mr-1">4.</div>
+            <div class="mr-1">
+                Manager or supervisor name
+            </div>
+            <div class="mr-3">
+                <$client.env.FormField.a05_Manager_or_Supervisor_Name.HTML>
+            </div>
+            <div class="mr-1">
+                Phone number
+            </div>
+            <div>
+                <strong><u>1-855-397-1210</u></strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12 d-flex flex-row flex-wrap">
+            <div class="mr-1">5.</div>
+            <div class="mr-1">
+                Manager or supervisor email
+            </div>
+            <div>
+                <$client.env.FormField.a06_Manager_or_Supervisor_Email.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12">
+            <div class="box pt-2">
+                <p class="text-center">
+                    <strong>Employee Payment Information</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12 d-flex flex-row flex-wrap">
+            <div class="mr-1">1.</div>
+            <div>
+                Rate or rates of pay (e.g. hourly wage or annual salary)
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-11 col-lg-offset-1 col-sm-offset-1 d-flex flex-row flex-wrap align-items-center">
+            <div class="mr-1">$</div>
+            <div class="mr-1">
+                <$client.env.FormField.a07_Per_Hour.HTML>
+            </div>
+            <div>
+                per Hour
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-11 col-lg-offset-1 col-sm-offset-1 d-flex flex-row flex-wrap align-items-center">
+            <div class="mr-1">$</div>
+            <div class="mr-1">
+                <$client.env.FormField.a08_Annually.HTML>
+            </div>
+            <div>
+                Annually
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12 d-flex flex-row flex-nowrap">
+            <div class="mr-1">2.</div>
+            <div>
+                Overtime eligibility – “Overtime eligible” means employers must pay 1.5x the regular rate of pay for hoursworked in excess of 40 hours in a workweek.
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-11 col-lg-offset-1 col-sm-offset-1">
+            <$client.env.FormField.a09_Overtime_Eligibility.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12 d-flex flex-row flex-wrap">
+            <div class="mr-1">3.</div>
+            <div>
+                Pay basis - check box
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-11 col-sm-11 col-xs-12 col-lg-offset-1 col-sm-offset-1 d-flex flex-nowrap flex-row align-items-end">
+            <div class="mr-2 mb-2">
+                <$client.env.FormField.a10_Pay_Basis.HTML>
+            </div>
+            <div>
+                <$client.env.FormField.a12_Other.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12 d-flex flex-row flex-wrap">
+            <div class="mr-1">4.</div>
+            <div>
+                Regular Pay day: <strong>The 6<sup>th</sup> and 21<sup>st</sup> of each month</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12 d-flex flex-row flex-wrap">
+            <div class="mr-1">5.</div>
+            <div>
+                Tip policy
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-11 col-lg-offset-1 col-sm-offset-1">
+            <$client.env.FormField.a13_Tip_Policy.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-12">
+            <p>
+                <strong>Protections against Retaliation</strong><br>
+                Employers are prohibited from taking adverse action (e.g. firing, demoting, and making threats to report immigration status) against any person for exercising rights protected by Seattle Labor Standards.
+            </p>        
+            <p>
+                <strong>For more information contact Seattle Office of Labor Standards at (206) 684-4500 or see www.seattle.gov/laborstandards</strong>
+            </p>
+            <p>
+                <strong>Employee Acknowledgement:</strong> By signing below, I acknowledge that I have received the foregoing information regarding my pay and my Employer. This notice must be provided in English and the primary language of the employee receiving the notice. If you need this notice in a language other than English, please contact AFS Helpdesk at 1-855-397-1210 to make a request.
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-3 col-sm-3 col-xs-12">
+            Employee’s Signature:
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+            <$client.env.FormField.a15_Employee_Signature.HTML>
+        </div>
+        <div class="col-lg-1 col-sm-1 col-xs-12">
+            Date
+        </div>
+        <div class="col-lg-3 col-sm-3 col-xs-12">
+            <$client.env.FormField.a16_Employee_Signature_Date.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-lg-3 col-sm-3 col-xs-12">
+            Employer’s Signature:
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+            <$client.env.FormField.a17_Employer_Signature.HTML>
+        </div>
+        <div class="col-lg-1 col-sm-1 col-xs-12">
+            Date
+        </div>
+        <div class="col-lg-3 col-sm-3 col-xs-12">
+            <$client.env.FormField.a18_Employer_Signature_Date.HTML>
+        </div>
+    </div>
+
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-lg-12">
+            <hr class="lifesuite__hr">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Accenture_AFS_Seattle_Wage_Theft_Notice/js/bootstrap.min.js>"></script>
+<script>
+function showScreen(elName) {
+    xbStyleObj(elName).height = (docHeight() + 30) + "px";
+    xbStyleObj(elName).width = (docWidth() - 30) + "px";
+}
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+    // set employer date default to today as long as form is not completed
+    if ($('.calendar_button').length) {
+        $('[name$=".a18_Employer_Signature_Date_display"]').datepicker('setDate', new Date());
+    }
+});
+
+(function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+})($('.disable-date'));
+
+$(window).on('load', function() {
+    $(".modal").hide();
+    $('input[type="checkbox"][value=""]').closest('.instr').remove();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+        }
+    };
+}
+const checkboxWithTarget = {
+        'a10_Pay_Basis': {
+            'target': 'a12_Other',
+            'requiredValue': 'Other (please explain)'
+        },
+        'a14_Acknowledgement_Other': {
+            'target': 'a14_Other',
+            'requiredValue': 'Other'
+        }
+}
+const toggleTargetState = function(controller) {
+    "use strict";
+    controller.forEach(function(ctrl) {
+        let nem = ctrl.name.split('.');
+        let ctrlName = nem[nem.length-1];
+        const checkbox = checkboxWithTarget[ctrlName] ? checkboxWithTarget[ctrlName] : '';
+        // weed out checkboxes not in config
+        if (!checkbox) {
+            return;
+        }
+        // enable target input boxes if checkbox is checked
+        if (ctrl.value == checkbox.requiredValue && !ctrl.checked) {
+            thisForm.querySelector('[name$=".' + checkbox.target + '"]').value = '';
+            thisForm.querySelector('[name$=".' + checkbox.target + '"]').disabled = true;
+            return;
+        }
+        // disable and clear target input boxes if checkbox is not checked
+        thisForm.querySelector('[name$=".' + checkbox.target + '"]').disabled = false;
+    });
+}
+// sets checkbox group default value if it hasn't been set yet
+const setCheckboxDefault = function(chkbx, defaultVal) {
+    "use strict";
+    chkbx.forEach(function(c) {
+        if (c.value == defaultVal) {
+            c.checked = true;
+            return;
+        }
+        c.checked = false;
+    });
+}
+setCheckboxDefault(thisForm.querySelectorAll('[name$=".a09_Overtime_Eligibility"]'), "<$client.tForWhomUserInfo.SeattleWageNotice_OTEligibility>");
+setCheckboxDefault(thisForm.querySelectorAll('[name$=".a10_Pay_Basis"]'), "<$client.tForWhomUserInfo.SeattleWageNotice_PayBasis>");
+
+// pre-populate raets
+const RATE_OF_PAY = "<$client.tForWhomUserInfo.SeattleWageNotice_RateofPay>";
+(function(payBasis) {
+    switch(payBasis) {
+        case "salary (overtime eligible)":
+        case "salary (overtime exempt)":
+        thisForm.querySelector('[name$=".a08_Annually"]').value = RATE_OF_PAY;
+        thisForm.querySelector('[name$=".a07_Per_Hour"]').value = '';
+        break;
+        case "hour":
+        thisForm.querySelector('[name$=".a07_Per_Hour"]').value = RATE_OF_PAY;
+        thisForm.querySelector('[name$=".a08_Annually"]').value = '';
+        break;
+        default:
+        thisForm.querySelector('[name$=".a07_Per_Hour"]').value = '';
+        thisForm.querySelector('[name$=".a08_Annually"]').value = '';
+        break;
+    }
+})("<$client.tForWhomUserInfo.SeattleWageNotice_PayBasis>".toLowerCase());
+const checkboxGroups = thisForm.querySelectorAll('[data-checkbox-group]')
+checkboxGroups.forEach(function(rdo) {
+    rdo.addEventListener('change', function() {
+        let isChecked = this.checked;
+        let dataGroup = this.dataset.checkboxGroup;
+        const thisGroup = thisForm.querySelectorAll('[data-checkbox-group="' + dataGroup + '"]')
+        thisGroup.forEach(function(cg) {
+            cg.checked = false;
+        });
+        this.checked = !!isChecked;
+        toggleTargetState(thisGroup);
+    });
+});
+toggleTargetState(checkboxGroups);
+</script>

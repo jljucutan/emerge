@@ -1,0 +1,368 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','date');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12"> 
+                <strong>Type your Name:</strong> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','SignerMan','modal2','over','sv2','date2');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp; 
+                    <input id="clear-sig-2" type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','date2');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <template id="fragment-1">
+        <p>&nbsp;</p>
+    </template>
+    <template id="fragment-2">
+        <p>Estimado <mark><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></mark>,</p>
+
+        <p>En seguimiento de lo conversado, nos complace ofrecerle  trabajo en Soluciones BK, Sociedad Anónima (la “Compañía”).</p>
+
+        <p class="text-justify">Esta oferta está supeditada al resultado existoso de una verificación de antecedentes. Los elementos  esenciales de su oferta de trabajo  consisten en que usted  se uniría a nuestro equipo de trabajo para desempeñar el puesto de <mark><$client.tForWhomUserInfo.Business_Title_Spanish></mark>, bajo la dirección y dependencia inmediata de <mark><$client.tEventManagers_Person_1.FormattedName></mark>, <mark><$client.tForWhomUserInfo.MngrBsnssTitle></mark> iniciando la efectiva prestación de servicios a partir de <mark><%= localizedMomentDate(formatMomentDate(Event_Start_Date, 'long')) %></mark>. En cumplimiento del requisito legal, su trabajo requerirá  que  suscriba un  contrato individual de trabajo por escrito que contendrá  los elementos establecidos en  esta carta de oferta.</p>
+
+        <p>A continuación se muestra un resumen de su salario anual (sujeto en cada caso a retenciones y deducciones legales aplicables):</p>
+
+        <p>
+            Salario básico bruto - <mark><$client.tForWhomUserInfo.SalaryOffered></mark> Quetzals <br>
+            Bonificación incentivo  (Decreto 37-2001) - 250 Quetzals <br>
+            Aguinaldo  (Decreto  76-78) - <mark><$client.tForWhomUserInfo.SalaryOffered></mark> Quetzals <br>
+            Bonificación  Anual para Trabajadores del Sector Privado y Público (“Bono 14”) (Decreto  42-92)
+ - <mark><$client.tForWhomUserInfo.SalaryOffered></mark> Quetzals
+        </p>
+
+        <p>
+            También reunirá los requisitos para participar en 
+            <% if (HAS_AIP_PCT) { %>
+                un plan de incentivos anuales&nbsp;
+            <% } %>
+            <% if ('<$client.tForWhomUserInfo.Eligible_Sales_Incentive>'=='Yes') { %>
+            un plan de incentivos de ventas&nbsp;
+            <% } %>
+            durante un año determinado, tal como se establecerá en su contrato individual de trabajo.
+        </p>
+       
+        <% if (HAS_CS_RSU) { %>
+            <div class="marked">
+                <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="CASH-SETTLED RESTRICTED STOCK UNITS != 0 OR NULL"></div>
+        <p class="text-justify">Para darle la bienvenida a la Compañía, se recomendará al Comité de Compensación del Consejo de Administración de PayPal Holdings, Inc. que se le conceda una adjudicación de unidades de acciones restringidas liquidadas en efectivo (cash-settled restricted stock units, "CSU") con un valor de USD $<mark><$client.tForWhomUserInfo.Cash_Settled_Restricted_Stock_Units_CSU></mark>, menos las retenciones e impuestos aplicables. Un tercio (1/3) de las CSU se otorgaría (condicionado a su continuidad laboral con una compañía de PayPal) en el primer aniversario de la fecha de concesión, con otorgamientos trimestrales a continuación. Si el valor de las CSU se convierte a 24 o menos número de CSU a otorgarse, un tercio (1/3) de las CSU se otorgaría (condicionado a su continuidad laboral con una compañía de PayPal) en cada uno de los aniversarios de 12, 15 y 27 meses de la fecha de concesión.  Las estipulaciones de cualquier adjudicación de CSU se rigen por el  contrato de adjudicación aplicable y otros acuerdos relacionados.</p>
+        </div>
+        <% } %>
+
+        <p class="text-justify">Además de lo anterior, la Compañía pondrá a su disposición los beneficios  según lo estipulado en sus planes de beneficios.</p>
+        
+        <p class="text-justify">Por favor indique su aceptación de esta propuesta firmándola y devolviéndola  a más tardar el&nbsp;<mark><%= localizedMomentDate(formatMomentDate(Event_Start_Date_7, 'long')) %></mark>. Esperamos con ansias su incorporación a nuestro equipo.</p>
+
+        <p class="hide">&nbsp;</p>
+
+        <p>Sinceramente,</p>
+        <p class="text-justify mb-5">
+            <mark><%= signatory %></mark><br>
+            Reclutador
+        </p>
+        <p class="hide"></p>
+        <hr>
+        <p class="hide"></p>
+
+        <p>Dear <mark><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></mark>,</p>
+
+        <p>Further to our discussions, we are pleased to offer you employment with Soluciones BK, Sociedad Anonima (the “Company”).</p>
+
+        <p class="text-justify">This offer is contingent upon successful completion of a background check.  The essential terms of your employment are that you are to join our workforce in the capacity of <mark><$client.tForWhomUserInfo.Business_Title></mark>, reporting to <mark><$client.tEventManagers_Person_1.FormattedName></mark>, <mark><$client.tForWhomUserInfo.MngrBsnssTitle></mark> effective <mark><%= formatMomentDate(Event_Start_Date, 'long') %></mark>. As a condition of your employment, you will be required to sign a formal employment agreement containing the terms set forth in this offer letter.</p>
+
+        <p class="text-justify">A summary of your annualized compensation is as follows (subject in each case to applicable withholdings and statutory deductions):</p>
+
+        <p>
+            Gross Base Salary - <mark><$client.tForWhomUserInfo.SalaryOffered></mark> Quetzals <br>
+            Bonus Decree (37-2001) - 250 Quetzals <br>
+            Christmas Bonus (Proportional Decree 76-78) - <mark><$client.tForWhomUserInfo.SalaryOffered></mark> Quetzals <br>
+            Bonus 14 (Proportional Decree 42-92) - <mark><$client.tForWhomUserInfo.SalaryOffered></mark> Quetzals
+        </p>
+
+        <p class="text-justify">
+            You will also be eligible to participate in 
+            <% if (HAS_AIP_PCT) { %>
+            an annual incentive plan&nbsp;
+            <% } %>
+            <% if ('<$client.tForWhomUserInfo.Eligible_Sales_Incentive>'=='Yes') { %>
+            a sales incentive plan&nbsp;
+            <% } %>
+            for a specified year, as set forth in your Employment Agreement. 
+        </p>
+
+        <% if (HAS_CS_RSU) { %>
+            <div class="marked">
+                <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="CASH-SETTLED RESTRICTED STOCK UNITS != 0 OR NULL"></div>
+        <p class="text-justify">To welcome you to the Company, it will be recommended to the Compensation Committee of the Board of Directors of PayPal Holdings, Inc. that you be granted an award of cash-settled restricted stock units (“CSUs”) with a value of $<mark><$client.tForWhomUserInfo.Cash_Settled_Restricted_Stock_Units_CSU></mark>, less applicable taxes and withholdings.  One-third (1/3) of the CSUs will vest (conditioned upon your continued employment with a PayPal company) on the first anniversary of the grant date, with quarterly vesting thereafter; in the event the value of the CSUs is converted into 24 or fewer number of CSUs to be granted, one-third (1/3) of the CSUs will vest (conditioned upon your continued employment with a PayPal company) on each of the 12-, 15- and 27-month anniversaries of the grant date. The terms and conditions of any CSU award are governed by the applicable award agreement and any other related agreements.</p>
+        </div>
+        <% } %>
+
+        <p>In addition to the above, the Company will make available to you benefits in accordance with the terms of its benefits plans.  </p>
+
+        <p>Please indicate your acceptance of this proposal by signing and returning by <mark><%= formatMomentDate(Event_Start_Date_7, 'long') %></mark>. We very much look forward to your joining our team.</p>
+
+        <p>Sincerely,</p>
+        <p class="text-justify mb-5">
+            <mark><%= signatory %></mark><br>
+            Recruiter
+        </p>
+        <p class="hide"></p>
+
+    </template>
+    
+    <div id="offer-letter-body" class="row">
+        <div class="col-sm-2">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+        <div class="col-sm-8">
+            <div id="incomplete2">
+                <div id="markup2"></div>
+            </div>
+            <div id="complete2"></div>
+        </div>
+    </div>
+    <template id="fragment-3">
+        <p class="ml-lg-4">
+            <strong>Employer:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete3">
+                <div id="markup3"></div>
+            </div>
+            <div id="complete3"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-3 text-sm-right">
+            <label for="signature" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature2.HTML>
+        </div>
+        <div class="col-sm-1 text-sm-right pt-3">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date2.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-3 text-sm-right">
+            <label for="full_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name2.HTML>
+        </div>
+    </div>
+
+    <template id="fragment-4">
+        <p class="ml-lg-4">
+            <strong>Employee:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete4">
+                <div id="markup4"></div>
+            </div>
+            <div id="complete4"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-3 text-sm-right">
+            <label for="signature" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature.HTML>
+        </div>
+        <div class="col-sm-1 text-sm-right pt-3">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-3 text-sm-right">
+            <label for="full_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name.HTML>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>     
+    <$client.env.FormField.hidden_pg3.HTML>     
+    <$client.env.FormField.hidden_pg4.HTML>     
+    <$client.env.formfield.EmployeeStamp.html>
+    <$client.env.formfield.SignatoryStamp.html>
+    <$client.env.formfield.RecruiterStamp.html>
+    <$client.env.formfield.SignerMan.html>
+    <$client.env.formfield.CoordinatorStamp.html>
+    <$client.env.formfield.Current_Date.html>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Guatemala_Intent_of_Hire/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Guatemala_Intent_of_Hire/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Guatemala_Intent_of_Hire/js/script_version_1.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.signDate, .dateField').parent().find('input').prop('disabled', true);
+});
+
+const formatMomentDate = function(dateObj, format) {
+    switch(format) {
+        case "long":
+        return dateObj.format('D MMMM YYYY')
+        break;
+        case "short":
+        return dateObj.format('DD/MM/YYYY')
+        break;
+    }
+}
+
+const monthName = function(mon) {
+   switch(mon){
+	case 'January': mon = 'enero'; break;
+	case 'February': mon = 'febrero'; break;
+	case 'March': mon = 'marzo'; break;
+	case 'April': mon = 'abril'; break;
+	case 'May': mon = 'mayo'; break;
+	case 'June': mon = 'junio'; break;
+	case 'July': mon = 'julio'; break;
+	case 'August': mon = 'agosto'; break;
+	case 'September': mon = 'septiembre'; break;
+	case 'October': mon = 'octubre'; break;
+	case 'November': mon = 'noviembre'; break;
+	case 'December': mon = 'diciembre'; break;
+   }
+   return mon;
+}
+
+const localizedMomentDate = function(dateVal) {
+	var day = dateVal.split(' ')[0];
+	var month = dateVal.split(' ')[1];
+	var year = dateVal.split(' ')[2];
+    return day +' '+ monthName(month) +' '+ year;
+}
+
+const eventStartDate = '<$client.tEventDates_Date_2.Value>';
+const _Event_Start_Date = moment(eventStartDate);
+const _Event_Start_Date_7 = moment(eventStartDate).add(7, 'days');
+const data = {
+    'Current_Date': document.getElementById('Current_Date').value,
+    'Event_Start_Date': _Event_Start_Date,
+    'Event_Start_Date_7': _Event_Start_Date_7,
+    'HAS_AIP_PCT':  ('<$client.tForWhomUserInfo.eIP_Target_Pct>'!=0 && '<$client.tForWhomUserInfo.eIP_Target_Pct>'.length),
+    'HAS_CS_RSU':  ('<$client.tForWhomUserInfo.Cash_Settled_Restricted_Stock_Units_CSU>'!=0 && '<$client.tForWhomUserInfo.Cash_Settled_Restricted_Stock_Units_CSU>'.length),
+    'signatory': '<$client.tEventManagers_Person_22.FormattedName>'
+};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+// signature section clearing on task reopen variables
+const isCoordinator = <$client.env.eval((client.role.rc_hrcoordinators==1)?'true':'false')>;
+const isRecruiter = <$client.env.eval((client.tEventManagers_Person_22.UserGuid==account.userguid)?'true':'false')>;
+const isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const EmployeeStamp = "<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>"; 
+if (isRecruiter) {
+    $('#SignerMan').val('<$client.tEventManagers_Person_22.FormattedName>');
+}
+</script>

@@ -1,0 +1,1142 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.BIC.prompt>
+        <$client.env.FormField.Banque.prompt>
+        <$client.env.FormField.Bis_Ter.prompt>
+        <$client.env.FormField.Bureau_distributeur.prompt>
+        <$client.env.FormField.Categorie_de_remuneration.prompt>
+        <$client.env.FormField.Civil_status_and_contact_Pays.prompt>
+        <$client.env.FormField.Code_postal.prompt>
+        <$client.env.FormField.Complement_dadresse.prompt>
+        <$client.env.FormField.DOB.prompt>
+        <$client.env.FormField.Date_de_debut_de_contrat.prompt>
+        <$client.env.FormField.Date_de_fin_de_contrat.prompt>
+        <$client.env.FormField.DeptOB.prompt>
+        <$client.env.FormField.Devise.prompt>
+        <$client.env.FormField.Ecole.prompt>
+        <$client.env.FormField.Email.prompt>
+        <$client.env.FormField.Employee_HRISID.prompt>
+        <$client.env.FormField.Employee_HR_Data.prompt>
+        <$client.env.FormField.First_Name.prompt>
+        <$client.env.FormField.Gender_New.prompt>
+        <$client.env.FormField.Hire_Date.prompt>
+        <$client.env.FormField.IBAN.prompt>
+        <$client.env.FormField.LOB.prompt>
+        <$client.env.FormField.Last_Name.prompt>
+        <$client.env.FormField.Local_contract.prompt>
+        <$client.env.FormField.Maiden_Name.prompt>
+        <$client.env.FormField.Manager.prompt>
+        <$client.env.FormField.Mode_de_paiement.prompt>
+        <$client.env.FormField.NatOrigine.prompt>
+        <$client.env.FormField.Nationalite_New.prompt>
+        <$client.env.FormField.No_INSEE_commune.prompt>
+        <$client.env.FormField.No_de_la_voie.prompt>
+        <$client.env.FormField.Nom_de_la_voie.prompt>
+        <$client.env.FormField.Nom_du_beneficiaire.prompt>
+        <$client.env.FormField.Numero_de_carte.prompt>
+        <$client.env.FormField.Organisme_de_delivrance.prompt>
+        <$client.env.FormField.Carte_Travail_Is_temporary.prompt>
+        <$client.env.FormField.Lieu_de_Deliverance.prompt>
+        <$client.env.FormField.Phone.prompt>
+        <$client.env.FormField.Provisoire.prompt>
+        <$client.env.FormField.RH_de_proximite.prompt>
+        <$client.env.FormField.SSNO_SSKey.prompt>
+        <$client.env.FormField.Societe.prompt>
+        <$client.env.FormField.Statut_Diplome.prompt>
+        <$client.env.FormField.Tax_Address_Pays.prompt>
+        <$client.env.FormField.Secondary_Phone.prompt>
+        <$client.env.FormField.Tous_les_sites.prompt>
+        <$client.env.FormField.Type_de_carte.prompt>
+        <$client.env.FormField.Type_de_contrat.prompt>
+        <$client.env.FormField.Type_de_voie.prompt>
+        <$client.env.FormField.Working_location.prompt>
+        <$client.env.FormField.contact_primary_1.prompt>
+        <$client.env.FormField.contact_primary_2.prompt>
+        <$client.env.FormField.enfant_DOB_1.prompt>
+        <$client.env.FormField.enfant_DOB_2.prompt>
+        <$client.env.FormField.enfant_DOB_3.prompt>
+        <$client.env.FormField.enfant_DOB_4.prompt>
+        <$client.env.FormField.enfant_DOB_5.prompt>
+        <$client.env.FormField.enfant_DOB_6.prompt>
+        <$client.env.FormField.date_situation_famille.prompt>
+        <$client.env.FormField.delivre_le.prompt>
+        <$client.env.FormField.details.prompt>
+        <$client.env.FormField.diplome_annee_1.prompt>
+        <$client.env.FormField.diplome_niveau_1b.prompt>
+        <$client.env.FormField.diplome_pays_1.prompt>
+        <$client.env.FormField.diplome_specialite_1.prompt>
+        <$client.env.FormField.email_1.prompt>
+        <$client.env.FormField.email_2.prompt>
+        <$client.env.FormField.enfant_SS_1.prompt>
+        <$client.env.FormField.enfant_SS_2.prompt>
+        <$client.env.FormField.enfant_SS_3.prompt>
+        <$client.env.FormField.enfant_SS_4.prompt>
+        <$client.env.FormField.enfant_SS_5.prompt>
+        <$client.env.FormField.enfant_SS_6.prompt>
+        <$client.env.FormField.enfant_fiscal_1.prompt>
+        <$client.env.FormField.enfant_fiscal_2.prompt>
+        <$client.env.FormField.enfant_fiscal_3.prompt>
+        <$client.env.FormField.enfant_fiscal_4.prompt>
+        <$client.env.FormField.enfant_fiscal_5.prompt>
+        <$client.env.FormField.enfant_fiscal_6.prompt>
+        <$client.env.FormField.enfant_nom_1.prompt>
+        <$client.env.FormField.enfant_nom_2.prompt>
+        <$client.env.FormField.enfant_nom_3.prompt>
+        <$client.env.FormField.enfant_nom_4.prompt>
+        <$client.env.FormField.enfant_nom_5.prompt>
+        <$client.env.FormField.enfant_nom_6.prompt>
+        <$client.env.FormField.enfant_prenom_1.prompt>
+        <$client.env.FormField.enfant_prenom_2.prompt>
+        <$client.env.FormField.enfant_prenom_3.prompt>
+        <$client.env.FormField.enfant_prenom_4.prompt>
+        <$client.env.FormField.enfant_prenom_5.prompt>
+        <$client.env.FormField.enfant_prenom_6.prompt>
+        <$client.env.FormField.enfant_sexe_1.prompt>
+        <$client.env.FormField.enfant_sexe_2.prompt>
+        <$client.env.FormField.enfant_sexe_3.prompt>
+        <$client.env.FormField.enfant_sexe_4.prompt>
+        <$client.env.FormField.enfant_sexe_5.prompt>
+        <$client.env.FormField.enfant_sexe_6.prompt>
+        <$client.env.FormField.etranger_adresse1.prompt>
+        <$client.env.FormField.etranger_adresse2.prompt>
+        <$client.env.FormField.etranger_country.prompt>
+        <$client.env.FormField.etranger_ville.prompt>
+        <$client.env.FormField.etranger_zip.prompt>
+        <$client.env.FormField.expiration_le.prompt>
+        <$client.env.FormField.job_field.prompt>
+        <$client.env.FormField.emergency_lien_de_parente_1.prompt>
+        <$client.env.FormField.emergency_lien_de_parente_2.prompt>
+        <$client.env.FormField.dependent_lien_de_parente_1.prompt>
+        <$client.env.FormField.dependent_lien_de_parente_2.prompt>
+        <$client.env.FormField.dependent_lien_de_parente_3.prompt>
+        <$client.env.FormField.dependent_lien_de_parente_4.prompt>
+        <$client.env.FormField.dependent_lien_de_parente_5.prompt>
+        <$client.env.FormField.dependent_lien_de_parente_6.prompt>
+        <$client.env.FormField.motif_embauche.prompt>
+        <$client.env.FormField.nom_prenom_1.prompt>
+        <$client.env.FormField.nom_prenom_2.prompt>
+        <$client.env.FormField.org_level4.prompt>
+        <$client.env.FormField.piece_jointe.prompt>
+        <$client.env.FormField.poste.prompt>
+        <$client.env.FormField.question_ouverte.prompt>
+        <$client.env.FormField.situation_famille.prompt>
+        <$client.env.FormField.telephone_1_1.prompt>
+        <$client.env.FormField.telephone_1_2.prompt>
+        <$client.env.FormField.telephone_2_1.prompt>
+        <$client.env.FormField.telephone_2_2.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <header class="row">
+        <div class="col-7 col-sm-4">
+            <img src="<$link;/main/RedCarpet/FormTemplates/Fiche_Profil_-_SELIA/img/safran-logo.jpg>" alt="Safran Logo" class="img-fluid">
+        </div>
+    </header>
+    <div class="row">
+        <div class="row px-2 py-4">
+            <div class="col-12">
+                <p class="h6 text-center pb-2 pt-2 m-0">
+                    <strong>Safran fiche données personnelles à completer par le salarié</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="bg-grey-dark px-3">
+            <div class="row bg-grey-dark py-1">
+                <div class="col-12">
+                    <p class="m-0 text-center text-white">
+                        <strong>Etat civil et contact (données non modifiables, contactez votre RH en cas d'erreurs)</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="bg-disabled py-3">
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Titre</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Gender_New.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Prénom</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.First_Name.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Nom de famille</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Last_Name.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Nom de jeune fille</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Maiden_Name.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Email personnel</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Email.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Situation de famille</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.situation_famille.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Depuis le</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.date_situation_famille.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Lieu de naissance</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.LOB.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Date de naissance</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.DOB.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Departement de naissance</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.DeptOB.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Pays de Naissance</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Civil_status_and_contact_Pays.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Nationalité d'origine</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.NatOrigine.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Nationalité actuelle</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Nationalite_New.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row bg-grey-dark py-1">
+                <div class="col-12">
+                    <p class="m-0 text-center text-white">
+                        <strong>Données emploi (données non modifiables, contactez votre RH en cas d'erreurs)</strong>
+                    </p>
+                </div>
+            </div>
+            <div class="bg-disabled py-3">
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Matricule unique Group (MUG)</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Employee_HRISID.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Matricule Société</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Matricule_Societe.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Date d'embauche</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Hire_Date.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Motif d'embauche</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.motif_embauche.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Société</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Societe.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Site</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Tous_les_sites.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Affectation (niv 4)</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.org_level4.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Working location</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Working_location.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Titre de poste</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.poste.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Métier (job field)</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.job_field.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Nature de contrat</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Local_contract.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Type de contrat</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Type_de_contrat.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Date de début de contrat</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Date_de_debut_de_contrat.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Date de fin de contrat</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Date_de_fin_de_contrat.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Categorie de remuneration</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Categorie_de_remuneration.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Manager</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Manager.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">RH de proximité</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.RH_de_proximite.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-grey-dark px-3">
+            <div class="row py-1">
+                <div class="col-12">
+                    <p class="m-0 text-center">
+                        <strong>
+                            <span class="text-white">Sécurité sociale</span>
+                            <span class="text-danger">*</span>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+            <div class="bg-none py-3">
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Numero de securité sociale</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.SSNO_SSKey.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Provisoire</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Provisoire.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-grey-dark px-3">
+            <div class="row py-1">
+                <div class="col-12">
+                    <p class="m-0 text-center">
+                        <strong>
+                            <span class="text-white">Adresse Fiscale</span>
+                            <span class="text-danger">*</span>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+            <div class="bg-none py-3">
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="bg-grey-light py-1 text-center">
+                            <small class="text-white">Adresse France</small>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Pays</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Tax_Address_Pays.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">N° de la voie</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.No_de_la_voie.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Bis/Ter</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Bis_Ter.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Type de voie</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Type_de_voie.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Nom de la voie</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Nom_de_la_voie.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Complément d'adresse</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Complement_dadresse.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Code postal</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Code_postal.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Bureau distributeur</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Bureau_distributeur.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">N° INSEE commune</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.No_INSEE_commune.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 px-2">
+                        <div class="bg-grey-light py-1 text-center">
+                            <small class="text-white">Adresse internationnale</small>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Pays</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.etranger_country.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Adress line 1</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.etranger_adresse1.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Adress line 2</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.etranger_adresse2.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">City</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.etranger_ville.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Zip code</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.etranger_zip.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-grey-dark px-3">
+            <div class="row py-1">
+                <div class="col-12">
+                    <p class="m-0 text-center">
+                        <strong>
+                            <span class="text-white">Informations bancaires</span>
+                            <span class="text-danger">*</span>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+            <div class="bg-none py-3">
+                <div class="row">
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Banque</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Banque.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Mode de paiement</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Mode_de_paiement.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Nom du bénéficiaire</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Nom_du_beneficiaire.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">IBAN</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.IBAN.HTML>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 px-2">
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">BIC</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.BIC.HTML>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 pt-2">Devise</label>
+                            <div class="col-sm-8">
+                                <$client.env.FormField.Devise.HTML>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-grey-dark px-3">
+            <div class="row py-1">
+                <div class="col-12">
+                    <p class="m-0 text-center">
+                        <strong>
+                            <span class="text-white">Contact personnel</span>
+                            <span class="text-danger">*</span>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+            <div class="bg-none py-3 row">
+                <div class="col-sm-6 px-2">
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Telephone personnel fixe region/country code</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.Phone_Region.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Telephone personnel fixe</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.Phone.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 px-2">
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Telephone personnel portable region/country code</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.Secondary_Phone_Region.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Telephone personnel portable</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.Secondary_Phone.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-grey-dark px-3">
+            <div class="row py-1">
+                <div class="col-12">
+                    <p class="m-0 text-center">
+                        <strong>
+                            <span class="text-white">Contact d'urgence</span>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+            <div class="row bg-none py-3">
+                <div class="col-12 table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="text-center">
+                                <th>Nom Prénom</th>
+                                <th>Lien de parenté</th>
+                                <th>Téléphone 1</th>
+                                <th>Téléphone 2</th>
+                                <th>Email</th>
+                                <th>Contact Principal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <$client.env.FormField.nom_prenom_1.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.emergency_lien_de_parente_1.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.telephone_1_1.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.telephone_2_1.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.email_1.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.contact_primary_1.HTML>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <$client.env.FormField.nom_prenom_2.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.emergency_lien_de_parente_2.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.telephone_1_2.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.telephone_2_2.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.email_2.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.contact_primary_2.HTML>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="bg-grey-dark px-3">
+            <div class="row py-1">
+                <div class="col-12">
+                    <p class="m-0 text-center">
+                        <strong>
+                            <span class="text-white">Nom du diplôme/qualification</span>
+                            <span class="text-danger">*</span>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+            <div class="row py-3 bg-none">
+                <div class="col-sm-6 px-2">
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Année d'obtention</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.diplome_annee_1.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Niveau d'étude</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.diplome_niveau_1b.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Pays</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.diplome_pays_1.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Ecole</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.Ecole.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Détails</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.details.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 px-2">
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Spécialité</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.diplome_specialite_1.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Statut</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.Statut_Diplome.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-grey-dark px-3">
+            <div class="row py-1">
+                <div class="col-12">
+                    <p class="m-0 text-center">
+                        <strong>
+                            <span class="text-white">Personnes à charge</span>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+            <div class="row py-3 bg-none">
+                <div class="col-12 table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="text-center">
+                                <th>Lien de parenté</th>
+                                <th>Nom de famille</th>
+                                <th>Prénom</th>
+                                <th>Date de naissance</th>
+                                <th>Genre</th>
+                                <th>A charge fiscale</th>
+                                <th>A charge sécurité sociale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <$client.env.FormField.dependent_lien_de_parente_1.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_nom_1.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_prenom_1.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_DOB_1.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_sexe_1.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_fiscal_1.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_SS_1.HTML>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <$client.env.FormField.dependent_lien_de_parente_2.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_nom_2.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_prenom_2.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_DOB_2.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_sexe_2.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_fiscal_2.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_SS_2.HTML>
+                                </td>
+                            </tr>
+                            <tr class="additional-dependent">
+                                <td>
+                                    <$client.env.FormField.dependent_lien_de_parente_3.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_nom_3.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_prenom_3.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_DOB_3.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_sexe_3.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_fiscal_3.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_SS_3.HTML>
+                                </td>
+                            </tr>
+                            <tr class="additional-dependent">
+                                <td>
+                                    <$client.env.FormField.dependent_lien_de_parente_4.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_nom_4.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_prenom_4.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_DOB_4.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_sexe_4.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_fiscal_4.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_SS_4.HTML>
+                                </td>
+                            </tr>
+                            <tr class="additional-dependent">
+                                <td>
+                                    <$client.env.FormField.dependent_lien_de_parente_5.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_nom_5.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_prenom_5.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_DOB_5.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_sexe_5.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_fiscal_5.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_SS_5.HTML>
+                                </td>
+                            </tr>
+                            <tr class="additional-dependent">
+                                <td>
+                                    <$client.env.FormField.dependent_lien_de_parente_6.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_nom_6.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_prenom_6.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_DOB_6.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_sexe_6.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_fiscal_6.HTML>
+                                </td>
+                                <td>
+                                    <$client.env.FormField.enfant_SS_6.HTML>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <div class="d-flex justify-content-center">
+                                        <button id="remove-dependent" type="button" class="lifesuite__button">
+                                            <i class="fa fa-trash"></i>
+                                            <span class="mx-1">Remove</span>
+                                        </button>
+                                        <button id="add-dependent" type="button" class="lifesuite__button primary">
+                                            <i class="fa fa-plus"></i>
+                                            <span class="mx-1">Add</span>   
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="bg-grey-dark px-3">
+            <div class="row py-1">
+                <div class="col-12">
+                    <p class="m-0 text-center">
+                        <strong>
+                            <span class="text-white">Carte de travail</span>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+            <div class="row bg-none py-3">
+                <div class="col-sm-6 px-2">
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Type de carte</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.Type_de_carte.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Numéro de carte</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.Numero_de_carte.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Organisme de délivrance</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.Organisme_de_delivrance.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 px-2">
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Délivré le</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.delivre_le.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Expiration le</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.expiration_le.HTML>
+                        </div>
+                        <label class="col-sm-4 pt-2">Lieu de déliverance</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.Lieu_de_Deliverance.HTML>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Carte_Travail_Is_temporary</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.Carte_Travail_Is_temporary.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-grey-dark px-3 pb-3 mb-5">
+            <div class="row py-1">
+                <div class="col-12">
+                    <p class="m-0 text-center">
+                        <strong>
+                            <span class="text-white">Situation de handicap</span>
+                        </strong>
+                    </p>
+                </div>
+            </div>
+            <div class="row bg-none py-3">
+                <div class="col-sm-6 px-2">
+                    <div class="row">
+                        <label class="col-sm-4 pt-2">Êtes-vous reconnu travailleur en situation de handicap?</label>
+                        <div class="col-sm-8">
+                            <$client.env.FormField.question_ouverte.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.Employee_HR_Data.HTML>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.EUP_ZipCodeFR.HTML>
+    <$client.env.FormField.SSNO_Temp.HTML>
+    <$client.env.FormField.dependent_sections.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Fiche_Profil_-_SELIA/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Fiche_Profil_-_SELIA/js/typeahead.bundle.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Fiche_Profil_-_SELIA/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+(function(el) {
+    el.parent().find('input').prop('disabled', 'disabled');
+})($('.date-disabled'));
+
+const ROLES = {
+    'NEW_HIRE': '<$url.forWhom>'
+}
+const NEW_HIRE = '<$url.forWhom>';
+const CONFIG_PATH = "<$link;/main/RedCarpet/FormTemplates/Fiche_Profil_-_SELIA/js/config.json>";
+const DEFAULTS = {
+    Bureau_distributeur: '<$client.env.FormField.Bureau_distributeur.Value>',
+    No_INSEE_commune: '<$client.env.FormField.No_INSEE_commune.Value>'
+}
+</script>

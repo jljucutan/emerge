@@ -1,0 +1,343 @@
+{
+    "fields": [
+        {
+            "name": "Business_Title",
+            "validation": "required",
+            "title": "Business Card Title"
+        },
+        {
+            "name": "SystemTitle",
+            "validation": "required",
+            "title": "System Title"
+        },
+        {
+            "name": "SalaryGradeLvl",
+            "validation": "required",
+            "title": "Salary Grade"
+        },
+        {
+            "name": "Employee_Group_CD",
+            "validation": "required",
+            "title": "Employee Type"
+        },
+        {
+            "name": "Exempt",
+            "validation": "required",
+            "title": "Exempt Status"
+        },
+        {
+            "name": "JobType",
+            "validation": "required",
+            "title": "Part or Full-Time"
+        },
+        {
+            "name": "EnityName",
+            "validation": "required",
+            "title": "Entity Name"
+        },
+        {
+            "name": "EntityAddress",
+            "validation": "required",
+            "title": "Entity Address"
+        },
+        {
+            "name": "ContractEndDate",
+            "validation": "required,future-date",
+            "title": "Contract End Date",
+            "displayContainer": ".merge",
+            "validateByLocation": {
+                "SGP": {
+                    "display": true
+                },
+                "HKG": {
+                    "display": true
+                }
+            }
+        },
+        {
+            "name": "BuildingAddress",
+            "validation": "required",
+            "title": "Building Address (Work Location)",
+            "displayContainer": ".input_wrapper",
+            "validateByLocation": {
+                "IND": {
+                    "display": true
+                }
+            }
+        },
+        {
+            "name": "Currency_Code_new",
+            "validation": "required",
+            "title": "Currency Code"
+        },
+        {
+            "name": "Salary_Amount",
+            "validation": "regex-optional",
+            "regex": "(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$",
+            "message": "valid currency consisting of numbers, commas and/or periods.",
+            "title": "Annual Salary"
+        },
+        {
+            "name": "SalaryOffered",
+            "title": "Monthly Pay Rate Amount",
+            "validation": "required,regex-optional",
+            "regex": "(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$",
+            "message": "valid currency consisting of numbers, commas and/or periods."
+        },
+        {
+            "name": "eIP_Target_Pct",
+            "title": "Annual Incentive Plan Percentage (AIP)",
+            "validation": "regex-optional",
+            "regex": "^[0-9]+$",
+            "message": "consisting of numbers only"
+        },
+        {
+            "name": "SIP_Amount",
+            "title": "Sales Incentive Plan Amount (SIP)",
+            "validation": "regex-optional",
+            "regex": "(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$",
+            "message": "valid currency consisting of numbers, commas and/or periods."
+        },
+        {
+            "name": "NEW_HIRE_REST_STOCK_UNITS",
+            "title": "Restricted Stock Units (USD $ Amount)",
+            "validation": "regex-optional",
+            "regex": "(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$",
+            "message": "valid currency consisting of numbers, commas and/or periods."
+        },
+        {
+            "name": "Hire_on_Bonus_Eligible",
+            "targetlabel": "#Hire_on_Bonus_Eligible_label",
+            "validation": "required"
+        },
+        {
+            "name": "HIRE_ON_BONUS_AMOUNT",
+            "title": "Bonus Amount",
+            "validation": "required,regex-optional",
+            "regex": "(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$",
+            "message": "valid currency consisting of numbers, commas and/or periods."
+        },
+        {
+            "name": "Installment_Amount",
+            "title": "Installment Amount",
+            "validation": "required,regex-optional",
+            "regex": "(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$",
+            "message": "valid currency consisting of numbers, commas and/or periods."
+        },
+        {
+            "name": "Installment_Amount_1",
+            "title": "Installment Amount 1 (RCG Only)",
+            "validation": "regex-optional",
+            "regex": "(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$",
+            "message": "valid currency consisting of numbers, commas and/or periods."
+        },
+        {
+            "name": "Installment_Amount_2",
+            "title": "Installment Amount 2 (RCG Only)",
+            "validation": "regex-optional",
+            "regex": "(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$",
+            "message": "valid currency consisting of numbers, commas and/or periods."
+        },
+        {
+            "name": "Installment_Amount_3",
+            "title": "Installment Amount 3 (RCG Only)",
+            "validation": "regex-optional",
+            "regex": "(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$",
+            "message": "valid currency consisting of numbers, commas and/or periods."
+        },
+        {
+            "name": "Variable_Bonus",
+            "validation": "required",
+            "targetlabel": "#Variable_Bonus_label",
+            "displayContainer": ".input_wrapper",
+            "validateByLocation": {
+                "AUS": {
+                    "display": false
+                },
+                "HKG": {
+                    "display": false
+                },
+                "JPN": {
+                    "display": false
+                },
+                "THA": {
+                    "display": false
+                },
+                "KOR": {
+                    "display": false
+                },
+                "SGP": {
+                    "display": false
+                }
+            }
+        },
+        {
+            "staticName": "Comp_Currency_pseudo",
+            "title": "Currency Code",
+            "validation": "required",
+            "displayContainer": ".merge",
+            "validateByLocation": {
+                "AUS": {
+                    "display": false
+                },
+                "HKG": {
+                    "display": false
+                },
+                "JPN": {
+                    "display": false
+                },
+                "THA": {
+                    "display": false
+                },
+                "KOR": {
+                    "display": false
+                },
+                "SGP": {
+                    "display": false
+                }
+            }
+        },
+        {
+            "name": "Comp_Target_Amount",
+            "title": "Target Amount",
+            "validation": "required,regex-optional",
+            "regex": "(?=.*?\\d)^\\$?(([1-9]\\d{0,2}(,\\d{3})*)|\\d+)?(\\.\\d{1,2})?$",
+            "message": "valid currency consisting of numbers, commas and/or periods."
+        },
+        {
+            "name": "Compensation_Target_Percentage",
+            "displayContainer": ".merge",
+            "title": "Target Percentage",
+            "validation": "required,regex-optional",
+            "regex": "^\\d(\\d)?(\\d)?$",
+            "message": "valid 3 digit number.",
+            "validateByLocation": {
+                "AUS": {
+                    "display": false
+                },
+                "HKG": {
+                    "display": false
+                },
+                "JPN": {
+                    "display": false
+                },
+                "THA": {
+                    "display": false
+                },
+                "KOR": {
+                    "display": false
+                },
+                "SGP": {
+                    "display": false
+                }
+            }
+        },
+        {
+            "staticName": "HIRE_ON_BONUS_CRNCY_CD_pseudo",
+            "displayContainer": ".merge",
+            "title": "Currency Code",
+            "validation": "required"
+        },
+        {
+            "name": "Repayment_Agreement_Eligible",
+            "displayContainer": ".input_wrapper",
+            "validation": "required",
+            "targetlabel": "#Repayment_Agreement_Eligible_label",
+            "validateByLocation": {
+                "HKG": {
+                    "display": true
+                },
+                "JPN":  {
+                    "display": true
+                },
+                "THA": {
+                    "display": true
+                },
+                "KOR": {
+                    "display": true
+                }
+            }
+        },
+        {
+            "name": "Introductory_RampUp_Period_Eligible",
+            "displayContainer": ".input_wrapper",
+            "validation": "required",
+            "targetlabel": "#Introductory_RampUp_Period_Eligible_label",
+            "validateByLocation": {
+                "HKG": {
+                    "display": true,
+                },
+                "JPN": {
+                    "display": true,
+                },
+                "SGP": {
+                    "display": true,
+                },
+                "AUS": {
+                    "display": true,
+                }
+            }
+        },
+        {
+            "name": "Eligible_Sales_Incentive",
+            "displayContainer": ".input_wrapper",
+            "validation": "required",
+            "targetlabel": "#Eligible_Sales_Incentive_label",
+            "validateByLocation": {
+                "AUS": {
+                    "display": false
+                },
+                "HKG": {
+                    "display": false
+                },
+                "JPN": {
+                    "display": false
+                },
+                "KOR": {
+                    "display": false
+                },
+                "SGP": {
+                    "display": false
+                },
+                "THA": {
+                    "display": false
+                }
+            }
+        },
+        {
+            "name": "ProbationPeriodRequired",
+            "displayContainer": ".input_wrapper",
+            "validation": "required",
+            "targetlabel": "#ProbationPeriodRequired_label"
+        },
+        {
+            "name": "",
+        },
+        {
+            "name": "",
+        },
+        {
+            "name": "",
+        },
+        {
+            "name": "",
+        },
+        {
+            "name": "",
+        },
+        {
+            "name": "",
+        },
+        {
+            "name": "",
+        },
+        {
+            "name": "",
+        },
+        {
+            "name": "",
+        },
+    ],
+    "sections": {
+    }
+}

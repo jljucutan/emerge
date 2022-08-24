@@ -1,0 +1,354 @@
+<!-- Main QA Area --> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+                             </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','assignee2','modal','over','sv', 'Date_DataEntry');xbObj('eSignature1').value='';">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date_DataEntry');}">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                                           </div> 
+                             </div> 
+              </div> 
+</div> 
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+    showScreen('over') 
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+  
+
+<!--/////////////////////////2nd SIGNATURE/////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal2" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+                             </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','assignee','modal2','over','sv2', 'Date_Approved');xbObj('eSignature2').value='';">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','Date_Approved');}">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                                           </div> 
+                             </div> 
+              </div> 
+</div> 
+<SCRIPT> 
+    showScreen('over') 
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+  
+<div class="modal" style="display:block; background: #002E6D;"> 
+              <div class="fb-spinner"> 
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+              </div> 
+</div> 
+  
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+  
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form''> 
+    <div style="display:none;"> 
+        <$client.env.FormField.Form_Name.prompt> 
+        <$client.env.FormField.Form_Name.HTML> 
+        <$client.env.FormField.Form_Type.prompt> 
+        <$client.env.FormField.Form_Type.HTML> 
+        <$client.env.FormField.Form_Owner.prompt> 
+        <$client.env.FormField.Form_Owner.HTML> 
+        <$client.env.FormField.Form_CreateDate.prompt> 
+        <$client.env.FormField.Form_CreateDate.HTML> 
+        <$client.env.FormField.Form_Completed.prompt> 
+        <$client.env.FormField.Form_Completed.HTML> 
+        <$client.env.FormField.Form_Delivered.prompt> 
+        <$client.env.FormField.Form_Delivered.HTML> 
+        <$client.env.FormField.Form_TaskId.prompt> 
+        <$client.env.FormField.Form_TaskId.HTML> 
+        <$client.env.FormField.display_version.HTML> 
+ 
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+<$client.env.FormField.a01_Last.prompt>
+<$client.env.FormField.a02_First.prompt>
+<$client.env.FormField.a03_Middle.prompt>
+<$client.env.FormField.a04_Social_Security_No.prompt>
+<$client.env.FormField.a05_Status_dropdown.prompt>
+<$client.env.FormField.a06_Hire_Date.prompt>
+<$client.env.FormField.b01_Process_Level_dropdown.prompt>
+<$client.env.FormField.b02_Department_dropdown.prompt>
+<$client.env.FormField.b03_User_Level_dropdown.prompt>
+<$client.env.FormField.b04_Job_Code_dropdown.prompt>
+<$client.env.FormField.b05_Location_dropdown.prompt>
+<$client.env.FormField.c01_Salary_Class_dropdown.prompt>
+<$client.env.FormField.c02_Pay_Frequency_dropdown.prompt>
+<$client.env.FormField.c03_Rate_of_Pay.prompt>
+<$client.env.FormField.c04_Annual_Hours.prompt>
+<$client.env.FormField.c05_FTE.prompt>
+<$client.env.FormField.c06_Shift_dropdown.prompt>
+<$client.env.FormField.c07_Exempt_from_OT_dropdown.prompt>
+<$client.env.FormField.c08_Pay_Plan_dropdown.prompt>
+<$client.env.FormField.c09_Auto_Time_Record_dropdown.prompt>
+<$client.env.FormField.c10_Expense_Acct_Unit_dropdown.prompt>
+<$client.env.FormField.d01_Telephone.prompt>
+<$client.env.FormField.d02_Extension.prompt>
+<$client.env.FormField.d03_Office_Email.prompt>
+<$client.env.FormField.d04_Security_Level.prompt>
+<$client.env.FormField.d05_Security_Location_dropdown.prompt>
+<$client.env.FormField.d06_Hire_Source_dropdown.prompt>
+<$client.env.FormField.d07_Workers_Comp_State_dropdown.prompt>
+<$client.env.FormField.e01_Graduation_Year.prompt>
+<$client.env.FormField.e02_Comp_Year.prompt>
+<$client.env.FormField.e03_Partner_Year.prompt>
+<$client.env.FormField.e04_Lawyer_Date_Hire.prompt>
+<$client.env.FormField.e05_Lawyer_Date_Ptr_INC.prompt>
+<$client.env.FormField.e06_Lawyer_Date_Ptr_CAP.prompt>
+<$client.env.FormField.e07_Evaluation_Process_dropdown.prompt>
+<$client.env.FormField.e08_Shift_dropdown.prompt>
+<$client.env.FormField.e09_Experience_Year.prompt>
+<$client.env.FormField.e10_Education_Level_dropdown.prompt>
+<$client.env.FormField.e11_Primary_FTE.prompt>
+<$client.env.FormField.e12_Secondary_FTE.prompt>
+<$client.env.FormField.e13_Secondary_Department_dropdown.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.Date_Approved.prompt>
+<$client.env.FormField.Signature_DataEntry.prompt>
+<$client.env.FormField.Date_DataEntry.prompt>
+<$client.env.FormField.EE.prompt>
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.Signature_DataEntry_Verification.prompt>
+
+
+    </div> 
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+  
+<div class="container-fluid">  
+              <div class="form-group">  
+ 
+                  <!-- Replace With eForm Specific HTML --> 
+ 
+                <div class="row">
+                  <div class="col-xs-9" style="border-bottom: solid 4px #999;margin-bottom: 10px;"><h3 class="text-bold">EMPLOYMENT FORM</h3></div>
+                  <div class="col-xs-3 text-right"><img src="Akin-Gump-logo.png" style="max-width: 90%;"></div>
+                </div>
+                
+                <div class="row bordered">
+                  <div class="row">
+                    <div class="col-md-12 text-center text-bold subheader"><h4>HR II.I – Main Page</h4></div>
+<div class="section-content">
+                    <div class="col-md-4"><label><strong>Name</strong> <em>(Last)</em></label> <$client.env.FormField.a01_Last.HTML></div>
+                    <div class="col-md-4"><label><em>(First)</em></label> <$client.env.FormField.a02_First.HTML></div>
+                    <div class="col-md-2"><label><em>(Middle)</em></label> <$client.env.FormField.a03_Middle.HTML></div>
+                    <div class="col-md-2"><label><strong>Social Security No.</strong></label> <$client.env.FormField.a04_Social_Security_No.HTML></div>
+                    <div class="col-md-3"><label><strong>Status</strong></label> <$client.env.FormField.a05_Status_dropdown.HTML></div>
+                    <div class="col-md-9"><label><strong>Hire Date</strong> <em>(mm/dd/yyyy)</em></label> <$client.env.FormField.a06_Hire_Date.HTML></div>
+</div>
+                  </div><br>
+                  
+                  <div class="row">
+                    <div class="col-md-12 text-center text-bold subheader"><h4>HR II.I – Assignment Page</h4></div>
+<div class="section-content">
+                    <div class="col-md-2"><label><strong>Process Level</strong></label> <$client.env.FormField.b01_Process_Level_dropdown.HTML></div>
+                    <div class="col-md-3"><label><strong>Department</strong></label> <$client.env.FormField.b02_Department_dropdown.HTML></div>
+                    <div class="col-md-2"><label><strong>User Level</strong></label> <$client.env.FormField.b03_User_Level_dropdown.HTML></div>
+                    <div class="col-md-3"><label><strong>Job Code</strong></label> <$client.env.FormField.b04_Job_Code_dropdown.HTML></div>
+                    <div class="col-md-2"><label><strong>Location</strong></label> <$client.env.FormField.b05_Location_dropdown.HTML></div>
+</div>
+                  </div><br>
+                  <div class="row">
+                    <div class="col-md-12 text-center text-bold subheader"><h4>HR II.I – Pay Page</h4></div>
+<div class="section-content">
+<div class="row">
+                    <div class="col-md-4"><label><strong>Salary Class</strong></label> <$client.env.FormField.c01_Salary_Class_dropdown.HTML></div>
+                    <div class="col-md-4"><label><strong>Pay Frequency</strong></label> <$client.env.FormField.c02_Pay_Frequency_dropdown.HTML></div>
+                    <div class="col-md-4"><label><strong>Rate of Pay</strong></label> <$client.env.FormField.c03_Rate_of_Pay.HTML></div>
+    </div>
+<div class="row">                
+                     <div class="col-md-4"><label><strong>Annual Hours</strong></label> <$client.env.FormField.c04_Annual_Hours.HTML></div>
+                    <div class="col-md-4"><label><strong>FTE</strong></label> <$client.env.FormField.c05_FTE.HTML></div>
+                    <div class="col-md-4"><label><strong>Shift</strong></label> <$client.env.FormField.c06_Shift_dropdown.HTML></div>
+                    </div>
+<div class="row">
+                     <div class="col-md-3"><label><strong>Exempt from OT</strong></label> <$client.env.FormField.c07_Exempt_from_OT_dropdown.HTML></div>
+                    <div class="col-md-3"><label><strong>Pay Plan</strong></label> <$client.env.FormField.c08_Pay_Plan_dropdown.HTML></div>
+                    <div class="col-md-3"><label><strong>Auto Time Record</strong></label> <$client.env.FormField.c09_Auto_Time_Record_dropdown.HTML></div>
+                    <div class="col-md-3"><label><strong>Expense Acct. Unit</strong></label> <$client.env.FormField.c10_Expense_Acct_Unit_dropdown.HTML></div>
+</div>
+</div>
+                  </div><br>
+                  
+                  <div class="row">
+                    <div class="col-md-12 text-center text-bold subheader"><h4>HR II.I – Work Page</h4></div>
+<div class="section-content">
+<div class="row">
+                    <div class="col-md-4"><label><strong>Telephone</strong></label> <$client.env.FormField.d01_Telephone.HTML></div>
+                    <div class="col-md-4"><label><strong>Extension</strong></label> <$client.env.FormField.d02_Extension.HTML></div>
+                    <div class="col-md-4"><label><strong>Office Email</strong></label> <$client.env.FormField.d03_Office_Email.HTML></div>
+    </div>
+<div class="row">                
+                    <div class="col-md-4"><label><strong>Security Level</strong></label> <$client.env.FormField.d04_Security_Level.HTML></div>
+                    <div class="col-md-4"><label><strong>Security Location</strong></label> <$client.env.FormField.d05_Security_Location_dropdown.HTML></div>
+                    <div class="col-md-4"><label><strong>Hire Source</strong> <em>(Non-Lawyers Only)</em></label> <$client.env.FormField.d06_Hire_Source_dropdown.HTML></div>
+</div>
+</div>
+                  </div><br>
+                  
+                  <div class="row">
+                    <div class="col-md-12 text-center text-bold subheader"><h4>HR II.I – Tax Page</h4></div>
+<div class="section-content">
+                    <div class="col-xs-4"><label><strong>Workers Comp State</strong></label> <$client.env.FormField.d07_Workers_Comp_State_dropdown.HTML></div>
+                    <div class="col-xs-8">&nbsp;</div>
+</div>
+                  </div><br>
+                  
+                    <div class="row">
+                    <div class="col-md-12 text-center text-bold subheader"><h4>HR II.I – Assignment Page</h4></div>
+<div class="section-content">
+<div class="row">
+                       <div class="col-md-4"><label><strong>Graduation Year</strong> <em>(Lawyers Only)</em></label> <$client.env.FormField.e01_Graduation_Year.HTML></div>
+                      <div class="col-md-4"><label><strong>Comp Year</strong> <em>(Lawyers Only)</em></label> <$client.env.FormField.e02_Comp_Year.HTML></div>
+                      <div class="col-md-4"><label><strong>Partner Year</strong> <em>(Lawyers Only)</em></label> <$client.env.FormField.e03_Partner_Year.HTML></div>
+      </div>
+<div class="row">                
+                    <div class="col-md-2"><label><strong>Lawyer Date – Hire</strong><em><center>(mm/dd/yyyy)</center></em></label> <$client.env.FormField.e04_Lawyer_Date_Hire.HTML></div>
+                    <div class="col-md-3"><label><strong>Lawyer Date – Ptr INC</strong><em><center>(mm/dd/yyyy)</center></em></label> <$client.env.FormField.e05_Lawyer_Date_Ptr_INC.HTML></div>
+                    <div class="col-md-2"><label><strong>Lawyer Date – Ptr CAP</strong><em><center>(mm/dd/yyyy)</center></em></label> <$client.env.FormField.e06_Lawyer_Date_Ptr_CAP.HTML></div>
+                    <div class="col-md-3"><label><strong>Evaluation Process</strong><em><center>&nbsp;</center></em></label> <$client.env.FormField.e07_Evaluation_Process_dropdown.HTML></div>
+                    <div class="col-md-2"><label><strong>Shift</strong><em><center>&nbsp;</center></em></label> <$client.env.FormField.e08_Shift_dropdown.HTML></div>
+              </div>
+<div class="row">        
+                      
+                     <div class="col-md-2"><label><strong>Experience Year</strong> <br>(“YYYY” format)
+[Secretaries, Paralegals, Proj Assts Only]</label> <$client.env.FormField.e09_Experience_Year.HTML></div>
+                    <div class="col-md-3"><label><strong>Education Level</strong>
+<br>[Paralegals, Proj Assts Only]</label> <$client.env.FormField.e10_Education_Level_dropdown.HTML></div>
+                    <div class="col-md-2"><label><strong>Primary FTE</strong>
+<br>(“X.XX” format)</label> <$client.env.FormField.e11_Primary_FTE.HTML></div>
+                    <div class="col-md-3"><label><strong>Secondary FTE</strong> <br>(“X.XX” format)
+[Non-Lawyers Only]</label> <$client.env.FormField.e12_Secondary_FTE.HTML></div>
+                    <div class="col-md-2"><label><strong>Secondary Department</strong>
+<br>[Non-Lawyers Only]</label> <$client.env.FormField.e13_Secondary_Department_dropdown.HTML></div>
+</div>
+</div>
+                  </div>
+                  
+                </div><!--end of Bordered-->
+                <br>
+                <div class="row bordered">
+                  <div class="col-md-12 text-center text-bold subheader"><h4>Print for File and Sign</h4></div><br>
+<div class="section-content">
+
+<div class="row">
+                  <div class="col-sm-2">&nbsp;</div> <div class="col-sm-6"><b>Signature</b></div> <div class="col-sm-4"><b>Date</b> <em>(mm/dd/yyyy)</em></div>
+                  </div>
+
+<div class="row">
+                  <div class="col-sm-2"> <div class="SigSectionText"><em><b>Approved By:</b></em></div></div> <div class="col-sm-6"><$client.env.FormField.Signature.html></div> <div class="col-sm-4"> <$client.env.FormField.Date_Approved.HTML></div>
+                  </div><br>
+
+<div class="row">
+                  <div class="col-sm-2">&nbsp;</div> <div class="col-sm-6"><b>Signature</b></div> <div class="col-sm-4"><b>Date</b> <em>(mm/dd/yyyy)</em></div>
+                  </div>
+
+<div class="row">
+                  <div class="col-sm-2"> <div class="SigSectionText"><em><b>Data Entry By:</b></em></div></div> <div class="col-sm-6"><$client.env.FormField.Signature_DataEntry.html></div> <div class="col-sm-4"> <$client.env.FormField.Date_DataEntry.HTML></div>
+                  </div><br><br>
+
+                   <div class="row">
+                  <div class="col-sm-2"><div class="SigSectionText"><b>EE#:</b></div></div> <div class="col-sm-6"><$client.env.FormField.EE.html></div> <div class="col-sm-4">&nbsp;</div>
+                 </div>
+
+                </div><!--end of Bordered-->
+                  <br><hr class="lifesuite__hr"> 
+                  <div class="row" id="formButtons" style="display: none;"> 
+                      <div class="lifesuite__clearfix lifesuite__float-right">                
+                              <$client.env.FormButtons> 
+                       </div>              
+                  </div> 
+              </div> 
+</div> 
+<!--End of container-fluid-->
+<div style="display:none"> 
+     <$client.env.FormField.SignatureVerification.HTML> 
+     <$client.env.FormField.HRManager.HTML> 
+     <$client.env.FormField.SignatureVerification2.HTML> 
+<$client.env.FormField.assignee.HTML> 
+<$client.env.FormField.assignee2.HTML> 
+</div> 
+</form> 
+<SCRIPT> 
+    ChangeCalendarIcons(); //for popup calendar  
+
+
+  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+/* RESPONSIVE eFORM BUTTONS STYLE */ 
+  
+$(window).load(function() { 
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+        $("#buttonCancel").addClass("lifesuite__button"); 
+        $('#buttonCancel').attr('id','ButtonCancel'); 
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonSave").addClass("lifesuite__button primary"); 
+        $('#buttonSave').attr('id','ButtonSave'); 
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary"); 
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete'); 
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+        $("#buttonPrint").addClass("lifesuite__button"); 
+        $('#buttonPrint').attr('id','ButtonPrint'); 
+        <$client.env.eval((client.role.AR_and_Devt>0)?'true':'false')> && $('#rcReportsDownloadButtonContainer').hide();
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed"); 
+        $("#buttonPreviewDelete").addClass("lifesuite__button"); 
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete'); 
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonPreviewSave").addClass("lifesuite__button primary"); 
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave'); 
+         
+       document.getElementById('formButtons').style.display = "block"; 
+       $("input[type=text]:not(.inline)").addClass('lifesuite__text-input');
+       $("input[type=text].inline").addClass('lifesuite__text-input_inline');
+        $("select:not(.inline)").addClass('lifesuite__select-input');
+       $("select.inline").addClass('lifesuite__select-input_inline');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $('.inputprompt').addClass('lifesuite__input-label lifesuite__input—block');
+
+}); 
+  
+$( window ).resize(function() { 
+
+document.getElementById('over').style.width=''; 
+
+}); 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+ 
+</SCRIPT>
+
+<script>
+<$client.env.eval((client.tEventManagers_Person_29.UserGuid==account.userguid)?'disableCalButton(\'signDate\')':'')> 
+<$client.env.eval((client.tEventManagers_Person_20.UserGuid==account.userguid)?'disableCalButton(\'Lawson\')':'')> 
+
+document.getElementById("assignee").value= "<$client.tEventManagers_Person_20.First_Name> <$client.tEventManagers_Person_20.Last_Name>"; 
+document.getElementById("assignee2").value= "<$client.tEventManagers_Person_29.First_Name> <$client.tEventManagers_Person_29.Last_Name>";
+
+</script>

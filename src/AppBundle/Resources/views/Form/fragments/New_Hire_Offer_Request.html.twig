@@ -1,0 +1,595 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+		<$client.env.FormField.Form_Name.prompt>
+		<$client.env.FormField.Form_Name.HTML>
+		<$client.env.FormField.Form_Type.prompt>
+		<$client.env.FormField.Form_Type.HTML>
+		<$client.env.FormField.Form_Owner.prompt>
+		<$client.env.FormField.Form_Owner.HTML>
+		<$client.env.FormField.Form_CreateDate.prompt>
+		<$client.env.FormField.Form_CreateDate.HTML>
+		<$client.env.FormField.Form_Completed.prompt>
+		<$client.env.FormField.Form_Completed.HTML>
+		<$client.env.FormField.Form_Delivered.prompt>
+		<$client.env.FormField.Form_Delivered.HTML>
+		<$client.env.FormField.Form_TaskId.prompt>
+		<$client.env.FormField.Form_TaskId.HTML>
+		<$client.env.FormField.display_version.HTML>
+		<!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+		<$client.env.FormField.Approval_Date_1.prompt>
+		<$client.env.FormField.Approval_Date_2.prompt>
+		<$client.env.FormField.Approval_Date_3.prompt>
+		<$client.env.FormField.Approval_Date_4.prompt>
+		<$client.env.FormField.Approval_Date_5.prompt>
+		<$client.env.FormField.Approval_Date_6.prompt>
+		<$client.env.FormField.Approval_Date_7.prompt>
+		<$client.env.FormField.Approval_Decision_1.prompt>
+		<$client.env.FormField.Approval_Decision_2.prompt>
+		<$client.env.FormField.Approval_Decision_3.prompt>
+		<$client.env.FormField.Approval_Decision_4.prompt>
+		<$client.env.FormField.Approval_Decision_5.prompt>
+		<$client.env.FormField.Approval_Decision_6.prompt>
+		<$client.env.FormField.Approval_Decision_7.prompt>
+		<$client.env.FormField.Approver_1.prompt>
+		<$client.env.FormField.Approver_2.prompt>
+		<$client.env.FormField.Approver_3.prompt>
+		<$client.env.FormField.Approver_4.prompt>
+		<$client.env.FormField.Approver_5.prompt>
+		<$client.env.FormField.Approver_6.prompt>
+		<$client.env.FormField.Approver_7.prompt>
+		<$client.env.FormField.Comments.prompt>
+		<$client.env.FormField.Initial_1.prompt>
+		<$client.env.FormField.Initial_2.prompt>
+		<$client.env.FormField.Initial_3.prompt>
+		<$client.env.FormField.Initial_4.prompt>
+		<$client.env.FormField.Initial_5.prompt>
+		<$client.env.FormField.Initial_6.prompt>
+		<$client.env.FormField.Initial_7.prompt>
+		<$client.env.FormField.Resume_URL.prompt>
+		<$client.env.FormField.LinkedIn_URL.prompt>
+		<$client.env.FormField.a01_Todays_Date.prompt>
+		<$client.env.FormField.a02_Intended_Start_Date.prompt>
+		<$client.env.FormField.a03_Full_Legal_Name.prompt>
+		<$client.env.FormField.a04_Preferred_Name.prompt>
+		<$client.env.FormField.a05_Address.prompt>
+		<$client.env.FormField.a06_City.prompt>
+		<$client.env.FormField.a07_State.prompt>
+		<$client.env.FormField.a08_Zip.prompt>
+		<$client.env.FormField.a09_Home_Phone.prompt>
+		<$client.env.FormField.a10_Cell_Phone.prompt>
+		<$client.env.FormField.a11_Email.prompt>
+		<$client.env.FormField.a12_Job_Title.prompt>
+		<$client.env.FormField.a13_Hire_Type.prompt>
+		<$client.env.FormField.a14_Non_Exempt_Pay_Houry.prompt>
+		<$client.env.FormField.a15_Non_Exempt_Pay_Annually.prompt>
+		<$client.env.FormField.a16_Exempt_Pay_BiWeekly.prompt>
+		<$client.env.FormField.a17_Exempt_Pay_Annually.prompt>
+		<$client.env.FormField.a18_Bonus_Plan.prompt>
+		<$client.env.FormField.a19_Work_Schedule.prompt>
+		<$client.env.FormField.a20_First_Friday_Off.prompt>
+		<$client.env.FormField.a21_Hiring_Manager.prompt>
+		<$client.env.FormField.a22_Cost_Center.prompt>
+		<$client.env.FormField.a23_Work_Address_Street.prompt>
+		<$client.env.FormField.a24_Work_Address_City.prompt>
+		<$client.env.FormField.a25_Work_Address_State.prompt>
+		<$client.env.FormField.a26_Work_Address_Zip.prompt>
+		<$client.env.FormField.a27_Business_Line.prompt>
+		<$client.env.FormField.a28_Region.prompt>
+		<$client.env.FormField.a29_Atomic_Team.prompt>
+		<$client.env.FormField.a30_Referral_Source.prompt>
+		<$client.env.FormField.a31_Cultural_Advocate.prompt>
+		<$client.env.FormField.a32_Special_Instructions.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+	<header class="row mb-10">
+		<div class="col-lg-12">
+			<div class="img-header center-block">
+				<img src="<$link;/map_images/main/RedCarpet/FormTemplates/New_Hire_Offer_Request/img/roth-staffing-logo.jpg>" alt="Roth Staffing Logo" class="img-responsive">
+			</div>
+		</div>
+	</header>
+	<div class="row">
+		<div class="col-lg-12">
+			<h3 class="text-center mb-5">
+				<strong>NEW HIRE OFFER REQUEST FORM</strong>
+			</h3>
+			<p class="text-center text-red mb-20">
+				<strong>CONFIDENTIAL</strong>
+			</p>
+			<p>
+				<em><strong>Managers</strong>: Please complete steps 1 and 2 below. Make sure you are entering the correct information to avoid delays in the approval process. Contact <a href="mailto:onboarding@rothstaffing.com">onboarding@rothstaffing.com</a> if you have questions on how to complete this form.</em>
+			</p>
+			<p class="text-red">
+				PLEASE NOTE: Completion of this form does not constitute approval of the offer. DO NOT verbally or in writing make an offer to a candidate until instructed by Human Resources. The candidate cannot start until the Employment Agreement is signed.
+			</p>
+		</div>
+	</div>
+
+	<div class="row box">
+		<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+			<strong>Today's Date</strong>
+			<$client.env.FormField.a01_Todays_Date.HTML>
+		</div>
+		<div class="col-lg-6 col-sm-6 col-xs-12">
+			<strong>Intended Start Date*</strong>
+			<span class="text-red">Select a Monday start date</span>
+			<$client.env.FormField.a02_Intended_Start_Date.HTML>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<p>
+				<small>
+					<em>* For a start date that does not commence on a Monday, please enter a reason in the <strong>Special Instructions</strong>.</em>
+				</small>
+			</p>
+			<h4 class="text-seafoam">
+				<strong>
+					Step 1: New Hire Information
+				</strong>
+			</h4>
+		</div>
+	</div>
+	<div class="box mb-20">
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Full Legal Name</strong>
+				<$client.env.FormField.a03_Full_Legal_Name.HTML>
+			</div>
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<strong>Preferred Name/Nickname</strong>
+				<$client.env.FormField.a04_Preferred_Name.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Address</strong>
+				<$client.env.FormField.a05_Address.HTML>
+			</div>
+			<div class="col-lg-3 col-sm-3 col-xs-12 b-right">
+				<strong>City</strong>
+				<$client.env.FormField.a06_City.HTML>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-12 b-right">
+				<strong>State</strong>
+				<$client.env.FormField.a07_State.HTML>
+			</div>
+			<div class="col-lg-1 col-sm-1 col-xs-12">
+				<strong>Zip</strong>
+				<$client.env.FormField.a08_Zip.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Home Phone</strong>
+				<$client.env.FormField.a09_Home_Phone.HTML>
+			</div>
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<strong>Cell Phone</strong>
+				<$client.env.FormField.a10_Cell_Phone.HTML>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<strong>Email Address</strong>
+				<$client.env.FormField.a11_Email.HTML>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h4 class="text-seafoam">
+				<strong>
+					Step 2: Job Information
+				</strong>
+			</h4>
+		</div>
+	</div>
+
+	<div class="box mb-20">
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Resume URL</strong>
+				<$client.env.FormField.Resume_URL.HTML>
+			</div>
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<strong>LinkedIn URL</strong>
+				<$client.env.FormField.LinkedIn_URL.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Job Title</strong>
+				<$client.env.FormField.a12_Job_Title.HTML>
+			</div>
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<strong>Hire Type</strong>
+				<$client.env.FormField.a13_Hire_Type.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-12">
+				<p>
+					<strong>Salary/Pay</strong><br>
+					<em>For Non-Exempt positions, please indicate the Hourly and Annual rate. For Exempt positions, please indicate the Bi-Weekly and Annual rate.</em>
+				</p>
+				<div class="row">
+					<div class="col-lg-6 col-sm-6 col-xs-12">
+						<strong>
+							<u>Non-Exempt Pay:</u>
+						</strong>
+						<div class="form-group">
+							<div class="i-block v-middle">$</div>
+							<div class="i-block v-middle">
+								<$client.env.FormField.a14_Non_Exempt_Pay_Houry.HTML>
+							</div>
+							<div class="i-block v-middle">Hourly</div>
+						</div>
+						<div class="form-group">
+							<div class="i-block v-middle">$</div>
+							<div class="i-block v-middle">
+								<$client.env.FormField.a15_Non_Exempt_Pay_Annually.HTML>
+							</div>
+							<div class="i-block v-middle">Annually</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-sm-6 col-xs-12">
+						<strong>
+							<u>Exempt Pay:</u>
+						</strong>
+						<div class="form-group">
+							<div class="i-block v-middle">$</div>
+							<div class="i-block v-middle">
+								<$client.env.FormField.a16_Exempt_Pay_BiWeekly.HTML>
+							</div>
+							<div class="i-block v-middle">Bi-Weekly</div>
+						</div>
+						<div class="form-group">
+							<div class="i-block v-middle">$</div>
+							<div class="i-block v-middle">
+								<$client.env.FormField.a17_Exempt_Pay_Annually.HTML>
+							</div>
+							<div class="i-block v-middle">Annually</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-12">
+				<p>
+					<strong>Bonus Plan</strong><br>
+					<em>Please select the Bonus Plan offered from the dropdown, if applicable. If no Bonus Plan applies, please select None.</em>
+				</p>
+				<div class="i-block">
+					<$client.env.FormField.a18_Bonus_Plan.HTML>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-12">
+				<p>
+					<strong>Work Schedule</strong><br>
+					<em>Please select the work schedule that the candidate will be electing (this will be used to send the appropriate Schedule Agreement to the candidate). Do not select a 9/80 schedule if your branch is not 9/80 eligible. Contact HR if you have questions on what to select.</em>
+				</p>
+				<div class="mb-10 text-center">
+					<div class="i-block">
+						<$client.env.FormField.a19_Work_Schedule.HTML>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-12">
+				<strong>*If you selected “Candidate is electing a 9/80 work schedule” above, please enter the date of their first Friday off:</strong>
+				<$client.env.FormField.a20_First_Friday_Off.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Hiring Manager</strong>
+				<$client.env.FormField.a21_Hiring_Manager.HTML>
+			</div>
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<strong>Cost Center</strong>
+				<$client.env.FormField.a22_Cost_Center.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<strong>Work Address (Street, City, State, Zip):</strong>
+				<$client.env.FormField.a23_Work_Address_Street.HTML>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-12">
+				<strong>City</strong>
+				<$client.env.FormField.a24_Work_Address_City.HTML>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-12">
+				<strong>State</strong>
+				<$client.env.FormField.a25_Work_Address_State.HTML>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-12">
+				<strong>Zip</strong>
+				<$client.env.FormField.a26_Work_Address_Zip.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Business Line</strong>
+				<$client.env.FormField.a27_Business_Line.HTML>
+			</div>
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<strong>Region</strong>
+				<$client.env.FormField.a28_Region.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Atomic Team</strong>
+				<$client.env.FormField.a29_Atomic_Team.HTML>
+			</div>
+			<div class="col-lg-6 col-sm-6 col-xs-12">
+				<strong>Referral Source</strong>
+				<$client.env.FormField.a30_Referral_Source.HTML>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<strong>Cultural Advocate</strong>
+				<$client.env.FormField.a31_Cultural_Advocate.HTML>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h4>
+				<strong>Special Instructions</strong>
+			</h4>
+			<p>
+				<em>Additional comments can be added here. If you selected a start date that does not commence on a Monday, please enter a reason below. You can also use this space to indicate any additional/special verbiage to be included in the Employment Agreement.</em>
+			</p>
+		</div>
+	</div>
+	<div class="row mb-20 box">
+		<div class="col-lg-12">
+			<$client.env.FormField.a32_Special_Instructions.HTML>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h4 class="text-seafoam">
+				<strong>Step 3: Approvals</strong>
+			</h4>
+		</div>
+	</div>
+	<div class="box mb-10">
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Approver 1</strong>
+				<$client.env.FormField.Approver_1.HTML>
+			</div>
+			<div class="col-lg-3 col-sm-3 col-xs-12 b-right">
+				<strong>Approval Decision</strong>
+				<$client.env.FormField.Approval_Decision_1.HTML>
+			</div>
+			<div class="col-lg-1 col-sm-1 col-xs-12 b-right">
+				<strong>Initial</strong>
+				<$client.env.FormField.Initial_1.HTML>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-12">
+				<strong>Date</strong>
+				<$client.env.FormField.Approval_Date_1.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Approver 2</strong>
+				<$client.env.FormField.Approver_2.HTML>
+			</div>
+			<div class="col-lg-3 col-sm-3 col-xs-12 b-right">
+				<strong>Approval Decision</strong>
+				<$client.env.FormField.Approval_Decision_2.HTML>
+			</div>
+			<div class="col-lg-1 col-sm-1 col-xs-12 b-right">
+				<strong>Initial</strong>
+				<$client.env.FormField.Initial_2.HTML>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-12">
+				<strong>Date</strong>
+				<$client.env.FormField.Approval_Date_2.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Approver 3</strong>
+				<$client.env.FormField.Approver_3.HTML>
+			</div>
+			<div class="col-lg-3 col-sm-3 col-xs-12 b-right">
+				<strong>Approval Decision</strong>
+				<$client.env.FormField.Approval_Decision_3.HTML>
+			</div>
+			<div class="col-lg-1 col-sm-1 col-xs-12 b-right">
+				<strong>Initial</strong>
+				<$client.env.FormField.Initial_3.HTML>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-12">
+				<strong>Date</strong>
+				<$client.env.FormField.Approval_Date_3.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Approver 4</strong>
+				<$client.env.FormField.Approver_4.HTML>
+			</div>
+			<div class="col-lg-3 col-sm-3 col-xs-12 b-right">
+				<strong>Approval Decision</strong>
+				<$client.env.FormField.Approval_Decision_4.HTML>
+			</div>
+			<div class="col-lg-1 col-sm-1 col-xs-12 b-right">
+				<strong>Initial</strong>
+				<$client.env.FormField.Initial_4.HTML>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-12">
+				<strong>Date</strong>
+				<$client.env.FormField.Approval_Date_4.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Approver 5</strong>
+				<$client.env.FormField.Approver_5.HTML>
+			</div>
+			<div class="col-lg-3 col-sm-3 col-xs-12 b-right">
+				<strong>Approval Decision</strong>
+				<$client.env.FormField.Approval_Decision_5.HTML>
+			</div>
+			<div class="col-lg-1 col-sm-1 col-xs-12 b-right">
+				<strong>Initial</strong>
+				<$client.env.FormField.Initial_5.HTML>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-12">
+				<strong>Date</strong>
+				<$client.env.FormField.Approval_Date_5.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Approver 6</strong>
+				<$client.env.FormField.Approver_6.HTML>
+			</div>
+			<div class="col-lg-3 col-sm-3 col-xs-12 b-right">
+				<strong>Approval Decision</strong>
+				<$client.env.FormField.Approval_Decision_6.HTML>
+			</div>
+			<div class="col-lg-1 col-sm-1 col-xs-12 b-right">
+				<strong>Initial</strong>
+				<$client.env.FormField.Initial_6.HTML>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-12">
+				<strong>Date</strong>
+				<$client.env.FormField.Approval_Date_6.HTML>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-sm-6 col-xs-12 b-right">
+				<strong>Approver 7</strong>
+				<$client.env.FormField.Approver_7.HTML>
+			</div>
+			<div class="col-lg-3 col-sm-3 col-xs-12 b-right">
+				<strong>Approval Decision</strong>
+				<$client.env.FormField.Approval_Decision_7.HTML>
+			</div>
+			<div class="col-lg-1 col-sm-1 col-xs-12 b-right">
+				<strong>Initial</strong>
+				<$client.env.FormField.Initial_7.HTML>
+			</div>
+			<div class="col-lg-2 col-sm-2 col-xs-12">
+				<strong>Date</strong>
+				<$client.env.FormField.Approval_Date_7.HTML>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h4 class="text-seaform">
+				<strong>Comments</strong>
+			</h4>
+		</div>
+	</div>
+	<div class="row box">
+		<div class="col-lg-12">
+			<$client.env.FormField.Comments.HTML>
+		</div>
+	</div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+    $('[name$=".a19_Work_Schedule"]').on('change', function() {
+    	if (this.checked && this.value == '980') {
+    		$('[name$=".a20_First_Friday_Off_display"]').addClass('ng-invalid');
+    		return;
+    	}
+    	$('[name$=".a20_First_Friday_Off_display"]').removeClass('ng-invalid');
+    });
+    $('[name$=".a19_Work_Schedule"]').trigger('change');
+    $('.disable-date').parent().find('input').prop('disabled', 'disabled');
+});
+angular.element('window').ready(function() {
+	angular.element('#divLoader').hide();
+});
+</script>

@@ -1,0 +1,363 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'a06_Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a06_Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box r2: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','employeeName','modal2','over','sv2', 'a10_Date');xbObj('eSignature2').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','a10_Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<!-- div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div -->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.SignatureVerification2.prompt>
+        <$client.env.FormField.a01_Read_Working_Time_Regulations.prompt>
+        <$client.env.FormField.a02_Employee_Name.prompt>
+        <$client.env.FormField.a03_Employee_Signature.prompt>
+        <$client.env.FormField.a04_Printed_Name.prompt>
+        <$client.env.FormField.a05_Employee_no.prompt>
+        <$client.env.FormField.a06_Date.prompt>
+        <$client.env.FormField.a07_Behalf.prompt>
+        <$client.env.FormField.a08_Printed_Name.prompt>
+        <$client.env.FormField.a09_Employee_no.prompt>
+        <$client.env.FormField.a10_Date.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <header class="row mb-20">
+        <div class="col-lg-12">
+            <h1 class="header-wrapper center-block">
+                <img src="<$link;/main/RedCarpet/FormTemplates/Working_Time_Regulations_Form/img/kirkland_heading.jpg>" alt="Kirkland &amp; Ellis International LLC" class="img-responsive">
+            </h1>
+            <p class="text-center">
+                <strong>M E M O R A N D U M</strong>
+            </p>
+        </div>
+    </header>
+    <div class="row b-bottom">
+        <div class="col-lg-12">
+            <h4 class="text-center">
+                <strong>WORKING TIME REGULATIONS</strong>
+            </h4>
+        </div>
+    </div>
+    <div class="padded-section b-bottom b-thick mb-20">
+        <div class="row">
+            <div class="col-lg-3 col-sm-12 col-xs-12">
+                To:
+            </div>
+            <div class="col-lg-9 col-sm-12 col-xs-12">
+                <strong>All Personnel</strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-12 col-xs-12">
+                From:
+            </div>
+            <div class="col-lg-9 col-sm-12 col-xs-12">
+                Human Resources
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-12 col-xs-12">
+                Last Revision Date:
+            </div>
+            <div class="col-lg-9 col-sm-12 col-xs-12">
+                September 2009
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-40">
+        <div class="col-lg-12">
+            <p>
+                Most workers have the maximum hours they should work set down in law under the Working Time Regulations. Some of the main points covered by the Regulations are:
+            </p>
+            <ol>
+                <li>
+                    Right not to be forced to work for more than 48 hours a week on average, however employees do have the right to work longer than this if they choose.
+                </li>
+                <li>
+                    A minimum of 5.6 working weeks paid annual leave.
+                </li>
+                <li>
+                    Entitlement to a rest break of at least 20 minutes for every 6 consecutive hours worked.
+                </li>
+                <li>
+                    Entitlement to a minimum of 11 hours rest between each working day.
+                </li>
+                <li>
+                    Right to not be forced to work for more than 6 days in every 7, or 12 days in every 14.
+                </li>
+                <li>
+                    Specific provisions for employees who work nights and workers under the age of 18.
+                </li>
+            </ol>
+
+            <p class="text-justify mb-20">
+                As you may be aware, because of the nature of our work, Kirkland & Ellis is more or less a 24 hour 7 day a week business. You therefore have the opportunity to opt-out of the restriction of an average 48 hour working week by signing the attached Opt-Out agreement, along with your Terms and Conditions of Employment.
+            </p>
+
+            <div class="form-group">
+                <$client.env.FormField.a01_Read_Working_Time_Regulations.HTML>
+            </div>
+
+        </div>
+    </div>
+
+    <section id="signature-section">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="text-center">
+                    <strong>WORKING TIME REGULATIONS</strong>
+                </h4>
+                <p class="text-center">
+                    <strong>Individual agreement to opt out of the 48 hour maximum average working week</strong>
+                </p>
+                <p class="text-center">
+                    This Agreement is made between Kirkland &amp; Ellis International LLP
+                </p>
+                <p class="text-center">
+                    AND
+                </p>
+            </div>
+        </div>
+        <div class="row mb-20">
+            <div class="col-lg-12 text-center">
+                <div class="i-block">
+                    <$client.env.FormField.a02_Employee_Name.HTML>
+                </div>
+                <div class="i-block">
+                    (Employee Name)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mb-40">
+            <div class="col-lg-12">
+                <p class="text-center">
+                    48 hour maximum average working week
+                </p>
+                <p class="text-justify">
+                    The Working Time Regulations 1998 provide that the average working week, including overtime, shall not exceed 48 hours. The Company and the Worker agree that this limit shall not apply to the Worker. This Agreement will remain in force indefinitely. The Worker, or the Company, may terminate this Agreement at any time by giving not less than three months’ written notice to the other.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-7 col-sm-12 col-xs-12 text-center">
+                <div class="form-group">
+                    <$client.env.FormField.a03_Employee_Signature.HTML>
+                    Employee Signature
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-sm-12 col-xs-12">
+                <strong>Printed Name:</strong>
+            </div>
+            <div class="col-lg-5 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.a04_Printed_Name.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-sm-12 col-xs-12">
+                <strong>Employee No:</strong>
+            </div>
+            <div class="col-lg-5 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.a05_Employee_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-40">
+            <div class="col-lg-2 col-sm-12 col-xs-12">
+                <strong>Dated:</strong>
+            </div>
+            <div class="col-lg-5 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.a06_Date.HTML>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-7 col-sm-12 col-xs-12 text-center">
+                <div class="form-group">
+                    <$client.env.FormField.a07_Behalf.HTML>
+                    For and on behalf of Kirkland &amp; Ellis
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-sm-12 col-xs-12">
+                <strong>Printed Name:</strong>
+            </div>
+            <div class="col-lg-5 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.a08_Printed_Name.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-sm-12 col-xs-12">
+                <strong>Employee No:</strong>
+            </div>
+            <div class="col-lg-5 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.a09_Employee_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-40">
+            <div class="col-lg-2 col-sm-12 col-xs-12">
+                <strong>Dated:</strong>
+            </div>
+            <div class="col-lg-5 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <$client.env.FormField.a10_Date.HTML>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="row">
+        <div class="col-lg-6 col-sm-6 col-xs-6">
+            Kirkland &amp; Ellis International LLP
+        </div>
+        <div class="col-lg-6 col-sm-6 col-xs-6 text-right">
+            Internal Use Only
+        </div>
+    </footer>
+    
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+    // display signature section is new hire has chosen to opt out
+    $('[name$=".a01_Read_Working_Time_Regulations"]').on('change', function() {
+        if ($('[name$=".a01_Read_Working_Time_Regulations"]:checked').val() == "Yes") {
+            $('#signature-section').fadeIn();
+            return;
+        }
+        $('#signature-section').fadeOut();
+    });
+    $('[name$=".a01_Read_Working_Time_Regulations"]').trigger('change');
+
+    // disable date if not the siger
+    disableCalButton($('.disable-date'));
+
+});
+
+angular.element(document).ready(function() {
+    angular.element('#divLoader').hide();
+});
+</script>

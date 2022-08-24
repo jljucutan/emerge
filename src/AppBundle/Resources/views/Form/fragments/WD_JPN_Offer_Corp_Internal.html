@@ -1,0 +1,267 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+    <div class="modal-content"> 
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+        <p style="fontweight:normal;padding:0px"> 
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+        </p> 
+        <br> 
+        <div class="row"> 
+            <div class="lifesuite__clearfix"> 
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+            </div> 
+        </div> 
+        <div class="row"> 
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px;"> 
+                <input type="button" class="lifesuite__button btn-sign" value="Sign" onClick="validateSignature('signature','eSignature1','Full_Name','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+            </div> 
+        </div> 
+    </div> 
+</div> 
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+    showScreen('over') 
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+<div class="modal" style="display:block; background: #002E6D;"> 
+    <div class="fb-spinner"> 
+        <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+    </div> 
+</div> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);"> 
+<div style="display:none;">
+    <$client.env.FormField.Form_Name.prompt>
+    <$client.env.FormField.Form_Name.HTML>
+    <$client.env.FormField.Form_Type.prompt>
+    <$client.env.FormField.Form_Type.HTML>
+    <$client.env.FormField.Form_Owner.prompt>
+    <$client.env.FormField.Form_Owner.HTML>
+    <$client.env.FormField.Form_CreateDate.prompt>
+    <$client.env.FormField.Form_CreateDate.HTML>
+    <$client.env.FormField.Form_Completed.prompt>
+    <$client.env.FormField.Form_Completed.HTML>
+    <$client.env.FormField.Form_Delivered.prompt>
+    <$client.env.FormField.Form_Delivered.HTML>
+    <$client.env.FormField.Form_TaskId.prompt>
+    <$client.env.FormField.Form_TaskId.HTML>
+    <$client.env.FormField.display_version.HTML>
+    <!-- Your Required/Validated Form Fields -->
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<!-- Begin HTML Content -->
+<div id='container'>
+    <div id='incomplete'> 
+        <div class="srt_eform_row">
+            <div class="col-xs-12 srt_eform_module" id="inner-content">
+                <div class="srt_eform_text_inner">
+                    <div id="markup"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id='complete'></div>
+    <div id='fields'>
+        <div class="srt_eform_row">
+            <div class="col-md-12 srt_eform_module">
+                <div class="srt_eform_text_inner">
+                    <div class="input-text">    
+                        <$client.env.FormField.Signer1.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="srt_eform_row">
+            <div class="col-md-12 srt_eform_module">
+                <div class="srt_eform_text_inner">
+                    <div class="input-text">    
+                        <!-- <$client.env.FormField.Signer2.HTML> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<div style="display:none;">
+    <$client.env.FormField.Dummy_Date.HTML>
+    <$client.env.FormField.FormButtonValidator.HTML>
+    <$client.env.formfield.hidden_pg.HTML>
+</div>
+<div class="row" id="formButtons" style="display: none;">
+    <div class="lifesuite__clearfix">
+        <div class="srt_eform_section">
+            <div id="srt_form_btn_wrapper">
+                <div class="srt_eform_row">
+                    <div class="col-lg-12 srt_eform_module">
+                        <div class="srt_eform_text_inner">
+                            <input class="appInputButton RCappInputButtonBlue" id="buttonSaveAndComplete" name="buttonSaveAndComplete" type="button" onclick="document.getElementById('FormButtonValidator').value=1;void(funcSaveAndComplete());" value="Accept Offer" style="display: inline;">
+                            <input class="appInputButton RCappInputButtonBlue" id="buttonPrint" name="buttonPrint" type="button" onclick="document.getElementById('FormButtonValidator').value=0;void(funcPrint());" value="Print">
+                            <input class="appInputButton RCappInputButtonOrange" id="buttonCancel" name="buttonCancel" type="button" onclick="void(funcCancel());" value="Cancel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display:none;">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</div>
+</form>
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+</SCRIPT>
+<script>
+    //Show populated form if already completed
+    var strCompletedForm = FORM_COMPLETED;
+    if (strCompletedForm != "") {
+        //Gather the fields that need to be displayed
+        //For images we need to setup the image tag. 
+        var imgHeader = "<img src='<$client.env.formfield.headerpg1.value>' />";
+        var imgVPSignature = "<img src='<$client.env.formfield.vpsignature.value>' />";
+        //Create an array of info to pass to complete the offer letter
+        //0 for images sending an image tag, 1 for sections of text sneding the ID of the field that holds the HTML.
+        var arrParts = [
+            [1,'hidden_pg']
+        ];
+        //Send (ID of the div to hide,ID of the div to show,Parts to get the offer letter)
+        showCompletedOfferLetter('incomplete','complete',arrParts);
+    }
+    else {
+        //If the offer letter is not complete set up the logos and link field values. 
+        //pickDivisionLogo();
+        //SetImageOnOfferLetter('headerpg1');
+        //SetImageOnOfferLetter('vpsignature');
+    }
+</script>
+<SCRIPT> 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+    /* RESPONSIVE eFORM BUTTONS STYLE */ 
+    $(function(){
+        $("#buttonCancel")
+            .removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue")
+            .addClass("lifesuite__button");
+        $('#buttonCancel').attr('id', 'ButtonCancel');
+        $("#buttonSave")
+            .removeClass("appInputButton RCappInputButtonBlue")
+            .addClass("lifesuite__button");
+        $('#buttonSave').attr('id', 'ButtonSave');
+        $("#buttonSaveAndComplete")
+            .removeClass("appInputButton RCappInputButtonBlue")
+            .addClass("lifesuite__button");
+        $('#buttonSaveAndComplete').attr('id', 'ButtonSaveAndComplete');
+        $("#buttonPrint")
+            .removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue")
+            .addClass("lifesuite__button");
+        $('#buttonPrint').attr('id', 'ButtonPrint');
+        $("#buttonPreviewDelete")
+            .removeClass("appInputButton RCappInputButtonRed")
+            .addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id', 'ButtonPreviewDelete');
+        $("#buttonPreviewSave")
+            .removeClass("appInputButton RCappInputButtonBlue")
+            .addClass("lifesuite__button");
+        $('#buttonPreviewSave').attr('id', 'ButtonPreviewSave');
+        document.getElementById('formButtons').style.display = "block";
+        $("input[type=text]").addClass('lifesuite__text-input');
+        //$("input[type=text].hasDatepicker").addClass('dateField');
+        $('.inputprompt').addClass('lifesuite__input-label lifesuite__input—block');
+        $("body").addClass("apple_custom_theme");
+    });
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+    disableCalButton('disableDate');
+</SCRIPT>
+<script src="<$link;/main/RedCarpet/FormTemplates/WD_JPN_Offer_Corp_Internal/js/script_version_1.js>"></script>
+<script>
+    $(window).load(function() { 
+        // Custom Script for Multi-Part Cursor Sign 
+        var isNewHire = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+
+        if (isNewHire) {
+            $("[ng-controller='Signer2Controller']").css("display", "none");
+            // Pre-populate Today Date for Multi-Part Cursor Sign
+            // $("[ng-controller='Signer1Controller'] [id^='Sig_Drawn_Date']").datepicker("setDate", new Date());
+            // $("[name$='Signer1_date']").val($.datepicker.formatDate('yy-mm-dd', $("[ng-controller='Signer1Controller'] [id^='Sig_Drawn_Date']").datepicker("getDate")));
+            // $("[onclick^=\'$.datepicker._select\']").click();  
+        }
+        else {
+            //$("[ng-controller='Signer1Controller']").css("display", "none");
+            // Pre-populate Today Date for Multi-Part Cursor Sign
+            // $("[ng-controller='Signer2Controller'] [id^='Sig_Drawn_Date']").datepicker("setDate", new Date());
+            // $("[name$='Signer2_date']").val($.datepicker.formatDate('yy-mm-dd', $("[ng-controller='Signer2Controller'] [id^='Sig_Drawn_Date']").datepicker("getDate")));
+            // $("[onclick^=\'$.datepicker._select\']").click();  
+        }
+
+        // Enable Sign Button when Typing Signature   
+        /* $('.ng-scope').on('keyup change', '.lifesuite__text-input', function(k,v) {  
+            var input = $(this); $(v) 
+            var btn = input.closest('.lifesuite__module').find('button.lifesuite__button.primary');  
+            if (input.val().trim().length > 0) {  
+                btn.prop('disabled', null);  
+            }
+            else { 
+                btn.prop('disabled', 'disabled');  
+            }  
+        }); */
+    });  
+
+//Check if browser language is Japanese. Change button text to Japanese. 
+function changeButtonTextLanguage(){ 
+
+var lang = navigator.language || navigator.userLanguage; //Get browser language   
+
+  
+
+if($('#ButtonSaveAndComplete').length){ 
+
+   if(lang == 'ja' || lang == 'ja-JP'){ 
+
+       $('#ButtonSaveAndComplete').val('Offerを承諾する'); 
+
+           console.log('Change Accept Offer'); 
+
+   } 
+
+} 
+
+  
+
+if($('#ButtonPrint').length){ 
+
+    if(lang == 'ja' || lang == 'ja-JP'){ 
+
+       $('#ButtonPrint').val('印刷'); 
+
+           console.log('Change Print'); 
+
+   } 
+
+} 
+
+  
+
+if($('#ButtonCancel').length){ 
+
+   if(lang == 'ja' || lang == 'ja-JP'){ 
+
+       $('#ButtonCancel').val('キャンセル'); 
+
+           console.log('Change Cancel'); 
+
+   } 
+
+} 
+
+} 
+
+setTimeout(function(){ 
+
+changeButtonTextLanguage();//run function inside delay. 
+
+}, 500); 
+</script>

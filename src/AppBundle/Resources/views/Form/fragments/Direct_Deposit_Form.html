@@ -1,0 +1,641 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal1" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature1','eSignature1','fullname','modal1','over','sv1');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature1').value='';showHide('modal1');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal1');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','fullname','modal2','over','sv2');xbObj('eSignature2').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'>
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+ 
+        <$client.env.FormField.Account_Number1.prompt>
+        <$client.env.FormField.Account_Number2.prompt>
+        <$client.env.FormField.Account_Number3.prompt>
+        <$client.env.FormField.Acknowledgement.prompt>
+        <$client.env.FormField.City1.prompt>
+        <$client.env.FormField.City2.prompt>
+        <$client.env.FormField.City3.prompt>
+        <$client.env.FormField.Company_Name.prompt>
+        <$client.env.FormField.Date1.prompt>
+        <$client.env.FormField.Date2.prompt>
+        <$client.env.FormField.Date_of_Birth.prompt>
+        <$client.env.FormField.Email_Address1.prompt>
+        <$client.env.FormField.Email_Address2.prompt>
+        <$client.env.FormField.Employee_ID.prompt>
+        <$client.env.FormField.Financial_Institution_Name1.prompt>
+        <$client.env.FormField.Financial_Institution_Name2.prompt>
+        <$client.env.FormField.Financial_Institution_Name3.prompt>
+        <$client.env.FormField.First_Name.prompt>
+        <$client.env.FormField.Home_Phone_Number.prompt>
+        <$client.env.FormField.Last_4_of_Your_SSN.prompt>
+        <$client.env.FormField.Last_Name.prompt>
+        <$client.env.FormField.Mailing_Address.prompt>
+        <$client.env.FormField.Name.prompt>
+        <$client.env.FormField.Net_Amount1.prompt>
+        <$client.env.FormField.Net_Amount2.prompt>
+        <$client.env.FormField.Net_Amount3.prompt>
+        <$client.env.FormField.Payroll_Option1.prompt>
+        <$client.env.FormField.Payroll_Option2.prompt>
+        <$client.env.FormField.Routing_Transfer_Number1.prompt>
+        <$client.env.FormField.Routing_Transfer_Number2.prompt>
+        <$client.env.FormField.Routing_Transfer_Number3.prompt>
+        <$client.env.FormField.Signature1.prompt>
+        <$client.env.FormField.Signature2.prompt>
+        <$client.env.FormField.State1.prompt>
+        <$client.env.FormField.State2.prompt>
+        <$client.env.FormField.State3.prompt>
+        <$client.env.FormField.Type_of_Account1.prompt>
+        <$client.env.FormField.Type_of_Account2.prompt>
+        <$client.env.FormField.Type_of_Account3.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+    <div class="container-fluid">
+        <div class="form-group">
+            <div class="row line-break"></div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                    <div class="image-container">
+                        <img src="images/logo.png" class="img-responsive" height="50"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                    <div class="form-title">EMPLOYEE DIRECT DEPOSIT/CASH CARD AUTHORIZATION FORM</div>
+                </div>
+            </div>
+            <div class="row line-break"></div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                    <div class="title">Direct Deposit or CashPay Card</div>
+                    <div class="title">Getting Paid Just Got Easier!</div>
+                </div>
+            </div>
+            <div class="row line-break"></div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                    <div class="bold title">Please select one of these options after reviewing all related information</div>
+                </div>
+            </div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-3 lifesuite__clearfix">
+                    <div class="image-container">
+                        <img src="images/direct-deposit.png" class="img-responsive" height="100" style="margin: auto;" />
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-3 lifesuite__clearfix">
+                    <div class="input-field margin-top-20 margin-bottom-20"><$client.env.FormField.Payroll_Option1.HTML></div>
+                </div>
+                <div class="col-xs-12 col-md-3 lifesuite__clearfix">
+                    <div class="image-container">
+                        <img src="images/cash-card.png" class="img-responsive" height="100" style="margin: auto;"/>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-3 lifesuite__clearfix">
+                    <div class="input-field margin-top-20"><$client.env.FormField.Payroll_Option2.HTML></div>
+                </div>
+            </div>
+            <div class="row line-break"></div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                    <ul>
+                        <li>
+                            Employees have two options for payroll:<br>
+                            (1) Direct Deposit<br>
+                            (2) CashPay Card
+                        </li>
+                        <li>You must choice one of these options.</li>
+                        <li>Paper checks are not an option.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                    <div class="bold text">Direct Deposit Instructions</div>
+                    <div class="text">Fill out, sign the attached Direct Deposit form. Attach banking backup (void check or information provided by your bank). Turn all information into Payroll. Your first pay period you will receive a paper check wile pre-noting the account completes. Your second payroll will be deposited directly into your account.</div>
+                </div>
+            </div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                    <div class="bold text">CashPay Card Features and instructions:</div>
+                    <div class="bold text">Please make sure to read all related <a href="<$link;/eprise/main/SiteGen/Onboarding/Content/Uploads/Unplaced_Documents/CheckWriters_Rapid_Pay_Card_EE_Disclosures_and_Enrollment_Form.pdf>" target="_blank" style="font-weight: bold;">documentation</a> before selecting this option</div>
+                </div>
+            </div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                    <ul>
+                        <li>All funds will be deposited to your cash card on your first payroll period</li>
+                        <li>POS Transactions (Signature and PIN)</li>
+                        <li>MasterCard Bank Teller Assisted Withdrawals</li>
+                        <li>Cash Bank Transactions</li>
+                        <li>Employees can withdrawal money at over 37,000 ATM’s</li>
+                        <li>Please refer to the Cash Card Fee Policy for more details</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="direct-deposit-section" style="display: none;">
+                <hr class="section-divider">
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                        <div class="image-container">
+                            <img src="images/logo.png" class="img-responsive" height="50"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row line-break"></div>
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                        <div class="form-title">EMPLOYEE DIRECT DEPOSIT/CASH CARD AUTHORIZATION FORM</div>
+                    </div>
+                </div>
+                <div class="row line-break"></div>
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                        <div class="sub-title">Employee Direct Deposit Form</div>
+                    </div>
+                </div>
+                <div class="section-container">
+                    <div class="section-title bold">EMPLOYEE IDENTIFICATION</div>
+                    <div class="section-content">
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-8 lifesuite__clearfix">
+                                <div class="input-label">Name</div>
+                                <div class="input-field"><$client.env.FormField.Name.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Home Phone Number</div>
+                                <div class="input-field"><$client.env.FormField.Home_Phone_Number.HTML></div>
+                            </div>
+                        </div>
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                                <div class="input-label">Email address where deposit notification can be sent (if email address is provided no other notification will be sent).</div>
+                                <div class="input-field"><$client.env.FormField.Email_Address1.HTML></div>
+                            </div>
+                        </div>
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                                <div class="input-label">Mailing address where deposit notification can be mailed (if email address is provided no other notification will be mailed via USPS).</div>
+                                <div class="input-field"><$client.env.FormField.Mailing_Address.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-container">
+                    <div class="section-title bold">FINANCIAL INSTITUTION</div>
+                    <div class="image-container">
+                        <img src="images/check.png" class="img-responsive" height="50" style="margin: auto;"/>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                        <div class="bold text">Make sure to indicate what kind of account, along with amount to be deposited, if less than your total net paycheck.</div>
+                        <div class="italic underlined text">Note if selecting more than one account one of the accounts must be designated as the net amount.</div>
+                    </div>
+                </div>
+                <div class="section-container">
+                    <div class="section-title"><strong>Primary Account</strong> * All Non Payroll reimbursements will be deposited into your primary account</div>
+                    <div class="section-content">
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Financial Institution Name</div>
+                                <div class="input-field"><$client.env.FormField.Financial_Institution_Name1.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">City</div>
+                                <div class="input-field"><$client.env.FormField.City1.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                                <div class="input-label">State</div>
+                                <div class="input-field"><$client.env.FormField.State1.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                                <div class="input-label">Dollar Amount or Net Amount</div>
+                                <div class="input-field"><$client.env.FormField.Net_Amount1.HTML></div>
+                            </div>
+                        </div>
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Routing / Transfer Number (9 digits only)</div>
+                                <div class="input-field"><$client.env.FormField.Routing_Transfer_Number1.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Account Number</div>
+                                <div class="input-field"><$client.env.FormField.Account_Number1.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Type of Account</div>
+                                <div class="input-field"><$client.env.FormField.Type_of_Account1.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-container">
+                    <div class="section-title"><strong>Secondary Account</strong></div>
+                    <div class="section-content">
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Financial Institution Name</div>
+                                <div class="input-field"><$client.env.FormField.Financial_Institution_Name2.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">City</div>
+                                <div class="input-field"><$client.env.FormField.City2.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                                <div class="input-label">State</div>
+                                <div class="input-field"><$client.env.FormField.State2.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                                <div class="input-label">Dollar Amount or Net Amount</div>
+                                <div class="input-field"><$client.env.FormField.Net_Amount2.HTML></div>
+                            </div>
+                        </div>
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Routing / Transfer Number (9 digits only)</div>
+                                <div class="input-field"><$client.env.FormField.Routing_Transfer_Number2.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Account Number</div>
+                                <div class="input-field"><$client.env.FormField.Account_Number2.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Type of Account</div>
+                                <div class="input-field"><$client.env.FormField.Type_of_Account2.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-container">
+                    <div class="section-title"><strong>Additional Account</strong></div>
+                    <div class="section-content">
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Financial Institution Name</div>
+                                <div class="input-field"><$client.env.FormField.Financial_Institution_Name3.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">City</div>
+                                <div class="input-field"><$client.env.FormField.City3.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                                <div class="input-label">State</div>
+                                <div class="input-field"><$client.env.FormField.State3.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                                <div class="input-label">Dollar Amount or Net Amount</div>
+                                <div class="input-field"><$client.env.FormField.Net_Amount3.HTML></div>
+                            </div>
+                        </div>
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Routing / Transfer Number (9 digits only)</div>
+                                <div class="input-field"><$client.env.FormField.Routing_Transfer_Number3.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Account Number</div>
+                                <div class="input-field"><$client.env.FormField.Account_Number3.HTML></div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div class="input-label">Type of Account</div>
+                                <div class="input-field"><$client.env.FormField.Type_of_Account3.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                        <div class="bold text">AUTHORIZATION</div>
+                        <div class="text line-break">I authorize GANDARA CENTER and its payroll provider to deposit by electronic transfer payments owed to me and, if necessary, debit entries and adjustments for any amounts deposited electronically in error. GANDARA CENTER and its payroll provider shall deposit the payments in the financial institution and account designated above.  I recognize that if I fail to provide complete and accurate information on this authorization form, the processing of the form may be delayed or that my payments may be erroneously transferred electronically.</div>
+                        <div class="text">I authorize consent to and agree to comply with the National Clearing House Association Rules and Regulations about electronic transfers as they exist on the date of my signature on this form or as subsequently adopted, amended or repeated.</div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-8 lifesuite__clearfix">
+                        <div class="input-label bold">Authorized Signature</div>
+                        <div class="input-field"><$client.env.FormField.Signature1.HTML></div>
+                    </div>
+                    <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                        <div class="input-label bold">Date</div>
+                        <div class="input-field"><$client.env.FormField.Date1.HTML></div>
+                    </div>
+                </div>
+            </div>
+            <div id="cash-card-section" style="display: none;">
+                <hr class="section-divider">
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                        <div class="image-container">
+                            <img src="images/logo.png" class="img-responsive" height="50"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                        <div class="form-title">EMPLOYEE DIRECT DEPOSIT/CASH CARD AUTHORIZATION FORM</div>
+                    </div>
+                </div>
+                <div class="row line-break"></div>
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                        <div class="sub-title">Employee Direct Deposit Form</div>
+                    </div>
+                </div>
+                <div class="section-container">
+                    <div class="image-container">
+                        <img src="images/card.png" class="img-responsive" height="50" style="margin: auto;"/>
+                    </div>
+                </div>
+                <div class="section-container">
+                    <div class="section-title"><strong>EMPLOYEE IDENTIFICATION </strong></div>
+                    <div class="section-content">
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                                <div class="input-label bold">Company Name:</div>
+                                <div class="input-field"><$client.env.FormField.Company_Name.HTML></div>
+                            </div>
+                        </div>
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                                <div class="input-label bold">Employee ID:</div>
+                                <div class="input-field"><$client.env.FormField.Employee_ID.HTML></div>
+                            </div>
+                        </div>
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                                <div class="input-label bold">First Name:</div>
+                                <div class="input-field"><$client.env.FormField.First_Name.HTML></div>
+                            </div>
+                        </div>
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                                <div class="input-label bold">Last Name:</div>
+                                <div class="input-field"><$client.env.FormField.Last_Name.HTML></div>
+                            </div>
+                        </div>
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                                <div class="input-label bold">Email Address:</div>
+                                <div class="input-field"><$client.env.FormField.Email_Address2.HTML></div>
+                            </div>
+                        </div>
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                                <div class="input-label bold">Date of Birth (MM/DD/YYYY)</div>
+                                <div class="input-field"><$client.env.FormField.Date_of_Birth.HTML></div>
+                            </div>
+                        </div>
+                        <div class="row line-break">
+                            <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                                <div class="input-label bold">Last 4 of Your SSN:</div>
+                                <div class="input-field"><$client.env.FormField.Last_4_of_Your_SSN.HTML></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row line-break"></div>
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                        <div class="input-field"><$client.env.FormField.Acknowledgement.HTML></div>
+                    </div>
+                </div>
+                <div class="row line-break"></div>
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                        <div class="bold text">AUTHORIZATION</div>
+                        <div class="text line-break">I hereby authorize GANDARA CENTER to initiate direct deposit for my pay. This authorization also allows GANDARA CENTER and or the depository financial institution to make any necessary corrections and/or adjustments to the entries, including debits to these accounts. This authorization will remain in effect until the Payroll Department has received written notification from me in such time and manner to afford the Company to act on it. The Company reserves the right to cancel this direct deposit agreement.</div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-12 col-md-8 lifesuite__clearfix">
+                        <div class="input-label bold">Authorized Signature</div>
+                        <div class="input-field"><$client.env.FormField.Signature2.HTML></div>
+                    </div>
+                    <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                        <div class="input-label bold">Date</div>
+                        <div class="input-field"><$client.env.FormField.Date2.HTML></div>
+                    </div>
+                </div>
+            </div>
+            <hr class="lifesuite__hr">
+            <div class="row" id="formButtons" style="display: none;">
+                <div class="lifesuite__clearfix lifesuite__float-right">               
+                    <$client.env.FormButtons>
+                </div>             
+            </div>
+        </div>
+    </div>
+    <div style="display:none;">
+        <$client.env.FormField.SignatureVerification1.HTML>
+        <$client.env.FormField.SignatureVerification2.HTML>
+        <$client.env.FormField.Full_Name.HTML>
+    </div>
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Direct_Deposit_Form/js/script.js>" defer></script>
+<SCRIPT>
+      ChangeCalendarIcons(); //for popup calendar
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+const NAME = "<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Initial><$client.env.eval(client.tForWhomUserInfo.Middle_Initial.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>";
+const FIRST_NAME = "<$client.tForWhomUserInfo.First_Name>";
+const LAST_NAME = "<$client.tForWhomUserInfo.Last_Name>";
+const DOB = "<$client.tForWhomUserInfo.DOB>";
+const HOME_PHONE_NUMBER = "<$client.tForWhomUserInfo.Phone>";
+const EMAIL = "<$client.tForWhomUserInfo.Email>";
+const MAILING_ADDRESS = "<$client.tForWhomUserInfo.Address1> <$client.tForWhomUserInfo.Address2> <$client.tForWhomUserInfo.City> <$client.tForWhomUserInfo.State> <$client.tForWhomUserInfo.Zip>";
+
+function populateDirectDepositForm() {
+    $("[name$='Name']").val(NAME);
+    if (HOME_PHONE_NUMBER) {
+      $("[name$='Home_Phone_Number']").val(HOME_PHONE_NUMBER);
+    }
+    if (EMAIL) {
+      $("[name$='Email_Address1']").val(EMAIL);
+    }
+    if (MAILING_ADDRESS) {
+      $("[name$='Mailing_Address']").val();
+    }
+}
+
+function populateCashCardForm() {
+    $("[name$='First_Name']").val(FIRST_NAME);
+    $("[name$='Last_Name']").val(LAST_NAME);
+    if (EMAIL) {
+      $("[name$='Email_Address2']").val(EMAIL);
+    }
+    if (DOB) {
+      $("[name$='Date_of_Birth_display']").datepicker(DOB);
+    }
+}
+$(function() {
+    function radioSelect(group_class, object_element) {
+        var checked = object_element.prop("checked");
+        $("." + group_class).prop("checked", false);
+
+        if (checked) {
+            object_element.prop("checked", true);
+        }
+    }
+
+
+    // $("[name*='Payroll_Option']").change(function() {
+    //     var checked = $(this).prop("checked");
+
+    //     $("[name*='Payroll_Option']").prop("checked", false);
+    //     $("#direct-deposit-section").hide();
+    //     $("#cash-card-section").hide();
+    //     $("#direct-deposit-section").find('input:not([type="hidden"]):not(:radio):not(:checkbox), select, textarea').val('');
+    //     $("#direct-deposit-section").find('input:radio, input:checkbox').prop('checked', false);
+    //     $("#cash-card-section").find('input:not([type="hidden"]):not(:radio):not(:checkbox), select, textarea').val('');
+    //     $("#cash-card-section").find('input:radio, input:checkbox').prop('checked', false);
+        
+    //     if (checked) {
+    //         $(this).prop("checked", true);
+    //         if ($(this).prop("id").indexOf("Payroll_Option1") >= 0) {
+    //             $("#direct-deposit-section").show();
+    //             populateDirectDepositForm();
+    //         }
+    //         else if ($(this).prop("id").indexOf("Payroll_Option2") >= 0) {
+    //             $("#cash-card-section").show();
+    //             populateCashCardForm();
+    //         }
+    //     }
+    // });
+
+    // if ($("[name$='Payroll_Option1']").prop("checked")) {
+    //     $("#direct-deposit-section").show();
+    // }
+    // else if ($("[name$='Payroll_Option2']").prop("checked")) {
+    //     $("#cash-card-section").show();
+    // }
+});
+
+$(window).load(function() {
+     // Function: Adjust height of bootstrap columns equal to the highest among siblings on larger screens
+     // Parameter 1: The class name of the highest element
+     function AdjustColumnHeight (group_class) {
+          $("." + group_class).each(function () {
+               if ($(window).width() > 971) {
+                    $(this).siblings().height($(this).innerHeight());
+               }
+               else {
+                    $(this).siblings().height("auto");
+               }
+          });
+     }
+
+     AdjustColumnHeight("column-height");
+
+     $(window).resize(function () {
+          AdjustColumnHeight("column-height");
+     });
+});
+</SCRIPT>

@@ -1,0 +1,1002 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                    </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','over','modal','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}"> &nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<div class="modal" style="display:block; background: #002E6D;"> 
+              <div class="fb-spinner"> 
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+              </div> 
+</div> 
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);"> 
+
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+<!-- Your Required/Validated Form Fields -->
+
+<$client.env.FormField.AdditionalWithholding.prompt>
+<$client.env.FormField.Address.prompt>
+<$client.env.FormField.Allowances.prompt>
+<$client.env.FormField.DateSigned.prompt>
+<$client.env.FormField.EIN.prompt>
+<$client.env.FormField.EmployerAddress.prompt>
+<$client.env.FormField.EmployerCity.prompt>
+<$client.env.FormField.EmployerName.prompt>
+<$client.env.FormField.EmployerState.prompt>
+<$client.env.FormField.EmployerZip.prompt>
+<$client.env.FormField.FilingStatus.prompt>
+<$client.env.FormField.FirstNameMiddleInitial.prompt>
+<$client.env.FormField.LastName.prompt>
+<$client.env.FormField.MinnesotaAllowances.prompt>
+<$client.env.FormField.MinnesotaTaxID.prompt>
+<$client.env.FormField.Phone.prompt>
+<$client.env.FormField.SSN.prompt>
+<$client.env.FormField.Section1.prompt>
+<$client.env.FormField.Section2.prompt>
+<$client.env.FormField.Section2Reason.prompt>
+<$client.env.FormField.State.prompt>
+<$client.env.FormField.StateOfResidence.prompt>
+<$client.env.FormField.Zip.prompt>
+<$client.env.FormField.city.prompt>
+<$client.env.FormField.signature.prompt>
+<$client.env.FormField.signatureverification.prompt>
+
+</div>
+
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+    <div class="container-fluid">
+        <div class="form-group">
+
+            <div class="header-container">
+                <div class="row">
+                    <div class="header-image-container">
+                        <img class="img-responsive" src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_MN/logo2020.png>" border="0">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='header-text'>   
+                    <strong>2022 W-4MN, Minnesota Withholding Allowance/Exemption Certificate</strong>
+                </div>
+            </div>
+            <div style="min-height: 20px; height: 20px;"></div>
+            <div class="row">
+                <div class='header-text'>   
+                    <strong>Employees</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    Complete Form W-4MN so that your employer can withhold the correct Minnesota income tax from your pay. Consider completing a new Form W-4MN each year and when your personal or financial situation changes.
+                </div>
+            </div>
+
+            <div style="min-height: 20px; height: 20px;"></div>
+            
+
+            <div class="row bordered topBorder">
+                <div class="col-xs-12 col-md-7 lifesuite__clearfix text bordered">
+                    <div class="inner-border">
+
+                        <div style="padding-left: 3px;" class="row">
+                            <div class="col-xs-12 col-md-12 lifesuite__clearfix text inline-block">
+                                <div style="display: inline-block;" class="col-xs-12 col-md-6 lifesuite__clearfix text">
+                                    First Name and Initial
+                                    <$client.env.FormField.FirstNameMiddleInitial.HTML>
+                                </div>
+                                <div style="display: inline-block;" class="col-xs-12 col-md-6 lifesuite__clearfix text">
+                                    Last name<BR>
+                                    <$client.env.FormField.LastName.HTML>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="padding-left: 3px;" class="row topBorder">
+                            Permanent address<BR>
+                            <$client.env.FormField.Address.HTML>
+                        </div>
+
+                        <div style="padding-left: 3px; padding-top: 3px;" class="col-xs-12 col-md-12 lifesuite__clearfix text row topBorder">
+                            <div class="col-xs-12 col-md-6 lifesuite__clearfix">
+                                <div>
+                                    City<BR>
+                                    <$client.env.FormField.City.HTML>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                                <div>
+                                    State<BR>
+                                    <$client.env.FormField.State.HTML>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                                <div>
+                                    ZIP Code<BR>
+                                    <$client.env.FormField.Zip.HTML>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-5 lifesuite__clearfix text bordered">
+                    <div class="inner-border">
+                        <div style="padding-left: 3px;" class="row">
+                            Employee’s Social Security number<BR>
+                            <$client.env.FormField.SSN.HTML>
+                        </div>
+                        <div style="padding-left: 3px;" class="row topBorder">
+                            <strong>Marital status <span class="italic">(check one)</span></strong><BR><BR>
+                            <$client.env.FormField.FilingStatus.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <BR>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <strong>Complete Section 1 OR Section 2, then sign the bottom and give the completed form to your employer. Completing both sections will make the form invalid.</strong>
+                </div>
+            </div>
+            <BR>
+
+            <div class="section row">
+                <div class="col-md-12 lifesuite__clearfix text">
+                    <table>
+                        <tr>
+                            <td style="padding-right: 5px; vertical-align: top;">
+                                <$client.env.FormField.Section1.HTML>
+                            </td>
+                            <td>
+                                <strong>Section 1 — Determining Minnesota allowances</strong>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="row indented">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                    <strong>A</strong> Enter “1” if no one else can claim you as a dependent
+                </div>
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">A</span>
+                    <span class="input-field"><$client.env.FormField.Allowances.HTML></span>
+                </div>
+            </div>
+
+            <div class="row indented">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                    <strong>B</strong> Enter “1” if any of the following apply:<br>
+                    <ul style="padding-bottom: 10px;">
+                        <li>You are single and have only one job</li>
+                        <li>You are married, have only one job, and your spouse does not work</li>
+                        <li>Your wages from a second job or your spouse’s wages are $1500 or less</li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">B</span>
+                    <span class="input-field"><$client.env.FormField.MinnesotaAllowances.HTML></span>
+                </div>
+            </div>
+
+            <div class="row indentedUL">
+                
+            </div>
+
+            <div class="row indented">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                    <strong>C</strong> Enter “1” if you are married. Or choose to enter “0” if you are married and have either a working spouse or more than one job. <em>(Entering “0” may help you avoid having too little tax withheld.)</em>
+                </div><br>
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">C</span>
+                    <span class="input-field"><$client.env.FormField.AdditionalWithholding.HTML></span>
+                </div>
+            </div>
+
+            <div class="row indented">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                    <strong>D</strong> Enter the number of dependents (other than your spouse or yourself) you will claim on your tax return
+                </div>
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">D</span>
+                    <span class="input-field"><$client.env.FormField.txtSection1LetterD.HTML></span>
+                </div>
+            </div>
+
+            <div class="row indented">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                    <strong>E</strong> Enter “1” if you will use the filing status Head of Household <em>(see instructions)</em>
+                </div>
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">E</span>
+                    <span class="input-field"><$client.env.FormField.txtSection1LetterE.HTML></span>
+                </div>
+            </div>
+
+            <div class="row indented">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                    <strong>F</strong> Add steps A through E. If you plan to itemize deductions on your 2022 Minnesota income tax return, you may also complete the Itemized Deductions and Additional Income Worksheet.
+                </div>
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">F</span>
+                    <span class="input-field"><$client.env.FormField.txtSection1LetterF.HTML></span>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Minnesota Allowances and Additional Withholding</strong> 
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                    <strong>1</strong> <strong>Minnesota Allowances</strong> Enter Step F from Section 1 above or Step 10 of the Itemized Deductions Worksheet
+                </div>
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">1</span>
+                    <span class="input-field"><$client.env.FormField.txtAddWithholding1.HTML></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-8 lifesuite__clearfix text">
+                    <strong>2</strong> Additional Minnesota withholding you want deducted each pay period (see instructions)
+                </div>
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix text">
+                    <span class="input-label">2</span>
+                    <span class="input-field"><$client.env.FormField.txtAddWithholding2.HTML></span>
+                </div>
+            </div>
+
+
+            <br>
+            <div class="section row">
+                <div class="col-md-12 lifesuite__clearfix text">
+                    <table>
+                        <tr>
+                            <td style="padding-right: 5px; vertical-align: top;">
+                                <$client.env.FormField.Section2.HTML>
+                            </td>
+                            <td>
+                                <strong>Section 2 — Exemption From Minnesota Withholding</strong>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    Complete Section 2 if you claim to be exempt from Minnesota income tax withholding <i>(see Section 2 instructions for qualifications)</i>. If applicable, check one box below to indicate why you believe you are exempt:
+                </div>
+            </div>
+            <BR>
+
+            <div class="row indented">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text bullets">
+                    <$client.env.FormField.Section2Reason.HTML>
+                </div>
+            </div>
+            <BR>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <span class="italic">
+                        I certify that all information provided in Section 1 <strong>OR</strong> Section 2 is correct. I understand there is a $500 penalty for filing a false Form W-4MN.
+                    </span>
+                </div>
+            </div>
+            
+            <hr class="lifesuite__hr_Black">
+            <div>
+                <div class="forSigner">
+ <!--                   <div class="col-xs-12 col-md-5 lifesuite__clearfix text ">
+                        <div style="white-space: nowrap; display: inline-block;">
+                            Employee’s Signature<BR>
+                            <$client.env.FormField.signature.HTML>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-3 lifesuite__clearfix text ">
+                        Date<BR>
+                        <$client.env.FormField.DateSigned.HTML>
+                    </div> -->
+                     <div class="col-sm-12 col-md-8 col-lg-8 col-xs-12 lifesuite__clearfix text lifesuite__float-left">
+                            <$client.env.FormField.Signer.HTML>
+                     </div>
+                    <div class="col-xs-12 col-md-4 col-lg-4 lifesuite__clearfix text ">
+                        Daytime Phone<BR>
+                        <$client.env.FormField.Phone.HTML>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <hr class="lifesuite__hr_Black">
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <strong>Employees:</strong> Give the completed form to your employer
+                </div>
+            </div>
+            <BR>
+
+            <div class="row">
+                <div class="header-text">   
+                    <strong>Employers</strong>
+                </div>
+            </div>
+            <BR>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    See the employer instructions to determine if you must send a copy of this form to the Minnesota Department of Revenue. If required, enter your information below and mail this form to the address in the instructions. (Incomplete forms are considered invalid.) We may assess a $50 penalty for each required Form W-4MN not filed with us. Keep a copy for your records.
+                </div>
+            </div>
+            
+            <div>
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-5 lifesuite__clearfix text bordered">
+                        Name of employer<BR>
+                        <$client.env.FormField.EmployerName.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-4 lifesuite__clearfix text bordered">
+                        Federal employer ID number (FEIN)<BR>
+                        <$client.env.FormField.EIN.HTML>
+                    </div>
+                    <div class="col-xs-12 col-md-3 lifesuite__clearfix text bordered">
+                        Minnesota tax ID number<BR>
+                        <$client.env.FormField.MinnesotaTaxID.HTML>
+                    </div>
+                </div>
+                <div class="row bordered">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text bordered">
+                        <div style="white-space: nowrap; display: inline-block;">
+                            Address<BR>
+                            <$client.env.FormField.EmployerAddress.HTML>
+                        </div>
+                        <div style="white-space: nowrap; display: inline-block;">
+                            City<BR>
+                            <$client.env.FormField.EmployerCity.HTML>
+                        </div>
+                        <div style="white-space: nowrap; display: inline-block;">
+                            State<BR>
+                            <$client.env.FormField.EmployerState.HTML>
+                        </div>
+                        <div style="white-space: nowrap; display: inline-block;">
+                            ZIP code<BR>
+                            <$client.env.FormField.EmployerZip.HTML>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <BR>
+
+            <BR><BR>
+            <div class="row">
+                <div class="header-text">                   
+                    <strong>Form W-4MN Instructions for Employees and Pension/Annuity Recipients</strong>
+                </div>
+            </div>
+           <!-- <hr class="lifesuite__hr_Black"> -->
+            <BR>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">   
+                    <span class="italic">
+                        Complete this form for your employer to calculate the amount of Minnesota income tax to be withheld from your pay.
+                    </span>
+                </div>
+            </div>
+            <BR>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>When should I complete Form W-4MN?</strong><br>
+                   <span>Complete Form W-4MN if any of these apply:</span>
+                   <ul>
+                     <li>You begin employment</li>
+                     <li>You change your filing status</li>
+                     <li>You reasonably expect to change your filing status in the next calendar year</li>
+                     <li>Your personal or financial situation changes</li>
+                     <li>You claim exempt from Minnesota withholding (see Section 2 instructions for qualifications)</li>
+                     <li>You receive distributions from an annuity or pension</li>
+                   </ul>
+                   <span>If you have not had sufficient Minnesota income tax withheld from your wages, we may assess penalty and interest when you file your state income tax return.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <strong>Note:</strong> Your employer may be required to submit a copy of your Form W-4MN to the Minnesota Department of Revenue. You may be subject to a $500 penalty if you provide a false Form W-4MN.
+                </div>
+            </div>
+
+              <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <strong>You must enter your Social Security Number for this Form W-4MN to be valid.</strong>
+                </div>
+            </div>
+
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>What if I have completed federal Form W-4?</strong><br>
+                   If you completed a 2022 Form W-4, you must complete Form W-4MN to determine your Minnesota withholding allowances.
+                </div>
+            </div>
+              <br>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>What if I am exempt from Minnesota withholding?</strong><br>
+                   If you claim exempt from Minnesota withholding, complete only Section 2 of Form W-4MN and sign and date the form to validate it. If you complete Section 2, you must complete a new Form W-4MN by February 15 in each following year in which you claim an exemption from Minnesota withholding.<br>
+                    <span>You cannot claim exempt from withholding if all of these apply:</span>
+                    <ul>
+                      <li>Another person can claim you as a dependent on their federal tax return</li>
+                      <li>Your annual income exceeds $1,100</li>
+                      <li>Your annual income includes more than $350 of unearned income</li>
+                      
+                    </ul>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>What if I am a nonresident alien for U.S. income taxes?</strong><br>
+                   <p>If you are a nonresident alien, you are not allowed to claim exempt from withholding. You will check the single box for marital status regardless of your actual marital status and may enter one personal allowance on Step A. Enter zero on steps B, C, and E.</p>
+                   If you are resident of Canada, Mexico, South Korea, or India, and are allowed to claim dependents, you may enter the number of dependents on Step D.
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Section 1 — Minnesota Allowances Worksheet</strong><br>
+                   <p>Complete Section 1 to find your allowances for Minnesota withholding tax. For regular wages, withholding must be based on allowances you claimed and may not be a flat amount or percentage of wages.</p>
+                    <span>If you expect to owe more income tax for the year than will be withheld, you can claim fewer allowances or request additional Minnesota withholding from your wages. Enter the amount of additional Minnesota income tax you want withheld on line 2 of Section 1.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Nonwage Income</strong><br>
+                   <span>Consider making estimated payments if you have a large amount of “nonwage income.” Nonwage income (other than tax-exempt income) includes interest, dividends, net rental income, unemployment compensation, gambling winnings, prizes and awards, hobby income, capital gains, royalties, and partnership income.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Two Earners or Multiple Jobs</strong><br>
+                   <span>If your spouse works or you have more than one job, figure the total number of allowances you are entitled to claim on all jobs using worksheets from only one Form W-4MN. Usually, your withholding will be more accurate when all allowances are claimed on the Form W-4MN for the highest paying job and zero allowances are claimed on the others.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Head of Household Filing Status</strong><br>
+                   <span>You may claim Head of Household as your filing status if you are unmarried and pay more than 50 percent of the costs of keeping up a home for yourself, your dependents, and other qualifying individuals. Enter “1” on Step E if you may claim Head of Household as your filing status on your tax return.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>What if I itemize deductions on my Minnesota return or have other nonwage income?</strong><br>
+                   <span>Use the Itemized Deductions and Additional Income Worksheet to find your Minnesota withholding allowances. Complete Section 1 on page 1, then follow the steps in the worksheet on the next page to find additional allowances.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row bordered-table">
+                <div class="row bottomPadding">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                        <strong>Itemized Deductions and Additional Income Worksheet</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text ">
+                        <div class="col-xs-12 col-md-9 lifesuite__clearfix text">
+                            <h6><span class="text">1</span> Enter an estimate of your 2022 Minnesota itemized deductions. For 2022, you may
+                            have to reduce your itemized deductions if your income is over $206,050
+                            ($103,025 for Married Filing Separately)</h6>
+                        </div>
+                        <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                            <span class="input-field"><$client.env.FormField.txtItemizedDeduction1.HTML></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text ">
+                        <div class="col-xs-12 col-md-9 lifesuite__clearfix text" style="padding-bottom: 10px;">
+                            <h6><span class="text">2</span> Enter one of the following based on your filing status: <br>
+                            a. $25,800 if Married Filing Jointly <br>
+                            b. $19,400 if Head of Household <br>
+                            c. $12,900 if Single or Married Filing Separately</h6>
+                        </div>
+                        <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                            <span class="input-field"><$client.env.FormField.txtItemizedDeduction2.HTML></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text ">
+                        <div class="col-xs-12 col-md-9 lifesuite__clearfix text">
+                            <h6><span class="text">3</span>
+                            Subtract step 2 from step 1. If zero or less, enter 0</h6>
+                        </div>
+                        <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                            <span class="input-field"><$client.env.FormField.txtItemizedDeduction3.HTML></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text ">
+                        <div class="col-xs-12 col-md-9 lifesuite__clearfix text">
+                            <h6><span class="text">4</span>
+                            Enter an estimate of your 2022 additional standard deduction (from page 11 of the Form M1 instructions)</h6>
+                        </div>
+                        <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                            <span class="input-field"><$client.env.FormField.txtItemizedDeduction4.HTML></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text ">
+                        <div class="col-xs-12 col-md-9 lifesuite__clearfix text">
+                            <h6><span class="text">5</span>
+                            Add steps 3 and 4</h6>
+                        </div>
+                        <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                            <span class="input-field"><$client.env.FormField.txtItemizedDeduction5.HTML></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text ">
+                        <div class="col-xs-12 col-md-9 lifesuite__clearfix text">
+                            <h6><span class="text">6</span>
+                            Enter an estimate of your 2022 taxable nonwage income</h6>
+                        </div>
+                        <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                            <span class="input-field"><$client.env.FormField.txtItemizedDeduction6.HTML></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text ">
+                        <div class="col-xs-12 col-md-9 lifesuite__clearfix text">
+                            <h6><span class="text">7</span>
+                            Subtract step 6 from step 5. If zero, enter 0. If less than zero, enter the amount in parentheses</h6>
+                        </div>
+                        <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                            <span class="input-field"><$client.env.FormField.txtItemizedDeduction7.HTML></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text ">
+                        <div class="col-xs-12 col-md-9 lifesuite__clearfix text">
+                            <h6><span class="text">8</span>
+                           Divide the amount on step 7 by $4,450. If a negative amount, enter in parentheses. Do not include fractions</h6>
+                        </div>
+                        <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                            <span class="input-field"><$client.env.FormField.txtItemizedDeduction8.HTML></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text ">
+                        <div class="col-xs-12 col-md-9 lifesuite__clearfix text">
+                            <h6><span class="text">9</span>
+                            Enter the number on step F of Section 1 on page 1</h6>
+                        </div>
+                        <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                            <span class="input-field"><$client.env.FormField.txtItemizedDeduction9.HTML></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 lifesuite__clearfix text ">
+                        <div class="col-xs-12 col-md-9 lifesuite__clearfix text">
+                            <h6><span class="text">10</span>
+                            Add step 8 and 9 and enter the total here. If zero or less, enter 0. Enter this amount on line 1 of page 1</h6>
+                        </div>
+                        <div class="col-xs-12 col-md-3 lifesuite__clearfix text">
+                            <span class="input-field"><$client.env.FormField.txtItemizedDeduction10.HTML></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Section 2 — Minnesota Exemption</strong><br>
+                   <span>Your employer will not withhold Minnesota taxes from your pay if you are exempt from Minnesota withholding. You cannot claim exempt from withholding if all of these apply:</span>
+                   <ul>
+                     <li>Another person can claim you as a dependent on their federal tax return</li>
+                     <li>Your annual income exceeds $1,100</li>
+                     <li>Your annual income includes more than $350 of unearned income</li>
+                  </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Box A</strong><br>
+                   <span>Check box A of Section 2 to claim exempt if all of these apply:</span>
+                   <ul>
+                     <li>You meet the requirements to be exempt from federal withholding</li>
+                     <li>You had no Minnesota income tax liability in the prior year and received a full refund of Minnesota tax withheld</li>
+                     <li>You expect to have no Minnesota income tax liability for the current year</li>
+                  </ul>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Box B</strong><br>
+                   <span>Check box B of Section 2 if you are not claiming exempt from federal withholding, but meet the second and third requirements for box A.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Box C</strong><br>
+                   <span>Check box C in Section 2 to claim exempt if all of these apply:</span>
+                   <ul>
+                     <li>You are the spouse of a military member assigned to duty in Minnesota</li>
+                     <li>You and your spouse are domiciled in another state</li>
+                     <li>You are in Minnesota solely to be with your active duty military spouse member</li>
+                  </ul>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Boxes D-G</strong><br>
+                   <span>If you receive income from the following sources, it is exempt from Minnesota withholding. Your employer will not withhold Minnesota tax from that income when you check the appropriate box in Section 2.</span>
+                   <ul>
+                     <li><strong>Box D:</strong> You receive wages as a member of an American Indian tribe living and working on the reservation of which you are an enrolled member. Enter the name of your reservation and your Certificate of Degree of Indian or Alaskan Blood (CDIB) number.</li>
+                     <li><strong>Box E:</strong> You receive wages for Minnesota National Guard (MNG) pay or for active duty U.S. military pay. MNG and active duty U.S. military members can claim exempt from Minnesota withholding on these wages, even if they are taxable federally. For more information, see Income Tax Fact Sheet 5, Military Personnel.</li>
+                     <li><strong>Box F:</strong> You receive a military pension or other military retirement pay calculated under U.S. Code title 10, sections 1401 through 1414, 1447 through 1455, and 12733. You may claim exempt from Minnesota withholding on this income even if it is taxable federally.</li>
+                  </ul>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <span><strong>Note:</strong> You may not want to claim exempt if you (or your spouse if filing a joint return) expect to have other forms of income subject to Minnesota tax and you want to avoid owing tax at the end of the year.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <span>If you complete Section 2, you must complete a new Form W-4MN by February 15 in each following year.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Nonresident Alien</strong><br>
+                   <span>If you are a nonresident alien for federal tax purposes, do not complete Section 2.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Line 2 — Additional Minnesota Withholding</strong><br>
+                   <span>If you would like an additional amount of tax to be deducted per payment period, enter the amount on line 2. Do not enter a percentage of the payment you want to be deducted.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Use of Information</strong><br>
+                   <span>All information on Form W-4MN is private by state law. It cannot be given to others without your consent, except to the Internal Revenue Service, to other states that guarantee the same privacy, and by court order. Your name, address, and Social Security number are required for identification. Information about your allowances is required to determine your correct tax. We ask for your phone number so we can call if we have a question.</span>
+                </div>
+            </div>
+             <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Questions?</strong><br>
+                    <ul> 
+                      <li>Website: <a style="font-size:14px" href="https://www.revenue.state.mn.us" target="_blank">www.revenue.state.mn.us</a></li>
+                      <li>Email: <a href="mailto:withholding.tax@state.mn.us">withholding.tax@state.mn.us</a></li>
+                      <li>Phone: 651-282‑9999 or 1-800-657-3594 (toll-free)</li>
+                   </ul>
+                </div>
+            </div>
+             <br>
+
+            <BR><BR>
+            <div class="row">
+                <div class="header-text">                   
+                    <strong>Form W-4MN Employer Instructions</strong>
+                </div>
+            </div>
+            <BR>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Form W-4MN Requirement</strong><br>
+                   Federal Form W-4 will not determine withholding allowances used to determine the amount of Minnesota withholding. Employees completing a 2022 Form W-4 will need to complete 2022 Form W-4MN to determine the appropriate amount of Minnesota withholding.
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Lock-In Letters</strong><br>
+                   Internal Revenue Service (IRS) Letter 2800C tells you when the IRS believes your employee may have filed an incorrect federal Form W-4. If you receive this letter, you must provide the Minnesota Department of Revenue with a copy of the employee’s Form W-4MN. We will verify the number of allowances that the employee may claim for Minnesota purposes. Continue using the Form W-4MN you were using at the time you received Letter 2800C from the IRS, until we notify you to change the amount of allowances on the employee’s Form W-4MN. If the employee has not completed a Form W-4MN, have them complete the form and use the allowances calculated on that form until notified by the department.
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>Use the amount on line 1 of page 1 for calculating the withholding tax for your employees.</strong>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>When does an employee complete Form W-4MN?</strong><br>
+                   Employees complete Form W-4MN when they begin employment or when their personal or financial situation changes.
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>How should I determine Minnesota withholding for an employee that does not complete Form W-4MN?</strong><br>
+                   If an employee does not complete Form W-4MN and they have a federal Form W-4 (from 2019 or prior years) on file, use the allowances on their federal Form W-4. Otherwise, withhold Minnesota tax as if the employee is single with zero withholding allowances.
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>What if my employee claims to be exempt from Minnesota withholding?</strong><br>
+                   If your employee claims exempt from Minnesota withholding, they must complete Section 2 of Form W-4MN. They must provide you with a new Form W-4MN by February 15 of each year. If you are paying an employee for wages that are exempt from withholding, such as Medicaid Waiver Payments or wages to H-2A visa workers, do not send us Form W-4MN.
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>When do I need to submit copies of a Form W-4MN to the department?</strong><br>
+                   <span>You must send copies of Form W-4MN to us if any of these apply:</span>
+                   <ul>
+                      <li>The employee claims more than 10 Minnesota withholding allowances</li>
+                      <li>The employee checked box A or B under Section 2, and you reasonably expect the employee’s wages to exceed $200 per week</li>
+                      <li>You believe the employee is not entitled to the number of allowances claimed</li>
+                  </ul>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+<span>You do not need to submit Form W-4MN to us if the employee is asking to have additional Minnesota withholding deducted from their pay.</span>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+<span>We may assess a $50 penalty for each Form W-4MN you do not file with us when required.</span>
+                </div>
+            </div>
+            <br>
+
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <span>Mail Forms W-4MN to:</span><br>
+                    <span>Minnesota Department of Revenue</span><br>
+                    <span>Mail Station 6501</span><br>
+                    <span>600 N. Robert St.</span><br>
+                    <span>St. Paul, MN 55146-6501</span><br>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>What if my employee is a resident of a state that has a reciprocity agreement with Minnesota?</strong><br>
+                   <span>If your employee is a resident of North Dakota or Michigan and they do not want you to withhold Minnesota tax from their wages, they must complete Form MWR, Reciprocity Exemption/Affidavit of Residency. They must complete a Form MWR by February 28 of each year, or within 30 days after they begin working or change their permanent residence. See Withholding Fact Sheet 20, Reciprocity - Employee Withholding, for more information.</span>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>What is an invalid Form W-4MN?</strong><br>
+                   <span>A Form W-4MN is considered invalid if any of these apply:</span>
+                   <ul>
+                      <li>There is any unauthorized change or addition to the form, including any change to the language certifying the form is correct</li>
+                      <li>The employee indicates in any way the form is false by the date they provide you with the form</li>
+                      <li>The form is incomplete or lacks the necessary signatures</li>
+                      <li>Both Section 1 and Section 2 were completed</li>
+                      <li>The employer information is incomplete</li>
+                   </ul>
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>What if I receive an invalid form?</strong><br>
+                   <p>
+                       Do not use the invalid form to calculate Minnesota income tax withholding. Have the employee complete and submit a new Form W-4MN. If the employee does not give you a valid form, and you have an earlier Form W-4MN from them, use the earlier form to calculate their withholding.
+                   </p>
+                   <p>
+                        If a valid Form W-4MN is not completed by the employee, withhold taxes as if the employee is single and claiming zero withholding allowances.
+                   </p>     
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                   <strong>What if my employee is a nonresident alien of the United States?</strong><br>
+                   <span>If the wages to this employee are subject to income tax withholding, you will use Table 1 and the procedure under <strong>Withholding Adjustment for Nonresident Alien Employees</strong> in IRS Publication 15-T to determine the correct Minnesota withholding tax. Do not use this procedure for nonresident alien students from India and business apprentices from India. See IRS Notice 1392 for special instructions and withholding
+exceptions.</span>
+                </div>
+            </div>
+            <br>
+
+            <hr class="lifesuite__hr">
+            <div class="row" id="formButtons" style="display: none;">
+                <div class="lifesuite__clearfix lifesuite__float-right">               
+                    <$client.env.FormButtons>
+                </div>             
+            </div>
+
+        </div>
+    </div>
+
+
+
+<div style="display:none;">
+<$client.env.FormField.signatureverification.HTML>
+<$client.env.formfield.SSN1.html>
+<$client.env.formfield.SSN2.html>
+<$client.env.formfield.SSN3.html>
+<$client.env.formfield.EIN1.html>
+<$client.env.formfield.EIN2.html>
+<$client.env.formfield.Login_ID.html>
+<$client.env.formfield.Auth_Param.html>
+<$client.env.formfield.EmployeeID.html>
+<$client.env.formfield.Fullname.html>
+</div>
+
+</form>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/State_Withholding_MN/js/bootstrap.min.js>"></script>
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+        $( window ).resize(function() { 
+        document.getElementById('over').style.width=''; 
+        }); 
+});
+
+setTimeout(function(){  
+  if(strFormCompleted ==''){ //Check if eForm is completed. '' means incomplete.  
+    $("#ButtonPrint")[0].onclick = null; 
+      $("#ButtonPrint").click(function() {  
+        /* Add your code/function here */ 
+        $('[name$=".signatureverification"]').val($('[ng-bind="signatureStatement"]').html());
+        void(funcPrint()); // default print function 
+      }); 
+
+    if($("#ButtonSaveAndComplete").length){  
+      $("#ButtonSaveAndComplete")[0].onclick = null; 
+        $("#ButtonSaveAndComplete").click(function() {  
+            /* Add your code/function here */ 
+            $('[name$=".signatureverification"]').val($('[ng-bind="signatureStatement"]').html());
+            void(funcSaveAndComplete());  //default Save function 
+        }); 
+    } 
+  } 
+}, 300); 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+</SCRIPT>

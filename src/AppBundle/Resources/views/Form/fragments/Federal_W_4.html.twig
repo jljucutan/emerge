@@ -1,0 +1,2174 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form" class="form-horizontal">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Address.prompt>
+        <$client.env.FormField.ChildrenDependentsTotal.prompt>
+        <$client.env.FormField.CityStateZip.prompt>
+        <$client.env.FormField.DAWorksheet1.prompt>
+        <$client.env.FormField.DAWorksheet2.prompt>
+        <$client.env.FormField.DAWorksheet3.prompt>
+        <$client.env.FormField.DAWorksheet4.prompt>
+        <$client.env.FormField.DAWorksheet5.prompt>
+        <$client.env.FormField.Deductions.prompt>
+        <$client.env.FormField.EIN.prompt>
+        <$client.env.FormField.EIN1.prompt>
+        <$client.env.FormField.EIN2.prompt>
+        <$client.env.FormField.EmployerNameAddress.prompt>
+        <$client.env.FormField.NonResidentAlien.prompt>
+        <$client.env.FormField.ExtraWithholding.prompt>
+        <$client.env.FormField.Exempt.prompt>
+        <$client.env.FormField.FilingStatus.prompt>
+        <$client.env.FormField.FirstDateEmployment.prompt>
+        <$client.env.FormField.FirstNameMiddleInitial.prompt>
+        <$client.env.FormField.LastName.prompt>
+        <$client.env.FormField.MJWorksheet1.prompt>
+        <$client.env.FormField.MJWorksheet2A.prompt>
+        <$client.env.FormField.MJWorksheet2B.prompt>
+        <$client.env.FormField.MJWorksheet2C.prompt>
+        <$client.env.FormField.MJWorksheet3.prompt>
+        <$client.env.FormField.MJWorksheet4.prompt>
+        <$client.env.FormField.MultiplyChildren.prompt>
+        <$client.env.FormField.MultiplyDependents.prompt>
+        <$client.env.FormField.OtherIncome.prompt>
+        <$client.env.FormField.SSN.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.TwoJobs.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+    <main class="container-fluid">
+        <header class="row b-bottom">
+            <div class="col-lg-2 col-sm-2 col-xs-12">
+                <h3>
+                    <small>Form</small>
+                    <strong>W-4</strong>
+                </h3>
+                <small>
+                    Department of the Treasury Internal Revenue Service
+                </small>
+            </div>
+            <div class="col-lg-8 col-sm-8 col-xs-12 b-right b-left text-center">
+                <h4>
+                    <strong>Employee's Withholding Certificate</strong>
+                </h4>
+                <strong>
+                    <i class="fa fa-caret-right"></i> Complete Form W-4 so that your employer can withhold the correct federal income tax from your pay.
+                    <br>
+                    <i class="fa fa-caret-right"></i> Give Form W-4 to your employer.
+                    <br>
+                    <i class="fa fa-caret-right"></i> Your withholding is subject to review by the IRS.
+                </strong>
+            </div>
+            <div class="col-lg-2 col-sm-2 col-xs-12">
+                <div class="row b-bottom">
+                    <div class="col-lg-12 text-center">
+                        <small>OMB No. 1545-0074</small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="text-center">
+                            <strong>
+                                <span class="text-outlined">20</span>22
+                            </strong>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="row b-bottom">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="i-block v-middle">
+                    <strong>Nonresident aliens</strong>, please check this box before continuing.
+                </div>
+                <div class="i-block v-middle">
+                    <$client.env.FormField.NonResidentAlien.html>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-1 col-sm-1 col-xs-12">
+                <p>
+                    <strong>Step 1:</strong>
+                </p>
+                <strong>
+                    Enter Personal Information
+                </strong>
+            </div>
+            <div class="col-lg-11 col-sm-11 col-xs-12 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-5 col-sm-5 col-xs-12 b-right">
+                        <small><strong>(a)</strong> First name and middle initial</small>
+                        <$client.env.FormField.FirstNameMiddleInitial.html>
+                    </div>
+                    <div class="col-lg-5 col-sm-5 col-xs-12 b-right">
+                        <small>Last name</small>
+                        <$client.env.FormField.LastName.html>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                        <small>
+                            <strong>(b) Social security number</strong>
+                        </small>
+                        <$client.env.FormField.SSN.html>
+                    </div>
+                </div>
+                <div class="row b-bottom">
+                    <div class="col-lg-10 col-sm-10 col-xs-12 b-right">
+                        <div class="col-lg-12 b-bottom">
+                            <small>Address</small>
+                            <$client.env.FormField.Address.html>
+                        </div>
+                        <div class="col-lg-12">
+                            <small>City or town, state, and ZIP code</small>
+                            <$client.env.FormField.CityStateZip.html>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <small>
+                                    <strong><i class="fa fa-caret-right"></i> Does your name match the name on your social security card?</strong>
+                                    If not, to ensure you get credit for your earnings, contact SSA at 800-772-1213 or go to 
+                                    <em><a href="https://www.ssa.gov/" target="_blank">www.ssa.gov</a>.</em>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-1 col-sm-1 col-xs-1">
+                        <strong>(c)</strong>
+                    </div>
+                    <div class="col-lg-11 col-sm-11 col-xs-11">
+                        <$client.env.FormField.FilingStatus.html>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 px-5">
+                <strong>Complete Steps 2 - 4 ONLY if they apply to you; otherwise skip to Step 5</strong>. See page 2 for more information on each step, who can claim exemption from withholding, when to use the estimator at <a href="https://www.irs.gov/W4App" target="_blank">www.irs.gov/W4App</a>, and privacy.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-sm-2 col-xs-12 px-5">
+                <p>
+                    <strong>Step 2:</strong>
+                </p>
+                <strong>
+                    Multiple Jobs or Spouse Works
+                </strong>
+            </div>
+            <div class="col-lg-10 col-sm-10 col-xs-12 px-5">
+                <p>
+                    Complete this step if you (1) hold more than one job at a time, or (2) are married filing jointly and your spouse also works. The correct amount of withholding depends on income earned from all of these jobs.
+                </p>
+                <p>
+                    Do <strong>only one</strong> of the following.
+                </p>
+                <ol class="parenthelist">
+                    <li>
+                        Use the estimator at <em><a href="https://www.irs.gov/W4App" target="_blank">www.irs.gov/W4App</a></em> for most accurate withholding for this step (and Steps 3–4); <strong>or</strong>
+                    </li>
+                    <li>
+                        Use the Multiple Jobs Worksheet on page 3 and enter the result in Step 4(c) below for roughly accurate withholding; <strong>or</strong>
+                    </li>
+                    <li>
+                        If there are only two jobs total, you may check this box. Do the same on Form W-4 for the other job. This option is accurate for jobs with similar pay; otherwise, more tax than necessary may be withheld
+                        <div class="i-block">
+                            <$client.env.FormField.TwoJobs.html>
+                        </div>
+                    </li>
+                </ol>
+                <p>
+                    <strong>TIP:</strong> To be accurate, submit a 2022 Form W-4 for all other jobs. If you (or your spouse) have self-employment income, including as an independent contractor, use the estimator.
+                </p>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12 px-5">
+                <strong>Complete Steps 3 - 4(b) on Form W-4 for only ONE of these jobs.</strong> Leave those steps blank for the other jobs. (Your withholding will be most accurate if you complete Steps 3 - 4(b) on the Form W-4 for the highest paying job.)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="f-box">
+                    <div class="col-lg-2 col-sm-2 col-xs-12 px-5">
+                        <p>
+                            <strong>Step 3:</strong>
+                        </p>
+                        <p>
+                            <strong>Claim Dependents</strong>
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-sm-8 col-xs-12 px-5 b-right">
+                        <p>
+                            If your total income will be $200,000 or less ($400,000 or less if married filing jointly):
+                        </p>
+                        <div class="row">
+                            <div class="col-lg-7 col-sm-7 col-xs-12">
+                                <label class="control-label">
+                                    Multiply the number of qualifying children under age 17 by $2,000
+                                </label>
+                            </div>
+                            <div class="col-lg-5 col-sm-5 col-xs-12">
+                                <i class="fa fa-caret-right"></i> $
+                                <div class="i-block">
+                                    <$client.env.FormField.MultiplyChildren.html>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-7 col-sm-7 col-xs-12">
+                                <label class="control-label">
+                                    Multiply the number of other dependents by $500 
+                                </label>
+                            </div>
+                            <div class="col-lg-5 col-sm-5 col-xs-12">
+                                <i class="fa fa-caret-right"></i> $
+                                <div class="i-block">
+                                    <$client.env.FormField.MultiplyDependents.html>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                        <div class="f-box">
+                            <div class="col-lg-2 col-sm-2 col-xs-12 b-right">&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-12">
+                <div class="f-box">
+                    <div class="col-lg-2 col-sm-2 col-xs-12">&nbsp;</div>
+                    <div class="col-lg-8 col-sm-8 col-xs-12 b-right px-5">
+                        Add the amounts above and enter the total here
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                        <div class="f-box">
+                            <div class="form-group">
+                                <div class="col-lg-2 col-sm-2 col-xs-12 b-right">
+                                    <div class="mt-10">
+                                        <strong class="px-5">3</strong>
+                                    </div>
+                                </div>
+                                <div class="col-lg-10 col-sm-10 col-xs-12">
+                                    <div class="i-block col-10">$</div>
+                                    <div class="i-block col-90"><$client.env.FormField.ChildrenDependentsTotal.html></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="f-box">
+                    <div class="col-lg-2 col-sm-2 col-xs-12 px-5">
+                        <p>
+                            <strong>Step 4 (optional):</strong>
+                        </p>
+                        <p>
+                            <strong>Other Adjustments</strong>
+                        </p>
+                    </div>
+                    <div class="col-lg-8 col-sm-8 col-xs-12 px-5 b-right">
+                        <strong>(a) Other income (not from jobs).</strong>
+                        If you want tax withheld for other income you expect this year that won’t have withholding, enter the amount of other income here. This may include interest, dividends, and retirement income. 
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                        <div class="f-box">
+                            <div class="col-lg-2 col-sm-2 col-xs-12 b-right text-center">
+                                <div class="mt-10">
+                                    <strong>4(a)</strong>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 col-sm-10 col-xs-12">
+                                <div class="i-block col-10">
+                                    <strong>$</strong>
+                                </div>
+                                <div class="i-block col-90">
+                                    <$client.env.FormField.OtherIncome.html>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="f-box">
+                    <div class="col-lg-2 col-sm-2 col-xs-12 px-5">&nbsp;</div>
+                    <div class="col-lg-8 col-sm-8 col-xs-12 px-5 b-right">
+                        <strong>(b) Deductions.</strong>
+                        If you expect to claim deductions other than the standard deduction and want to reduce your withholding, use the Deductions Worksheet on page 3 and enter the result here.
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                        <div class="f-box">
+                            <div class="col-lg-2 col-sm-2 col-xs-12 b-right text-center">
+                                <div class="mt-10">
+                                    <strong>4(b)</strong>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 col-sm-10 col-xs-12">
+                                <div class="i-block col-10">
+                                    <strong>$</strong>
+                                </div>
+                                <div class="i-block col-90">
+                                    <$client.env.FormField.Deductions.html>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-lg-12">
+                <div class="f-box">
+                    <div class="col-lg-2 col-sm-2 col-xs-12 px-5">&nbsp;</div>
+                    <div class="col-lg-8 col-sm-8 col-xs-12 px-5 b-right">
+                        <strong>(c) Extra withholding.</strong>
+                        Enter any additional tax you want withheld each <strong>pay period</strong>.
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-12 b-bottom">
+                        <div class="f-box">
+                            <div class="col-lg-2 col-sm-2 col-xs-12 b-right text-center">
+                                <div class="mt-10">
+                                    <strong>4(c)</strong>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 col-sm-10 col-xs-12">
+                                <div class="i-block col-10">
+                                    <strong>$</strong>
+                                </div>
+                                <div class="i-block col-90">
+                                        <$client.env.FormField.ExtraWithholding.html>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="f-box">
+                    <div class="col-lg-2 col-sm-2 col-xs-12 px-5">&nbsp;</div>
+                    <div class="col-lg-8 col-sm-8 col-xs-12 px-5">
+                        <div class="i-block v-middle">
+                           <!-- <strong>Nonresident aliens</strong>, please check this box before continuing. -->
+                        </div>
+                        <div class="i-block v-middle">
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.Exempt.html>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom b-top">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-1 col-sm-1 col-xs-12 px-5">
+                        <p>
+                            <strong>Step 5:</strong>
+                        </p>
+                        <p>
+                            <strong>Sign Here</strong>
+                        </p>
+                    </div>
+                    <div class="col-lg-11 col-sm-11 col-xs-12 px-5 b-left">
+                        <div class="row"> 
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                Under penalties of perjury, I declare that this certificate, to the best of my knowledge and belief, is true, correct, and complete.
+                                <br>
+                                <$client.env.FormField.Signer.HTML><br><b>Employee's Signature</b> (This form is not valid unless you sign it.)
+                            </div> 
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom mb-20">
+            <div class="col-lg-12">
+                <div class="f-box">
+                    <div class="col-lg-1 col-sm-1 col-xs-12 px-5">
+                        <p>
+                            <strong>Employers Only</strong>
+                        </p>
+                    </div>
+                    <div class="col-lg-7 col-sm-7 col-xs-12 px-5 b-left">
+                        <small>Employer's name and address</small>
+                        <$client.env.FormField.EmployerNameAddress.html>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-12 px-5 b-left">
+                        <small>First date of employment</small>
+                        <$client.env.FormField.FirstDateEmployment.html>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-xs-12 px-5 b-left">
+                        <small>Employer identification number (EIN)</small>
+                        <$client.env.FormField.EIN.html>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-20">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <h4 class="mb-5">
+                    <strong>General Instructions</strong>
+                </h4>
+                <p>Section references are to the Internal Revenue Code.</p>
+                <h5 class="mb-5">
+                    <strong>Future Developments</strong>
+                </h5>
+                <p>
+                    For the latest information about developments related to Form W-4, such as legislation enacted after it was published, go to <em><a href="https://www.irs.gov/FormW4" target="_blank">www.irs.gov/FormW4</a></em>.
+                </p>
+                <h5 class="mb-5">
+                    <strong>Purpose of Form</strong>
+                </h5>
+                <p>
+                    Complete Form W-4 so that your employer can withhold the correct federal income tax from your pay. If too little is withheld, you will generally owe tax when you file your tax return and may owe a penalty. If too much is withheld, you will generally be due a refund. Complete a new Form W-4 when changes to your personal or financial situation would change the entries on the form. For more information on withholding and when you must furnish a new Form W-4, see Pub. 505, Tax Withholding and Estimated Tax.
+                </p>
+                <p>
+                    <strong>Exemption from withholding.</strong> You may claim exemption from withholding for 2022 if you meet both of the following conditions: you had no federal income tax liability in 2021 <strong>and</strong> you expect to have no federal income tax liability in 2022. You had no federal income tax liability in 2021 if (1) your total tax on line 24 on your 2021 Form 1040 or 1040-SR is zero (or less than the sum of lines 27a, 28, 29, and 30), or (2) you were not required to file a return because your income was below the filing threshold for your correct filing status. If you claim exemption, you will have no income tax withheld from your paycheck and may owe taxes and penalties when you file your 2022 tax return. To claim exemption from withholding, certify that you meet both of the conditions above by writing “Exempt” on Form W-4 in the space below Step 4(c). Then, complete Steps 1(a), 1(b), and 5. Do not complete any other steps. You will need to submit a new Form W-4 by February 15, 2023.
+                </p>
+                <p>
+                    <strong>Your Privacy.</strong> If you prefer to limit information provided in Steps 2 through 4, use the online estimator, which will also increase accuracy.
+                </p>
+                <p class="text-indented">
+                    As an alternative to the estimator: if you have concerns with Step 2(c), you may choose Step 2(b); if you have concerns with Step 4(a), you may enter an additional amount you want withheld per pay period in Step 4(c). If this is the only job in your household, you may instead check the box in Step 2(c), which will increase your withholding and significantly reduce your paycheck (often by thousands of dollars over the year).
+                </p>
+                <p>
+                    <strong>When to use the estimator.</strong> Consider using the estimator at <em><a href="https://www.irs.gov/W4App" target="_blank">www.irs.gov/W4App</a></em> if you:
+                </p>
+                <ol type="1">
+                    <li>
+                        Expect to work only part of the year;
+                    </li>
+                    <li>
+                        Have dividend or capital gain income, or are subject to additional taxes, such as the additional Medicare tax;
+                    </li>
+                    <li>
+                        Have self-employment income (see below); or
+                    </li>
+                    <li>
+                        Prefer the most accurate withholding for multiple job situations. 
+                    </li>
+                </ol>
+                <p>
+                    <strong>Self-employment.</strong> Generally, you will owe both income and self-employment taxes on any self-employment income you receive separate from the wages you receive as an employee. If you want to pay these taxes through withholding from your wages, use the estimator at <em><a href="https://www.irs.gov/W4App" target="_blank">www.irs.gov/W4App</a></em> to figure the amount to have withheld.
+                </p>
+                <p>
+                    <strong>Nonresident alien.</strong> If you’re a nonresident alien, see Notice 1392, Supplemental Form W-4 Instructions for Nonresident Aliens, before completing this form.
+                </p>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <h4>
+                    <strong>Specific Instructions</strong>
+                </h4>
+                <p>
+                    <strong>Step 1(c).</strong> Check your anticipated filing status. This will determine the standard deduction and tax rates used to compute your withholding.
+                </p>
+                <p>
+                    <strong>Step 2.</strong> Use this step if you (1) have more than one job at the same time, or (2) are married filing jointly and you and your spouse both work.
+                </p>
+                <p class="text-indented">
+                    Option <strong>(a)</strong> most accurately calculates the additional tax you need to have withheld, while option <strong>(b)</strong> does so with a little less accuracy.
+                </p>
+                <p class="text-indented">
+                    If you (and your spouse) have a total of only two jobs, you may instead check the box in option <strong>(c)</strong>. The box must also be checked on the Form W-4 for the other job. If the box is checked, the standard deduction and tax brackets will be cut in half for each job to calculate withholding. This option is roughly accurate for jobs with similar pay; otherwise, more tax than necessary may be withheld, and this extra amount will be larger the greater the difference in pay is between the two jobs.
+                </p>
+                <div class="media mb-5">
+                    <div class="media-left">
+                        <img src="<$link;/main/RedCarpet/FormTemplates/Federal_W_4/img/caution.jpg>" alt="Caution" class="media-object">
+                    </div>
+                    <div class="media-body">
+                        <em>
+                            <strong>Multiple jobs.</strong> Complete Steps 3 through 4(b) on only one Form W-4. Withholding will be most accurate if you do this on the Form W-4 for the highest paying job.
+                        </em>
+                    </div>
+                </div>
+                <p>
+                    <strong>Step 3.</strong> This step provides instructions for determining the amount of the child tax credit and the credit for other dependents that you may be able to claim when you file your tax return. To qualify for the child tax credit, the child must be under age 17 as of December 31, must be your dependent who generally lives with you for more than half the year, and must have the required social security number. You may be able to claim a credit for other dependents for whom a child tax credit can’t be claimed, such as an older child or a qualifying relative. For additional eligibility requirements for these credits, see Pub. 501, Dependents, Standard Deduction, and Filing Information. You can also include <strong>other tax credits</strong> for which you are eligible in this step, such as the foreign tax credit and the education tax credits. To do so, add an estimate of the amount for the year to your credits for dependents and enter the total amount in Step 3. Including these credits will increase your paycheck and reduce the amount of any refund you may receive when you file your tax return. 
+                </p>
+                <p>
+                    <strong>Step 4 (optional).</strong>
+                </p>
+                <p class="text-indented">
+                    <strong><em>Step 4(a).</em></strong> Enter in this step the total of your other estimated income for the year, if any. You shouldn’t include income from any jobs or self-employment. If you complete Step 4(a), you likely won’t have to make estimated tax payments for that income. If you prefer to pay estimated tax rather than having tax on other income withheld from your paycheck, see Form 1040-ES, Estimated Tax for Individuals.
+                </p>
+                <p class="text-indented">
+                    <strong><em>Step 4(b).</em></strong> Enter in this step the amount from the Deductions Worksheet, line 5, if you expect to claim deductions other than the basic standard deduction on your 2022 tax return and want to reduce your withholding to account for these deductions. This includes both itemized deductions and other deductions such as for student loan interest and IRAs.
+                </p>
+                <p class="text-indented">
+                    <strong><em>Step 4(c).</em></strong> Enter in this step any additional tax you want withheld from your pay <strong>each pay period</strong>, including any amounts from the Multiple Jobs Worksheet, line 4. Entering an amount here will reduce your paycheck and will either increase your refund or reduce any amount of tax that you owe.
+                </p>
+            </div>
+        </div>
+        <div class="row b-top b-bottom mb-10">
+            <div class="col-lg-12 px-5">
+                <h5 class="text-center">
+                    <strong>Step 2(b) - Multiple Jobs Worksheet</strong> <em>(Keep for your records.)</em>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    If you choose the option in Step 2(b) on Form W-4, complete this worksheet (which calculates the total extra tax for all jobs) on <strong>only ONE</strong> Form W-4. Withholding will be most accurate if you complete the worksheet and enter the result on the Form W-4 for the highest paying job.
+                </p>
+                <p>
+                    <strong>Note:</strong> If more than one job has annual wages of more than $120,000 or there are more than three jobs, see Pub. 505 for additional tables; or, you can use the online withholding estimator at <em><a href="https://www.irs.gov/W4App" target="_blank">www.irs.gov/W4App</a></em>.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list" type="1" start="1">
+                    <li>
+                        <span>
+                            <strong>Two jobs.</strong> If you have two jobs or you’re married filing jointly and you and your spouse each have one job, find the amount from the appropriate table on page 4. Using the “Higher Paying Job” row and the “Lower Paying Job” column, find the value at the intersection of the two household salaries and enter that value on line 1.  Then, <strong>skip</strong> to line 3.
+                        </span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="i-block col-20 text-right">
+                    <strong>1</strong> $
+                </div>
+                <div class="i-block col-80">
+                    <$client.env.FormField.MJWorksheet1.html>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list" type="1" start="2">
+                    <li>
+                        <span>
+                            <strong>Three jobs.</strong>  If you and/or your spouse have three jobs at the same time, complete lines 2a, 2b, and 2c below. Otherwise, skip to line 3.
+                        </span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list ml-20" type="a">
+                    <li>
+                        <span>
+                            Find the amount from the appropriate table on page 4 using the annual wages from the highest paying job in the “Higher Paying Job” row and the annual wages for your next highest paying job in the “Lower Paying Job” column. Find the value at the intersection of the two household salaries and enter that value on line 2a.
+                        </span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="i-block col-20 text-right">
+                    <strong>2a</strong> $
+                </div>
+                <div class="i-block col-80">
+                    <$client.env.FormField.MJWorksheet2A.html>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list ml-20" type="a" start="2">
+                    <li>
+                        <span>
+                            Add the annual wages of the two highest paying jobs from line 2a together and use the total as the wages in the “Higher Paying Job” row and use the annual wages for your third job in the “Lower Paying Job” column to find the amount from the appropriate table on page 4 and enter this amount on line 2b.
+                        </span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="i-block col-20 text-right">
+                    <strong>2b</strong> $
+                </div>
+                <div class="i-block col-80">
+                    <$client.env.FormField.MJWorksheet2B.html>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list ml-20" type="a" start="3">
+                    <li>
+                        <span>
+                            Add the amounts from lines 2a and 2b and enter the result on line 2c.
+                        </span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="i-block col-20 text-right">
+                    <strong>2c</strong> $
+                </div>
+                <div class="i-block col-80">
+                    <$client.env.FormField.MJWorksheet2C.html>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list" type="1" start="3">
+                    <li>
+                        <span>
+                            Enter the number of pay periods per year for the highest paying job. For example, if that job pays weekly, enter 52; if it pays every other week, enter 26; if it pays monthly, enter 12, etc.
+                        </span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="i-block col-20 text-right">
+                    <strong>3</strong> $
+                </div>
+                <div class="i-block col-80">
+                    <$client.env.FormField.MJWorksheet3.html>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list" type="1" start="4">
+                    <li>
+                        <span>
+                            <strong>Divide</strong> the annual amount on line 1 or line 2c by the number of pay periods on line 3. Enter this amount here and in <strong>Step 4(c)</strong> of Form W-4 for the highest paying job (along with any other additional amount you want withheld).
+                        </span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="i-block col-20 text-right">
+                    <strong>4</strong> $
+                </div>
+                <div class="i-block col-80">
+                    <$client.env.FormField.MJWorksheet4.html>
+                </div>
+            </div>
+        </div>
+        <div class="row b-top b-bottom mb-10">
+            <div class="col-lg-12 px-5">
+                <h5 class="text-center">
+                    <strong>Step 4(b) - Deductions Worksheet</strong> <em>(Keep for your records.)</em>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list" type="1" start="1">
+                    <li>
+                        <span>
+                            Enter an estimate of your 2022 itemized deductions (from Schedule A (Form 1040)). Such deductions may include qualifying home mortgage interest, charitable contributions, state and local taxes (up to $10,000), and medical expenses in excess of 7.5% of your income.
+                        </span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="i-block col-20 text-right">
+                    <strong>1</strong> $
+                </div>
+                <div class="i-block col-80">
+                    <$client.env.FormField.DAWorksheet1.html>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list" type="1" start="2">
+                    <li>
+                        <div class="i-block v-middle col-15">Enter</div>
+                        <div class="i-block v-middle text-mega col-10">&#123;</div>
+                        <div class="i-block v-middle col-70">
+                            <ul>
+                                <li>
+                                    $25,900 if you’re married filing jointly or qualifying widow(er)
+                                </li>
+                                <li>
+                                    $19,400 if you’re head of household
+                                </li>
+                                <li>
+                                    $12,950 if you’re single or married filing separately
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="i-block v-middle text-mega col-5">&#125;</div>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="i-block col-20 text-right">
+                    <strong>2</strong> $
+                </div>
+                <div class="i-block col-80">
+                    <$client.env.FormField.DAWorksheet2.html>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list" type="1" start="3">
+                    <li>
+                        <span>
+                            If line 1 is greater than line 2, subtract line 2 from line 1 and enter the result here. If line 2 is greater than line 1, enter “-0-”
+                        </span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="i-block col-20 text-right">
+                    <strong>3</strong> $
+                </div>
+                <div class="i-block col-80">
+                    <$client.env.FormField.DAWorksheet3.html>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list" type="1" start="4">
+                    <li>
+                        <span>
+                            Enter an estimate of your student loan interest, deductible IRA contributions, and certain other adjustments (from Part II of Schedule 1 (Form 1040)). See Pub. 505 for more information
+                        </span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="i-block col-20 text-right">
+                    <strong>4</strong> $
+                </div>
+                <div class="i-block col-80">
+                    <$client.env.FormField.DAWorksheet4.html>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-sm-9 col-xs-12">
+                <ol class="bold-list" type="1" start="5">
+                    <li>
+                        <span>
+                            <strong>Add</strong> lines 3 and 4. Enter the result here and in <strong>Step 4(b)</strong> of Form W-4.
+                        </span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <div class="i-block col-20 text-right">
+                    <strong>5</strong> $
+                </div>
+                <div class="i-block col-80">
+                    <$client.env.FormField.DAWorksheet5.html>
+                </div>
+            </div>
+        </div>
+        <div class="row b-top px-5">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <p>
+                    <strong>Privacy Act and Paperwork Reduction Act Notice.</strong> We ask for the information on this form to carry out the Internal Revenue laws of the United States. Internal Revenue Code sections 3402(f)(2) and 6109 and their regulations require you to provide this information; your employer uses it to determine your federal income tax withholding. Failure to provide a properly completed form will result in your being treated as a single person with no other entries on the form; providing fraudulent information may subject you to penalties. Routine uses of this information include giving it to the Department of Justice for civil and criminal litigation; to cities, states, the District of Columbia, and U.S. commonwealths and possessions for use in administering their tax laws; and to the Department of Health and Human Services for use in the National Directory of New Hires. We may also disclose this information to other countries under a tax treaty, to federal and state agencies to enforce federal nontax criminal laws, or to federal law enforcement and intelligence agencies to combat terrorism.
+                </p>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <p>
+                    You are not required to provide the information requested on a form that is subject to the Paperwork Reduction Act unless the form displays a valid OMB control number. Books or records relating to a form or its instructions must be retained as long as their contents may become material in the administration of any Internal Revenue law. Generally, tax returns and return information are confidential, as required by Code section 6103.
+                </p>
+                <p>
+                    The average time and expenses required to complete and file this form will vary depending on individual circumstances. For estimated averages, see the instructions for your income tax return.
+                </p>
+                <p>
+                    If you have suggestions for making this form simpler, we would be happy to hear from you. See the instructions for your income tax return.
+                </p>
+            </div>
+        </div>
+        <div class="row b-top">
+            <div class="col-lg-12 px-5">
+                <h5 class="text-center">
+                    <strong>Married Filing Jointly or Qualifying Widow(er)</strong>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 table-responsive center-block">
+                <table class="table table-condesed table-hover table-bordered">
+                    <tbody>
+                        <tr>
+                            <td rowspan="2" class="text-center">
+                                <strong>Higher Paying <br>Job Annual Taxable <br>Wage &amp; Salary</strong>
+                            </td>
+                            <td colspan="12" class="text-center">
+                                <strong>Lower Paying Job Annual Taxable Wage &amp; Salary</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                $0 - 9,999
+                            </td>
+                            <td>
+                                $10,000 - 19,999
+                            </td>
+                            <td>
+                                $20,000 - 29,999
+                            </td>
+                            <td>
+                                $30,000 - 39,999
+                            </td>
+                            <td>
+                                $40,000 - 49,999
+                            </td>
+                            <td>
+                                $50,000 - 59,999
+                            </td>
+                            <td>
+                                $60,000 - 69,999
+                            </td>
+                            <td>
+                                $70,000 - 79,999
+                            </td>
+                            <td>
+                                $80,000 - 89,999
+                            </td>
+                            <td>
+                                $90,000 - 99,999
+                            </td>
+                            <td>
+                                $100,000 - 109,999
+                            </td>
+                            <td>
+                                $110,000 - 120,000
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $0 - 9,999 <br>
+                                $10,000 - 19,999 <br>
+                                $20,000 - 29,999
+                            </td>
+                            <td class="py-20">
+                                $0 <br>
+                                110 <br>
+                                850
+                            </td>
+                            <td class="py-20">
+                                $110 <br>
+                                1,110 <br>
+                                1,860
+                            </td>
+                            <td class="py-20">
+                                $850 <br>
+                                1,860 <br>
+                                2,800
+                            </td>
+                            <td class="py-20">
+                                $860 <br>
+                                2,060 <br>
+                                3,000
+                            </td>
+                            <td class="py-20">
+                                $1,020 <br>
+                                2,220 <br>
+                                3,160
+                            </td>
+                            <td class="py-20">
+                                $1,020 <br>
+                                2,220 <br>
+                                3,160
+                            </td>
+                            <td class="py-20">
+                                $1,020 <br>
+                                2,220 <br>
+                                3,160
+                            </td>
+                            <td class="py-20">
+                                $1,020 <br>
+                                2,220 <br>
+                                3,160
+                            </td>
+                            <td class="py-20">
+                                $1,020 <br>
+                                2,220 <br>
+                                3,910
+                            </td>
+                            <td class="py-20">
+                                $1,020 <br>
+                                2,970 <br>
+                                4,910
+                            </td>
+                           <td class="py-20">
+                                $1,770 <br>
+                                3,970 <br>
+                                5,910
+                            </td>
+                           <td class="py-20">
+                                $1,870 <br>
+                                4,070 <br>
+                                6,010
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $30,000 - 39,999 <br>
+                                $40,000 - 49,999 <br>
+                                $50,000 - 59,999
+                            </td>
+                            <td class="py-20">
+                                860 <br>
+                                1,020 <br>
+                                1,020
+                            </td>
+                            <td class="py-20">
+                                2,060 <br>
+                                2,220 <br>
+                                2,220
+                            </td>
+                            <td class="py-20">
+                                3,000 <br>
+                                3,160 <br>
+                                3,160
+                            </td>
+                            <td class="py-20">
+                                3,200 <br>
+                                3,360 <br>
+                                3,360
+                            </td>
+                            <td class="py-20">
+                                3,360 <br>
+                                3,520 <br>
+                                3,520
+                            </td>
+                            <td class="py-20">
+                                3,360 <br>
+                                3,520 <br>
+                                4,420
+                            </td>
+                            <td class="py-20">
+                                3,360 <br>
+                                4,270 <br>
+                                5,270
+                            </td>
+                            <td class="py-20">
+                                4,110 <br>
+                                5,270 <br>
+                                6,270
+                            </td>
+                            <td class="py-20">
+                                5,110 <br>
+                                6,270 <br>
+                                7,270
+                            </td>
+                            <td class="py-20">
+                                6,110 <br>
+                                7,270 <br>
+                                8,270
+                            </td>
+                            <td class="py-20">
+                                7,110 <br>
+                                8,270 <br>
+                                9,270
+                            </td>
+                            <td class="py-20">
+                                7,210 <br>
+                                8,370 <br>
+                                9,370
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $60,000 - 69,999 <br>
+                                $70,000 - 79,999 <br>
+                                $80,000 - 99,999
+                            </td>
+                            <td class="py-20">
+                                1,020<br>
+                                1,020 <br>
+                                1,020
+                            </td>
+                            <td class="py-20">
+                                2,220 <br>
+                                2,220 <br>
+                                2,820
+                            </td>
+                            <td class="py-20">
+                                3,160 <br>
+                                3,160 <br>
+                                4,760
+                            </td>
+                            <td class="py-20">
+                                3,360 <br>
+                                4,110 <br>
+                                5,960
+                            </td>
+                            <td class="py-20">
+                                4,270 <br>
+                                5,270 <br>
+                                7,120
+                            </td>
+                            <td class="py-20">
+                                5,270 <br>
+                                6,270 <br>
+                                8,120
+                            </td>
+                            <td class="py-20">
+                                6,270 <br>
+                                7,270 <br>
+                                9,120
+                            </td>
+                            <td class="py-20">
+                                7,270 <br>
+                                8,270 <br>
+                                10,120
+                            </td>
+                            <td class="py-20">
+                                8,270 <br>
+                                9,270 <br>
+                                11,120
+                            </td>
+                            <td class="py-20">
+                                9,270 <br>
+                                10,270 <br>
+                                12,120
+                            </td>
+
+                            <td class="py-20">
+                                10,270 <br>
+                                11,270 <br>
+                                13,150
+                            </td>
+
+                            <td class="py-20">
+                                10,370 <br>
+                                11,370 <br>
+                                13,450
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $100,000 - 149,999 <br>
+                                $150,000 - 239,999 <br>
+                                $240,000 - 259,999
+                            </td>
+                            <td class="py-20">
+                                1,870 <br>
+                                2,040 <br>
+                                2,040 
+                            </td>
+                            <td class="py-20">
+                                4,070 <br>
+                                4,440 <br>
+                                4,440 
+                            </td>
+                            <td class="py-20">
+                                6,010 <br>
+                                6,580 <br>
+                                6,580
+                            </td>
+                            <td class="py-20">
+                                7,210 <br>
+                                7,980 <br>
+                                7,980
+                            </td>
+                            <td class="py-20">
+                                8,370 <br>
+                                9,340 <br>
+                                9,340
+                            </td>
+                            <td class="py-20">
+                                9,370 <br>
+                                10,540 <br>
+                                10,540
+                            </td>
+                            <td class="py-20">
+                                10,510 <br>
+                                11,740 <br>
+                                11,740
+                            </td>
+                            <td class="py-20">
+                                11,710 <br>
+                                12,940 <br>
+                                12,940
+                            </td>
+                            <td class="py-20">
+                                12,910 <br>
+                                14,140 <br>
+                                14,140
+                            </td>
+                            <td class="py-20">
+                                14,110 <br>
+                                15,340 <br>
+                                15,340
+                            </td>
+                            <td class="py-20">
+                                15,310 <br>
+                                16,540 <br>
+                                16,540
+                            </td>
+                            <td class="py-20">
+                                15,600 <br>
+                                16,830 <br>
+                                17,590
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $260,000 - 279,999 <br>
+                                $280,000 - 299,999 <br>
+                                $300,000 - 319,999
+                            </td>
+                            <td class="py-20">
+                                2,040 <br>
+                                2,040 <br>
+                                2,040
+                            </td>
+                            <td class="py-20">
+                                4,440 <br>
+                                4,440 <br>
+                                4,440
+                            </td>
+                            <td class="py-20">
+                                6,580 <br>
+                                6,580 <br>
+                                6,580
+                            </td>
+                            <td class="py-20">
+                                7,980 <br>
+                                7,980 <br>
+                                7,980
+                            </td>
+                            <td class="py-20">
+                                9,340 <br>
+                                9,340 <br>
+                                9,340
+                            </td>
+                            <td class="py-20">
+                                10,540 <br>
+                                10,540 <br>
+                                11,300
+                            </td>
+                            <td class="py-20">
+                                11,740 <br>
+                                11,740 <br>
+                                13,300
+                            </td>
+                            <td class="py-20">
+                                12,940 <br>
+                                13,700 <br>
+                                15,300
+                            </td>
+                            <td class="py-20">
+                                14,140 <br>
+                                15,700 <br>
+                                17,300
+                            </td>
+                            <td class="py-20">
+                                16,100 <br>
+                                17,700 <br>
+                                19,300
+                            </td>
+                            <td class="py-20">
+                                18,100 <br>
+                                19,700 <br>
+                                21,300
+                            </td>
+                            <td class="py-20">
+                                19,190 <br>
+                                20,790 <br>
+                                22,390
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $320,000 - 364,999 <br>
+                                $365,000 - 524,999 <br>
+                                $525,000 and over
+                            </td>
+                            <td class="py-20">
+                                2,100 <br>
+                                2,970 <br>
+                                3,140
+                            </td>
+                            <td class="py-20">
+                                5,300 <br>
+                                6,470 <br>
+                                6,840
+                            </td>
+                            <td class="py-20">
+                                8,240 <br>
+                                9,710 <br>
+                                10,280
+                            </td>
+                            <td class="py-20">
+                                10,440 <br>
+                                12,210 <br>
+                                12,980
+                            </td>
+                            <td class="py-20">
+                                12,600 <br>
+                                14,670 <br>
+                                15,640
+                            </td>
+                            <td class="py-20">
+                                14,600 <br>
+                                16,970 <br>
+                                18,140
+                            </td>
+                            <td class="py-20">
+                                16,600 <br>
+                                19,270 <br>
+                                20,640
+                            </td>
+                            <td class="py-20">
+                                18,600 <br>
+                                21,570 <br>
+                                23,140
+                            </td>
+                            <td class="py-20">
+                                20,600 <br>
+                                23,870 <br>
+                                25,640
+                            </td>
+                            <td class="py-20">
+                                22,600 <br>
+                                26,170 <br>
+                                28,140
+                            </td>
+                            <td class="py-20">
+                                24,870 <br>
+                                28,470 <br>
+                                30,640
+                            </td>
+                            <td class="py-20">
+                                26,260 <br>
+                                29,870 <br>
+                                32,240
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 px-5">
+                <h5 class="text-center">
+                    <strong>Single or Married Filing Separately</strong>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 table-responsive center-block">
+                <table class="table table-condesed table-hover table-bordered">
+                    <tbody>
+                        <tr>
+                            <td rowspan="2" class="text-center">
+                                <strong>Higher Paying Job <br>Annual Taxable <br>Wage &amp; Salary</strong>
+                            </td>
+                            <td colspan="12" class="text-center">
+                                <strong>Lower Paying Job Annual Taxable Wage &amp; Salary</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                $0 - 9,999
+                            </td>
+                            <td>
+                                $10,000 - 19,999
+                            </td>
+                            <td>
+                                $20,000 - 29,999
+                            </td>
+                            <td>
+                                $30,000 - 39,999
+                            </td>
+                            <td>
+                                $40,000 - 49,999
+                            </td>
+                            <td>
+                                $50,000 - 59,999
+                            </td>
+                            <td>
+                                $60,000 - 69,999
+                            </td>
+                            <td>
+                                $70,000 - 79,999
+                            </td>
+                            <td>
+                                $80,000 - 89,999
+                            </td>
+                            <td>
+                                $90,000 - 99,999
+                            </td>
+                            <td>
+                                $100,000 - 109,999
+                            </td>
+                            <td>
+                                $110,000 - 120,000
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $0 - 9,999 <br>
+                                $10,000 - 19,999 <br>
+                                $20,000 - 29,999
+                            </td>
+                            <td class="py-20">
+                                $400 <br>
+                                930 <br>
+                                1020
+                            </td>
+                            <td class="py-20">
+                                $930<br>
+                                1,570 <br>
+                                1,660
+                            </td>
+                            <td class="py-20">
+                                $1,020 <br>
+                                1,660 <br>
+                                1,990
+                            </td>
+
+                            <td class="py-20">
+                                $1,020 <br>
+                                1,890 <br>
+                                2,990
+                            </td>
+                            <td class="py-20">
+                                $1,250 <br>
+                                2,890 <br>
+                                3,990
+                            </td>
+                            <td class="py-20">
+                                $1,870 <br>
+                                3,510 <br>
+                                4,610
+                            </td>
+                            <td class="py-20">
+                                $1,870 <br>
+                                3,510 <br>
+                                4,610
+                            </td>
+                            <td class="py-20">
+                                $1,870 <br>
+                                3,510 <br>
+                                4,710
+                            </td>
+                            <td class="py-20">
+                                $1,870 <br>
+                                3,610 <br>
+                                4,910
+                            </td>
+                            <td class="py-20">
+                                $1,970 <br>
+                                3,810 <br>
+                                5,110
+                            </td>
+                            <td class="py-20">
+                                $2,040 <br>
+                                3,880 <br>
+                                5,180
+                            </td>
+                            <td class="py-20">
+                                $2,040 <br>
+                                3,880 <br>
+                                5,180
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $30,000 - 39,999 <br>
+                                $40,000 - 59,999 <br>
+                                $60,000 - 79,999
+                            </td>
+                            <td class="py-20">
+                                1,020 <br>
+                                1,870 <br>
+                                1,870
+                            </td>
+                            <td class="py-20">
+                                1,890 <br>
+                                3,510 <br>
+                                3,510
+                            </td>
+                            <td class="py-20">
+                                2,990 <br>
+                                4,610 <br>
+                                4,680
+                            </td>
+                            <td class="py-20">
+                                3,990 <br>
+                                5,610 <br>
+                                5,880
+                            </td>
+                            <td class="py-20">
+                                4,990 <br>
+                                6,680 <br>
+                                7,080
+                            </td>
+                            <td class="py-20">
+                                5,610 <br>
+                                7,500 <br>
+                                7,900
+                            </td>
+                            <td class="py-20">
+                                5,710 <br>
+                                7,700 <br>
+                                8,100
+                            </td>
+                            <td class="py-20">
+                                5,910 <br>
+                                7,900 <br>
+                                8,300
+                            </td>
+                           <td class="py-20">
+                                6,110 <br>
+                                8,100 <br>
+                                8,500
+                            </td>
+                            <td class="py-20">
+                                6,310 <br>
+                                8,300 <br>
+                                8,700
+                            </td>
+                            <td class="py-20">
+                                6,380 <br>
+                                8,370 <br>
+                                8,970
+                            </td>
+                            <td class="py-20">
+                                6,380 <br>
+                                8,370 <br>
+                                9,770
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $80,000 - 99,999 <br>
+                                $100,000 - 124,999 <br>
+                                $125,000 - 149,999
+                            </td>
+                            <td class="py-20">
+                                1,940 <br>
+                                2,040 <br>
+                                2,040
+                            </td>
+                            <td class="py-20">
+                                3,780 <br>
+                                3,880 <br>
+                                3,880
+                            </td>
+                            <td class="py-20">
+                                5,080 <br>
+                                5,180 <br>
+                                5,180
+                            </td>
+                            <td class="py-20">
+                                6,280 <br>
+                                6,380 <br>
+                                6,520
+                            </td>
+                            <td class="py-20">
+                                7,480 <br>
+                                7,580 <br>
+                                8,520
+                            </td>
+                            <td class="py-20">
+                                8,300 <br>
+                                8,400 <br>
+                                10,140
+                            </td>
+                            <td class="py-20">
+                                8,500 <br>
+                                9,140 <br>
+                                11,140
+                            </td>
+                            <td class="py-20">
+                                8,700 <br>
+                                10,140 <br>
+                                12,140
+                            </td>
+                            <td class="py-20">
+                                9,100 <br>
+                                11,140 <br>
+                                13,320
+                            </td>
+                            <td class="py-20">
+                                10,100 <br>
+                                12,140 <br>
+                                14,620
+                            </td>
+                            <td class="py-20">
+                                10,970 <br>
+                                13,040 <br>
+                                15,790
+                            </td>
+                            <td class="py-20">
+                                11,770 <br>
+                                14,140 <br>
+                                16,890
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $150,000 - 174,999 <br>
+                                $175,000 - 199,999 <br>
+                                $200,000 - 249,999
+                            </td>
+                            <td class="py-20">
+                                2,240 <br>
+                                2,720 <br>
+                                2,970
+                            </td>
+                            <td class="py-20">
+                                4,420 <br>
+                                5,360 <br>
+                                5,920
+                            </td>
+                            <td class="py-20">
+                                6,520 <br>
+                                7,460 <br>
+                                8,310
+                            </td>
+                            <td class="py-20">
+                                8,520 <br>
+                                9,630 <br>
+                                10,610
+                            </td>
+                            <td class="py-20">
+                                10,520 <br>
+                                11,930 <br>
+                                12,910
+                            </td>
+                            <td class="py-20">
+                                12,170 <br>
+                                13,860 <br>
+                                14,840
+                            </td>
+                            <td class="py-20">
+                                13,470 <br>
+                                15,160 <br>
+                                16,140
+                            </td>
+                            <td class="py-20">
+                                14,770 <br>
+                                16,460 <br>
+                                17,440
+                            </td>
+                            <td class="py-20">
+                                16,070 <br>
+                                17,760 <br>
+                                18,740
+                            </td>
+                            <td class="py-20">
+                                17,370 <br>
+                                19,060 <br>
+                                20,040
+                            </td>
+                            <td class="py-20">
+                                18,540 <br>
+                                20,230 <br>
+                                21,210
+                            </td>
+                            <td class="py-20">
+                                19,640 <br>
+                                21,330 <br>
+                                22,310
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $250,000 - 399,999 <br>
+                                $400,000 - 449,999 <br>
+                                $450,000 and over
+                            </td>
+                            <td class="py-20">
+                                2,970 <br>
+                                2,970 <br>
+                                3,140
+                            </td>
+                            <td class="py-20">
+                                5,920 <br>
+                                5,920 <br>
+                                6,290
+                            </td>
+                            <td class="py-20">
+                                8,310 <br>
+                                8,310 <br>
+                                8,880
+                            </td>
+                            <td class="py-20">
+                                10,610 <br>
+                                10,610 <br>
+                                11,380
+                            </td>
+                            <td class="py-20">
+                                12,910 <br>
+                                12,910 <br>
+                                13,880
+                            </td>
+                            <td class="py-20">
+                                14,840 <br>
+                                14,840 <br>
+                                16,010
+                            </td>
+                            <td class="py-20">
+                                16,140 <br>
+                                16,140 <br>
+                                17,510
+                            </td>
+                            <td class="py-20">
+                                17,440 <br>
+                                17,440 <br>
+                                19,010
+                            </td>
+                            <td class="py-20">
+                                18,740 <br>
+                                18,740 <br>
+                                20,510
+                            </td>
+                            <td class="py-20">
+                                20,040 <br>
+                                20,040 <br>
+                                22,010
+                            </td>
+                            <td class="py-20">
+                                21,210 <br>
+                                21,210 <br>
+                                23,380
+                            </td>
+                            <td class="py-20">
+                                22,310 <br>
+                                22,470 <br>
+                                24,680
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 px-5">
+                <h5 class="text-center">
+                    <strong>Head of Household</strong>
+                </h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 table-responsive center-block">
+                <table class="table table-condesed table-hover table-bordered">
+                    <tbody>
+                        <tr>
+                            <td rowspan="2" class="text-center">
+                                <strong>Higher Paying Job <br>Annual Taxable <br>Wage &amp; Salary</strong>
+                            </td>
+                            <td colspan="12" class="text-center">
+                                <strong>Lower Paying Job Annual Taxable Wage &amp; Salary</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                $0 - 9,999
+                            </td>
+                            <td>
+                                $10,000 - 19,999
+                            </td>
+                            <td>
+                                $20,000 - 29,999
+                            </td>
+                            <td>
+                                $30,000 - 39,999
+                            </td>
+                            <td>
+                                $40,000 - 49,999
+                            </td>
+                            <td>
+                                $50,000 - 59,999
+                            </td>
+                            <td>
+                                $60,000 - 69,999
+                            </td>
+                            <td>
+                                $70,000 - 79,999
+                            </td>
+                            <td>
+                                $80,000 - 89,999
+                            </td>
+                            <td>
+                                $90,000 - 99,999
+                            </td>
+                            <td>
+                                $100,000 - 109,999
+                            </td>
+                            <td>
+                                $110,000 - 120,000
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $0 - 9,999 <br>
+                                $10,000 - 19,999 <br>
+                                $20,000 - 29,999
+                            </td>
+                            <td class="py-20">
+                                $0<br>
+                                760 <br>
+                                910
+                            </td>
+                            <td class="py-20">
+                                $760 <br>
+                                1,820 <br>
+                                2,110
+                            </td>
+                            <td class="py-20">
+                                $910 <br>
+                                2,110 <br>
+                                2,400
+                            </td>
+                            <td class="py-20">
+                                $1,020 <br>
+                                2,220 <br>
+                                2,510
+                            </td>
+                            <td class="py-20">
+                                $1,020 <br>
+                                2,220  <br>
+                                2,680
+                            </td>
+                            <td class="py-20">
+                                $1,020 <br>
+                                2,390  <br>
+                                3,680
+                            </td>
+                            <td class="py-20">
+                                $1,190 <br>
+                                3,390 <br>
+                                4,680
+                            </td>
+                            <td class="py-20">
+                                $1,870 <br>
+                                4,070 <br>
+                                5,360
+                            </td>
+                            <td class="py-20">
+                                $1,870 <br>
+                                4,070 <br>
+                                5,530
+                            </td>
+                            <td class="py-20">
+                                $1,870 <br>
+                                4,240 <br>
+                                5,730
+                            </td>
+                            <td class="py-20">
+                                $2,040 <br>
+                                4,440 <br>
+                                5,930
+                            </td>
+                            <td class="py-20">
+                                $2,040 <br>
+                                4,440 <br>
+                                5,930
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $30,000 - 39,999 <br>
+                                $40,000 - 59,999 <br>
+                                $60,000 - 79,999
+                            </td>
+                            <td class="py-20">
+                                1,020 <br>
+                                1,020 <br>
+                                1,870
+                            </td>
+                            <td class="py-20">
+                                2,220 <br>
+                                2,240 <br>
+                                4,070
+                            </td>
+                            <td class="py-20">
+                                2,510 <br>
+                                3,530 <br>
+                                5,360
+                            </td>
+                            <td class="py-20">
+                                2,790 <br>
+                                4,640 <br>
+                                6,610
+                            </td>
+                            <td class="py-20">
+                                3,790 <br>
+                                5,640 <br>
+                                7,810
+                            </td>
+                            <td class="py-20">
+                                4,790 <br>
+                                6,780 <br>
+                                9,010
+                            </td>
+                            <td class="py-20">
+                                5,790 <br>
+                                7,980 <br>
+                                10,210
+                            </td>
+                            <td class="py-20">
+                                6,640 <br>
+                                8,860 <br>
+                                11,090
+                            </td>
+                            <td class="py-20">
+                                6,840 <br>
+                                9,060 <br>
+                                11,290
+                            </td>
+                            <td class="py-20">
+                                7,040 <br>
+                                9,260 <br>
+                                11,490
+                            </td>
+                            <td class="py-20">
+                                7,240 <br>
+                                9,460 <br>
+                                11,690
+                            </td>
+                            <td class="py-20">
+                                7,240 <br>
+                                9,460 <br>
+                                12,170
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $80,000 - 99,999 <br>
+                                $100,000 - 124,999 <br>
+                                $125,000 - 149,999
+                            </td>
+                            <td class="py-20">
+                                1,870 <br>
+                                2,040 <br>
+                                2,040
+                            </td>
+                            <td class="py-20">
+                                4,210 <br>
+                                4,440 <br>
+                                4,440
+                            </td>
+                            <td class="py-20">
+                                5,700 <br>
+                                5,930 <br>
+                                5,930
+                            </td>
+                            <td class="py-20">
+                                7,010 <br>
+                                7,240 <br>
+                                7,240
+                            </td>
+                            <td class="py-20">
+                                8,210 <br>
+                                8,440 <br>
+                                8,860
+                            </td>
+                            <td class="py-20">
+                                9,410 <br>
+                                9,640 <br>
+                                10,860
+                            </td>
+                            <td class="py-20">
+                                10,610 <br>
+                                10,860 <br>
+                                12,860
+                            </td>
+                            <td class="py-20">
+                                11,490 <br>
+                                12,540 <br>
+                                14,540
+                            </td>
+                            <td class="py-20">
+                                11,690 <br>
+                                13,540 <br>
+                                15,540
+                            </td>
+                            <td class="py-20">
+                                12,380 <br>
+                                14,540 <br>
+                                16,830
+                            </td>
+                            <td class="py-20">
+                                13,370 <br>
+                                15,540 <br>
+                                18,130
+                            </td>
+                            <td class="py-20">
+                                14,170 <br>
+                                16,480 <br>
+                                19,230
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $150,000 - 174,999 <br>
+                                $175,000 - 199,999 <br>
+                                $200,000 - 249,999
+                            </td>
+                            <td class="py-20">
+                                2,040 <br>
+                                2,720 <br>
+                                2,970
+                            </td>
+                            <td class="py-20">
+                                4,460 <br>
+                                5,920 <br>
+                                6,470
+                            </td>
+                            <td class="py-20">
+                                6,750 <br>
+                                8,210 <br>
+                                9,060
+                            </td>
+                            <td class="py-20">
+                                8,860 <br>
+                                10,320 <br>
+                                11,480
+                            </td>
+                            <td class="py-20">
+                                10,680 <br>
+                                12,600 <br>
+                                13,780
+                            </td>
+                            <td class="py-20">
+                                12,860 <br>
+                                14,900 <br>
+                                16,080
+                            </td>
+                            <td class="py-20">
+                                15,000 <br>
+                                17,200 <br>
+                                18,380
+                            </td>
+                            <td class="py-20">
+                                16,980 <br>
+                                19,180 <br>
+                                20,360
+                            </td>
+                            <td class="py-20">
+                                18,280 <br>
+                                20,480 <br>
+                                21,660
+                            </td>
+                            <td class="py-20">
+                                19,580 <br>
+                                21,780 <br>
+                                22,960
+                            </td>
+                            <td class="py-20">
+                                20,880 <br>
+                                23,080 <br>
+                                24,250
+                            </td>
+                            <td class="py-20">
+                                21,980 <br>
+                                24,180 <br>
+                                25,360
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td class="py-20">
+                                $450,000 and over
+                            </td>
+                            <td class="py-20">
+                                3,140
+                            </td>
+                            <td class="py-20">
+                                6,840
+                            </td>
+                            <td class="py-20">
+                                9,630
+                            </td>
+                            <td class="py-20">
+                                12,250
+                            </td>
+                            <td class="py-20">
+                                14,750
+                            </td>
+                            <td class="py-20">
+                                17,250
+                            </td>
+                            <td class="py-20">
+                                19,750
+                            </td>
+                            <td class="py-20">
+                                21,930
+                            </td>
+                            <td class="py-20">
+                                23,430
+                            </td>
+                            <td class="py-20">
+                                24,930
+                            </td>
+                            <td class="py-20">
+                                26,420
+                            </td>
+                            <td class="py-20">
+                                27,739
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr class="lifesuite__hr">
+        <div class="row" id="formButtons" style="display: none;">
+            <div class="lifesuite__clearfix lifesuite__float-right">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </main>
+    <div style="display: none">
+        <$client.env.FormField.SignatureVerification.HTML>
+        <$client.env.FormField.EIN1.HTML>
+        <$client.env.FormField.EIN2.HTML>
+        <$client.env.formfield.Login_ID.html>
+        <$client.env.formfield.Auth_Param.html>
+        <$client.env.formfield.EmployeeID.html>
+    </div>
+</form>
+<script type="text/javascript" src="<$link;/map_images/main/RedCarpet/FormTemplates/Federal_W_4/js/jquery.mask.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+    if (strFormCompleted == '') { // if eForm is incomplete 
+        $("#ButtonPrint")[0].onclick = null; 
+        $("#ButtonPrint").click(function() {  
+            /* Add your code/function here */ 
+            $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+            void(funcPrint()); // default print function 
+        }); 
+        if ($("#ButtonSaveAndComplete").length) {  
+            $("#ButtonSaveAndComplete")[0].onclick = null; 
+            $("#ButtonSaveAndComplete").click(function() {  
+                /* Add your code/function here */ 
+                $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+                void(funcSaveAndComplete());  //default Save function 
+            }); 
+        } 
+    }
+});
+
+const W4_disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+const getSumFor = function(el) {
+    "use strict";
+    if (!el.hasAttribute('data-addends')) {
+        return false;
+    }
+    let addends = el.getAttribute('data-addends').split(',');
+    let sum = 0;
+    for (let i = 0; i < addends.length; i++) {
+        let nodeValue = Number(document.querySelector('[name$=".' + addends[i] + '"]').value.replace(/[^0-9.-]+/g,""));
+        if (isNaN(nodeValue) == true) {
+            nodeValue = 0;
+        }
+        sum = sum + nodeValue;
+    }
+    el.value = sum;
+}
+
+$(document).on('ready', function() {
+    $('#MultiplyChildren, #MultiplyDependents').on('keyup paste', function() {
+        getSumFor(document.querySelector('#ChildrenDependentsTotal'));
+    });
+    $('#daworksheet3, #daworksheet4').on('keyup paste', function() {
+        getSumFor(document.querySelector('#daworksheet5'));
+        getSumFor(document.querySelector('#Deductions'));
+    });
+    $('#MJWorksheet2A, #MJWorksheet2B').on('keyup paste', function() {
+        getSumFor(document.querySelector('#MJWorksheet2C'));
+    });
+
+    // remove non numeric
+    $('[name$=".MultiplyChildren"], [name$=".MultiplyDependents"], [name$=".OtherIncome"], [name$=".Deductions"], [name$=".ExtraWithholding"]').on('keyup change paste', function() {
+        $(this).val($(this).val().replace(/[^0-9]/gi,""));
+    });
+    $('[name$=".MultiplyChildren"], [name$=".MultiplyDependents"], [name$=".OtherIncome"], [name$=".Deductions"], [name$=".ExtraWithholding"]').trigger("change");
+
+    W4_disableCalButton($('.disabled-date'));
+
+    $(".modal").hide();
+});
+</script>

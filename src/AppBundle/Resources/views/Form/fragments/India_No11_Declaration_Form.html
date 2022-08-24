@@ -1,0 +1,539 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal1" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature1','eSignature1','','modal1','over','sv1');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature1').value='';showHide('modal1');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal1');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'>
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+ 
+        <$client.env.FormField.A001_Name_of_the_Member.prompt>
+        <$client.env.FormField.A002_Father.prompt>
+        <$client.env.FormField.A002_Father_or_Spouse_Name.prompt>
+        <$client.env.FormField.A002_Spouse.prompt>
+        <$client.env.FormField.A003_Date_of_Birth.prompt>
+        <$client.env.FormField.A004_Gender.prompt>
+        <$client.env.FormField.A005_Marital_Status.prompt>
+        <$client.env.FormField.A006_Email_ID.prompt>
+        <$client.env.FormField.A006_Mobile_No.prompt>
+        <$client.env.FormField.A007_Provident_Fund_Scheme.prompt>
+        <$client.env.FormField.A008_Pension_Scheme.prompt>
+        <$client.env.FormField.A009_AP.prompt>
+        <$client.env.FormField.A009_Date_of_Exit.prompt>
+        <$client.env.FormField.A009_EST_CODE.prompt>
+        <$client.env.FormField.A009_EXTN.prompt>
+        <$client.env.FormField.A009_HYD.prompt>
+        <$client.env.FormField.A009_PF_NO.prompt>
+        <$client.env.FormField.A009_Pension_Payment_Order.prompt>
+        <$client.env.FormField.A009_Scheme_Certificate_No.prompt>
+        <$client.env.FormField.A009_UAN.prompt>
+        <$client.env.FormField.A010_Country_of_Origin.prompt>
+        <$client.env.FormField.A010_International_Worker.prompt>
+        <$client.env.FormField.A010_Passport_Number.prompt>
+        <$client.env.FormField.A010_Validity_of_Passport_From.prompt>
+        <$client.env.FormField.A010_Validity_of_Passport_To.prompt>
+        <$client.env.FormField.A011_AADHAR_Number.prompt>
+        <$client.env.FormField.A011_Bank_Account_No.prompt>
+        <$client.env.FormField.A011_PAN.prompt>
+        <$client.env.FormField.B001_Member_Name.prompt>
+        <$client.env.FormField.B002_Joined.prompt>
+        <$client.env.FormField.B003_PF_Number.prompt>
+        <$client.env.FormField.B004_UAN.prompt>
+        <$client.env.FormField.B005_B_KYC_Details.prompt>
+        <$client.env.FormField.B005_C_KYC_Details.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+    <div class="container-fluid"> 
+        <div class="form-group">
+            <div class="row line-break">
+                <div class="col-xs-offset-0 col-md-offset-6 col-xs-12 col-md-6 lifesuite__clearfix">
+                    <div class="form-title">New Form No.11- Declaration Form</div>
+                    <div class="sub-title">(To be retained by the employer for future reference) </div>
+                </div>
+            </div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-2 lifesuite__clearfix">
+                    <div class="image-container">
+                        <img src="images/logo.png" class="img-responsive" height="50"/>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 lifesuite__clearfix text margin-top-25 margin-bottom-10">
+                    <div class="bold text">EMPLOYEES PROVIDENT FUND ORGANIZATION</div>
+                    Employees provident funds scheme, 1952 (paragraph 34 & 57) & Employees pension scheme 1995 (paragraph 24)  
+                </div>
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix">
+                    <div class="section-container text-16">
+                        Emp Code: _________________________<br><br>
+                        Company: __________________________<br><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row line-break">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix">
+                    <div class="center text">
+                        (Declaration by a person taking up employment in any establishment on which EPF Scheme, 1952 end /of EPS1995 is applicable)
+                    </div>
+                </div>
+            </div>
+            <div class="section-container">
+                <div class="row line-break">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix  text">
+                        1
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        Name of the member
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A001_Name_of_the_Member.HTML></div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        2
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        Father’s Name <span class="input-field"><$client.env.FormField.A002_Father.HTML></span>
+                        Spouse’s Name <span class="input-field"><$client.env.FormField.A002_Spouse.HTML></span><br>
+                        (Please Tick Whichever Is Applicable)
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A002_Father_or_Spouse_Name.HTML></div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        3
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        Date of Birth (DD/MM/YYYY)
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A003_Date_of_Birth.HTML></div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        4
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        Gender: ( male / Female /Transgender )
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A004_Gender.HTML></div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        5
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        Marital Status (married /Unmarried /widow/divorce)
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A005_Marital_Status.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        6
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        (a)Email ID:
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A006_Email_ID.HTML></div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        (b)Mobile No:
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A006_Mobile_No.HTML></div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        7*
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        Whether earlier a member of Employees ‘provident Fund Scheme 1952
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A007_Provident_Fund_Scheme.HTML></div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        8*
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        Whether earlier a member of Employees ‘Pension Scheme ,1995<br>
+                        <span class="italic">Please refer to the Online PF PassBook</span>
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A008_Pension_Scheme.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        9
+                    </div>
+                    <div class="col-xs-10 col-md-11 lifesuite__clearfix text center bold bordered">
+                        If response to any or both of (7) & (8) above is yes. MANDATORY FILL UP THE (COLUMN 9)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        a) Universal Account Number(UAN)
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A009_UAN.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        b) Previous PF a/c No
+                        <span class="bold bordered">AP</span>
+                        <span class="bold bordered">HYD</span>
+                        <span class="bold bordered">EST.CODE</span>
+                        <span class="bold bordered">EXTN</span>
+                        <span class="bold bordered">PF NO.</span>
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <span class="input-field"><$client.env.FormField.A009_AP.HTML></span>
+                        <span class="input-field"><$client.env.FormField.A009_HYD.HTML></span>
+                        <span class="input-field"><$client.env.FormField.A009_EST_CODE.HTML></span>
+                        <span class="input-field"><$client.env.FormField.A009_EXTN.HTML></span>
+                        <span class="input-field"><$client.env.FormField.A009_PF_NO.HTML></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        c) Date of exit from previous employment (DD/MM/YYY)
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A009_Date_of_Exit.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        d) Scheme Certificate No (if Issued )
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A009_Scheme_Certificate_No.HTML></div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        e) Pension Payment Order (PPO)No (if Issued)
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A009_Pension_Payment_Order.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        10
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        a) International Worker:
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A010_International_Worker.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        b) If Yes , State Country Of Origin (India /Name of Other Country)
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A010_Country_of_Origin.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        c) Passport No
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A010_Passport_Number.HTML></div>
+                    </div>
+                </div>
+                <div class="row line-break">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        d) Validity Of Passport <span class="bold">(DD/MM/YYY) to(DD/MM/YYY)</span>
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-5 col-md-2 lifesuite__clearfix text">
+                        <span class="input-field"><$client.env.FormField.A010_Validity_of_Passport_From.HTML></span>
+                    </div>
+                    <div class="col-xs-5 col-md-2 lifesuite__clearfix text">
+                        <span class="input-field"><$client.env.FormField.A010_Validity_of_Passport_To.HTML></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        11
+                    </div>
+                    <div class="col-xs-10 col-md-11 lifesuite__clearfix text center bold bordered ">
+                        KYC Details: (attach Self attested copies of following KYCs) **
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        a) Bank Account No .& IFS code
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A011_Bank_Account_No.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        b) AADHAR Number (12 Digit)
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A011_AADHAR_Number.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 lifesuite__clearfix text">
+                        
+                    </div>
+                    <div class="col-xs-10 col-md-7 lifesuite__clearfix text">
+                        c) Permanent Account Number (PAN),If available
+                    </div>
+                    <div class="col-xs-offset-2 col-md-offset-0 col-xs-10 col-md-4 lifesuite__clearfix text">
+                        <div class="input-field"><$client.env.FormField.A011_PAN.HTML></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <div class="center bold underlined">UNDERTAKING</div>
+                    <ol class="number-list">
+                        <li>Certified that the Particulars are true to the best of my Knowledge</li>
+                        <li>I authorize EPFO to use my Aadhar for verification / e KYC purpose for service delivery</li>
+                        <li>Kindly transfer the funds and service details, if applicable if applicable, from the previous PF account as declared above to the present P.F Account(The Transfer Would be possible only if the identified KYC details approved by previous employer has been verified by present employer</li>
+                        <li>In case of changes In above details the same Will be intimate to employer at the earliest</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row payroll-view" style="display: none;">
+                <div class="col-xs-12 col-md-12 lifesuite__clearfix text">
+                    <div class="center bold underlined">DECLARATION BY PRESENT EMPLOYER</div>
+                    <ol class="alpha-list">
+                        <li>The member Mr./Ms./Mrs <span class="input-field"><$client.env.FormField.B001_Member_Name.HTML></span> has joined on <span class="input-field"><$client.env.FormField.B002_Joined.HTML></span> and has been allotted PF Number <span class="input-field"><$client.env.FormField.B003_PF_Number.HTML></span>.</li>
+                        <li>
+                            In case person was earlier not a member of EPF Scheme ,1952 and EPS,1995
+                            <ul>
+                                <li>(Post allotment of UAN ) The UAN Allotted for the member is <span class="input-field"><$client.env.FormField.B004_UAN.HTML></span>.</li>
+                                <li><div class="bold">Please Tick the Appropriate Option</div></li>
+                                <li>
+                                    The KYC details of the above member in the UAN database
+                                    <div class="input-field"><$client.env.FormField.B005_B_KYC_Details.HTML></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            In case the person was earlier a member of EPF Scheme ,1952 and EPS, 1995:
+                            <ul>
+                                <li>The above PF account number /UAN of the member as mentioned in (a) above has been tagged with his /her UAN/previous member ID as declared by member</li>
+                                <li>
+                                    <div class="bold">Please Tick the Appropriate Option</div>
+                                    <div class="input-field"><$client.env.FormField.B005_C_KYC_Details.HTML></div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <hr class="lifesuite__hr">
+            <div class="row" id="formButtons" style="display: none;">
+                <div class="lifesuite__clearfix lifesuite__float-right">               
+                    <$client.env.FormButtons>
+                </div>             
+            </div>
+        </div>
+    </div>
+    <div style="display:none;">
+        <$client.env.FormField.SignatureVerification1.HTML>
+    </div>
+</form>
+<SCRIPT>
+      ChangeCalendarIcons(); //for popup calendar
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$(function() {
+    var isBenefiter = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+
+    function radioSelect(group_class, object_element) {
+        var checked = object_element.prop("checked");
+        $("." + group_class).prop("checked", false);
+
+        if (checked) {
+            object_element.prop("checked", true);
+        }
+    }
+
+    $(".Father-Spouse").change(function() {
+        radioSelect("Father-Spouse", $(this));
+    });
+
+    if (isBenefiter) {
+        $(".payroll-view").hide();
+    }
+    else {
+        $(".payroll-view").show();
+    }
+});
+
+$(window).load(function() {
+     // Function: Adjust height of bootstrap columns equal to the highest among siblings on larger screens
+     // Parameter 1: The class name of the highest element
+     function AdjustColumnHeight (group_class) {
+          $("." + group_class).each(function () {
+               if ($(window).width() > 971) {
+                    $(this).siblings().height($(this).innerHeight());
+               }
+               else {
+                    $(this).siblings().height("auto");
+               }
+          });
+     }
+
+     $('[name$=".A010_International_Worker"]').on('change', function() {
+        const section10Fields = $('[name$=".A010_Country_of_Origin"], [name$=".A010_Passport_Number"], [name$=".A010_Validity_of_Passport_From_display"], [name$=".A010_Validity_of_Passport_To_display"]');
+        if ($('[name$=".A010_International_Worker"]:checked').val() == "Yes") {
+            section10Fields.addClass('ng-invalid');
+            return true;
+        }
+        section10Fields.removeClass('ng-invalid');
+     });
+     $('[name$=".A010_International_Worker"]').trigger('change');
+
+     AdjustColumnHeight("column-height");
+
+     $(window).resize(function () {
+          AdjustColumnHeight("column-height");
+     });
+});
+</SCRIPT>

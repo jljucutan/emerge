@@ -1,62 +1,169 @@
-/**
+/** 
  * CHANGE LOGS
- * SERVICES-35262 | jjucutan | created configuration for dynamic date format
+ * 05.30.2019 | jjucutan | created for storing long and short dates format
+ * 06.13.2019 | jjucutan | changed config to base format on countries instead of territories
  */
-var dateConfig = {
+const dateConfig = {
     countries: {
-        "USA": "AMER",
-        "CAN": "NAMER",
-        "ARG": "NAMER",
-        "AUS": "EMEA",
-        "AUT": "EMEA",
-        "BEL": "EMEA",
-        "BRA": "AMER",
-        "CHN": "APAC",
-        "HRV": "EMEA",
-        "CZE": "EMEA",
-        "DNK": "EMEA",
-        "EST": "EMEA",
-        "FRA": "EMEA",
-        "DEU": "EMEA",
-        "HKG": "APAC",
-        "IND": "APAC",
-        "IDN": "APAC",
-        "IRL": "EMEA",
-        "ISR": "EMEA",
-        "ITA": "EMEA",
-        "JPN": "APAC",
-        "LUX": "EMEA",
-        "MYS": "APAC",
-        "MEX": "AMER",
-        "NLD": "EMEA",
-        "NOR": "EMEA",
-        "PHL": "APAC",
-        "POL": "EMEA",
-        "RUS": "EMEA",
-        "ZAF": "EMEA",
-        "KOR": "APAC",
-        "ESP": "EMEA",
-        "SWE": "EMEA",
-        "CHE": "EMEA",
-        "TWN": "APAC",
-        "THA": "APAC",
-        "TUR": "EMEA",
-        "UKR": "EMEA",
-        "GBR": "EMEA"
-    },
-    /**
-     * Legend
-     * AMER - American region
-     * NAMER - North American region
-     * APAC - Asia Pacific region
-     * EMEA - Euorope Middle East, and Africa
-     * LATAM - Latin America
-     */
-    regions: {
-        "AMER": "mm/dd/yy",
-        "NAMER": "yy/mm/dd",
-        "LATAM": "mm/dd/yy",
-        "APAC": "dd.mm.yy",
-        "EMEA": "dd/mm/yy"
+        "USA": {
+                "region": "AMER",
+                "shortFormat": "mm/dd/yy",
+                "longFormat": "MM, d yy"
+            },
+        "IRL": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "IDN": {
+                "region": "APAC",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "MYS": {
+            "region": "APAC",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "CAN": {
+                "region": "AMER",
+                "shortFormat": "yy/mm/dd",
+                "longFormat": "d MM yy"
+            },
+        "SGP": {
+                "region": "APAC",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "AUS": {
+                "region": "APAC",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "ISR": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "GBR": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "BRA": {
+                "region": "AMER",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "GTM": {
+                "region": "AMER",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "MEX": {
+                "region": "AMER",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "HKG": {
+                "region": "APAC",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "JPN": {
+                "region": "APAC",
+                "shortFormat": "yy/mm/dd",
+                "longFormat": "d MM yy"
+            },
+        "CHN": {
+                "region": "APAC",
+                "shortFormat": "yy/mm/dd",
+                "longFormat": "d MM yy"
+            },
+        "DEU": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "LUX": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "FRA": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "RUS": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "SWE": {
+                "region": "EMEA",
+                "shortFormat": "yy/mm/dd",
+                "longFormat": "d MM yy"
+            },
+        "ITA": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "POL": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "ESP": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "NLD": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "PHL": {
+                "region": "APAC",
+                "shortFormat": "mm/dd/yy",
+                "longFormat": "MM, d yy"
+            },
+        "KOR": {
+                "region": "APAC",
+                "shortFormat": "yy/mm/dd",
+                "longFormat": "d MM yy"
+            },
+        "TWN": {
+                "region": "APAC",
+                "shortFormat": "yy/mm/dd",
+                "longFormat": "d MM yy"
+            },
+        "THA": {
+                "region": "APAC",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "BEL": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "SWI": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "TUR": {
+                "region": "EMEA",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            },
+        "SLV": {
+                "region": "AMER",
+                "shortFormat": "dd/mm/yy",
+                "longFormat": "d MM yy"
+            }
     }
 };

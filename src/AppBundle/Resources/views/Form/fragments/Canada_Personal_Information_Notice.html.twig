@@ -1,8 +1,100 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+                             </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                                                         <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                                           </div> 
+                             </div> 
+              </div> 
+</div> 
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+    showScreen('over') 
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+  
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+  
+<div class="modal" style="display:block; background: #002E6D;"> 
+              <div class="fb-spinner"> 
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+              </div> 
+</div> 
+  
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+  
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form''> 
+    <div style="display:none;"> 
+        <$client.env.FormField.Form_Name.prompt> 
+        <$client.env.FormField.Form_Name.HTML> 
+        <$client.env.FormField.Form_Type.prompt> 
+        <$client.env.FormField.Form_Type.HTML> 
+        <$client.env.FormField.Form_Owner.prompt> 
+        <$client.env.FormField.Form_Owner.HTML> 
+        <$client.env.FormField.Form_CreateDate.prompt> 
+        <$client.env.FormField.Form_CreateDate.HTML> 
+        <$client.env.FormField.Form_Completed.prompt> 
+        <$client.env.FormField.Form_Completed.HTML> 
+        <$client.env.FormField.Form_Delivered.prompt> 
+        <$client.env.FormField.Form_Delivered.HTML> 
+        <$client.env.FormField.Form_TaskId.prompt> 
+        <$client.env.FormField.Form_TaskId.HTML> 
+        <$client.env.FormField.display_version.HTML> 
+ 
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.a01_First_name.prompt>
+<$client.env.FormField.a02_Middle_Initial.prompt>
+<$client.env.FormField.a03_Last_Name.prompt>
+<$client.env.FormField.a04_Preferred_First_Name.prompt>
+<$client.env.FormField.a05_Gender.prompt>
+<$client.env.FormField.a06_Home_Phone_Number.prompt>
+<$client.env.FormField.a07_Mobile_Phone_Number.prompt>
+<$client.env.FormField.a08_Email_Address.prompt>
+<$client.env.FormField.a09_Social_Insurance_Number.prompt>
+<$client.env.FormField.a10_Date_of_Birth.prompt>
+<$client.env.FormField.a11_Citizenship.prompt>
+<$client.env.FormField.a12_Street_Address.prompt>
+<$client.env.FormField.a13_Apartment_Number.prompt>
+<$client.env.FormField.a14_City.prompt>
+<$client.env.FormField.a15_Province.prompt>
+<$client.env.FormField.a16_Post_Code.prompt>
+<$client.env.FormField.a17_School.prompt>
+<$client.env.FormField.a18_Type_of_Degree.prompt>
+<$client.env.FormField.a19_Specialty_Major.prompt>
+<$client.env.FormField.a20_Date_Completed_Graduated.prompt>
+<$client.env.FormField.a21_Emergency_Contact_Name.prompt>
+<$client.env.FormField.a22_Emergency_Contact_Relationship.prompt>
+<$client.env.FormField.a23_Emergency_Contact_Home_Phone_Number.prompt>
+<$client.env.FormField.a24_Emergency_Contact_Mobile_Phone_Number.prompt>
+<$client.env.FormField.a25_Signature.prompt>
+<$client.env.FormField.a26_Date.prompt>
+
+
+    </div> 
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
 <main id="container">
   <div class="container-fluid inner-wrapper center-block">
     <header class="row my-md">
-      <div class="col-lg-1 col-md-1 col-sm-4 col-xs-5 pull-right">
-        <img src="<$link;/main/RedCarpet/FormTemplates/Canada_Personal_Information_Notice/img/apple_logo.jpg>" alt="Apple Logo" class="img-responsive">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="icontainer pull-right">
+            <img src="<$link;/main/RedCarpet/FormTemplates/Canada_Personal_Information_Notice/img/apple_logo.jpg>" alt="Apple Logo" class="img-responsive">
+        </div>
       </div>
     </header>
 
@@ -284,21 +376,10 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row my-lg">
       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
         <div class="border-bottom">
-          <$client.env.FormField.a25_Signature.HTML>
-        </div>
-        <div class="my">
-          Signature
-        </div>
-      </div>
-      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-        <div class="border-bottom">
-          <$client.env.FormField.a26_Date.HTML>
-        </div>
-        <div class="my-lg">
-          Date
+          <$client.env.FormField.Signer.HTML>
         </div>
       </div>
     </div>
@@ -312,11 +393,12 @@
       </div>
     </div>
 
+                        
   </div>
 
 </main>
-
-<div class="row" id="formButtons" style="display: none;">
+<div class="clearfix">
+<div id="formButtons" class="row" style="display: none;">
     <div class="lifesuite__clearfix">
         <div class="srt_eform_section">
             <div id="srt_form_btn_wrapper">
@@ -329,3 +411,116 @@
         </div>
     </div>
 </div>
+</div>
+
+<$client.env.FormField.SignatureVerification.HTML>
+<$client.env.FormField.FullName.HTML>
+
+<!-- End HTML -->
+</form> 
+<script type="text/javascript"> 
+    ChangeCalendarIcons(); //for popup calendar  
+  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+/* RESPONSIVE eFORM BUTTONS STYLE */ 
+  
+$(window).load(function() {
+  $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+  $("#buttonCancel").addClass("lifesuite__button");
+  $('#buttonCancel').attr('id', 'ButtonCancel');
+  $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+  $("#buttonSave").addClass("lifesuite__button primary");
+  $('#buttonSave').attr('id', 'ButtonSave');
+  $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+  $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+  $('#buttonSaveAndComplete').attr('id', 'ButtonSaveAndComplete');
+  $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+  $("#buttonPrint").addClass("lifesuite__button");
+  $('#buttonPrint').attr('id', 'ButtonPrint');
+  $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+  $("#buttonPreviewDelete").addClass("lifesuite__button");
+  $('#buttonPreviewDelete').attr('id', 'ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+  $("#buttonPreviewSave").addClass("lifesuite__button primary");
+  $('#buttonPreviewSave').attr('id', 'ButtonPreviewSave');
+
+  document.getElementById('formButtons').style.display = "block";
+
+  $("input[type=text]:not(.exclude)").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $('.inputprompt').addClass('lifesuite__input-label lifesuite__input—block');
+  $(window).scrollTop(0); //2018-08-23 - #1
+
+
+  $("body").addClass("apple_custom_theme");
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+$(document).on('ready', function() {
+  var empData = {
+    "a01_First_name": "<$client.tForWhomUserInfo.First_Name>",
+    "a02_Middle_Initial": "<$client.tForWhomUserInfo.Middle_Initial>",
+    "a03_Last_Name": "<$client.tForWhomUserInfo.Last_Name>",
+    "fullName": "<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name>",
+    "a04_Preferred_First_Name": "<$client.tForWhomUserInfo.Preferred_Name>",
+    "a05_Gender": "<$client.tForWhomUserInfo.Gender>",
+    "a06_Home_Phone_Number": "<$client.tForWhomUserInfo.Phone>",
+    "a08_Email_Address": "<$client.tForWhomUserInfo.Email>",
+    "a09_Social_Insurance_Number": "<$client.tForWhomUserInfo.SSNO>",//2018-08-23 - #2
+    //"a10_Date_of_Birth": "<$client.tForWhomUserInfo.DOB>",
+    "a12_Street_Address": "<$client.tForWhomUserInfo.Address1>",
+    "a14_City": "<$client.tForWhomUserInfo.City>",
+    "a15_Province": "<$client.tForWhomUserInfo.Province>",
+    "a16_Post_Code": "<$client.tForWhomUserInfo.Zip>"
+  }
+  // instantiate signature clear button everytime
+  var init = function() {
+    $("[onclick^=\'$.datepicker._select\']").click();
+    // show clear button if signature is valid
+    $('[ng-controller="SigController"]').on('click', '[id^="btnSigDrawnSign"]', function() {
+      setTimeout(function() {
+        if ($('[ng-controller="SigController"] input.lifesuite__text-input').prop('disabled')) {
+          $("[id^='btnSigSelector']").show(init());
+        }
+      }, 1000);
+    });
+  }
+
+  if (strFormCompleted == "") {
+    $.each(empData, function(k, v) {
+      var field = $(document.getElementById(k));
+      if ($(document.getElementById(k)).length < 1) {
+        setTimeout(function() {
+          var d = new Date(v);
+          var mm = d.getMonth() + 1;
+          if ($(document.querySelector('[id$="' + k + '_display' + '"]')).val() != "" && ($(document.querySelector('[id$="' + k + '_display' + '"]')).val().replace("/", "-") != v && v != "")) {
+                    $(document.querySelector('[id$="' + k + '_display' + '"]')).val(d.getFullYear() + '/' + ("0" + mm).slice(-2) + '/' + ("0" + d.getDate()).slice(-2));
+          }
+        }, 500);
+      }
+
+      if (field.val() != "" && (field.val() != v && v != "")) {
+            field.val(v);
+      }
+    })
+
+//PSALUDARES SERVICES-36500 2018-12-12
+var stewieDOB = $('#a10_Date_of_Birth').val();
+if(stewieDOB == ""){
+        var eupBirthDate = new Date("<$client.tForWhomUserInfo.DOB>");
+        eupBirthDate.setMinutes(eupBirthDate.getMinutes() + eupBirthDate.getTimezoneOffset());
+        $(stewieDOB).val(eupBirthDate);
+}
+
+  }
+
+$(".modal").hide();
+  setTimeout(function(){  
+    if(strFormCompleted ==''){ //Check if eForm is completed. '' means incomplete.  
+      $('#sv').val($('[ng-bind="signatureStatement"]').text());
+    } 
+  }, 300); 
+
+});
+
+</script>

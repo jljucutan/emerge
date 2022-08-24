@@ -620,17 +620,6 @@ function checkOnlyOne(sVal, sName, sID) {
   return isValid;
 }
 
-
-function requireOne(sVal, sName, sID) {
-  var isValid = true;
-  if('<$client.env.serversidevalidation>' == '1'){return isValid;}
-  if ($('[data-checkbox-group="' + $(document.getElementById(sID)).data('checkbox-group') + '"]:checked').length < 1) {
-    isValid = false;
-    return eFormRequiredField(sVal, sName, sID);
-  }
-  return isValid;
-}
-
 function concatAddr() {
   var addr = '';
   var addrFull = [];
@@ -1439,13 +1428,12 @@ $(document).ready(function() {
   }
 });
 
-function requireWhenEnabled(sValue, sName, sField) {
+function requireWhenEnabled(sValue, sName, sID) {
   if ('<$client.env.serversidevalidation>' == '1') {return true;}
-  var field = $(document.getElementsByName(sName)[0]).is(':visible') ? $(document.getElementsByName(sName)[0]) : $(document.getElementsByName(sName  + "_display")[0]);
-  if (!field.prop('disabled') && field.val().length < 1) {
-    return eFormRequiredField(sValue, sName, sField);
+  var field = $(document.querySelector('[name="' + sName + '"]'));
+  if (!field.prop('disabled') && field.is(':visible') && field.val().length < 1) {
+    return eFormRequiredField(sValue, sName, sID);
   }
-  return true;
 }
 
 $(document).on('ready', function() {
@@ -2013,9 +2001,20 @@ function eFormRequireByController(sVal, sName, sID) {
 }
 
 function eFormRequireEnabled(sVal, sName, sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){return true;}
+  var field = document.querySelector('[name="' + sName + '"]');
+  if (field.disabled) {
+    return true;
+  }
+  return eFormRequiredField(sVal, sName, sID);
+}
+
+function eFormRequireDateEnabled(sVal, sName, sID) {
     if('<$client.env.serversidevalidation>'=='1'){return true;}
-    if (!$(document.getElementById(sID)).prop('disabled', 'disabled')) {
-      return eFormRequiredField(sVal, sName, sID);
+    var field = $(document.getElementsByName(sName + '_display')[0]);
+    if (!field.prop('disabled')) {
+      return eFormRequiredDate(sVal, sName, sID);
     }
     return true;
 }
@@ -2064,6 +2063,1406 @@ var toggleAttributesByRequirement = function(el, requiredVal, target, attrs) {
 }
 
 
+/**
+ * SERVICES-36588 | jjucutan | Forms Library - New Version - State_Withholding_MT
+ */
+var disableField = function(fieldId) {
+  var targetField = document.getElementById(fieldId);
+  if (targetField) {
+    targetField.disabled = true;
+    targetField.className = "readonlygray";
+  }
+}
+if ('<$client.account.userguid>'=='<$client.url.forwhom>') {
+  disableField("EmployerName");
+  disableField("employernameaddress");
+  disableField("ein1");
+  disableField("ein2");
+  disableField("employer_mt_account_id");
+  disableField("EmployerAddress");
+  disableField("EmployerCity");
+  disableField("EmployerState");
+  disableField("EmployerZip");
+}
 
 
+function ValidateMTPAWorksheetG(sVal,sName,sID){
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }  
+  var sum = 0;
+  var fields = $('#paworksheeta, #paworksheetb, #paworksheetc, #paworksheetd, #paworksheete, #paworksheetf');
+  $.each(fields, function() {
+    var fieldVal = parseInt($(this).val())
+    if (fieldVal) {
+      sum += fieldVal;
+    }
+  });
+  $('#paworksheetg').val(sum);
+  return eFormIsInteger(sVal,sName,sID);
+}
 
+function onBlurAllowance(el){
+  var sum = 0;
+  var fields = $('#paworksheeta, #paworksheetb, #paworksheetc, #paworksheetd, #paworksheete, #paworksheetf');
+  $.each(fields, function() {
+    var fieldVal = parseInt($(this).val())
+    if (fieldVal) {
+      sum += fieldVal;
+    }
+  });
+  $('#paworksheetg').val(sum);
+}
+
+function ValidateIDFilingStatusA(sVal,sName,sID){
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  var siblings = $('[data-checkbox-group="filingstatus"]');
+  var checked = false;
+  $.each(siblings, function(k,v) {
+    if ($(v).is(':checked')) {
+      checked = true;
+    }
+  });
+  if (!checked) {
+    return eFormRequiredField(sVal,sName,sID);
+  }
+  return true;
+}
+
+/**
+ * SERVICES-37026 | 02.22.2019 | Accenture - Add Validation to date field
+ */
+function allowOnlyFutureDateDependent(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+
+  let field = $(document.getElementsByName(sName + '_display')[0]);
+  if (field.hasClass('ng-disabled')) {
+    return true;
+  }
+
+  if (sVal.length < 1 && field.hasClass('ng-invalid')) {
+    eFormRequiredDate(sVal,sName,sID);
+  }
+
+  let depName = field.data('dep');
+  let dep = $('[name$="' + depName + '"]');
+  let depDate = new Date(dep.val()).setHours(0,0,0);
+  let endDate = new Date(sVal).setHours(0,0,0);
+  if (depDate >= endDate) {
+    AddError(sID, 'Error in validation, only greater than start date are accepted in', '');
+    return false;
+  }
+  return true;
+}
+
+/**
+ * SERVICES-37421 | Tenet: Edits to Emergency Contact eform
+ */
+function validatePhoneDigits(sValue,sName,sField){
+  "use strict";
+  if ('<$client.env.serversidevalidation>'=='1') return true;
+  if (sValue.length < 1) {
+    return true;
+  }
+  if (!/^\d{10}$/.test(sValue)) {
+    AddError(sField, 'Error in validation, input value should be 10 digits in', '');
+    return false;
+  }
+  return true;
+}
+function validateRequiredPhoneDigits(sValue,sName,sField){
+  "use strict";
+  if ('<$client.env.serversidevalidation>'=='1') return true;
+  if (sValue.length < 1) {
+    eFormRequiredField(sValue,sName,sField);
+  }
+  return validatePhoneDigits(sValue,sName,sField);
+}
+
+
+function validateRequiredNumeric(sValue,sName,sField){
+  "use strict";
+  if ('<$client.env.serversidevalidation>'=='1') return true;
+  if (sValue.length < 1) {
+    return eFormRequiredField(sValue,sName,sField);
+  }
+  if (!/^\d{5}$/.test(sValue)) {
+    AddError(sField, 'Error in validation, input value should be 5 digits in', '');
+    return false;
+  }
+  return true;
+}
+ 
+/**
+ * SERVICES-37701 | LW - RC - Validation Request
+ */
+function requireWhenVisible(sValue,sName,sField){
+  "use strict";
+  if ('<$client.env.serversidevalidation>'=='1') return true;
+  let el = document.getElementsByName(sName)[0];
+  if (el.offsetParent !== null) {
+    return eFormRequiredField(sValue,sName,sField);
+  }
+  return true;
+}
+
+function allowFutureDateOfDepOnly(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+
+  var dateField = $('[id$="' + sID + '_display"]');
+  if (!dateField || dateField.hasClass('ng-disabled')) {
+    return true;
+  }
+
+  if (sVal.length < 1 && dateField.hasClass('ng-invalid')) {
+    eFormRequiredDate(sVal,sName,sID);
+  }
+
+  var depName = dateField.data('dep');
+  var dep = $('[name$="' + depName + '"]');
+  var depDate = new Date(dep.val()).setHours(0,0,0);
+  var endDate = new Date(sVal).setHours(0,0,0);
+  if (depDate >= endDate) {
+    AddError(sID, 'Error in validation, only greater than start date are accepted in', '');
+    return false;
+  }
+  return true;
+}
+
+function requiredOneSibling(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1') { return true;}
+  var siblings = $('[data-checkbox-group="' + sID + '"]');
+  var checked = false;
+  $.each(siblings, function(k,v) {
+    if ($(v).prop('checked')) {
+      checked = true;
+    }
+  });
+  if (!checked) {
+    return eFormRequiredField(sVal,sName,sID);
+  }
+  return true;
+}
+
+function requiredPhoneDashes(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (sVal.length <= 0) {
+    return eFormRequiredField(sVal,sName,sID);
+  }
+  return phoneDashes(sVal,sName,sID);
+}
+
+function requiredZipCode(sVal,sName,sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (sVal.length <= 0) {
+    return eFormRequiredField(sVal,sName,sID);
+  }
+  return zipCode(sVal,sName,sID);
+}
+
+/**
+ * SERVICES-38212 | do not require if employee is not application
+ */
+function requiredApplicable(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  var NOT_APPLICABLE = ('<$client.account.username_first> <$client.account.username>'.toLowerCase()=='not applicable')?true:false;
+  if (!!NOT_APPLICABLE) {
+    return true;
+  }
+  return eFormRequiredField(sVal,sName,sID);
+}
+function requiredApplicableDate(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  var NOT_APPLICABLE = ('<$client.account.username_first> <$client.account.username>'.toLowerCase()=='not applicable')?true:false;
+  if (!!NOT_APPLICABLE) {
+    return true;
+  }
+  return eFormRequiredDate(sVal,sName,sID);
+}
+
+function requireMatchSiblings(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (sVal.length < 1) {
+    return eFormRequiredDate(sVal,sName,sID);
+  }
+  var siblingsId = document.querySelector('[name="' + sName + '"]').getAttribute('data-validation-siblings');
+  var siblings = document.querySelectorAll('[data-validation-siblings="' + siblingsId + '"]');
+  var isMatched = true;
+  $.each(siblings, function(k,v) {
+    if (sVal !== $(v).val()) {
+      isMatched = false;
+    }
+  });
+  if (!isMatched) {
+    AddError(sID, 'Error in validation, values does not match in', '');
+    return false;
+  }
+  return true;
+}
+
+// SERVICES-37831 | to date should be greater than from date
+function acceptFutureDateOnly(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (sVal.length < 1) {
+    return true;
+  }
+  var toFieldId = $('[name="' + sName + '_display"]').data('date-from');
+  var fromFieldValue = new Date($('[name$=".' + toFieldId + '"]').val());
+  var toDate = new Date(sVal);
+  if (toDate.getFullYear() > fromFieldValue.getFullYear()) {
+    return true;
+  }
+  if (toDate.getFullYear() === fromFieldValue.getFullYear() && toDate.getMonth() > fromFieldValue.getMonth()) {
+    return true;
+  }
+  AddError(sID, 'Error in validation, please select date greater than From Month in', '');
+  return false;
+}
+function acceptFutureDateRequired(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (sVal.length < 1) {
+    return eFormRequiredDate(sVal,sName,sID);
+  }
+  return acceptFutureDateOnly(sVal,sName,sID);
+}
+
+// SERVICES-37831 | Require if added from hidden rows
+
+function requireWhenVisibleDate(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (document.querySelector('[name="' + sName + '_display"]').offsetParent === null) {
+    return true;
+  }
+  return eFormRequiredDate(sVal,sName,sID);
+}
+
+function requiredOneSiblingWithExplanation(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (!requiredOneSibling(sVal,sName,sID)) {
+    return true;
+  }
+  var field = document.querySelector('[name="' + sName + '"]');
+  if (!field.checked) {
+    return true;
+  }
+  var explanationGroup = field.getAttribute('data-target-explanation');
+  var explanations = document.querySelectorAll('[data-explanation-group="' + explanationGroup + '"]');
+  var hasExplanation = false;
+  for (i = 0; i < explanations.length; i++) {
+    if(explanations[i].offsetParent !== null) {
+      hasExplanation = true;
+    }
+  }
+  if (!hasExplanation) {
+    AddError(sID, 'Error in validation, explanation required once \"Yes\" is selected in', '');
+    return false;
+  }
+  return true;
+}
+
+// SERVICES-37831 | match initials of user full name
+function requiredInitials(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (sVal.length < 1) {
+    return eFormRequiredField(sVal,sName,sID);
+  }
+  var targetInitials = document
+    .querySelector('[name="' + sName + '"]')
+    .getAttribute('data-target-initials');
+  var targetField = document.querySelector(targetInitials);
+  if (targetField.value.match(/\b(\w)/g).join('')!==sVal) {
+    AddError(sID, 'Error in validation, please use you name initials in', '');
+    return false;
+  }
+  return true;
+}
+
+// SERVICES-38174 | hide fields values
+function eFormMaskField(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  var field = document.querySelector('[name="' + sName + '"]');
+  if (field.getAttribute('type')==='hidden') {
+    field = document.querySelector('[name="' + sName + '_display"]');
+  }
+  field.setAttribute('type', 'password');
+}
+
+  $('[data-checkbox-group]:checkbox').on('change', function() {
+    let groupId = $(this).data('checkbox-group');
+    let checked = $(this).is(':checked');
+    $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+    $(this).prop('checked', !checked);
+  });
+
+$(document).on('ready', function() {
+  if (<$client.env.eval(url.forWhom!=account.userguid)>) {
+    $('[name$=".DateOfBirth_display"], [name$=".SocialSecurityNumber"]').prop('type', 'password');
+  }
+});
+
+// SERVICES-38613 | Kirkland & Ellis - Direct Deposit E-Form
+function eFormValidateRouting(sVal,sName,sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){ return true;}
+  if (sVal.length < 1) {
+    return false;
+  }
+  var ALLOWED_ROUTING = 9;
+  if (sVal.length < ALLOWED_ROUTING || sVal.length < ALLOWED_ROUTING) {
+    AddError(sID, 'Error in validation, it should have exactly ' + ALLOWED_ROUTING + ' digits in', '');
+    return false;
+  }
+  if (!/^[0-9]+$/.test(sVal)) {
+    return eFormIsNumeric(sVal,sName,sID);
+  }
+  var ABA_ALGO = [3, 7, 1, 3, 7, 1, 3, 7, 1];
+  var digits = sVal.split('');
+  var sum = 0;
+  for (var i = 0; i < digits.length; i++) {
+    sum += (parseInt(digits[i]) * ABA_ALGO[i]);
+  }
+  if ((sum%10) !== 0) {
+    AddError(sID, 'Error in validation, invalid ABA Routing Number in', '');
+    return false;
+  }
+}
+
+// SERVICES-38613 | Kirkland & Ellis - Direct Deposit E-Form
+function disallowDuplicateCategories(sVal,sName,sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){ return true;}
+  if (!requireEnabled(sVal,sName,sID)) {
+    return false;
+  }
+  var selectedCategories = [];
+  var hasDuplicate = false;
+  $.each($('.account-category'), function(k,v) {
+    if (selectedCategories.indexOf($(v).val()) >= 0) {
+      hasDuplicate = true;
+    }
+    if ($(v).val().length > 0) {
+      selectedCategories.push($(v).val());
+    }
+  });
+  if (hasDuplicate) {
+    AddError(sID, 'Error in validation, only one of each category are allowed in', '');
+    return false;
+  }
+}
+
+// SERVICES-38613 | Kirkland & Ellis - Direct Deposit E-Form
+function disallowPercentExcess(sVal,sName,sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){ return true;}
+  if (!requireEnabled(sVal,sName,sID)) {
+    return false;
+  }
+  var totalPercentage = 0;
+  $.each($('.is-percent'), function(k,v) {
+    totalPercentage += parseFloat($(v).val());
+  });
+  var MAX_PERCENTAGE = 100;
+  if (totalPercentage > MAX_PERCENTAGE) {
+    AddError(sID, 'Error in validation, deposit percentage should not exceed ' + MAX_PERCENTAGE + ' in', '');
+    return false;
+  }
+}
+
+// SERVICES-38642 | Experis: RC - New eForm (UPS Consent Documents)
+function requireSSNSections(sVal,sName,sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){ return true;}
+  var ssnFieldGroupID = document.querySelector('[name="' + sName + '"]').getAttribute('data-ssn-group');
+  var ssnFieldGroup = document.querySelectorAll('[data-ssn-group="' + ssnFieldGroupID + '"]');
+  for (var i = 0; i < ssnFieldGroup.length; i++) {
+    if (ssnFieldGroup[i].value.length < 1) {
+      AddError(sID, 'Error in validation, please complete value input in', '');
+      return false;
+    }
+  }
+  return true;
+}
+
+// SERVICES-38636 | Enterprise Products: eForm scope request
+function requireWhenDoesNotMeet(sVal,sName,sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){return true;}
+  var checkboxGroups = document.getElementById(sID).getAttribute('data-depends-on');
+  var fieldGroups = checkboxGroups.split(',');
+  var required = false;
+  for (var i = 0; i < fieldGroups.length; i++) {
+    if (document.querySelector('[data-checkbox-group="' + fieldGroups[i] + '"][value="No"]').checked) {
+      required = true;
+    }
+  }
+  if (required) {
+    return eFormRequiredField(sVal,sName,sID);
+  }
+  return required;
+}
+
+function requireWhenRequired(sVal,sName,sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){return true;}
+  if (sVal.length < 1) {
+    AddError('How were you referred to Carter\'s', 'Error in validation, required information missing in', '');
+    return false;
+  }
+  return true;
+}
+
+// SERVICES-38928 | WoodGroup Test- Canada event
+function requireStaticFields(sVal,sName,sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){return true;}
+  var requiredFields = [
+    ['First_Name', 'Legal First Name /Forename'],
+    ['Last_Name', 'Legal Last Name / Surname'],
+    ['Address1', 'Home address 1'],
+    ['City', 'Home City/Town'],
+    ['county_parish', 'Home County/District'],
+    ['State', 'State/Province'],
+    ['Zip', 'Home Zip/Postal Code'],
+    ['Country', 'Home Country']
+  ];
+  // require sin only if country is canada
+  var optionalCountry = (document.querySelector('[name$=".Country"]')!==null)?document.querySelector('[name$=".Country"]').value:"";
+  if (optionalCountry === "Canada") {
+    requiredFields.push(['national_identification', 'SIN']);
+  }
+  var valid = true;
+  for (var i = 0; i < requiredFields.length; i++) {
+    if (document.querySelector('[name$="' + requiredFields[i][0] + '"]').value.length < 1) {
+      AddError(requiredFields[i][1], 'Error in validation, required information missing in', '');
+      valid = false;
+    }
+  }
+  return valid;
+}
+
+function requireOneCheckboxGroup(sVal, sName, sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var checkboxes = document.querySelectorAll('[data-checkbox-group="' + document.querySelector('[name="' + sName + '"]').getAttribute('data-checkbox-group') + '"]');
+  var required = true;
+  for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked === true) {
+      required = false;
+    }
+  }
+  if (required) {
+    return eFormRequiredField(sVal, sName, sID);
+  }
+  return true;
+}
+
+// SERVICES-39177 | Kirkland & Ellis Policy Acknowledgement Form
+function requireWhenVisibleField(sVal,sName,sID) {
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (document.querySelector('[name="' + sName + '"]').offsetParent === null) {
+    return true;
+  }
+  return eFormRequiredField(sVal,sName,sID);
+}
+
+function shouldPairValues(sVal, sName, sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (!requireEnabled(sVal,sName,sID)) {
+    return false;
+  }
+  var pairGroup = document.querySelector('[name="' + sName + '"]').getAttribute('data-pairs');
+  var pairs = document.querySelectorAll('[data-pairs="' + pairGroup + '"]');
+  var firstVal = '';
+  for (var i = 0; i < pairs.length; i++) {
+    firstVal = pairs[0].value;
+    if (pairs[1].value.length > 0 && pairs[i].value != firstVal) {
+      AddError(sID, 'Error in validation, retyped values doesn\'t match in', '');
+    }
+  }
+}
+
+// SERVICES-39749 | Wesfarmers Industrial and Safety - Request to update LifeSuite Onboarding eForm - Bank Account Amount ($) field to be required
+function requireBySiblings(siblings) {
+  "use strict";
+  var required = false;
+  siblings.forEach(function(v) {
+    if (document.querySelector('[name$=".' + v + '"]').value.length > 0) {
+      required = true;
+    }
+  }); 
+  return required;
+}
+
+/**
+ * ValidateNHOIntlEmpID
+ */
+function ValidateNHOIntlSecondary_Branch_EC_CD_Custom(sVal, sName, sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  var secondaryBank = ['Secondary_Bank_CD', 'Secondary_Branch_EC_CD', 'Secondary_Branch_Suburb', 'Secondary_Account_EC_ID', 'Secondary_Account_Name', 'Secondary_Account_Amount'];
+  if (requireBySiblings(secondaryBank)) {
+    secondaryBank.forEach(function(v) {
+      var field = document.querySelector('[name$=".' + v + '"]');
+      eFormRequiredField(field.value, field.getAttribute('name'), v);
+    });
+    return eFormRequiredField(sVal, sName, sID);
+  }
+  return false;
+}
+
+/**
+ * ValidateNHOIntlTertiary_Account_Amount_Custom
+ */
+function ValidateNHOIntlTertiary_Account_Amount_Custom(sVal, sName, sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  var tertiaryBank = ['Tertiary_Bank_CD', 'Tertiary_Branch_EC_CD', 'Tertiary_Branch_Suburb', 'Tertiary_Account_EC_ID', 'Tertiary_Account_Name', 'Tertiary_Account_Amount'];
+  if (requireBySiblings(tertiaryBank)) {
+    tertiaryBank.forEach(function(v) {
+      var field = document.querySelector('[name$=".' + v + '"]');
+      eFormRequiredField(field.value, field.getAttribute('name'), v);
+    });
+    return eFormRequiredField(sVal, sName, sID);
+  }
+  return false;
+}
+
+// SERVICES-39469 | jjucutan | https://jira.silkroadtech.com/browse/SERVICES-39469?focusedCommentId=1443606&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-1443606
+function requireByController(sVal, sName, sID) {
+  "use strict";
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  var isDate = false;
+  var fieldName = sName;
+  if (document.querySelector('[name="' + fieldName + '_display"]')) {
+    isDate = true;
+    fieldName += '_display';
+  }
+  var controller = document.querySelector('[name="' + fieldName + '"]').dataset.controller;
+  document.querySelectorAll('[name$=".' + controller + '"]').forEach(function(el,k) {
+    if (el.checked && el.value == 'Yes') {
+      if (isDate) {
+        return eFormRequiredDate(sVal, sName, sID);
+      }
+      return eFormRequiredField(sVal, sName, sID);
+    }
+  });
+  return true;
+}
+
+
+function mustMatchConfirmation(sVal, sName, sID) {
+  "use strict"; // SERVICES-39901 | jjucutan |  Tenneco Automotive add routing confirmation validation
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (sVal.length < 1) {
+    return;
+  }
+  var field = document.querySelector('[name="' + sName + '"]')
+  var targetConfirmation = field.dataset.confirmation;
+  if (document.querySelector('[name$=".' + targetConfirmation + '"]').value != field.value) {
+    AddError(sID, 'Error in validation, entry should match confirmation in', '');
+    return false;
+  }
+}
+
+function toggleNonExemptFields(enable) {
+  "use strict";
+  const nonExemptFields = ['MultiplyChildren', 'TwoJobs', 'MultiplyDependents', 'ChildrenDependentsTotal', 'OtherIncome', 'Deductions', 'ExtraWithholding', 'MJWorksheet1',  'MJWorksheet2A', 'MJWorksheet2B', 'MJWorksheet2C', 'MJWorksheet3', 'MJWorksheet4', 'DAWorksheet1', 'DAWorksheet2', 'DAWorksheet3', 'DAWorksheet4', 'DAWorksheet5'];
+  for (let i = 0; i < nonExemptFields.length; i++) {
+    const field = document.querySelector('[name$="' + nonExemptFields[i] + '"]');
+    if (!enable) {
+      field.disabled = true;
+      continue;
+    }
+    field.disabled = false;
+  }
+}
+
+function exemptChanged(el){
+  "use strict";
+  const EXEMPT_MESSAGE = "You have selected Exempt, certifying that you had no federal income tax liability in 2019 and you expect to have no federal income tax liability in 2020. Based on this selection, you should only complete steps 1a, 1b, and 5. Values from other steps have been removed. Remove your Exempt selection if you would like tax withheld.";
+  if(el.selectedIndex==1){
+    W4EnableDisableForAllowance('allowances',true);
+    W4EnableDisable('additionalwithholding',true);
+    alert(EXEMPT_MESSAGE);
+    toggleNonExemptFields(false);
+    return false;
+  }
+  toggleNonExemptFields(true);
+  W4EnableDisableForAllowance('allowances',false);
+  W4EnableDisable('additionalwithholding',false);
+  onBlurW4Allowance(el);
+  return true;
+}
+
+function eFormRequiredFieldByRole(sVal, sName, sID) {
+  "use strict"; 
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if ( document.querySelector('[name="' + sName + '"]').dataset.approver == 1 ) {
+    return eFormRequiredField(sVal, sName, sID);
+  }
+  return true;
+}
+
+console.log('<$client.tEventManagers_17.UserGuid>');
+console.log('<$client.tEventManagers_2.UserGuid>');
+console.log('<$account.userguid>');
+
+if ( <$client.env.eval(client.tEventManagers_17.UserGuid==account.userguid?'true':'false')> || <$client.env.eval(client.tEventManagers_2.UserGuid==account.userguid?'true':'false')> ) {
+  const approverSignature = document.querySelector('#approver_signature');
+  document.getElementById('approver_name').value = '<$client.account.username_first> <$client.account.username>';
+  approverSignature.dataset.approver = 1;
+  approverSignature.classList.add('ng-invalid');
+  approverSignature.disabled = false;
+  approverSignature.addEventListener('change', function() {
+    signatureVerification('sv2')
+  });
+  approverSignature.addEventListener('focus', function() {
+    openESig('modal2','over',this);
+    document.getElementById('eSignature2').focus();
+  });
+}
+
+
+function eFormValidateHyphenedSSN(sVal, sName, sID) {
+  "use strict"; 
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (sVal.length < 1) {
+    return eFormRequiredField(sVal, sName, sID);
+  }
+  if (!/^(?!000|666)[0-9]{3}([-]?)(?!00)[0-9]{2}\1(?!0000)[0-9]{4}$/.test(sVal)) {
+    AddError(sID, 'Error in validation, should have ###-##-#### or ######### format in', '');
+    return false;
+  }
+  return true;
+}
+
+var HOURLY_TITLES = ["administrative assistant", "intern", "accountant"];
+var NON_PAID = ["intern coop engineer", "intern coop non engineer"];
+function validateSalaryRate(sVal,sName,sID){
+  "use strict"; 
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if ( $.inArray($.trim(sVal).toLowerCase(), NON_PAID) >= 0) {
+      var hourlyField = $('[data-salary-rate="hourly"]');
+      return eFormRequiredField(hourlyField.val(),hourlyField.prop('name'),hourlyField.prop('id'));
+  }
+
+  if ( $.inArray($.trim(sVal).toLowerCase(), HOURLY_TITLES) < 0) {
+      var annualField = $('[data-salary-rate="annual"]');
+      return eFormRequiredField(annualField.val(),annualField.prop('name'),annualField.prop('id'));
+  } else {
+      var hourlyField = $('[data-salary-rate="hourly"]');
+      return eFormRequiredField(hourlyField.val(),hourlyField.prop('name'),hourlyField.prop('id'));
+  }
+}
+
+function validateInitials(sVal,sName,sID) {
+  "use strict"; 
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  var target = document.querySelector('[name$=".Approver_' + sID.slice(-1) + '"]');
+  if (sVal.length < 1) {
+    return eFormRequiredField(sVal,sName,sID);
+  }
+  if (sVal != target.value.match(/\b(\w)/g).join('').toUpperCase()) {
+    AddError(sID, 'Error in validation, Approver Name should match the', '');
+    return false;
+  }
+  return true;
+}
+
+function requireTodayDate(sVal,sName,sID) {
+  "use strict"; 
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (sVal.length < 1) {
+    return eFormRequiredDate(sVal,sName,sID);
+  }
+  if (!moment().isSame(sVal, 'day')) {
+    AddError(sID, 'Error in validation, please select today\'s date in', '');
+    return false;
+  }
+  return true;
+}
+function requireZip(sVal,sName,sID) {
+  "use strict"; 
+  if('<$client.env.serversidevalidation>'=='1'){ return true; }
+  if (sVal.length < 1) {
+    return eFormRequiredDate(sVal,sName,sID);
+  }
+  return eFormPositiveCurrency(sVal,sName,sID);
+}
+
+
+function requireVisible(sValue, sName, sID) {
+  "use strict";
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = document.querySelector('[name="' + sName + '"]');
+  if (field.offsetParent != null) {
+    return eFormRequiredField(sValue, sName, sID);
+  }
+  return true;
+}
+
+function requiredOptionalDate(sValue, sName, sID) {
+  "use strict";
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = document.querySelector('[name="' + sName + '_display"]');
+  var controller = document.querySelectorAll('[name$=".' + field.dataset.dependsOn + '"]');
+  controller.forEach(function(entry) {
+    if (!entry.checked) {
+      return;
+    }
+    if (entry.value == field.dataset.requiredOn) {
+      return eFormRequiredDate(sValue, sName, sID);
+    }
+  });
+}
+
+function requireAnyOfSiblings(sValue, sName, sID) {
+  "use strict";
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = document.querySelector('[name="' + sName + '"]');
+  var siblings = document.querySelectorAll('[data-siblings="' + field.dataset.siblings + '"]');
+  var hasVal = false;
+  siblings.forEach(function(entry) {
+    if (entry.value.length > 0) {
+      hasVal = true;
+    }
+  });
+  if (hasVal) {
+    return eFormPositiveCurrency(sValue, sName, sID)
+  }
+  AddError('', 'Error in validation, fill at least one of Exempt or Non-Exempt', '');
+  return false;
+}
+
+function toggleableRequired(sValue, sName, sID) {
+  "use strict";
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var controller = document.querySelector('[name="'+ sName + '"]');
+  if (document.querySelector('[name$=".' + controller.dataset.dependsOn + '"]').checked) {
+    return true;
+  }
+  return requireEnabled(sValue, sName, sID);
+}
+
+function requireEnabled(sValue, sName, sID) {
+  "use strict";
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = thisForm.querySelector('[name="' + sName + '"]');
+  if (!field.disabled) {
+    return eFormRequiredField(sValue, sName, sID);
+  }
+}
+
+function adminSASRequiredDate(sValue, sName, sID) {
+  "use strict"; // SERVICES-40249 | Cleveland Clinic - RC - Badge Expiration Validation 
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = document.querySelector('[name="' + sName + '_display"]');
+  if (!field.disabled) {
+    return eFormRequiredDate(sValue, sName, sID);
+  }
+  if (field.disabled) {
+    field.parentElement.querySelectorAll('input').forEach(function(input) {
+      input.disabled = true;
+    });
+  }
+}
+
+const getInstance = function() {
+  "use strict";
+  return thisForm.querySelector('[name$=".display_version"]').getAttribute('name').split('.')[0];
+}
+
+console.log(getInstance());
+
+function eFormAlphaNumeric(sValue, sName, sID) {
+  "use strict";
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.length < 1) {
+    return true;
+  }
+  if (!/^[a-zA-Z0-9]+$/.test(sValue)) {
+    AddError(sID, 'Error in validation, only alphanumeric characters are allowed in', '');
+    return false;
+  }
+  return false;
+}
+
+function eFormRequiredAlphaNumeric(sValue, sName, sID) {
+  "use strict"; 
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.length < 1) {
+    return eFormRequiredField(sValue, sName, sID);
+  }
+  return eFormAlphaNumeric(sValue, sName, sID);
+}
+
+function eFormRequireRequired(sValue, sName, sID) {
+  "use strict"; 
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (document.querySelector('[name="' + sName +'"]').hasAttribute('required')) {
+    return eFormRequiredField(sValue, sName, sID);
+  }
+  return false;
+}
+
+function ABI_eFormSSNFormat(sValue, sName, sField) {
+  "use strict";
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.length < 1) {
+    return true;
+  }
+  if (/^[0-9]{3}-[0-9]{2}-[0-9]{4}$/.test(sValue)) {
+    return true;
+  }
+  if (/^[0-9]{9}$/.test(sValue)) {
+    return true;
+  }
+  if (!/^([0-9]{9})|()$/.test(sValue)) {
+    return false;
+  }
+  AddError(sField, 'Error in validation, only 9 or 11 digits with dashes eg.123456789 or 111-11-1111 are allowed in', '');
+  return false;
+}
+
+function adminSASRequiredDate(sValue, sName, sID) {
+  "use strict"; // SERVICES-40249 | Cleveland Clinic - RC - Badge Expiration Validation 
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = document.querySelector('[name="' + sName + '_display"]');
+  if (!field.disabled) {
+    return eFormRequiredDate(sValue, sName, sID);
+  }
+  if (field.disabled) {
+    field.parentElement.querySelectorAll('input').forEach(function(input) {
+      input.disabled = true;
+    });
+  }
+}
+
+(function enableFieldRole() {
+  "use strict"; // SERVICES-40249 | Cleveland Clinic - RC - Badge Expiration Validation 
+  const fields = document.querySelectorAll('[data-field-role]');
+  fields.forEach(function(f) {
+    let fieldRole = Number(f.dataset.fieldRole);
+    if (!isNaN(fieldRole) && fieldRole > 0) {
+      f.parentElement.querySelectorAll('input').forEach(function(i) {
+        i.disabled = false;
+      });
+    }
+  });
+})();
+
+function eFormRequireVisible(sValue, sName, sID) {
+  "use strict"; // SERVICES-40858 | Wiley - RC - New Employee Profile Page
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = document.querySelector('[name="' + sName + '"]');
+  var fieldDate = jQuery('[name="' + sName + '_display"]');
+  if (fieldDate) {
+    field = fieldDate;
+  }
+  if (!field.offsetParent) {
+    return true;
+  }
+  if (fieldDate) {
+    return eFormRequiredDate(sValue, sName, sID);
+  }
+  return eFormRequiredField(sValue, sName, sID);
+}
+
+function eFormRequireDepends(sValue, sName, sID) {
+  "use strict";
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = document.querySelector('[name$="' + sName + '"]');
+  var controller = document.getElementById(field.dataset.requirefield)
+  if (controller.value != field.dataset.requirevalue) {
+    return true;
+  }
+  return eFormRequiredField(sValue, sName, sID);
+}
+
+function eFormRequirePastDate(sValue, sName, sID) {
+  "use strict"; // SERVICES-40858 | Wiley - RC - New Employee Profile Page
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  var field = document.querySelector('[name="' + sName + '"]');
+  if (!sValue.length) {
+    return eFormRequiredField(sValue, sName, sID);
+  }
+  if (jQuery('[name="' + sName + '_display"]').length) {
+    return eFormPastDate(sValue, sName, sID);
+  }
+}
+
+function eFormValidatePhoneFormat(sValue, sName, sID) {
+  "use strict"; // SERVICES-40989 | Old Republic Title- RC- Validations for EUP
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.length > 0 && !/^[1-9][0-9]{2}-[0-9]{3}-[0-9]{4}$/.test(sValue)) {
+    AddError(sID, 'Error in validation, only 999-999-9999 is allowed in', '');
+  }
+}
+
+function eFormValidatePhoneFormatRequried(sValue, sName, sID) {
+  "use strict"; // SERVICES-40989 | Old Republic Title- RC- Validations for EUP
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.length < 1) {
+    return eFormRequiredField(sValue, sName, sID);
+  }
+  eFormValidatePhoneFormat(sValue, sName, sID);
+}
+
+function eFormValidateRateFormat(sValue, sName, sID) {
+  "use strict"; // SERVICES-40989 | Old Republic Title- RC- Validations for EUP
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.length > 0 && !/^[1-9][0-9]{1,7}\.[0-9]{2}$/.test(sValue)) {
+    AddError(sID, 'Error in validation, only 99999999.99 format is allowed in', '');
+  }
+}
+
+function eFormValidateCompRateFormat(sValue, sName, sID) {
+  "use strict"; // SERVICES-40989 | Old Republic Title- RC- Validations for EUP
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.length > 0 && !/^[0-9]{1,8}\.[0-9]{4}$/.test(sValue)) {
+    AddError(sID, 'Error in validation, only 99999999.9999 format is allowed in', '');
+  }
+}
+
+function eFormValidateSSNO(sValue, sName, sID) {
+  "use strict"; // SERVICES-40989 | Old Republic Title- RC- Validations for EUP
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.length < 1) {
+    return true;
+  }
+  if (!/^[0-9]+$/.test(sValue)) {
+    AddError(sID, 'Error in validation, non-numeric values not allowed in', '');
+    return false;
+  }
+  if (!/[0-9]{9}/.test(sValue)) {
+    AddError(sID, 'Error in validation, should be exactly 9 digits in', '');
+    return false;
+  }
+  if (/^9/.test(sValue) || /^000/.test(sValue) || /^666/.test(sValue)) {
+    AddError(sID, 'Error in validation, should not start at 9, 000, or 666 in', '');
+    return false;
+  }
+  if (/^[0-9]{3}00/.test(sValue) || /^[0-9]{5}0000/.test(sValue)) {
+    AddError(sID, 'Error in validation, should not have 00 in the middle or 0000 at the end in', '');
+    return false;
+  }
+  if (/^123456789$/.test(sValue) || /^111111111/.test(sValue) || /^333333333/.test(sValue)) {
+    AddError(sID, 'Error in validation, should not have value of 123456789, 111111111, or 3333333333 in', '');
+    return false;
+  }
+}
+
+function eFormValidateDeductons(sValue, sName, sID) {
+  "use strict"; // SERVICES-40989 | Old Republic Title- RC- Validations for EUP
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.length > 0 && !/^[0-9]{1,11}$/.test(sValue)) {
+    AddError(sID, 'Error in validation, only 99999999999 format is allowed in', '');
+  }
+}
+
+function eFormNumericRequired(sValue, sName, sID) {
+  "use strict"; // SERVICES-41156 | Ohmstede LTD - Custom Dispatch eForm
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.trim().length < 0) {
+    return eFormRequiredField(sValue, sName, sID);
+  }
+  return eFormIsNumeric(sValue, sName, sID);
+}
+
+function eFormCurrencyRequired(sValue, sName, sID) {
+  "use strict"; // SERVICES-41156 | Ohmstede LTD - Custom Dispatch eForm
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.trim().length < 0) {
+    return eFormRequiredField(sValue, sName, sID);
+  }
+  return eFormPositiveCurrency(sValue, sName, sID);
+}
+
+function eFormRequiredTodate(sValue, sName, sID) {
+  "use strict"; // SERVICES-39042 | Precise - Offer Letter Creation (Primary Offer Letter)
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.trim().length < 0) {
+    return eFormRequiredDate(sValue, sName, sID);
+  }
+  var val = new Date(sValue).setUTCHours(0,0,0,0);
+  var todate = new Date().setUTCHours(0,0,0,0);
+  if (val != todate) {
+    AddError(sID, 'Error in validation, please select today\'s date in', '');
+    return false;
+  }
+  return true;
+}
+
+function requiredPhoneDigits(sValue, sName, sID) {
+  "use strict"; // SERVICES-41070 | Bendix Commercial Vehicle Systems LLC - RC - Update eForm
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (sValue.trim().length < 0) {
+    return eFormRequiredDate(sValue, sName, sID);
+  }
+  return phoneDigits(sValue, sName, sID);
+}
+
+function modifiedRequiredField(sValue, sName, sID) {
+  "use strict"; // SERVICES-41070 | Bendix Commercial Vehicle Systems LLC - RC - Update eForm
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (eFormRequiredField(sValue, sName, sID)) {
+    populateContents(fieldsConfig)
+  }
+}
+
+function eFormNonHRRequired(sValue, sName, sID) {
+  "use strict"; // SERVICES-41533 | JHUAPL: Edit Profile Page Assistance
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  // make optional for LeasedWorker_HR page
+  if (!!document.getElementById('LeasedWorker_HR')) {
+    return true;
+  }
+  return eFormRequiredField(sValue, sName, sID);
+}
+
+function eFormRequireByMiddleName(sValue, sName, sID) {
+  "use strict"; // SERVICES-41533 | JHUAPL: Edit Profile Page Assistance
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if (!!document.querySelector('[name="Middle_Name"]') && !!document.querySelector('[name="Middle_Name"]').value.length) {
+    return true;
+  }
+  if (!document.querySelector('[name="' + sName + '"]').checked) {
+    AddError('', 'Error in validation, please check \'No legal middle name\' if you have no Middle Name', '');
+    return false;
+  }
+  return true;
+}
+
+function eFormRequireVisibleNumeric(sValue, sName, sID) {
+  "use strict"; // SERVICES-41387
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if(eFormRequiredField(sValue, sName, sID) && !/\d/.test(sValue)) {
+    AddError(sID, 'Error in validation, only numeric values are allowed in', '');
+    return false;
+  }
+  return true;
+}
+
+function eFormValidateCarloan(sValue, sName, sID) {
+  "use strict"; // SERVICES-41675
+  if ('<$client.env.serversidevalidation>' == '1') {return true;}
+  if(sValue.length && !/\d/.test(sValue)) {
+    AddError('', 'Error in validation, only numeric values are allowed in Monthly Auto Allowance Amount', '');
+    return false;
+  }
+  var amount = Number(sValue)
+  var MAX_LOAN = 550;
+  if(amount >= MAX_LOAN) {
+    AddError('', 'Error in validation, amount should not exceed ' + MAX_LOAN + ' in Monthly Auto Allowance Amount', '');
+    return false;
+  }
+  return true;
+}
+
+(function() {
+  "use strict";
+  if (!Element.prototype.matches) {
+    Element.prototype.matches =
+      Element.prototype.msMatchesSelector || 
+      Element.prototype.webkitMatchesSelector;
+  }
+
+  if (!Element.prototype.closest) {
+    Element.prototype.closest = function(s) {
+      var el = this;
+      do {
+        if (Element.prototype.matches.call(el, s)) return el;
+        el = el.parentElement || el.parentNode;
+      } while (el !== null && el.nodeType === 1);
+      return null;
+    };
+  }
+  // SERVICES-41996 | disallow Attorney Recruiting and Development Team from editing SSN field
+  var ssnField = document.querySelector('[name$=".SSNO"]')
+  if (!!Number(ssnField.dataset.ard)) {
+    document.querySelector('[name$=".SSNO"]').closest('.trEUPField').style.display = 'none';
+  }
+})();
+
+function ValidateKKOORa01_IRD(sVal, sName, sID) {
+    if ('<$client.env.serversidevalidation>' == '1') {  return true; }
+    document.querySelector('[name="' + sName + '"]').classList.add('ng-invalid');
+    eFormRequiredField(sVal,sName,sID);
+    eFormIsNumeric(sVal,sName,sID);
+}
+
+function validate_Hosp_Emp_ID_Clock(sVal, sName, sID){
+  if ('<$client.env.serversidevalidation>' == '1') {  return true; }
+  if(document.querySelector('[name$=".Hire_Custom_Field5"]') && document.querySelector('[name$=".Hire_Custom_Field5"]').value == "Yes"){
+   return eFormRequiredField(sVal, sName, sID);
+ }
+ return true;
+}
+function validate_Hire_Offer_Custom_Field9(sVal, sName, sID){
+  if ('<$client.env.serversidevalidation>' == '1') {  return true; }
+  if(!document.querySelector('[name$=".Job_Custom_Field18"]') || document.querySelector('[name$=".Job_Custom_Field18"]').value != "5"){
+    return true;
+ }
+ if (!eFormRequiredField(sVal, sName, sID)) {
+  return false;
+ }
+ if (!/^[0-9]+$/.test(sVal) || sVal.length > 2) {
+  AddError(sID, 'Error in validation, only allowed values are 2 digits in', '');
+  return false;
+ }
+ return true;
+}
+
+function validateRequireByRadio(sVal, sName, sID) {
+  if ('<$client.env.serversidevalidation>' == '1') {  return true; }
+  var field = document.querySelector('[name="' + sName + '"]')
+  var radioChecked;
+  document.querySelectorAll('[name$=".' + field.dataset.requireByRadio + '"]').forEach(function(r) {
+    if (r.checked) {
+      radioChecked = r;
+    }
+  });
+  if (!radioChecked) {
+    return true;
+  }
+  if (radioChecked.value != field.dataset.requireByRadioValue) {
+    return true;
+  }
+  return eFormRequiredField(sVal, sName, sID);
+}
+
+function validateRequireByDep(sVal, sName, sID) {
+  if ('<$client.env.serversidevalidation>' == '1') {  return true; }
+  var field = document.querySelector('[name="' + sName + '"]')
+  var dep = document.querySelector('[name$=".' + field.dataset.requireBy + '"]')
+  if (!dep) {
+    return true;
+  }
+  if (field.dataset.requireByValue.indexOf(dep.value) >= 0) {
+    field.classList.add('ng-invalid');
+    return true;
+  }
+  field.classList.remove('ng-invalid');
+  return eFormRequiredField(sVal, sName, sID);
+}
+
+function eFormRequiredTodayDate_Custom(sValue,sName,sField){
+    if('<$client.env.serversidevalidation>' == '1'){return true;}
+    var dval = ''; 
+    if (sValue.length) {
+      dval = moment($('[name="' + sName + '_display"]').datepicker('getDate')).format('YYYY-MM-DD'); // set to readable date
+    }
+    if (!eFormRequiredDate(dval,sName,sField)) {
+        return false;
+    }
+    if (!moment().isSame(dval,'day')) {
+        AddError(sField, 'Please select today\'s date in', '');
+        return false;
+    }
+    return true;
+}
+
+function eFormValid8Digits(sValue,sName,sField){
+    if('<$client.env.serversidevalidation>' == '1'){return true;}
+    if (!sValue.length) {
+      return true;
+    }
+    if (!eFormIsNumeric(sValue,sName,sField)) {
+        return false;
+    }
+    if (sValue.length != 8) {
+        AddError(sField, 'Please type in 8 digits in', '');
+        return false;
+    }
+    return true;
+}
+
+function requireOnePrimary(sValue,sName,sField){
+    if('<$client.env.serversidevalidation>' == '1'){return true;}
+    var hasChecked = false;
+    document.querySelectorAll('[name$=".contact_primary_1"], [name$=".contact_primary_2"]').forEach(function(c) {
+      if (c.checked) {
+        hasChecked = true;
+      }
+    });
+    if (!hasChecked) {
+      AddError(sField, 'Error in validation, please select primary contact in', '');
+      return false;
+    }
+    return true;
+}
+
+function validateName(sValue,sName,sField){
+    if('<$client.env.serversidevalidation>' == '1'){return true;}
+    if (!/^[A-Za-z ]+$/.test(sValue)) {
+      AddError(sField, 'Error in validation, only upper and lowercase letters are allowed in', '');
+      return false;
+    }
+    return true;
+}
+
+function validateDepends(sValue,sName,sField){
+    if('<$client.env.serversidevalidation>' == '1'){return true;}
+    var isRequired = false;
+    var config = <$include;/main/RedCarpet/FormTemplates/Fiche_Profil_-_SELIA/js/config.json>;
+    config.fieldAttrs.forEach(function(f) {
+      if (f.name != sField) {
+        return true;
+      }
+      if (!f.dependsOnAnyOf) {
+        return true;
+      }
+      f.dependsOnAnyOf.forEach(function(dep) {
+        if (document.querySelector('[name$=".' + dep + '"]').value.length) {
+          isRequired = true;
+        }
+      })
+    });
+    if (isRequired) {
+      if (document.querySelector('[name="' + sName + '"]').type == 'hidden') {
+        return eFormRequiredDate(sValue,sName,sField);
+      }
+      return eFormRequiredField(sValue,sName,sField);
+    }
+    return true;
+}
+
+function nameValidation(sValue,sName,sField){
+    if('<$client.env.serversidevalidation>' == '1'){return true;}
+    if (sValue.length < 1) {
+      return true;
+    }
+    if (!/^[-A-Z ',]+$/.test(sValue)) {
+      AddError(sField, 'Error in validation, only uppercase letters, hyphen, apostrophy, and comma are allowed in', '');
+      return false;
+    }
+    return true;
+}
+
+function nameValidationRequired(sValue,sName,sField){
+    if('<$client.env.serversidevalidation>' == '1'){return true;}
+    if (!eFormRequiredField(sValue,sName,sField)) {
+      return false;
+    }
+    return nameValidation(sValue,sName,sField);
+}
+
+function addressValidation(sValue,sName,sField){
+    if('<$client.env.serversidevalidation>' == '1'){return true;}
+    if (sValue.length < 1) {
+      return true;
+    }
+    if (!/^[-A-Z0-9 ,']+$/.test(sValue)) {
+      AddError(sField, 'Error in validation, only uppercase letters, numbers, hyphen, apostrophy, and comma are allowed in', '');
+      return false;
+    }
+    return true;
+}
+
+function addressValidationRequired(sValue,sName,sField){
+    if('<$client.env.serversidevalidation>' == '1'){return true;}
+    if (!eFormRequiredField(sValue,sName,sField)) {
+      return false;
+    }
+    return addressValidation(sValue,sName,sField);
+}
+
+
+function requireWhenVisible(sValue,sName,sField){
+    if('<$client.env.serversidevalidation>' == '1'){return true;}
+    var dateField = document.querySelector('[name="' + sName + '_display"]');
+    if (dateField && dateField.offsetParent != null) {
+      return eFormRequiredDate(sValue,sName,sField);
+    }
+    if (document.querySelector('[name="' + sName + '"]').offsetParent == null) {
+      return true;
+    }
+    return eFormRequiredField(sValue,sName,sField);
+}
+
+
+function requireSendFrom(sValue,sName,sField){
+  'use strict';
+    if('<$client.env.serversidevalidation>' == '1'){return true;}
+    if (!document.querySelector('[name="' + sName + '"]').checked) {
+      return true;
+    }
+    var sendFrom = ['z02_check', 'z03_check'];
+    var checked = false;
+    sendFrom.forEach(function(cbx) {
+      if (document.querySelector('[name$=".' + cbx + '"]').checked) {
+        checked = true;
+      }
+    })
+    if (checked) {
+      return true;
+    }
+    AddError('', 'Error in validation, please select from one of "Send From" emails', '');
+    return false;
+}
+
+function eFormRequiredFieldFrench(sValue,sName,sField){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (sValue.length > 0) {
+    return false;
+  }
+  AddError(sField,'Erreur de validation, informations obligatoires manquantes dans','');
+  return true;
+}
+
+function eFormValidDateFr(sVal,sName,sID,sFormat) {
+  'use strict';
+  if (CheckDate(sVal)){
+    return true;
+  }
+  if (sFormat == null) { 
+    sFormat = 'mm/dd/yyyy'; 
+  }
+  AddError(sID,'Erreur de validation, date ou format invalide (' + sFormat + ') dans','');
+  return false;
+}
+
+function eFormRequiredDateFrench(sVal,sName,sID,sFormat){
+  'use strict';
+  if(eFormRequiredFieldFrench(sVal,sName,sID)) { 
+    return true; 
+  }
+  return eFormValidDate(sVal,sName,sID,sFormat);
+}
+
+const el = document.getElementById('uploadfile');
+const file = el.files[0];
+console.log(file)
+
+setInterval(function() {
+  document.querySelectorAll('.appGenTxt').forEach(function(title) {
+    if (!title.value != 'Proof of COVID-19 Vaccination') {
+      title.value = 'Proof of COVID-19 Vaccination';
+    }
+  });
+}, 1000);
+
+function uploadRequiredVisible(){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var field = document.querySelector('[name$=".UploadDocument"]');
+  if (field.offsetParent == null) {
+    return true;
+  }
+  return eFormRequiredField(field.value, field.name, 'UploadDocument');
+}
+
+function eFormNameValidCase(sVal,sName,sID){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if(/\b[a-z]/.test(sVal)) {
+    AddError(sID, 'Error in validation, should start with uppercase in', '');
+    return false;
+  }
+  if (/\b[A-Z]{2,}/.test(sVal)) {
+    AddError(sID, 'Error in validation, multiple uppercase not allowed in', '');
+    return false;
+  }
+  return true;
+}

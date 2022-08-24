@@ -1,0 +1,445 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h2 class="lifesuite__h2 ml-0">
+                    <strong>Electronic Signature</strong>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','date');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <div class="row mb-2">
+            <div class="col-lg-12">
+                <h2 class="lifesuite__h2 ml-0">
+                    <strong>Electronic Signature</strong>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12"> 
+                <strong>Type your Name:</strong> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','SignerMan','modal2','over','sv2','date2');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp; 
+                    <input id="clear-sig-2" type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','date2');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="spain-offer-letter" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <template id="fragment-1">
+        <p>&nbsp;</p>
+        <address class="sidebar-address">
+        <% if ('<$client.tForWhomUserInfo.EnityName>'=='PayPal PLC, Sucursal en España') { %>
+        PAYPAL PLC, Suc .en España. <br>
+        Plaza Pablo Ruiz Picasso, 1 <br>
+        Torre Picasso, planta 13, <br>
+        Puerta A , 28020 Madrid. <br>
+        Registered Office: Ballycoolin Business Park, <br>
+        Ballycoolin Road, Blanchardstown, <br>
+        Dublin 15. D15 VNC4. <br>
+        Registered in Ireland No. 646492
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.EnityName>'=='PayPal Spain, S.L.U.') { %>
+        PayPal Spain, S.L.U. <br>
+        Plaza Pablo Ruiz Picasso, <br>
+        1 Torre Picasso, planta 13, <br>
+        Puerta A 28020 Madrid. <br>
+        B-84229954.Reg.Merc.Madrid <br>
+        T. 20.980, F. 176, H. M-372066
+        <% } %>
+        </address>
+    </template>
+    <template id="fragment-2">
+        <p>&nbsp;</p>
+        <p class="mb-5">
+            <mark><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></mark><br>
+            <mark><$client.tForWhomUserInfo.Address1></mark><br>
+            <% if ('<$client.tForWhomUserInfo.Address2>'.length > 0) { %>
+            <mark><$client.tForWhomUserInfo.Address2></mark><br>
+            <% } %>
+            <mark><$client.tForWhomUserInfo.Zip></mark>&nbsp;<mark><$client.tForWhomUserInfo.City></mark>
+        </p>
+        <p class="hide"></p>
+        <p class="text-right">Madrid, <mark><%= Current_Date_en %></mark></p>
+        <p class="text-justify">Dear <mark><$client.env.eval(client.tForWhomUserInfo.Preferred_First_Name.length()>0?client.tForWhomUserInfo.Preferred_First_Name:client.tForWhomUserInfo.First_Name)></mark>,</p>
+        <p class="text-justify">Further to your recent meetings and discussions, I am delighted to offer you the position of <mark><$client.tForWhomUserInfo.Business_Title></mark> with <mark><$client.tForWhomUserInfo.EnityName></mark> (the "Company").</p>
+        <p class="text-justify">Your gross annual base salary will be <mark><$client.tForWhomUserInfo.Salary_Amount></mark> (<mark><$client.tForWhomUserInfo.SalaryWords></mark>) Euros, paid monthly, directly into your bank account.</p>
+        <% if ('<$client.tEventCategories_Category_31.Value>' == 'Yes') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="AIP = Yes"></div>
+            <p class="text-justify">You will be eligible to participate in the PayPal Holdings, Inc. Annual Incentive Plan for a specified fiscal year (AIP) with an annual bonus based on individual achievement as well as company performance.  The annual bonus period is from January 1 through December 31. Your target bonus for the AIP is <mark><$client.tForWhomUserInfo.eIP_Target_Pct></mark>% of your annual base salary, pro-rated based on your hire date and days of service during the AIP bonus period.  There is no guarantee any AIP bonus will be awarded or received, and any actual bonus will be determined after the end of the annual bonus period. Any AIP bonus, even if it is made repeatedly or regularly and whatever its amount, can never lead to a vested right for you, the employee.</p>
+            <p class="text-justify">To be eligible to receive any AIP bonus, you must be employed before October 1<sup>st</sup> and you must be in continuous employment on the date the bonus is received, subject to applicable laws. If your employment start date with a PayPal company commences on or after October 1<sup>st</sup>, your eligibility to participate in the AIP will begin on January 1st of the following calendar year. Any bonus is at PayPal’s sole and absolute discretion and subject to the terms and conditions of the AIP.  PayPal reserves the right, in its sole discretion, to amend, change or cancel the AIP at any time.  Further, the bonus plan that you are eligible to participate in may change over time.  You acknowledge and agree that PayPal may substitute the plan referenced in this letter and any contract of employment or any offer documentation, as it determines in its sole discretion from time to time.</p>
+        </div>
+        <% } %>
+        <% if ('<$client.tEventCategories_Category_51.Code>' == 'SIP-Y') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="SIP = Yes"></div>
+            <p class="text-justify">You will be eligible to participate in a PayPal Sales Incentive Plan (”SIP”) for a specified fiscal year, with an annual on target incentive of <mark><$client.tForWhomUserInfo.SIP_Amount></mark> Euros, in accordance with the terms and conditions of the SIP. The full terms and conditions of the SIP shall be provided to you separately via a Participation Agreement.</p>
+        </div>
+        <% } %>
+        <% if ('<$client.tEventCategories_Category_51.Code>' == 'SIP-Y') { %>
+            <% if ('<$client.tForWhomUserInfo.Introductory_RampUp_Period_Eligible>' == 'Y') { %>
+            <div class="marked">
+                <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="SIP = Yes & IF Introductory_RampUp_Period_Eligible= YES"></div>
+                <p class="text-justify">You will be eligible to receive a non-recoverable advance payment of [50%] of the annual Target Incentive amount specified in your Participation Agreement for the SIP (the “Non-Recoverable Advance”).   Your eligibility for each installment will be considered each quarter over a period of one year (the “Ramp-Up Period”), in accordance with and subject to the terms of the SIP.</p>
+                <p class="text-justify">The Non-Recoverable Advance is payable regardless of whether you actually meet the pre-defined performance targets in the SIP during the Ramp-Up Period, but payment of each installment is subject to your continuing active employment by PayPal up to the applicable payment date during the Ramp-Up Period.</p>
+                <p class="text-justify">Any sums received under the Non-Recoverable Advance will be off-set against any sums you would otherwise become entitled to under the terms of the SIP as a result of performance against the pre-defined targets in the SIP during the Ramp-Up Period.</p>
+                <p class="text-justify">Once you have earned or been paid 50% of your annual Target Incentive, either through the Non-Recoverable Advance or otherwise pursuant to the terms of the SIP,  you will not receive any further SIP payments unless your performance exceeds the performance necessary to earn the 50% of your Target Incentive delivered via the Non-Recoverable Advance.  In that case, you will be eligible for consideration in each applicable quarter for the remaining 50% of your Target Incentive based on performance against the predefined targets over and above performance rewarded by the  Non-Recoverable Advance, and subject to the terms of the SIP.   A reconciliation will take place each quarter comparing any Non-Recoverable Advance already paid plus any additional amount paid under the SIP against overall performance.  An adjustment may be made in any quarter to reflect outperformance or underperformance year to date.</p>
+            </div>
+            <% } %>
+        <% } %>
+        <% if ('<$client.tEventCategories_Category_51.Code>' == 'SIP-Y') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="SIP = Yes"></div>
+            <p class="text-justify">Any bonus or payment or award under the SIP shall be determined by PayPal in its sole and absolute discretion, subject to the terms and conditions of the SIP and of such amount, in such form, at such intervals and subject to such conditions as PayPal may in its absolute discretion determine from time to time. Other than as set forth above with respect to the Guaranteed Target, there is no guarantee that any payment under the SIP will be awarded or received. Any SIP payment, even if it is made repeatedly or regularly and whatever its amount, can never lead to a vested right for you, the employee. <br>
+            Paypal reserves the right, in its sole discretion, to amend, change, withdraw or cancel the SIP, and your eligibility to participate in the SIP or any other incentive compensation plan, at any time. Further, the incentive compensation plan that you are eligible to participate in may change over time. You acknowledge and agree that PayPal may substitute or cancel the SIP referenced in this letter and any contract of employment or any offer documentation, as it determines in its sole discretion from time to time.</p>
+        </div>
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.Relocation>' == 'Y') { %>
+            <% if ('<$client.tForWhomUserInfo.Relo_Bonus>' == 'No') { %>
+            <div class="marked">
+                <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Employee Relocating"></div>
+                <p class="text-justify">To help you relocate from <mark><$client.tForWhomUserInfo.RelocationFrom></mark> to <mark><$client.tForWhomUserInfo.PayAreaCity></mark>, you will be entitled to benefits as outlined in your Relocation Agreement.</p>
+                <p class="text-justify">Upon acceptance of this offer letter our relocation partner AIRES will contact you directly to initiate this process.</p>
+            </div>
+            <% } %>
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.Relocation>' == 'Y') { %>
+            <% if ('<$client.tForWhomUserInfo.Relo_Bonus>' == 'Yes') { %>
+            <div class="marked">
+                <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Employee Relocating"></div>
+                <p class="text-justify">As part of the relocation assistance, you shall receive a one-time relocation allowance of <mark><$client.tForWhomUserInfo.estimated_relo_cost></mark>&nbsp;<mark><$client.tForWhomUserInfo.ESTIMATED_RELO_COST_CRNCY_CD></mark> payable during the first month of employment. This payment is subject to the applicable deductions and taxes.</p>
+                <p class="text-justify">Should your employment be terminated by the Company for a justified reason for which you are responsible or as a result of your resignation within one year from your start date, your obligation to repay the relocation allowance and the relocation expenses, will be reduced by 1/12th for every full month of active employment.</p>
+            </div>
+            <% } %>
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.Hire_on_Bonus_Eligible>' == 'Yes') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Sign on Bonus"></div>
+            <p class="text-justify">You shall receive a Hiring bonus of <mark><$client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT></mark> Euro, paid with your first salary.  The payment is subject to the applicable deductions and taxes. In the event that your employment ceases for any reason prior to completion of first year from the transfer date, the net value of the Hiring bonus shall be refundable to the Company on a pro-rated basis and your repayment obligation will be reduced by 1/12 for every full month of employment over the course of the year.</p>
+        </div>
+        <% } %>
+        <p class="text-justify">You will be entitled to the statutory and contractual benefits in Spain and you will receive further details in your offer pack.</p>
+        <p class="text-justify">As a condition of your employment, you will be required to sign a formal employment contract containing the terms set forth in this offer letter. This offer of employment is made subject to:</p>
+        <ol>
+            <li>Receipt, prior to your start date, of satisfactory written references from your current employer or any other applicable references;</li>
+            <li>Successful completion of international background checks; </li>
+            <li>Proof of your ability to work in Spain on a continuous basis.</li>
+        </ol>
+        <p class="text-justify">This offer of employment will lapse if not signed and returned within 10 days of the date of issue.</p>
+        <p class="text-justify">Please bring proof of your ability to work in Spain with you on your first day as we will need to see the original and take a copy for our files.</p>
+        <p class="text-justify">All of us at <mark><$client.tForWhomUserInfo.EnityName></mark> are very excited about you joining our team and look forward to a beneficial and fruitful working relationship.</p>
+        
+        <p class="text-justify">Yours sincerely,</p>
+        <p class="text-justify"><mark><%= signatory %></mark></p>
+        <p class="text-justify mb-4">For and on behalf of <mark><$client.tForWhomUserInfo.EnityName></mark></p>
+        <p class="hide"></p>
+        <hr>
+        <div class="border-bottom mb-5"></div>
+        <p class="hide"></p>
+        <p class="mb-5">
+            <mark><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></mark><br>
+            <mark><$client.tForWhomUserInfo.Address1></mark><br>
+            <% if ('<$client.tForWhomUserInfo.Address2>'.length > 0) { %>
+            <mark><$client.tForWhomUserInfo.Address2></mark><br>
+            <% } %>
+            <mark><$client.tForWhomUserInfo.Zip></mark>&nbsp;<mark><$client.tForWhomUserInfo.City></mark>
+        </p>
+        <p class="hide"></p>
+        <p class="text-right">Madrid, <mark><%= Current_Date_es %></mark></p>
+        <p class="text-justify">Estimado <mark><$client.env.eval(client.tForWhomUserInfo.Preferred_First_Name.length()>0?client.tForWhomUserInfo.Preferred_First_Name:client.tForWhomUserInfo.First_Name)></mark>,</p>
+        <p class="text-justify">Como continuación a su recientes reuniones y conversaciones, me complace ofrecerle el puesto de <mark><$client.tForWhomUserInfo.Business_Title></mark> con <mark><$client.tForWhomUserInfo.EnityName></mark> (la “Compañía”).</p>
+        <p class="text-justify">Su salario fijo anual será de <mark><$client.tForWhomUserInfo.Salary_Amount></mark> (<mark><$client.tForWhomUserInfo.Salary_Words_Spain></mark>) Euros brutos, que se abonarán mensualmente, directamente en su cuenta bancaria. </p>
+        <% if ('<$client.tEventCategories_Category_31.Value>' == 'Yes') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="AIP = Yes"></div>
+            <p class="text-justify">Usted será elegible para participar en el Plan de Incentivo Anual (Annual Incentive Plan, AIP) de PayPal Holdings, Inc. para un año fiscal especificado con una bonificación anual determinada en función del logro personal y del desempeño de la compañía. El período de bonificación anual va desde el 1 de enero hasta el 31 de diciembre. Su bonificación pretendida para el AIP es <mark><$client.tForWhomUserInfo.eIP_Target_Pct></mark>% de su salario básico anual, prorrateado en función de su fecha de contratación y los días de servicio durante el período de bonificación del AIP. No se garantiza el otorgamiento o la recepción de una bonificación del AIP, y cualquier bonificación real se determinará después del final del período de bonificación anual. Toda bonificación del AIP, incluso si se la otorga de manera reiterada o regular e independientemente del monto que sea, nunca constituirá un derecho adquirido de usted, el empleado.</p>
+            <p class="text-justify">Para ser elegible para recibir cualquier bonificación del AIP, usted debe ser contratado antes del 1 de octubre, y debe tener antigüedad laboral para la fecha en que se reciba la bonificación, sujeta a las leyes aplicables. Si la fecha de inicio de su empleo en una compañía de PayPal comienza el 1 de octubre o después,, su elegibilidad para participar en el AIP comenzará el 1 de enero del próximo año calendario. Toda bonificación se otorga a exclusivo criterio de PayPal, y está sujeta a los términos y condiciones del AIP. PayPal se reserva el derecho, a su entera discreción, de enmendar, modificar o cancelar el AIP en cualquier momento. Además, el plan de bonificación en el que usted es elegible para participar puede cambiar con el tiempo. Usted confirma y acepta que PayPal puede reemplazar el plan al que se hace referencia en esta carta y cualquier contrato de empleo o documentación de ofrecimiento laboral, según lo determine a su exclusiva discreción ocasionalmente.</p>
+        </div>
+        <% } %>
+        <% if ('<$client.tEventCategories_Category_51.Code>' == 'SIP-Y') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="SIP = Yes"></div>
+            <p class="text-justify">Usted será elegible para participar en un Plan de Incentivos de Ventas de PayPal ("SIP") durante un año fiscal específico, con un incentivo anual objetivo de <mark><$client.tForWhomUserInfo.SIP_Amount></mark> Euros, de acuerdo con los términos y condiciones del SIP. Los términos y condiciones completos del SIP se le proporcionarán por separado a través de un Acuerdo de Participación.</p>
+        </div>
+        <% } %>
+        <% if ('<$client.tEventCategories_Category_51.Code>' == 'SIP-Y') { %>
+            <% if ('<$client.tForWhomUserInfo.Introductory_RampUp_Period_Eligible>' == 'Y') { %>
+            <div class="marked">
+                <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="SIP = Yes & IF Introductory_RampUp_Period_Eligible= YES"></div>
+                <p class="text-justify">Usted será elegible para recibir un pago anticipado no recuperable del [50%] de la cantidad del incentivo anual especificado en su Acuerdo de Participación para el SIP (el "Anticipo No Recuperable").   Su elegibilidad para cada plazo se considerará trimestralmente durante un período de un año (el "Período de Mejora"), de acuerdo con y sujeto a los términos del SIP.</p>
+                <p class="text-justify">El Anticipo No Recuperable es pagadero independientemente de si usted realmente cumple con los objetivos de desempeño predefinidos en el SIP durante el Período de Mejora, sin embargo, el pago de cada cuantía está sujeto a que usted continúe trabajando activamente en PayPal hasta la fecha de pago aplicable durante el Período de Mejora.</p>
+                <p class="text-justify">Toda suma recibida en virtud del Anticipo No Recuperable se deducirá de las sumas a las que de otro modo tendría derecho en virtud de las condiciones del SIP como resultado del rendimiento en relación con los objetivos predefinidos en el SIP durante el Período de Mejora.</p>
+                <p class="text-justify">Una vez que haya ganado o se le haya pagado el 50% de su incentivo anual, ya sea a través del Anticipo No Recuperable o de otra manera de conformidad con los términos del SIP, no recibirá más pagos SIP a menos que su rendimiento supere el rendimiento necesario para ganar el 50% de su incentivo entregado a través del Anticipo No Recuperable.  En ese caso, usted será elegible para ser considerado en cada trimestre para el 50% restante de su Incentivo Objetivo basado en el desempeño en relación con las metas predefinidas por encima del desempeño recompensado por el Anticipo No Recuperable, y sujeto a los términos del SIP.   Se realizará una conciliación cada trimestre comparando cualquier Anticipo No Recuperable ya pagado más cualquier cantidad adicional pagada bajo el SIP frente al desempeño general.  Se puede hacer un ajuste en cualquier trimestre para reflejar el rendimiento superior o inferior al año hasta la fecha.</p>
+            </div>
+            <% } %>
+        <% } %>
+        <% if ('<$client.tEventCategories_Category_51.Code>' == 'SIP-Y') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="SIP = Yes"></div>
+            <p class="text-justify">Cualquier bonificación o pago o premio bajo el SIP será determinado por PayPal a su única y absoluta discreción, sujeto a los términos y condiciones del SIP y de tal cantidad, en tal forma, en tales intervalos y sujeto a tales condiciones que PayPal pueda determinar a su absoluta discreción. Aparte de lo establecido anteriormente con respecto al Incentivo Garantizado, no hay garantía de que se conceda o reciba ningún pago bajo el SIP. Cualquier pago SIP, incluso si se hace repetidamente o regularmente y cualquiera que sea su cuantía, nunca puede suponer a un derecho adquirido para Usted, el Empleado.</p>
+            <p class="text-justify">Paypal se reserva el derecho, a su total discreción, de enmendar, cambiar, retirar o cancelar el SIP, y su elegibilidad para participar en el SIP o cualquier otro plan de compensación de incentivos, en cualquier momento. Además, el plan de compensación de incentivos al que usted es elegible para participar puede cambiar con el tiempo. Usted reconoce y acepta que PayPal puede sustituir o cancelar el SIP al que se hace referencia en esta carta y en cualquier contrato de empleo o en cualquier documentación de la oferta, según determine a su exclusivo criterio.</p>
+        </div>
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.Relocation>' == 'Y') { %>
+            <% if ('<$client.tForWhomUserInfo.Relo_Bonus>' == 'No') { %>
+            <div class="marked">
+                <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Employee Relocating"></div>
+                <p class="text-justify">Para ayudarle en su recolocación desde <mark><$client.tForWhomUserInfo.RelocationFrom></mark> a <mark><$client.tForWhomUserInfo.PayAreaCity></mark>, a usted le corresponden los beneficios según se indican en el acuerdo de recolocación. </p>
+                <p class="text-justify">En virtud de la aceptación de esta carta de oferta, su asociado de recolocación AIRES le contactará directamente  para iniciar el proceso.</p>
+            </div>
+            <% } %>
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.Relocation>' == 'Y') { %>
+            <% if ('<$client.tForWhomUserInfo.Relo_Bonus>' == 'Yes') { %>
+            <div class="marked">
+                <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Employee Relocating"></div>
+                <p class="text-justify">Como parte de su ayuda de recolocación, usted recibirá una asignación de recolocación única por un valor de <mark><$client.tForWhomUserInfo.estimated_relo_cost></mark>&nbsp;<mark><$client.tForWhomUserInfo.ESTIMATED_RELO_COST_CRNCY_CD></mark> que se le pagará durante el primer mes de empleo. Este pago está sujeto a las deducciones e impuestos correspondientes.</p>
+                <p class="text-justify">Si la Compañía terminase su empleo por una razón justificada de la cual es usted responsable o como resultado de su dimisión dentro del primer año de permanencia con la Compañía, su obligación de reembolsar la asignación de recolocación y los gastos de recolocación, se reducirán en un doceavo (1/12) por cada mes completo de empleo efectivo.</p>
+            </div>
+            <% } %>
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.Hire_on_Bonus_Eligible>' == 'Yes') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Sign on Bonus"></div>
+            <p class="text-justify">Usted recibirá un bono de contratación de <mark><$client.tForWhomUserInfo.HIRE_ON_BONUS_AMOUNT></mark> Euros, que se le abonará en su primer salario. Este pago está sujeto a las deducciones e impuestos correspondientes. En el caso de que su empleo cese por cualquier razón, con anterioridad a que usted haya completado el primer año desde la fecha de traslado, el valor neto del bono de contratación se reembolsará a la compañía, de manera prorrateada, y su obligación de reembolso se reducirá en un doceavo (1/12) por cada mes completo de empleo en el curso del año.</p>
+        </div>
+        <% } %>
+        <p class="text-justify">Usted tendrá derecho a los beneficios  conformes con la normativa laboral vigente en España en cada momento así como a los beneficios contractuales en España. Usted recibirá detallada información en su offer pack.</p>
+        <p class="text-justify">Como una condición de su empleo, usted deberá firmar un contrato formal de empleo que incluirá los términos presentados en esta carta de oferta de empleo.  Esta oferta de empleo está sujeta a:</p>
+        <ol>
+            <li>Recibo, anterior a su fecha de comienzo, de referencias escritas satisfactorias de su actual empresa o cualquier otra referencia aplicable.</li>
+            <li>Finalización exitosa de la comprobación internacional de su background.</li>
+            <li>Prueba de su capacidad para trabajar en España de manera continuada.</li>
+        </ol>
+        <p class="text-justify">Esta oferta de empleo caducará si no es firmada y entregada dentro de los 10 días desde la fecha de su emisión.</p>
+        <p class="text-justify">Por favor, traiga con usted en su primer día de trabajo prueba de su capacidad para trabajar en España ya que necesitaremos ver el original y realizar una copia para nuestros archivos.</p>
+        <p class="text-justify">Todos nosotros en la <mark><$client.tForWhomUserInfo.EnityName></mark> estamos entusiasmados con su incorporación a nuestro equipo y esperamos deseosos una relación laboral beneficiosa y fructífera.</p>
+        
+        <p class="text-justify">Sinceramente,</p>
+        <p class="text-justify"><mark><%= signatory %></mark></p>
+        <p class="text-justify mb-4">En representación de <mark><$client.tForWhomUserInfo.EnityName></mark></p>
+        <p class="hide"></p>
+        <p class="hide"></p>
+
+    </template>
+    
+    <div id="offer-letter-body" class="row">
+        <div class="col-sm-2">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+        <div class="col-sm-8">
+            <div id="incomplete2">
+                <div id="markup2"></div>
+            </div>
+            <div id="complete2"></div>
+        </div>
+    </div>
+    <template id="fragment-3">
+        <p class="ml-lg-4"><strong>El Empleado:</strong></p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete3">
+                <div id="markup3"></div>
+            </div>
+            <div id="complete3"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Firma: <span class="text-red">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature.HTML>
+        </div>
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label class="control-label">Fecha de firma:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Nombre:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name.HTML>
+        </div>
+    </div>
+
+    <template id="fragment-4">
+        <p class="ml-lg-4"><strong>Empleador:</strong></p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete4">
+                <div id="markup4"></div>
+            </div>
+            <div id="complete4"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Firma: <span class="text-red">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature2.HTML>
+        </div>
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label class="control-label">Fecha de firma:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date2.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Nombre:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name2.HTML>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>     
+    <$client.env.FormField.hidden_pg3.HTML>     
+    <$client.env.FormField.hidden_pg4.HTML>     
+    <$client.env.formfield.EmployeeStamp.html>
+    <$client.env.formfield.RecruiterStamp.html>
+    <$client.env.formfield.SignatoryStamp.html>
+    <$client.env.formfield.SignerMan.html>
+    <$client.env.formfield.CoordinatorStamp.html>
+    <$client.env.formfield.Current_Date.html>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Spain_Offer_Letter/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Spain_Offer_Letter/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Spain_Offer_Letter/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.getElementById('spain-offer-letter');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.signDate, .dateField').parent().find('input').prop('disabled', true);
+  $('#SignerMan').val("<$client.account.username_first> <$client.account.username>");
+});
+
+const data = {
+    'Current_Date_en': '',
+    'Current_Date_es': '',
+    'signatory': ''
+};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+// signature section clearing on task reopen variables
+const isCoordinator = <$client.env.eval((client.role.rc_hrcoordinators==1)?'true':'false')>;
+const isRecruiter = <$client.env.eval((client.tEventManagers_16.UserGuid==account.userguid)?'true':'false')>;
+const isSignatory = <$client.env.eval((client.role.rc_spain_company_signatory>0)?'true':'false')>;
+const isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const EmployeeStamp = "<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>"; 
+const FORM_IS_COMPLETED = ($('.calendar_button').length < 1);
+
+if (isSignatory) {
+    $('#SignerMan').val("<$client.account.username_first> <$client.account.username>");
+}
+</script>

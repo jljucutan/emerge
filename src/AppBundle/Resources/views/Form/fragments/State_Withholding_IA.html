@@ -1,0 +1,790 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+   <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+   <p style="fontweight:normal;padding:0px">
+     <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+   </p>
+   <br>
+   <div class="row">
+     <div class="lifesuite__clearfix">
+      <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+    </div>
+  </div>
+  <div class="row">
+   <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+     <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullname','modal','over','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+     <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp;
+     <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+   </div>
+ </div>
+</div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+  showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+  <div class="fb-spinner"> 
+   <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+ </div> 
+</div> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form"> 
+  <div style="display:none;"> 
+    <$client.env.FormField.Form_Name.prompt> 
+    <$client.env.FormField.Form_Name.HTML> 
+    <$client.env.FormField.Form_Type.prompt> 
+    <$client.env.FormField.Form_Type.HTML> 
+    <$client.env.FormField.Form_Owner.prompt> 
+    <$client.env.FormField.Form_Owner.HTML> 
+    <$client.env.FormField.Form_CreateDate.prompt> 
+    <$client.env.FormField.Form_CreateDate.HTML> 
+    <$client.env.FormField.Form_Completed.prompt> 
+    <$client.env.FormField.Form_Completed.HTML> 
+    <$client.env.FormField.Form_Delivered.prompt> 
+    <$client.env.FormField.Form_Delivered.HTML> 
+    <$client.env.FormField.Form_TaskId.prompt> 
+    <$client.env.FormField.Form_TaskId.HTML> 
+    <$client.env.FormField.display_version.HTML> 
+
+
+    <$client.env.FormField.Address.prompt>
+    <$client.env.FormField.Address2.prompt>
+    <$client.env.FormField.AltAddress.prompt>
+    <$client.env.FormField.AltCity.prompt>
+    <$client.env.FormField.AltState.prompt>
+    <$client.env.FormField.AltZip.prompt>
+    <$client.env.FormField.AltZipExt.prompt>
+    <$client.env.FormField.CheckBox9.prompt>
+    <$client.env.FormField.City.prompt>
+    <$client.env.FormField.CoverageDate.prompt>
+    <$client.env.FormField.DOB.prompt>
+    <$client.env.FormField.DateSigned.prompt>
+    <$client.env.FormField.EIAddress.prompt>
+    <$client.env.FormField.EICity.prompt>
+    <$client.env.FormField.EIN.prompt>
+    <$client.env.FormField.EIN2.prompt>
+    <$client.env.FormField.EIState.prompt>
+    <$client.env.FormField.EIZip.prompt>
+    <$client.env.FormField.EIZipExt.prompt>
+    <$client.env.FormField.EmployerAddress.prompt>
+    <$client.env.FormField.EmployerCity.prompt>
+    <$client.env.FormField.EmployerName.prompt>
+    <$client.env.FormField.EmployerState.prompt>
+    <$client.env.FormField.EmployerZip.prompt>
+    <$client.env.FormField.EmployerZipPlus.prompt>
+    <$client.env.FormField.EmpoyerAddress2.prompt>
+    <$client.env.FormField.EmpoyerCSZ.prompt>
+    <$client.env.FormField.ExYear.prompt>
+    <$client.env.FormField.Exempt.prompt>
+    <$client.env.FormField.FirstName.prompt>
+    <$client.env.FormField.FullName.prompt>
+    <$client.env.FormField.HomePhoneAreaCode.prompt>
+    <$client.env.FormField.HomePhonePrefix.prompt>
+    <$client.env.FormField.HomePhoneSuffix.prompt>
+    <$client.env.FormField.L1.prompt>
+    <$client.env.FormField.L2.prompt>
+    <$client.env.FormField.L3.prompt>
+    <$client.env.FormField.L4.prompt>
+    <$client.env.FormField.L5.prompt>
+    <$client.env.FormField.L6.prompt>
+    <$client.env.FormField.L7.prompt>
+    <$client.env.FormField.LastName.prompt>
+    <$client.env.FormField.Line3a.prompt>
+    <$client.env.FormField.Line3b.prompt>
+    <$client.env.FormField.Line3c.prompt>
+    <$client.env.FormField.MaritalStatus.prompt>
+    <$client.env.FormField.MiddleInitial.prompt>
+    <$client.env.FormField.MilitarySpouseExemption.prompt>
+    <$client.env.FormField.SSN.prompt>
+    <$client.env.FormField.SSN1.prompt>
+    <$client.env.FormField.SSN2.prompt>
+    <$client.env.FormField.SSN3.prompt>
+    <$client.env.FormField.Signature.prompt>
+    <$client.env.FormField.StartDate.prompt>
+    <$client.env.FormField.State.prompt>
+    <$client.env.FormField.Zip.prompt>
+    <$client.env.FormField.rbDebendentHealthCare.prompt>
+
+    <!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+  </div> 
+  <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+  
+  <div class="container-fluid">  
+    <div class="form-group">  
+      <div class="row">
+        <div class="col-md-3"><img src="iowa_seal2.png" style="width:220px;" border="0"></div>
+        <div class="col-md-9 text-right" style="border-bottom:solid 2px"><p><strong style="font-size: 14px!important;margin-bottom: 0px!important;">2022 IA W-4</strong><br><span style="font-weight:normal;font-size:14px">Employee Withholding Allowance Certificate</span></h3></div>
+          <div class="col-xs-offset-6 col-sm-6 text-right"><a href="https://tax.iowa.gov" target="blank"><span>tax.iowa.gov</span></a><br></div>
+        </div><br>    
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              Each employee must file this Iowa W-4 with his/her employer. Do not claim more allowances than necessary or you will not have enough tax withheld. You may file a new W-4 at any time if the number of your allowances increases. You must file a new W-4 within 10 days if the number of allowances previously claimed by you decreases.
+            </p>
+            <p>
+              Penalties apply for willfully supplying false information or for willful failure to supply information, which would reduce the withholding allowances. If you file as exempt from withholding and you incur an income tax liability, you may be subject to a penalty for underpayment of estimated tax.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12"><label class="col-sm-2">Marital Status:</label><div class="col-sm-10"><$client.env.FormField.MaritalStatus.HTML></div></div>
+          <div class="col-md-12"><label class="col-sm-2">Print your full name </label><div class="col-sm-3"><$client.env.FormField.FullName.HTML></div>
+          <label class="col-sm-offset-1 col-sm-2">Social Security Number</label><div class="col-sm-4"><$client.env.FormField.SSN.HTML></div></div>
+          <div class="col-md-12"><label class="col-sm-2">Home Address </label><div class="col-sm-10"><$client.env.FormField.Address.HTML></div></div>
+          <div class="col-md-12"><label class="col-sm-2">City </label><div class="col-sm-2"><$client.env.FormField.City.HTML></div>
+          <label class="col-sm-offset-1 col-sm-1">State </label><div class="col-sm-2"><$client.env.FormField.State.HTML></div>
+          <label class="col-sm-offset-1 col-sm-1">ZIP </label><div class="col-sm-2"><$client.env.FormField.Zip.HTML></div></div>
+          <br>
+        </div>
+        <div class="row">
+          <p class="text-bold">EXEMPTION FROM WITHHOLDING</p>
+          <div class="col-md-12">
+            <p>If you do not expect to owe any Iowa income tax and have a right to a full refund of ALL income tax withheld, enter “EXEMPT” here <$client.env.FormField.Exempt.HTML>
+              and the year effective here <$client.env.FormField.ExYear.HTML>. Nonresidents may not claim this exemption.
+            </p>
+          </div>
+          <div class="col-md-12"><label class="col-xs-10">Check this box if you are claiming an exemption from Iowa income tax as a military spouse based on the Military Spouses Residency Relief Act of 2009 or the Veterans Benefits and Transition Act of 2018 </label><div class="col-xs-2"><$client.env.FormField.CheckBox9.HTML></div></div><br>
+          <div class="col-md-12"><label class="col-md-10">If claiming the military spouse exemption, enter your state of domicile or residence here</label>
+            <div class="col-md-2"><$client.env.FormField.MilitarySpouseExemption.HTML></div>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12"><p class="text-bold">If you are not exempt, complete the following: </p></div>
+          <div class="col-md-12">
+            <label class="col-sm-10">1. Personal allowances </label><div class="col-sm-2"><$client.env.FormField.L1.HTML></div>
+          </div>
+          <div class="col-md-12">
+            <label class="col-sm-10">2. Allowances for dependents. You may claim 1 allowance for each dependent you claim on your Iowa income tax return</label><div class="col-sm-2"><$client.env.FormField.L2.HTML></div>
+          </div>
+          <div class="col-md-12">
+            <label class="col-sm-10">3. Allowances for itemized deductions. See instructions</label><div class="col-sm-2"><$client.env.FormField.L3.HTML></div>
+          </div>
+          <div class="col-md-12">
+            <label class="col-sm-10">4. Allowances for adjustments to income. Estimate allowable adjustments to income for payments such as an IRA, Keogh, or SEP; penalty on early withdrawal of savings; alimony paid; and student loan interest, which are reflected on the IA 1040. Divide this amount by $600, round to the nearest whole number, and enter on line 4 </label><div class="col-sm-2"><$client.env.FormField.L4.HTML></div>
+          </div>
+          <div class="col-md-12">
+            <label class="col-sm-10">5. Allowances for child and dependent care credit </label><div class="col-sm-2"><$client.env.FormField.L5.HTML></div>
+          </div>
+          <div class="col-md-12">
+            <label class="col-sm-10">6. <strong>Total allowances.</strong> Add lines 1 through 5</label><div class="col-sm-2"><$client.env.FormField.L6.HTML></div>
+          </div>
+          <div class="col-md-12"><label class="col-sm-10">7. Additional amount, if any, you want deducted each pay period</label>
+            <div class="col-sm-2"><$client.env.FormField.L7.HTML></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              I, the undersigned, declare under penalties of perjury or false certificate, that I have examined this claim, and, to the best of my knowledge and belief, it is true, correct, and complete. 
+            </p>
+          </div>
+        </div>   
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <$client.env.FormField.Signer.HTML>
+          </div>
+        </div><br>
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <p>
+              <Strong>Employers:</Strong> The employer must maintain records of the W-4s. If the employee is claiming more than 22 withholding allowances or is claiming exemption from withholding when wages are expected to exceed $200 per week, complete the information below and within 90 days send a copy to: Compliance Services, Iowa Department of Revenue, PO Box 10456, Des Moines, Iowa 50306-0456.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+            Employer Name:
+          </div>
+          <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+            <$client.env.FormField.EmpoyerAddress2.HTML>
+          </div>
+          <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
+            Federal Employer Identification Number (FEIN):
+          </div>            
+          <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12">
+            <$client.env.FormField.EIN2.HTML>
+          </div>    
+        </div>    
+        <div class="row">
+          <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+            Employer address:
+          </div>
+          <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+            <$client.env.FormField.EmpoyerAddress2_01.HTML>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+            City:
+          </div>
+          <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <$client.env.FormField.EmpoyerCSZ.HTML>
+          </div>
+          <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+            State:
+          </div>            
+          <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+            <$client.env.FormField.Empoyer_State.HTML>
+          </div>
+          <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+            ZIP:
+          </div>            
+          <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+            <$client.env.FormField.Empoyer_Zip.HTML>
+          </div>                
+        </div>                    
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <p><strong>Questions about Iowa taxes:</strong><br>
+              Call Taxpayer Services at 515-281-3114 or 800-367-3388 or e-mail <a href="mailto:idr@iowa.gov" target="_blank">idr@iowa.gov.</a></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 center">
+              <h5>IA W-4 Instructions – Employee Withholding Allowance Certificate</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <p>
+                <strong>Exemption from withholding</strong><br>
+                Claim exemption from withholding if you are an Iowa resident and both of the following situations apply:<br>
+                (1) for 2021 you had a right to a refund of all Iowa income tax withheld because you had no tax liability, and, (2) for 2022 you expect
+                a refund of all Iowa income tax withheld because you expect to have no tax liability. Nonresidents may not claim this exemption.
+                You must complete a new W-4 within 10 days from the day you anticipate you will incur an Iowa income tax liability for the calendar
+                year (or your fiscal year). If you anticipate you will incur an Iowa income tax liability for the following year, then you must complete
+                a new W-4 on or before December 31 of the current year. If you want to claim an exemption from withholding next year, you must
+                file a new W-4 with your employer on or before February 15.
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <p>
+                <strong>Taxpayers 64 years of age or younger:</strong> See your payroll officer to determine how much you expect to earn in a calendar year. You are exempt if:
+                <ul style="list-style: lower-alpha; list-style-position: outside; padding-left: 30px;">
+                  <li>
+                    your filing status is single, your net income is less than $5,000, and are claimed as a dependent on another person’s Iowa return; or
+                  </li>
+                  <li>
+                    your filing status is single, your net income is less than $9,000, and you are not claimed as a dependent on another person’s Iowa return; or
+                  </li>
+                  <li>
+                    your filing status is other than single and your combined net income is $13,500 or less.
+                  </li>                                                
+                </ul>
+              </p>
+              <p>
+                <strong>Taxpayers 65 years of age or older:</strong> Only one spouse must be 65 or older to qualify for the exemption. Pension exclusion and any reportable Social Security amount must be added to net income for purposes of determining the low-income exemption. You are exempt if:
+                <ul style="list-style: lower-alpha; list-style-position: outside; padding-left: 30px;">
+                  <li>
+                    you are single and your net income is $24,000 or less; or
+                  </li>
+                  <li>
+                    your filing status is other than single and your combined net income is $32,000 or less.
+                  </li>
+                </ul>                    
+                Military personnel in active duty status, as defined in Title 10 of the U.S. Code, are exempt from withholding. Under the Military
+                Spouses Residency Relief Act of 2009 and the Veterans Benefits and Transition Act of 2018, you may be exempt from Iowa income
+                tax on your wages if: (1) your spouse is a member of the uniformed services present in Iowa in compliance with military orders; (2)
+                you are present in Iowa solely to be with your spouse; and (3) you maintain your domicile or residence in another state; or (4) you
+                have elected to use your servicemember spouse’s domicile or residence in another state for income tax purposes. If you claim this
+                exemption, check the appropriate box, enter the state other than Iowa you are claiming as your state of domicile or residence, and
+                attach a copy of your spousal military identification card to the IA W-4 provided to your employer.
+              </p>
+              <p>
+                <Strong>Line 1. Personal allowances:</Strong> You can claim the following personal allowances:
+                <ul class="alphabet_list">
+                  <li>
+                    1 allowance for yourself or 2 allowances if you are unmarried and eligible to claim head of household status. Add 1 additional allowance if you are 65 or older, and/or 1 additional allowance if you are blind.
+                  </li>
+                  <li>
+                    If you are married and your spouse either does not work or is not claiming allowances on a separate W-4, you may claim the following allowances for them: 1 for your spouse, 1 additional allowance if your spouse is 65 or older, and/or 1 additional allowance if your spouse is blind.
+                  </li>
+                  <li>
+                    If you are single and hold more than one job, you may not claim the same allowances with more than one employer at the same time. If you are married and both you and your spouse are employed, you may not both claim the same allowances with both of your employers at the same time.
+                  </li>
+                  <li>
+                    To have the highest amount of tax withheld claim "0" allowances on line 1.
+                  </li>
+                </ul>
+              </p>
+              <p>
+                <strong>Line 3. Allowances for itemized deductions:</strong><br>
+                <div class="row">
+                  <div class="col-md-10" style="padding-left: 50px;">(a) Enter total amount of estimated itemized deductions</div><div class="col-md-2 dollar">(a) $<$client.env.FormField.Line3a.HTML></div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-10" style="padding-left: 50px;">(b) Enter amount of your standard deduction using the following information<br>
+                    If single, married filing separately on a combined return, or married filing separate returns, enter $2,210.<br>
+                    If married filing a joint return, un married head of household, or qualifying widow(er), enter $5,450.
+                  </div>
+                  <div class="col-md-2 dollar">(b) $<$client.env.FormField.Line3b.HTML></div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-md-10" style="padding-left: 50px;">(c) Subtract line (b) from line (a) and enter the difference or zero, whichever is greater</div><div class="col-md-2 dollar">(c) $<$client.env.FormField.Line3c.HTML></div>
+                </div>
+                <br>
+
+                <div class="row">
+                  <div class="col-md-12" style="padding-left: 50px;">
+                    (d) Additional allowance: Divide the amount on line (c) by $600, round to the nearest whole number and enter on line 3.
+                  </div>
+                </div>                                                                
+
+              </p>
+              <p>
+                <Strong>Line 5. Allowances for child and dependent care credit:</Strong> Persons having child/dependent care expenses qualifying for the federal
+                and Iowa child and dependent care credit may claim additional Iowa withholding allowances based on their net incomes. If you have
+                qualifying child and dependent care expenses and wish to reduce your Iowa withholding on the basis of this credit, you may claim
+                additional withholding allowances for Iowa based on the information below. Taxpayers with a net income of $90,000 or more cannot claim withholding allowances for the child and dependent care credit. Married persons, regardless of their expected Iowa filing status, must calculate their withholding allowances based on their combined net incomes. Total allowances for child and dependent care that you and your spouse may claim cannot exceed the total allowances shown below.
+                <div style="padding-left: 30px;">
+                  Iowa net income between $0 - $19,999 Allowances: 5<br>
+                  Iowa net income between $20,000 - $34,999 Allowances: 4<br>
+                  Iowa net income between $35,000 - $44,999 Allowances: 3<br>
+                  Iowa net income between $45,000 - $89,999 Allowances: 1<br>
+                </div>                                        
+              </p>
+              <p>
+                <Strong>Line 7. Additional amount of withholding deducted:</Strong> You may need to have additional tax withheld if you have two or more jobs
+                are married and you both work, or have income other than wages. Income other than wages would include: interest and dividends,
+                capital gains, rent, alimony received, gambling winnings, etc. If you are not having enough tax withheld, you may request your
+                employer to withhold more by filling in an additional amount on line 7. Estimate the amount you will be under-withheld, and divide
+                that amount by the number of pay periods per year. If you reside in a school district that imposes school district surtax, consider
+                reducing the amount of allowances shown on lines 1-5, or have additional tax withheld on line 7.
+              </p>
+            </div>
+          </div>        
+          <br>
+          <br>
+          <br>
+          <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+              &nbsp;
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12" style="border-bottom: 2px solid #000000; text-align: right !important;">
+              <span style="font-size:15px;">Centralized Employee Registry Reporting Form</span>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12" style="text-align: right !important;">
+              <span style="font-size:15px;"><Strong>To be completed by the employer within 15 days of hire.</Strong></span>
+            </div>            
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 center" style="margin-top: 20px;">
+              <span style="font-size:14px;"><Strong>New Hire Reporting</Strong></span>
+            </div>
+          </div>      
+          <br>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <p>
+                An employer doing business in Iowa is required to report newly hired employees, rehires, and contractors to the Centralized Employee Registry. Use one of the following methods to report.
+              </p>
+              <p>
+                <Strong>Online Reporting -</Strong> Online reporting saves time and money and is the preferred method of reporting. Enter employee information or upload data at <a href="http://www.iowachildsupport.gov" target="blank">iowachildsupport.gov</a>.
+              </p>
+              <p>
+                <Strong>Fax and Mail Reporting -</Strong> To report new hires and rehires, submit the following form or an equivalent form. To report contractors by fax or mail, use the Contractor Reporting form found at <a href="http://www.iowachildsupport.gov" target="blank">iowachildsupport.gov</a>.
+              </p>
+              <p>
+                <Strong>Magnetic Media -</Strong> Record layout instructions and media types are available at <a href="http://www.iowachildsupport.gov" target="blank">iowachildsupport.gov</a>.
+              </p>
+            </div>
+          </div>      
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+              <strong>Employer Information</strong>
+            </div>
+          </div>            
+          <div class="row">
+            <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12" style="padding-left: 20px;">
+              1. Federal Employer Identification Number (FEIN):
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+              <$client.env.FormField.EINHolder1.HTML>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" style="padding-left: 20px;">
+              2. Employer name:
+            </div>
+            <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+              <$client.env.FormField.EmployerName.HTML>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" style="padding-left: 20px;">
+              3. Address:
+            </div>
+            <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+              <$client.env.FormField.EmployerAddress.HTML>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" style="padding-left: 20px;">
+              &nbsp; &nbsp; City:
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+              <$client.env.FormField.EmployerCity.HTML>
+            </div>
+<!--             <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+                State:
+            </div>
+          -->            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 dollar">
+            State: <$client.env.FormField.EmployerState.HTML>
+          </div>                       
+<!--             <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+                Zip:
+            </div>
+          -->            <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+            Zip: <$client.env.FormField.EmployerZip.HTML> - <$client.env.FormField.EmployerZipPlus.HTML>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12" style="padding-left: 20px;">
+            4. Employer contact and phone number:
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+            <$client.env.FormField.HomePhoneAreaCode.HTML> <$client.env.FormField.HomePhonePrefix.HTML>  <$client.env.FormField.HomePhoneSuffix.HTML>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="padding-left: 20px;">
+            5. Income provider name and address where income withholding and garnishment orders should be sent, if different from above.
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" style="padding-left: 20px;">
+            &nbsp; &nbsp; Name:
+          </div>
+          <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+            <$client.env.FormField.Income_provider_Name.HTML>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" style="padding-left: 20px;">
+            &nbsp; &nbsp; Address:
+          </div>
+          <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+            <$client.env.FormField.Income_provider_Address.HTML>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" style="padding-left: 20px;">
+            &nbsp; &nbsp; City:
+          </div>
+          <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+            <$client.env.FormField.Income_provider_City.HTML>
+          </div>
+<!--             <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+                State:
+              </div>-->            
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 dollar">
+                State: <$client.env.FormField.Income_provider_State.HTML>
+              </div>                       
+<!--             <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+                Zip:
+              </div> -->
+              <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12 dollar">
+                Zip: <$client.env.FormField.Income_provider_Zip.HTML>
+              </div>
+            </div>   
+            <div class="row">
+              <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <strong>Employee Information</strong>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12" style="padding-left: 20px;">
+                6. Is dependent health care coverage available?
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <$client.env.FormField.rbDebendentHealthCare.HTML>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12" style="padding-left: 20px;">
+                7. Approximate date this employee qualifies for coverage (MM/DD/YYYY):
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 dateF">
+                <$client.env.FormField.CoverageDate.HTML>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12" style="padding-left: 20px;">
+                8. Employee start date (MM/DD/YYYY):
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <$client.env.FormField.StartDate.HTML>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12" style="padding-left: 20px;">
+                9. Employee date of birth (MM/DD/YYYY):
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <$client.env.FormField.DOB.HTML>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12" style="padding-left: 20px;">
+                10. Employee Social Security Number:
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <$client.env.FormField.SSNFull.HTML>
+              </div>
+            </div>                                                                                
+            <div class="row">
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" style="padding-left: 20px;">
+                11. Last name:
+              </div>
+              <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+                <$client.env.FormField.LastName.HTML>
+              </div>
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" style="padding-left: 20px;">
+                First name:
+              </div>
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                <$client.env.FormField.FirstName.HTML>
+              </div>
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" style="padding-left: 20px;">
+                Middle initial:
+              </div>
+              <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+                <$client.env.FormField.MiddleInitial.HTML>
+              </div>                        
+            </div>
+            <div class="row">
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" style="padding-left: 20px;">
+                12. Address:
+              </div>
+              <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+                <$client.env.FormField.EIAddress.HTML>
+              </div>
+            </div>        
+            <div class="row">
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12" style="padding-left: 20px;">
+                &nbsp; &nbsp; City:
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                <$client.env.FormField.EICity.HTML>
+              </div>
+<!--             <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+                State:
+            </div>
+          -->            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 dollar">
+            State: <$client.env.FormField.EIState.HTML>
+          </div>                       
+<!--             <div class="col-md-1 col-lg-1 col-sm-12 col-xs-12">
+                Zip:
+              </div> -->
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+                Zip: <$client.env.FormField.EIZip.HTML> - <$client.env.FormField.EIZipExt.HTML>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12" style="padding-left: 20px;">
+                <Strong>Mailing and contact information:</Strong><br>
+                Fax to: 800-759-5881 or 515-281-3749 (local)<br>
+                Phone: 877-274-2580
+              </div>
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+                &nbsp;
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12 pull-right">
+                Mail to: Centralized Employee Registry<br>
+                <span style="text-indent: 80px;">PO Box 10322</span><br>
+                <span style="text-indent: 80px;">Des Moines, IA 50306-0322</span>
+              </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+              <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 center">
+                <strong>Centralized Employee Registry Reporting Form<br><br>
+                  Employer Reporting Requirements
+                </strong>
+              </div>
+            </div>        
+            <div class="row">
+              <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                <p>
+                  Federal and state law (42 U.S. Code § 653a and Iowa Code Chapter 252G) requires that an employer
+                  doing business in Iowa who hires or rehires an employee or contractor to report the hire within 15 days
+                  of the start date. All items on this form must be completed.
+                </p>
+                <p>
+                  Use one of the listed methods to report your new hires. Please include your FEIN. Fax this form (page
+                  44-019c) to 800-759-5881 or mail it to Centralized Employee Registry, PO Box 10322, Des Moines IA
+                  50306-0322. If you have questions about employer reporting requirements, call the Employers
+                  Partnering in Child Support (EPICS) Unit at 877-274-2580.
+                </p>
+                <p>
+                  Multistate employers have two reporting options: to report newly hired employees in the states in which
+                  they are working, or alternatively, to identify one state where all hires will be reported. If you choose to
+                  report to one state, your new hire reports must be submitted electronically or by magnetic media, and
+                  you must register to identify the state you will report to. To register, visit <a href="https://ocsp.acf.hhs.gov" target="blank">ocsp.acf.hhs.gov</a>.
+                </p>
+                <p>
+                  <Strong>Employer Information</Strong>
+                  <br>
+                  <ol style="padding-left: 30px; list-style-position: outside;">
+                    <li>
+                      <Strong>Federal Employer Identification Number (FEIN).</Strong> Provide the same 9-digit FEIN used on your quarterly wage reports, plus the 3-digit suffix used when filing Iowa withholding tax. For a business with only one location, the default suffix is 000.
+                    </li>
+                    <li>
+                      <Strong>Employer name.</Strong> Provide the trade name or doing business as (DBA) name, if applicable, rather than the legal name of the employer.
+                    </li>
+                    <li>
+                      <Strong>Employer address.</Strong> Include any applicable post office box, unit number, etc.
+                    </li>
+                    <li>
+                      <strong>Employer contact and phone number (optional).</strong> Include any applicable phone and extension.
+                    </li>
+                    <li>
+                      <strong>Income Provider name and address for income withholding orders or garnishment, if different from the employer address above.</strong> This may be the legal name of the business or other entity that handles withholding and garnishment. This information is needed for income withholding and garnishment purposes.
+                    </li>
+                  </ol>
+                </p>
+                <p>
+                  <Strong>Employee Information</Strong>
+                  <ol style="padding-left: 30px; list-style-position: outside;" start="6">
+                    <li>
+                     <strong>Is dependent health care coverage available?</strong> This question does not relate to insurability of employee’s dependents. Mark yes if the employer or union offers coverage.
+                   </li>
+                   <li>
+                     <strong>Approximate date this employee qualifies for coverage.</strong> Example: Is dependent insurance coverage offered upon hire or after six months of employment? This question does not relate to insurability of employee’s dependents. Enter in month, day, and year format.
+                   </li>
+                   <li>
+                    <strong>Employee start date.</strong> Indicate the first day for which the employee is owed compensation. For a rehire, list the return date. Enter in month, day, and year format. (Required by 42 U.S. Code § 653a)
+                  </li>
+                  <li>
+                    <strong>Employee date of birth.</strong> Enter in month, day, and year format.
+                  </li>
+                  <li>
+                    <strong>Employee Social Security Number (SSN).</strong> SSN is required for all individuals, including minors.
+                  </li>
+                  <li>
+                    <strong>Employee name.</strong> Provide the employee’s full name including middle initial.
+                  </li>
+                  <li>
+                    <strong>Employee address.</strong> Provide the employee’s current home address.
+                  </li>                                                                                                                                                
+                </ol>                
+              </p>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 pull-right" style="text-align: right;">
+              <span style=" font-size: 10px;">
+                44-019d (07/07/2021)
+              </span>
+            </div>
+          </div>
+          <!-- End of Replace With eForm Specific HTML -->
+          <br><hr class="lifesuite__hr"> 
+          <div class="row" id="formButtons" style="display: none;"> 
+            <div class="lifesuite__clearfix lifesuite__float-right">                
+              <$client.env.FormButtons> 
+            </div>              
+          </div> 
+        </div> 
+      </div> 
+      <!--End of container-fluid-->
+      <div style="display:none"> 
+        <$client.env.FormField.SignatureVerification.HTML>
+        <$client.env.FormField.SSN1.HTML>
+        <$client.env.FormField.SSN2.HTML>
+        <$client.env.FormField.SSN3.HTML>
+        <$client.env.formfield.Login_ID.html>
+        <$client.env.formfield.Auth_Param.html>
+        <$client.env.formfield.EmployeeID.html>
+        <$client.env.FormField.EIN.HTML>
+        <!-- <$client.env.formfield.EINHolder1.html> -->
+      </div> 
+    </form> 
+    <SCRIPT> 
+    ChangeCalendarIcons(); //for popup calendar  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+/* RESPONSIVE eFORM BUTTONS STYLE */ 
+
+$(window).load(function() { 
+  $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+  $("#buttonCancel").addClass("lifesuite__button"); 
+  $('#buttonCancel').attr('id','ButtonCancel'); 
+  $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue"); 
+  $("#buttonSave").addClass("lifesuite__button primary"); 
+  $('#buttonSave').attr('id','ButtonSave'); 
+  $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+  $("#buttonSaveAndComplete").addClass("lifesuite__button primary"); 
+  $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete'); 
+  $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+  $("#buttonPrint").addClass("lifesuite__button"); 
+  $('#buttonPrint').attr('id','ButtonPrint'); 
+  $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed"); 
+  $("#buttonPreviewDelete").addClass("lifesuite__button"); 
+  $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete'); 
+  $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue"); 
+  $("#buttonPreviewSave").addClass("lifesuite__button primary"); 
+  $('#buttonPreviewSave').attr('id','ButtonPreviewSave'); 
+
+  document.getElementById('formButtons').style.display = "block"; 
+  $("input[type=text]:not(.inline)").addClass('lifesuite__text-input');
+  $("input[type=text].inline").addClass('lifesuite__text-input_inline');
+  $("select:not(.inline)").addClass('lifesuite__select-input');
+  $("select.inline").addClass('lifesuite__select-input_inline');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $('.inputprompt').addClass('lifesuite__input-label lifesuite__input—block');
+
+}); 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+//Fixes to modal issue when viewing in mobile devices 
+
+// $( window ).resize(function() { 
+
+// document.getElementById('over').style.width=''; 
+
+// });
+
+$(function() {
+ setTimeout(function() {  
+         if (strFormCompleted == '') { // if eForm is incomplete 
+           $("#ButtonPrint")[0].onclick = null; 
+           $("#ButtonPrint").click(function() {  
+             /* Add your code/function here */ 
+             $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+                 void(funcPrint()); // default print function 
+               }); 
+           if ($("#ButtonSaveAndComplete").length) {  
+             $("#ButtonSaveAndComplete")[0].onclick = null; 
+             $("#ButtonSaveAndComplete").click(function() {  
+               /* Add your code/function here */ 
+               $('[name$=".SignatureVerification"]').val($('[ng-bind="signatureStatement"]').html());
+                     void(funcSaveAndComplete());  //default Save function 
+                   }); 
+           } 
+         }
+       }, 300); 
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+</SCRIPT>

@@ -1,0 +1,510 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+      <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">  
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','firstName,middleName,lastName','modal','over','sv');xbObj('eSignature1').value='';"> 
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<script>
+  showScreen('over')
+</script>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'>
+  <div style="display:none;">
+    <$client.env.FormField.Form_Name.prompt>
+    <$client.env.FormField.Form_Name.HTML>
+    <$client.env.FormField.Form_Type.prompt>
+    <$client.env.FormField.Form_Type.HTML>
+    <$client.env.FormField.Form_Owner.prompt>
+    <$client.env.FormField.Form_Owner.HTML>
+    <$client.env.FormField.Form_CreateDate.prompt>
+    <$client.env.FormField.Form_CreateDate.HTML>
+    <$client.env.FormField.Form_Completed.prompt>
+    <$client.env.FormField.Form_Completed.HTML>
+    <$client.env.FormField.Form_Delivered.prompt>
+    <$client.env.FormField.Form_Delivered.HTML>
+    <$client.env.FormField.Form_TaskId.prompt>
+    <$client.env.FormField.Form_TaskId.HTML>
+    <$client.env.FormField.display_version.HTML> 
+
+
+    <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    <$client.env.FormField.SignatureVerification.prompt>
+    <$client.env.FormField.a01_LegalFirstName.prompt>
+    <$client.env.FormField.a02_LegalMiddleName.prompt>
+    <$client.env.FormField.a03_Non.prompt>
+    <$client.env.FormField.a03_OtherName.prompt>
+    <$client.env.FormField.a04_LegalLastName.prompt>
+    <$client.env.FormField.a06_OtherName.prompt>
+    <$client.env.FormField.b01_StreetAddress.prompt>
+    <$client.env.FormField.b02_ApartmentNumber.prompt>
+    <$client.env.FormField.b03_City.prompt>
+    <$client.env.FormField.b07_PrimaryPhone.prompt>
+    <$client.env.FormField.b08_AlternatPhone.prompt>
+    <$client.env.FormField.b09_Email.prompt>
+    <$client.env.FormField.c01_EligibleToWorkCanada.prompt>
+    <$client.env.FormField.c02_Limitation.prompt>
+    <$client.env.FormField.c03_Explain.prompt>
+    <$client.env.FormField.c04_StartDate.prompt>
+    <$client.env.FormField.c05_ForeignLanguageSkills.prompt>
+    <$client.env.FormField.d01_EmergencyName.prompt>
+    <$client.env.FormField.d02_EmergencyRelationship.prompt>
+    <$client.env.FormField.d03_EmergencyPhone.prompt>
+    <$client.env.FormField.e01_EmergencyName.prompt>
+    <$client.env.FormField.e02_EmergencyRelationship.prompt>
+    <$client.env.FormField.e03_EmergencyPhone.prompt>
+    <$client.env.FormField.f01_CertificationOfAccuracy.prompt>
+    <$client.env.FormField.f02_AdherenceToUBSPolicies.prompt>
+    <$client.env.FormField.g01_Signature.prompt>
+    <$client.env.FormField.g02_Date.prompt>
+
+
+  </div>
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+    <div class="container-fluid" style="margin:60px 20px 10px 20px;">
+        <div class="form-group">
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 divHeader" style="padding-left:3px!important;"> 
+                    <img class="img-responsive" src="company_logo.png" align="left" style='max-width:100px; margin-bottom:20px;'>
+                </div>
+            </div>
+
+            <br>
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 border-top">
+                    <p><b>Employment Application – Cayman</b></p>
+                    <p>Please respond to each question below completely and accurately.</p>
+                </div>
+            </div>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <$client.env.FormField.a01_LegalFirstName.HTML>
+                    <p>Legal First Name</p>
+                    </div>
+                <div class="col-lg-3 col-md-3 col-sm-11 col-xs-10">
+                    <$client.env.FormField.a02_LegalMiddleName.HTML>
+                    <p>Legal Middle Name</p>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2" >
+                    <$client.env.FormField.a03_Non.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <$client.env.FormField.a04_LegalLastName.HTML>
+                    <p>Legal Last Name</p>
+                </div>
+            </div>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    Is additional information regarding a name change, assumed name or nickname needed to check your work or school record?
+                </div>
+
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="margin-top: 6px;">
+                    <$client.env.FormField.a03_OtherName.HTML>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                    If yes, please specify other name(s): <$client.env.FormField.a06_OtherName.HTML>
+                </div>
+            </div><br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <$client.env.FormField.b01_StreetAddress.HTML>
+                    <p>Current Street Address</p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <$client.env.FormField.b02_ApartmentNumber.HTML>
+                    <p>Apartment Number/P.O. Box</p>
+                </div>
+            </div>
+            <div class="row srt_eform_row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <$client.env.FormField.b03_City.HTML>
+                    <p>Town</p>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <$client.env.FormField.b04_State.HTML>
+                    <p>County</p>
+                </div>
+            </div>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <$client.env.FormField.b07_PrimaryPhone.HTML>
+                    <p>Telephone Number (Mobile)</p>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <$client.env.FormField.b08_AlternatPhone.HTML>
+                    <p>Telephone Number (Alternate)</p>
+                </div>
+            </div><br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <$client.env.FormField.b06_DOB.HTML>
+                    <p>Date of Birth</p>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-12">
+                    <$client.env.FormField.b09_Email.HTML>
+                    <p>Personal E-mail</p>
+                </div>
+            </div><br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-8 col-sm-8 col-xs-12">
+                    <$client.env.FormField.b10_Nationalities.HTML>
+                    <p>Nationalities</p>
+                </div>
+            </div><br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 border-top">
+                    <p><b>Personal information</b></p>
+                </div>
+            </div>
+            <br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <span class="inline-date-field">
+                        <p>Provide the date you can start:</p> 
+                        <$client.env.FormField.c04_StartDate.HTML> 
+                    </span>
+                </div>
+            </div>
+            <br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p>Do you have any foreign language skills, please specify:</p>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <$client.env.FormField.c05_ForeignLanguageSkills.HTML>
+                </div>
+            </div>
+            <br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    Emergency Contacts:
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <$client.env.FormField.d01_EmergencyName.HTML>
+                    <p>Name</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <$client.env.FormField.d02_EmergencyRelationship.HTML>
+                    <p>Relationship</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <$client.env.FormField.d03_EmergencyPhone.HTML>
+                    <p>Phone</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <$client.env.FormField.e01_EmergencyName.HTML>
+                    <p>Name</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <$client.env.FormField.e02_EmergencyRelationship.HTML>
+                    <p>Relationship</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <$client.env.FormField.e03_EmergencyPhone.HTML>
+                    <p>Phone</p>
+                </div>
+            </div><br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p><b>Acknowledgment</b></p>
+                </div>
+            </div>
+            <br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p><b>Please read carefully; confirm that you have read each section by placing a checkmark in each checkbox and sign below.</b></p>
+                </div>
+            </div>
+            <br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p><em>Certification of Accuracy</em></p>
+                    <p>
+                        I Understand that any falsification, misrepresentation or omission of information regarding my education, background, previous employment, or any other job related information may be grounds for cancellation of this application, withdrawal of any offer of employment if discrepancies are subsequently discovered to hire.
+                    </p>
+                </div>
+            </div>
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <$client.env.FormField.f01_CertificationOfAccuracy.HTML>
+                </div>
+            </div>
+            <br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p><em>Adherence to UBS Policies</em></p>
+                    <p>
+                        UBS recruits and employs people without regard to race, national or ethnic origin, color, gender, sexual orientation, age, marital or family status, gender identity or expression, pregnancy/maternity, religion, a conviction for which a pardon has been granted, disability.
+                    </p>
+                </div>
+            </div>
+            <div class="row srt_eform_row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <$client.env.FormField.f02_AdherenceToUBSPolicies.HTML>
+                </div>
+            </div>
+            <br>
+
+            <div class="row srt_eform_row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <$client.env.FormField.g01_Signature.HTML>
+                    <p>Signature</p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <$client.env.FormField.g02_Date.HTML>
+                    <p>Date</p>
+                </div>
+            </div>
+
+            <!-- <div class="row srt_eform_row" style="margin-top: 2rem;">
+                <div class="col-md-12">
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+                </div>
+            </div> -->
+
+            <br><hr class="lifesuite__hr">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+    <div style="display:none">
+    <$client.env.FormField.SignatureVerification.HTML>
+    </div>
+
+</form>
+<script>
+    ChangeCalendarIcons(); //for popup calendar
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$(window).load(function() {
+//Fixes to modal issue when viewing in mobile devices 
+$(window).resize(function() { 
+  document.getElementById('over').style.width=''; 
+});
+$("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+$("#buttonCancel").addClass("lifesuite__button");
+$('#buttonCancel').attr('id','ButtonCancel');
+$("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+$("#buttonSave").addClass("lifesuite__button primary");
+$('#buttonSave').attr('id','ButtonSave');
+$("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+$("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+$('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+$("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+$("#buttonPrint").addClass("lifesuite__button");
+$('#buttonPrint').attr('id','ButtonPrint');
+$("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+$("#buttonPreviewDelete").addClass("lifesuite__button");
+$('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+$("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+$("#buttonPreviewSave").addClass("lifesuite__button primary");
+$('#buttonPreviewSave').attr('id','ButtonPreviewSave');    
+$("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+$("#buttonComplete").addClass("lifesuite__button primary"); 
+$('#buttonComplete').attr('id','ButtonComplete');
+
+
+$("input[type=text]:not(.inline)").addClass('lifesuite__text-input');
+$("input[type=text].inline").addClass('lifesuite__text-input_inline');
+$("select:not(.inline)").addClass('lifesuite__select-input');
+$("select.inline").addClass('lifesuite__select-input_inline');
+$("input[type=text].hasDatepicker").addClass('dateField');
+
+$("textarea").addClass('lifesuite__textarea-input');
+$("label").addClass('lifesuite__input-label lifesuite__input—block');
+$("body").addClass('UBS_custom_theme');
+});
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+$(document).ready(function(){ 
+
+    if($("#emp-states option").eq(0).val() == ""){ $("#emp-states option").eq(0).remove(); }
+
+    //var arr = ["altnames","ubs-rel","personal-rel","family","refer","add-pos","po","18"];
+
+    //addRedNoneChecks("mname", $("#mname-check").prop("checked"));
+    /**** EVENT LISTENERS ****/
+    /*hide-show section listeners*/
+    //$("#mname-check").change(function(){
+    //  addRedNoneChecks("mname", this.checked);
+    //});
+    $("#ssno-check").change(function(){
+    addRedNoneChecks("ssno", this.checked);
+    }).change();
+    $("#nid-check").change(function(){
+    addRedNoneChecks("nid", this.checked);
+    }).change();
+
+    $(".trigger-altnames").change(function(){
+    hideShowSection("sh-hd-altnames", "trigger-altnames");
+    }).change();
+    $(".trigger-ubs-rel").change(function(){
+    if($("#ubs-rel").is(":visible")){ $("#ubs-rel option").eq(0).prop("selected",false); }
+    hideShowSection("sh-hd-ubs-rel", "trigger-ubs-rel");
+    }).change();
+    $(".trigger-personal-rel").change(function(){
+    if($("#ubs-rel-cat").is(":visible")){ $("#ubs-rel-cat option").eq(0).prop("selected",false); }
+    hideShowSection("sh-hd-personal-rel", "trigger-personal-rel");
+    }).change();
+    $(".trigger-add-family").change(function(){
+    hideShowSection("sh-hd-add-family", "trigger-add-family");
+    }).change();
+    $(".trigger-add-family2").change(function(){
+    hideShowSection("sh-hd-add-family2", "trigger-add-family2");
+    }).change();
+    $(".trigger-family").change(function(){
+    hideShowSection("sh-hd-family", "trigger-family");
+    }).change();
+    $(".trigger-prev").change(function(){
+    hideShowSection("sh-hd-prev", "trigger-prev");
+    }).change();
+    $(".trigger-add-pos").change(function(){
+    hideShowSection("sh-hd-add-pos", "trigger-add-pos");
+    }).change();
+    $(".trigger-refer").change(function(){
+    if($("#referrer").is(":visible")){ $("#referrer option").eq(0).prop("selected",false); }
+    hideShowSection("sh-hd-refer", "trigger-refer");
+    }).change();
+    $(".trigger-po").change(function(){
+    if($("#po-type").is(":visible")){ $("#po-type option").eq(0).prop("selected",false); }
+    hideShowSection("sh-hd-po", "trigger-po");
+    }).change();
+    $(".trigger-18").change(function(){
+    hideShowSection("sh-hd-18", "trigger-18");
+    }).change();
+
+    $("#middle-check").change(function(){
+        addRedNoneChecks("middleName", this.checked);
+    }).change();
+
+});
+
+
+function hideShowSection(sectionClass,triggerClass){
+  var toHide = "." + sectionClass;
+  var trigger = "." + triggerClass;
+  var valOfChecked = $("form " + trigger + ":checked").val();
+
+  if(trigger != ".trigger-18"){
+    if($(toHide).is(":visible") && (valOfChecked == "No" || valOfChecked == undefined)){
+      $(toHide + " input[type='text']").val('');
+      $(toHide + " input[type='text']").removeClass('ng-invalid');
+      $(toHide + " input[type='radio']").eq(1).click();
+      $(toHide + " input[type='radio']").prop('checked',false);
+      $(toHide + " select").prop("selectedIndex", 0);
+      $(toHide).hide();
+    }else if(!$(toHide).is(":visible") && (valOfChecked == "Yes")){
+      $(toHide + " input[type='text']").addClass('ng-invalid');
+      $(".optionals").removeClass('ng-invalid');
+      $(toHide).show();
+    }
+  }else if(trigger == ".trigger-18"){
+    if($(toHide).is(":visible") && (valOfChecked == "Yes" || valOfChecked == undefined)){
+      $(toHide + " input[type='radio']").eq(1).click();
+      $(toHide + " input[type='radio']").prop('checked',false);
+      $(toHide).hide();
+    }else if(!$(toHide).is(":visible") && (valOfChecked == "No")){
+      $(toHide).show();
+    }
+  }
+} 
+
+
+function addRedNoneChecks(elem,checked){
+  var idName = "#" + elem;
+  if(!checked){
+    $(idName).addClass('ng-invalid');
+  }else{
+    $(idName).removeClass('ng-invalid');
+    $(idName).val('');
+  }
+} 
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+        }
+    };
+}
+const checkOne = function(c) {
+    "use strict";
+    let checked = c.checked
+    document.querySelectorAll('[name="' + c.name + '"]').forEach(function(cb) {
+        cb.checked = false;
+    });
+    c.checked = !!checked;
+}
+const toggleTargetState = function(cbx, target, requiredVal) {
+    "use strict";
+    if (cbx.checked && cbx.value == requiredVal) {
+        target.disabled = false;
+        return;
+    }
+    target.value = '';
+    target.disabled = true;
+}
+document.querySelectorAll('.check-one').forEach(function(c) {
+    c.addEventListener('change', function(e) {
+        const cbx = e.target
+        checkOne(cbx)
+        let nem = cbx.name.split('.')
+        switch(nem[nem.length-1]) {
+            case "a03_OtherName":
+            toggleTargetState(cbx, document.querySelector('[name$=".a06_OtherName"]'), 'Yes');
+            break;
+        }
+    });
+});
+toggleTargetState(
+    document.querySelector('[name$=".a03_OtherName"]'), 
+    document.querySelector('[name$=".a06_OtherName"]'), 
+    'Yes'
+);
+</script>

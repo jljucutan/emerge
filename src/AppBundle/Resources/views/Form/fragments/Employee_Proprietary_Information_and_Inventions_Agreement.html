@@ -1,0 +1,1725 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <strong>Type your Name:</strong> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right sign-button" style="width: 278px;">
+                <input id="signature-sign" type="button" class="lifesuite__button primary" value="Sign">&nbsp;
+                <input id="signature-clear" type="button" class="lifesuite__button" value="Clear">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+        <p style="fontweight:normal;padding:0px">
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+        </p>
+        <br>
+        <div class="row">
+            <div class="lifesuite__clearfix">
+                <strong>Type your Name:</strong> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right sign-button" style="width: 278px;">
+                <input id="hr-signature-sign" type="button" class="lifesuite__button primary" value="Sign">&nbsp;
+                <input id="hr-signature-clear" type="button" class="lifesuite__button" value="Clear">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+    <$client.env.FormField.Form_Name.prompt>
+    <$client.env.FormField.Form_Name.HTML>
+    <$client.env.FormField.Form_Type.prompt>
+    <$client.env.FormField.Form_Type.HTML>
+    <$client.env.FormField.Form_Owner.prompt>
+    <$client.env.FormField.Form_Owner.HTML>
+    <$client.env.FormField.Form_CreateDate.prompt>
+    <$client.env.FormField.Form_CreateDate.HTML>
+    <$client.env.FormField.Form_Completed.prompt>
+    <$client.env.FormField.Form_Completed.HTML>
+    <$client.env.FormField.Form_Delivered.prompt>
+    <$client.env.FormField.Form_Delivered.HTML>
+    <$client.env.FormField.Form_TaskId.prompt>
+    <$client.env.FormField.Form_TaskId.HTML>
+    <$client.env.FormField.display_version.HTML>
+
+
+
+    <$client.env.FormField.A_Address.prompt>
+    <$client.env.FormField.A_Date.prompt>
+    <$client.env.FormField.A_Printed_Name.prompt>
+    <$client.env.FormField.B_Address.prompt>
+    <$client.env.FormField.B_Address2.prompt>
+    <$client.env.FormField.B_By.prompt>
+    <$client.env.FormField.B_Date.prompt>
+    <$client.env.FormField.B_Title.prompt>
+    <$client.env.FormField.C_Additional_Sheet.prompt>
+    <$client.env.FormField.C_From.prompt>
+    <$client.env.FormField.C_No_Inventions.prompt>
+    <$client.env.FormField.C_Please_Provide.prompt>
+    <$client.env.FormField.C_Please_Provide_Text.prompt>
+    <$client.env.FormField.D_Invention.prompt>
+    <$client.env.FormField.D_Party.prompt>
+    <$client.env.FormField.D_Relationship.prompt>
+    <$client.env.FormField.E_Invention.prompt>
+    <$client.env.FormField.E_Party.prompt>
+    <$client.env.FormField.E_Relationship.prompt>
+    <$client.env.FormField.F_Invention.prompt>
+    <$client.env.FormField.F_Party.prompt>
+    <$client.env.FormField.F_Relationship.prompt>
+    <$client.env.FormField.G_Additional_Sheet.prompt>
+    <$client.env.FormField.signature.prompt>
+    <$client.env.FormField.signature2.prompt>
+    <$client.env.FormField.PriorInventions.prompt>
+    <$client.env.FormField.X_Date.prompt>
+
+
+
+
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<div class="container-fluid"> 
+    <div class="form-group"> 
+
+        <div class='row'>
+            <div class="col-sm-3"><img src="<$link;/main/RedCarpet/FormTemplates/PayPal_Electronic_Monitoring_Acknowledgement/paypal-logo.png>" width="200" height="100" border="0" /></div>
+            <div class="col-sm-9">&nbsp;</div>
+        </div>
+
+
+        <h4 align="center"><strong>PAYPAL HOLDINGS, INC.<br />
+            PROPRIETARY INFORMATION<br />
+        AND INVENTIONS AGREEMENT</strong></h4>
+
+    </div>
+
+    <div class='row'>
+        <div class="col-sm-12">&nbsp;</div>
+    </div>
+
+    <div class='row'>
+        <div class="col-sm-12">
+            In consideration of my employment (or internship) or continued employment (or internship) by <strong>PAYPAL HOLDINGS,
+            INC.</strong> and all current, past and future global subsidiaries, affiliated companies and/or successors (including without
+            limitation all direct and indirect subsidiaries) (each, including PayPal, Inc., a <strong>“PayPal Company”</strong> and collectively the
+            <strong>“PayPal Companies”</strong>), and the compensation now and hereafter paid to me, I hereby agree as follows. If I am a participant
+            in a PayPal Company’s internship program, then all references in this Agreement to my “employment” will be deemed to
+        refer to my internship, provided, however, that Sections 5 through 8 will not apply to me.</div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <p><strong>1. DEFINITIONS</strong></p>
+            <p>
+                <strong class="indent">1.1 Intellectual Property Rights. </strong> The term
+                <strong>“Intellectual Property Rights”</strong> means all past, present
+                and future patents, copyrights, service and/or trademarks,
+                trade dress, trade secrets, mask work rights, database
+                rights, all applications for the foregoing, and all other
+                intellectual property rights recognized by the laws of any
+                jurisdiction or country.
+
+                <br/> <br/> 
+
+                <strong class="indent">1.2 Invention.</strong> The term <strong>“Invention”</strong> means any
+                invention (whether or not patentable) or work of
+                authorship, including without limitation any and all
+                invention disclosures, ideas, concepts, information,
+                improvements, discoveries, developments, designs,
+                formulae, materials, processes, procedures, techniques
+                (including manufacturing processes, procedures, and
+                techniques), mask works, know-how, artwork, data,
+                programs, prototypes, pseudo-code, software, and source
+                and object codes. 
+
+                <br/><br/> 
+
+                <strong class="indent">1.3 Nonassignable Inventions. </strong> The term
+                <strong>“Nonassignable Invention”</strong> means any Invention that
+                I prove, through contemporaneously created written records or other competent evidence, was developed entirely on my own time without using any Company equipment, supplies, facilities, resources, trade secrets, or Confidential Information, except for those Inventions that either (i) are determined by the Company to relate to the Company’s actual or anticipated business, research or development, or (ii) result from or are connected with work performed by me for the Company, and specifically including any Invention that is covered under California Labor Code Section 2870(a),
+                Illinois Statutes Chapter 765. Property § 1060, or which
+                otherwise qualifies fully for protection from assignment to
+                the Company under any specifically applicable state law,
+                regulation, rule or public policy in the state in which I
+                reside.
+
+                <br/><br/> 
+
+                <strong class="indent">1.4 Proprietary Information. </strong> The term
+                <strong>“Proprietary Information”</strong> means any and all
+                confidential and/or proprietary knowledge, data or
+                information of any PayPal Company including without
+                limitation, information related to a PayPal Company’s
+                business or its actual or demonstrably anticipated research
+                or development. By way of illustration but not limitation,
+                Proprietary Information includes (a) trade secrets;
+                (b) Inventions and information about Inventions (except
+                for Nonassignable Inventions); (c) information regarding
+                products, plans for research and development, marketing,
+                selling, market research and analysis, business, business
+                plans, strategies, technology, technical plans, financial
+                information, budgets, unpublished financial statements,
+                contracts, licenses, legal work product or privileged
+                communications, prices, costs, suppliers, developers,
+                distributors, vendors, users, and customers; (d) data and
+                all information derived from data such as user information
+                and information about consumer habits; (e) all business practices and plans developed from such data or
+                information; (f) information regarding the skills and
+                responsibilities of PayPal Company employees,
+                contractors and other service providers; and (g) the
+                existence and content of any business, technical, strategic
+                and/or financial discussions, negotiations, or agreements
+                between a PayPal Company and any other party.
+                Proprietary Information does not include information that
+                is already in the public domain (other than through breach
+            of this Agreement or other misconduct). </p>
+        </div>
+
+        <div class="column">
+            <p><strong>2. CONFIDENTIALITY</strong></p>
+            <p>
+                <strong class="indent">2.1 Recognition of PayPal Company Rights;
+                Nondisclosure.</strong> I understand and acknowledge that my
+                employment by the PayPal Company that employs or
+                engages me (the <strong>“Company”</strong>) creates a relationship of
+                confidence and trust with respect to Proprietary
+                Information and that the PayPal Companies have a
+                protectable interest therein. At all times during my
+                employment and thereafter, I will hold in strictest
+                confidence and will not disclose, use, lecture upon or
+                publish any Proprietary Information, except as such
+                disclosure or use is required in connection with my work
+                for the Company, unless expressly authorized in an
+                advance writing by an officer of the Company. I will
+                obtain the Company’s written approval before publishing
+                or submitting for publication any material (written, verbal,
+                or otherwise) that relates to my work at any PayPal
+                Company and/or incorporates any Proprietary
+                Information. The foregoing obligation will not apply if I
+                am subject to a court order or subpoena lawfully issued by
+                a court of competent jurisdiction compelling me to
+                disclose Proprietary Information; provided, however, that
+                in such event I will immediately provide a copy of such
+                court order or subpoena to the Legal Department of
+                PayPal Holdings, Inc. and will cooperate with the
+                appropriate PayPal Company to minimize the extent of
+                any disclosure. I hereby assign to the Company any rights
+                I may have or acquire in any and all Proprietary
+                Information and recognize that all Proprietary Information
+                shall be the sole and exclusive property of the PayPal
+                Companies and their assigns. I will take all reasonable
+                precautions to prevent the disclosure of Proprietary
+                Information other than as permitted herein. 
+                <br/><br/>
+
+                <strong class="indent">2.2 Defend Trade Secrets Act.</strong> Notwithstanding anything to the contrary, pursuant to 18
+                U.S.C. Section 1833(b), I will not be held criminally or civilly liable under any Federal or State trade secret law
+                for the disclosure of a trade secret that: (a) is made: (i) in
+                confidence to a federal, state, or local government official,
+                either directly or indirectly, or to an attorney; and
+                (ii) solely for the purpose of reporting or investigating a
+                suspected violation of law; or (b) is made in a complaint
+                or other document filed in a lawsuit or other proceeding,
+                if such filing is made under seal. In addition, I understand
+                that if I file a lawsuit for retaliation for reporting a
+                suspected violation of law, I may disclose a trade secret to
+                my attorney and use the trade secret information in the
+                court proceeding, provided I file any document containing
+                the trade secret under seal and do not disclose the trade
+                secret other than pursuant to court order.
+
+
+
+            </p>
+        </div>
+    </div>
+
+    <hr class="HRblack">
+
+
+    <div>
+        <div class='row'>
+            <div class="column">
+                <p>
+                    <strong class="indent">2.3 Third Party Information. </strong>I understand that
+                    the PayPal Companies have received and in the future will
+                    receive from third parties confidential or proprietary
+                    information (<strong>“Third Party Information”</strong>) subject to a
+                    duty on each such PayPal Company’s part to maintain the
+                    confidentiality of such information and to use it only for
+                    certain limited purposes. During the term of my
+                    employment and thereafter, I will hold Third Party
+                    Information in the strictest confidence and will not
+                    disclose to anyone (other than the personnel of any PayPal
+                    Company who need to know such information in
+                    connection with their work for any PayPal Company) or
+                    use, except in connection with my work for the Company,
+                    Third Party Information, unless expressly authorized by
+                    an officer of the Company in writing. 
+                    <br/><br/>
+
+                    <strong class="indent">2.4 Term of Nondisclosure Restrictions. </strong>I
+                    understand that Proprietary Information and Third Party
+                    Information is only to be used or disclosed by me as
+                    provided in this Section 2. If a temporal limitation on my
+                    obligation not to use or disclose such information is
+                    required under applicable law, and the Agreement or its
+                    restriction(s) cannot otherwise be enforced, I agree and
+                    Company agrees that the two (2) year period after the date
+                    my employment ends will be the temporal limitation
+                    relevant to the contested restriction, provided, however,
+                    that this sentence will not apply to trade secrets protected
+                    without temporal limitation under applicable law.
+                    <br/><br/>
+
+                    <strong class="indent">2.5 No Improper Use of Information of Prior
+                    Employers and Others.  </strong>During my employment by the
+                    Company, I will not improperly use or disclose any
+                    confidential information or trade secrets, if any, of any
+                    former employer or other third party to whom I have an
+                    obligation of confidentiality, and I will not bring onto the
+                    premises of any PayPal Company or use or disclose any
+                    unpublished documents or any property belonging to any
+                    former employer or other third party to whom I have an
+                    obligation of confidentiality unless consented to in writing
+                    by that former employer or other third party. 
+                    <br/><br/>
+
+                    <strong class="indent">2.6 Protected Disclosures. </strong>Nothing in this
+                    Agreement prohibits me from communicating with or filing a complaint with any governmental agency, or
+                    governmental entity, including but not limited to the Equal
+                    Employment Opportunity Commission, United States
+                    Department of Labor, the National Labor Relations Board,
+                    Department of Justice, the Securities and Exchange
+                    Commission, the United States Congress, and any agency
+                    Inspector General, or from responding to inquiries from or
+                    giving testimony before inquiries from or giving
+                    testimony before any governmental agency or entity or to
+                    discuss the terms and conditions of my employment with
+                    others to the extent expressly permitted by Section 7 of the
+                    National Labor Relations Act or to the extent that such
+                    disclosure is protected under the applicable provisions of
+                    law or regulation, including but not limited to
+                    “whistleblower” statutes or other similar provisions that
+                    protect such disclosure. I do not need the prior
+                    authorization of any PayPal Company to make any such
+                    communications, complaints or disclosures, and I am not
+                    required to notify any PayPal Company that I have made
+                    such communications, complaints or disclosures. 
+                </p>
+            </div>
+
+            <div class="column">
+
+                <p><strong>3. ASSIGNMENT OF INVENTIONS.</strong></p>
+                <p>
+                    <strong class="indent">3.1 Prior Inventions; Third Party Software
+                    Licenses. </strong>  I have disclosed in <u>Exhibit A</u> (Prior Inventions)
+                    attached hereto a complete and accurate list describing all
+                    Inventions that I have, or I have caused to be, alone or with
+                    others, conceived, developed, made, or reduced to practice
+                    prior to the commencement of my employment by the
+                    Company, any other PayPal Company, or any affiliates or
+                    predecessors, in which I or a third party have or purport to
+                    have any ownership interest in or a license to use and wish
+                    to have excluded from the scope of the assignment in
+                    Section 3.2 of this Agreement (collectively referred to as
+                    <strong>“Prior Inventions”</strong>). If disclosure of any such Prior
+                    Invention would cause me to violate any prior
+                    confidentiality agreement, I understand that I am not to
+                    describe such Prior Inventions in <u>Exhibit A</u> but am only to
+                    disclose a cursory name for each such invention, a listing
+                    of the party(ies) to whom it belongs and the fact that full
+                    disclosure as to such inventions has not been made for that
+                    reason. A space is provided in <u>Exhibit A</u> for such purpose.
+                    If no such disclosure is attached or no Prior Inventions are
+                    described in <u>Exhibit A</u>, I represent and warrant that there
+                    are no Prior Inventions. If I use any Prior Inventions
+                    and/or Nonassignable Inventions in the scope of my
+                    employment, or if I include any Prior Inventions and/or
+                    Nonassignable Inventions in any product or service of any
+                    PayPal Company, or if my rights in any Prior Inventions
+                    and/or Nonassignable Inventions may block or interfere
+                    with, or may otherwise be required for, the exercise by any
+                    PayPal Company of any rights assigned to any PayPal
+                    Company under this Agreement, I hereby grant each of the
+                    PayPal Companies a non-exclusive, perpetual, fully paidup and royalty-free, irrevocable and worldwide license
+                    (with rights to sublicense through multiple levels of
+                    sublicensees) to (a) reproduce, make derivative works of,
+                    distribute, publicly perform, and publicly display in any
+                    form or medium, whether now known or later developed, such Prior Inventions and/or Nonassignable Inventions;
+                    (b) to make, have made, modify, use, sell, import, offer
+                    for sale, and otherwise exploit any product or service that,
+                    but for this license, would infringe any Intellectual
+                    Property Rights in any such Prior Inventions and/or
+                    Nonassignable Invention; and (c) exercise any and all
+                    present or future rights in, such Prior Inventions and/or
+                    Nonassignable Inventions. To the extent that any third
+                    parties have any rights in or to any Prior Inventions and/or
+                    Nonassignable Inventions, I hereby represent and warrant
+                    that such third party or parties have validly granted to me
+                    the right to grant the license stated above.
+                    Notwithstanding the foregoing, I agree that I will not use
+                    any Prior Inventions and/or Nonassignable Inventions in
+                    the scope of my employment, or include any Prior
+                    Inventions and/or Nonassignable Inventions in any
+                    product or service of any PayPal Company without the
+                    express prior written consent of the legal department of
+                    PayPal Holdings, Inc. In addition, I agree that I will not
+                    incorporate into any PayPal Company software or
+                    otherwise deliver to any PayPal Company any software
+                    code licensed under the open source licenses known as the
+                    AGPL, GPL, or LGPL or any other license that, by its
+                    terms, requires or conditions the use or distribution of
+                    such code on the disclosure, licensing, or distribution of
+                    any source code owned or licensed by any PayPal
+                    Company except in strict compliance with Company’s
+                    policies regarding the use of such software.
+                    <br/><br/>
+
+
+                </p>
+            </div>
+        </div>
+
+        <hr class="HRblack">
+
+        <div>
+            <div class='row'>
+                <div class="column">
+                    <p>
+                        <strong class="indent">3.2 Assignment of Inventions.</strong> Except for
+                        Nonassignable Inventions or Prior Inventions that I have
+                        set forth in <u>Exhibit A</u>, I hereby assign and, to the extent
+                        required by applicable laws, agree to and am deemed to
+                        have automatically assigned in the future (when any such
+                        Inventions or Intellectual Property Rights are first
+                        conceived, reduced to practice, or first fixed in a tangible
+                        medium, as applicable) to the Company all my right, title
+                        and interest in and to any and all Inventions (and all
+                        Intellectual Property Rights with respect thereto), whether
+                        or not patentable or registrable under the Copyright Act or
+                        similar statutes, made, conceived, reduced to practice or
+                        learned by me, either alone or with others, during the
+                        period of my employment by the Company (including any
+                        other PayPal Company and its and their affiliates and
+                        predecessors). To the extent applicable law prohibits the
+                        assignment of any such Inventions or Intellectual Property
+                        Rights absent a separate assignment executed in
+                        connection with a filing with the applicable Government
+                        Entity, I agree to hold any such Inventions or Intellectual
+                        Property Rights in trust for the Company until such filing.
+                        Inventions assigned to the Company, or to a third party as
+                        directed by the Company pursuant to the section titled
+                        “Government or Third Party,” are hereinafter referred to
+                        in this Agreement as <strong>“Company Inventions.”</strong> If I am
+                        located in California, Delaware, Illinois, Kansas, Minnesota, New Jersey, North Carolina, Utah, or Washington, I have reviewed the
+                        notification in <u>Exhibit B</u> (Limited Exclusion Notification)
+                        and agree that my signature acknowledges receipt of the
+                        notification. 
+                        <br/><br/>
+
+                        <strong class="indent">3.3 Government or Third Party. </strong> I also agree
+                        to assign all my right, title and interest in and to any
+                        particular Company Invention to a third party, including
+                        without limitation the United States, as directed by the
+                        Company.  
+                        <br/><br/>
+
+                        <strong class="indent">3.4 Obligation to Keep the Company
+                        Informed. </strong> I will promptly disclose to the Company, fully
+                        and in writing, all Inventions that I, alone or with others,
+                        authored, conceived, or reduced to practice, in whole or in
+                        any part, during the period of my employment, including
+                        any that constitute Nonassignable Inventions. In addition,
+                        I will promptly disclose to the Company fully and in
+                        writing all patent applications that are (1) based on any
+                        work in which I was involved or Proprietary Information
+                        to which I had access during the period of my
+                        employment, and (2) filed by me, on my behalf, or in
+                        which I am named as an inventor or co-inventor, by
+                        sending the disclosure to the attention of the patent legal
+                        team of PayPal Holdings, Inc. At the time of each
+                        disclosure under this paragraph, I will advise the
+                        Company in writing of any Inventions that I believe fully
+                        qualify as Nonassignable Inventions; and I will at that
+                        time provide to the Company in writing all evidence
+                        necessary to substantiate that belief. The Company will
+                        keep in confidence any confidential information disclosed
+                        in writing by me to the Company pursuant to this
+                        Agreement relating to Inventions that constitute
+                        Nonassignable Inventions. 
+                    </p>
+                </div>
+
+                <div class="column">
+                    <p>
+                        <strong class="indent">3.5 Works for Hire. </strong>I acknowledge that all
+                        original works of authorship which are made by me
+                        (solely or jointly with others) within the scope of my
+                        employment and which are protectable by copyright are
+                        “works made for hire,” pursuant to United States
+                        Copyright Act (17 U.S.C. Section 101) and are owned by
+                        the Company and/or another PayPal Company.
+                        <br/><br/>
+
+                        <strong class="indent">3.6 Unassigned or Nonassignable Inventions. </strong>I recognize that this Agreement will not be deemed to
+                        require assignment of any Invention that qualifies fully as a Invention that qualifies fully as a Nonassignable Invention.
+                        <br/><br/>
+
+                        <strong class="indent">3.7 Enforcement of Intellectual Property
+                        Rights. </strong>During the period of my employment and
+                        thereafter, I will assist the Company, and any other PayPal
+                        Company, in every proper way to obtain and enforce
+                        United States and foreign Intellectual Property Rights
+                        (including Intellectual Property Rights relating to
+                        Company Inventions) in any and all countries. To that
+                        end, I will execute, verify and deliver such documents and
+                        perform such other acts (including appearances as a
+                        witness) as the Company may reasonably request for use
+                        in applying for, obtaining, perfecting, evidencing,
+                        sustaining and enforcing such Intellectual Property Rights
+                        and the assignment thereof. In addition, I will execute,
+                        verify and deliver all documents and other instruments
+                        necessary to effectuate such assignments of such
+                        Intellectual Property Rights to the Company or its
+                        designee. My obligation to assist the Company with
+                        respect to Intellectual Property Rights relating to Company Inventions in any and all countries shall
+                        continue beyond the termination of my employment, but
+                        the Company shall compensate me at a reasonable rate
+                        after my termination for the time actually spent by me at
+                        the Company’s request on such assistance. Without
+                        limiting the generality of the foregoing, I will execute and
+                        deliver to Company (or any other PayPal Company), at
+                        Company’s request, a patent application assignment in the
+                        form specified by the Company for any Company
+                        Invention for which Company (or any other PayPal
+                        Company) elects to file a patent application. At
+                        Company’s (or any other PayPal Company’s) request, I
+                        will promptly record such assignment with the United
+                        States Patent and Trademark Office.
+                        <br/><br/>
+
+                        <strong class="indent">3.8 Appointment of the Company as
+                        Attorney-In-Fact. </strong>In the event the Company is unable
+                        for any reason, after reasonable effort, to secure my
+                        signature on any document needed in connection with the
+                        actions specified in the preceding paragraph, I hereby
+                        irrevocably designate and appoint the Company and its
+                        duly authorized officers and agents as my agent and
+                        attorney in fact, which appointment is coupled with an
+                        interest, to act for, in, and on my behalf to execute, verify
+                        and file any such documents and to do all other lawfully
+                        permitted acts to further the purposes of the preceding
+                        paragraph with the same legal force and effect as if
+                        executed by me. 
+                    </p>
+                </div>
+            </div>
+
+
+            <hr class="HRblack">
+
+            <div class='row'>
+                <div class="column">
+                    <p>
+                        <strong class="indent">3.9 Artist’s and Moral Rights. </strong>If I have any
+                        rights in any Company Inventions, including without
+                        limitation “artist’s rights” or “moral rights,” that cannot be
+                        assigned pursuant to this Agreement, I hereby
+                        unconditionally and irrevocably waive enforcement
+                        worldwide of such rights and all claims and causes of
+                        action of any kind against the Company and all PayPal
+                        Companies (and their licensees), and agree, at the
+                        Company’s expense and request, to consent to and join in
+                        any action to enforce such rights. In the event that I have
+                        any such rights that cannot be assigned or waived, I hereby
+                        unconditionally and irrevocably grant to the Company and
+                        all PayPal Companies an exclusive, worldwide,
+                        irrevocable, fully paid-up and royalty-free perpetual
+                        license (with rights to sublicense through multiple levels
+                        of sublicensees) to use, reproduce, distribute, create
+                        derivative works of, publicly perform and publicly display
+                        in any medium or form, whether now known or later
+                        developed, make, have made, modify, use, sell, import,
+                        offer for sale, and exercise any and all present or future
+                        rights in, such Company Inventions. 
+                        <br/><br/>
+
+                        <strong class="indent">3.10 Waiver of Claims for Infringement. </strong>I
+                        hereby waive and quitclaim to the Company any and all
+                        claims, of any nature whatsoever, which I now or may
+                        hereafter have for ownership and/or infringement of any
+                        Intellectual Property Rights assigned or licensed
+                        hereunder to the Company. 
+                        <br/><br/>
+
+                        <strong>4. RECORDS. </strong>I agree to keep and maintain adequate and
+                        current records (in the form of notes, sketches, drawings and in any other form that may be required by the
+                        Company) of all Proprietary Information developed by me
+                        and all Company Inventions, which records shall be
+                        available to and remain the sole property of the Company
+                        at all times. 
+                        <br/><br/>
+
+                        <strong>5. ADDITIONAL ACTIVITIES. </strong> I agree that, during
+                        my employment with the Company, I will not, without the
+                        Company’s express written consent, engage in any
+                        employment or business activity, either directly or
+                        indirectly, alone or as a partner, joint venturer, officer,
+                        director, employee, consultant, agent, or independent
+                        contractor of any company or business, that is competitive
+                        with the Company or another PayPal Company or would
+                        otherwise conflict with or impair the interests of the
+                        PayPal Companies or my employment by the Company. I
+                        also agree that I will abide by the Company’s policy with
+                        respect to use of the Company’s resources for non-work
+                        purposes. 
+
+                    </p>
+                </div>
+
+                <div class="column">
+                    <p>
+                        <strong>6. NO SOLICITATION.</strong>
+                        If I am an
+                        employee residing or working primarily in California, I
+                        agree that during my employment with the Company and
+                        for one (1) year after the date of the termination of my
+                        employment, I will not, without the Company’s express
+                        written consent, directly or indirectly, solicit, induce,
+                        encourage, or participate in soliciting, inducing or
+                        encouraging any person known to me to be an employee,
+                        consultant, or independent contractor of any PayPal
+                        Company to terminate his or her relationship with any
+                        PayPal Company, even if I did not initiate the discussion
+                        or seek out the contact. 
+                        <br/><br/>
+
+                        If I am an employee residing and primarily working outside
+                        of California, I agree that during the period
+                        of my employment and for the one (1) year period after
+                        the date my employment ends for any reason, including
+                        but not limited to voluntary termination by me or
+                        involuntary termination by the Company, I will not, as an
+                        officer, director, employee, consultant, owner, partner, or
+                        in any other capacity, either directly or through others,
+                        except on behalf of the Company:
+                        <br/><br/>
+
+                        <strong class="indent">6.1</strong> solicit, induce, encourage, or participate in
+                        soliciting, inducing or encouraging any person known to
+                        me to be an employee, consultant, or independent
+                        contractor of any PayPal Company to terminate his or her
+                        relationship with any PayPal Company, even if I did not
+                        initiate the discussion or seek out the contact;
+                        <br/><br/>
+
+                        <strong class="indent">6.2</strong> 
+                        solicit, induce, encourage, or participate in
+                        soliciting, inducing, or encouraging any person known to
+                        me to be an employee, consultant, or independent
+                        contractor of any PayPal Company to terminate his or her relationship with any PayPal Company to render services
+                        to me or any other person or entity that researches,
+                        develops, markets, sells, performs or provides or is
+                        preparing to develop, market, sell, perform or provide
+                        Conflicting Services (as defined below);
+                    </p>
+                </div>
+            </div>
+
+            <hr class="HRblack">
+
+            <div class='row'>
+                <div class="column">
+                    <p>
+                        <strong class="indent">6.3</strong> hire, employ, or engage in a business
+                        venture with as partners or owners or other joint capacity,
+                        or attempt to hire, employ, or engage in a business venture
+                        as partners or owners or other joint capacity, with any
+                        person then employed by any PayPal Company or who has
+                        left the employment of any PayPal Company within the
+                        preceding three (3) months to research, develop, market,
+                        sell, perform or provide Conflicting Services;
+                        <br/><br/>
+
+                        <strong class="indent">6.4</strong> solicit, induce or attempt to induce any
+                        Customer or Potential Customer (as defined below), to
+                        terminate, diminish, or materially alter in a manner
+                        harmful to any PayPal Company its relationship with any
+                        PayPal Company;
+                        <br/><br/>
+
+                        <strong class="indent">6.5 </strong>solicit or assist in the solicitation of any
+                        Customer or Potential Customer to induce or attempt to
+                        induce such Customer or Potential Customer to purchase
+                        or contract for any Conflicting Services; or
+                        <br/><br/>
+
+                        <strong class="indent">6.6 </strong>perform, provide or attempt to perform or
+                        provide any Conflicting Services for a Customer or
+                        Potential Customer (provided, however, that this limitation does not apply to me if I work primarily in California, Massachusetts, or Washington, D.C.).
+                        <br/><br/>
+
+                        The parties agree that for purposes of this Agreement, a
+                        <strong>“Customer or Potential Customer”</strong> is any person or
+                        entity who or which, at any time during the one (1) year
+                        period prior to my contact with such person or entity as
+                        described in Sections 6.4-6.6 above if such contact
+                        occurs during my employment or, if such contact occurs
+                        following the termination of my employment, during the
+                        one (1) year period prior to the date my employment with
+                        the Company ends: (i) contracted for, was billed for, or
+                        received from any PayPal Company any product, service
+                        or process with which I worked directly or indirectly
+                        during my employment by the Company or about which I
+                        acquired Proprietary Information; or (ii) was in contact
+                        with me or in contact with any other employee, owner, or
+                        agent of any PayPal Company, of which contact I was or
+                        should have been aware, concerning the sale or purchase
+                        of, or contract for, any product, service or process with
+                        which I worked directly or indirectly during my
+                        employment with the Company or about which I acquired
+                        Proprietary Information; or (iii) was solicited by any
+                        PayPal Company in an effort in which I was involved or
+                        of which I was aware.
+
+                    </p>
+                </div>
+
+                <div class="column">
+                    <p>
+                        The parties agree that for purposes of this Agreement,
+                        “Conflicting Services” means any product, service, or
+                        process or the research and development thereof, of any
+                        person or organization other than any PayPal Company
+                        that directly competes with a product, service, or process,
+                        including the research and development thereof, of any
+                        PayPal Company with which I worked directly or
+                        indirectly during my employment by the Company or about which I acquired Proprietary Information during my
+                        employment by the Company.
+                        <br/><br/>
+
+                        <p><strong>7. NON-COMPETE. </strong> If I am an employee residing and
+                        working primarily outside of California, Washington D.C., or Massachusetts, and earning at least $65,000 per year (or at least the minimum amount required in the law of the state where I work, if that state prohibits noncompetition agreements with employees earning below a specified income threshold), I agree
+                        that for the one (1) year period after the date my
+                        employment ends for any reason, including but not limited
+                        to voluntary termination by me or involuntary termination
+                        by Company, I will not, directly or indirectly, as an
+                        officer, director, employee, consultant, owner, partner, or
+                        in any other capacity solicit, perform, or provide, or
+                        attempt to perform or provide Conflicting Services
+                        (defined below) anywhere in the Restricted Territory
+                        (defined below), nor will I assist another person to solicit,
+                        perform or provide or attempt to perform or provide
+                        Conflicting Services anywhere in the Restricted Territory.
+                        The parties agree that for purposes of this Agreement,
+                        <strong>“Restricted Territory”</strong> means the fifty (50) mile radius
+                        of any of the following locations: (i) any Company
+                        business location at which I have worked on a regular or
+                        occasional basis during the preceding year; (ii) my home
+                        if I work from home on a regular or occasional basis;
+                        (iii) any potential business location of Company under
+                        active consideration by Company to which I have traveled
+                        in connection with the consideration of that location; (iv)
+                        the primary business location of a Customer or Potential
+                        Customer; or (v) any business location of a Customer or
+                        Potential Customer where representatives of the Customer
+                        or Potential Customer with whom I have been in contact
+                        in the preceding year are based.</p>
+
+                        <p>If I am an employee primarily working in Washington, D.C., I have reviewed the notification in Exhibit C and agree that my signature acknowledges receipt of the notification.</p>
+
+                        <p><strong>8. REASONABLENESS OF RESTRICTIONS </strong></p>
+                        <strong class="indent">8.1</strong>
+                        I agree that I have read this entire Agreement
+                        and understand it. I agree that this Agreement does not
+                        prevent me from earning a living or pursuing my career. I
+                        agree that the restrictions contained in this Agreement are
+                        reasonable, proper, and necessitated by Company’s
+                        legitimate business interests. I represent and agree that I
+                        am entering into this Agreement freely and with
+                        knowledge of its contents with the intent to be bound by
+                        the Agreement and the restrictions contained in it.
+                        <br/><br/>
+                    </p>
+                </div>
+            </div>
+
+            <hr class="HRblack">
+
+            <div class='row'>
+                <div class="column">
+                    <p>
+                        <strong class="indent">8.2 </strong>In the event that a court finds this Agreement,
+                        or any of its restrictions, to be ambiguous, unenforceable,
+                        or invalid, I and Company agree that the court will read
+                        the Agreement as a whole and interpret the restriction(s)
+                        at issue to be enforceable and valid to the maximum extent
+                        allowed by law.
+                        <br/><br/>
+
+                        <strong class="indent">8.3 </strong>If the court declines to enforce this
+                        Agreement in the manner provided in subsection 8.2,
+                        Company and I agree that this Agreement will be
+                        automatically modified to provide Company with the
+                        maximum protection of its business interests allowed by
+                        law and I agree to be bound by this Agreement as
+                        modified.
+                        <br/><br/>
+
+                        <strong>9. NO CONFLICTING OBLIGATION. </strong>I represent that
+                        my performance of all the terms of this Agreement and as
+                        an employee (or intern) of the Company does not and will not breach any agreement with any former employer or
+                        other third party, including any noncompete agreement or
+                        any agreement to keep in confidence information acquired
+                        by me in confidence or in trust prior to my employment
+                        by the Company. I further represent that I have not
+                        entered into, and I agree I will not enter into, any
+                        agreement, either written or oral, in conflict with this
+                        Agreement. 
+                        <br/><br/>
+
+                        <strong>10. RETURN OF COMPANY PROPERTY. </strong> Upon
+                        termination of my employment or upon the Company’s
+                        request at any other time, I will deliver to the Company
+                        any and all of the Company’s (and any other PayPal
+                        Company’s) property, equipment, drawings, notes,
+                        memoranda, specifications, devices, formulas, and
+                        documents, together with all copies thereof, and any other
+                        material containing or disclosing any Company
+                        Inventions, Third Party Information or Proprietary
+                        Information of the Company (or any other PayPal
+                        Company), and certify in writing that I have fully
+                        complied with the foregoing obligation. I agree that I will
+                        not copy, delete, or alter any information (including but
+                        not limited to any information contained upon my
+                        Company computer) before I return it to the Company. In
+                        addition, if I have used any non-PayPal or personal
+                        computer, server, cloud-based storage service, or e-mail
+                        system to receive, store, review, prepare or transmit any
+                        Company information, including but not limited to,
+                        Proprietary Information, I agree to provide Company with
+                        a computer-useable copy of all such Proprietary
+                        Information and then permanently delete and expunge
+                        such Proprietary Information from those systems; and I
+                        agree to provide Company access to my system as
+                        reasonably requested to verify that the necessary copying
+                        and/or deletion is completed. I further agree that any
+                        property situated on the premises of and owned by any
+                        PayPal Company (including without limitation disks and
+                        other storage media, filing cabinets or other work areas) is
+                        subject to inspection by personnel of that PayPal
+                        Company or its agents at any time with or without notice.
+                        Prior to leaving, I will cooperate with the Company in
+                        attending an exit interview and completing and signing the
+                        Company’s termination statement. 
+                        <br/><br/>
+
+                        <strong>11. LEGAL AND EQUITABLE REMEDIES. </strong>
+                        I agree
+                        that it may be impossible to assess the damages caused by
+                        my violation of this Agreement or any of its terms. I agree
+                        that any threatened or actual violation of this Agreement
+                        or any of its terms will constitute immediate and
+                        irreparable injury to Company, and Company will have
+                        the right to enforce this Agreement and any of its
+                        provisions by injunction, specific performance or other
+                        equitable relief, without bond and without prejudice to any
+                        other rights and remedies that Company may have for a
+                        breach or threatened breach of this Agreement. In the
+                        event Company enforces this Agreement through a court
+                        order, I agree that the restrictions of Sections 6 and 7 will
+                        remain in effect for a period of twelve (12) months from
+                        the effective date of the Order enforcing the Agreement.
+                    </p>
+                </div>
+
+                <div class="column">
+                    <p>
+                        <strong>12. NOTICES. </strong>Each party must deliver all notices or
+                        other communications required or permitted under this
+                        Agreement in writing to the other party at the Address
+                        listed on the signature page, by courier, by certified or
+                        registered mail (postage prepaid and return receipt
+                        requested), or by a nationally-recognized express mail
+                        service. Notice will be effective upon receipt or refusal of
+                        delivery. If delivered by certified or registered mail, any
+                        such notice will be considered to have been given five (5)
+                        business days after it was mailed, as evidenced by the
+                        postmark. If delivered by courier or express mail service,
+                        any such notice shall be considered to have been given on
+                        the delivery date reflected by the courier or express mail
+                        service receipt. Each party may change its address for
+                        receipt of notice by giving notice of such change to the
+                        other party. 
+                        <br/><br/>
+
+                        <strong>13. NOTIFICATION OF NEW EMPLOYER. </strong>In the
+                        event that I leave the employ of the Company, I hereby
+                        consent to the notification of my new employer of my
+                        rights and obligations under this Agreement, by the
+                        Company’s provision of a copy of this Agreement or
+                        otherwise. 
+                        <br/><br/>
+
+                        <p><strong>14. GENERAL PROVISIONS</strong></p>
+                        <strong class="indent">14.1 Governing Law; Jurisdiction. </strong>This
+                        Agreement and any action related thereto will be
+                        governed, controlled, interpreted, and defined by and
+                        construed under the laws of the state where the duties of
+                        employment will principally be performed, without giving
+                        effect to any conflicts of laws principles that require the
+                        application of the law of a different jurisdiction. I hereby
+                        expressly consent to the personal jurisdiction of and venue
+                        in the local United States federal and state courts within
+                        the state where the duties of employment will principally
+                        be performed for any lawsuit filed there against me by the
+                        Company arising from or related to this Agreement.
+                        Notwithstanding the forgoing, if I have executed a Mutual
+                        Arbitration Agreement in connection with the
+                        commencement or continuation of my employment, all
+                        claims or disputes arising from or relating to this
+                        Agreement will be resolved as provided therein. Nothing
+                        herein is intended to prevent either party from obtaining
+                        injunctive relief in a court of competent jurisdiction to
+                        prevent irreparable harm pending the conclusion of any
+                        such arbitration.
+                        <br/><br/>
+
+                        <strong class="indent">14.2 Severability. </strong> In case any one or more of
+                        the provisions, subsections, or sentences contained in this
+                        Agreement will, for any reason, be held to be invalid,
+                        illegal or unenforceable in any respect, such invalidity,
+                        illegality or unenforceability will not affect the other
+                        provisions of this Agreement, and this Agreement will be
+                        construed as if such invalid, illegal or unenforceable
+                        provision had never been contained in this Agreement. If
+                        moreover, any one or more of the provisions contained in
+                        this Agreement will for any reason be held to be
+                        excessively broad as to duration, geographical scope,
+                        activity or subject, it will be construed by limiting and reducing it, so as to be enforceable to the extent
+                        compatible with the applicable law as it will then appear.
+                        <br/><br/>
+
+                        <strong class="indent">14.3 Successors and Assigns. </strong> This Agreement
+                        will be binding upon my heirs, executors, administrators
+                        and other legal representatives and will be for the benefit
+                        of the Company, all other PayPal Companies, and their
+                        successors and assigns. 
+                    </p>
+                </div>
+            </div>
+
+            <hr class="HRblack">
+
+            <div class='row'>
+                <div class="column">
+                    <p>
+                        <strong class="indent">14.4 Survival. </strong>
+                        This Agreement shall survive the
+                        termination of my employment and the assignment of this
+                        Agreement by the Company to any successor in interest or
+                        other assignee. 
+                        <br/><br/>
+
+                        <strong class="indent">14.5 At-Will Relationship. </strong>
+                        I agree and
+                        understand that my employment or engagement with the
+                        Company is “at will” and that nothing in this Agreement
+                        shall interfere in any way with my right or the Company’s
+                        right to terminate my employment or internship at any
+                        time, with or without cause or advance notice. In addition,
+                        I agree and understand that nothing in this Agreement
+                        shall (a) if I am an intern, confer any right with respect to
+                        employment with the Company at the conclusion of my
+                        internship, or (b) if I am an employee, confer any right
+                        with respect to continuation of employment by the
+                        Company.  
+                        <br/><br/>
+
+                        <strong class="indent">14.6 Waiver. </strong>
+                        Any waiver or failure to enforce
+                        any provision of this Agreement on one occasion will not
+                        be deemed a waiver of such provision on any other
+                        occasion or a waiver of any other provision. The
+                        Company shall not be required to give notice to enforce
+                        strict adherence to all terms of this Agreement. 
+                        <br/><br/>
+
+                        <strong class="indent">14.7 Export.  </strong>
+                        I agree to abide by all U.S. export
+                        laws and regulations. 
+                        <br/><br/>
+
+                        <strong class="indent">14.8 Advice of Counsel. </strong>
+                        I ACKNOWLEDGE
+                        THAT, IN EXECUTING THIS AGREEMENT, I HAVE
+                        HAD THE OPPORTUNITY TO SEEK THE ADVICE
+                        OF INDEPENDENT LEGAL COUNSEL, AND I HAVE
+                        READ AND UNDERSTOOD ALL OF THE TERMS AND PROVISIONS OF THIS AGREEMENT. THIS
+                        AGREEMENT WILL NOT BE CONSTRUED
+                        AGAINST ANY PARTY BY REASON OF THE
+                        DRAFTING OR PREPARATION OF THIS
+                        AGREEMENT.
+                    </p>
+                </div>
+                <div class="column">
+                    <p>
+                        <strong class="indent">14.9 Counterparts.  </strong>
+                        This Agreement may be
+                        executed in two or more counterparts, each of which will
+                        be deemed an original, but all of which together will
+                        constitute one and the same instrument. Counterparts may
+                        be delivered via facsimile, electronic mail (including pdf
+                        or any electronic signature complying with the U.S.
+                        federal ESIGN Act of 2000, Uniform Electronic
+                        Transactions Act or other applicable law) or other
+                        transmission method and any counterpart so delivered will
+                        be deemed to have been duly and validly delivered and be
+                        valid and effective for all purposes.
+                        <br/><br/>
+
+                        <strong class="indent">14.10 Entire Agreement.   </strong>
+                        The obligations
+                        pursuant to sections of this Agreement titled
+                        “Confidentiality” and “Assignment of Inventions” shall
+                        apply to any time during which I was previously employed
+                        or engaged, or am in the future employed or engaged, by
+                        a PayPal Company as an employee, intern, or independent
+                        contractor, if no other agreement governs nondisclosure
+                        and assignment of inventions during such period. This
+                        Agreement is the final, complete and exclusive agreement
+                        of the parties with respect to the subject matters hereof and
+                        supersedes and merges all prior communications between
+                        us with respect to such matters. No modification of or
+                        amendment to this Agreement, nor any waiver of any
+                        rights under this Agreement, will be effective unless in
+                        writing and signed by me and a duly authorized officer of
+                        the Company. Any subsequent change or changes in my
+                        duties, salary, compensation or other terms and conditions
+                        of employment will not affect the validity or scope of this
+                        Agreement. 
+                        <br/><br/>
+
+                        This Agreement shall be effective as of the first day of my
+                        employment with the Company, any other PayPal
+                        Company, or any affiliates or predecessors. 
+                        <br/><br/>
+
+                    </p>
+                </div>
+            </div>
+
+            <br/>
+
+            <div class='row text-center'>
+                <div class='col-xs-12'>
+                    <p>[Signature Page Follows]</p>
+                </div>
+            </div>
+
+            <div class='row justify'>
+                <div class='col-lg-12'>
+                    <p><strong>I ACKNOWLEDGE THAT I HAVE READ THIS AGREEMENT CAREFULLY AND UNDERSTAND ITS
+TERMS. I HAVE COMPLETELY FILLED OUT EXHIBIT A TO THIS AGREEMENT OR LEFT SUCH
+EXHIBIT BLANK BECAUSE NO PRIOR INVENTIONS EXIST. I HAVE RECEIVED A COPY OF EXHIBIT
+B TO THIS AGREEMENT. </strong></p>
+                </div>
+            </div>      
+
+            <hr class="HRblack">
+
+            <br/><br/>
+            <div class='row'>
+                <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText"><strong>Signature: <span class="text-red">*</span></strong></div>
+                <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.signature.html></div>
+                <div class="col-lg-1 col-sm-12 col-xs-12 AlignMergeStringText"><strong>Date:</strong></div>
+                <div class="col-lg-3 col-sm-6 col-xs-12"><$client.env.FormField.A_Date.html></div>
+            </div>
+
+            <div class='row hide-sm'>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+
+            <div class='row'>
+                <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText"><strong>Name: <span class="text-red">*</span></strong></div>
+                <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.A_Printed_Name.html></div>
+                <div class="col-lg-6 col-sm-12 col-xs-12 hide-sm">&nbsp;</div>
+            </div>
+
+            <!--div class='row hide-sm'>
+                <div class="col-sm-12">&nbsp;</div>
+            </div-->
+
+            <div class='row'>
+                <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText"><strong>Address: <span class="text-red">*</span></strong></div>
+                <div class="col-lg-8 col-sm-12 col-xs-12"><$client.env.FormField.A_Address.html></div>
+            </div>
+
+
+            <div class='row'>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+            <div class='row'>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+
+            <div class='row'>
+                <div class="col-sm-12"><strong>ACCEPTED AND AGREED TO BY THE COMPANY</strong><br /><br /></div>
+            </div>
+
+            <div class='row'>
+                <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText"><strong>Signature: <span class="text-red">*</span></strong></div>
+                <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.signature2.html></div>
+                <div class="col-lg-1 col-sm-12 col-xs-12 AlignMergeStringText"><strong>Date:</strong></div>
+                <div class="col-lg-3 col-sm-6 col-xs-12"><$client.env.FormField.B_Date.html></div>
+            </div>
+
+
+            <div class='row hide-sm'>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+
+            <div class='row'>   
+                <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText"><strong>By:</strong></div>
+                <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.B_By.HTML></div>
+                <div class="col-lg-6 col-sm-12 col-xs-12 hide-sm">&nbsp;</div>
+            </div>
+
+            <!--div class='row hide-sm'>
+                <div class="col-sm-12">&nbsp;</div>
+            </div-->
+
+            <div class='row'>   
+                <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText"><strong>Title: <span class="text-red">*</span></strong></div>
+                <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.B_Title.HTML></div>
+                <div class="col-lg-6 col-sm-12 col-xs-12 hide-sm">&nbsp;</div>
+            </div>
+
+            <!--div class='row hide-sm'>
+                <div class="col-sm-12">&nbsp;</div>
+            </div-->
+
+            <div class='row'>   
+                <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText"><strong>Address: <span class="text-red">*</span></strong></div>
+                <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.B_Address.HTML></div>
+                <div class="col-lg-6 col-sm-12 col-xs-12 hide-sm">&nbsp;</div>
+            </div>
+
+            <!--div class='row hide-sm'>
+                <div class="col-sm-12">&nbsp;</div>
+            </div-->
+
+            <div class='row'>   
+                <div class="col-lg-2 col-sm-12 col-xs-12 AlignMergeStringText"><strong>&nbsp;</strong></div>
+                <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.B_Address2.HTML></div>
+                <div class="col-lg-6 col-sm-12 col-xs-12 hide-sm">&nbsp;</div>
+            </div>
+
+            <div class='row'>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+
+            <div class='row'>
+                <div class="col-sm-12">&nbsp;</div>
+            </div>
+
+            <hr class="HRblack">
+
+            <br>
+            <div class='row justify'>
+                <div class='col-lg-12'>
+                    <p class='text-center'>
+                        <strong>EXHIBIT A</strong>
+                    </p>
+                    <p class="text-center">
+                        <strong>PRIOR INVENTIONS</strong>
+                    </p>
+                </div>
+            </div>  
+
+            <div class='row justify'>
+                <div class='col-xs-1'>
+                    <strong>TO:</strong>
+                </div>
+
+                <div class='col-xs-11'>
+                    <strong>The Company</strong>
+                </div>
+            </div>
+            <br>
+            <div class='row justify'>
+                <div class='col-md-1 col-xs-12 label-align'>
+                    <strong>FROM:</strong>
+                </div>
+
+                <div class='col-md-8 col-xs-12'>
+                    <$client.env.FormField.C_From.HTML>
+                </div>
+                <div class='col-md-3 col-xs-12'>
+                    <p>(Please Print Full Name)</p>
+                </div>
+            </div>
+            <br>
+            <div class='row justify'>
+                <div class='col-md-1 label-align'>
+                    <strong>DATE:</strong>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <$client.env.FormField.X_Date.HTML>
+                </div>
+            </div>
+            
+            <br>
+
+        </div>
+        <br>
+
+        <div class='row'>
+            <div class='col-xs-12'>&nbsp;</div>
+        </div>
+
+        <div class='row'>
+            <div class="col-sm-1 col-xs-3"><strong>SUBJECT:</strong></div>
+            <div class="col-sm-11 col-xs-9"><strong>Prior Inventions</strong></div>
+        </div>
+
+        <div class='row'>
+            <div class="col-sm-12">&nbsp;</div>
+        </div>
+
+        <div class='row'>
+            <div class='col-xs-1'>I.</div>
+            <div class='col-xs-11'><strong>Prior Inventions Disclosure.</strong> Except as listed in Section II below, the following is a complete list of all Prior
+Inventions: </div>
+        </div>
+
+        <div class='row'>
+            <div class="col-sm-12">&nbsp;</div>
+        </div>
+
+        <div class='row'>
+            <div class="col-sm-1">&nbsp;</div>
+            <div class="col-sm-11 inherit-lbl"><$client.env.FormField.PriorInventions.HTML></div>
+        </div>
+
+        <div class='row'>
+            <div class="col-sm-12">&nbsp;</div>
+        </div>
+
+        <div class='row'>
+            <div class="col-sm-1">&nbsp;</div>
+            <div class="col-sm-11">Specifically identify any tangible assets (patent numbers, patent applications numbers, copyright registration
+numbers etc.) or publications (citations to technical journals, screen shots of websites) that detail the invention I
+have identified.</div>
+        </div>
+
+        <div class='row'>
+            <div class="col-sm-12">&nbsp;</div>
+        </div>
+
+        <div class='row'>
+            <div class="col-sm-1">&nbsp;</div>
+            <div class="col-sm-11 inherit-lbl"><$client.env.FormField.C_Please_Provide_Text.HTML></div>
+        </div>
+
+        <div class='row'>
+            <div class="col-sm-12">&nbsp;</div>
+        </div>
+
+        <div class='row'>
+            <div class="col-sm-1">&nbsp;</div>
+            <div class="col-sm-11 inherit-lbl"><$client.env.FormField.C_Additional_Sheet.HTML></div>
+
+        </div>
+
+        <div class='row'>
+            <div class="col-sm-12">&nbsp;</div>
+        </div>
+
+
+        <div class='row'>
+            <div class="col-xs-1">II.</div>
+            <div class="col-xs-11">Due to a prior confidentiality agreement, I cannot complete the disclosure under Section I above with respect to inventions or improvements generally listed below, the Intellectual Property Rights and duty of confidentiality with respect to which I owe to the following party(ies):</div>
+        </div>
+
+        <br>
+
+        <div class='row margin-bottom'>
+            <div class='col-lg-12'>
+                <div class='row justify hide-small hide-xsmall'>
+
+
+                    <div class='col-xs-4'>
+
+                        <div class='col-xs-1 align-right'>
+                            &nbsp;
+                        </div>
+
+                        <div class='col-xs-11'>
+                            <p><strong>Invention or Improvement</strong></p>
+                        </div>
+
+                    </div>
+
+                    <div class='col-xs-4'>
+                        <div class='col-xs-12'>
+                            <p><strong>Party(ies)</strong></p>
+                        </div>
+                    </div>
+
+                    <div class='col-xs-4'>
+                        <div class='col-xs-12'>
+                            <p><strong>Relationship</strong></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class='row'>
+
+
+
+                    <div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+                        <div class='col-xs-12 col-sm-1 col-md-1 col-lg-1 align-right label-align hide-xsmall'>
+                            1.
+                        </div>
+
+                        <div class='col-xs-12 col-sm-11 col-md-11 col-lg-11'>
+                            <p class="show-md">1. <strong>Invention or Improvement</strong></p>
+                            <$client.env.FormField.D_Invention.HTML>
+                        </div>
+                    </div>
+
+                    <div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+                        <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+                            <p class="show-md"><strong>Party(ies)</strong></p>
+                            <$client.env.FormField.D_Party.HTML>
+                        </div>
+                    </div>
+
+                    <div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+                        <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+                            <p class="show-md"><strong>Relationship</strong></p>
+                            <$client.env.FormField.D_Relationship.HTML>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class='row'>
+
+                    <div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+                        <div class='col-xs-12 col-sm-1 col-md-1 col-lg-1 align-right label-align hide-xsmall'>
+                            2.
+                        </div>
+
+                        <div class='col-xs-12 col-sm-11 col-md-11 col-lg-11'>
+                            <p class="show-md"><br/>2. <strong>Invention or Improvement</strong></p>
+                            <$client.env.FormField.E_Invention.HTML>
+                        </div>
+                    </div>
+
+
+                    <div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+                        <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+                            <p class="show-md"><strong>Party(ies)</strong></p>
+                            <$client.env.FormField.E_Party.HTML>
+                        </div>
+                    </div>
+
+                    <div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+                        <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+                            <p class="show-md"><strong>Relationship</strong></p>
+                            <$client.env.FormField.E_Relationship.HTML>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class='row'>
+
+                    <div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+                        <div class='col-xs-12 col-sm-1 col-md-1 col-lg-1 align-right label-align hide-xsmall'>
+                            3.
+                        </div>
+
+                        <div class='col-xs-12 col-sm-11 col-md-11 col-lg-11'>
+                            <p class="show-md"><br/>3. <strong>Invention or Improvement</strong></p>
+                            <$client.env.FormField.F_Invention.HTML>
+                        </div>
+                    </div>
+
+
+
+                    <div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+                        <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+                            <p class="show-md"><strong>Party(ies)</strong></p>
+                            <$client.env.FormField.F_Party.HTML>
+                        </div>
+                    </div>
+                    <div class='col-xs-12 col-sm-4 col-md-4 col-lg-4'>
+                        <div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+                            <p class="show-md"><strong>Relationship</strong></p>
+                            <$client.env.FormField.F_Relationship.HTML>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <br>
+                <div class='row'>
+                    <div class="col-sm-1">&nbsp;</div>
+                    <div class="col-sm-11 inherit-lbl"><$client.env.FormField.G_Additional_Sheet.HTML></div>
+
+                </div>
+
+                <hr class="HRblack">
+
+                <div class='row justify'>
+                    <div class='col-lg-12'>
+                        <p class='text-center'>
+                            <strong>EXHIBIT B</strong>
+                        </p>
+                        <p class='text-center'>
+                            <strong>LIMITED EXCLUSION NOTIFICATION</strong>
+                        </p>
+                    </div>
+                </div>  
+                <p><strong>If I am located in California:</strong></p>
+
+                <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THIS IS TO NOTIFY</strong> me in accordance with Section 2872 of the California Labor Code that the foregoing
+                    Agreement between me and the Company does not require me to assign or offer to assign to the Company any Invention
+                    that I develop entirely on my own time without using the Company’s equipment, supplies, facilities or trade secret
+                information, except for those Inventions that either:</p>
+
+                <ol>
+                    <li>
+                        Relate at the time of conception or reduction to practice to the Company’s business, or actual or
+                demonstrably anticipated research or development of the Company; or 
+                    </li>
+                    <li>
+                        Result from any work performed by me for the Company.
+                    </li>
+                </ol>
+
+                <p class="text-indent">To the extent a provision in the foregoing Agreement purports to require me to assign an Invention otherwise
+                    excluded from the preceding paragraph, the provision is against the public policy of the State of California and is
+                unenforceable.</p>
+
+                <p class="text-indent">This limited exclusion does not apply to any patent or Invention covered by a contract between the Company
+                and the United States or any of its agencies requiring full title to such patent or Invention to be in the United States. </p>
+
+                <p>
+                    <strong>If I am located in Delaware:</strong>
+                </p>
+                <p class="text-indent"><strong>THIS IS TO NOTIFY</strong> me in accordance with Title 19 Delaware Code Section 805 that the foregoing Agreement between me and the Company does not require me to assign or offer to assign to the Company any Invention that I develop entirely on my own time without using the Company’s equipment, supplies, facilities or trade secret information, exception for those Inventions that either:</p>
+
+                <ol>
+                    <li>Relate to the Company’s business or actual or demonstrably anticipated research or development; or </li>
+                    <li>Result from any work performed by me for the Company. </li>
+                </ol>
+
+                <p class="text-indent">To the extent a provision in the foregoing Agreement purports to require me to assign an Invention otherwise excluded from the preceding paragraph, the provision is against the public policy of the State of Delaware and is unenforceable. </p>
+
+                <p><strong>If I am located in Illinois:</strong></p>
+                
+                <p class="text-indent"><strong>THIS IS TO NOTIFY</strong> me in accordance with Illinois Statutes Chapter 765. Property § 1060/2 that the
+                    foregoing Agreement between me and the Company does not require me to assign or offer to assign to the Company
+                    any Invention for which no equipment, supplies, facility, or trade secret information of the Company was used and
+                which was developed entirely on my own time, unless the Invention: </p>
+
+                <ol style="list-style-type: upper-alpha;">
+                    <li>
+                        Relates (i) to the business of the Company, or (ii) to the Company’s actual or demonstrably anticipated
+                research or development; or 
+                    </li>   
+                    <li>
+                        Results from any work performed by me for the Company.
+                    </li>
+                </ol>
+
+
+                <p class="text-indent">Any provision in the foregoing Agreement that purports to apply to such an Invention is to that extent against
+                the public policy of the State of Illinois and is unenforceable. </p>
+
+                <p>
+                    <strong>If I am located in Kansas:</strong>
+                </p>
+                <p class="text-indent"><strong>THIS IS TO NOTIFY</strong> me in accordance with Kansas Statutes Section 44-130 that the foregoing Agreement between me and the Company does not require me to assign or offer to assign to the Company any Invention that I develop entirely on my own time without using the Company’s equipment, supplies, facilities or trade secret information, except for those Inventions that either:</p>
+
+                <ol>
+                    <li>Relate to the Company’s business or actual or demonstrably anticipated research or development; or </li>
+                    <li>Result from any work performed by me for the Company. </li>
+                </ol>
+
+                <p class="text-indent">To the extent a provision in the foregoing Agreement purports to require me to assign an Invention otherwise excluded from the preceding paragraph, the provision is against the public policy of the State of Kansas and is void and unenforceable.</p>
+
+                <p>
+                    <strong>If I am located in Minnesota:</strong>
+                </p>
+                <p class="text-indent"><strong>THIS IS TO NOTIFY</strong> me in accordance with Minnesota Statutes Section 181.78 that the foregoing Agreement between me and the Company does not require me to assign or offer to assign to the Company any Invention that I develop entirely on my own time without using the Company’s equipment, supplies, facilities or trade secret information, except for those Inventions that either:</p>
+
+                <ol>
+                    <li>Relate directly to the Company’s business or relate to the actual or demonstrably anticipated research or development of the Company; or </li>
+                    <li>Result from any work performed by me for the Company. </li>
+                </ol>
+
+                <p class="text-indent">To the extent a provision in the foregoing Agreement purports to require me to assign an Invention otherwise excluded from the preceding paragraph, the provision is against the public policy of the State of Minnesota and is void and unenforceable.</p>
+
+                <p>
+                    <strong>If I am located in New Jersey:</strong>
+                </p>
+                <p class="text-indent"><strong>THIS IS TO NOTIFY</strong> me in accordance with Title 34 New Jersey Statues Section 34:1B-265 that the foregoing Agreement between me and the Company does not require me to assign or offer to assign to the Company any Invention that I develop entirely on my own time without using the Company’s equipment, supplies, facilities or trade secret information, except for those Inventions that either: </p>
+
+                <ol>
+                    <li>Relate to the Company’s business, or the actual or demonstrably anticipated research or development of the Company; or</li>
+                    <li>Result from any work performed by me for the Company. </li>
+                </ol>
+
+                <p class="text-indent">To the extent a provision in the foregoing Agreement purports to require me to assign an Invention otherwise excluded from the preceding paragraph, the provision is against the public policy of the State of New Jersey and is unenforceable. </p>
+
+                <p class="text-indent">This limited exclusion does not apply to any patent or Invention covered by a contract between the Company and the United States or any of its agencies requiring full title to such patent or Invention to be in the United States and shall not be deemed to impede or otherwise diminish the rights of alienation of inventors or patent-owners. </p>
+
+                <p>
+                    <strong>If I am located in North Carolina:</strong>
+                </p>
+                <p class="text-indent"><strong>THIS IS TO NOTIFY</strong> me in accordance with Title 34 North Carolna General Statues Sections 66.57.1-.2 that the foregoing Agreement between me and the Company does not require me to assign or offer to assign to the Company any Invention that I develop entirely on my own time without using the Company’s equipment, supplies, facilities or trade secret information, except for those Inventions that either:</p>
+
+                <ol>
+                    <li>Relate to the Company’s business, or actual or demonstrably anticipated research or development of the Company; or </li>
+                    <li>Result from any work performed by me for the Company. </li>
+                </ol>
+
+                <p class="text-indent">To the extent a provision in the foregoing Agreement purports to require me to assign an Invention otherwise excluded from the preceding paragraph, the provision is against the public policy of the State of North Carolina and is unenforceable. </p>
+
+                <p class="text-indent">This limited exclusion does not apply to any patent or Invention covered by a contract between the Company and the United States or any of its agencies requiring full title to such patent or Invention to be in the United States. </p>
+
+                <p>
+                    <strong>If I am located in Utah:</strong>
+                </p>
+                <p class="text-indent"><strong>THIS IS TO NOTIFY</strong> me in accordance with Utah Code Section 39-3 that the foregoing Agreement between me and the Company does not require me to assign or offer to assign to the Company any Invention that I develop entirely on my own time and that is not an “employment invention,” meaning an Invention or part thereof that is concerved, developed, reduced to practice, or created by me and</p>
+
+                <ol>
+                    <li>Is conceived, developed, reduce to practice or created by me within the scope of my employment with the Company; on the Company’s time; or with the aid, assistance, or use of the Company’s property, equipment, facilities, supplies resources, or intellectual property;</li>
+                    <li>Results from work, services, or duties I perform for the Company; </li>
+                    <li>Relates to the Company’s industry or trade; or </li>
+                    <li>Relates to the Company’s current or demonstrably anticipated business, research or development </li>
+                </ol>
+
+                <p class="text-indent">This limited exclusion does not apply to any patent or Invention covered by a contract between the Company and the United States or a state or local government requiring full title to such patent or Invention to be in the United States</p>
+
+                <p>
+                    <strong>If I am located in Washington:</strong>
+                </p>
+                <p class="text-indent"><strong>THIS IS TO NOTIFY</strong> me in accordance with Title 49 Revised Code of Washington Section 44,140 that the foregoing Agreement between me and the Company does not require me to assign or offer to assign to the Company any Invention that I develop entirely on my own time without using the Company’s equipment, supplies, facilities or trade secret information, except for those Inventions that either: </p>
+
+                <ol>
+                    <li>Relate directly to the Company’s business or actual or demonstrably anticipated research or development; or </li>
+                    <li>Result from any work performed by me for the Company. </li>
+                </ol>
+
+                <p class="text-indent margin-bottom">To the extent a provision in the foregoing Agreement purports to require me to assign an Invention otherwise excluded from the preceding paragraph, the provision is against the public policy of the State of Washington and is unenforceable. </p>
+
+                <p class="text-center">
+                    <strong>EXHIBIT C</strong>
+                </p>
+                <p class="text-center">
+                    <strong>NOTIFICATION FOR D.C. EMPLOYEES</strong>
+                </p>
+                <p class="text-indent"><strong>THIS IS TO NOTIFY</strong> me in accordance with D.C. Act 25-563 that no employer operating in the District of Columbia may request or require any employee working in the District of Columbia to agree to a non-compete policy or agreement, in accordance with the Ban on Non-Compete Agreements Amendment Act of 2020.</p>
+
+            </div>
+        </div>
+        <div>
+            <p>US PIAA April 2021</p>
+        </div>
+        <hr class="lifesuite__hr">
+        <$client.env.FormButtons>
+        <div style="display:none">
+            <$client.env.FormField.signatureverification.HTML>
+            <$client.env.FormField.signature2verification.HTML>
+            <$client.env.FormField.dummy.HTML>
+
+        </div>
+    </form>
+    <script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+    <script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator_V2.js>"></script> 
+    <script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+    <script type="text/javascript">
+    ChangeCalendarIcons(); //for popup calendar
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop({'id':'ButtonCancel'});
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonSave'});
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonSaveAndComplete','onclick':null});
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonPrint','onclick':null});
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop({'id':'ButtonPreviewDelete'});
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonPreviewSave'});
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop({'id':'ButtonComplete','onclick':null});
+
+    /*document.getElementById('formButtons').style.display = "block";*/
+
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+if(strFormCompleted!=''){
+    document.getElementById('actionButtons').style.display = 'none';
+}
+$(document).on('ready', function() { 
+    <$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js> 
+    $('#A_Date').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+    $('#B_Date').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>");
+    $('#X_Date').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>");
+
+
+    $('#signature-sign').on('click', function() { 
+        if(validateSignature('signature','eSignature1','full_name','modal','over','sv')) { 
+            $('#A_Date').setFormattedDate(new Date()); 
+            $('#X_Date').setFormattedDate(new Date()); 
+        } 
+        validateField($('#signature'));
+        xbObj('eSignature1').value='';  document.getElementById('eSignature1').focus();
+    }); 
+
+    $('#signature-clear').on('click', function() { 
+        xbObj('signature').value='';showHide('modal'); 
+        showHide('over'); 
+        xbObj('eSignature1').value=''; 
+        validateField($('#signature'));
+        if (typeof targetdatecheckCLEAR == 'function' ){$('#A_Date').setFormattedDate(null);}  
+        if (typeof targetdatecheckCLEAR == 'function' ){$('#X_Date').setFormattedDate(null);}  
+    }); 
+
+    $('#hr-signature-sign').on('click', function() { 
+        if(validateSignature('signature2','eSignature2','full_name2','modal2','over','sv2')) { 
+            $('#B_Date').setFormattedDate(new Date()); 
+        } 
+        validateField($('#signature2'));
+        xbObj('eSignature2').value=''; document.getElementById('eSignature2').focus();
+    }); 
+
+    $('#hr-signature-clear').on('click', function() { 
+        xbObj('signature2').value='';showHide('modal2'); 
+        showHide('over'); 
+        xbObj('eSignature2').value='';
+        validateField($('#signature2'));
+        if (typeof targetdatecheckCLEAR == 'function' ){$('#B_Date').setFormattedDate(null);}  
+    }); 
+
+    $('input:visible:not(:disabled), textarea:visible:not(:disabled)').on('keyup blur', function() {
+        validateField($(this));
+    });
+
+    // submit the form if no errors
+      $('#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete').on('click', function(e) {
+        let formIsValid = true;
+        let btn = $(this);
+        e.preventDefault();
+        $.each($('input:not(:button):not(:disabled), select'), function(k, v) {
+            if(false == validateField($(v)) && $(v).is(':visible')) {
+              formIsValid = false;
+            }
+        });
+        if (!formIsValid) {
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            return;
+        }
+        switch (btn.prop('id')) {
+            case 'ButtonPrint':
+              funcPrint();
+            break;
+            case 'ButtonSaveAndComplete':
+              funcSaveAndComplete();
+            break;
+        }
+      });
+
+  // signature focus fix by cdy
+  var myVar = setInterval(function(){ 
+    if(document.getElementById('modal').style.display=='block') {
+        document.getElementById('full_name').focus()
+        document.getElementById('eSignature1').focus();
+        clearInterval(myVar);
+    }
+  }, 500);
+
+  var myVar2 = setInterval(function(){ 
+    if(document.getElementById('modal2').style.display=='block') {
+        document.getElementById('full_name2').focus();
+        document.getElementById('eSignature2').focus();
+        clearInterval(myVar2);
+    }
+  }, 500);
+
+}); 
+</script>
+
+<script>
+    disableCalButton("signDate");
+    disableCalButton("signDate2");
+
+$( window ).resize(function() { 
+document.getElementById('over').style.width=''; 
+}); 
+</script>

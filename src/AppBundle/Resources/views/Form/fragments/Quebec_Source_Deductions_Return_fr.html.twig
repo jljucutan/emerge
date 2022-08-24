@@ -1,32 +1,4 @@
 <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
-<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
-<div class="modal" id="modal" style="display:none;"> 
-              <div class="modal-content"> 
-                             <h2 class="lifesuite__h2"><strong>Signature électronique</strong></h2> 
-                             <p style="fontweight:normal;padding:0px"> 
-                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'Je comprends qu’en signant ce document électroniquement en écrivant mon nom complet ci-dessous, je reconnais, conviens et atteste que les renseignements que j’ai moi-même fournis sont véridiques et exacts et que je suis libre de créer et d’adopter une signature électronique légale portant le même effet juridique et caractère exécutoire que ma signature manuscrite.':client.env.param.verbiage)> 
-                             </p> 
-                             <br> 
-                             <div class="row"> 
-                                           <div class="lifesuite__clearfix"> 
-                                                          <b>Tapez votre nom:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
-                             </div> 
-                             </div> 
-                             <div class="row"> 
-                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; max-width: 300px; width: 100%;"> 
-                                                         <input type="button" class="lifesuite__button primary" value="Signer" onClick="validateSignature('signature','eSignature1','fname,lname','over','modal','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp; 
-                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp; 
-                                                          <input type="button" class="lifesuite__button" value="Annuler" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
-                                           </div> 
-                             </div> 
-              </div> 
-</div> 
-<div id="over" style="display:none;"></div> 
-<SCRIPT> 
-    showScreen('over');
-</SCRIPT> 
-<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
-<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
 <!-- RESPONSIVE eFORM PAGE LOADER--> 
 <div class="modal" style="display:block; background: #002E6D;"> 
               <div class="fb-spinner"> 
@@ -98,6 +70,7 @@
 <$client.env.FormField.Line79a.prompt>
 <$client.env.FormField.Line79b.prompt>
 <$client.env.FormField.Line80.prompt>
+<$client.env.FormField.Line81.prompt>
 <$client.env.FormField.Line85.prompt>
 <$client.env.FormField.Line9.prompt>
 <$client.env.FormField.Line90.prompt>
@@ -119,7 +92,7 @@
       <img src="<$link;/main/RedCarpet/FormTemplates/Quebec_Source_Deductions_Return/assets/img/quebec-logo.jpg>" alt="" class="img-responsive">
     </div>
     <div class="col-lg-10 col-md-9 col-sm-10 col-xs-6 text-right">
-      TP-1015.3-V (2019-01)
+      TP-1015.3 (2021-01)
     </div>
   </header>
   <div class="header-title-container vspace">
@@ -127,14 +100,14 @@
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
           <h3 class="text-blue">
-            Déclaration pour<br>
+            Déclaration pour <br>
             la retenue d’impôt
           </h3>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
           <h1 class="text-blue text-lg">
             <strong>
-              2019
+              2021
             </strong>
           </h1>
         </div>
@@ -145,32 +118,34 @@
   <div class="row">
     <div class="col-lg-12">
       <p>
-        Vous devez remplir ce formulaire et le remettre à votre employeur ou au payeur pour qu’il détermine l’impôt à retenir sur les sommes qu’il vous verse. Avant de remplir ce formulaire, lisez attentivement la partie  &laquo; Instructions &raquo;.
+        Vous devez remplir ce formulaire et le remettre à votre employeur ou au payeur pour qu’il détermine l’impôt à retenir sur les sommes qu’il vous verse.
+Avant de remplir ce formulaire, lisez attentivement la partie « Instructions ».
       </p>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">1 Renseignements sur l’employé ou sur le bénéficiaire</strong>
+        <strong class="text-blue">Renseignements sur l’employé ou sur le bénéficiaire</strong>
+        <small>(écrivez en majuscules)</small>
       </h4>
     </div>
   </div>
 
-  <div class="row border-top border-left border-right bg-default">
+  <div class="row border-top border-left border-right border-bottom bg-default">
     <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 border-bottom">
-      <small>Nom de famille</small>
+      <small>Nom de famille</small><br>
       <$client.env.FormField.LastName.HTML>
     </div>
     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 border-bottom">
-      <small>Prénom</small>
+      <small>Prénom</small><br>
       <$client.env.FormField.FirstName.HTML>
     </div>
     <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
-      Numéro de l’employé ou du bénéficiaire
+      <small>Numéro de l’employé ou du bénéficiaire</small>
       <$client.env.FormField.EmployeeNumber.HTML>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 DT">
       <small>Date de naissance</small>
       <$client.env.FormField.DateOfBirth.HTML>
     </div>
@@ -183,13 +158,15 @@
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">2 Montants permettant de déterminer le code de retenues</strong>
+        <strong class="text-blue">2 Montants des crédits d’impôt personnels</strong>
       </h4>
     </div>
   </div>
+  
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom">
-      <strong>Montant de base.</strong> Inscrivez 15 269 $. Si vous avez plus d’un employeur à la fois et que vous avez déjà demandé le montant de base, ne remplissez pas les lignes 1 à 10 et inscrivez le code de retenues O à la case &laquo; Code &raquo; ci-dessous.
+      <strong>Montant personnel de base.</strong> Inscrivez 15 728 $. Si vous avez plus d’un employeur à la fois et que vous avez déjà demandé
+ce montant, passez à la ligne 10 et inscrivez-y 0 $.
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       &nbsp;
@@ -219,12 +196,12 @@
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           &nbsp;
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 bg-blue-light border-left border-right border-bottom border-top row-min-35">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg-blue-light border-left border-right border-bottom border-top row-min-35">
           1a
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-7 bg-default border-left border-top border-bottom text-center row-min-35">
           <h5>
-            <strong>15 269 $</strong>
+            <strong>15 728 $</strong>
           </h5>
         </div>
       </div>
@@ -233,13 +210,13 @@
   <div class="row indent-1">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
       <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 border-bottom row-min-35">
-        Revenu imposable estimatif de votre conjoint pour 2019
+        Revenu imposable estimatif de votre conjoint pour 2021
       </div>
       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 clearfix">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           -
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 bg-blue-light border-left border-right border-bottom border-top row-min-35">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 bg-blue-light border-left border-right border-bottom border-top row-min-35">
           1b
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-7 bg-default border-left border-top border-bottom text-center">
@@ -264,9 +241,9 @@
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <img src="assets/img/plus_arrow.jpg" alt="" style="width: 15px; height: auto;">
+        <img src="<$link;/main/RedCarpet/FormTemplates/Quebec_Source_Deductions_Return/assets/img/plus_arrow.jpg>" alt="" style="width: 15px; height: auto;">
       </div>
-      <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
         <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
          2
         </div>
@@ -278,7 +255,8 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35">
-      <strong>Montant pour personnes à charge</strong> (grille de calcul 1)
+      <strong>Montant pour personnes à charge</strong>
+      (grille de calcul 1)
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -350,7 +328,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35">
-      <strong>Montant pour travailleur de 62 ans ou plus</strong> (grille de calcul 3)
+      <strong>Montant pour prolongation de carrière</strong> (grille de calcul 3)
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -371,10 +349,10 @@
       Additionnez les montants des lignes 7 et 9.
     </div>
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 border-bottom row-min-35 hidden-md hidden-lg">
-      <strong>Montants</strong>
+      <strong>Montants des crédits d’impôt personnels</strong>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 border-bottom row-min-35 text-right hidden-sm hidden-xs">
-      <strong>Montants</strong>
+      <strong>Montants des crédits d’impôt personnels</strong>
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -390,7 +368,7 @@
       </div>
     </div>
   </div>
-
+  
   <div class="row">
     <div class="col-lg-12">
       <h4>
@@ -472,12 +450,12 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      Additionnez les montants des lignes 14 et 15.
+      Additionnez les montants des lignes 14 et 15 (notez que votre employeur ou le payeur divisera ce montant.
     </div>
   </div>
   <div class="row border-bottom">
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 row-min-35">
-      (Notez que votre employeur ou le payeur divisera ce montant par le nombre de paies qui restent dans l’année.)
+      par le nombre de paies qui restent dans l’année).
     </div>
     <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 row-min-35">
       <strong>Déductions</strong>
@@ -507,10 +485,10 @@
 
   <div class="row">
     <div class="col-lg-11 col-md-11 col-sm-12 col-xs-12">
-      Si vous demandez une exonération de la retenue d’impôt sur vos revenus d’emploi pour 2019, cochez la case 20.
+      Si vous demandez une exonération de la retenue d’impôt sur vos revenus d’emploi pour 2021, cochez la case 20.
     </div>
     <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+      <div class="col-lg-6 col-md-6 col-sm-2 col-xs-2">
         <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
           20
         </div>
@@ -535,29 +513,19 @@
     </div>
   </div>
   <div class="row form-horizontal">
-    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
-      <label class="control-label">
-        Signature
-      </label>
-    </div>
-    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-      <$client.env.FormField.signature.HTML>
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
-      <label class="control-label">
-        Date
-      </label>
-    </div>
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-      <$client.env.FormField.DateSigned.HTML>
-    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 lifesuite__clearfix text DT">
+                        <$client.env.FormField.Signer.HTML>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 lifesuite__clearfix text">
+                        <!-- <b>It is a serious offence to make a false return.</b> -->
+                    </div>
   </div>
 
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">Grille de calcul 1 –</strong>
-        <strong>Montant pour personnes à charge</strong>
+        <strong class="text-blue">Grille de calcul 1</strong>
+        <strong>– Montant pour personnes à charge</strong>
         <small>
           (voyez les instructions concernant la ligne 3)
         </small>
@@ -566,14 +534,17 @@
   </div>
   <div class="row">
     <div class="col-lg-12">
-      Si vous demandez un montant pour plus de deux enfants mineurs aux études postsecondaires ou pour plus de deux autres personnes à charge, joignez une feuille contenant les renseignements demandés et inscrivez le résultat de vos calculs à la ligne 52.
+      Si vous demandez un montant pour plus de deux enfants mineurs aux études postsecondaires ou pour plus de deux autres personnes à charge,
+joignez une feuille contenant les renseignements demandés et inscrivez le résultat de vos calculs à la ligne 52.
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block valign-bottom">
       <div class="text-bottom border-bottom">
-        Montant pour enfant mineur aux études postsecondaires. Inscrivez 2 933 $ par session complétée, commencée en 2019 <strong>(maximum : deux sessions par enfant).</strong>
+        Montant pour enfant mineur aux études postsecondaires. Inscrivez 3 021 $ par session
+complétée, commencée en 2021
+(<Strong>maximum : deux sessions par enfant</Strong>).
       </div>
     </div><!--
     --><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block">
@@ -582,31 +553,31 @@
           <strong>Enfants mineurs</strong>
         </div>
         <div class="col-lg-12 text-center">
-          au 31 décembre 2019
+          au 31 décembre 2021
         </div>
       </div>
       <div class="row">
         <div class="col-lg-2">
           &nbsp;
         </div>
-        <div class="col-lg-5 border-top border-bottom border-left border-right text-center">
+        <div class="col-lg-5 bordered text-cente border-top">
           1<sup>er</sup> enfant
         </div>
-        <div class="col-lg-5 border-top border-bottom border-right text-center">
+        <div class="col-lg-5 bordered topN text-center border-top borderedLG-rignt">
           2<sup>e</sup> enfant
         </div>
       </div>
       <div class="row">
         <div class="col-lg-2 text-right">
-          <div class="number-box border-top border-bottom border-left border-right text-center inline-block">
+          <div class="bordered borderedLG-rl number-box text-center inline-block">
             40
           </div>
           &nbsp;
         </div>
-        <div class="col-lg-5 border-top border-bottom border-left border-right text-center row-min-75">
+        <div class="col-lg-5 bordered topY text-center row-min-75">
           <$client.env.FormField.Line40a.HTML>
         </div>
-        <div class="col-lg-5 border-top border-bottom border-right text-center row-min-75">
+        <div class="col-lg-5 bordered borderedLG-rignt text-center row-min-75">
           <$client.env.FormField.Line40b.HTML>
         </div>
       </div>
@@ -621,22 +592,22 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-6 border-top border-bottom border-left border-right text-center">
+        <div class="col-lg-6 border-top bordered text-center">
           1<sup>re</sup> personne
         </div>
-        <div class="col-lg-6 border-top border-bottom border-right text-center">
+        <div class="col-lg-6 border-top topN bordered borderedLG-rignt text-center">
           2<sup>e</sup> personne
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-6 border-top border-bottom border-left border-right text-center row-min-75">
+        <div class="col-lg-6 bordered topY bottomN text-center row-min-75 tpnone">
           <h3>
-          4 274 $
+          4 403 $
           </h3>
         </div>
-        <div class="col-lg-6 border-top border-bottom border-right text-center row-min-75">
+        <div class="col-lg-6 bordered topY borderedLG-rignt text-center row-min-75">
           <h3>
-          4 274 $
+          4 403 $
           </h3>
         </div>
       </div>
@@ -645,32 +616,33 @@
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block valign-top">
       <div class="text-bottom border-bottom">
-        Revenu net estimatif<sup>1</sup> de l’enfant ou de la personne à charge pour 2019
+        Revenu net estimatif<sup>1</sup> de l’enfant ou de la personne à
+charge pour 2021
       </div>
     </div><!--
     --><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block valign-top">
       <div class="row">
         <div class="col-lg-2 text-right">
           -
-          <div class="number-box border-top border-bottom border-left border-right text-center inline-block">
+          <div class="number-box bordered border-top borderedLG-rl text-center inline-block">
             45
           </div>
           &nbsp;
         </div>
-        <div class="col-lg-5 border-top border-bottom border-left border-right text-center">
+        <div class="col-lg-5 bordered border-top text-center">
           <$client.env.FormField.Line45a.HTML>
         </div>
-        <div class="col-lg-5 border-top border-bottom border-right text-center">
+        <div class="col-lg-5 bordered border-top topN borderedLG-rignt text-center">
           <$client.env.FormField.Line45b.HTML>
         </div>
       </div>
     </div><!--
     --><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block">
       <div class="row">
-        <div class="col-lg-6 border-top border-bottom border-left border-right text-center">
+        <div class="col-lg-6 bordered border-top topN text-center">
           <$client.env.FormField.Line45c.HTML>
         </div>
-        <div class="col-lg-6 border-top border-bottom border-right text-center">
+        <div class="col-lg-6 bordered border-top topN borderedLG-rignt text-center">
           <$client.env.FormField.Line45d.HTML>
         </div>
       </div>
@@ -679,33 +651,33 @@
   <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block valign-top">
       <div class="text-bottom">
-        Montant de la ligne 40 moins celui de la ligne 45. <br>
-        Si le résultat est négatif, inscrivez 0.
+        Montant de la ligne 40 moins celui de la ligne 45.
+Si le résultat est négatif, inscrivez 0.
       </div>
     </div><!--
     --><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block valign-top">
       <div class="row">
         <div class="col-lg-2 text-right">
           =
-          <div class="number-box border-top border-bottom border-left border-right text-center inline-block">
+          <div class="number-box bordered border-top borderedLG-rl text-center inline-block">
             50
           </div>
           &nbsp;
         </div>
-        <div class="col-lg-5 border-top border-bottom border-left border-right text-center">
+        <div class="col-lg-5 bordered border-top text-center">
           <$client.env.FormField.Line50a.HTML>
         </div>
-        <div class="col-lg-5 border-top border-bottom border-right text-center">
+        <div class="col-lg-5 bordered border-top topN borderedLG-rignt text-center">
           <$client.env.FormField.Line50b.HTML>
         </div>
       </div>
     </div><!--
     --><div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 inline-block">
       <div class="row">
-        <div class="col-lg-6 border-top border-bottom border-left border-right text-center">
+        <div class="col-lg-6 bordered border-top topN text-center">
           <$client.env.FormField.Line50c.HTML>
         </div>
-        <div class="col-lg-6 border-top border-bottom border-right text-center">
+        <div class="col-lg-6 bordered border-top topN borderedLG-rignt text-center">
           <$client.env.FormField.Line50d.HTML>
         </div>
       </div>
@@ -731,12 +703,12 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Si vous demandez un montant pour une personne qui atteint 18 ans en 2019, inscrivez le résultat du calcul suivant: <br>
-      <strong>356 $</strong> × nombre de mois dans l’année qui précèdent l’anniversaire (y compris le mois de l’anniversaire). Sinon, inscrivez 0.
+     Si vous demandez un montant pour une personne qui atteint 18 ans en 2021, inscrivez le résultat du calcul suivant :
+367 $ × nombre de mois dans l’année qui précèdent l’anniversaire (y compris le mois de l’anniversaire). Sinon, inscrivez 0.
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        &nbsp;
+        -
       </div>
       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
         <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
@@ -751,13 +723,13 @@
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
       <div class="col-lg-12">
-        Montant de la ligne 52 moins celui de la ligne 55.
+        Montant de la ligne 52 moins celui de la ligne 55. 
       </div>
       <div class="col-lg-9">
         Si le résultat est négatif, inscrivez 0. Reportez le résultat à la ligne 3.
       </div>
       <div class="col-lg-3">
-        <strong>Montant pour personnes à charge</strong>
+        <strong>Montant pour personnes à charges</strong>
       </div>
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
@@ -783,15 +755,14 @@
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">Grille de calcul 2 –</strong>
-        <strong>Montant accordé en raison de l’âge ou pour personne vivant seule ou pour revenus de retraite</strong>
+        <strong class="text-blue">Grille de calcul 2</strong>
+        <strong> – Montant accordé en raison de l’âge ou pour personne vivant seule ou pour revenus de retraite</strong>
         <small>
           (voyez les instructions concernant la ligne 6)
         </small>
       </h4>
     </div>
   </div>
-
   <div class="row">
     <div class="col-lg-12">
       <strong>Montant accordé en raison de l’âge</strong>
@@ -799,7 +770,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Si vous ou votre conjoint avez 65 ans ou plus en 2019, inscrivez 3 212 $ pour chaque personne qui a 65 ans ou plus en 2019.
+      Si vous ou votre conjoint avez 65 ans ou plus en 2021, inscrivez 3 308 $ pour chaque personne qui a 65 ans ou plus en 2021.
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -838,7 +809,8 @@
   </div>
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Montant additionnel pour personne vivant seule (famille monoparentale)
+      Montant additionnel pour personne vivant seule
+(famille monoparentale)
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -856,7 +828,8 @@
   </div>
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      180 $ × nombre de mois en 2019 où vous avez droit au paiement de soutien aux enfants
+      185 $ × nombre de mois en 2021 où vous avez droit
+à l’allocation famille
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -886,7 +859,7 @@
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <img src="assets/img/plus_arrow.jpg" style="width: 15px; height: auto;" />
+        <img src="<$link;/main/RedCarpet/FormTemplates/Quebec_Source_Deductions_Return/assets/img/plus_arrow.jpg>" style="width: 15px; height: auto;" />
       </div>
       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
         <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
@@ -912,7 +885,7 @@
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <img src="assets/img/plus_arrow.jpg" style="width: 15px; height: auto;" />
+        <img src="<$link;/main/RedCarpet/FormTemplates/Quebec_Source_Deductions_Return/assets/img/plus_arrow.jpg>" style="width: 15px; height: auto;" />
       </div>
       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
         <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
@@ -926,7 +899,7 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      <strong>Montant pour revenus de retraite</strong> (maximum : 2 853 $ pour chaque personne)
+      <strong>Montant pour revenus de retraite</strong> (maximum : 2 939 $)
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -944,7 +917,25 @@
   </div>
   <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Additionnez les montants des lignes 70, 79 et 80.
+      <strong>Montant pour revenus de retraite de votre conjoint au 31 décembre 2021</strong> (maximum : 2 939 $)
+    </div><!--
+    --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
+      <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        +
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
+          81
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom">
+        <$client.env.FormField.Line81.HTML>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
+      Additionnez les montants des lignes 70 et 79 à 81.
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -967,7 +958,7 @@
   </div>
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Total de votre revenu net estimatif et de celui de votre conjoint au 31 décembre 2019
+      Total de votre revenu net estimatif et de celui de votre conjoint au 31 décembre 2021
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
@@ -999,7 +990,7 @@
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom text-center">
           <h5>
-            <strong>34 610 $</strong>
+            <strong>35 650 $</strong>
           </h5>
         </div>
       </div>
@@ -1020,7 +1011,7 @@
   </div>
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-      Montant de la ligne 92 multiplié par 18,75%
+      Montant de la ligne 92 multiplié par 18,75 %
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="row">
@@ -1034,7 +1025,7 @@
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom text-center">
           <h5>
-            <strong>18,75%</strong>
+            <strong>18.75%</strong>
           </h5>
         </div>
       </div>
@@ -1049,7 +1040,7 @@
     </div><!--
     --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
       <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        <img src="assets/img/plus_arrow.jpg" alt="" style="width: 15px; height: auto;">
+        <img src="<$link;/main/RedCarpet/FormTemplates/Quebec_Source_Deductions_Return/assets/img/minus_arrow.jpg>" alt="" style="width: 15px; height: auto;">
       </div>
       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
         <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
@@ -1126,8 +1117,8 @@
   <div class="row">
     <div class="col-lg-12">
       <h4>
-        <strong class="text-blue">Grille de calcul 3 –</strong>
-        <strong>Montant pour travailleur d’exp&eacute;rience</strong>
+        <strong class="text-blue">Grille de calcul 3 - </strong>
+        <strong> Montant pour prolongation de carrière</strong>
         <small>
           (voyez les instructions concernant la ligne 9)
         </small>
@@ -1143,68 +1134,72 @@
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           &nbsp;
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             110
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom">
           <$client.env.FormField.Line110.HTML>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Montant des revenus inclus à la ligne 110 que vous prévoyez gagner avant d’atteindre l’âge de 61 ans <strong>ou</strong> qui se rapportent à une année passée (montant rétroactif)
+       Montant des revenus inclus à la ligne 110 que vous prévoyez gagner avant d’atteindre l’âge de 60 ans ou qui se rapportent à une
+année passée (montant rétroactif)
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           -
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             111
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Montant de la ligne 110 moins celui de la ligne 111. <br>
-        Si vous êtes n&eacute; en 1954, en 1955, en 1956 ou en 1957, passez &agrave; la ligne 118. Sinon, continuez le calcul.
+        Montant de la ligne 110 moins celui de la ligne 111.
+Si vous êtes né en 1956, passez à la ligne 118. Sinon, continuez le calcul.
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           =
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             112
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom">
           <$client.env.FormField.Line112.HTML>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Montant de la ligne 112 moins celui de la ligne 114 (<strong>maximum : 11 000 $</strong> si vous avez 66 ans ou plus au 31 décembre 2019 ou <strong>3 000 $</strong> si vous avez 62 ans au 31 décembre 2019). Reportez le résultat à la ligne 135 et passez à la ligne 140.
+       Montant de la ligne 112 moins celui de la ligne 114 (<strong>maximum : 11 000 $</strong> si vous êtes né avant le 1er janvier 1956
+ou <strong>10 000 $</strong> si vous êtes né après 1956 mais avant 1962). Reportez le résultat à la ligne 135 et suivez les instructions
+indiquées à cette ligne.
+        
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="row">
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
             -
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
             <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
               114
             </div>
           </div>
-          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+          <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             <h5 class="text-center">
               <strong>5 000 $</strong>
             </h5>
@@ -1214,12 +1209,12 @@
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
             =
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
             <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
               115
             </div>
           </div>
-          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom">
+          <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom">
             <$client.env.FormField.Line115b.HTML>
           </div>
         </div>
@@ -1227,7 +1222,9 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <strong>Remplissez les lignes 118 à 130 seulement si vous êtes né en 1954, en 1955, en 1956 ou en 1957.</strong>
+        <strong>
+          Remplissez les lignes 118 à 130 seulement si vous êtes né en 1956.
+        </strong>
       </div>
     </div>
     <div class="row">
@@ -1238,30 +1235,30 @@
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           &nbsp;
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             118
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Montant des revenus inclus à la ligne 112 que vous prévoyez gagner avant votre anniversaire
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
+        Montant des revenus inclus à la ligne 112 que vous prévoyez gagner avant votre 65<sup>e</sup> anniversaire
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           -
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             119
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-3 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
@@ -1274,12 +1271,12 @@
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           =
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             120
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
@@ -1293,12 +1290,12 @@
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
             &nbsp;
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
             <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
               121
             </div>
           </div>
-          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+          <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             <h5 class="text-center">
               <strong>5 000 $</strong>
             </h5>
@@ -1308,12 +1305,12 @@
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
             -
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
             <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
               122
             </div>
           </div>
-          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+          <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             &nbsp;
           </div>
         </div>
@@ -1336,14 +1333,14 @@
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="row">
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-            <img src="assets/img/plus_arrow.jpg" alt="" style="width: 15px; height: auto;">
+            <img src="<$link;/main/RedCarpet/FormTemplates/Quebec_Source_Deductions_Return/assets/img/minus_arrow.jpg>" alt="" style="width: 15px; height: auto;">
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
             <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
               125
             </div>
           </div>
-          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+          <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             &nbsp;
           </div>
         </div>
@@ -1357,12 +1354,12 @@
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           =
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             126
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
@@ -1375,31 +1372,32 @@
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           =
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             127
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Montant de la ligne 127 moins celui de la ligne 128 (<strong>maximum : 9 000 $</strong> si vous êtes né en 1954; <strong>7 000 $</strong> si vous êtes né en 1955; <strong>5 000 $</strong> si vous êtes né en 1956; ou <strong>3 000 $</strong> si vous êtes né en 1957). Si le résultat est négatif, inscrivez 0.
+        Montant de la ligne 127 moins celui de la ligne 128 (<Strong>maximum : 10 000 $</Strong>).
+        Si le résultat est négatif, inscrivez 0.
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block valign-bottom">
         <div class="row">
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
             -
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
             <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
               128
             </div>
           </div>
-          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+          <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             <h5 class="text-center">
               <strong>5 000 $</strong>
             </h5>
@@ -1416,50 +1414,52 @@
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block valign-bottom">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-          <img src="assets/img/plus_arrow.jpg" alt="" style="width: 15px; height: auto;">
+          <img src="<$link;/main/RedCarpet/FormTemplates/Quebec_Source_Deductions_Return/assets/img/plus_arrow.jpg>" alt="" style="width: 15px; height: auto;">
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             129
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Additionnez les montants des lignes 126 et 129 (<strong>maximum : 11 000 $</strong> si vous êtes né en 1954; <strong>9 000 $</strong> si vous êtes né en 1955; <strong>7 000 $</strong> si vous êtes né en 1956; ou <strong>5 000 $</strong> si vous êtes né en 1957).
+        Additionnez les montants des lignes 126 et 129 (<Strong>maximum : 11 000 $</Strong>).
+        
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           =
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             130
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom">
-        Montant de la ligne 115 ou celui de la ligne 130, selon le cas. Si vous êtes né avant le 1<sup>er</sup> janvier 1951 et que le résultat ne dépasse pas 4 000 $, reportez-le à la ligne 9. Dans les autres cas, continuez le calcul.
+        Montant de la ligne 115 ou celui de la ligne 130, selon le cas. Si vous êtes né avant le 1er janvier 1951 et que le résultat
+ne dépasse pas 4 000 $, reportez-le à la ligne 9. Dans les autres cas, continuez le calcul.
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           &nbsp;
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             135
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
@@ -1472,12 +1472,12 @@
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           &nbsp;
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             140
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
@@ -1491,14 +1491,14 @@
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
             -
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
             <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
               141
             </div>
           </div>
-          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+          <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             <h5 class="text-center">
-              <strong>34 610 $</strong>
+              <strong>35 650 $</strong>
             </h5>
           </div>
         </div>
@@ -1506,12 +1506,12 @@
           <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
             =
           </div>
-          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
             <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
               142
             </div>
           </div>
-          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+          <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
             &nbsp;
           </div>
         </div>
@@ -1543,37 +1543,39 @@
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block valign-bottom">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-          <img src="assets/img/minus_arrow.jpg" alt="" style="width: 15px; height: auto;">
+          <img src="<$link;/main/RedCarpet/FormTemplates/Quebec_Source_Deductions_Return/assets/img/minus_arrow.jpg>" alt="" style="width: 15px; height: auto;">
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             144
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-9">
-        Montant de la ligne 135 moins celui de la ligne 144. Si le résultat est négatif, inscrivez 0. Reportez le résultat à la ligne 9, <strong>sauf</strong> si vous êtes né avant le 1<sup>er</sup> janvier 1951. Dans ce cas, reportez plutôt à la ligne 9 <strong>le plus élevé</strong> des montants suivants : celui de la ligne 145 ou 4 000 $.
+        Montant de la ligne 135 moins celui de la ligne 144. Si le résultat est négatif, inscrivez 0. Reportez le résultat à la ligne 9,
+<Strong>sauf</Strong> si vous êtes né avant le 1er janvier 1951. Dans ce cas, reportez plutôt à la ligne 9 <Strong>le plus élevé</Strong> des montants suivants :
+celui de la ligne 145 ou 4 000 $.
       </div>
     </div>
     <div class="row">
       <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 border-bottom row-min-35 inline-block valign-bottom text-right">
-        <strong>Montant pour travailleur de 62 ans ou plus</strong>
+        <strong>Montant pour prolongation de carrière</strong>
       </div><!--
       --><div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 inline-block">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
           =
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2">
           <div class="number-box bg-blue-light border-left border-right border-bottom border-top text-center">
             145
           </div>
         </div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-9 bg-default border-bottom row-min-35">
           &nbsp;
         </div>
       </div>
@@ -1590,16 +1592,30 @@
         <strong>Devez-vous remplir ce formulaire?</strong>
       </p>
       <p class="text-justify">
-        Vous devez remplir ce formulaire et le remettre à votre employeur ou au payeur pour qu’il détermine l’impôt à retenir sur un salaire, des commissions, des revenus de pension, des prestations d’assurance parentale, des prestations d’assurance emploi, des prestations d’assurance salaire ou toute autre rémunération qu’il vous verse et sur lesquels un impôt doit être retenu. Si vous ne remplissez pas ce formulaire, votre employeur ou le payeur déterminera l’impôt à retenir en tenant compte uniquement du montant personnel de base. Cette déclaration restera en vigueur tant que vous ne remettrez pas à votre employeur ou au payeur un nouvel exemplaire de ce formulaire dûment rempli.
+        Vous devez remplir ce formulaire et le remettre à votre employeur
+ou au payeur pour qu’il détermine l’impôt à retenir sur un salaire,
+des commissions, des revenus de pension, des prestations d’assurance
+parentale, des prestations d’assurance emploi, des prestations d’assurance
+salaire ou toute autre rémunération qu’il vous verse et sur lesquels un impôt
+doit être retenu. Si vous ne remplissez pas ce formulaire, votre employeur
+ou le payeur déterminera l’impôt à retenir en tenant compte uniquement
+du montant personnel de base. Cette déclaration restera en vigueur tant
+que vous ne remettrez pas à votre employeur ou au payeur un nouvel
+exemplaire de ce formulaire dûment rempli.
       </p>
       <p class="text-justify">
-        Vous n’avez pas à remplir ce formulaire chaque année pour bénéficier de l’indexation annuelle du régime d’imposition.
+        Vous n’avez pas à remplir ce formulaire chaque année pour bénéficier
+de l’indexation annuelle du régime d’imposition.
       </p>
       <p class="text-justify">
-        Les déductions et les crédits d’impôt personnels qui figurent dans ce formulaire peuvent être limités si vous n’êtes pas résident du Canada ou si vous le devenez durant l’année. Dans de tels cas, communiquez avec nous.
+        Les déductions et les crédits d’impôt personnels qui figurent dans
+ce formulaire peuvent être limités si vous n’êtes pas résident du Canada
+ou si vous le devenez durant l’année. Dans de tels cas, communiquez
+avec nous.
       </p>
       <p>
-        Notez que ce formulaire est accessible dans notre site Internet, à <strong>revenuquebec.ca</strong>.
+        Notez que ce formulaire est accessible dans notre site Internet,
+à <a href="https://www.revenuquebec.ca/fr/" target="blank">revenuquebec.ca</a>.
       </p>
       <p>
         <strong>
@@ -1607,39 +1623,60 @@
         </strong>
       </p>
       <p>
-        Vous devez remettre ce formulaire dûment rempli à votre employeur ou au payeur
+        Vous devez remettre ce formulaire dûment rempli à votre employeur
+ou au payeur
       </p>
       <ul class="text-justify">
         <li>
-          à la date de votre entrée en fonction, si c’est un employeur qui verse la rémunération;
+          à la date de votre entrée en fonction, si c’est un employeur qui verse
+la rémunération;
         </li>
         <li>
-          avant le premier versement de la rémunération, si c’est un payeur (et non votre employeur) qui verse la rémunération;
+          avant le premier versement de la rémunération, si c’est un payeur
+(et non votre employeur) qui verse la rémunération;
         </li>
         <li>
-          dans les quinze jours qui suivent un évènement entraînant une réduction des montants demandés dans le dernier formulaire TP-1015.3 que vous avez rempli, sauf si cette réduction vise les montants inscrits aux lignes 2 à 9 et qu’elle ne modifie pas le code de retenues correspondant au montant de la ligne 10.
+          dans les quinze jours qui suivent un évènement entraînant une réduction
+des montants demandés dans le dernier formulaire TP-1015.3 que
+vous avez rempli.
         </li>
       </ul>
       <p>
-        Par ailleurs, vous pouvez en tout temps remettre ce formulaire ou un nouvel exemplaire de celui-ci dûment rempli à votre employeur ou au payeur, selon le cas,
+        Par ailleurs, vous pouvez en tout temps remettre ce formulaire ou un nouvel
+exemplaire de celui-ci dûment rempli à votre employeur ou au payeur, selon
+le cas,
       </p>
       <ul class="text-justify">
         <li>
-          pour lui demander de tenir compte, dans le calcul de votre retenue d’impôt, des déductions ou des crédits d’impôt auxquels vous avez droit;
+          pour lui demander de tenir compte, dans le calcul de votre retenue
+d’impôt, des déductions ou des crédits d’impôt auxquels vous avez droit;
         </li>
         <li>
           pour demander d’augmenter le montant de l’impôt retenu à la source;
         </li>
         <li>
-          pour demander une exonération de la retenue d’impôt du Québec sur vos revenus d’emploi.
+          pour demander une exonération de la retenue d’impôt du Québec sur
+vos revenus d’emploi.
         </li>
       </ul>
       <p>
         <strong>Réduction de la retenue d’impôt</strong>
       </p>
       <p class="text-justify">
-        Si vous avez droit à des déductions ou à des crédits d’impôt qui ne figurent pas dans ce formulaire, remplissez le formulaire <em>Demande de réduction de la retenue d’impôt</em> (TP-1016) afin que nous puissions autoriser votre employeur ou le payeur à réduire votre retenue d’impôt.
+        Si vous avez droit à des déductions ou à des crédits d’impôt qui ne figurent
+pas dans ce formulaire, remplissez le formulaire <em>Demande de réduction
+de la retenue d’impôt</em> (TP-1016) afin que nous puissions autoriser votre
+employeur ou le payeur à réduire votre retenue d’impôt.
       </p>
+      <div class="border-bottom border-gray vspace">
+        <div class="inline-block bg-gray line-box valign-middle">
+          <strong>Ligne 1</strong>
+        </div>
+        <div class="inline-block valign-middle">
+          <strong>Montant personnel de base</strong>
+        </div>
+      </div>
+      <p class="text-justify">Si vous avez déjà demandé à un autre employeur ou à un autre payeur de tenir compte du montant personnel de base, vous pouvez passer à la ligne 10 et y inscrire « 0 » pour que ce montant ne soit pas pris en considération une seconde fois. Toutefois, si vous quittez cet autre employeur ou si vous ne recevez plus de sommes de cet autre payeur, vous pourriez remplir un nouvel exemplaire de ce formulaire pour que votre employeur actuel tienne compte du montant personnel de base.</p>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
           <strong>Ligne 2</strong>
@@ -1649,11 +1686,14 @@
         </div>
       </div>
       <p class="text-justify">
-        Si vous prévoyez avoir un <strong>conjoint au 31 décembre 2019</strong>, vous pouvez demander le montant transféré d’un conjoint à l’autre. Toutefois, vous ne pouvez pas demander ce montant si votre conjoint reçoit des indemnités pour accident du travail, pour retrait préventif ou pour accident de la route, ou des indemnités en raison d’un acte de civisme ou à titre de victime d’un acte criminel.
+       Si vous prévoyez avoir un <Strong>conjoint au 31 décembre 2021</Strong>, vous pouvez
+demander le montant transféré d’un conjoint à l’autre. Toutefois, vous ne
+pouvez pas demander ce montant si votre conjoint reçoit des indemnités
+pour accident du travail, pour retrait préventif ou pour accident de la route,
+ou des indemnités en raison d’un acte de civisme ou à titre de victime d’un
+acte criminel.
       </p>
-      <p class="text-justify">
-        Pour calculer le revenu imposable estimatif de votre conjoint, vous pouvez vous référer aux lignes 101 à 299 de sa déclaration de revenus de 2018. Notez que, pour demander le montant transféré d’un conjoint à l’autre, vous et votre conjoint devez chacun produire une déclaration de revenus pour 2019.
-      </p>
+      <p class="text-justify">Pour calculer le revenu imposable estimatif de votre conjoint, vous pouvez vous référer aux lignes 101 à 299 de sa déclaration de revenus de 2020. Notez que, pour demander le montant transféré d’un conjoint à l’autre, vous et votre conjoint devez chacun produire une déclaration de revenus pour 2021.</p>
       <div class="bg-yellow vspace box-wrapper">
         <div class="row">
           <div class="col-lg-12">
@@ -1661,34 +1701,47 @@
               <strong>Conjoint</strong>
             </p>
             <p class="text-justify">
-              Personne qui est unie à vous par les liens du mariage ou unie à vous civilement, ou personne qui est votre conjoint de fait.
+              Personne qui est unie à vous par les liens du mariage ou unie à vous
+civilement, ou personne qui est votre conjoint de fait.
             </p>
             <p>
               <strong>Conjoint de fait</strong>
             </p>
             <p class="text-justify">
-              Personne (du sexe opposé ou du même sexe) qui, à un moment de l’année 2019, selon le cas,
+              Personne (du sexe opposé ou du même sexe) qui, à un moment de
+l’année 2021, selon le cas,
             </p>
             <ul class="text-justify">
               <li>
-                vit maritalement avec vous et est la mère ou le père biologique ou adoptif (légalement ou de fait) d’au moins un de vos enfants;
+                vit maritalement avec vous et est la mère ou le père biologique
+ou adoptif (légalement ou de fait) d’au moins un de vos enfants;
               </li>
               <li>
-                vit maritalement avec vous depuis au moins 12 mois consécutifs (toute rupture de l’union de moins de 90 jours n’interrompt pas la période de 12 mois).
+                vit maritalement avec vous depuis au moins 12 mois consécutifs
+(toute rupture de l’union de moins de 90 jours n’interrompt pas la
+période de 12 mois).
               </li>
             </ul>
             <p>
-              <strong>Conjoint au 31 décembre 2019</strong>
+              <strong>Conjoint au 31 décembre 2021</strong>
             </p>
             <p>
               Personne qui est, selon le cas,
             </p>
             <ul class="text-justify">
               <li>
-                votre conjoint à la fin de cette journée si vous ne vivez pas séparé de lui à ce moment en raison de la rupture de votre union, ou si vous vivez séparé de lui à ce moment en raison de la rupture de votre union et que cette rupture a duré moins de 90 jours;
+                votre conjoint à la fin de cette journée et <strong>dont vous ne vivez pas
+séparé</strong>, à ce moment, <strong>en raison de la rupture de votre union</strong>
+(notez que vous êtes considéré comme ayant un conjoint au
+31 décembre 2021 si vous vivez séparé de lui à ce moment en
+raison de la rupture de votre union, mais que cette rupture dure
+depuis moins de 90 jours);
               </li>
               <li>
-                votre conjoint au moment de son décès en 2019 si vous ne vivez pas séparé de lui à ce moment depuis au moins 90 jours en raison de la rupture de votre union et que vous n’avez pas de nouveau conjoint au 31 décembre 2019.
+                votre conjoint au moment de son décès en 2021 si vous ne vivez
+pas séparé de lui à ce moment depuis au moins 90 jours en raison
+de la rupture de votre union et que vous n’avez pas de nouveau
+conjoint au 31 décembre 2021.
               </li>
             </ul>
           </div>
@@ -1706,21 +1759,34 @@
         <strong>Montant pour enfant mineur aux études postsecondaires</strong>
       </p>
       <p class="text-justify">
-        Si vous prévoyez subvenir aux besoins d’au moins un <strong>enfant mineur aux études postsecondaires</strong> au 31 décembre 2019, remplissez la grille de calcul 1. Si l’enfant a un conjoint et que cet enfant transfère la partie inutilisée de ses crédits à son conjoint, vous ne pouvez pas demander le montant pour enfant mineur aux études postsecondaires pour cet enfant.
+        Si vous prévoyez subvenir aux besoins d’au moins un <strong>enfant mineur
+aux études postsecondaires</strong> au 31 décembre 2021, remplissez la grille
+de calcul 1. Si l’enfant a un conjoint et que cet enfant transfère la partie
+inutilisée de ses crédits à son conjoint, vous ne pouvez pas demander le
+montant pour enfant mineur aux études postsecondaires pour cet enfant.
       </p>
+      <!-- <p class="text-justify">
+        If the child transfers the unused portion of his or her credits to his or her
+spouse, you cannot claim the amount for a child under 18 enrolled in
+post-secondary studies with respect to that child.
+      </p> -->
       <div class="bg-yellow vspace box-wrapper">
         <p class="text-justify">
           <strong>Enfant mineur aux études postsecondaires</strong>
         </p>
         <p class="text-justify">
-          Personne née après le 31 décembre 2001 qui, en 2019, poursuit à temps plein des études secondaires à la formation professionnelle ou des études postsecondaires, et aux besoins de laquelle vous subvenez. Il peut s’agir des personnes suivantes :
+          Personne née après le 31 décembre 2003 qui, en 2021, poursuit
+à temps plein des études secondaires à la formation professionnelle
+ou des études postsecondaires, et aux besoins de laquelle vous
+subvenez. Il peut s’agir des personnes suivantes :
         </p>
         <ul class="text-justify">
           <li>
             votre enfant ou celui de votre conjoint;
           </li>
           <li>
-            une personne dont vous ou votre conjoint avez la garde et la surveillance (de droit ou de fait);
+            une personne dont vous ou votre conjoint avez la garde et la
+surveillance (de droit ou de fait);
           </li>
           <li>
             le conjoint de votre enfant;
@@ -1734,28 +1800,31 @@
         <strong>Montant pour autres personnes à charge</strong>
       </p>
       <p class="text-justify">
-        Si vous prévoyez subvenir aux besoins d’au moins une <strong>autre personne à charge</strong> âgée de 18 ans ou plus en 2019, remplissez la grille de calcul 1.
+        Si vous prévoyez subvenir aux besoins d’au moins une <Strong>autre personne
+à charge</Strong> âgée de 18 ans ou plus en 2021, remplissez la grille de calcul 1.
       </p>
       <div class="bg-yellow vspace box-wrapper">
         <p>
           <strong>Autre personne à charge</strong>
         </p>
         <p class="text-justify">
-          Personne qui remplit <strong>les trois</strong> conditions suivantes :
+         Personne qui remplit <Strong>les trois</Strong> conditions suivantes :
         </p>
         <ul class="text-justify">
           <li>
-            elle est âgée de 18 ans ou plus en 2019;
+            elle est âgée de 18 ans ou plus en 2021;
           </li>
           <li>
             elle est unie à vous par les liens du sang, du mariage ou de l’adoption;
           </li>
           <li>
-            elle <strong>habite ordinairement</strong> avec vous, et vous subvenez à ses besoins.
+            elle <Strong>habite ordinairement avec vous</Strong>, et vous subvenez à ses besoins.
           </li>
         </ul>
         <p class="text-justify">
-          Cette personne n’est ni votre conjoint, ni une personne qui transfère à son conjoint la partie inutilisée de ses crédits, ni un enfant qui transfère un montant pour enfant majeur aux études postsecondaires.
+          Cette personne n’est ni votre conjoint, ni une personne qui transfère
+à son conjoint la partie inutilisée de ses crédits, ni un enfant qui
+transfère un montant pour enfant majeur aux études postsecondaires.
         </p>
       </div>
       <div class="border-bottom border-gray vspace">
@@ -1763,85 +1832,123 @@
           <strong>Ligne 5</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Montant pour déficience grave et prolongée des fonctions mentales ou physiques</strong>
+          <strong>Montant pour déficience grave et prolongée
+des fonctions mentales ou physiques</strong>
         </div>
       </div>
       <p class="text-justify">
-        Si vous avez inscrit un montant à la ligne 2 et qu’en 2019, vous avez le droit de demander, pour vous ou votre conjoint, le montant pour déficience grave et prolongée des fonctions mentales ou physiques, vous pouvez inscrire <strong>3 391 $</strong> pour chaque personne qui a une telle déficience attestée par un professionnel de la santé. Pour plus de ren- seignements, consultez le formulaire <em>Attestationdedéficience</em> (TP-752.0.14).
+       Si, en 2021, vous avez le droit de demander, pour vous ou votre conjoint, le
+montant pour déficience grave et prolongée des fonctions mentales ou physiques,
+vous pouvez inscrire <Strong>3 492 $</Strong> pour chaque personne qui a une telle
+déficience attestée par un professionnel de la santé. Pour plus de renseignements,
+consultez le formulaire <em>Attestation de déficience</em> (TP‑752.0.14).
       </p>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 box-wrapper">
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
           <strong>Ligne 6</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Montant accordé en raison de l’âge ou pour personne vivant seule ou pour revenus de retraite</strong>
+          <strong>Montant accordé en raison de l’âge ou pour
+personne vivant seule ou pour revenus de retraitee</strong>
         </div>
       </div>
       <p class="text-justify">
-        Le montant accordé en raison de l’âge ou pour personne vivant seule ou pour revenus de retraite peut être réduit en fonction de votre revenu familial net estimatif. Pour calculer ce dernier, vous pouvez vous référer aux lignes 101 à 275 de votre déclaration de revenus de 2018 et de celle de votre conjoint, s’il y lieu.
+        Le montant accordé en raison de l’âge ou pour personne vivant seule
+ou pour revenus de retraite peut être réduit en fonction de votre revenu
+familial net estimatif. Pour calculer ce dernier, vous pouvez vous référer
+aux lignes 101 à 275 de votre déclaration de revenus et de celle de votre
+conjoint, s’il y a lieu.
       </p>
       <p class="text-justify">
-        Notez que vous n’avez pas droit à ce montant si votre revenu familial net estimatif dépasse 74 027 $ et que vous avez un conjoint au 31 décembre 2019, ou s’il dépasse 53 200 $ et que vous n’avez pas de conjoint au 31 décembre 2019.
+        Notez que vous n’avez pas droit à ce montant si votre revenu
+familial net estimatif dépasse 75 245 $ et que vous avez un conjoint
+au 31 décembre 2021, ou s’il dépasse 54 794 $ et que vous n’avez pas
+de conjoint au 31 décembre 2021.
       </p>
-    </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 box-wrapper">
+
       <p>
-        <strong>Montant accordé en raison de l’âge</strong> (ligne 70 de la grille de calcul 2)
+        <strong>Montant pour personne vivant seule</strong><br>
+(ligne 75 de la grille de calcul 2)
       </p>
       <p class="text-justify">
-        Si vous ou votre conjoint avez 65 ans ou plus en 2019, vous pouvez inscrire <strong>3 212 $</strong> pour chaque personne qui a 65 ans ou plus en 2019.
+        Si, <Strong>pendant toute l’année 2021</Strong>, vous prévoyez occuper ordinairement
+et tenir une <Strong>habitation</Strong> dans laquelle vous vivrez <strong>seul</strong> ou <strong>uniquement</strong>
+avec une ou des personnes mineures, ou encore avec votre ou vos enfants,
+petits-enfants ou arrière-petits-enfants majeurs poursuivant à temps plein
+des études secondaires à la formation professionnelle ou des études
+postsecondaires, vous pouvez inscrire <Strong>1 802 $</Strong>.
+      </p>
+ <!--      <p class="text-justify">
+        <strong>Amount for a person living alone</strong> (line 75 of Work Chart 2)
       </p>
       <p class="text-justify">
-        <strong>Montant pour personne vivant seule (ligne 75 de la grille de calcul 2)</strong>
+        If, <strong>throughout 2020</strong>, you expect to maintain and ordinarily live in a <strong>dwelling</strong> in which you live <strong>alone</strong> or <strong>only</strong> with one or more persons under 18, or one or more of your children 18 or older who are full-time students pursuing vocational training at the secondary level or post-secondary studies, enter <strong>$1,750</strong>.
+      </p>
+  -->     <p class="text-justify">
+        <strong>
+          Montant additionnel pour personne vivant seule
+        </strong>
+        (famille monoparentale) [ligne 76 de la grille de calcul 2]
       </p>
       <p class="text-justify">
-        Si, <strong>pendant toute l’année 2019</strong>, vous prévoyez occuper ordinairement et tenir une <strong>habitation</strong> dans laquelle vous vivrez <strong>seul</strong> ou <strong>uniquement</strong> avec une ou des personnes mineures, ou encore avec votre ou vos enfants, petits-enfants ou arrière-petits-enfants majeurs poursuivant à temps plein des études secondaires à la formation professionnelle ou des études postsecondaires, vous pouvez inscrire <strong>1 750 $</strong>.
-      </p>
-      <p class="text-justify">
-        Montant additionnel pour personne vivant seule (famille monoparentale)[ligne 76 de la grille de calcul 2]
-      </p>
-      <p class="text-justify">
-        Vous pouvez inscrire <strong>2 160 $</strong> si vous avez droit, pour 2019, au montant pour personne vivant seule et que
+        Vous pouvez inscrire <strong>2 225 $</strong> si vous avez droit, pour 2021, au montant
+pour personne vivant seule et que
       </p>
       <ul class="text-justify">
         <li>
-          vous habitez, <strong>à un moment de l’année 2019</strong>, avec votre ou vos enfants majeurs poursuivant à temps plein des études secondaires à la formation professionnelle ou des études postsecondaires;
+          vous habitez, <Strong>à un moment de l’année 2021</Strong>, avec votre ou vos
+enfants majeurs poursuivant à temps plein des études secondaires
+à la formation professionnelle ou des études postsecondaires;
         </li>
         <li>
-          vous n’avez pas droit au paiement de soutien aux enfants pour le mois de décembre 2019.
+         vous n’avez pas droit à l’allocation famille pour le mois de
+décembre 2021.
         </li>
       </ul>
       <p class="text-justify">
-        <strong>Montant pour revenus de retraite (ligne 80 de la grille de calcul 2)</strong>
+        <strong>Montant pour revenus de retraite</strong> <Br>(ligne 80 de la grille de calcul 2)
       </p>
       <p class="text-justify">
-        Si vous ou votre conjoint recevez des revenus de retraite donnant droit à un crédit d’impôt en 2019, inscrivez le moins élevé des montants suivants :
+        Si vous ou votre conjoint recevez des revenus de retraite donnant droit
+à un crédit d’impôt en 2021, inscrivez le moins élevé des montants suivants :
       </p>
       <ul class="text-justify">
         <li>
-          le montant que vous ou votre conjoint , ou les deux, recevez dans l’année multiplié par 1,25;
+          le montant des revenus que vous prévoyez recevoir en 2021 et qui donnent droit au montant pour revenus de retraite, multiplié par 1,25;
         </li>
         <li>
-          2 853 $ pour vous ou votre conjoint, ou 5 706 $ pour les deux.
+          2 939 $.
         </li>
+      </ul>
+      <p class="text-justify">
+        <strong>Montant pour revenus de retraite de votre conjoint au 31 décembre 2021</strong><br>(ligne 81 de la grille de calcul 2)
+      </p>
+      <p class="text-justify">Inscrivez le moins élevé des montants suivants :</p>
+      <ul class="text-justify">
+        <li>le montant des revenus que votre conjoint au 31 décembre 2021 prévoit recevoir en 2021 et qui donnent droit au montant pour revenus de retraite, multiplié par 1,25;</li>
+        <li>2 939 $.</li>
       </ul>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
           <strong>Ligne 9</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Montant pour travailleur d’expérience</strong>
+          <strong>Montant pour prolongation de carrière</strong>
         </div>
       </div>
       <p class="text-justify">
-        Vous pouvez demander le montant pour travailleur d’expérience si vous remplissez les conditions suivantes :
+        Vous pouvez demander le montant pour prolongation de carrière si vous
+remplissez les conditions suivantes :
       </p>
       <ul class="text-justify">
         <li>
-          vous prévoyez résider au Québec le 31 décembre 2019;
+          vous prévoyez résider au Québec le 31 décembre 2021;
         </li>
         <li>
-          vous aurez 61 ans ou plus au 31 décembre 2019;
+          vous aurez 60 ans ou plus au 31 décembre 2021;
         </li>
         <li>
           votre revenu de travail admissible estimatif dépasse 5 000 $.
@@ -1855,21 +1962,30 @@
           <strong>Revenu de travail admissible</strong>
         </p>
         <p class="text-justify">
-          Revenus d’emploi, revenus nets d’entreprise, montant net des sub- ventions de recherche, prestations du Programme de protection des salariés et sommes reçues dans le cadre d’un programme d’incitation au travail. Les revenus suivants sont exclus :
+         Revenus d’emploi, revenus nets d’entreprise, montant net des
+subventions de recherche, prestations du Programme de protection
+des salariés et sommes reçues dans le cadre d’un programme
+d’incitation au travail. Les revenus suivants sont exclus :
         </p>
         <ul class="text-justify">
           <li>
-            les revenus d’emploicomposésuniquement d’avantages imposables relatifs à un ancien emploi;
+            les revenus d’emploi composés uniquement d’avantages imposables
+relatifs à un ancien emploi;
           </li>
           <li>
-            les revenus d’emploi provenant d’un employeur avec lequel vous avez un lien de dépendance ou d’un employeur qui est une société de personnes et dont l’un des membres a un lien de dépendance avec vous;
+           les revenus d’emploi provenant d’un employeur avec lequel
+vous avez un lien de dépendance ou d’un employeur qui est
+une société de personnes et dont l’un des membres a un lien de
+dépendance avec vous;
           </li>
           <li>
-            les montants déduits dans le calcul de votre revenu imposable (par exemple, ceux déduits aux lignes 293 et 297 de la déclaration de revenus).
+            les montants déduits dans le calcul de votre revenu imposable
+(par exemple, ceux déduits aux lignes 293 et 297 de la déclaration
+de revenus).
           </li>
         </ul>
       </div>
-      
+
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
           <strong>Ligne 11</strong>
@@ -1879,70 +1995,99 @@
         </div>
       </div>
       <p class="text-justify">
-        Vous pouvez demander d’augmenter le montant de l’impôt retenu à la source pour éviter d’avoir un solde à payer lors de la production de votre déclaration de revenus. Pour déterminer le montant que vous désirez faire ajouter à votre retenue d’impôt, vous devez d’abord estimer votre solde à payer pour l’année. Pour ce faire, vous pouvez
+        Vous pouvez demander d’augmenter le montant de l’impôt retenu à la
+source pour éviter d’avoir un solde à payer lors de la production de votre
+déclaration de revenus. Pour déterminer le montant que vous désirez faire
+ajouter à votre retenue d’impôt, vous devez d’abord estimer votre solde
+à payer pour l’année. Pour ce faire, vous pouvez
       </p>
       <ul class="text-justify">
         <li>
-          vous baser sur le solde que vous avez dû payer à la suite de la production de votre déclaration de revenus de l’année précédente;
+          vous baser sur le solde que vous avez dû payer à la suite de la
+production de votre déclaration de revenus de l’année précédente;
         </li>
         <li>
-          vousservir du formulaire <em>Calcul des acomptes provisionnels des particuliers</em> (TP-1026);
+          vous servir du formulaire <em>Calcul des acomptes provisionnels des
+particuliers</em> (TP-1026).
         </li>
-        <li>
-          utiliser le calculateur de la contribution additionnelle à prévoir pour les services de garde subventionnés, accessible dans le site Internet du ministère des Finances.
-        </li>
+        <!-- <li>
+          use the additional contribution calculator for subsidized childcare, which is available on the Minist&egrave;re des Finances website.
+        </li> -->
       </ul>
       <p class="text-justify">
-        Vous devez ensuite diviser ce solde par le nombre de paies qui restent dans l’année. Notez que, si vous utilisez le calculateur pour estimer la contribution additionnelle pour les services de garde subventionnés, vous n’avez pas à faire ce calcul.
+        Vous devez ensuite diviser ce solde par le nombre de paies qui restent
+dans l’année.
       </p>
       <p class="text-justify">
-        Si vous désirez modifier ou annuler la retenue supplémentaire d’impôt, vous devez remplir un nouvel exemplaire de ce formulaire et le remettre à votre employeur ou au payeur.
+        Si vous désirez modifier ou annuler la retenue supplémentaire d’impôt,
+vous devez remplir un nouvel exemplaire de ce formulaire et le remettre
+à votre employeur ou au payeur.
       </p>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
           <strong>Ligne 14</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Déduction relative au logement pour particulier habitant une région éloignée reconnue</strong>
+          <strong>Déduction relative au logement pour particulier
+habitant une région éloignée reconnue</strong>
         </div>
       </div>
       <p class="text-justify">
-        Si vous prévoyez habiter dans une <strong>zone nordique</strong> ou dans une <strong>zone intermédiaire</strong> visées par règlement pendant une période d’au moins <strong>six mois consécutifs</strong> qui commence ou se termine en 2019, vous pouvez inscrire le moins élevé des montants suivants :
+        Si vous prévoyez habiter dans une <strong>zone nordique</strong> ou dans une <strong>zone
+intermédiaire</strong> visées par règlement pendant une période d’au moins
+<strong>six mois consécutifs</strong> qui commence ou se termine en 2021, vous pouvez
+inscrire le moins élevé des montants suivants :
       </p>
       <ul class="text-justify">
         <li>
-          20 % de votre revenu net estimatif pour 2019;
+          20 % de votre revenu net estimatif pour 2021;
         </li>
         <li>
-          100 % de l’un des deux montants suivants (50 % si vous prévoyez habiter dans une <strong>zone intermédiaire</strong>) : <br>
-          – 22 $ multiplié par le nombrede jours en 2019 oùvous prévoyez habiter dans une telle zone, si vous êtes la seule personne de l’habitation à demander cette déduction, <br>
-          – 11 $ multiplié par le nombre de jours en 2019 où vous prévoyez habiter dans une telle zone, dans les autres cas.
+          100 % de l’un des deux montants suivants (50 % si vous prévoyez
+habiter dans une <strong>zone intermédiaire</strong>) : <br>
+          – 22 $ multiplié par le nombre de jours en 2021 où vous prévoyez
+habiter dans une telle zone, si vous êtes la seule personne de
+l’habitation à demander cette déduction, <br>
+          – 11 $ multiplié par le nombre de jours en 2021 où vous prévoyez
+habiter dans une telle zone, dans les autres cas.
         </li>
       </ul>
       <p class="text-justify">
-        Pour plus de renseignements, consultez le guide <em>Déduction pour particulier habitant une région éloignée reconnue</em> (TP-350.1.G).
+        Pour plus de renseignements, consultez le guide <em>Déduction pour particulier
+habitant une région éloignée reconnue</em> (TP-350.1.G).</em>
       </p>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
           <strong>Ligne 15</strong>
         </div>
         <div class="inline-block valign-middle">
-          <strong>Déduction pour une pension alimentaire qui n’est pas défiscalisée</strong>
+          <strong>Déduction pour une pension alimentaire
+qui n’est pas défiscalisée</strong>
         </div>
       </div>
       <p class="text-justify">
-        Si vous prévoyez verser en 2019 une pension alimentaire à votre conjoint ou à votre ex-conjoint, au père ou à la mère de votre enfant, ou à des tiers au bénéfice de votre enfant ou de l’une de ces personnes, vous pouvez inscrire le montant de cette pension alimentaire si, en règle générale, les conditions suivantes sont remplies :
+        Si vous prévoyez verser en 2021 une pension alimentaire à votre conjoint
+ou à votre ex-conjoint, au père ou à la mère de votre enfant, ou à des
+tiers au bénéfice de votre enfant ou de l’une de ces personnes, vous pouvez
+inscrire le montant de cette pension alimentaire si, en règle générale,
+les conditions suivantes sont remplies :
       </p>
       <ul class="text-justify">
         <li>
-          la pension alimentaire est versée à la suite d’une ordonnance ou d’une entente écrite, à titre d’allocation périodique, pour subvenir aux besoins du bénéficiaire ou d’un de ses enfants, ou aux besoins des deux à la fois, et vous ne vivez pas avec le bénéficiaire au moment du paiement;
+          la pension alimentaire est versée à la suite d’une ordonnance ou
+d’une entente écrite, à titre d’allocation périodique, pour subvenir aux
+besoins du bénéficiaire ou d’un de ses enfants, ou aux besoins des
+deux à la fois, et vous ne vivez pas avec le bénéficiaire au moment
+du paiement
         </li>
         <li>
-          la pension alimentaire versée n’est pas assujettie aux mesures de défiscalisation des pensions alimentaires.
+          la pension alimentaire versée n’est pas assujettie aux mesures de
+défiscalisation des pensions alimentaires.
         </li>
       </ul>
       <p class="text-justify">
-        Pour plus de renseignements, consultez la brochure <em>>Les incidences fiscales d’une séparation ou d’un divorce</em (IN-128).
+        Pour plus de renseignements, consultez la publication <em>Les incidences
+fiscales d’une séparation ou d’un divorce</em> (IN-128).
       </p>
       <div class="border-bottom border-gray vspace">
         <div class="inline-block bg-gray line-box valign-middle">
@@ -1953,7 +2098,12 @@
         </div>
       </div>
       <p class="text-justify">
-        Vous pouvez demander à votre employeur de ne pas retenir d’impôt sur vos revenus d’emploi si vous prévoyez que le total de vos revenus de toute source sera inférieur au résultat du calcul suivant : le montant de la ligne 10 <strong>plus</strong> celui de la ligne 19. Vous ne pouvez pas demander d’exonération pour une rémunération qui n’est pas un revenu d’emploi. Cette demande est valide uniquement pour 2019.
+        Vous pouvez demander à votre employeur de ne pas retenir d’impôt
+sur vos revenus d’emploi si vous prévoyez que le total de vos revenus
+de toute source sera inférieur au résultat du calcul suivant : le montant
+de la ligne 10 <Strong>plus</Strong> celui de la ligne 19. Vous ne pouvez pas demander
+d’exonération pour une rémunération qui n’est pas un revenu d’emploi.
+Cette demande est valide uniquement pour 2021.
       </p>
     </div>
   </div>
@@ -1965,47 +2115,74 @@
   </div>
 </main>
 
+<div class="hide">
 <$client.env.FormField.signatureverification.HTML>
 <$client.env.formfield.Login_ID.html>
 <$client.env.formfield.Auth_Param.html>
 <$client.env.formfield.EmployeeID.html>
-
+<$client.env.formfield.Code.html>
+</div>
 
 </form> 
 <SCRIPT> 
     ChangeCalendarIcons(); //for popup calendar  
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 /* RESPONSIVE eFORM BUTTONS STYLE */ 
-$(window).load(function() { 
-        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
-        $("#buttonCancel").addClass("lifesuite__button"); 
-        $('#buttonCancel').attr('id','ButtonCancel'); 
-        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue"); 
-        $("#buttonSave").addClass("lifesuite__button primary"); 
-        $('#buttonSave').attr('id','ButtonSave'); 
-        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue"); 
-        $("#buttonSaveAndComplete").addClass("lifesuite__button primary"); 
-        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete'); 
-        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
-        $("#buttonPrint").addClass("lifesuite__button"); 
-        $('#buttonPrint').attr('id','ButtonPrint'); 
-        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed"); 
-        $("#buttonPreviewDelete").addClass("lifesuite__button"); 
-        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete'); 
-        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue"); 
-        $("#buttonPreviewSave").addClass("lifesuite__button primary"); 
-        $('#buttonPreviewSave').attr('id','ButtonPreviewSave'); 
+$(window).load(function() {
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
         $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
         $("#buttonComplete").addClass("lifesuite__button primary"); 
-        $('#buttonComplete').attr('id','ButtonComplete'); 
-       document.getElementById('formButtons').style.display = "block"; 
-        $("input[type=text]").addClass('lifesuite__text-input'); 
-        $("input[type=text].hasDatepicker").addClass('dateField'); 
-        $("select").addClass('lifesuite__select-input'); 
-        $("input[type=radio]").addClass('lifesuite__radio'); 
-        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
-        $("textarea").addClass('lifesuite__textarea-input'); 
-        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
-}); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+       document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+        $( window ).resize(function() { 
+        document.getElementById('over').style.width=''; 
+        }); 
+});
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+setTimeout(function(){  
+  if(strFormCompleted ==''){ //Check if eForm is completed. '' means incomplete.  
+    $("#ButtonPrint")[0].onclick = null; 
+      $("#ButtonPrint").click(function() {  
+        /* Add your code/function here */ 
+        $('[name$=".signatureverification"]').val($('[ng-bind="signatureStatement"]').html());
+        void(funcPrint()); // default print function 
+      }); 
+
+    if($("#ButtonSaveAndComplete").length){  
+      $("#ButtonSaveAndComplete")[0].onclick = null; 
+        $("#ButtonSaveAndComplete").click(function() {  
+            /* Add your code/function here */ 
+            $('[name$=".signatureverification"]').val($('[ng-bind="signatureStatement"]').html());
+            void(funcSaveAndComplete());  //default Save function 
+        }); 
+    } 
+  } 
+}, 300); 
 </SCRIPT>

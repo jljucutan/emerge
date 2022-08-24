@@ -1,0 +1,675 @@
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content" style="min-width:150px">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    
+        <p style="font-weight:normal;padding:0px">
+<$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)></p>
+        <br>
+<div class="row">
+            <div class="lifesuite__clearfix">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                    </div>
+        </div>
+<div class="row">
+            <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+                <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','firstname,middleinitial,lastname','modal','over','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+    <div class="fb-spinner">
+        <i class="fa fa-2x fa-spinner fa-pulse"></i>
+    </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+<$client.env.FormField.AdditionalWithholding.prompt>
+<$client.env.FormField.Address.prompt>
+<$client.env.FormField.City.prompt>
+<$client.env.FormField.Code.prompt>
+<$client.env.FormField.Contact.prompt>
+<$client.env.FormField.DateHired.prompt>
+<$client.env.FormField.DateSigned.prompt>
+<$client.env.FormField.EIN.prompt>
+<$client.env.FormField.EmployerAddress.prompt>
+<$client.env.FormField.EmployerCity.prompt>
+<$client.env.FormField.EmployerName.prompt>
+<$client.env.FormField.EmployerPhone.prompt>
+<$client.env.FormField.EmployerState.prompt>
+<$client.env.FormField.EmployerZip.prompt>
+<$client.env.FormField.FirstName.prompt>
+<$client.env.FormField.LastName.prompt>
+<$client.env.FormField.MSRRA.prompt>
+<$client.env.FormField.MiddleInitial.prompt>
+<$client.env.FormField.New.prompt>
+<$client.env.FormField.ReducedWithholding.prompt>
+<$client.env.FormField.SSN.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.State.prompt>
+<$client.env.FormField.Zip.prompt>
+
+
+
+
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+
+
+<div class='row'>
+    <div class='col-lg-3'>
+        <div class='col-lg-12'>
+            Department of Revenue Services<br>
+State of Connecticut<br>
+(Rev. 12/20)
+        </div>
+    </div>
+    <div class='col-lg-6 text-center'>
+        <div class='col-lg-12'>
+            <p>&nbsp;</p>
+        </div>
+        
+        <div class='col-lg-12 text-center'><span style='font-size:30px;'>Form CT-W4</span><br><strong>Employee’s Withholding Certificate</strong><br>Complete this form in blue or black ink only.</div>
+    
+    </div>
+<div class='col-lg-3'>
+        <div class='col-lg-12'>
+            <br><br>
+            <p><strong>Effective January 1, 2021</strong></p>
+        </div>
+    </div>
+
+</div>
+    
+<div class='row'>
+    <div class='col-lg-12'>
+    <strong>Employee Instructions</strong>
+    </div>  
+</div>
+
+<div class='row'>
+    <div class='col-lg-6'>
+    <ul class='with_bullets'>
+        <li>Read the instructions on Page 2 before completing this form.</li>
+        <li>Select the filing status you expect to report on your Connecticut income tax return. See instructions.</li>
+    </ul>
+    </div>
+    
+    <div class='col-lg-6'>
+    <ul class='with_bullets'>
+        <li>Choose the statement that best describes your gross income.</li>
+        <li>Enter the <em>Withholding Code</em> on Line 1 below.</li>
+    </ul>
+    </div>
+</div>
+
+<div class='row'>
+<div class='col-lg-6'>
+        
+        
+         <table class="table table-bordered">
+    <thead>
+      <tr style='border:2px solid #333;'>
+        <th class='col-md-11 text-center'><strong>Married Filing Jointly</strong></th>
+        <th class='col-md-1 small text-center'><strong>Withholding Code</strong></th>
+     
+      </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td><p>Our expected combined annual gross income is <strong>less</strong> than or equal to $24,000 or I am claiming exemption under the Military Spouses Residency Relief Act (MSRRA)* and no withholding is necessary.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>E</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>My spouse <strong>is</strong> employed and our expected combined annual gross income is <strong>greater</strong> than $24,000 and less than or equal to $100,500. See <em>Certain Married Individuals,</em> Page 2.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>A</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>My spouse <strong>is not</strong> employed and our expected combined annual gross income is <strong>greater</strong> than $24,000.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>C</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>My spouse <strong>is</strong> employed and our expected combined annual gross income is <strong>greater</strong> than $100,500.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>D</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>I have significant nonwage income and wish to avoid having too little tax withheld.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>D</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>I am a nonresident of Connecticut with substantial other income.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>D</strong></p></td>
+        </tr>
+        
+
+        
+    </tbody>
+</table>
+
+ <table class="table table-bordered">
+    <thead>
+      <tr style='border:2px solid #333;'>
+        <th class='col-md-11 text-center'><strong>Qualifying Widow(er)</strong></th>
+        <th class='col-md-1 small text-center'><strong>Withholding Code</strong></th>
+     
+      </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td><p>My expected annual gross income is <strong>less</strong> than or equal to $24,000 or I am claiming exemption under the MSRRA* and no withholding is necessary.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>E</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>My expected annual gross income is <strong>greater</strong> than $24,000.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>C</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>I have significant nonwage income and wish to avoid having too little tax withheld.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>D</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>I am a nonresident of Connecticut with substantial other income.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>D</strong></p></td>
+        </tr>
+        
+        
+        
+    </tbody>
+</table>
+</div>
+
+<div class='col-lg-6'>
+     <table class="table table-bordered">
+    <thead>
+      <tr style='border:2px solid #333;'>
+        <th class='col-md-11 text-center'><strong>Married Filing Separately</strong></th>
+        <th class='col-md-1 small text-center'><strong>Withholding Code</strong></th>
+     
+      </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td><p>My expected annual gross income is <strong>less</strong> than or equal to $12,000 or I am claiming exemption under the MSRRA* and no withholding is necessary.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>E</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>My expected annual gross income is <strong>greater</strong> than $12,000.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>A</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>I have significant nonwage income and wish to avoid having too little tax withheld.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>D</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>I am a nonresident of Connecticut with substantial other income.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>D</strong></p></td>
+        </tr>
+        
+        
+        
+    </tbody>
+</table>
+
+
+<table class="table table-bordered">
+    <thead>
+      <tr style='border:2px solid #333;'>
+        <th class='col-md-11 text-center'><strong>Single</strong></th>
+        <th class='col-md-1 small text-center'><strong>Withholding Code</strong></th>
+     
+      </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td><p>My expected annual gross income is <strong>less</strong> than or equal to $15,000 and no withholding is necessary.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>E</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>My expected annual gross income is <strong>greater</strong> than $15,000.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>F</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>I have significant nonwage income and wish to avoid having too little tax withheld.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>D</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>I am a nonresident of Connecticut with substantial other income.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>D</strong></p></td>
+        </tr>
+        
+        
+        
+    </tbody>
+</table>
+
+<table class="table table-bordered">
+    <thead>
+      <tr style='border:2px solid #333;'>
+        <th class='col-md-11 text-center'><strong>Head of Household</strong></th>
+        <th class='col-md-1 small text-center'><strong>Withholding Code</strong></th>
+     
+      </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <td><p>My expected annual gross income is <strong>less</strong> than or equal to $19,000 and no withholding is necessary.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>E</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>My expected annual gross income is <strong>greater</strong> than $19,000.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>B</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>I have significant nonwage income and wish to avoid having too little tax withheld.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>D</strong></p></td>
+        </tr>
+        
+        <tr>
+            <td><p>I am a nonresident of Connecticut with substantial other income.</p></td>
+            <td class='text-center' style='vertical-align:middle;'><p><strong>D</strong></p></td>
+        </tr>
+        
+        
+        
+    </tbody>
+</table>
+</div>
+</div>
+
+<div class='row border-bottom-1' style='border-bottom:3px solid #333;'>
+    * If you are claiming the Military Spouses Residency Relief Act (MSRRA) exemption, see instructions on Page 2.<br>&nbsp;
+</div>
+<br>
+<div class='row'>
+    <strong>Employees:</strong> See <em>Employee General Instructions</em> on Page 2. Sign and return Form CT-W4 to your employer. Keep a copy for your records.
+</div>
+<br>
+<div class='row'>
+    <div class='col-lg-10'>
+        <div class='row'>
+            <div class='col-lg-8'>
+                1. Withholding Code: Enter <em>Withholding Code</em> letter chosen from above
+            </div>
+            <div class='col-lg-4'>
+                <$client.env.FormField.Code.HTML>
+            </div>
+        </div>
+        <br>
+        <div class='row'>
+            <div class='col-lg-8'>
+                2. Additional withholding amount per pay period: If any, see instructions
+            </div>
+            <div class='col-lg-4'>
+                <div class="row">
+                    <div class='col-lg-1 col-md-1 col-xs-1'>
+                        $
+                    </div>
+                    <div class='col-lg-11 col-md-11 col-xs-11'>
+                        <$client.env.FormField.AdditionalWithholding.HTML>
+                    </div>
+                </div>  
+            </div>
+        </div>
+        <br>
+        <div class='row'>
+            <div class='col-lg-8'>
+                3. Reduced withholding amount per pay period: If any, see instructions
+            </div>
+            <div class='col-lg-4'>
+                <div class="row">
+                    <div class='col-lg-1 col-md-1 col-xs-1'>
+                        $
+                    </div>
+                    <div class='col-lg-11 col-md-11 col-xs-11'>
+                        <$client.env.FormField.ReducedWithholding.HTML>
+                    </div>
+                </div>  
+                        
+            </div>
+        </div>
+    </div>
+    <div class='col-lg-2'>
+        <!--<$client.env.FormField.MSRRA.HTML>-->
+        <table>
+            <tr>
+                <td valign="top" style="padding-right: 3px !important;"><$client.env.FormField.MSRRA.HTML></td>
+                <td style="text-align: justify;">Check if you are claiming the MSRRA exemption and enter state of legal residence/domicile:<br><$client.env.FormField.LegalState.HTML></td>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+
+<div class='row'>
+    <div class='col-lg-4 bordered'>
+    First Name<$client.env.FormField.FirstName.HTML>
+    </div>
+    
+    <div class='col-lg-1 bordered border-left-0'>
+    MI<$client.env.FormField.MiddleInitial.HTML>
+    </div>
+    <div class='col-lg-3 bordered border-left-0'>
+    Last Name<$client.env.FormField.LastName.HTML>
+    </div>
+    
+    <div class='col-lg-4 bordered border-left-0'>
+    Social Security Number<$client.env.FormField.SSN.HTML>
+    </div>
+</div>
+
+<div class='row'>
+    <div class='col-lg-12 bordered border-top-0'>
+        Home address (number and street, apartment number, suite number, PO Box)<$client.env.FormField.Address.HTML>
+    </div>
+</div>
+
+<div class='row'>
+    <div class='col-lg-4 bordered border-top-0' style="min-height:64px;">
+        City/town<$client.env.FormField.City.HTML>
+    </div>
+    
+    <div class='col-lg-4 bordered border-top-0 border-left-0' style="min-height:64px;">
+        State<$client.env.FormField.State.HTML>
+    </div>
+    <div class='col-lg-4 bordered border-top-0 border-left-0' style="min-height:64px;">
+        Zip Code<$client.env.FormField.Zip.HTML>
+    </div>
+</div>
+
+<div class='row'>
+    <div class='col-lg-12'>
+        <strong>Declaration:</strong> I declare under penalty of law that I have examined this certificate and, to the best of my knowledge and belief, it is true, complete, and correct. I understand the penalty for reporting false information is a fine of not more than $5,000, imprisonment for not more than five years, or both.
+    </div>
+</div>
+
+
+<div class='row'>
+    <div class='col-lg-12 bordered'>
+    Employee's Signature<$client.env.FormField.Signer.HTML>
+    </div>
+</div>
+
+<div class='row'>
+    <div class='col-lg-12'>
+        <strong>Employers:</strong> See <em>Employer Instructions</em> on Page 2.
+    </div>
+</div>
+<br>
+<div class='row'>
+    <div class='col-lg-3'>
+        Is this a new or rehired employee?
+    </div>
+    
+    <div class='col-lg-2'>
+        <$client.env.FormField.New.HTML>
+    </div>
+    
+    <div class='col-lg-2'>
+        Enter date hired:
+    </div>
+    
+    <div class='col-lg-5'>
+        <$client.env.FormField.DateHired.HTML>mm/dd/yyyy
+    </div>
+</div>
+<br>
+
+<div class='row'>
+    <div class='col-lg-8 bordered'>
+    Employer’s business name<$client.env.FormField.EmployerName.HTML>
+    </div>
+    
+    <div class='col-lg-4 bordered border-left-0'>
+    Federal Employer Identification Number<$client.env.FormField.EIN.HTML>
+    </div>
+</div>
+
+<div class='row  bordered border-top-0'>
+    <div class='col-lg-12'>
+        Employer’s business address<$client.env.FormField.EmployerAddress.HTML>
+    </div>
+</div>
+
+<div class='row'>
+    <div class='col-lg-4 bordered border-top-0' style='min-height:64px;'>
+        City/town<$client.env.FormField.EmployerCity.HTML>
+    </div>
+    
+    <div class='col-lg-4 bordered border-left-0 border-top-0'  style='min-height:64px;'>
+        State<$client.env.FormField.EmployerState.HTML>
+    </div>
+    <div class='col-lg-4  bordered border-left-0 border-top-0'  style='min-height:64px;'>
+        Zip Code<$client.env.FormField.EmployerZip.HTML>
+    </div>
+</div>
+
+<div class='row'>
+    <div class='col-lg-8 bordered border-top-0'>
+    Contact person<$client.env.FormField.Contact.HTML>
+    </div>
+    
+    <div class='col-lg-4  bordered border-left-0 border-top-0'>
+    Telephone number<$client.env.FormField.EmployerPhone.HTML>
+    </div>
+</div>
+<br>
+<h4>
+    <strong class="text-center">Form CT-W4 Instructions</strong>
+</h4>
+<div class='row'>
+    <div class='col-lg-6' style="padding-right: 5px; text-align: justify;">
+        <p class='text-center'><strong>Employee General Instructions</strong></p>
+        <p><strong>Form CT-W4</strong>, <em>Employee’s Withholding Certificate</em>, provides your employer with the necessary information to withhold the correct amount of Connecticut income tax from your wages to ensure that you will not be underwithheld or overwithheld.</p>
+        
+        <p>You are required to pay Connecticut income tax as income is earned or received during the year. You should complete a new Form CT-W4 at least once a year or if your tax situation changes.</p>
+
+        <p>If your circumstances change, such as you receive a bonus or your filing status changes, you must furnish your employer with a new Form CT-W4 within ten days of the change.</p>
+        
+        <p><strong>Gross Income</strong><br>For Form CT-W4 purposes, <strong><em>gross income</em></strong> means all income from all sources, whether received in the form of money, goods, property, or services, not exempt from federal income tax, and includes any additions to income from <em>Schedule 1</em> of <strong>Form CT-1040</strong>, <em>Connecticut Resident Income Tax Return</em> or <strong>Form CT-1040NR/PY</strong>, <em>Connecticut Nonresident and Part‑Year Resident Income Tax Return.</em></p>
+        
+        <p><strong>Filing Status</strong><br> Generally, the filing status you expect to report on your Connecticut income tax return is the same as the filing status you expect to report on your federal income tax return. However, special rules apply to married individuals who file a joint federal return but have a different residency status. Nonresidents and part-year residents should see the instructions to Form CT-1040NR/PY.</p>
+        
+        <p><strong>Check Your Withholding</strong><br>You may be underwithheld if any of the following apply:</p>
+        <ul class='with_bullets'>
+            <li>You have more than one job;</li>
+            <li>You qualify under <em>Certain Married Individuals;</em> <b>or</b></li>
+            <li>You have substantial nonwage income.</li>
+        </ul>
+        
+        <p>If you are underwithheld, you should consider adjusting your withholding or making estimated payments using <strong>Form CT-1040ES</strong>, <em>Estimated Connecticut Income Tax Payment Coupon for Individuals</em>. You may also select <em>Withholding Code</em> “D” to elect the highest level of withholding.</p>
+        
+        <p>If you owe $1,000 or more, after subtracting from your Connecticut income tax the amount withheld from your income for the prior taxable year, and any PE Tax Credit, you may be subject to interest on the underpayment at the rate of 1% per month or fraction of a month.</p>
+
+        <p>To help determine if your withholding is correct, see <strong>Informational Publication 2021(7)</strong>, <em>Is My Connecticut Withholding Correct?</em></p>
+        
+        <p><strong>Certain Married Individuals</strong><br>If you are a married individual filing jointly and you and your spouse both select Withholding Code “A,” you may have too much or too little Connecticut income tax withheld from your pay. This is because the phase-out of the personal exemption and credit is based on your combined incomes. The withholding tables cannot reflect your exact withholding requirement without considering the income of your spouse.
+        </p>
+
+        <p>
+        To minimize this problem, and determine if you need to adjust your withholding using Line 2 or Line 3, see IP 2021(7).  
+        </p>
+
+        <p><strong>Nonresident Employees Working Partly Within and Partly Outside of Connecticut</strong><br>If you work partly within and partly outside of Connecticut for the same employer, you should also complete <b>Form CT-W4NA</b>, <em>Employee’s Withholding or Exemption Certificate - Nonresident Apportionment,</em> and provide it to your employer. The information on Form CT-W4NA and Form CT-W4 will help your employer determine how much to withhold from your wages for services performed within Connecticut. For <em>Convenience of the Employer Test</em> information, see Form CT‑W4NA. To obtain Form CT-W4NA, visit the Department of Revenue Services (DRS) website at <b>portal.ct.gov/DRS</b> or request the form from your employer. Any nonresident who expects to have no Connecticut income tax liability should choose <em>Withholding Code “E.”</em></p>
+        
+    </div>
+    <!-- continue here -->
+    <div class='col-lg-6' style="padding-left: 5px; text-align: justify;">
+        <p><strong>Armed Forces Personnel and Veterans</strong><br>If you are a Connecticut resident, your armed forces pay is subject to Connecticut income tax withholding unless you qualify as a nonresident for Connecticut income tax purposes. If you qualify as a nonresident, you may request that no Connecticut income tax be withheld from your armed forces pay by entering <em>Withholding Code</em> “E” on Line 1.</p>
+        
+        <p><strong>Military Spouses Residency Relief Act (MSRRA)</strong><br>If you are claiming an exemption from Connecticut income tax under the MSRRA, you must provide your employer with a copy of your military spouse’s Leave and Earnings Statement (LES) and a copy of your military dependent ID card.</p>
+        
+        <p>See <strong>Informational Publication 2019 (5)</strong>, <em>Connecticut Income Tax Information for Armed Forces Personnel and Veterans.</em></p>
+        
+        <p class="center"><strong>Employer Instructions</strong></p><br><p>For any employee who does not complete Form CT-W4, you are required to withhold at the highest marginal rate of 6.99% without allowance for exemption. You are required to keep Form CT-W4 in your files for each employee. See <strong>Informational Publication 2021(1)</strong>, <em>Connecticut Employer’s Tax Guide, Circular CT</em>, for complete instructions.</p>
+        
+        <p><strong>Report Certain Employees Claiming Exemption From Withholding to DRS</strong><br>Employers are required to file copies of Form CT-W4 with DRS for certain employees claiming “E” (no withholding is necessary). See IP 2021(1). Mail copies of Forms CT-W4 meeting the conditions listed in IP 2021(1) under <em>Reporting Certain Employees to:</em></p>
+        
+        <ul style='list-style-type:none;'>
+            <li>Department of Revenue Services</li>
+            <li>PO Box 2931</li>
+            <li>Hartford CT 06104-2931</li>
+        </ul>
+        
+        <p><strong>Report New and Rehired Employees to the Department of Labor <br><em>New employees</em></strong> are workers not previously employed by your business, or workers rehired after having been separated from your business for more than sixty consecutive days.</p>
+        
+        <p>Employers with offices in Connecticut or transacting business in Connecticut are required to report new hires to the Department of Labor (DOL) within 20 days of the date of hire.</p>
+        <p>New hires can be reported by:</p>
+        
+        <ul class='with_bullets'>
+            <li>Using the Connecticut New Hire Reporting website at <strong><a class="text-dark" href="http://www.ctnewhires.com" target="_blank">www.ctnewhires.com</a></strong>;</li>
+            <li>Faxing copies of completed Forms CT-W4 to <strong>800-816-1108</strong>; <strong>or</strong></li>
+            <li>Mailing copies of completed Forms CT-W4 to:
+                <ul style='list-style-type:none;'>
+                    <li>Connecticut Department of Labor</li>
+                    <li>Office of Research, CT-W4</li>
+                    <li>200 Folly Brook Blvd</li>
+                    <li>Wethersfield CT 06109</li>
+                </ul>
+            </li>
+        </ul>
+        
+        <p>For more information on DOL requirements or for alternative reporting options, visit the DOL website at <strong><a class="text-dark" href="http://www.ctdol.state.ct.us" target="_blank">www.ctdol.state.ct.us</a></strong> or call DOL at 860-263-6310.</p>
+        
+        <p><strong>For More Information</strong><br>Call DRS during business hours, Monday through Friday:</p>
+        
+        <ul class='with_bullets'>
+            <li><strong>800-382-9463</strong> (Connecticut calls outside the Greater Hartford calling area only); <strong>or</strong></li>
+            <li><strong>860-297-5962</strong> (from anywhere).</li>
+        </ul>
+        
+        <p><strong>TTY, TDD, and Text Telephone users only</strong> may transmit inquiries anytime by calling 860-297-4911. Taxpayers may also call 711 for relay services. A taxpayer must tell the 711 operator the number he or she wishes to call. The relay operator will dial it and then communicate using a TTY with the taxpayer.</p>
+        
+        <p><strong>Forms and Publications</strong><br>Visit the DRS website at <strong><a class="text-dark" href="http://portal.ct.gov/DRS" target="_blank">portal.ct.gov/DRS</a></strong> to download and print Connecticut tax forms and publications.</p>
+    </div>
+</div>
+
+<div class='row border-bottom-1'>
+    <div class='col-lg-12'>
+        Form CT-W4 (Rev. 12/20)
+    </div>
+</div>
+
+<div style="display:none;">
+<$client.env.FormField.SignatureVerification.HTML>
+<$client.env.formfield.Login_ID.html>
+<$client.env.formfield.Auth_Param.html>
+<$client.env.formfield.EmployeeID.html>
+<$client.env.FormField.DateSigned.HTML>
+
+</div>
+
+<br><br>
+
+<$client.env.FormButtons>
+</form>
+<script>
+ChangeCalendarIcons(); //for popup calendar
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+$(window).load(function() {
+       $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');      
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+        /*document.getElementById('formButtons').style.display = "block";*/
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+angular.element(window).ready(function() {
+    // SERVICES-40264 | jjucutan | add keyboard sign
+    angular.element('[id^="btnSigTypedSign"]').click(function() {
+        setTimeout(function() {
+            angular.element('#sv').val(angular.element('[ng-bind="signatureStatement"]').text());
+        }, 1000);
+    });
+});
+if(strFormCompleted!=''){
+    document.getElementById('actionButtons').style.display = 'none';
+}
+
+<$client.env.eval((url.forWhom==account.userguid)?'disableCalButton(\'hrDate\');':'disableCalButton(\'newHireDate\');')>
+</script>

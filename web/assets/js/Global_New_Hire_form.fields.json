@@ -1,0 +1,191 @@
+{
+    "config": {
+        "fields": [
+            {
+                "field": "nid_type",
+                "validation": "required",
+                "validateByCountry": {
+                    "NLD": {
+                        "readonly": true,
+                        "default": "NLD-BSN"
+                    },
+                    "DEU": {
+                        "readonly": true,
+                        "default": "DEU-SVNR"
+                    },
+                    "ITA": {
+                        "readonly": false,
+                        "default": "ITA-CF"
+                    },
+                    "ESP": {
+                        "readonly": true,
+                        "default": "ESP-NIF"
+                    },
+                    "POL": {
+                        "readonly": true,
+                        "default": "POL-DO"
+                    },
+                    "BEL": {
+                        "readonly": false,
+                        "default": "BEL-NN"
+                    },
+                    "LUX": {
+                        "readonly": true,
+                        "default": "LUX-CCSS"
+                    },
+                    "HKG": {
+                        "readonly": true,
+                        "default": "HKG-ID"
+                    },
+                    "IND": {
+                        "readonly": false,
+                        "default": "IND-UAN"
+                    },
+                    "JPN": {
+                        "readonly": true,
+                        "default": "JPN-SSN"
+                    },
+                    "KOR": {
+                        "readonly": true,
+                        "default": "KOR-RRN"
+                    },
+                    "THA": {
+                        "readonly": true,
+                        "default": "THA-ID"
+                    },
+                    "PHL": {
+                        "readonly": true,
+                        "default": "PHL-SSS"
+                    },
+                    "CHN": {
+                        "readonly": true,
+                        "eup": "National_ID_Type"
+                    }
+                }
+            },
+            {
+                "field": "nid_number",
+                "validateByCountry": {
+                    "NLD": {
+                        "validation": "required,regex",
+                        "regex": "^\\d{9}$",
+                        "message": "only 9 digits"
+                    },
+                    "DEU": {
+                        "eup": "National_ID2>",
+                        "readonly": true
+                    },
+                    "BEL": {
+                        "readonly": true
+                    },
+                    "FRA": {
+                        "readonly": true
+                    },
+                    "POL": {
+                        "readonly": false,
+                        "validation": "required,regex-optional",
+                        "regex": "^[A-Z]{3}[0-9]{6}$",
+                        "message": "9 characters (include 3 upper case letters then 6 numbers)"
+                    },
+                    "THA": {
+                        "readonly": true,
+                        "validation": "required,regex",
+                        "regex": "^\\d{13}$",
+                        "message": "only 13 digits"
+                    },
+                    "LUX": {
+                        "readonly": false,
+                        "validation": "required,regex",
+                        "regex": "^\\d{13}$",
+                        "message": "only 13 digits"
+                    },
+                    "CHN": {
+                        "readonly": true,
+                        "eup": "SSNO"
+                    }
+                },
+                "validateByIDType": {
+                    "NLD-BSN": {
+                        "readonly": true
+                    },
+                    "DEU-SVNR": {
+                        "readonly": true
+                    },
+                    "ESP-NIF": {
+                        "readonly": true
+                    },
+                    "ITA-CF": {
+                        "readonly": false
+                    },
+                    "FRA-INSEE": {
+                        "readonly": true
+                    },
+                    "IRL-PPS": {
+                        "readonly": false
+                    },
+                    "ISR-IDO": {
+                        "readonly": false
+                    },
+                    "SWE-PN": {
+                        "readonly": false
+                    },
+                    "GBR-NI": {
+                        "readonly": false
+                    },
+                    "HKG-ID": {
+                        "readonly": true
+                    },
+                    "IND-UAN": {
+                        "readonly": false
+                    },
+                    "JPN-SSN": {
+                        "readonly": true
+                    },
+                    "KOR-RRN": {
+                        "readonly": true
+                    },
+                    "THA-ID": {
+                        "readonly": true
+                    },
+                    "POL-DO": {
+                        "readonly": false,
+                        "validation": "required,regex-optional",
+                        "regex": "^[A-Z]{3}[0-9]{6}$",
+                        "message": "9 characters (include 3 upper case letters then 6 numbers)"
+                    },
+                    "BEL-NN": {
+                        "readonly": false
+                    },
+                    "LUX-CCSS": {
+                        "readonly": false
+                    }
+                }
+            },
+            {
+                "field": "nid_issued_date_mapped",
+                "labelClass": "nid-issued-date-required",
+                "validation": "required,past-date",
+                "title": "Issued Date",
+                "validateByCountry": {
+                    "CHN": {
+                        "validation": "past-date"
+                    }
+                }
+            },
+            {
+                "field": "nid_expiration_date_mapped",
+                "validateByCountry": {
+                    "POL": {
+                        "validation": "future-date"
+                    },
+                    "BEL": {
+                        "validation": "future-date"
+                    },
+                    "LUX": {
+                        "validation": "future-date"
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,717 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.a01_controlNo.prompt>
+        <$client.env.FormField.a02_dateReceived.prompt>
+        <$client.env.FormField.a03_employerName.prompt>
+        <$client.env.FormField.a04_employerAddress.prompt>
+        <$client.env.FormField.a05_employerFederal.prompt>
+        <$client.env.FormField.a06_applicantName.prompt>
+        <$client.env.FormField.a07_socialSecurityNumber.prompt>
+        <$client.env.FormField.a08_haveYouWorked.prompt>
+        <$client.env.FormField.a09_dateEmployment.prompt>
+        <$client.env.FormField.a10_employmentStartDate.prompt>
+        <$client.env.FormField.a11_startingWage.prompt>
+        <$client.env.FormField.a12_position.prompt>
+        <$client.env.FormField.a13_dateOfBirth16ButUnder40.prompt>
+        <$client.env.FormField.a14_16ButUnder40.prompt>
+        <$client.env.FormField.a15_veteranUSArmedForces.prompt>
+        <$client.env.FormField.a16_namePrimaryRecipient.prompt>
+        <$client.env.FormField.a17_memberSNAP.prompt>
+        <$client.env.FormField.a18_cityState.prompt>
+        <$client.env.FormField.a19_serviceConnectedDisability.prompt>
+        <$client.env.FormField.a20_dischargedOrRelease.prompt>
+        <$client.env.FormField.a21_unemployed6months.prompt>
+        <$client.env.FormField.a22_areYouAMemberOfAFamilySNAP.prompt>
+        <$client.env.FormField.a23_areYouAMemberOfAFamilySNAPprimaryRecipient.prompt>
+        <$client.env.FormField.a24_areYouAMemberOfAFamilySNAP.prompt>
+        <$client.env.FormField.a25_areYouAMemberOfAFamilySNAPCityState.prompt>
+        <$client.env.FormField.a26_wereYouRefered.prompt>
+        <$client.env.FormField.a27_byAnEmploymentNetwork.prompt>
+        <$client.env.FormField.a28_departmentVeteransAffairs.prompt>
+        <$client.env.FormField.a29_memberTANF.prompt>
+        <$client.env.FormField.a30_memberTANF18monthsBeginning.prompt>
+        <$client.env.FormField.a31_stopBeingEligibleForTANF.prompt>
+        <$client.env.FormField.a32_stopBeingEligibleForTANF9Months.prompt>
+        <$client.env.FormField.a33_stopBeingEligibleForTANF9MonthsprimaryRecipient.prompt>
+        <$client.env.FormField.a34_stopBeingEligibleForTANF9MonthsCityState.prompt>
+        <$client.env.FormField.a34_wereYouConvictedOfAFelony.prompt>
+        <$client.env.FormField.a35_dateOfConviction.prompt>
+        <$client.env.FormField.a36_dateOfRelease.prompt>
+        <$client.env.FormField.a37_FederalState.prompt>
+        <$client.env.FormField.a38_DoYouliveEmpowermentZoneRRC.prompt>
+        <$client.env.FormField.a39_DoYouliveEmpowermentZoneRRC1618.prompt>
+        <$client.env.FormField.a40_supplementarySecurityIncome.prompt>
+        <$client.env.FormField.a41_veteranUnemployed6months.prompt>
+        <$client.env.FormField.a42_veteranUnemployed4weeks6months.prompt>
+        <$client.env.FormField.a43_unemployment27consecutiveweeks.prompt>
+        <$client.env.FormField.a44_unemploymentCompensation.prompt>
+        <$client.env.FormField.a45_sourcesUsedToDocumentEligibility.prompt>
+        <$client.env.FormField.a46_signatureSeeInstruction.prompt>
+        <$client.env.FormField.a47_25Bindicate.prompt>
+        <$client.env.FormField.a48_Date.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row mb-1">
+        <div class="col-sm-12">
+            <div class="d-sm-flex align-items-end">
+                <div class="logo-wrapper">
+                    <img src="<$link;/main/RedCarpet/FormTemplates/Form_9061/img/dole-logo-round.png>" alt="Department of Labor Logo" class="img-fluid">
+                </div>
+                <div class="heading-text flex-grow-1">
+                    <p class="px-2">
+                        U.S. Department of Labor <br>
+                        Employment and Training Administration
+                    </p>
+                </div>
+                <div class="text-center flex-grow-1">
+                    <strong>Individual Characteristics Form (ICF)<br>Work Opportunity Tax Credit</strong>
+                </div>
+                <div class="heading-text flex-grow-1">
+                    <p>
+                        OMB No. 1205-0371 <br>
+                        Expiration Date: November 30, 2016
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4 d-flex d-sm-none align-items-center">
+            <p class="text-center w-100">
+                <strong class="h6">
+                    APPLICANT INFORMATION<br>
+                    (See instructions on reverse)
+                </strong>
+            </p>
+        </div>
+        <div class="col-sm-4 pb-5 border border-dark px-2">
+            1. Control No. (For Agency use only)
+        </div>
+        <div class="col-sm-4 d-none d-sm-flex align-items-center">
+            <p class="text-center w-100">
+                <strong class="h6">
+                    APPLICANT INFORMATION<br>
+                    (See instructions on reverse)
+                </strong>
+            </p>
+        </div>
+        <div class="col-sm-4 pb-5 border border-dark px-2">
+            2. Date Received (For Agency Use only)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="bg-secondary bg-opacity-50 border-start border-end border-dark text-center">
+                <strong>EMPLOYER INFORMATION</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row border border-dark">
+        <div class="col-sm-4 border-dark border-end px-2">
+            3. Employer Name
+            <$client.env.FormField.a03_employerName.HTML>
+        </div>
+        <div class="col-sm-4 border-dark border-end px-2">
+            4. Employer Address and Telephone
+            <$client.env.FormField.a04_employerAddress.HTML>
+        </div>
+        <div class="col-sm-4 border-dark border-end px-2">
+            5.Employer Federal ID Number (EIN)
+            <$client.env.FormField.a05_employerFederal.HTML>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="bg-secondary bg-opacity-50 border-start border-end border-dark text-center">
+                <strong>APPLICATION INFORMATION</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row border border-dark">
+        <div class="col-sm-4 border-dark border-end px-2">
+            6. Applicant Name (Last, First, MI)
+            <$client.env.FormField.a06_applicantName.HTML>
+        </div>
+        <div class="col-sm-4 border-dark border-end px-2">
+            7. Social Security Number
+            <$client.env.FormField.a07_socialSecurityNumber.HTML>
+        </div>
+        <div class="col-sm-4 border-dark border-end px-2">
+            8. Have you worked for this employer before?
+            <$client.env.FormField.a08_haveYouWorked.HTML>
+            If <strong>YES</strong>, enter last date of employment
+            <$client.env.FormField.a09_dateEmployment.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark ">
+        <div class="col-sm-12">
+            <div class="bg-secondary bg-opacity-50 text-center">
+                <strong>APPLICANT CHARACTERISTICS FOR WOTX TARGET GROUP CERTIFICATION</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row border border-dark">
+        <div class="col-sm-4 border-dark border-end px-2">
+            9. Employment Start Date
+            <$client.env.FormField.a10_employmentStartDate.HTML>
+        </div>
+        <div class="col-sm-4 border-dark border-end px-2">
+            10. Starting Wage
+            <$client.env.FormField.a11_startingWage.HTML>
+        </div>
+        <div class="col-sm-4 border-dark px-2">
+            11. Position
+            <$client.env.FormField.a12_position.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-bottom border-dark">
+        <div class="col-sm-9 px-2">
+            12. Are you are least age 10, but under age 40? <br>
+            <strong>if YES</strong>, enter your <em>date of birth</em>
+            <$client.env.FormField.a13_dateOfBirth16ButUnder40.HTML>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a14_16ButUnder40.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            13. Are you a Veteran of the U.S. Armed Forces? <br>
+            <strong>if NO</strong>, go to Box 14.
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a15_veteranUSArmedForces.HTML>
+        </div>
+    </div>
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            <strong>if YES</strong>, are you a member of a family that received Supplemental Nutrition Assistance <br>
+            Program (SNAP) benefits (Food Stamps) for at least 3 months during the 15 months before you were hired?<br>
+            <strong>if YES</strong>, enter name of <em>primary recipient</em>
+            <span class="d-inline-block" style="max-width: 220px;">
+                <$client.env.FormField.a16_namePrimaryRecipient.HTML>
+            </span>
+            and <em>city and state</em> were benefits were received
+            <span class="d-inline-block" style="max-width: 220px;">
+                <$client.env.FormField.a18_cityState.HTML>
+            </span>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a17_memberSNAP.HTML>
+        </div>
+    </div>
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            <strong>OR</strong>, are you a veteran entitled to compensation for a service-connected disability? <br>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a19_serviceConnectedDisability.HTML>
+        </div>
+    </div>
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            <strong>If YES</strong>, were you discharged or released from active duty within a year before you were hired? <br>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a20_dischargedOrRelease.HTML>
+        </div>
+    </div>
+    <div class="row border-start border-end border-bottom border-dark">
+        <div class="col-sm-9 px-2">
+            <strong>OR</strong>, were you unemployed for a combined period of at least 6 months (weather or not consecutive) during the year before you were hired?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a21_unemployed6months.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            14. Are you a member of a family that received Supplemental Nutrition Assistance Program (SNAP) (formerly Food Stamps) benefits for the 6 months before you were hired? <br>
+            <strong>OR</strong> received SNAP benefits for at least a 3-month period within the last 5 months 
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a22_areYouAMemberOfAFamilySNAP.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-9 px-2">
+            <strong>But</strong> you are no longer receiving them?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a24_areYouAMemberOfAFamilySNAP.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-9 px-2">
+            <strong>If YES to either question,</strong> enter name of <em>primary recipient</em>
+            <div class="d-inline-block">
+                <$client.env.FormField.a23_areYouAMemberOfAFamilySNAPprimaryRecipient.HTML>
+            </div>
+            and city <br>
+            And <em>state</em> where benefits were recieved 
+            <div class="d-inline-block" style="max-width: 220px;">
+                <$client.env.FormField.a25_areYouAMemberOfAFamilySNAPCityState.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            15. Where you referred to an employer by a Vocational Rehabilitation Agency approved by a State?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a26_wereYouRefered.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            <strong>OR</strong>, by an Employment Network under the Ticket to Work Program?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a27_byAnEmploymentNetwork.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-9 px-2">
+            <strong>OR</strong>, by the Department of Veteran Affairs?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a28_departmentVeteransAffairs.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            16. Are you a member of a family that received TANF assistance for at least the last 18 months before you were hired?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a29_memberTANF.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            <strong>OR</strong>, are you a member of a family that received TANF benefits for <strong>any</strong> 18 months beginning after August 5, 1997, and the earliest 18-month period beginning after August 5, 1997, ended within 2 years before you were hired?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a30_memberTANF18monthsBeginning.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            <strong>OR</strong>, did your family stop being eligible for TANF assistance within 2 years before you were hired because a Federal or state law limited the maximum time those payments could be made?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a31_stopBeingEligibleForTANF.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            <strong>IF NO</strong>, are you a member of a family that received TANF assistance for any 9 months during the 18-month period before you were hired?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a32_stopBeingEligibleForTANF9Months.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-9 px-2">
+            <strong>IF YES, to any question</strong>, enter name of <em>primary recipient</em>
+            <div class="d-inline-block" style="max-width: 220px;">
+                <$client.env.FormField.a33_stopBeingEligibleForTANF9MonthsprimaryRecipient.HTML>
+            </div>
+            and the <em>city and state</em> where benefits were recieved 
+            <div class="d-inline-block" style="max-width: 220px;">
+                <$client.env.FormField.a34_stopBeingEligibleForTANF9MonthsCityState.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            17. Were you convinced of a felony or released from prison after a felony of conviction during the year before you were hired?
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            <strong>If YES</strong>, enter <em>date of conviction</em>
+            <div class="d-inline-block" style="max-width: 220px;">
+                <$client.env.FormField.a35_dateOfConviction.HTML>
+            </div>
+            and <em>date of release</em>
+            <div class="d-inline-block" style="max-width: 220px;">
+                <$client.env.FormField.a36_dateOfRelease.HTML>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a34_wereYouConvictedOfAFelony.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-9 px-2">
+            <strong>Was</strong> this a Federal 
+            <div class="d-inline-block" style="max-width: 290px;">
+                <$client.env.FormField.a37_FederalState.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-9 px-2">
+            18. Do you live in an Empowerment Zone or Rural Renewal County (RRC)?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a38_DoYouliveEmpowermentZoneRRC.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-9 px-2">
+            19. Do you live in an Empowerment Zone and are at least age 16, but not yet 18, on your hiring date?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a39_DoYouliveEmpowermentZoneRRC1618.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-9 px-2">
+            20. Did you receive Supplemental Security Income (SSI) benefits for any month ending within 60 days before you were hired?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a40_supplementarySecurityIncome.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-9 px-2">
+            21 . Are you a veteran unemployed for a combined period of at least 6 months (whether or not consecutive) during the year before you were hired?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a41_veteranUnemployed6months.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-9 px-2">
+            22. Are you a veteran unemployed for a combined period of at least 4 weeks but less than 6 months (whether or not consecutive) during the year before you were hired?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a42_veteranUnemployed4weeks6months.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark">
+        <div class="col-sm-9 px-2">
+            23. Are you an individual who is or was in a period of unemployment that is at least 27 consecutive weeks the day before you began to work for the employer, or if earlier, the day you completed IRS Form 8850, the Prescreening Form?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a43_unemployment27consecutiveweeks.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-9 px-2">
+            <strong>If YES</strong>, did you receive unemployment compensation/benefits under State or Federal law during a period of unemployment?
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.a44_unemploymentCompensation.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom">
+        <div class="col-sm-12 px-2">
+            24. <strong>Sources used to document eligibility: (Employers/Consultants:</strong> List all documentation provided or forthcoming. <strong>For SWA Staff:</strong> List all documentation used in determining target group eligibility and enter your initials and date when the determination was made. 
+            <$client.env.FormField.a45_sourcesUsedToDocumentEligibility.HTML>
+        </div>
+    </div>
+
+    <div class="row border-start border-end border-dark border-bottom mb-3">
+        <div class="col-sm-5 px-2 border-right border-dark">
+            25(a). Signature: (See instructions in Box 25.(b) for who signs this signature block)
+            <$client.env.FormField.a46_signatureSeeInstruction.HTML>
+        </div>
+        <div class="col-sm-4 px-2 border-right border-dark">
+            25.(b) Indicate with a ✓ mark who signed this form:
+            <$client.env.FormField.a47_25Bindicate.HTML>
+        </div>
+        <div class="col-sm-3 px-2">
+            26. Date:
+            <$client.env.FormField.a48_Date.HTML>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p><strong>INSTRUCTIONS FOR COMPLETlNG THE INDIVIDUAL CHARACTERISTICS FORM (ICF), ETA 9061.</strong> This form is used together with IRS Form 8850 to help state workforce agencies (SWAs) determine eligibility for the Work Opportunity Tax Credit (WOTC) Program. The form may be completed, on behalf of the applicant. by: 1) the employer or employer representative, the SWA, a participating agency, or 2) the applicant directly (if a minor. the parent or guardian must sign the form) and signed (Box 25a.) by the individual completing the form. This form is required to be used, without modifiCation, by all employers (or their representatives) seeking WOTC certification. Simply complete, sign, and submit this form together with IRS Form 8850 to the SWA. For new hires that begin to work for an employer on or after January 1, 2015, and on or before May 31 , 2016, this form can be completed, signed, and submitted together with IRS Form 8850 to the SWA by June 29, 2016. For new hires with an employment start date on or after June 1, 2016, employers must meet the 28-day timely filing requirement The WOTC Employer Certification will be sent to you, if all statutory target group eligibility and timely filing requirements have been met. </p>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-2">
+            Boxes 1 and 2
+        </div>
+        <div class="col-sm-10">
+            <strong>SWA.</strong> For agency use only.
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-2">
+            Boxes 3-5.
+        </div>
+        <div class="col-sm-10">
+            <strong>Employer lnfonnation.</strong> Enter the name. address including ZIP code, telephone number, and employer Federal iD number (EIN) of the employer requesting the certification for the WOTC. Do not enter information pertaining to the employer's representative, if any.
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-2">
+            Boxes 6-11.
+        </div>
+        <div class="col-sm-10">
+            <strong>Applicant lnfonnation.</strong> Enter the applicant's name and social security number as they appear on the applicant's social security card. In Box 8, indicate whether the applicant previously worked for the employer, and if Yes. enter the last date or approximate last date of employment. This information will help the "48-hour" reviewer to, early in the verification process. eliminate requests for former employees and to issue denials to these type of requests, or certifications in the case of "qualifying rehires" during valid "breaks in employment"(see pages 111-12 and 111-13, Nov. 2002, Third Ed , ETA Handbook 408) during the first year of employment.
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-sm-2">
+            Boxes 12-23.
+        </div>
+        <div class="col-sm-10">
+            <p>
+                <strong>Applicant Characteristics.</strong> Read questions carefully, answer each question, and provide additional information where requested.
+            </p>
+            <em>The Protecting</em> Americans from Tax Hikes Act of 2015 retroactively reauthorized current target groups for a 5-year period, January 1, 2015 through December 31 , 2019, and extended the Empowerment Zones designations for a two-year year period, January 1, 2015 through December 31, 2016. The Act introduced a new target group. Qualified <em>Long-term Unemployment Recipient(LTUR), for new hires that begin to work for an employer on or after January 1, 2016-December 31, 2019, see Box 23</em>. For guidance <strong>see IRS Relief Period In TEGL No. 25·15 and</strong> <u>IRS Notice 2016·22</u>.
+        </div>
+    </div>
+
+    <div class="row mb-2 pb-2 border-bottom border-dark">
+        <div class="col-sm-2">
+            Box 24
+        </div>
+        <div class="col-sm-10">
+            <strong>Sources to Document Eligibility.</strong> The applicant or employer is requested to provide documentary evidence to substantiate the <strong>YES answers</strong> in Boxes 12-23. List or describe the documentary evidence that is attached to the ICF or that will be provided to the SWA. Indicate in parentheses next to each document listed whether it is attached (A) or forthcoming (F). Some examples of acceptable documentation are provided below. A letter from the agency that administers a program may be furnished specifically addressing the question to which the applicant answered YES. For example, if an applicant answers YES to either question in Box 14 and enters the name of the primary recipient and the city and state in which the benefits were received, the applicant could provide a letter from the appropriate SNAP (formerly Food Stamp) agency stating to whom SNAP benefits were paid, the months for which they were paid, and the names of the individuals included on the grant for each month. SWAs use this box to list the sources used verify target group eligibility, folllowed with their initials and the date the determination was completed
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Description of Examples of Documentary Evidence and Collateral Contacts. Employers/Consultants: You may check with your SWA to find out what other sources you can use to prove target group eligibility. (You are encouraged to provide copies of documentation or names of collateral contacts for each question for which you answered YES.) </p>
+            <strong>
+                <u>QUESTION 12</u>
+            </strong>
+            <ul class="mb-2 list-styled ps-1 ms-2">
+                <li>Birth Certificate or Copy of Hospital Record</li>
+                <li>Driver's License</li>
+                <li>School J.D. Card<sup>1</sup></li>
+                <li>Work Permit<sup>1</sup></li>
+                <li>Federal/State/Local Gov't I.D.<sup>1</sup></li>
+            </ul>
+            <strong>
+                <u>QUESTION 13</u>
+            </strong>
+            <ul class="mb-2 list-styled ps-1 ms-2">
+                <li>DD-214 or Discharge Papers</li>
+                <li>Reserve Unit Contacts</li>
+                <li>Letter of Separation or other agency documents issued only by the Department of Veterans Affairs (DVA) on DVA Letterhead certifying the Veteran has a service-connected disability and signed by the individual who verified this information.</li>
+            </ul>
+            <strong>
+                <u>QUESTION 14 &amp; 16</u>
+            </strong>
+            <ul class="mb-2 list-styled ps-1 ms-2">
+                <li>TANF/SNAP (Food Stamp) Benefit History or Case Number Identifier</li>
+                <li>Signed statement from Authorized Individual with a specific description of the months benefits that were received</li>
+            </ul>
+            <strong>
+                <u>QUESTION 15</u>
+            </strong>
+            <ul class="mb-2 list-styled ps-1 ms-2">
+                <li>Vocational Rehabilitation Agency Contact</li>
+                <li>Veterans Administration for Disabled Veterans</li>
+                <li>Signed letter of separation or related document from authorized Individual on DVA letter head or agency stamp with specific description of months benefits were received.</li>
+                <li><strong>For SWAs:</strong> To determine Ticket Holder (TH) eligibility, Fax page 1 of Form 8850 to MAXIM US at: 703-683-1051 to verify if applicant: 1) is a TH. and 2) has an Individual Work Plan from an Employment Network.</li>
+            </ul>
+            <strong>
+                <u>QUESTION 17</u>
+            </strong>
+            <ul class="mb-2 list-styled ps-1 ms-2">
+                <li>Parole Officer's Name or Statement</li>
+                <li>Correction Institution Records</li>
+            </ul>
+            <strong>
+                <u>QUESTION 18 &amp; 19</u>
+            </strong>
+            <ul class="mb-2 list-styled ps-1 ms-2">
+                <li>To determine if a Designated Community Resident lives in a RRC. visit the site: <a href="http://www.usps.com" target="_blank">www.usps.com</a>. Click on Find Zip Code; Enter &amp; Submit Address/Zip Code; Click on Mailing Industry Information; Download and Print the Information, then compare the county of the address to the list in the January 2012 Instructions to IRS 8850.</li>
+                <li>To determine if the DCR or a Summer Youth lives in an Empowerment Zone, check the most current instructions to IRS Form 8850, or visit the US. Department of Housing and Urban Development's "locator" at: <a href="http://egis.hud.gov/ezrclocator" target="_blank">http://egis.hud.gov/ezrclocator</a>.</li>
+            </ul>
+            <strong>
+                <u>QUESTION 20</u>
+            </strong>
+            <ul class="mb-2 list-styled ps-1 ms-2">
+                <li>SSI Record or Authorization</li>
+                <li>SSI Contact</li>
+                <li>Evidence of SSI Benefits</li>
+            </ul>
+            <strong>
+                <u>QUESTION 21 &amp; 22</u>
+            </strong>
+            <ul class="mb-2 list-styled ps-1 ms-2">
+                <li>Unemployment Insurance (UI) Claims Records</li>
+                <li>Ul Wage Records</li>
+            </ul>
+            <strong>
+                <u>QUESTION 23</u>
+            </strong>
+            <ul class="mb-2 list-styled ps-1 ms-2">
+                <li>Ul Wage Records</li>
+                <li>Ul Claims Records</li>
+                <li>Self-Attestation Form</li>
+            </ul>
+            <strong>
+                <u>QUESTION 24</u>
+            </strong>
+            <ul class="mb-2 list-styled ps-1 ms-2">
+                <li><strong>Employers/Representatives:</strong> List All sources used and provided to the SWA to document target group eligibility. SWA Staff: List all documentation used to determine/verify eligibility in the target group requested by the employer/rep.. to reach the final determination.</li>
+            </ul>
+            <strong>
+                <u>Notes:</u>
+            </strong>
+            <div class="border-bottom border-dark pb-2 mb-2">
+                1. Where a Federal/State/Local Gov't., School I. D. Card. or Work Permit does not contain age or birth date. another valid document must be obtained to verify an individual's age.
+                <br>
+                2 ESPL No. 05-98, dated 3/18/98. officially rescinded the authority to use Form 1-9 as proof of age and residence. <strong>Therefore, the I-9 is no longer a valid piece of documentary evidence.</strong>
+            </div>
+            <p>Box 25.(a) <strong>Signature. The person who completes the form signs the signature block.</strong></p>
+            <p>Box 25(b) <strong>Signature Options.</strong> (a) Employer or Authorized Representabve. (b) SWA staff, (c) Participating Agency staff, or (d) Applicant (If applicant is a minor, the parent or guardian must sign).</p>
+            <p>Box 26. <strong>Date.</strong> Enter the month, day and year when the form was Completed.</p>
+            <div class="my-2 py-2 border-dark border-top border-bottom">
+                Persons are nct required to respond to this collection of information unless it displays a currently valid OMB Control Number. Respondent's obligation to reply to these questions is required to obtain and retain benefits per law 104-188. Public reporting burden for this collection of information is estimated to average 20 minutes per response inducing the time for readng instructions, searching existing data sources, gathering and maintaining the data needed, and Completing and reviewing the information. Send comments regardng this burden estimate or any other aspect of this collection of information, including suggestions for reducing burden to the U.S. Department a Labor, Employment and Trainng Administration, Division of National Programs, Tools, and Technical Assistance, 200 Constitution Ave., NW, Rocrn C4510, Washington, D.C. 20210 (Paperwork Reduction Project Control No. 1205-0371).
+            </div>
+            <p>
+                <strong>TO: THE JOB APPLICANT OR EMPLOYEE,</strong>
+            </p>
+            <p>
+                <strong>Privacy Act Statement:</strong> <em>The Internal Revenue Code of 1986, Section 51, as amended and its enacting legislation, P.L. 104-188, specify that the State Workforce Agencies are the "designated" agencies responsible for administering the WOTC certification procedures of this program. The information you have provided completing this form will be disclosed by your employer to the State Workforce Agency. Provision of this information is voluntary. However, the information is required for your employer to receive the federal tax credit. IF THE INFORMATION YOU PROVIDE IS ABOUT A MEMBER OF YOUR FAMILY, YOU SHOULD PROVIDE HIM/HER A COPY OF THIS NOTICE.</em>
+            </p>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="/eprise/main/RedCarpet/FormTemplates/Form_9061/js/bootstrap.min.js"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

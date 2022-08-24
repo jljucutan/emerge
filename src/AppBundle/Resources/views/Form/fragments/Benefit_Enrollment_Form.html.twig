@@ -1,0 +1,1102 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal E-Signature box2: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal2" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','fullName','modal2','over','sv2');xbObj('eSignature2').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal E-Signature box 3: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal3" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature3" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature3','eSignature3','fullName','modal3','over','sv3');xbObj('eSignature3').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature3').value='';showHide('modal3');showHide('over');xbObj('eSignature3').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal3');showHide('over');xbObj('eSignature3').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+		<$client.env.FormField.SignatureVerification.prompt>
+		<$client.env.FormField.SignatureVerification2.prompt>
+		<$client.env.FormField.SignatureVerification3.prompt>
+		<$client.env.FormField.a01_Name.prompt>
+		<$client.env.FormField.a02_Date.prompt>
+		<$client.env.FormField.a03_Address.prompt>
+		<$client.env.FormField.a04_Coverage_Level.prompt>
+		<$client.env.FormField.a04_Coverage_Level_2.prompt>
+		<$client.env.FormField.a04_Coverage_Level_3.prompt>
+		<$client.env.FormField.a04_Coverage_Level_4.prompt>
+		<$client.env.FormField.a04_Coverage_Level_5.prompt>
+		<$client.env.FormField.a04_Coverage_Level_6.prompt>
+		<$client.env.FormField.a05_Dependent_Name.prompt>
+		<$client.env.FormField.a06_Dependent_Birth_Date.prompt>
+		<$client.env.FormField.a07_Dependent_Relationship.prompt>
+		<$client.env.FormField.a08_Dependent_Gender.prompt>
+		<$client.env.FormField.a09_Coverage_Add_Remove.prompt>
+		<$client.env.FormField.a09_Coverage_Add_Remove_2.prompt>
+		<$client.env.FormField.a10_Dependent_Name.prompt>
+		<$client.env.FormField.a11_Dependent_Birth_Date.prompt>
+		<$client.env.FormField.a12_Dependent_Relationship.prompt>
+		<$client.env.FormField.a13_Dependent_Gender.prompt>
+		<$client.env.FormField.a14_Coverage_Add_Remove.prompt>
+		<$client.env.FormField.a14_Coverage_Add_Remove_2.prompt>
+		<$client.env.FormField.a15_Dependent_Name.prompt>
+		<$client.env.FormField.a16_Dependent_Birth_Date.prompt>
+		<$client.env.FormField.a17_Dependent_Relationship.prompt>
+		<$client.env.FormField.a18_Dependent_Gender.prompt>
+		<$client.env.FormField.a19_Coverage_Add_Remove.prompt>
+		<$client.env.FormField.a19_Coverage_Add_Remove_2.prompt>
+		<$client.env.FormField.a20_Dependent_Name.prompt>
+		<$client.env.FormField.a21_Dependent_Birth_Date.prompt>
+		<$client.env.FormField.a22_Dependent_Relationship.prompt>
+		<$client.env.FormField.a23_Dependent_Gender.prompt>
+		<$client.env.FormField.a24_Coverage_Add_Remove.prompt>
+		<$client.env.FormField.a24_Coverage_Add_Remove_2.prompt>
+		<$client.env.FormField.a25_Dependent_Name.prompt>
+		<$client.env.FormField.a26_Dependent_Birth_Date.prompt>
+		<$client.env.FormField.a27_Dependent_Relationship.prompt>
+		<$client.env.FormField.a28_Dependent_Gender.prompt>
+		<$client.env.FormField.a29_Coverage_Add_Remove.prompt>
+		<$client.env.FormField.a29_Coverage_Add_Remove_2.prompt>
+		<$client.env.FormField.a30_Dental_Coverage_Level.prompt>
+		<$client.env.FormField.a30_Dental_Coverage_Level_2.prompt>
+		<$client.env.FormField.a30_Dental_Coverage_Level_3.prompt>
+		<$client.env.FormField.a30_Dental_Coverage_Level_4.prompt>
+		<$client.env.FormField.a30_Dental_Coverage_Level_5.prompt>
+		<$client.env.FormField.a30_Dental_Coverage_Level_6.prompt>
+		<$client.env.FormField.a31_Dependent_Name.prompt>
+		<$client.env.FormField.a32_Dependent_Birth_Date.prompt>
+		<$client.env.FormField.a33_Dependent_Relationship.prompt>
+		<$client.env.FormField.a34_Dependent_Gender.prompt>
+		<$client.env.FormField.a35_Coverage_Add_Remove.prompt>
+		<$client.env.FormField.a35_Coverage_Add_Remove_2.prompt>
+		<$client.env.FormField.a36_Dependent_Name.prompt>
+		<$client.env.FormField.a37_Dependent_Birth_Date.prompt>
+		<$client.env.FormField.a38_Dependent_Relationship.prompt>
+		<$client.env.FormField.a39_Dependent_Gender.prompt>
+		<$client.env.FormField.a40_Coverage_Add_Remove.prompt>
+		<$client.env.FormField.a40_Coverage_Add_Remove_2.prompt>
+		<$client.env.FormField.a41_Dependent_Name.prompt>
+		<$client.env.FormField.a42_Dependent_Birth_Date.prompt>
+		<$client.env.FormField.a43_Dependent_Relationship.prompt>
+		<$client.env.FormField.a44_Dependent_Gender.prompt>
+		<$client.env.FormField.a45_Coverage_Add_Remove.prompt>
+		<$client.env.FormField.a45_Coverage_Add_Remove_2.prompt>
+		<$client.env.FormField.a46_Dependent_Name.prompt>
+		<$client.env.FormField.a47_Dependent_Birth_Date.prompt>
+		<$client.env.FormField.a48_Dependent_Relationship.prompt>
+		<$client.env.FormField.a49_Dependent_Gender.prompt>
+		<$client.env.FormField.a50_Coverage_Add_Remove.prompt>
+		<$client.env.FormField.a50_Coverage_Add_Remove_2.prompt>
+		<$client.env.FormField.a51_Dependent_Name.prompt>
+		<$client.env.FormField.a52_Dependent_Birth_Date.prompt>
+		<$client.env.FormField.a53_Dependent_Relationship.prompt>
+		<$client.env.FormField.a54_Dependent_Gender.prompt>
+		<$client.env.FormField.a55_Coverage_Add_Remove.prompt>
+		<$client.env.FormField.a55_Coverage_Add_Remove_2.prompt>
+		<$client.env.FormField.a57_Name.prompt>
+		<$client.env.FormField.a58_Beneficiary_Name.prompt>
+		<$client.env.FormField.a59_Beneficiary_Address.prompt>
+		<$client.env.FormField.a60_Beneficiary_Relationship.prompt>
+		<$client.env.FormField.a61_Beneficiary_Benefit_Percent.prompt>
+		<$client.env.FormField.a61_Beneficiary_Name.prompt>
+		<$client.env.FormField.a62_Beneficiary_Address.prompt>
+		<$client.env.FormField.a63_Beneficiary_Relationship.prompt>
+		<$client.env.FormField.a64_Beneficiary_Benefit_Percent.prompt>
+		<$client.env.FormField.a65_Beneficiary_Name.prompt>
+		<$client.env.FormField.a66_Beneficiary_Address.prompt>
+		<$client.env.FormField.a67_Beneficiary_Relationship.prompt>
+		<$client.env.FormField.a68_Beneficiary_Benefit_Percent.prompt>
+		<$client.env.FormField.a69_Beneficiary_Name.prompt>
+		<$client.env.FormField.a70_Beneficiary_Address.prompt>
+		<$client.env.FormField.a71_Beneficiary_Relationship.prompt>
+		<$client.env.FormField.a72_Beneficiary_Benefit_Percent.prompt>
+		<$client.env.FormField.a73_Associate_Signature.prompt>
+		<$client.env.FormField.a74_Date.prompt>
+		<$client.env.FormField.a75_Associate_Signature.prompt>
+		<$client.env.FormField.a76_Date.prompt>
+		<$client.env.FormField.a77_Associate_Signature.prompt>
+		<$client.env.FormField.a78_Date.prompt>
+		<$client.env.FormField.a79_Effective_Date.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+	<header class="row">
+		<div class="col-lg-12">
+			<h2 class="text-center">
+				<strong>The Nature’s Bounty Co. Ltd. - Benefit Enrolment Form</strong>
+			</h2>
+		</div>
+	</header>
+	<div class="box mb-1em">
+		<div class="row b-bottom">
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+				Name:
+			</div>
+			<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 b-right">
+				<$client.env.FormField.a01_Name.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				Date of Birth:
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				<$client.env.FormField.a02_Date.HTML>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+				Address:
+			</div>
+			<div class="col-lg-11 col-md-11 col-sm-12 col-xs-12">
+				<$client.env.FormField.a03_Address.HTML>
+			</div>
+		</div>
+	</div>
+	<div class="box mb-1em">
+		<div class="row">
+			<div class="col-lg-12">
+				<p>
+					<strong class="text-red">Instructions:</strong> Please indicate your benefit elections by completing all sections of this form. If you waive dental or medical cover, please sign and date the Waive Disclosure on the second page.
+				</p>
+				<p>
+					If you enroll in the dental or medical benefits please sign and date the Enrolment Terms on the second page. The Nature’s Bounty Co. Ltd. covers the Associate benefit 100% however, should you cover your dependents under the plan you will be responsible for the additional premium which will be deducted monthly from payroll.
+				</p>
+				<p>
+					If you wish to enroll or change your enrolment in dental or medical benefits, please understand that you will not be permitted to enroll or make any changes again until the next open enrolment period or as a result of a certified qualified event.
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="box mb-1em">
+		<div class="row b-bottom">
+			<div class="col-lg-12">
+				<strong>MEDICAL: AXA</strong>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<strong>Monthly premiums</strong>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 b-left">
+				Medical cover cost is calculated by the age of the Associate age at the scheme annual renewal date of 1<sup>st</sup> August. <br>
+				The Nature’s Bounty Co. Ltd. will pay ‘Associate only’ costs. If you opt to include dependents the difference between the ‘Associate only’ cost and the dependent cost in the table will be the premium to deducted through payroll monthly. <br>
+				Benefits paid by The Nature’s Bounty Co. Ltd. will appear on your year-end P11d statement and will be liable for tax.
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<strong>COVERAGE LEVEL FOR THE MEDICAL PLAN</strong>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="i-block">
+				Select coverage level:
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a04_Coverage_Level.HTML>
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a04_Coverage_Level_2.HTML>
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a04_Coverage_Level_3.HTML>
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a04_Coverage_Level_4.HTML>
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a04_Coverage_Level_5.HTML>
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a04_Coverage_Level_6.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-12">
+				<strong>LIST ALL ELIGIBLE DEPENDANTS YOU WISH TO COVER ON THE MEDICAL PLAN</strong>
+			</div>
+		</div>
+		<div class="row b-bottom text-center hidden-xs common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				List Dependant(s) Name(s)
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				Date of Birth (DD/MM/YY)
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				Relationship
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				Gender
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				Add
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+				Remove
+			</div>
+		</div>
+		<div class="row b-bottom text-center common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">List Dependant(s) Name(s)</span>
+				<$client.env.FormField.a05_Dependent_Name.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Date of Birth (DD/MM/YY)</span>
+				<$client.env.FormField.a06_Dependent_Birth_Date.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a07_Dependent_Relationship.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Gender</span>
+				<$client.env.FormField.a08_Dependent_Gender.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right text-left">
+				<div class="i-block">
+					<$client.env.FormField.a09_Coverage_Add_Remove.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Add</span>
+				</div>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 text-left">
+				<div class="i-block">
+					<$client.env.FormField.a09_Coverage_Add_Remove_2.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Remove</span>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom text-center common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">List Dependant(s) Name(s)</span>
+				<$client.env.FormField.a10_Dependent_Name.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Date of Birth (DD/MM/YY)</span>
+				<$client.env.FormField.a11_Dependent_Birth_Date.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a12_Dependent_Relationship.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Gender</span>
+				<$client.env.FormField.a13_Dependent_Gender.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right text-left">
+				<div class="i-block">
+					<$client.env.FormField.a14_Coverage_Add_Remove.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Add</span>
+				</div>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 text-left">
+				<div class="i-block">
+					<$client.env.FormField.a14_Coverage_Add_Remove_2.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Remove</span>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom text-center common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">List Dependant(s) Name(s)</span>
+				<$client.env.FormField.a15_Dependent_Name.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Date of Birth (DD/MM/YY)</span>
+				<$client.env.FormField.a16_Dependent_Birth_Date.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a17_Dependent_Relationship.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Gender</span>
+				<$client.env.FormField.a18_Dependent_Gender.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right text-left">
+				<div class="i-block">
+					<$client.env.FormField.a19_Coverage_Add_Remove.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Add</span>
+				</div>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 text-left">
+				<div class="i-block">
+					<$client.env.FormField.a19_Coverage_Add_Remove_2.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Remove</span>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom text-center common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">List Dependant(s) Name(s)</span>
+				<$client.env.FormField.a20_Dependent_Name.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Date of Birth (DD/MM/YY)</span>
+				<$client.env.FormField.a21_Dependent_Birth_Date.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a22_Dependent_Relationship.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Gender</span>
+				<$client.env.FormField.a23_Dependent_Gender.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right text-left">
+				<div class="i-block">
+					<$client.env.FormField.a24_Coverage_Add_Remove.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Add</span>
+				</div>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 text-left">
+				<div class="i-block">
+					<$client.env.FormField.a24_Coverage_Add_Remove_2.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Remove</span>
+				</div>
+			</div>
+		</div>
+		<div class="row text-center common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">List Dependant(s) Name(s)</span>
+				<$client.env.FormField.a25_Dependent_Name.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Date of Birth (DD/MM/YY)</span>
+				<$client.env.FormField.a26_Dependent_Birth_Date.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a27_Dependent_Relationship.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Gender</span>
+				<$client.env.FormField.a28_Dependent_Gender.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right text-left">
+				<div class="i-block">
+					<$client.env.FormField.a29_Coverage_Add_Remove.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Add</span>
+				</div>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 text-left">
+				<div class="i-block">
+					<$client.env.FormField.a29_Coverage_Add_Remove_2.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Remove</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="box mb-1em">
+		<div class="row b-bottom">
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+				<strong>DENTAL: DENPLAN</strong>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Associate Only
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Couple Cover
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Single Parent Family
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Family Cover
+			</div>
+		</div>
+		<div class="row common-height">
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+				<p>
+					<strong>
+						Monthly premiums: <br>
+						Employer costs* <br>
+						Associate Costs (Costs deducted from payroll)
+					</strong>
+				</p>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Employer Costs:<br>
+				<div class="i-block">
+					&#xa3;
+				</div>
+				<div class="i-block">
+					<$client.env.FormField.DENPLAN_Associate_Only.HTML>
+				</div>
+				<div class="i-block">
+					*
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Employer Costs: <br>
+				<div class="i-block">
+					&#xa3;
+				</div>
+				<div class="i-block">
+					<$client.env.FormField.DENPLAN_Couple_Cover.HTML>
+				</div>
+				<div class="i-block">
+					*
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Employer Costs: <br>
+				<div class="i-block">
+					&#xa3;
+				</div>
+				<div class="i-block">
+					<$client.env.FormField.DENPLAN_Single_Parent_Family.HTML>
+				</div>
+				<div class="i-block">
+					*
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Employer Costs:<br>
+				<div class="i-block">
+					&#xa3;
+				</div>
+				<div class="i-block">
+					<$client.env.FormField.DENPLAN_Family_Cover.HTML>
+				</div>
+				<div class="i-block">
+					*
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom common-height">
+			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+				<p>
+					*Benefits paid by The Nature’s Bounty Co. Ltd.
+					will appear on your year-end P11d statement and
+					will be liable for tax
+				</p>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Associate Costs:<br>
+				<div class="i-block">
+					&#xa3;
+				</div>
+				<div class="i-block">
+					<$client.env.FormField.DENPLAN_Associate_Only_Associate_Costs.HTML>
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Associate Costs:<br>
+				<div class="i-block">
+					&#xa3;
+				</div>
+				<div class="i-block">
+					<$client.env.FormField.DENPLAN_Couple_Cover_Associate_Costs.HTML>
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Associate Costs:<br>
+				<div class="i-block">
+					&#xa3;
+				</div>
+				<div class="i-block">
+					<$client.env.FormField.DENPLAN_Single_Parent_Family_Associate_Costs.HTML>
+				</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right text-center">
+				Associate Costs:<br>
+				<div class="i-block">
+					&#xa3;
+				</div>
+				<div class="i-block">
+					<$client.env.FormField.DENPLAN_Family_Cover_Associate_Costs.HTML>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<strong>COVERAGE LEVEL FOR THE DENTAL PLAN</strong>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="i-block">
+				Select coverage level:
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a30_Dental_Coverage_Level.HTML>
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a30_Dental_Coverage_Level_2.HTML>
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a30_Dental_Coverage_Level_3.HTML>
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a30_Dental_Coverage_Level_4.HTML>
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a30_Dental_Coverage_Level_5.HTML>
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a30_Dental_Coverage_Level_6.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-12">
+				<strong>LIST ALL ELIGIBLE DEPENDANTS YOU WISH TO COVER ON THE DENTAL PLAN</strong>
+			</div>
+		</div>
+		<div class="row b-bottom text-center hidden-xs common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				List Dependant(s) Name(s)
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				Date of Birth (DD/MM/YY)
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				Relationship
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				Gender
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				Add
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+				Remove
+			</div>
+		</div>
+		<div class="row b-bottom text-center common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">List Dependant(s) Name(s)</span>
+				<$client.env.FormField.a31_Dependent_Name.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Date of Birth (DD/MM/YY)</span>
+				<$client.env.FormField.a32_Dependent_Birth_Date.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a33_Dependent_Relationship.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Gender</span>
+				<$client.env.FormField.a34_Dependent_Gender.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right text-left">
+				<div class="i-block">
+					<$client.env.FormField.a35_Coverage_Add_Remove.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Add</span>
+				</div>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 text-left">
+				<div class="i-block">
+					<$client.env.FormField.a35_Coverage_Add_Remove_2.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Remove</span>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom text-center common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">List Dependant(s) Name(s)</span>
+				<$client.env.FormField.a36_Dependent_Name.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Date of Birth (DD/MM/YY)</span>
+				<$client.env.FormField.a37_Dependent_Birth_Date.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a38_Dependent_Relationship.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Gender</span>
+				<$client.env.FormField.a39_Dependent_Gender.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right text-left">
+				<div class="i-block">
+					<$client.env.FormField.a40_Coverage_Add_Remove.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Add</span>
+				</div>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 text-left">
+				<div class="i-block">
+					<$client.env.FormField.a40_Coverage_Add_Remove_2.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Remove</span>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom text-center common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">List Dependant(s) Name(s)</span>
+				<$client.env.FormField.a41_Dependent_Name.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Date of Birth (DD/MM/YY)</span>
+				<$client.env.FormField.a42_Dependent_Birth_Date.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a43_Dependent_Relationship.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Gender</span>
+				<$client.env.FormField.a44_Dependent_Gender.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right text-left">
+				<div class="i-block">
+					<$client.env.FormField.a45_Coverage_Add_Remove.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Add</span>
+				</div>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 text-left">
+				<div class="i-block">
+					<$client.env.FormField.a45_Coverage_Add_Remove_2.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Remove</span>
+				</div>
+			</div>
+		</div>
+		<div class="row b-bottom text-center common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">List Dependant(s) Name(s)</span>
+				<$client.env.FormField.a46_Dependent_Name.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Date of Birth (DD/MM/YY)</span>
+				<$client.env.FormField.a47_Dependent_Birth_Date.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a48_Dependent_Relationship.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Gender</span>
+				<$client.env.FormField.a49_Dependent_Gender.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right text-left">
+				<div class="i-block">
+					<$client.env.FormField.a50_Coverage_Add_Remove.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Add</span>
+				</div>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 text-left">
+				<div class="i-block">
+					<$client.env.FormField.a50_Coverage_Add_Remove_2.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Remove</span>
+				</div>
+			</div>
+		</div>
+		<div class="row text-center common-height">
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">List Dependant(s) Name(s)</span>
+				<$client.env.FormField.a51_Dependent_Name.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Date of Birth (DD/MM/YY)</span>
+				<$client.env.FormField.a52_Dependent_Birth_Date.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a53_Dependent_Relationship.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Gender</span>
+				<$client.env.FormField.a54_Dependent_Gender.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right text-left">
+				<div class="i-block">
+					<$client.env.FormField.a55_Coverage_Add_Remove.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Add</span>
+				</div>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 text-left">
+				<div class="i-block">
+					<$client.env.FormField.a55_Coverage_Add_Remove_2.HTML>
+				</div>
+				<div class="i-block">
+					<span class="visible-xs">Remove</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="box mb-1em">
+		<div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+				Name:
+			</div>
+			<div class="col-lg-11 col-md-11 col-sm-12 col-xs-12">
+				<$client.env.FormField.a57_Name.HTML>
+			</div>
+		</div>
+	</div>
+	<div class="box mb-1em">
+		<div class="row b-bottom">
+			<div class="col-lg-12">
+				<strong>LIFE ASSURANCE : Beneficiary Changes</strong>
+			</div>
+		</div>
+		<div class="row b-bottom hidden-xs">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+				Beneficiary(s) Name(s)
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				Beneficiary(s) Address details
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				Relationship
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				% Benefit
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Beneficiary(s) Name(s)</span>
+				<$client.env.FormField.a58_Beneficiary_Name.HTML>
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Beneficiary(s) Address details</span>
+				<$client.env.FormField.a59_Beneficiary_Address.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a60_Beneficiary_Relationship.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				<span class="visible-xs">% Benefit</span>
+				<$client.env.FormField.a61_Beneficiary_Benefit_Percent.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Beneficiary(s) Name(s)</span>
+				<$client.env.FormField.a61_Beneficiary_Name.HTML>
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Beneficiary(s) Address details</span>
+				<$client.env.FormField.a62_Beneficiary_Address.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a63_Beneficiary_Relationship.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				<span class="visible-xs">% Benefit</span>
+				<$client.env.FormField.a64_Beneficiary_Benefit_Percent.HTML>
+			</div>
+		</div>
+		<div class="row b-bottom">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Beneficiary(s) Name(s)</span>
+				<$client.env.FormField.a65_Beneficiary_Name.HTML>
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Beneficiary(s) Address details</span>
+				<$client.env.FormField.a66_Beneficiary_Address.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a67_Beneficiary_Relationship.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				<span class="visible-xs">% Benefit</span>
+				<$client.env.FormField.a68_Beneficiary_Benefit_Percent.HTML>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Beneficiary(s) Name(s)</span>
+				<$client.env.FormField.a69_Beneficiary_Name.HTML>
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Beneficiary(s) Address details</span>
+				<$client.env.FormField.a70_Beneficiary_Address.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+				<span class="visible-xs">Relationship</span>
+				<$client.env.FormField.a71_Beneficiary_Relationship.HTML>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				<span class="visible-xs">% Benefit</span>
+				<$client.env.FormField.a72_Beneficiary_Benefit_Percent.HTML>
+			</div>
+		</div>
+	</div>
+	<div class="box padded mb-3em">
+		<div class="row mb-1em">
+			<div class="col-lg-12">
+				<p>
+					<strong class="text-red">WAIVE DISCLOSURE -YOU MUST SIGN IF YOU WAIVED MEDICAL AND/OR DENTAL COVERAGE -OTHERWISE DISREGARD</strong><br>
+					I understand the importance and risks associated with my decision to waive benefits. I am hereby electing to waive my medical coverage and /or dental coverage. This waiver of coverage means The Nature’s Bounty Co. Ltd. cannot be held responsible for any healthcare expenses incurred for myself and any dependents deemed eligible. I understand that I will not be permitted to enroll in The Nature’s Bounty Co. Ltd. healthcare program until the next open enrollment period or as a result of a certified qualified event.
+				</p>
+			</div>
+		</div>
+		<div class="row mb-1em b-bottom">
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				Associate Signature:
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<$client.env.FormField.a73_Associate_Signature.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+				Date:
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<$client.env.FormField.a74_Date.HTML>
+			</div>
+		</div>
+		<div class="row mb-1em">
+			<div class="col-lg-12">
+				<p class="text-red">
+					<strong>ENROLMENT TERMS:</strong>
+				</p>
+				<p>
+					<strong class="text-red">IMPORTANT-YOU MUST SIGN IF YOU ENROLLED IN THE MEDICAL AND/OR DENTAL COVERAGE</strong>
+					I am applying for the benefits options I have elected on this enrolment form. I authorize the Company, if necessary, to reduce my salary to pay for the eligible options I have elected.
+				</p>
+				<p>
+					I make this acknowledgement and agreement on behalf of myself and each other person who now or in the future accepts coverage under the terms of the contract applicable to my coverage (who may include, for example, my spouse and my eligible family dependents). I hereby accept responsibility for payment of any portion of the premium for which I am responsible. I understand that any claim by me or my eligible family members may be denied and my coverage cancelled upon one month’s notice, if I have knowingly included false information.
+				</p>
+				<p>
+					I understand that the Company may change or terminate the schemes, in its sole discretion, subject to applicable law, at any time and from time to time.
+				</p>
+			</div>
+		</div>
+		<div class="row mb-1em b-bottom">
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				Associate Signature:
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<$client.env.FormField.a75_Associate_Signature.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+				Date:
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<$client.env.FormField.a76_Date.HTML>
+			</div>
+		</div>
+		<div class="row mb-1em b-bottom">
+			<div class="col-lg-12">
+				<p>
+					<strong class="text-red">
+						IMPORTANT-YOU MUST SIGN IF YOU CHANGE YOUR LIFE ASSURANCE BENEFICIARIES
+					</strong>
+				</p>
+			</div>
+		</div>
+		<div class="row mb-1em">
+			<div class="col-lg-12">
+				<p>
+					I refer to my membership of the Life Assurance scheme.
+				</p>
+				<p>
+					I fully understand that the payment is at the Trustee’s complete discretion.
+					It is my wish that you consider the person or persons named on this form as possible recipients of any benefits payable on my death under the discretionary trust of the above scheme.
+				</p>
+			</div>
+		</div>
+		<div class="row mb-1em">
+			<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+				Associate Signature:
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<$client.env.FormField.a77_Associate_Signature.HTML>
+			</div>
+			<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+				Date:
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<$client.env.FormField.a78_Date.HTML>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 pull-right">
+			<div class="i-block text-red">
+				Internal use only: Effective date of change
+			</div>
+			<div class="i-block">
+				<$client.env.FormField.a79_Effective_Date.HTML>
+			</div>
+		</div>
+	</div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div class="hide">
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.SignatureVerification3.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+function disableCalButton(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+    "use strict";    
+    $('[data-checkbox-group]').on('click', function() {
+        let groupId = $(this).data('checkbox-group');
+        let checked = $(this).prop('checked');
+        $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+        $(this).prop('checked', checked);
+    });
+    if($(window).width() > 800) {
+        $('.common-height').each(function() {
+            let height = $(this).height();
+            $.each($(this).children('div'), function(k,v) {
+                $(v).css({'height': height});
+            });
+        });
+    }
+    $(window).on('resize', function() {
+        location.reload();
+    });
+    disableCalButton($(".disabled-date"));
+    $(".modal").hide();
+});
+</script>

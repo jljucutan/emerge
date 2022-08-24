@@ -1,0 +1,338 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','date');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12"> 
+                <strong>Type your Name:</strong> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','SignerMan','modal2','over','sv2','date2');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp; 
+                    <input id="clear-sig-2" type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','date2');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="italy-offer-letter" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <template id="fragment-1">
+        <p>&nbsp;</p>
+        <p class="sidebar-address">PayPal Hong Kong Limited <br> Suite 1506-07, 15/F Central Plaza <br>18 Harbour Road, Wanchai Hong Kong</p>
+    </template>
+    <template id="fragment-2">
+        <p>&nbsp;</p>
+        <p class="mb-5">
+            <mark><%= Current_Date %></mark><br>
+        </p>
+        <p class="hide">&nbsp;</p>
+        <p class="mb-5">
+            <mark><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></mark><br>
+            <mark><$client.tForWhomUserInfo.Address1></mark><br>
+            <% if ('<$client.tForWhomUserInfo.Address2>'.length > 0) { %>
+            <mark><$client.tForWhomUserInfo.Address2></mark><br>
+            <% } %>
+            <mark><$client.tForWhomUserInfo.City></mark>
+        </p>
+        <p class="hide"></p>
+        <p>Dear <mark><$client.env.eval(client.tForWhomUserInfo.Preferred_First_Name.length()>0?client.tForWhomUserInfo.Preferred_First_Name:client.tForWhomUserInfo.First_Name)></mark>,</p>
+        <p class="text-justify">We, PayPal Hong Kong Limited (the 'The Company'), are pleased to offer you the position of <mark><$client.tForWhomUserInfo.Business_Title></mark> with the Company upon the following terms and conditions. This offer of internship is contingent upon the successful completion of a standard PayPal background verification prior to your start date. PayPal reserves the right to revoke this offer pending completion of such check. </p>
+        <p>
+            <strong>
+                <u>1. Appointment</u>
+            </strong>
+        </p>
+        <p>1.1. Your internship will commence on <mark><%= moment("<$client.tEventDates_Date_2.Value>").format('DD MMMM YYYY') %></mark> and will terminate on <mark><% if ("<$client.tForWhomUserInfo.ContractEndDate>".length > 0) { %><%= moment("<$client.tForWhomUserInfo.ContractEndDate>").format('DD MMMM YYYY') %><% } %></mark>.</p>
+        <p>
+            <strong>
+                <u>2. Salary</u>
+            </strong>
+        </p>
+        <p class="text-justify">2.1. You will be paid at a rate of <mark><$client.tForWhomUserInfo.Salary_Currency></mark>&nbsp;<mark><$client.tForWhomUserInfo.SalaryOffered></mark> per month.</p>
+        <p>
+            <strong>
+                <u>3. Hours of Work</u>
+            </strong>
+        </p>
+        <p class="text-justify">3.1. Your normal working hours will be from 9:00 a.m. to 5:30 p.m., Monday to Friday. The Company reserves the right, however, to change your start and finish times and the days upon which you work.</p>
+        <p class="text-justify">3.2. You may also be required to work additional hours by way of overtime either as and when requested to do so by the Company or when the proper performance of your work so requires. You will not be entitled to be paid extra remuneration for any such additional hours worked in excess of your basic weekly hours.</p>
+        <p class="text-justify">3.3. Although you are entitled to Saturdays and Sundays off, only Sunday shall be considered a rest day for the purposes of the Employment Ordinance and other days off may be appointed as your alternative statutory holidays or substituted rest days at the Company’s discretion.</p>
+        <p>
+            <strong>
+                <u>4. Conduct and Discipline</u>
+            </strong>
+        </p>
+        <p class="text-justify">4.1. You shall perform such duties as may from time to time be assigned to you and shall comply with all reasonable directions made by the Company.</p>
+        <p class="text-justify">4.2. During your internship, you shall well and faithfully serve the Company and use your utmost endeavours to promote its interests, and devote the whole of your time, attention and abilities to its affairs during the hours in which you are required to perform your duties in accordance with Clause 3 above.</p>
+        <p class="text-justify">4.3. You shall not, during the continuation of your internship, engage in any other employment or activity, in the absence of prior written approval from the Company (which may be withheld by the Company at its sole discretion).</p>
+        <p class="text-justify">4.4. During your internship you shall accurately represent your position, title, role description and duties at all times, including in any dealings with third parties such as PayPal customers and suppliers, and in your resume, social media profiles and pages (including without limitation any LinkedIn or Facebook profile), website, email signature and business card.</p>
+        <p>
+            <strong>
+                <u>5. Termination of Internship</u>
+            </strong>
+        </p>
+        <p class="text-justify">5.1. Your internship shall be terminated immediately upon the company giving notice in writing to you on any of the following grounds without the company being liable therefore in damages or compensation:</p>
+        <ul>
+            <p class="text-justify">a) if you do fail the background/reference check, the company reserves the right not to reveal the reason(s) under this circumstances;</p>
+            <p class="text-justify">b) your conduct is found to be detrimental to the national security of Hong Kong;</p>
+            <p class="text-justify">c) your conduct is found to be inconsistent with the security requirements and/or procedures; </p>
+            <p class="text-justify">d) if you are guilty of any fraud, dishonesty or other criminal charges;</p>
+            <p class="text-justify">e) in the event of any serious or repeated breach or non-observance by you of any terms contained in this Agreement;</p>
+            <p class="text-justify">f) if you become insolvent or makes any composition or enters into any deed of arrangement with your creditors.</p>
+        </ul>
+        <p class="text-justify">5.2. Following termination of your internship, whether pursuant to clause 5.1 or otherwise, you shall not represent that you are employed by, engaged as a consultant for or in any other service relationship (collectively, an “Affiliation”) with the Company or any of its affiliates. This obligation includes ensuring that at all times after the termination of your internship, that your resume, social medial profiles and pages (including without limitation any LinkedIn or Facebook profile), website, email signature and business card shall not indicate that you have any Affiliation with the Company or any affiliate. In addition, any statements that you make on social media, in resumes or otherwise about your activities on behalf of the Company and any affiliates shall be a reasonable and accurate summary.</p>
+        <p>
+            <strong>
+                <u>6. Confidentiality</u>
+            </strong>
+        </p>
+        <p class="text-justify">6.1. You shall not during the continuance of your employment or any time after its termination disclose, divulge, impart or reveal to any person or company any of the trade secrets or confidential operations, processes, dealings or any information concerning the organization, business, finance, transactions or affairs of the Company or any of its related, associated or affiliated companies which may come to your knowledge during your employment, and shall not use or attempt to use any such information in any manner which may injure or cause loss either directly or indirectly to the Company or its business.</p>
+        <p>
+            <strong>
+                <u>7. Intellectual Property Rights</u>
+            </strong>
+        </p>
+        <p class="text-justify">7.1. You must disclose and deliver to PayPal all materials, works, ideas, concepts, designs, developments, improvements, systems and anything else made during the course of your employment or where you used PayPal’s time, material or facilities, whether created by yourself or with others (“<strong>Materials</strong>”).</p>
+        <p class="text-justify">7.2. You agree that all Materials will be the sole property of PayPal and you will assign all intellectual property rights in the Materials to PayPal and its affiliates for its use. From the date of this Agreement you irrevocably appoint the Company Secretary of PayPal (or another person nominated by PayPal) as your attorney to give effect to this assignment if you are unable to, or you fail to do so, within 3 days of PayPal’s request.</p>
+        <p class="text-justify">7.3. You provide an unconditional consent to PayPal to do anything that may constitute an infringement of your moral rights concerning the Materials and acknowledge you have given this concern genuinely and without duress from PayPal or any other person.</p>
+        <p>
+            <strong>
+                <u>8. Company Policies</u>
+            </strong>
+        </p>
+        <p class="text-justify">8.1. During your employment with the Company, you shall observe and comply with all of the rules, regulations and policies of the Company as may from time to time be made or given, including but not limited to the Code of Conduct and Insider Trading Policy attached hereto. The Company shall have the right to alter and amend the rules and policies of the Company as well as any of the terms of your employment, and such alteration or amendment shall become fully effective and a binding term of your employment upon notification to you.</p>
+        <p>
+            <strong>
+                <u>9. Entire Agreement</u>
+            </strong>
+        </p>
+        <p class="text-justify">9.1. This Agreement supersedes any prior agreements, representations and promises of any kind, whether written, oral, express or implied between the parties hereto with respect to the subject matters herein. This Agreement constitutes the full, complete and exclusive agreement between you and the Company, its officers, employees and its affiliates with respect to the subject matters herein.</p>
+        <p>
+            <strong>
+                <u>10. No Breach</u>
+            </strong>
+        </p>
+        <p class="text-justify">10.1. In signing below, you confirm that you are not bound by any prior contract, undertaking, commitment or other obligation which prevents you from being employed by the Company and being able to fully and completely perform the services contemplated by this Agreement, nor in fulfilling your duties hereunder will you be breaching any duty of confidentiality to any persons, including without limitation, your previous employers or principals.</p>
+        <p>
+            <strong>
+                <u>11. Governing Law</u>
+            </strong>
+        </p>
+        <p class="text-justify">11.1. This Agreement shall be governed by and construed in accordance with the laws of Hong Kong. The parties shall submit to the non-exclusive jurisdiction of the Hong Kong courts.</p>
+        <p class="text-justify">Please indicate your acceptance by signing this Assignment. We take this opportunity to wish you all the best for your internship training and hope that your assignment with be a fruitful and enjoyable one.</p>
+        <p class="mb-4">Yours sincerely,</p>
+        <p class="hide">&nbsp;</p>
+        <p class="mb-5">For and on behalf of PayPal Hong Kong Limited<br><mark><%= signatory %></mark><br>Company Signatory</p>
+        <p class="hide">&nbsp;</p>
+        <p class="mb-4">I hereby confirm acceptance of all of the above terms and conditions. </p>
+    </template>
+    
+    <div id="offer-letter-body" class="row">
+        <div class="col-sm-2">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+        <div class="col-sm-8">
+            <div id="incomplete2">
+                <div id="markup2"></div>
+            </div>
+            <div id="complete2"></div>
+        </div>
+    </div>
+    <template id="fragment-3">
+        <p class="ml-lg-4">
+            <strong>Employee:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete3">
+                <div id="markup3"></div>
+            </div>
+            <div id="complete3"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature.HTML>
+        </div>
+        <div class="col-sm-1 pt-2 text-sm-right">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name.HTML>
+        </div>
+    </div>
+
+    <template id="fragment-4">
+        <p class="ml-lg-4">
+            <strong>Employer:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete4">
+                <div id="markup4"></div>
+            </div>
+            <div id="complete4"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature2.HTML>
+        </div>
+        <div class="col-sm-1 pt-2 text-sm-right">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date2.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name2.HTML>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>     
+    <$client.env.FormField.hidden_pg3.HTML>     
+    <$client.env.FormField.hidden_pg4.HTML>     
+    <$client.env.formfield.EmployeeStamp.html>
+    <$client.env.formfield.SignatoryStamp.html>
+    <$client.env.formfield.RecruiterStamp.html>
+    <$client.env.formfield.SignerMan.html>
+    <$client.env.formfield.CoordinatorStamp.html>
+    <$client.env.formfield.Current_Date.html>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Hong_Kong_Internship_Letter/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Hong_Kong_Internship_Letter/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Hong_Kong_Internship_Letter/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.getElementById('italy-offer-letter');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.signDate, .dateField').parent().find('input').prop('disabled', true);
+});
+
+const data = {
+    'Current_Date': document.getElementById('Current_Date').value,
+    'signatory': ''
+};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+// signature section clearing on task reopen variables
+const isCoordinator = <$client.env.eval((client.role.rc_hrcoordinators==1)?'true':'false')>;
+const isRecruiter = <$client.env.eval((client.tEventManagers_16.UserGuid==account.userguid)?'true':'false')>;
+const isSignatory = <$client.env.eval((client.role.rc_hong_kong_company_signatory>0)?'true':'false')>;
+const isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const EmployeeStamp = "<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>"; 
+if (isSignatory) {
+    $('#SignerMan').val("<$client.account.username_first> <$client.account.username>");
+}
+</script>

@@ -1,0 +1,161 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="h5"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.signature.prompt>
+        <$client.env.FormField.date.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+
+    <div class="row mb-3">
+        <div class="col-sm-4 col-7">
+            <img src="<$link;/main/RedCarpet/FormTemplates/LANG_Retail_-_Offer_Letter/img/design-group-logo.png>" alt="Design Group Logo" class="img-fluid">
+        </div>
+    </div>
+
+    <template id="fragment-1">
+        <p>Today’s Date: <%= Current_Date %></p>
+        <p>Candidate Name: <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></p>
+        <p>
+            <u>Personal &amp; Confidential</u>
+        </p>
+        <p>Dear <$client.tForWhomUserInfo.First_Name>,</p>
+        <p>Subject to your acceptance of all the provisions of this letter, I am pleased to extend to you an offer of employment to join Design Group – Americas (“DG” or the “Company”) as Retail Sales Associate. You are to commence employment on <input type="text" class="datepicker" value="<%= StartDate %>" data-target-input="StartDate" readonly>. Your primary work location will be <%= EventLocation %>. Your signature upon this letter where noted below and its return will indicate your acknowledgement that your hours worked per week shall not exceed twenty-nine (29). Alternatively, if your hours worked per week will be equal to or greater than thirty (30), your days of employment shall not exceed ninety (90).</p>
+        <p>
+            <u>Compensation</u>
+        </p>
+        <p>You will be compensated with a rate (subject to deductions) of $<input type="text" value="<%= Salary_Amount %>" data-target-input="Salary_Amount">, to be paid hourly by direct deposit.</p>
+        <p>Agreed to and acknowledged as correct:</p>
+        <p class="d-none">&nbsp;</p>
+    </template>
+
+    <div class="row mb-3">
+        <div class="col-12">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-6 me-5">
+            <$client.env.FormField.signature.HTML>
+        </div>
+        <div class="col-sm-2">
+            <$client.env.FormField.date.HTML>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div id="hidden-fields" hidden>
+    <$client.env.FormField.DummyDate.HTML>
+    <$client.env.FormField.Current_Date.HTML>
+    <$client.env.FormField.FullName.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.StartDate.HTML>
+    <$client.env.FormField.Salary_Amount.HTML>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/LANG_Retail_-_Offer_Letter/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/LANG_Retail_-_Offer_Letter/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/LANG_Retail_-_Offer_Letter/js/script_01.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+if (!'<$client.tEventDates_Date_2.Value>'.length) {
+    document.querySelector('[name$=".StartDate"]').value = moment('<$client.tEventDates_Date_2.Value>').format('MM/DD/YYYY')
+}
+const FORM = document.querySelector('[name="frmForm"]');
+const IS_NEW_HIRE = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const data = {
+    'Current_Date': '',
+    'EventLocation': '<$client.tEventCategories_Category_11.Value>',
+    'StartDate': document.querySelector('[name$=".StartDate"]').value,
+    'Salary_Amount': document.querySelector('[name$=".Salary_Amount"]').value,
+};
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

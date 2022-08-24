@@ -1,0 +1,212 @@
+<div id="task_summary_outer">
+    <div id="bg-image">.</div>
+    <div id="EditProfile_container">
+        <div id="EditProfile_wrapper">
+            <div id="EditProfile">
+                <h2>At-Risk Wizard</h2>
+                <h4>This page simplifies the process of launching an offboarding event.</h4>
+                <div class="heading">
+                    <span class="heading-inner">
+                        EMPLOYEE INFORMATION
+                    </span>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Employee ID</span>
+                    <$client.env.inputEmployee_ID>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Legal First Name</span>
+                    <input type="text" id="First_Name" name="First_Name" value="<$client.tForWhomUserInfo.First_Name>">
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Legal Last Name</span>
+                    <input type="text" id="Last_Name" name="Last_Name" value="<$client.tForWhomUserInfo.Last_Name>">
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Grade Level</span>
+                    <input type="text" name="SalaryGradeLvl_pseudo" id="SalaryGradeLvl_pseudo" value="<$client.tForWhomUserInfo.SalaryGradeLvl_Description>" data-title="Grade Level" data-validation="required">
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Location</span>
+                    <$client.env.inputWork_Location>
+                </div>
+                <div class="input_wrapper">
+                    <label id="Selection_Criteria_label">Will this require a selection criteria?</label>
+                    <$client.env.inputSelection_Criteria>
+                </div>
+                <div class="mb-18"></div>
+
+                <div class="heading">
+                    <span class="heading-inner">
+                      SEPARATION INFORMATION
+                    </span>
+                </div>
+                <!--<div class="input_wrapper">
+                    <label id="Group_Flag_label">Collective Consultation Trigger</label>
+                    <$client.env.inputGroup_Flag>
+                </div>
+                <div class="input_wrapper">
+                    <label id="Collective_Event_label">Collective Event</label>
+                    <$client.env.inputCollective_Event>
+                </div>-->
+                <div class="input_wrapper">
+                    <span class="floating-label">Announcement/Notification Date</span>
+                    <input type="text" id="Notification_Date_pseudo" name="Notification_Date_pseudo" value="<$client.tEventDates_Date_11.Value>" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Department Title</span>
+                    <input type="text" id="Department_Title_pseudo" name="Department_Title_pseudo" value="<$client.tForWhomUserInfo.Department_Title>" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Business Rationale Text</span>
+                    <$client.env.inputBusiness_Rationale_Text>
+                </div>
+                <div class="input_wrapper" style="display: none;">
+                    <span class="floating-label">Reps Appointed Date</span>
+                    <$client.env.inputReps_Appointed_Date>
+                </div>
+                <div class="input_wrapper" style="display: none;">
+                    <span class="floating-label">Selection Criteria Text</span>
+                    <$client.env.inputSelection_Criteria_Text>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">At Risk Correspondence Date</span>
+                    <$client.env.inputAt_Risk_Correspondence_Date>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Bonus Type</span>
+                    <$client.env.inputBonus>
+                </div>
+                <div class="input_wrapper" style="display: none;">
+                    <span class="floating-label">AIP Separation Date</span>
+                    <$client.env.inputAIP_Separation_Date>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Standard Severance Pay (€)</span>
+                    <input type="text" id="Standard_Severance_Pay_pseudo" name="Standard_Severance_Pay_pseudo" value="<$client.tForWhomUserInfo.Standard_Severance_Pay>" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Enhanced Severance Pay (€)</span>
+                    <input type="text" id="Enhanced_Severance_Pay_pseudo" name="Enhanced_Severance_Pay_pseudo" value="<$client.tForWhomUserInfo.Enhanced_Severance_Pay>" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">PILON Pay (€)</span>
+                    <input type="text" id="PILON_Pay_pseudo" name="PILON_Pay_pseudo" value="<$client.tForWhomUserInfo.PILON_Pay>" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Enhanced Program Eligible?</span>
+                    <select name="Enhanced_Program_Eligible_pseudo" id="Enhanced_Program_Eligible_pseudo">
+                        <option value="Y"<$client.env.eval((client.tForWhomUserInfo.Enhanced_Program_Eligible=='Y')?' selected':'')>>Yes</option>
+                        <option value="N"<$client.env.eval((client.tForWhomUserInfo.Enhanced_Program_Eligible!='Y')?' selected':'')>>No</option>
+                    </select>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Additional Severance Weeks</span>
+                    <input type="text" name="Special_Event_Override_Severance_Weeks_pseudo" id="Special_Event_Override_Severance_Weeks_pseudo" value="<$client.tForWhomUserInfo.Special_Event_Override_Severance_Weeks_Description>" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Additional Severance Pay (€)</span>
+                    <input type="text" id="Additional_Severance_Pay_pseudo" name="Additional_Severance_Pay_pseudo" value="<$client.tForWhomUserInfo.Additional_Severance_Pay>" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Total Severance Cost (€)</span>
+                    <input type="text" id="Total_Severance_Cost_pseudo" name="Total_Severance_Cost_pseudo" value="<$client.tForWhomUserInfo.Total_Severance_Cost>" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">VHI (Months)</span>
+                    <$client.env.inputVHI_Months>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Retention</span>
+                    <$client.env.inputRetention>
+                </div>
+                <div class="input_wrapper">
+                    <label id="Retention_Eligible_label">Is this employee eligible for Retention?</label>
+                    <div class="horizontal_radio_group">
+                        <div class="horizontal_radio_item">
+                            <input type="radio" id="Retention_Eligible_1" name="Retention_Eligible" value="Retention Eligible - Yes" <$client.env.eval((client.tEventCategories_Category_46.Value=='Retention Eligible - Yes')?'checked':'')>></option>
+                            <label for="Retention_Eligible_1">Retention Eligible - Yes</label>
+                        </div>
+                        <div class="horizontal_radio_item">
+                            <input type="radio" id="Retention_Eligible_2" name="Retention_Eligible" value="Retention Eligible - No" <$client.env.eval((client.tEventCategories_Category_46.Value=='Retention Eligible - No')?'checked':'')>></option>
+                            <label for="Retention_Eligible_2">Retention Eligible - No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Retention Date</span>
+                    <input type="text" id="Special_Event_Retention_Date_pseudo" name="Special_Event_Retention_Date_pseudo" value="<$client.tForWhomUserInfo.Special_Event_Retention_Date>" data-date-enabled="false">
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Customized Retention Bonus Amount (€)</span>
+                    <$client.env.inputOffboarding_RetentionBonusAmt>
+                </div>
+                <div class="mb-13"></div>
+                <div class="input_wrapper">
+                    <div id="I_Separation_Policy_Ack_Docs">
+                        <label id="I_Separation_Policy_Ack_Docs_label">Separation Policy Documents to present to employee</label>
+                        <$client.env.inputI_Separation_Policy_Ack_Docs>
+                    </div>
+                    <div id="IE_Enhanced_Separation_Policy_Ack_Documents">
+                        <label id="IE_Enhanced_Separation_Policy_Ack_Documents_label">Enhanced Separation Policy Documents to present to employee</label>
+                        <$client.env.inputIE_Enhanced_Separation_Policy_Ack_Documents>
+                    </div>
+                </div>
+                <div class="mb-18"></div>
+
+                <div class="button_group">
+                    <div id="save"></div>
+                    <div id="saveandcomplete"></div>
+                    <div id="cancel"></div>
+                </div>
+
+                <div hidden>
+                    <$client.env.inputEvent_Name>
+                    <$client.env.inputEvt_Location_Code>
+                    <$client.env.inputExempt>
+                    <$client.env.inputAge_Over_40>
+                    <$client.env.inputSalaryGradeLvl>
+                    <$client.env.inputSpecial_Event_Retention_Date>
+                    <$client.env.inputBaseMonthly70>
+                    <$client.env.inputEnhanced_Program_Eligible>
+                    <$client.env.inputNotification_Date>
+                    <$client.env.inputSpecial_Event_Override_Severance_Weeks>
+                    <input type="text" id="DOB" name="DOB" value="<$client.tForWhomUserInfo.DOB>" readonly>
+                    <input type="text" id="Site_Name" name="Site_Name" value="<$client.env.index.site_name>" />
+                    <input type="text" id="Separation_Date" name="Separation_Date" data-date-enabled="false" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="<$link;/main/RedCarpet/FormTemplates/FormSupport/css/front_validator.css>" rel="stylesheet" type="text/css">
+<script src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/country.js"></script>
+<script src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/custom-paypal.js"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/jquery.mask.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator_V2.js>"></script>
+<script src="<$link;/Offboarding/UnplacedPages/At_Risk_Wizard_Provider/script.js>" defer></script>
+
+<script>
+const providerContext = $('#EditProfile');
+const TENURE_CED = new Date('<$client.tForWhomUserInfo.Tenure_CED>T00:00:00');
+const BUSINESS_CASE_APPROVAL_DATE = new Date('<$client.tForWhomUserInfo.Business_Case_Approval_Date>T00:00:00');
+const EVENT_NAME = '<$client.url.event_name>';
+const SALARY_GRADE_LVL = Number('<$client.tForWhomUserInfo.SalaryGradeLvl>');
+const IS_RC_ADMIN = <$client.env.eval(client.role.RedCarpet_Portal>0?'true':'false')>;
+const FIELDS_CONFIG = "<$link;/Offboarding/UnplacedPages/At_Risk_Wizard_Provider/config.json>";
+const DOB_DATE = '<$client.tForWhomUserInfo.DOB>';
+const SPECIAL_EVENT_RETENTION_DATE = '<$client.tForWhomUserInfo.Special_Event_Retention_Date>';
+const LOCATION = "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>";
+const RETENTION = "<$client.tEventCategories_Category_46.Value>";
+const NOTIFICATION_DATE = '<$client.tEventDates_Date_11.Value>';
+const SEPARATION_DATE = '<$client.tEventDates_Date_9.Value>';
+const REDUNDANCY_TYPE = '<$client.tEventCategories_Category_52.Code>';
+const SPECIAL_EVENT_OVERRIDE_SEVERANCE_WEEKS = '<$client.tForWhomUserInfo.Special_Event_Override_Severance_Weeks>';
+const OFFBOARDING_RETENTIONBONUSAMT = '<$client.tForWhomUserInfo.Offboarding_RetentionBonusAmt>';
+let warnEligible = '<$client.tForWhomUserInfo.Warn_Eligible>'; 
+
+<$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>
+</script>

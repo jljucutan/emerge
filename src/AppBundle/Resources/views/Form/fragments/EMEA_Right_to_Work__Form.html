@@ -1,0 +1,422 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+     <div class="modal-content"> 
+          <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+          <p style="fontweight:normal;padding:0px"> 
+          <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+          </p> 
+          <br> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                             </div> 
+
+                             </div> 
+
+                             <div class="row"> 
+
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+
+                                                         <input id="signature-submit" type="button" class="lifesuite__button primary" value="Sign">&nbsp; 
+
+                                                          <input  id="signature-clear" type="button" class="lifesuite__button" value="Clear">&nbsp;
+
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+
+                                           </div> 
+
+                             </div> 
+              </div> 
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+
+    showScreen('over');
+
+</SCRIPT> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+
+    <div class="fb-spinner"> 
+
+        <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+
+    </div> 
+
+</div> 
+
+
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+
+
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form"> 
+
+    <div style="display:none;"> 
+
+        <$client.env.FormField.Form_Name.prompt> 
+
+        <$client.env.FormField.Form_Name.HTML> 
+
+        <$client.env.FormField.Form_Type.prompt> 
+
+        <$client.env.FormField.Form_Type.HTML> 
+
+        <$client.env.FormField.Form_Owner.prompt> 
+
+        <$client.env.FormField.Form_Owner.HTML> 
+
+        <$client.env.FormField.Form_CreateDate.prompt> 
+
+        <$client.env.FormField.Form_CreateDate.HTML> 
+
+        <$client.env.FormField.Form_Completed.prompt> 
+
+        <$client.env.FormField.Form_Completed.HTML> 
+
+        <$client.env.FormField.Form_Delivered.prompt> 
+
+        <$client.env.FormField.Form_Delivered.HTML> 
+
+        <$client.env.FormField.Form_TaskId.prompt> 
+
+        <$client.env.FormField.Form_TaskId.HTML> 
+
+        <$client.env.FormField.display_version.HTML> 
+
+
+
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+        <$client.env.FormField.citizenship.prompt>
+        <$client.env.FormField.date.prompt>
+        <$client.env.FormField.eu_citizenship.prompt>
+        <$client.env.FormField.country.prompt>
+        <$client.env.FormField.govdoc_expiration.prompt>
+        <$client.env.FormField.govdoc_id.prompt>
+        <$client.env.FormField.govdoc_issued.prompt>
+        <$client.env.FormField.govdoc_type.prompt>
+        <$client.env.FormField.name.prompt>
+        <$client.env.FormField.rtw.prompt>
+        <$client.env.FormField.rtw_restrictions.prompt>
+        <$client.env.FormField.rtw_support.prompt>
+        <$client.env.FormField.signature.prompt>
+        <$client.env.FormField.visa_country.prompt>
+        <$client.env.FormField.visa_expiration.prompt>
+        <$client.env.FormField.visa_id.prompt>
+        <$client.env.FormField.visa_issued.prompt>
+        <$client.env.FormField.work_permit.prompt>
+
+    </div> 
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="<$link;/main/RedCarpet/FormTemplates/EMEA_Right_to_Work__Form/img/logo.png>" alt="PayPal Logo" class="img-responsive" style="max-width: 120px;">
+            </div>
+        </div>
+        <div class="margin-bottom row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h3>Right to Work</h3>
+                <p>All employees are obliged to provide documentary evidence of their right to work in <span class="event-country"></span>, prior to commencing employment.</p>
+                <div class="margin-bottom"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-8">
+
+                <h5 class="form-heading margin-bottom">
+                    <span>Passport or National ID</span>
+                </h5>
+                <div class="row">
+                    <div class="col-sm-4 padding-top">
+                        <label class="control-label">Issuing Country: <span class="font-red">* </span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group"><$client.env.FormField.govdoc_country.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 padding-top">
+                        <label class="control-label">Identification Type: <span class="font-red">* </span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group"><$client.env.FormField.govdoc_type.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 padding-top">
+                        <label class="control-label">Identification Number: <span class="font-red">* </span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group"><$client.env.FormField.govdoc_id.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 padding-top">
+                        <label class="control-label">Issued Date: <span class="font-red">* </span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group"><$client.env.FormField.govdoc_issued_display.HTML></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 padding-top">
+                        <label class="control-label">Expiration Date: <span class="font-red">* </span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group"><$client.env.FormField.govdoc_expiration_display.HTML></div>
+                    </div>
+                </div>
+                <div class="margin-bottom"></div>
+
+                <h5 class="form-heading margin-bottom">
+                    <span>CITIZENSHIP STATUS</span>
+                </h5>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p id="citizenship_label" class="text-indent">Do you have citizenship in <span class="event-country"></span>? <span class="font-red">* </span></p>
+                        <div class="text-indent">
+                            <$client.env.FormField.citizenship.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div id="have-uk-passport" class="row">
+                    <div class="col-sm-12">
+                        <p id="Do_You_Have_A_UK_Passport_label" class="text-indent">Do you have a UK Passport? <span class="font-red">* </span></p>
+                        <div class="text-indent">
+                            <$client.env.FormField.Do_You_Have_A_UK_Passport.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div id="is-eu-citizen" class="row">
+                    <div class="col-sm-12">
+                        <p id="eu_citizenship_label" class="text-indent">Are you an EU citizen? <span class="font-red">* </span></p>
+                        <div class="text-indent">
+                            <$client.env.FormField.eu_citizenship.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div id="resides-in-northern-ireland" class="row">
+                    <div class="col-sm-12">
+                        <p id="Do_You_Reside_In_Nothern_Ireland_label" class="text-indent">Do you reside in Northern Ireland? <span class="font-red">* </span></p>
+                        <div class="text-indent">
+                            <$client.env.FormField.Do_You_Reside_In_Nothern_Ireland.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div id="citizenship-country" class="row">
+                    <div class="col-sm-4 padding-top">
+                        <label class="control-label">Country of Citizenship: <span class="font-red">* </span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group"><$client.env.FormField.country.HTML></div>
+                    </div>
+                </div>
+                <div class="margin-bottom"></div>
+
+                <h5 class="form-heading margin-bottom visa-information-section">
+                    <span>VISA INFORMATION</span>
+                </h5>
+                <div class="row visa-information-section">
+                    <div class="col-sm-4 padding-top">
+                        <label class="control-label">Issuing Country: <span class="font-red">* </span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group"><$client.env.FormField.visa_country.HTML></div>
+                    </div>
+                </div>
+                <div class="row visa-information-section">
+                    <div class="col-sm-4 padding-top">
+                        <label class="control-label">Work Permit Type: <span class="font-red">* </span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group"><$client.env.FormField.work_permit.HTML></div>
+                    </div>
+                </div>
+                <div class="row visa-information-section">
+                    <div class="col-sm-4 padding-top">
+                        <label class="control-label">Identification Number: <span class="font-red">* </span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group"><$client.env.FormField.visa_id.HTML></div>
+                    </div>
+                </div>
+                <div class="row visa-information-section">
+                    <div class="col-sm-4 padding-top">
+                        <label class="control-label">Issued Date: <span class="font-red">* </span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group"><$client.env.FormField.visa_issued_display.HTML></div>
+                    </div>
+                </div>
+                <div class="row visa-information-section">
+                    <div class="col-sm-4 padding-top">
+                        <label class="control-label">Expiration Date: <span class="font-red">* </span></label>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group"><$client.env.FormField.visa_expiration_display.HTML></div>
+                    </div>
+                </div>
+                <div class="margin-bottom visa-information-section"></div>
+
+                <h5 class="form-heading margin-bottom rtw-section">
+                    <span>RIGHT TO WORK</span>
+                </h5>
+                <div class="row rtw-section">
+                    <div class="col-sm-12">
+                        <p id="rtw_label" class="text-indent">Do you have the right to work and be employed in <span class="event-country"></span>? <span class="font-red">* </span></p>
+                        <div class="text-indent">
+                            <$client.env.FormField.rtw.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rtw-section">
+                    <div class="col-sm-12">
+                        <p id="rtw_restrictions_label" class="text-indent">Are there any restriction on your right to work in <span class="event-country"></span>? <span class="font-red">* </span></p>
+                        <div class="text-indent">
+                            <$client.env.FormField.rtw_restrictions.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rtw-section">
+                    <div class="col-sm-12">
+                        <p id="rtw_support_label" class="text-indent">Will you, now or in the future, require support from PayPal to maintain your work authorization in <span class="event-country"></span>? <span class="font-red">* </span></p>
+                        <div class="text-indent">
+                            <$client.env.FormField.rtw_support.HTML>
+                        </div>
+                    </div>
+                </div>
+                <div class="margin-bottom"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">
+                <label class="control-label">Signature: <span class="font-red">* </span></label>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <$client.env.FormField.signature.html>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <label class="control-label">Date: </label>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <div class="coverlay"></div>
+                    <$client.env.FormField.date.html>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2">
+                <label class="control-label">Name: </label>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <$client.env.FormField.name.html>
+                </div>
+            </div>
+        </div>
+
+    </main> 
+    <hr class="lifesuite__hr"> 
+
+    <div class="row" id="formButtons" style="display: none;"> 
+        <div class="lifesuite__clearfix lifesuite__float-right">                
+            <$client.env.FormButtons> 
+        </div>              
+    </div> 
+
+    <div hidden> 
+        <$client.env.FormField.SignatureVerification.HTML> 
+        <$client.env.FormField.EventLocation.HTML> 
+        <$client.env.FormField.country_holder.HTML> 
+        <$client.env.FormField.issuing_country_holder.HTML>  
+        <$client.env.FormField.countries_global_list.HTML> 
+        <$client.env.FormField.work_permit_type_global.HTML>
+        <$client.env.FormField.work_permit_holder.HTML> 
+        <$client.env.FormField.country_mapping.HTML> 
+        <$client.env.FormField.country_mapping_2.HTML> 
+        <$client.env.FormField.work_permit_text.HTML>
+        <$client.env.FormField.today.HTML>
+        <$client.env.FormField.govdoc_issued.HTML>
+        <$client.env.FormField.govdoc_expiration.HTML>
+        <$client.env.FormField.visa_issued.HTML>
+        <$client.env.FormField.visa_expiration.HTML>
+    </div> 
+
+</form> 
+
+
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator_V2.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/EMEA_Right_to_Work__Form/js/script_01.js>" defer></script> 
+<script>
+ChangeCalendarIcons(); //for popup calendar
+(function(disableList) {
+    frm = document.frmForm
+    for (i=0;i<frm.elements.length;i++)
+    {
+        el = frm.elements[i];
+        strID = el.id;
+        strIDAddOn = "";
+        //check for calendar button
+        if (strID.indexOf("_display")>=0)
+        {
+            strIDAddOn = el.className;
+        }
+
+        if ((disableList.indexOf(strIDAddOn)>=0)&&(strIDAddOn!=''))
+        {
+            //Check for calendar button
+            elName = el.name;
+            if (elName.indexOf("_display")>=0)
+            {
+                strNewName = "bt_" + elName.replace(".","_").replace("_display","");
+                elButton = document.getElementById(strNewName);
+                if (elButton)
+                {
+                    elButton.disabled = true;
+                }
+            }
+        }
+    }
+})('date-disabled')
+const thisForm = document.querySelector('[name="frmForm"]');
+const LOCATION = '<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>';
+const SECTION_CONFIG_PATH = '<$link;/main/RedCarpet/FormTemplates/EMEA_Right_to_Work__Form/js/toggler_config.json>';
+const FIELDS_CONFIG_PATH = '<$link;/main/RedCarpet/FormTemplates/EMEA_Right_to_Work__Form/js/fields_config.json>';
+const FIELDS_CONFIG = {};
+const COUNTRIES_PATH = '<$link;/main/RedCarpet/FormTemplates/EMEA_Right_to_Work__Form/js/countries.json>';
+const SECTION_CONFIG = {};
+const NID_TYPE = '<$client.tForWhomUserInfo.National_ID_Type>';
+const NID_TYPE2 = '<$client.tForWhomUserInfo.National_ID_Type2>';
+const NID_TYPE2_DESC = '<$client.tForWhomUserInfo.National_ID_Type2_Description>';
+const NID_ID2 = '<$client.tForWhomUserInfo.National_ID2>';
+const NID_SERIES_NUMBER = '<$client.tForWhomUserInfo.Series_Number>';
+const NID_ISSUING_AGENCY = '<$client.tForWhomUserInfo.nid_issuing_agency>';
+const SSNO = '<$client.tForWhomUserInfo.SSNO>';
+const MARITAL_STATUS = '<$client.tForWhomUserInfo.MaritalStatus>';
+const WORK_PERMIT_MAP = new Map();
+const ALLOWED_VISA_COUNTRIES = ['AUS', 'BEL', 'BRA', 'CAN', 'CHN', 'CZE', 'DNK', 'FRA', 'DEU', 'HKG', 'IND', 'IDN', 'IRL', 'ISR', 'ITA', 'JPN', 'LUX', 'MYS', 'MEX', 'NLD', 'NOR', 'PHL', 'POL', 'RUS', 'KOR', 'ESP', 'SWE', 'CHE', 'TWN', 'THA', 'TUR', 'UKR', 'GBR', 'USA']
+<$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>
+</script>

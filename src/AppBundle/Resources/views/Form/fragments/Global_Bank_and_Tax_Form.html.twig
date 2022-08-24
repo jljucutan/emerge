@@ -1,5 +1,4 @@
 <!-- Main QA Area --> 
- 
 <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
 <!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
 <div class="modal" id="modal" style="display:none;"> 
@@ -26,7 +25,7 @@
 <div id="over" style="display:none;"></div> 
 <SCRIPT> 
     showScreen('over');
-</SCRIPT> 
+</SCRIPT>  
 <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
   
 <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
@@ -580,7 +579,6 @@
 
 <script type="text/javascript">
 var bank_codes = {
-    //'eForms>List>Bank_Code>Code" : 'eForms>List>Bank_Code>Description',
     "" : '',
     "aus_bsb_number" : 'BSB Number',
     "sgp_bank_code" : 'Bank Code',
@@ -610,7 +608,8 @@ var bank_codes = {
     "rus_bic" : 'BIC',
     "phl_bank_code" : 'Bank Code',
     "phl_branch_code" : 'Branch Code',
-    "phl_bic" : 'BIC'
+    "phl_bic" : 'BIC',
+    "usa_routing" : 'Routing Number'
 }
 
 var regular_expressions = {
@@ -624,7 +623,7 @@ var regular_expressions = {
     "isr_branch_code" : '^\\d{3}$',
     "chn_bank_code" : '^\\d{4}$',
     "chn_branch_code" : '^(\\d{3}|)$',
-    "hkg_bank_code" : '^\\d{4}$',
+    "hkg_bank_code" : '^\\d{3}$',
     "hkg_branch_code" : '^(\\d{3}|)$',
     "jpn_bank_code" : '^\\d{4}$',
     "jpn_branch_code" : '^\\d{3}$',
@@ -632,19 +631,21 @@ var regular_expressions = {
     "swe_bank_code" : '^(\\d{4}|)$',
     "swe_iban" : '^(.+)$',
     "swe_bic" : '^(.+)$',
-    "deu_bank_code" : '^(\\d{4}|)$',
+    "deu_bank_code" : '^(\\d{8}|)$',
     "deu_iban" : '^(.+)$',
     "deu_bic" : '^(.+)$',
-    "fra_bank_code" : '^(\\d{4}|)$',
-    "fra_branch_code" : '^(\\d{3}|)$',
+    "deu_first_name_on_account": '^(\\d{0,10}|)$',
+    "fra_bank_code" : '^(\\d{5}|)$',
+    "fra_branch_code" : '^(\\d{5}|)$',
     "fra_iban" : '^(.+)$',
     "fra_bic" : '^(.+)$',
     "rus_bank_code" : '^\\d{4}$',
     "rus_branch_code" : '^(\\d{3}|)$',
     "rus_bic" : '^(.+)$',
-    "phl_bank_code" : '^\\d{4}$',
+    "phl_bank_code" : '^\\d{9}$',
     "phl_branch_code" : '^(\\d{3}|)$',
-    "phl_bic" : '^(.+|)$'
+    "phl_bic" : '^(.+|)$',
+    "usa_routing" : '^\\d{9}$'
 }
 
 var messages = {
@@ -658,7 +659,7 @@ var messages = {
     "isr_branch_code" : '3 digits. If you have a 2 digit code, please enter a 0 (zero) as your first number. (Example 012)',
     "chn_bank_code" : '4 digits',
     "chn_branch_code" : '3 digits or optional',
-    "hkg_bank_code" : '4 digits',
+    "hkg_bank_code" : '3 digits',
     "hkg_branch_code" : '3 digits or optional',
     "jpn_bank_code" : '4 digits',
     "jpn_branch_code" : '3 digits',
@@ -666,19 +667,21 @@ var messages = {
     "swe_bank_code" : '4 digits or optional',
     "swe_iban" : 'one or more characters',
     "swe_bic" : 'one or more characters',
-    "deu_bank_code" : '4 digits or optional',
+    "deu_bank_code" : '8 digits or optional',
     "deu_iban" : 'one or more characters',
     "deu_bic" : 'one or more characters',
-    "fra_bank_code" : '4 digits or optional',
-    "fra_branch_code" : '3 digits or optional',
+    "deu_first_name_on_account": 'not greater than 10 numeric digits.',
+    "fra_bank_code" : '5 digits or optional',
+    "fra_branch_code" : '5 digits or optional',
     "fra_iban" : 'one or more characters',
     "fra_bic" : 'one or more characters',
     "rus_bank_code" : '4 digits',
     "rus_branch_code" : '3 digits or optional',
     "rus_bic" : 'one or more characters',
-    "phl_bank_code" : '4 digits',
+    "phl_bank_code" : '9 digits',
     "phl_branch_code" : '3 digits or optional',
-    "phl_bic" : 'one or more characters, or optional'
+    "phl_bic" : 'one or more characters, or optional',
+    "usa_routing" : 'must be only 9 numeric digits'
 }
 
 // Add more variables if the number Account Identifier Type / Account Identifier # of one or more country is more than below
@@ -750,8 +753,10 @@ function AddDataValidation (object, validator) {
 }
 
 function PopulateAccountIdentificationType (country) {
-    // switch(eForms>List>EUP_Country_New>Description)
+    // Populate full name if empty
     var fullLegalName = ($('#first_name_on_account').val().length > 0) ? $('#first_name_on_account').val() : "<$client.tForWhomUserInfo.Full_Name>";
+    
+    // switch(eForms>List>EUP_Country_New>Description)
     switch (country) {
         // Add all Account Identifier Type required or optional for specific country
         case "Australia":
@@ -868,6 +873,13 @@ function PopulateAccountIdentificationType (country) {
             $("div.first_identifier_number_1 span.font-red").css("display", "none");
             // "Name on Account" is required for Germany
             AddDataValidation($("#first_name_on_account").val(fullLegalName), "required");
+            // If country is Germany, Bank Account cannot be greater than 10 numeric digits. 
+            AddDataValidation(
+                $("#first_account_number")
+                    .data("regex", regular_expressions["deu_first_name_on_account"])
+                    .data("message", messages["deu_first_name_on_account"])
+                    .addClass("remove-alpha"),
+                    "regex-standalone");
             break;
         case "France":
             identifier_type_1 = "fra_bank_code";
@@ -888,6 +900,12 @@ function PopulateAccountIdentificationType (country) {
             $("div.first_identifier_number_2 span.font-red").css("display", "none");
             // "Name on Account" is required for France
             AddDataValidation($("#first_name_on_account").val(fullLegalName), "required");
+            // If country is France, Bank Account must be 11 aphanumeric characters,dashes, or spaces.
+            AddDataValidation(
+                $("#first_account_number")
+                    .data("regex", "^(?=[a-zAs0-9-]*)(?:.{0}|.{11})$")
+                    .data("message", "must be 11 aphanumeric characters, dashes, and/or spaces."), 
+                "regex-standalone");
             break;
         case "Russian Federation":
             identifier_type_1 = "rus_bank_code";
@@ -924,14 +942,25 @@ function PopulateAccountIdentificationType (country) {
             AddDataValidation($("#first_account_number"), "required");
             break;
         case "United States of America":
+            identifier_type_1 = "usa_routing";
+            identification_number_regex_1 = "usa_routing";
             // "Want your entire paycheck deposited to this account?" is only available for United States of America
-            $(".us_only").css("display", "block");
-            // "Name on Account" is not applicable for United States of America
-            $("div.first_name_on_account").css("display", "none");
+            // $(".us_only").css("display", "block");
+            $(".first_identifier_number_1").css("display", "inline-block");
+            $("#first_identifier_number_1").addClass("remove-alpha");
             // "Branch Name" is optional for United States of America
-            $("div.first_branch_name span.font-red").css("display", "none");
+            $("div.first_branch_name span.font-red, div.first_name_on_account span.font-red").css("display", "none");
             // "Account Number" is required for United States of America
-            AddDataValidation($("#first_account_number"), "required");
+            AddDataValidation($("#first_account_number")
+                .data("regex", "^[a-zA-Z\\s0-9-]+$")
+                .data("message", "must be  alphanumeric characters, spaces and dashes"), 
+                "regex,required");
+            // If country is us, routing must be up to 9 digit characters
+            AddDataValidation($("#first_identifier_number_1"), "regex-standalone");
+            // Not required when event location country is USA. Prepopulate with Full_Name but make editable. 
+            if ($('#first_name_on_account').val().length <= 0) {
+                $('#first_name_on_account').val("<$client.tForWhomUserInfo.Full_Name>");
+            }
             break;
         default:
             // "Name on Account" is not applicable by default
@@ -1306,9 +1335,6 @@ $(window).ready(function() {
     "USA"   : 'USA'
   }
 
-  //var eventLocation = (strFormCompleted == "") ? "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>" : $('#EventLocation').val();
-  //$('#Country').val(countries[eventLocation] + "?");
-
   PopulateAccountIdentificationType($("#account_country option:selected").text());
   ToggleSpecificAmount($("#net-pay:checked"));
 
@@ -1348,12 +1374,7 @@ $(window).ready(function() {
   $('#global-bank-and-tax-form').on('change blur', 'input:visible:not(#signature):not(:button), select:visible', function() {
     validateField($(this));
   });
-/*
-  $('#modal').on('click', 'input.lifesuite__button', function() {
-    validateField($('#signature'));
-    validateField($('#sign-date-container .cal_and_button input:not(:button)'), true);
-  });
-*/
+
   $('#global-bank-and-tax-form').on('change', 'input.hasDatepicker:visible', function() {
     $("[data-id='"+$(this).data('date-mapped')+"']").val($(this).data("realdate"));
   });
@@ -1396,14 +1417,12 @@ $(window).ready(function() {
       }
     }
   });
-  // Style modifiers
-  // SERVICES-34931 | removed calendar icon as per client request on only disabled field
-  // $('.cal_and_button td').prepend($('<span class="calendar-btn-container"/>').append($('<i class="fa fa-calendar"></i>')));
 
   <$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js> 
   if (!$("#sv").prop('readonly')) {
   $('#Date_mapped').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
   }
+
 }); 
 
 $(function() {

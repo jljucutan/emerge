@@ -1,0 +1,323 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.created.prompt>
+        <$client.env.FormField.full_name.prompt>
+        <$client.env.FormField.address1.prompt>
+        <$client.env.FormField.address2.prompt>
+        <$client.env.FormField.city.prompt>
+        <$client.env.FormField.state.prompt>
+        <$client.env.FormField.zip.prompt>
+        <$client.env.FormField.preferred_name.prompt>
+        <$client.env.FormField.job_title.prompt>
+        <$client.env.FormField.job_start_date.prompt>
+        <$client.env.FormField.job_title.prompt>
+        <$client.env.FormField.payrate.prompt>
+        <$client.env.FormField.other_incentives.prompt>
+        <$client.env.FormField.pto_amount.prompt>
+        <$client.env.FormField.a08_Hiring_Manager.prompt>
+        <$client.env.FormField.a09_Manager_Title.prompt>
+        <$client.env.FormField.a10_Accepted_By.prompt>
+        <$client.env.FormField.a11_Date_Signed.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <header class="row mb-30">
+        <div class="col-lg-3 col-sm-3 col-xs-6">
+            <img src="<$link;/main/RedCarpet/FormTemplates/Offer_Letter_-_MPG_Canada_Veritaaq/img/experies_logo.jpg>" alt="Experis Logo" class="img-responsive">
+        </div>
+    </header>
+    <div class="row mb-40">
+        <div class="col-lg-12">
+            <p id="heading" class="mb-20">
+                <span data-field="created"><$client.env.FormField.created.Value></span>
+            </p>
+            <p class="mb-20">
+                <span id="addressA"><span data-field="full_name"><$client.env.FormField.full_name.Value></span></span><br>
+                <span id="addressB"><span data-field="address1"><$client.env.FormField.address1.Value></span> <span data-field="address2"><$client.env.FormField.address2.Value></span></span><br>
+                <span id="addressC"><span data-field="city"><$client.env.FormField.city.Value></span>, <span data-field="state"><$client.env.FormField.state.Value></span> <span data-field="zip"><$client.env.FormField.zip.Value></span></span>
+            </p>
+            <p id="greeting" class="mb-20">
+                Dear <span data-field="preferred_name"><$client.env.FormField.preferred_name.Value></span>,
+            </p>
+            <p id="paragraph-1" class="text-justify">
+                We're looking forward to you joining us on <span data-field="job_start_date"><$client.env.FormField.job_start_date.Value></span> as our new <span data-field="job_title"><$client.env.FormField.job_title.Value></span> at Veritaaq Technology House Inc. ("Experis"). We know you will be an asset to our organization. 
+            </p>
+            <p class="text-justify">
+                Experis is the world leader in innovative workforce solutions. We power the world of work by connecting the visions of clients, the motivations of people and what’s now and next in the ever-changing workplace. As a member of our team you will be an integral part of making these connections. You will join a team that is committed to excellence, but also rewards innovation, promotes entrepreneurship and encourages professional growth. At Experis we value the role work plays in our employees lives. No matter where you are in your career owning your future is humanly possible.
+            </p>
+            <p>
+                Your offer includes a comprehensive total rewards package:
+            </p>
+            <p>
+                <strong>Compensation and Incentives:</strong>
+            </p>
+            <ul>
+                <li id="list-1">$<span data-field="payrate"><$client.env.FormField.payrate.Value></span> annualized base salary </li>
+            </ul>
+            <p>
+                <strong>Other Compensation:</strong>
+            </p>
+            <ul>
+                <li id="list-2">You will be eligible to expense up to $<span data-field="other_incentives"><$client.env.FormField.other_incentives.Value></span> on a monthly basis for the use of your cellular phone in accordance with our Acceptable Use &amp; BYOD and policy</li>
+            </ul>
+            <p>
+                <strong>Group Benefits and Pension:</strong>
+            </p>
+            <ul>
+                <li>
+                    Extended Health Care 
+                </li>
+                <li>
+                    Dental 
+                </li>
+                <li>
+                    Vision 
+                </li>
+                <li>
+                    Life Insurance 
+                </li>
+                <li>
+                    Accidental Death &amp; Dismemberment
+                </li>
+                <li>
+                    Disability Insurance
+                </li>
+                <li>
+                    Pension Plan
+                </li>
+            </ul>
+            <p class="text-justify">
+                You will be eligible to participate in the group benefit program on the first day of employment. In addition you will be eligible to participate in the pension plan after the successful completion of one year of employment. It is understood that Experis has the right to make changes to the benefit and pension programs from time to time.
+            </p>
+            <p>
+                <strong>Additional Benefits:</strong>
+            </p>
+            <ul>
+                <li id="list-3">
+                    <span data-field="pto_amount"><$client.env.FormField.pto_amount.Value></span> weeks of paid time off (prorated based on hire date) 
+                </li>
+                <li>
+                    Employee and Family Assistance Plan
+                </li>
+            </ul>
+            <p class="text-justify">
+                <strong>Probation Period:</strong><br>
+                There is a probation period of six (6) months during which time the Company may terminate your employment with one week’s notice if your performance does not meet expectations.  
+            </p>
+            <p class="text-justify">
+                <strong>Termination and Resignation:</strong><br>
+                Although both you and Experis are committed to having a mutually satisfying relationship, it is acknowledged that sometimes employment relationships come to an end. This clause will provide certainty to the obligations of the parties in the event of termination of the employment relationship. 
+            </p>
+            <p class="text-justify">
+                (a)  Subject to applicable employment standards legislation in the province in which you work (hereinafter the “ESA”) , your employment may be terminated at any time for cause without notice, pay in lieu of notice and/or severance pay.  In this     event, you will only receive your Base Salary and vacation pay calculated up to the date of termination but no further payments, including incentive payments, on a pro-rata basis or otherwise, except as required by the ESA.  For the purposes of this agreement, “cause” is defined as any act or omission or series of acts or omissions by you that would in law permit   Experis to, without notice or payment in lieu of notice, terminate your employment.
+            </p>
+            <p class="text-justify">
+                (b)  In the event that your employment is terminated by Experis for any reason other than cause, then you will be provided all of the following:  i) minimum notice of termination or pay in lieu of notice of termination (or a combination of both), as required by the ESA, ii) if you work in Ontario, severance pay if required by the ESA, iii) continuation of the employer benefit plan contributions for the period specifically required by the ESA, if any, iv) any earned but outstanding Base Salary and vacation pay; and v) any other entitlements specifically required by the ESA. You will not be entitled to any further payments, including any incentive payments, on a pro-rata basis or otherwise, except as required by the ESA.
+            </p>
+            <p class="text-justify">
+                (c)  You may terminate your employment at any time upon providing two weeks’ notice to Experis, which may be waived, in whole or in part, by Experis, in its sole discretion.  In this event, you will only receive your Base Salary and Vacation Pay calculated up to the effective date of your resignation but no further payments, including incentive payments, on a pro-rata basis or otherwise.
+            </p>
+            <p class="text-justify">
+                You agree to accept the above entitlements in complete satisfaction of any claim whatsoever that you may have under the ESA or any other statute, at common law (if applicable), the Civil Code of Quebec (if applicable), under contract, in equity or otherwise against Experis, any parent, subsidiary, related or affiliated corporations or other entities or its past or present officers, directors, employees, shareholders, or agents in any way relating to your employment or the termination of your employment and the circumstances leading up to same.  In no event will you receive less than your entitlements under the ESA and the provisions of the ESA will apply if it provides a greater right or benefit than either (a), (b), or (c)above. Any amounts payable over and above the minimum ESA requirements shall be conditional on the execution of a full and final release in favour of Experis.
+            </p>
+            <p class="text-justify">
+                <strong>Non Solicitation</strong><br>
+                You are bound to the terms of the non-solicitation provision contained in the Civility Agreement for a period of 12 months following the termination of your employment, for any reason. You will review and sign the Civility Agreement as part of your offer. 
+            </p>
+            <p class="text-justify">
+                <strong>Injunctive Relief </strong><br>
+                You expressly acknowledge and agree that a breach of the covenants contained in the non solicitation clause would cause irreparable harm to Experis’ business. Since monetary damages would not provide Experis with an adequate remedy, it is understood that Experis may take whatever steps it deems necessary to enforce these provisions. 
+            </p>
+            <p class="text-justify">
+                <strong>Severability</strong><br>
+                It is agreed that in the event that a court of competent jurisdiction deems any provision of this agreement to be unreasonable, void or unenforceable, such provisions shall be deemed severed from the remainder of the agreement, which shall continue in all other respects to be valid and enforceable. Furthermore, it is agreed that any provision of the agreement which is declared void, unreasonable or unenforceable shall be deemed revised to the minimum amount necessary in order to be valid and enforceable.
+            </p>
+            <p class="text-justify">
+                <strong>Applicable Laws </strong><br>
+                <span id="paragraph-2">
+                    This contract shall be governed and interpreted according to the laws in force in the province of <span data-field="state"><$client.env.FormField.state.Value></span>. 
+                </span> 
+            </p>
+            <p class="text-justify">
+                <strong>Assignment </strong><br>
+                Experis reserves the right to assign this agreement to a successor without notice, and in such circumstances, you agree that all of the terms and conditions of this agreement shall remain in full force and effect upon you and the successor Employer. 
+            </p>
+            <p class="text-justify">
+                <strong>Entire Agreement </strong><br>
+                Experis is committed to maintaining a workplace of mutual respect and civility which is a fundamental principle underlying all our employment relationships. Your agreement includes this Offer Letter, the Civility Agreement, Acceptable Use &amp; BYOD Policy, Benefits Plan, all of which are incorporated into this agreement and deemed to constitute an integral part hereof.  This agreement cancels and supersedes all previous oral or written understandings, representations, inducements and agreements in their entirety. 
+            </p>
+            <p class="text-justify">
+                It is acknowledged that you have had an opportunity to obtain independent legal advice with respect to the terms of this employment agreement. 
+            </p>
+            <p class="text-justify">
+                We look forward to you joining the Experis team and extend a warm welcome to you. Please indicate your acceptance of this offer by signing below within 72 hours as the offer of employment expires at that time. 
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-xs-12">
+            <div class="row">
+                <div class="col-lg-4 col-sm-5 col-xs-12">
+                    Hiring Manager:
+                </div>
+                <div class="col-lg-8 col-sm-7 col-xs-12">
+                    <$client.env.FormField.a08_Hiring_Manager.HTML>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-5 col-xs-12">
+                    Manager Title:
+                </div>
+                <div class="col-lg-8 col-sm-7 col-xs-12">
+                    <$client.env.FormField.a09_Manager_Title.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-xs-12">
+            <div class="row">
+                <div class="col-lg-4 col-sm-5 col-xs-12">
+                    Accepted By:
+                </div>
+                <div class="col-lg-8 col-sm-7 col-xs-12">
+                    <$client.env.FormField.a10_Accepted_By.HTML>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-5 col-xs-12">
+                    Date Signed:
+                </div>
+                <div class="col-lg-8 col-sm-7 col-xs-12">
+                    <$client.env.FormField.a11_Date_Signed.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.created.HTML>
+    <$client.env.FormField.full_name.HTML>
+    <$client.env.FormField.address1.HTML>
+    <$client.env.FormField.address2.HTML>
+    <$client.env.FormField.city.HTML>
+    <$client.env.FormField.state.HTML>
+    <$client.env.FormField.zip.HTML>
+    <$client.env.FormField.preferred_name.HTML>
+    <$client.env.FormField.job_start_date.HTML>
+    <$client.env.FormField.job_title.HTML>
+    <$client.env.FormField.payrate.HTML>
+    <$client.env.FormField.other_incentives.HTML>
+    <$client.env.FormField.pto_amount.HTML>
+
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.a01_Created.HTML>
+    <$client.env.FormField.a02_Address_A.HTML>
+    <$client.env.FormField.a02_Address_B.HTML>
+    <$client.env.FormField.a02_Address_C.HTML>
+    <$client.env.FormField.a03_Greeting.HTML>
+    <$client.env.FormField.a03_Paragraph1.HTML>
+    <$client.env.FormField.a04_Other_Incentives.HTML>
+    <$client.env.FormField.a04_Payrate.HTML>
+    <$client.env.FormField.a06_PTO_Amount.HTML>
+    <$client.env.FormField.a07_State.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Offer_Letter_-_MPG_Canada_Veritaaq/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Offer_Letter_-_MPG_Canada_Veritaaq/js/bluebird.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Offer_Letter_-_MPG_Canada_Veritaaq/js/moment-with-locales.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Offer_Letter_-_MPG_Canada_Veritaaq/js/script_version_1.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop({'id': 'ButtonSaveAndComplete', 'onclick': null});
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop({'id': 'ButtonPrint', 'onclick': null});
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+const FIELDS_CONFIG_PATH = '<$link;/main/RedCarpet/FormTemplates/Offer_Letter_-_MPG_Canada_Veritaaq/js/fields_version_1.json>';
+const IS_NEWHIRE = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

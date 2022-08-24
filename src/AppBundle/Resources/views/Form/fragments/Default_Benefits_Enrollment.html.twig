@@ -1,0 +1,353 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="Default_Benefits_Enrollment" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+		<$client.env.FormField.a01_name.prompt>
+		<$client.env.FormField.a02_Signature.prompt>
+		<$client.env.FormField.a03_Date.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid form-horizontal">
+	<header class="row">
+		<div class="col-lg-12">
+			<div class="img-wrapper">
+				<img class="img-responsive" src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="Paypal Logo">
+			</div>
+		</div>
+	</header>
+	<div class="inner-wrapper center-block mb-20">
+		<div class="row">
+			<div class="col lg-12">
+				<p>
+					Dear New Employee:
+				</p>
+				<p class="indented">
+					We‘re happy to provide employees with a comprehensive employee benefits package. As a new hire, you have 30 days from your hire date to make your benefit selections. Your selections will be effective as of your date of hire. This is called your <em>“Initial Enrollment Period”</em>.
+				</p>
+				<p class="indented">
+					If you have not selected (or waived) benefits by the end of your <em>Initial Enrollment Period</em>, you will automatically receive the following default benefits with the applicable pre-tax deduction for coverage. Your next opportunity to elect, change, or decline benefits coverage outside of the <em>“Initial Enrollment Period,” </em>will be during Annual Enrollment held in the fall, which has an effective date of the 1st of the following year.
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-offset-3 col-md-offset-3 col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<p>
+					<strong>
+						<u>Default Benefits</u>
+					</strong>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<p>
+					Medical:
+				</p>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<p>
+					Employee only coverage in the United Healthcare $300 Deductible Plan with a per-pay period deduction of $51.00 for full-time and part-time employees
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<p>
+					Dental:
+				</p>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<p>
+					Employee only coverage in the Delta Dental Plan (Core Plan) with a per-pay-period deduction of $3.00 for full-time and part-time employees
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<p>
+					Vision:
+				</p>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<p>
+					Employee only coverage in the Vision Service Plan (Core Plan) with a per-pay-period deduction of $1.00 for full-time and part-time employees
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<p>
+					Employee Assistance:
+				</p>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<p>
+					Optum EAP (National Plan); Arbor EAP (NE Only)
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<p>
+					Life Insurance:
+				</p>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<p>
+					Two times annual earnings to a maximum of $2,000,000.00.
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<p>
+					AD&amp;D Insurance:
+				</p>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<p>
+					Two times annual earnings to a maximum of $2,000,000.00.
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<p>
+					Short-Term Disability:
+				</p>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<p>
+					80% of earnings to a maximum of $6,500 per week after 7 days of disability or first day of hospitalization
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<p>
+					Long-Term Disability:
+				</p>
+			</div>
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<p>
+					67% of earnings to a maximum of $25,000 per month after 180 days of disability
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>
+					For a list of United Healthcare providers, please refer to the United Healthcare website, welcometouhc.com/paypal or by contacting United Healthcare at 844-298-2737.
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>
+					If you want to add dependents after your Initial Enrollment Period, you are only eligible to do so at the next annual enrollment period or within 30 days of an eligible IRS-defined qualifying event (e.g., marriage, birth, adoption).
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>
+					Please print your name and start date below and return the signed original to Human Resources.
+				</p>
+			</div>
+		</div>
+		<div class="row mb-40">
+			<div class="col-lg-12">
+				<div class="inline">
+					I, (print name)
+				</div>
+				<div class="inline-block">
+					<$client.env.FormField.a01_name.HTML>
+				</div>
+				<div class="inline">
+					authorize PayPal to enroll me in the default benefits if I do not submit my enrollment selections within 30 (thirty) days from my start date.
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row mb-30">
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+			<label class="control-label">
+				Signature: <span class="font-red">*</span>
+			</label>
+		</div>
+		<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<$client.env.FormField.a02_Signature.HTML>
+			</div>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+			<label class="control-label">
+				Date of Hire:
+			</label>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<$client.env.FormField.a03_Date.HTML>
+			</div>
+		</div>
+	</div>
+	<div class="inner-wrapper center-block">
+		<div class="row">
+			<div class="col-lg-12">
+				<p>
+					Sincerely, <br>
+					Human Resources
+				</p>
+				<p class="invisible hidden-sm hidden-xs">We‘re happy to provide employees with a comprehensive employee benefits package. As a new hire, you have 30 days from your hire date to make your benefit selections. Your selections will be effective as of your date of hire. This is called your “Initial Enrollment Period”.</p>
+			</div>
+		</div>
+		<footer class="row">
+			<div class="col-lg-12">
+				<p>
+					<a class="paypal-link" href="https://www.paypalbenefits.com" target="_blank">www.paypalbenefits.com</a><br>
+					New Hire Default Letter – PayPal U.S. employees
+				</p>
+			</div>
+		</footer>
+	</div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div
+></main>
+
+<div class="hide">
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+	"use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    document.getElementById('formButtons').style.display = "block";
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+    // frontend validation
+    $('#Default_Benefits_Enrollment').on('change blur', 'input:visible:not(#signature):not(:button):not(disabled):not(readonly)', function() {
+      validateField($(this));
+    });
+    $('#modal').on('click', 'input.lifesuite__button', function() {
+      validateField($('#signature'));
+    });
+    $('#Default_Benefits_Enrollment').on('click', '#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete', function(e) {
+      "use strict";
+      let formIsValid = true; 
+      let btn = $(this);
+      e.preventDefault();
+      $.each($('#Default_Benefits_Enrollment input:visible:not(:button)'), function(k, v) {
+        if (!$("input.calendar_button").length) formIsValid = true;
+        else{
+          if(false == validateField($(v)) && $(v).is(':visible')) {
+            formIsValid = false;
+          }
+        }
+      });
+      if (formIsValid) {
+        switch (btn.attr('id')) {
+          case 'ButtonPrint':
+            funcPrint();
+          break;
+          case 'ButtonSaveAndComplete':
+            funcSaveAndComplete();
+          break;
+        }
+      }
+      else {
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+      }
+    });
+
+    let focusSigFields = setInterval(function(){
+      "use strict";
+      if(document.getElementById('modal').style.display=='block') {
+        document.getElementById('fullName').focus();
+        document.getElementById('eSignature1').focus();
+        clearInterval(focusSigFields);
+      }
+    }, 500);
+});
+
+const disableCalButton = function(el) {
+	"use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+	"use strict";
+    $(".modal").hide();
+    disableCalButton($('.disabled-date'));
+});
+</script>

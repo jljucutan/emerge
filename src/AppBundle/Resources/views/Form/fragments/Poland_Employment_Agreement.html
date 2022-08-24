@@ -1,0 +1,587 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','date');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12"> 
+                <strong>Type your Name:</strong> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','SignerMan','modal2','over','sv2','date2');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp; 
+                    <input id="clear-sig-2" type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','date2');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <template id="fragment-1">
+        <p>&nbsp;</p>
+        <p class="sidebar-address">PayPal Polska Sp.z.o.o.</p>
+    </template>
+    <template id="fragment-2">
+        <p class="text-center">
+            <strong>EMPLOYMENT AGREEMENT</strong>
+        </p>
+        <p>&nbsp;</p>
+        <p><strong>THE UNDERSIGNED:</strong><br>PayPal Polska Sp.z.o.o. with its seat in Warsaw, ul. Emilii Plater 53, 00-113 Warszawa, a company incorporated under the laws of Poland, hereinafter to be referred to as the “<strong>Employer</strong>” or the “<strong>Company</strong>“;</p>
+        <p><strong>AND</strong><br></b><mark><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></mark>, residing in <mark><$client.tForWhomUserInfo.Address1></mark>&nbsp;<% if ('<$client.tForWhomUserInfo.Address2>'.length > 0) { %><mark><$client.tForWhomUserInfo.Address2></mark>&nbsp;<% } %><mark><$client.tForWhomUserInfo.Zip></mark>,&nbsp;<mark><$client.tForWhomUserInfo.City></mark>, hereinafter to be referred to as the “<strong>Employee</strong>”;</p>
+
+        <p>Whereas:</p>
+
+        <p>The Employer wishes to employ the Employee, and the Employee has agreed to accept the employment subject to the terms and conditions as set forth below;</p>
+
+        <p class="mb-5">
+            <strong>HAVE AGREED AS FOLLOWS:</strong>
+        </p>
+        <p class="hide">&nbsp;</p>
+
+        <p>
+            <strong>ARTICLE 1. COMMENCEMENT AND DURATION</strong>
+        </p>
+
+        <ol class="mb-4">
+            <li class="mb-3">
+                The Employee will enter into full time employment commencing on <mark><%= Event_Start_Date.format('D MMMM YYYY') %></mark>.
+                <br>
+                <% if ('<$client.tForWhomUserInfo.Entity_Transfer>' == 'Yes') { %>
+                <div class="marked">
+                    <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Employee Transferring from another PayPal entity"></div>
+                    The Employee’s previous employment within the PayPal group, from <mark><%= moment('<$client.tForWhomUserInfo.Continuous_Service_Date>').format('D MMMM YYYY') %></mark>, will count towards her seniority at the Company for the purposes of her employment benefits and notice period
+                </div>
+                <% } %>
+            </li>
+            <li class="mb-3">The Employment Agreement (hereinafter referred to as the “<strong>Employment Agreement</strong>”) is made for a trial time period of three months starting from <mark><%= Event_Start_Date.format('D MMMM YYYY') %></mark> until <mark><%= Event_Start_Date_90.format('D MMMM YYYY') %></mark> hereinafter referred to as the “Trial Period”).</li>
+            <li class="mb-3">
+                If before the lapse of the Trial Period
+                <ul>
+                    <p>(i) the Employer submits to the Employee a statement in any form, that it has decided not to employ the Employee after the completion of the Trial Period, or</p>
+                    <p>(ii) the Employee submits his/her statement that he/she does not wish to continue their employment after the completion of the Trial Period, </p>
+                </ul>
+                the Employment Contract will terminate as of the day of the lapse of the Trial Period.
+            </li>
+            <li class="mb-3">If none of the events mentioned in item 1.3 above occurs and the Employment Contract is not terminated by any of the parties, after the completion of the Trial Period the Employment Contract will automatically be converted into an employment contract for an indefinite period of time.</li>
+            <li class="mb-3">Within the Trial Period either party may terminate the Employment Agreement by giving a two-week  notice. After the conversion of the Employment Agreement into an agreement for an indefinite period of time, either party may terminate the Employment Agreement by giving prior notice as legally required by the respective provisions of law.</li>
+            <li class="mb-3">This Employment Agreement is contingent upon the issuance of a work and residence permit authorizing the Employee to work for the Employer if so required by Polish law.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>ARTICLE 2. FUNCTION AND SCOPE OF DUTIES</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">The Employee will be employed in the position of <mark><$client.tForWhomUserInfo.Business_Title></mark>. The Employee shall perform to the best of his abilities and knowledge all tasks and duties in accordance with the instructions of the Employer. The Employer reserves the right to give further instructions as regards to the Employee’s task and duties from time to time. </li>
+            <li class="mb-3">By mutual consent of the parties to this Employment Agreement, the Employee will perform his duties at the Employer's offices in Warsaw. Upon the Employer's instruction the Employee will also perform his duties in other places indicated by the Employer.</li>
+            <li class="mb-3">The working time of the Employee will be a task-defined working time. The Employee shall carry out his duties during the hours required for the proper fulfilment of his duties.</li>
+            <li class="mb-3">The Employee is obliged to observe the provisions of the PayPal Inc. Code of Business Conduct (the "Code") as applied by the Employer from time to time, whose provisions are hereby incorporated into this Employment Agreement and form part of the employment relationship.</li>
+            <li class="mb-3">A copy of the Code applied by the Employer as of <mark><%= moment(Event_Start_Date).format('D MMMM YYYY') %></mark> constitutes Schedule 1 to this Employment Agreement. The Employee shall be bound by any subsequent changes to the Code after the expiry of 2 (two) weeks from the day when such changes are published by the Employer in a manner customary therefore.</li>
+            <li class="mb-3">The Employee hereby acknowledges and agrees that the provisions of the Code include detailed duties and obligations binding directly upon the Employee, and that their non-performance shall be treated as non-performance of Employee's duties arising pursuant to the employment relationship between him and the Employer.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+
+        <p>
+            <strong>ARTICLE 3. SALARY</strong>
+        </p>
+        <ul class="mb-5">
+            <p>The Employee will receive a gross monthly base salary of <mark><$client.tForWhomUserInfo.SalaryOffered></mark> PLN. The salary shall be payable in arrears on the last day of each calendar month for the month for which the remuneration is due but no later than within the first 10 days of the next calendar month. The remuneration is payable by direct transfer to the Employee's bank account indicated by the Employee in writing to the Employer.</p>
+        </ul>
+        <p class="hide">&nbsp;</p>
+
+        <p>
+            <strong>ARTICLE 4. ANNUAL INCENTIVE PLAN</strong>
+        </p>
+        <ul class="mb-5">
+            <div class="marked">
+                <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="IF eIP = Yes"></div>
+                <% if ('<$client.tEventCategories_Category_31.Value>'=='Yes') { %>
+                <p>You will be eligible to participate in the PayPal Holdings, Inc. Annual Incentive Plan for a specified fiscal year (AIP) with an annual bonus based on individual achievement as well as company performance.  The annual bonus period is from January 1 through December 31. Your target bonus for the AIP is <mark><$client.tForWhomUserInfo.eIP_Target_Pct></mark>% of your annual base salary, pro-rated based on your hire date and days of service during the AIP bonus period.  There is no guarantee any AIP bonus will be awarded or received, and any actual bonus will be determined after the end of the annual bonus period. Any AIP bonus, even if it is made repeatedly or regularly and whatever its amount, can never lead to a vested right for you, the employee.</p>
+                <p>To be eligible to receive any AIP bonus, you must be employed before October 1st and you must be in continuous employment on the date the bonus is received, subject to applicable laws. If your employment start date with a PayPal company commences on or after October 1st, your eligibility to participate in the AIP will begin on January 1st of the following calendar year. Any bonus is at PayPal’s sole and absolute discretion and subject to the terms and conditions of the AIP.  PayPal reserves the right, in its sole discretion, to amend, change or cancel the AIP at any time.  Further, the bonus plan that you are eligible to participate in may change over time.  You acknowledge and agree that PayPal may substitute the plan referenced in this letter and any contract of employment or any offer documentation, as it determines in its sole discretion from time to time.</p>
+                <p></p>
+                <% } else { %>
+                <p>Section not applicable to employee.</p>
+                <% } %>
+            </div>
+        </ul>
+        <p class="hide">&nbsp;</p>
+
+        <p>
+            <strong>ARTICLE 5. EXPENSES</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">The Employer will compensate the Employee for reasonable expenses directly related to the performance of his work.</li>
+            <li class="mb-3">A statement of expenses must be submitted to the Employer prior to the end of the month following the month in which the expenses were incurred. Expenses can be claimed upon submission of the original receipt(s), specifying the business-related reason for which they were incurred. The Employer will pay the expenses within one month after the Employee has claimed them, provided that the statement of expenses is sufficiently itemized, accompanied by the original receipt(s) and approved by the Employer.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+
+        <p>
+            <strong>ARTICLE 6. HOLIDAYS</strong>
+        </p>
+        <ul class="mb-5">
+            <p>The Employee is entitled to holiday and public holidays as provided by the Polish Labour Code and other relevant provisions.</p>
+        </ul>
+        <p class="hide">&nbsp;</p>
+
+        <p>
+            <strong>ARTICLE 7. ILLNESS AND INCAPACITY FOR WORK</strong>
+        </p>
+        <ul>
+            <p>If the Employee is ill or unable to perform work for any other reason, the Employee will be obliged to inform the Employer thereof in advance if the reason for the absence is known in advance, or, if the reason for such absence arises unexpectedly, as soon as possible, however, not later than by the end of the second day of the Employee's absence from work. If the reason of the Employee’s absence is the sickness, the Employee shall submit a medical certificate issued in accordance with the regulations concerning the certification of temporary inability to work within seven days as of its issuance. The Employer shall, however, have the right to ask for a medical certificate as from the first day of absence.</p>
+        </ul>
+        <p class="hide">&nbsp;</p>
+
+        <p>
+            <strong>ARTICLE 8. OTHER PROFESSIONAL OBLIGATIONS</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">During the term of the Employment Agreement as well as within 12 months from its termination the Employee shall not, either directly or indirectly, conduct any activity competitive to the business of the Employer, in particular the Employee shall not:</li>
+            <li class="mb-3">Accept paid or unpaid, permanent or temporary employment or consultancy or any other contract or commission based  employment in any entities carrying out activity competitive towards the Employer, except in cases when the Employer gave its consent in writing;</li>
+            <li class="mb-3">Become involved in any business activity competitive towards the Employer carried out as private business;</li>
+            <li class="mb-3">Become a shareholder in or partner of, or form a joint venture with, or have any other financial interest in, any company or partnership carrying out any activity competitive towards the Employer;</li>
+            <li class="mb-3">Accept any positions in the authorities of any entities carrying out activities competitive towards the Employer or render any employments in favour of entities carrying out activities competitive towards the Employer, except in cases when the Employer gave its consent;</li>
+            <li class="mb-3">Become engaged in or persuade any other persons to become engaged in, while acting (with the Employer’s consent) on behalf of or for the benefit of the entities carrying out activities competitive towards the Employer, any transactions with the clients, employees or any other entities co-operating with the Employer;</li>
+            <li class="mb-3">Persuade any person or entity to discontinue any employment or other legal relationship with the Employer;</li>
+            <li class="mb-3">Pass information or know-how to competitors or individuals who may subsequently pass it to competitors.</li>
+            <li class="mb-3">During the term of this Employment Agreement the Employee shall inform the Employer on his/her intention to take up any other activities, irrespective of whether or not the Employee receives financial compensation for these activities.</li>
+            <li class="mb-3">For the purpose of this Employment Agreement "activity competitive towards the Employer" shall mean any activity which is the same as the business activity carried on during the term of this Employment Agreement by the Employer. A "competitor" means any individual, partnership, company or other entity, which is engaged in or proposes to engage in any activity competitive towards the Employer.</li>
+            <li class="mb-3">The Employee shall receive no additional remuneration from the Employer for complying with the non competition provision of this Employment Agreement during the term of this Employment Agreement.</li>
+            <li class="mb-3">During the period of non competition following the termination of the employment relationship, the Employer undertakes to pay the Employee compensation amounting to 25% of the average remuneration received by the Employee for the most recent 12 months before the termination of the employment relationship. For clarity, remuneration means base salary and bonus.</li>
+            <li class="mb-3">The compensation shall be divided into 12 equal parts and shall be paid to the Employee in monthly instalments payable in arrears on the last day of each month into the bank account indicated by the Employee.</li>
+            <li class="mb-3">The Employer shall be entitled to withdraw from the non competition clause covering the period following the termination of the employment relationship or shorten the period of binding force of this prohibition, if by the day of termination of the Employment Agreement, at the latest, it submits to the Employee a written statement in this respect. Withdrawal from the non competition clause covering the period following the termination of the employment relationship or shortening the period of its binding force shall at the same time cause the release of the Employee from non competition obligation as well as the Employer from the obligation to pay the compensation referred in item. 8.5 above or a proportionate reduction of the compensation.</li>
+            <li class="mb-3">The Employee shall not be permitted to accept or negotiate, whether directly or indirectly, for his/her personal benefits any commission, advantage or gain, in any form or under any name whatsoever, from customers or suppliers of the Employer or its subsidiaries or affiliated companies.</li>
+            <li class="mb-3">Neither during the term of the Employment Agreement nor during a period of 12 months after the termination thereof may the Employee, directly or indirectly induce employees of the Employer or of a company affiliated with the Employer to terminate their employment contracts, offer them a job, or have them offered a job. Upon each violation of his/her obligations under this paragraph occurring during a period of 12 months after the termination of the Employment Agreement, the Employee shall pay to the Employer liquidated damages in the amount of PLN 50,000 (fifty thousand Polish zlotys). Payment of the liquidated damages does not relieve the Employee from his/her obligations under this paragraph. The Employer is, furthermore, entitled to seek judicial enforcement of the Employee's obligations under this paragraph and/or to claim damages exceeding the amount of the liquidated damages.</li>
+            <li class="mb-3">A violation by the Employee of the obligations referred to in items 1-9–above constitutes a flagrant breach of Employee’s basic duties and entitles the Employer to terminate the Employment Agreement without notice by fault of the Employee.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+
+        <p>
+            <strong>ARTICLE 9. CONFIDENTIALITY</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">The Employee shall not, during the term of the Employment Agreement and after the termination of the Employment Agreement, disclose to any third party or use for his own benefit any information concerning the business of the Employer or any of its affiliated companies which have become known to the Employee. “Information concerning the business” includes, without limitation, all business, organizational and technical knowledge, know-how, proprietary or confidential information, names or addresses of customers of the Employer or any of its affiliated companies and any other information which is not intended to become known outside of the Employer or any of its affiliated companies.</li>
+            <li class="mb-3">All written and other records and all tangibles concerning the Employer or any of its affiliated companies and their business which are in the possession of the Employee shall be carefully kept and shall be immediately returned to the Employer upon its request, and in any case upon the termination of the employment. The Employee shall not be entitled to keep any copies of those records and tangibles. The Employee hereby waives any right to retention in respect of records or tangibles mentioned herein. The Employee shall, furthermore, destroy on his own data processing equipment all electronically stored confidential data belonging to the Employer or a company affiliated to the Employer upon the Employer’s request after having submitted a copy thereof to the Employer.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+
+        <p>
+            <strong>ARTICLE 10. INTELLECTUAL PROPERTY RIGHTS</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">All intellectual property rights, including but not limited to right to obtain a patent for an invention, a protection right for a utility design and a rights  under registrations of an industrial design, a trade mark, a topography of an integrated circuit or a Community design created by the Employee in execution of employment obligations, shall belong to the Employer. The Employee may not independently disclose, multiply, use, manufacture, bring on the market or sell, lease, deliver or otherwise trade, offer on behalf of any third party, or commission the registration of the results of his work.</li>
+            <li class="mb-3">The Employee shall promptly disclose and deliver to the Employer all invention designs (including inventions, topographies of an integrated circuit, utility designs and industrial designs as well as the Community designs), trade marks, copyrightable works and other intellectual property, created by the Employee in execution of employment obligations. Neither in the course of work, nor at the place of work, nor with the use of the Employer's property, shall the Employee create the inventive designs, trade marks, copyrightable works, other intellectual property, or modify such intellectual property, if such creation or modification of intellectual property have not resulted from the performance of employment obligations by the Employee.</li>
+            <li class="mb-3">The Employer may create works derived from the works acquired by the Employer pursuant to this Employment Agreement. The Employer may also dispose of and use such derivative works. The Employee hereby transfers to the Employer the right to give consent exercise derivative rights to the works acquired by the Employer pursuant to this Employment Agreement.</li>
+            <li class="mb-3">The purpose of the provisions of this Article and the intention of the Parties is the acquisition by the Employer of the intellectual property rights created in performance of employment obligations by the Employee, to the broadest possible extent. Insofar as the rights specified hereinafter are not vested in the Employer by operation of law or on the grounds of the Employment Agreement, the Employee covenants that in cooperation with the Employer and at the Employer’s costs he will take any factual or legal actions required to acquisition of these rights by the Employer. This obligation concerns in particular all requirements related to registration with Polish and foreign public authorities, as well as specification of the fields of exploitation.</li>
+            <li class="mb-3">The Employee acknowledges that his remuneration defined in Article 3 of this Employment Agreement includes the whole remuneration for the acquisition by the Employer, as provided for in this Agreement, of all intellectual property rights (including derivative rights) and the Employee shall have no right to any remuneration for the Employer’s use of the inventions, patents, trade marks, topographies of an integrated circuit, utility designs or industrial designs, the Community designs and other intellectual property created by the Employee in execution of employment obligations.</li>
+            <li class="mb-3">Insofar as the intellectual property rights are not capable of being transferred and insofar as permitted by law, the Employee hereby declares that he shall not exercise his personal rights to the copyrightable works, acquired by the Employer pursuant to this Employment Agreement. Furthermore, the Employee hereby authorizes the Employer to perform on his behalf personal rights to the said works and to give to third persons authorizations to perform the said rights on behalf of the Employee without his consent as well as to anonymously disseminate the said works. The Employee authorizes the Employer to modify and introduce changes to the said works.</li>
+            <li class="mb-3">The intellectual property rights acquired by the Employer pursuant to this Employment Agreement shall belong to the Employer in Poland and abroad.  Please see the Employee Proprietary Information and Inventions Agreement for more information.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+
+        <p>
+            <strong>ARTICLE 11. REPRESENTATIONS CONCERNING JOB TITLE AND COMPANY AFFILIATION</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">The Employee agrees that after the date of termination of his/her employment with the Employer, he/she shall not represent that he/she is employed by, engaged as a consultant for or in any other service relationship (collectively, an ‘Affiliation’) with the Employer or any of its affiliated companies. The obligation includes ensuring that at all times after the date of termination of his/her employment, the Employee’s resume, social media profiles and pages (including without limitation any LinkedIn or Facebook profile), website, email signature and business card shall not indicate that he/she has any Affiliation with the Employer or any affiliated company. In addition, the Employee agrees that any statements that he/she makes in social media, in resumes and otherwise about his/her activities on behalf of the Employer and any affiliates shall be a reasonable and accurate summary.</li>
+            <li class="mb-3">The Employee also acknowledges that when representing himself/herself to third parties, it is important to accurately state his/her title, whether as part of his/her email signature line or through other media, such as, for example, in his/her LinkedIn profile. Therefore, the Employee agrees that during his/her employment (and after his/her employment ends as stated above), the Employee will always accurately state or provide his/her current or past position. This paragraph does not lift or modify other limitations and prohibitions the Employer may impose regarding the use of the Employer’s name, brand, logos, and other references to it in employees’ personal social media. </li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+
+        <p>
+            <strong>ARTICLE 12. MISCELLANEOUS</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">Any amendments or additions to the Employment Agreement shall be in writing.</li>
+            <li class="mb-3">Should any provision of the Employment Agreement be or become invalid, the validity of the other provision(s) shall not be affected, and the invalid clause shall be replaced by such other valid clause that best meets the parties’ common intention when agreeing on the invalid clause.</li>
+            <li class="mb-3">The Employment Agreement is subject to the laws of Poland.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+
+        <p class="text-justify"><mark><%= signatory %></mark></p>
+        <p class="text-justify mb-5">For and on behalf of PayPal Polska Sp.z.o.o</p>
+        <p class="hide"></p>
+        <div class="border-bottom mb-5"></div>
+        <p class="hide"></p>
+        <p class="text-center mb-5">
+            <strong>UMOWA O PRACĘ</strong>
+        </p>
+        <p class="hide">&nbsp;</p>
+        <p><strong>NIŻEJ PODPISANI:</strong><br> PayPal Polska Sp.z.o.o. z siedzibą w Warszawie, ul. Emilii Plater 53, 00-113 Warszawa, założona na mocy prawa polskiego, dalej zwana “<strong>Pracodawcą</strong>” lub “<strong>Spółką</strong>”;</p>
+        <p><strong>I</strong><br> Pan / Pani <mark><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></mark>, zamieszkały/a w, <mark><$client.tForWhomUserInfo.Address1></mark>&nbsp;<% if ('<$client.tForWhomUserInfo.Address2>'.length > 0) { %><mark><$client.tForWhomUserInfo.Address2></mark>&nbsp;<% } %><mark><$client.tForWhomUserInfo.Zip></mark>,&nbsp;<mark><$client.tForWhomUserInfo.City></mark>, dalej zwany “<strong>Pracownikiem</strong>”</p>
+        <p>Zważywszy, że</p>
+        <p>Pracodawca pragnie zatrudnić Pracownika, a Pracownik wyraża zgodę na zatrudnienie na warunkach określonych poniżej.</p>
+        <p>
+            <strong>STRONY UZGODNIŁY CO NASTĘPUJE:</strong>
+        </p>
+        <p>
+            <strong>ARTYKUŁ 1. ROZPOCZĘCIE I OKRES ZATRUDNIENIA</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">
+                Pracownik rozpocznie zatrudnienie w pełnym wymiarze pracy począwszy od <mark><%= moment(Event_Start_Date).locale('pl').format('D') %>&nbsp;<%= Event_Start_Date_PL_Month %>&nbsp;<%= moment(Event_Start_Date).locale('pl').format('YYYY') %></mark>.
+                <br>
+                <% if ('<$client.tForWhomUserInfo.Entity_Transfer>' == 'Yes') { %>
+                    <div class="marked">
+                        <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Employee Transferring from another PayPal entity"></div>
+                        Poprzedni okres zatrudnienia Pracownika w ramach grupy PayPal, począwszy od <mark><%= moment('<$client.tForWhomUserInfo.Continuous_Service_Date>').format('D') %>&nbsp;<%= Continuous_Service_Date_Month_PL %>&nbsp;<%= moment('<$client.tForWhomUserInfo.Continuous_Service_Date>').format('YYYY') %></mark>, będzie uwzględniany przy ustalaniu prawa do dodatkowych świadczeń pracowniczych oraz długości okresu wypowiedzenia.
+                    </div>
+                <% } %>
+            </li>
+            <li class="mb-3">Umowa o Pracę (dalej zwana “Umową o Pracę”) zostaje zawarta na trzymiesięczny okres próbny, od <mark><%= moment(Event_Start_Date).locale('pl').format('D') %>&nbsp;<%= Event_Start_Date_PL_Month %>&nbsp;<%= moment(Event_Start_Date).locale('pl').format('YYYY') %></mark> r. do <mark><%= moment(Event_Start_Date_90).locale('pl').format('D') %>&nbsp;<%= Event_Start_Date_PL_Month_90 %>&nbsp;<%= moment(Event_Start_Date_90).locale('pl').format('YYYY') %></mark> r. (dalej zwanym „Okresem Próbnym”)</li>
+            <li class="mb-3">
+                Jeżeli przed upływem Okresu Próbnego
+                <ul>
+                    <p>(i) Pracodawca złoży Pracownikowi oświadczenie woli, iż nie zamierza zatrudniać Pracownika po zakończeniu Okresu Próbnego, lub</p>
+                    <p>(ii) Pracownik złoży oświadczenie o braku woli dalszego zatrudnienia po zakończeniu Okresu Próbnego,</p>
+                </ul>
+                niniejsza Umowa o Pracę ulegnie rozwiązaniu z dniem upływu Okresu Próbnego.
+            </li>
+            <li class="mb-3">Jeżeli żadne ze zdarzeń, o których mowa w pkt. 1.3 nie  będzie miało miejsca, ani Umowa o Pracę nie zostanie przez strony wypowiedzialna, po zakończeniu Okresu Próbnego niniejsza Umowa o Pracę zostanie automatycznie przekształcona w umowę na czas nieokreślony.</li>
+            <li class="mb-3">W Okresie Próbnym każda ze stron może rozwiązać niniejszą Umowę o Pracę z zachowaniem dwutygodniowego okresu wypowiedzenia. Po przekształceniu Umowy o Pracę w umowę na czas nieokreślony, każda ze stron może rozwiązać niniejszą Umowę o Pracę z zachowaniem okresu wypowiedzenia, zgodnie z odpowiednimi przepisami prawa.</li>
+            <li class="mb-3">Zawarcie niniejszej Umowy o Pracę uzależnione jest od wydania zezwolenia na pracę i pobyt, upoważniającego Pracownika do świadczenia pracy na rzecz Pracodawcy, o ile wymaga tego prawo polskie.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>ARTYKUŁ 2. FUNKCJA I ZAKRES OBOWIĄZKÓW</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">Pracownik zatrudniony będzie na stanowisku <mark><$client.tForWhomUserInfo.Business_Title></mark>. Pracownik wykonywać będzie wszelkie zadania i obowiązki, wykorzystując w maksymalnym stopniu swoje umiejętności i wiedzę, zgodnie z instrukcjami Pracodawcy. Pracodawca zastrzega sobie prawo udzielenia dalszych instrukcji dotyczących zadań i obowiązków Pracownika.</li>
+            <li class="mb-3">Za zgodą obu stron niniejszej Umowy o Pracę, Pracownik wykonywać będzie swoje obowiązki w biurze Pracodawcy w Warszawie. Na polecenie Pracodawcy Pracownik jest zobowiązany wykonywać swoje obowiązki również w innych miejscach wskazanych przez Pracodawcę.  </li>
+            <li class="mb-3">Czas pracy Pracownika będzie zadaniowym czasem pracy. Pracownik wykonywać będzie swoje obowiązki w czasie niezbędnym do właściwego wywiązania się ze swoich obowiązków.</li>
+            <li class="mb-3">Pracownik jest zobowiązany przestrzegać postanowień Kodeksu Postępowania PayPal Inc. ("Kodeks"), obowiązującego okresowo u Pracodawcy, którego postanowienia zostają włączone do niniejszej Umowy o Pracę i stanowią część stosunku pracy.</li>
+            <li class="mb-3">Kopia Kodeksu obowiązującego u Pracodawcy na <mark><%= Event_Start_Date.format('D') %>&nbsp;<%= Event_Start_Date_PL_Month %>&nbsp;<%= Event_Start_Date.format('YYYY') %></mark> zastanowi Załącznik nr 1 do niniejszej Umowy o Pracę. Pracownik będzie związany wszelkimi kolejnymi zmianami do Kodeksu, po upływie 2 (dwóch) tygodni od dnia, w którym zmiany te zostaną ogłoszone przez Pracodawcę w sposób u niego przyjęty.</li>
+            <li class="mb-3">Pracownik niniejszym przyjmuje do wiadomości i zgadza się, że postanowienia Kodeksu obejmują szczegółowe obowiązki i zobowiązania bezpośrednio wiążące Pracownika oraz, że niewykonanie ich będzie traktowane jak niewykonanie przez Pracownika jego obowiązków wynikających ze stosunku pracy wiążącego go z Pracodawcą.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>ARTYKUŁ 3. WYNAGRODZENIE</strong>
+        </p>
+        <ul class="mb-5">
+            <p>Pracownik otrzymywać będzie miesięczne wynagrodzenie podstawowe brutto w wysokości <mark><$client.tForWhomUserInfo.SalaryOffered></mark> PLN. Wynagrodzenie będzie płatne z dołu w ostatnim dniu każdego miesiąca kalendarzowego, za który wynagrodzenie jest należne, jednak nie później niż do 10 (dziesiątego) dnia kolejnego miesiąca kalendarzowego. Wynagrodzenie płatne jest przelewem bezpośrednio na rachunek bankowy Pracownika wskazany Pracodawcy przez Pracownika na piśmie.</p>
+        </ul>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>ARTYKUŁ 4. ROCZNEGO PROGRAMU MOTYWACYJNEGO</strong>
+        </p>
+        <ul class="mb-5">
+            <div class="marked">
+                <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="IF eIP = Yes"></div>
+                <% if ('<$client.tEventCategories_Category_31.Value>'=='Yes') { %>
+                <p>Zostanie Pan/Pani zakwalifikowany/zakwalifikowana do Rocznego Programu Motywacyjnego (AIP) PayPal Holdings, Inc. w określonym roku obrotowym z premią roczną przyznawaną na podstawie indywidualnych osiągnięć oraz wyników firmy. Okres objęty premią roczną trwa od 1 stycznia do 31 grudnia. Pana/Pani docelowa premia w ramach programu AIP wynosi <mark><$client.tForWhomUserInfo.eIP_Target_Pct></mark>% Pana/Pani podstawowego rocznego wynagrodzenia, proporcjonalnie do daty zatrudnienia oraz ilości dni pracy podczas okresu premiowego AIP. Nie gwarantujemy przyznania Panu/Pani ani otrzymania przez Pana/Panią premii w programie AIP, a wysokość każdej premii zostanie obliczona po zakończeniu rocznego okresu premiowego. Żadne premie w programie AIP, niezależnie od częstotliwości ich przyznawania oraz kwoty, nie gwarantują Panu/Pani jako pracownikowi prawa do ich bezwarunkowego otrzymywania w przyszłości.</p>
+                <p>W celu zakwalifikowania się do otrzymania premii w ramach programu AIP musi być Pan / Pani zatrudniony/zatrudniona przed 1 października, a w dniu otrzymania premii musi Pan/Pani być pracownikiem zatrudnionym na stałe zgodnie z odpowiednimi przepisami prawa. Jeśli rozpoczął Pan / rozpoczęła Pani pracę w firmie PayPal w dniu 1 października lub później, może Pan/Pani zakwalifikować się do programu AIP od 1 stycznia kolejnego roku kalendarzowego. Premie są przyznawane przez firmę PayPal według własnego uznania zgodnie z warunkami programu AIP. Firma PayPal zastrzega sobie prawo do wprowadzania poprawek lub zmian do programu AIP albo anulowania go w dowolnym momencie według własnego uznania. Dodatkowo plan wypłacania premii, do którego zostali Państwo zakwalifikowani może w dłuższej perspektywie ulec zmianom. Niniejszym przyjmuje Pan/Pani do wiadomości i akceptuje fakt, że firma PayPal może od czasu do czasu według własnego uznania zastępować opisany w tym liście plan, a także wszelkie umowy o pracę oraz dokumentację ofert.</p>
+                <p></p>
+                <% } else { %>
+                <p>Sekcja nie dotyczy pracownika.</p>
+                <% } %>
+            </div>
+        </ul>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>ARTYKUŁ 5. KOSZTY</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">Pracodawca zrekompensuje Pracownikowi uzasadnione koszty, bezpośrednio związane z wykonywaną przez niego pracą.</li>
+            <li class="mb-3">Zestawienie wydatków należy przedstawić Pracodawcy przed upływem miesiąca następującego po miesiącu, w którym koszty zostały poniesione. Zwrotu kosztów można żądać po przedstawieniu oryginału (-ów) pokwitowania (-ań), podając powód (związany z przedsiębiorstwem), dla którego zostały one poniesione. Pracodawca zwróci koszty w terminie jednego miesiąca od dnia zażądania zwrotu przez Pracownika, pod warunkiem że zestawienie wydatków będzie dostatecznie uszczegółowione i towarzyszyć mu będzie oryginał (-y) pokwitowania (-ań) i że wydatki te zostaną zatwierdzone przez Pracodawcę.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>ARTYKUŁ 6. URLOP</strong>
+        </p>
+        <ul>
+            <p>Pracownik ma prawo do urlopu oraz dni ustawowo wolnych od pracy zgodnie z postanowieniami polskiego Kodeksu pracy i innych właściwych przepisów.</p>
+        </ul>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>ARTYKUŁ 7. CHOROBA I NIEZDOLNOŚĆ DO PRACY</strong>
+        </p>
+        <ul>
+            <p>W przypadku, gdy Pracownik jest chory lub z jakiegokolwiek powodu niezdolny do pracy, jest on zobowiązany do poinformowania o tym fakcie Pracodawcę z góry, o ile fakt ten jest z góry wiadomy lub, w przypadku gdy taka nieobecność powstaje nagle, jak najszybciej to możliwe, jednakże najpóźniej do końca drugiego dnia swojej nieobecności w pracy. W przypadku, gdy przyczyną nieobecności jest choroba, Pracownik ma obowiązek dostarczyć zaświadczenie lekarskie, wydane zgodnie z przepisami dotyczącymi wystawiania zaświadczeń o czasowej niezdolności do pracy, w terminie siedmiu dni od jego wystawienia. Pracodawca ma jednak prawo żądać zaświadczenia lekarskiego od pierwszego dnia nieobecności.</p>
+        </ul>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>ARTYKUŁ 8. INNE OBOWIĄZKI PRACOWNICZE</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">W trakcie obowiązywania Umowy o Pracę jak również w ciągu 12 miesięcy od jej rozwiązania Pracownik nie podejmie, bezpośrednio ani pośrednio, żadnej działalności konkurencyjnej w stosunku do działalności Pracodawcy, a w szczególności Pracownik:</li>
+            <li class="mb-3">nie przyjmie żadnego zatrudnienia ani nie będzie udzielał usług konsultingowych, ani nie zawrze umowy zlecenia, niezależne od tego czy za wynagrodzeniem czy bezpłatnie, na stałe lub tymczasowo, z żadnym podmiotem prowadzącym działalność konkurencyjną wobec Pracodawcy, chyba że Pracodawca wyrazi na piśmie na to zgodę;</li>
+            <li class="mb-3">nie zaangażuje się w żadną działalność gospodarczą konkurencyjną wobec Pracodawcy, prowadzoną jako działalność prywatną;</li>
+            <li class="mb-3">nie zostanie wspólnikiem ani partnerem żadnej spółki, ani nie utworzy wspólnego przedsięwzięcia (joint-venture), ani też nie będzie miał żadnego innego udziału kapitałowego w jakiejkolwiek spółce prowadzącej działalność konkurencyjną wobec Pracodawcy;</li>
+            <li class="mb-3">nie obejmie żadnych funkcji w organach podmiotów prowadzących działalność konkurencyjną wobec Pracodawcy ani nie będzie świadczył żadnych usług na rzecz podmiotów prowadzących działalność konkurencyjną wobec Pracodawcy, z wyjątkiem przypadków, gdy Pracodawca wyrazi na to zgodę;</li>
+            <li class="mb-3">w przypadku dozwolonego przez Pracodawcę działania na rzecz lub w imieniu podmiotów konkurencyjnych wobec Pracodawcy, nie zaangażuje się ani też nie będzie nakłaniał innych osób do zaangażowania się w jakiekolwiek transakcje z klientami, pracownikami lub innymi podmiotami współpracującymi ze Pracodawcą;</li>
+            <li class="mb-3">nie będzie nakłaniał innych osób ani podmiotów do zakończenia zatrudnienia lub innego stosunku prawnego ze Pracodawcą;</li>
+            <li class="mb-3">nie będzie przekazywał informacji ani know-how konkurentom ani osobom, które mogą następnie przekazać je konkurentom.</li>
+            <li class="mb-3">W trakcie obowiązywania Umowy o Pracę Pracownik poinformuje Pracodawcę o zamiarze podjęcia innej działalności, bez względu na to, czy Pracownik wykonuje ją za wynagrodzeniem lub nieodpłatnie.</li>
+            <li class="mb-3">Dla celów niniejszej Umowy, "działalność konkurencyjna wobec Pracodawcy" oznacza wszelką działalność, która jest taka sama jak działalność gospodarcza prowadzona w okresie obowiązywania niniejszej Umowy o Pracę przez Pracodawcę. "Konkurent" oznacza osobę fizyczną, spółkę lub inny podmiot, który prowadzi lub zamierza prowadzić dowolną działalność konkurencyjną wobec Pracodawcy.</li>
+            <li class="mb-3">Pracownikowi nie przysługuje żadne dodatkowe wynagrodzenie od Spółki z tytułu wykonywania zobowiązań Pracownika dotyczących zakazu konkurencji trakcie obowiązywania Umowy o Pracę.</li>
+            <li class="mb-3">W okresie trwania zakazu konkurencji po ustaniu stosunku pracy Pracodawca zobowiązuje się wypłacić Pracownikowi odszkodowanie w wysokości 25% średniego wynagrodzenia, które pracownik otrzymywał przez ostatnie 12 miesięcy przed ustaniem stosunku pracy. Wynagrodzenie oznacza w tym przypadku wynagrodzenie podstawowe oraz bonus.</li>
+            <li class="mb-3">Odszkodowanie zostanie podzielone na 12 równych części i będzie wypłacane Pracownikowi w miesięcznych ratach płatnych z dołu ostatniego dnia każdego miesiąca na konto bankowe wskazane przez Pracownika.</li>
+            <li class="mb-3">Pracodawca może odstąpić od klauzuli zakazu konkurencji obejmującej okres po ustaniu stosunku pracy lub skrócić okres obowiązywania zakazu, jeśli najpóźniej w dniu rozwiązania Umowy o Pracę złoży Pracownikowi pisemne oświadczenie w tej sprawie. Odstąpienie od klauzuli zakazu konkurencji obejmującej okres po ustaniu stosunku pracy lub skrócenie jego obowiązywania spowoduje zwolnienie Pracownika z zakazu konkurencji oraz równocześnie zwolnienie Pracodawcy z obowiązku wypłaty odszkodowania, o którym mowa w pkt. 8.5 lub proporcjonalne zmniejszenie odszkodowania.</li>
+            <li class="mb-3">Pracownik nie może w sposób bezpośredni lub pośredni przyjmować ani negocjować w celu osiągnięcia osobistej korzyści żadnej prowizji, korzyści ani zysku w jakiejkolwiek postaci oraz pod jakąkolwiek nazwą od klientów lub dostawców Pracodawcy oraz podmiotów od niego zależnych lub z nim powiązanych.</li>
+            <li class="mb-3">W trakcie obowiązywania Umowy o Pracę oraz w okresie 12 miesięcy od jej zakończenia Pracownik nie może w sposób bezpośredni ani pośredni nakłaniać pracowników Pracodawcy oraz spółki z nim powiązanej do rozwiązania umowy o pracę, składać im ofert pracy lub powodować oferowania im pracy przez osoby trzecie. Za każdorazowe naruszenie przez Pracownika jego obowiązków wynikających z niniejszego punktu w okresie 12 miesięcy po zakończeniu Umowy o Prace, Pracownik zapłaci Pracodawcy karę umowną w wysokości 50,000 zł (pięćdziesiąt  tysięcy złotych). Zapłata kary umownej nie zwalnia Pracownika z obowiązków określonych w niniejszym punkcie. Pracodawca ma ponadto prawo dochodzić na drodze sądowej przestrzegania przez Pracownika obowiązków określonych w niniejszym punkcie oraz/lub dochodzić pełnego odszkodowania przenoszącego wysokość kary umownej.</li>
+            <li class="mb-3">Naruszenie przez Pracownika obowiązków, o którym mowa w pkt 1-9 - powyżej, stanowi ciężkie naruszenie podstawowych obowiązków Pracownika i uprawnia Pracodawcę do rozwiązania Umowy o Pracę bez zachowania okresu wypowiedzenia z winy Pracownika.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>ARTYKUŁ 9. POUFNOŚĆ</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">W okresie obowiązywania Umowy o Pracę i po jej rozwiązaniu Pracownik nie ujawni żadnej stronie trzeciej ani nie wykorzysta dla własnych korzyści żadnych informacji, o jakich się dowie, dotyczących przedsiębiorstwa Pracodawcy lub któregokolwiek z jego podmiotów powiązanych. "Informacje dotyczące przedsiębiorstwa" obejmują m.in. wszelką wiedzę handlową, organizacyjną i techniczną, know-how, informacje firmowe i poufne, nazwy i adresy klientów Pracodawcy lub któregokolwiek z jego podmiotów stowarzyszonych oraz wszelkie inne informacje, nieprzeznaczone do wiadomości poza firmą Pracodawcy lub któregokolwiek z jego podmiotów powiązanych.</li>
+            <li class="mb-3">Wszelkie pisemne zapisy, a także inne zapisy oraz wszelkie wartości materialne dotyczące Pracodawcy i któregokolwiek z jego podmiotów powiązanych i ich przedsiębiorstw, znajdujące się w posiadaniu Pracownika muszą być starannie przechowywane i natychmiast zwrócone Pracodawcy, gdy tego zażąda, a w każdym wypadku z chwilą rozwiązania stosunku pracy. Pracownik nie ma prawa do zachowania kopii tych zapisów lub wartości materialnych. Pracownik niniejszym zrzeka się wszelkich praw do zatrzymania zapisów lub wartości materialnych wymienionych w niniejszej umowie. Ponadto, na żądanie Pracodawcy, Pracownik zniszczy na swoim sprzęcie do przetwarzania danych wszelkie poufne dane należące do Pracodawcy lub podmiotu stowarzyszonego Pracodawcy, przechowywane w formacie elektronicznym po uprzednim dostarczeniu Pracodawcy kopii tych danych.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>ARTYKUŁ 10. PRAWA WŁASNOŚCI INTELEKTUALNEJ</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">Wszelkie prawa własności intelektualnej, w tym m.in. prawa do uzyskania patentu na wynalazek, prawo ochronne na wzór użytkowy oraz prawa z rejestracji wzoru przemysłowego, znaku towarowego, topografii układu scalonego lub wzoru wspólnotowego stworzonego przez Pracownika w ramach wykonywania obowiązków ze stosunku pracy przysługują Pracodawcy. Pracownik nie może niezależnie ujawniać, powielać, korzystać, produkować, wprowadzać na rynek, lub sprzedawać, wydzierżawiać, dostarczać lub w inny sposób handlować, oferować w imieniu strony trzeciej lub zlecać rejestrację wyników swojej pracy.</li>
+            <li class="mb-3">Pracownik niezwłocznie ujawni i dostarczy Pracodawcy wszelkie projekty wynalazcze (w tym wynalazki, topografie układu scalonego, wzory użytkowe i przemysłowe oraz wzory wspólnotowe), znaki towarowe, utwory chronione prawami autorskimi i innego rodzaju własność intelektualną, wytworzoną przez Pracownika w ramach wykonywania jego obowiązków wynikających ze stosunku pracy. Pracownik nie będzie tworzył projektów wynalazczych, znaków towarowych, utworów chronionych prawami autorskimi, innego rodzaju własności intelektualnej ani modyfikował takiej własności intelektualnej w ramach wykonywania powierzonej mu pracy, w miejscu pracy ani przy użyciu mienia Pracodawcy, jeżeli ich tworzenie lub modyfikowanie nie wynika z wykonywania obowiązków ze stosunku pracy przez Pracownika.</li>
+            <li class="mb-3">Pracodawca może tworzyć utwory zależne względem utworów nabytych przez Pracodawcę na mocy niniejszej Umowy o Pracę. Pracodawca może również rozporządzać takimi utworami zależnymi oraz korzystać z takich utworów zależnych. Pracownik niniejszym przenosi na Pracodawcę prawo udzielenia zgody na wykonywanie praw zależnych do utworów nabytych przez Pracodawcę na mocy niniejszej Umowy o Pracę.</li>
+            <li class="mb-3">Celem postanowień niniejszego artykułu oraz zamiarem Stron jest nabycie przez Pracodawcę praw własności intelektualnej wytworzonych w ramach wykonywania przez Pracownika obowiązków ze stosunku pracy w możliwie najszerszym zakresie. W zakresie, w jakim prawa określone w niniejszej Umowie o Pracę nie zostaną przeniesione na Pracodawcę z mocy prawa lub na podstawie Umowy o Pracę, Pracownik zobowiązuje się, na koszt Pracodawcy podjąć we współpracy z Pracodawcą takie czynności prawne lub faktyczne, które będą wymagane do nabycia przez Pracodawcę tych praw. Niniejsze zobowiązanie dotyczy w szczególności wszelkich wymogów związanych z dokonywaniem stosownych rejestracji w polskich i zagranicznych organach władzy publicznej, a także szczegółową specyfikacją pól eksploatacji.</li>
+            <li class="mb-3">Pracownik uznaje, że jego wynagrodzenie określone w art. 3 niniejszej Umowy o Pracę obejmuje całkowite wynagrodzenie z tytułu nabycia przez Pracodawcę, zgodnie z postanowieniami niniejszej Umowy o Pracę, wszystkich praw własności intelektualnej (w tym praw zależnych), a Pracownikowi nie przysługuje prawo do jakiegokolwiek wynagrodzenia za korzystanie przez Pracodawcę z wynalazków, patentów, znaków towarowych, topografii układu scalonego, wzorów użytkowych lub wzorów przemysłowych, wzorów wspólnotowych oraz innego rodzaju własności intelektualnej opracowanych przez Pracownika w ramach wykonywania obowiązków ze stosunku pracy.</li>
+            <li class="mb-3">W zakresie w jakim nie można przenieść praw własności intelektualnej i w zakresie, w jakim jest to prawnie dozwolone Pracownik niniejszym oświadcza, że nie będzie wykonywał osobistych praw autorskich do utworów chronionych prawami autorskimi nabytych przez Pracodawcę na mocy niniejszej Umowy o Pracę. Ponadto, Pracownik niniejszym upoważnia Pracodawcę do wykonywania w jego imieniu osobistych praw autorskich do powyższych utworów oraz do upoważniania osób trzecich do wykonywania powyższych praw w imieniu Pracownika bez jego zgody oraz do anonimowego rozpowszechniania powyższych utworów. Pracownik upoważnia Pracodawcę do wprowadzania zmian i modyfikacji do powyższych utworów.</li>
+            <li class="mb-3">Prawa własności intelektualnej nabyte przez Pracodawcę na mocy niniejszej Umowy o Pracę przysługują Pracodawcy zarówno w Polsce, jak i za granicą. Patrz załącznik Employee Prioprietary Information oraz Inventions Agreement.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>ARTYKUŁ 11. OŚWIADCZENIA DOTYCZĄCE STANOWISKA I PRZYNALEŻNOŚCI DO FIRMY</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">Pracownik zgadza się, że po rozwiązaniu umowy o pracę u Pracodawcy nie będzie oświadczał, że jest zatrudniony, zatrudniony jako konsultant lub w jakikolwiek inny stosunek pracy (łącznie "Związek") z Pracodawcą lub jakąkolwiek z jego spółek powiązanych. Obowiązek ten obejmuje zapewnienie, że przez cały czas po dacie rozwiązania umowy o pracę, życiorys pracownika, profile i strony w mediach społecznościowych (w tym między innymi dowolny profil LinkedIn lub Facebook), strona internetowa, podpis e-mail i wizytówka nie będą wskazywać, że ma on jakiekolwiek powiązania z Pracodawcą lub jakąkolwiek firmą powiązaną. Ponadto Pracownik zgadza się, że wszelkie oświadczenia, które składa w mediach społecznościowych, w życiorysach i w inny sposób o swojej działalności w imieniu Pracodawcy i wszelkich podmiotów stowarzyszonych, będą rozsądnym i dokładnym podsumowaniem.</li>
+            <li class="mb-3">Pracownik przyjmuje również do wiadomości, że reprezentując siebie na rzecz osób trzecich, ważne jest dokładne wskazanie jego tytułu, czy to w ramach swojej linii podpisu e-mail, czy też za pośrednictwem innych mediów, takich jak na przykład w jego profilu linkedin. W związku z tym Pracownik zgadza się, że w trakcie zatrudnienia (i po zakończeniu zatrudnienia, jak wspomniano powyżej), Pracownik zawsze dokładnie oświadczy lub poda swoje obecne lub wcześniejsze stanowisko. Niniejszy ustęp nie znosi ani nie zmienia innych ograniczeń i zakazów, jakie Pracodawca może nałożyć w odniesieniu do używania nazwy, marki, logo i innych odniesień do niego w osobistych mediach społecznościowych pracowników.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+        <p>
+            <strong>Artykuł 12. Postanowienia różne</strong>
+        </p>
+        <ol class="mb-5">
+            <li class="mb-3">Wszelkie zmiany czy uzupełnienia Umowy o Pracę wymagają formy pisemnej.</li>
+            <li class="mb-3">W razie, gdyby którekolwiek postanowienie Umowy o Pracę było lub stało się nieważne, nie wpłynie to na ważność pozostałego postanowienia (pozostałych postanowień) i nieważna klauzula zostanie zastąpiona taką inna ważną klauzulą, która w najlepszy sposób wyraża intencję stron ujawnioną przy uzgadnianiu klauzuli nieważnej</li>
+            <li class="mb-3">Umowa o Pracę podlega prawu polskiemu.</li>
+        </ol>
+        <p class="hide">&nbsp;</p>
+
+        <p class="text-justify"><mark><%= signatory %></mark></p>
+        <p class="text-justify mb-5">Za PayPal Polska Sp.z.o.o</p>
+        <p class="hide"></p>
+    </template>
+    
+    <div id="offer-letter-body" class="row">
+        <div class="col-sm-2">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+        <div class="col-sm-8">
+            <div id="incomplete2">
+                <div id="markup2"></div>
+            </div>
+            <div id="complete2"></div>
+        </div>
+    </div>
+    <template id="fragment-3">
+        <p class="ml-lg-4">
+            <strong>Pracownik:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete3">
+                <div id="markup3"></div>
+            </div>
+            <div id="complete3"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Podpis: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature.HTML>
+        </div>
+        <div class="col-sm-2 text-sm-right">
+            <label class="control-label">Data podpisania umowy:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Nazwisko:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name.HTML>
+        </div>
+    </div>
+
+    <template id="fragment-4">
+        <p class="ml-lg-4">
+            <strong>Pracodawca:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete4">
+                <div id="markup4"></div>
+            </div>
+            <div id="complete4"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Podpis: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature2.HTML>
+        </div>
+        <div class="col-sm-2 text-sm-right">
+            <label class="control-label">Data podpisania umowy:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date2.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Nazwisko:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name2.HTML>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>     
+    <$client.env.FormField.hidden_pg3.HTML>     
+    <$client.env.FormField.hidden_pg4.HTML>     
+    <$client.env.formfield.EmployeeStamp.html>
+    <$client.env.formfield.SignatoryStamp.html>
+    <$client.env.formfield.RecruiterStamp.html>
+    <$client.env.formfield.SignerMan.html>
+    <$client.env.formfield.CoordinatorStamp.html>
+    <$client.env.formfield.Current_Date.html>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Poland_Employment_Agreement/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Poland_Employment_Agreement/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Poland_Employment_Agreement/js/script_version_1.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.signDate, .dateField').parent().find('input').prop('disabled', true);
+});
+
+const eventStartDate = '<$client.tEventDates_Date_2.Value>';
+const _Event_Start_Date = moment(eventStartDate);
+const _Event_Start_Date_90 = moment(eventStartDate).add(90, 'days');
+const _Event_Start_Date_PL = moment(eventStartDate).locale('pl-PL');
+const _Event_Start_Date_PL_90 = moment(eventStartDate).locale('pl-PL').add(90, 'days');
+const plMonth = _Event_Start_Date_PL.locale('pl-PL').format('MMMM');
+const plContinuous_Service_Date_Month = moment('<$client.tForWhomUserInfo.Continuous_Service_Date>').locale('pl-PL').format('MMMM');
+const plMonth_90 = _Event_Start_Date_PL_90.locale('pl-PL').format('MMMM');
+const data = {
+    'Continuous_Service_Date_Month_PL': plContinuous_Service_Date_Month.charAt(0).toUpperCase() + plContinuous_Service_Date_Month.slice(1),
+    'Current_Date': document.getElementById('Current_Date').value,
+    'Event_Start_Date': _Event_Start_Date,
+    'Event_Start_Date_90': _Event_Start_Date_90,
+    'Event_Start_Date_PL_Month': plMonth.charAt(0).toUpperCase() + plMonth.slice(1),
+    'Event_Start_Date_PL_Month_90': plMonth_90.charAt(0).toUpperCase() + plMonth_90.slice(1),
+    'signatory': ''
+};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+// signature section clearing on task reopen variables
+const isCoordinator = <$client.env.eval((client.role.rc_hrcoordinators==1)?'true':'false')>;
+const isRecruiter = <$client.env.eval((client.tEventManagers_Person_10.UserGuid==account.userguid)?'true':'false')>;
+const isSignatory = <$client.env.eval((client.role.rc_poland_company_signatory>0)?'true':'false')>;
+const isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const EmployeeStamp = "<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>"; 
+if (isSignatory) {
+    $('#SignerMan').val("<$client.account.username_first> <$client.account.username>");
+}
+</script>

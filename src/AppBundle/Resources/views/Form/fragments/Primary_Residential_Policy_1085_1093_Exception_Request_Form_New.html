@@ -1,0 +1,395 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="sh" id="modal" style="display:none;""> 
+    <div id="box"> 
+        <b>Electronic Signature</b> 
+        <p style="fontweight:normal;padding:0px"> 
+            <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+        </p> 
+        <br> 
+        <b>Type your Name:</b> 
+        <input type=text id="eSignature1">&nbsp; 
+        <input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+    </div> 
+</div> 
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+    showScreen('over') 
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+  
+  
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'> 
+    <div style="display:none;"> 
+        <$client.env.FormField.Form_Name.prompt> 
+        <$client.env.FormField.Form_Name.HTML> 
+        <$client.env.FormField.Form_Type.prompt> 
+        <$client.env.FormField.Form_Type.HTML> 
+        <$client.env.FormField.Form_Owner.prompt> 
+        <$client.env.FormField.Form_Owner.HTML> 
+        <$client.env.FormField.Form_CreateDate.prompt> 
+        <$client.env.FormField.Form_CreateDate.HTML> 
+        <$client.env.FormField.Form_Completed.prompt> 
+        <$client.env.FormField.Form_Completed.HTML> 
+        <$client.env.FormField.Form_Delivered.prompt> 
+        <$client.env.FormField.Form_Delivered.HTML> 
+        <$client.env.FormField.Form_TaskId.prompt> 
+        <$client.env.FormField.Form_TaskId.HTML> 
+        <$client.env.FormField.display_version.HTML> 
+ 
+<$client.env.FormField.a01_Detailed_Reason.prompt>
+<$client.env.FormField.a02_Extension_Request.prompt>
+<$client.env.FormField.a03_Prior_Start_Date.prompt>
+<$client.env.FormField.a04_Prior_End_Date.prompt>
+<$client.env.FormField.a05_Additional_Information.prompt>
+<$client.env.FormField.a05_End_Date.prompt>
+<$client.env.FormField.a05_No_End_Date.prompt>
+<$client.env.FormField.a05_Start_Date.prompt>
+<$client.env.FormField.a06_Exception_Request.prompt>
+<$client.env.FormField.a06_Office_Location.prompt>
+<$client.env.FormField.a10_Request_Change_Office.prompt>
+<$client.env.FormField.a11_People_Mobility_SR.prompt>
+<$client.env.FormField.a11_moved_to_primary_residency.prompt>
+<$client.env.FormField.a12_Address.prompt>
+<$client.env.FormField.a13_State_Province.prompt>
+<$client.env.FormField.a14_Postal_Code.prompt>
+<$client.env.FormField.a15_Additional_Information.prompt>
+<$client.env.FormField.a15_Discussed_Request.prompt>
+<$client.env.FormField.a15_Engage_Office_Activities.prompt>
+<$client.env.FormField.a15_Local_Initiatives.prompt>
+<$client.env.FormField.a16_Supervisor_Name.prompt>
+<$client.env.FormField.a17_Additional_Information.prompt>
+<$client.env.FormField.a18_Current_Project_Role.prompt>
+<$client.env.FormField.a19_Start_Date_Role.prompt>
+<$client.env.FormField.a20_End_Date_Role.prompt>
+<$client.env.FormField.a21_Additional_Information.prompt>
+
+
+  
+    </div> 
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+<div class="container-fluid"> 
+        <div class="form-group">
+            <div class="row margin-bottom">
+                <div class="col-xs-12 col-md-4 lifesuite__clearfix"> 
+                    <div class="image-container">
+                        <img class="img-responsive" src="<$link;/eprise/main/SiteGen/Uploads/Public/Images/accenture_logo2.png>" width="100">
+                    </div>
+                </div>
+            </div>
+ 
+<table class="tbl_outer">
+    <tbody><tr>
+        <td>
+            <table>
+                <tbody><tr>
+                    <td class="text-center"><h3 class="form-title">Primary Residential Policy 1085/1093 Exception Request Form</h3></td>
+                </tr>
+                
+                  <tr>
+                    <td class="text-center">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td class='bold'>Please explain the detailed reasons for the request and include business rationale </td>
+                  </tr>
+                  <tr>
+                    <td><$client.env.FormField.a01_Detailed_Reason.HTML></td>
+                </tr>
+                
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                
+                 <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                
+                 
+                <tr>
+<td>
+                      <table width="100%" class="tbl_inner">
+                    <tbody>
+                      <tr>
+                       <td colspan='3' class='bold'>Is this an extension request for a prior temporary exception?</td>
+                        <td width="20%"><$client.env.FormField.a02_Extension_Request.HTML></td>
+                         
+                      </tr>
+                      <tr id='disable_date'>
+                        <td width="18%" colspan="1">
+                        Prior Start Date</td>
+                        <td width="26%"><$client.env.FormField.a03_Prior_Start_Date.HTML></td>
+                        <td>Prior End Date</td>
+                        <td width="43%" colspan="1"><$client.env.FormField.a04_Prior_End_Date.HTML></td>
+                      </tr>
+                    <tr>
+                        
+                        <td colspan='1'>Additional Information</td>
+                        <td colspan='5'><$client.env.FormField.a05_Additional_Information.HTML></td>
+                        
+                      </tr>
+                      
+                        <tr>
+                    <td class="text-center">&nbsp;</td>
+                  </tr>
+            
+</tbody></table>
+
+
+  <!--///2019-02-22/// START --><table width="100%" class="tbl_inner">
+                    <tbody>
+                      <tr>
+                       <td colspan='3' class='bold'>What is the duration of your request?</td>
+                         
+                      </tr>
+                      <tr >
+                        <td width="18%" colspan="1">
+                        Start Date</td>
+                        <td width="26%" class='disable_date2'><$client.env.FormField.a05_Start_Date.HTML></td>
+                        <td>End Date</td>
+                        <td width="24%" colspan="1" class='disable_date2'><$client.env.FormField.a05_End_Date.HTML></td>
+                        <td width="16%">N/A No end Date</td>
+                        <td width="1%" colspan="1"><$client.env.FormField.a05_No_End_Date.HTML></td>
+                      </tr>
+   
+                      
+                        <tr>
+                    <td class="text-center">&nbsp;</td>
+                  </tr>
+            
+                </tbody>
+            </table><!--///2019-02-22/// END -->
+
+
+ <table width="100%" class="tbl_inner">
+                    <tbody>
+                      <tr>
+                       <td class='bold' colspan='3'>Is your exception request related to an office location change/transfer?</td>
+                        <td><$client.env.FormField.a06_Exception_Request.HTML></td>
+                       
+                      </tr>
+                      <!--///2019-02-22/// START --><tr>
+                        <td width="20%">
+                        New Office Location</td>
+                        <td width="65%"><$client.env.FormField.a06_Office_Location.HTML></td>
+                      </tr><!--///2019-02-22/// END -->
+                
+                      
+                        <tr>
+                    <td class="text-center">&nbsp;</td>
+                  </tr>
+                      
+                      
+                    
+                    
+                      
+                 
+     
+</tbody></table>
+
+
+ <table width="100%" class="tbl_inner">
+                    <tbody>
+                      <tr>
+                       <td class='bold' width="55%" colspan='1'>Has a request to change your office location been submitted to People Mobility?</td>
+                        <td width='45%'><$client.env.FormField.a10_Request_Change_Office.HTML></td>
+                         
+                      </tr>
+                    
+                      
+                        
+            </tbody></table>
+            
+            
+            
+ <table width="100%" class="tbl_inner">
+                    <tbody>
+                     
+                      <tr>
+                        <td width="18%">
+                        People Mobility Request Ticket Number</td>
+                        <td colspan="3"><$client.env.FormField.a11_People_Mobility_SR.HTML></td>
+                      </tr>
+                      
+                        <tr>
+                    <td class="text-center">&nbsp;</td>
+                  </tr>
+            </tbody></table>
+
+
+ <table width="100%" class="tbl_inner">
+                    <tbody>
+                      <tr>
+                       <td width="60%"><strong>Have you already moved to the new/targeted primary residency?</strong></td>
+                       <td style="text-align: left;"><$client.env.FormField.a11_moved_to_primary_residency.HTML></td>
+                         
+                      </tr>     
+            </tbody></table>
+            
+            
+            
+            <table width="100%" class="tbl_inner">
+                    <tbody>
+                      <tr>
+                       <td class='bold' width="18">Please provide your anticipated primary residential address</td>
+                      </tr>
+                      
+            </tbody></table>
+            <table width="100%" class="tbl_inner">
+              <tbody>
+                <tr>
+                  <td width="4%"> Address</td>
+                  <td width="28%"><$client.env.FormField.a12_Address.HTML></td>
+                  <td width="11%">State/Province</td>
+                  <td width="20%"><$client.env.FormField.a13_State_Province.HTML></td>
+                  <td width="19%">Zip/Postal Code</td>
+                  <td width="11%"><$client.env.FormField.a14_Postal_Code.HTML></td>
+                </tr>
+                 <tr>
+                    <td>&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+
+  
+<!--///2019-02-22/// START --><table width="100%" class="tbl_inner">
+              <tbody>
+                <tr>
+                  <td class='bold'>How will you engage in local office activities?</td>
+                </tr>
+                <tr>
+                  <td><$client.env.FormField.a15_Engage_Office_Activities.HTML></td>
+                </tr>
+              </tbody>
+            </table>  
+            <table width="100%" class="tbl_inner">
+                    <tbody>
+                      <tr>
+                       <td colspan='3' class='bold'>Have you participated in any work local initiatives? Eg; work on a local client, local BD, led an ERG, participated in NJO?</td>
+                        <td width="20%"><$client.env.FormField.a15_Local_Initiatives.HTML></td>
+                         
+                      </tr>
+   
+                    <tr>
+                        
+                        <td width="18%" height="84">Additional Information</td>
+                        <td colspan="3" rowspan="2"><$client.env.FormField.a15_Additional_Information.HTML></td>
+                        
+                      </tr>
+                      
+                        <tr>
+                    <td class="text-center">&nbsp;</td>
+                  </tr>
+            
+                    </tbody>
+            </table><!--///2019-02-22/// END--> 
+            <table width="100%" class="tbl_inner">
+              <tbody>
+                <tr>
+                  <td class='bold' width="635">Have you discussed this request with your supervisor or career counselor prior to initiating this request?</td>
+                  <td  width='283'><$client.env.FormField.a15_Discussed_Request.HTML></td>
+                 
+                </tr>
+              </tbody>
+            </table>
+            
+            
+            <table width="100%" class="tbl_inner">
+              <tbody>
+                <tr>
+                  <td width="20%"> Supervisor Name</td>
+                  <td width="86%"><$client.env.FormField.a16_Supervisor_Name.HTML></td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" class="tbl_inner">
+              <tbody>
+                <tr>
+                  <td width="18%" height="84"> Additional Information</td>
+                  <td colspan="3" rowspan='2'><$client.env.FormField.a17_Additional_Information.HTML></td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" class="tbl_inner">
+              <tbody>
+                <tr>
+                  <td class='bold'>Please provide your current client/project and role </td>
+                </tr>
+                <tr>
+                  <td><$client.env.FormField.a18_Current_Project_Role.HTML></td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" class="tbl_inner">
+              <tbody>
+                <tr>
+                  <td class='bold'>When was the start date of the role? </td>
+                </tr>
+                <tr>
+                  <td><$client.env.FormField.a19_Start_Date_Role.HTML></td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" class="tbl_inner">
+              <tbody>
+                <tr>
+                  <td class='bold'>When is the anticipated end date of the role?</td>
+                </tr>
+                <tr>
+                  <td><$client.env.FormField.a20_End_Date_Role.HTML></td>
+                </tr>
+              </tbody>
+            </table>
+            <table width="100%" class="tbl_inner">
+              <tbody>
+                <tr>
+                  <td class='bold' width="20%" height="84"> Additional Information</td>
+                  <td colspan="3" rowspan='2'><$client.env.FormField.a21_Additional_Information.HTML></td>
+                </tr>
+              </tbody>
+            </table>
+              
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+    </td>
+        </tr>
+    </tbody>
+</table>
+
+      
+    <div style="display:none;"> 
+        <$client.env.FormField.f03_SignatureVerification.HTML> 
+    </div> 
+    <$client.env.FormButtons> 
+</form> 
+<script type="text/javascript">
+    ChangeCalendarIcons(); //for popup calendar 
+
+
+function next(elem) {
+    do {
+        elem = elem.nextSibling;
+    } while (elem && elem.nodeType !== 1);
+    return elem;        
+}
+
+$(function() {
+  $('[name$=".a11_moved_to_primary_residency"]').on('change', function() {
+    if ($('[name$=".a11_moved_to_primary_residency"]:checked').val() === 'No') {
+      $('[name$=".a12_Address"], [name$=".a13_State_Province"], [name$=".a14_Postal_Code"]')
+        .prop('disabled', false)
+        .addClass('ng-invalid');
+      return;
+    }
+    $('[name$=".a12_Address"], [name$=".a13_State_Province"], [name$=".a14_Postal_Code"]')
+      .removeClass('ng-invalid')
+      .prop('disabled', true);
+  });
+  $('[name$=".a11_moved_to_primary_residency"]').trigger('change');
+});
+
+</script>

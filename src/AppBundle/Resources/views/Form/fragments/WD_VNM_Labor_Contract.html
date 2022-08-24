@@ -1,0 +1,353 @@
+<!-- Main QA Area --> 
+ 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+                             </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px;"> 
+                                                         <input type="button" class="lifesuite__button btn-sign" value="Sign" onClick="validateSignature('signature','eSignature1','Full_Name','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                                           </div> 
+                             </div> 
+              </div> 
+</div> 
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+    showScreen('over') 
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+  
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+              <div class="fb-spinner"> 
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+              </div> 
+</div> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+ 
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);"> 
+
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+<!-- Your Required/Validated Form Fields -->
+
+<$client.env.formfield.Full_Name.prompt>
+<$client.env.formfield.Signature.prompt>
+<$client.env.formfield.SignDate.prompt>
+
+
+</div>
+
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<!-- Begin HTML Content -->
+
+<div id='container'>
+
+<div id='incomplete'> 
+ <div class="srt_eform_row">
+                    <div class="col-xs-12 col-md-12 srt_eform_module" id="inner-content">
+                        <div class="srt_eform_text_inner">
+
+ 
+
+                          <div id="markup"></div>
+
+ 
+
+                        </div>
+                        <!-- end srt_eform_text_inner  -->
+                    </div>
+                    <!--end 12  -->
+
+    </div>
+                <!--end row  -->
+ 
+ 
+
+
+
+
+<!-- The remainder of the letter pertains to all-->
+
+ 
+
+
+</div><!--incomplete content ends-->
+
+<div id='complete'></div>
+<div id='fields'>
+                <div class="srt_eform_row">
+                    <div class="col-md-12 col-xs-12 srt_eform_module">
+                        <div class="srt_eform_text_inner">
+                           
+                            <div class="input-text" style="display:<$client.env.eval((client.tEventCategories_Category_131.Code == 'Local')?'block':'none' )>">
+                             
+                               <img class="img-responsive" src="<$link;/main/RedCarpet/FormTemplates/VN_Offer/ParulSignature.png>" border="0">
+                            </div>
+ <!--<div class="input-label">Candidate Signature</div>-->
+                        </div>
+                        <!-- end srt_eform_text_inner  -->
+                    </div>
+                    <!--end 7
+              
+                    <div class="col-md-5 srt_eform_module">
+                        <div class="srt_eform_text_inner">
+                           
+                            <div class="input-text">
+                                <$client.env.formfield.SignDate.html>
+                            </div>
+ <div class="input-label">Date Signed</div>
+                        </div>
+                     
+                    </div>
+                   end 5 -->
+                </div>
+                <!--end row  -->
+</div>
+<div id='incomplete2'> 
+                <div class="srt_eform_row">
+                    <div class="col-md-12 col-xs-12 srt_eform_module">
+                        <div class="srt_eform_text_inner">
+                            <div id="markup2"></div>
+                        </div>
+                        <!-- end srt_eform_text_inner  -->
+                    </div>
+                    <!--end 12 -->
+                </div>
+                <!--end row  -->
+</div><!--incomplete2 content ends-->
+
+<div id='fields'>
+                <div class="srt_eform_row">
+                    <div class="col-md-12 col-xs-12 srt_eform_module">
+                        <div class="srt_eform_text_inner">
+                           
+                            <div class="input-text" style="display:none;">
+                               <$client.env.FormField.Signer.html>
+                            </div>
+ <!--<div class="input-label">Candidate Signature</div>-->
+                        </div>
+                        <!-- end srt_eform_text_inner  -->
+                    </div>
+                    <!--end 7
+              
+                    <div class="col-md-5 srt_eform_module">
+                        <div class="srt_eform_text_inner">
+                           
+                            <div class="input-text">
+                                <$client.env.formfield.SignDate.html>
+                            </div>
+ <div class="input-label">Date Signed</div>
+                        </div>
+                     
+                    </div>
+                   end 5 -->
+                </div>
+                <!--end row  -->
+</div>
+<!-- end fields-->
+
+<div id='incomplete3'> 
+                <div class="srt_eform_row">
+                    <div class="col-xs-12 col-md-12 srt_eform_module">
+                        <div class="srt_eform_text_inner">
+                            <div id="markup3"></div>
+                        </div>
+                        <!-- end srt_eform_text_inner  -->
+                    </div>
+                    <!--end 12 -->
+                </div>
+                <!--end row  -->
+</div><!--incomplete3 content ends-->
+
+</div> 
+
+<div style="display:none;">
+<$client.env.formfield.parul.html>
+<$client.env.formfield.ParulSignature.html>
+
+<$client.env.FormField.FormButtonValidator.HTML>
+<$client.env.formfield.hidden_pg.html>
+<$client.env.formfield.hidden_pg2.html>
+<$client.env.formfield.hidden_pg3.html>
+<$client.env.FormField.Full_Name.HTML>
+<$client.env.FormField.SignatureVerification.HTML>
+<$client.env.FormField.SignatureVerification2.HTML>
+
+<$client.env.formfield.SignDate.html>
+</div>
+
+
+        <div class="row" id="formButtons" style="display: none;">
+            <div class="lifesuite__clearfix">
+
+                <div class="srt_eform_section">
+                    <div id="srt_form_btn_wrapper" style="background-color: #eee!important;">
+                        <div class="srt_eform_row">
+                            <div class="col-lg-12 srt_eform_module">
+                                <$client.env.FormButtons>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div style="display:none;">
+                    <!--  <$client.env.FormButtons>-->
+                    <$client.env.formfield.DateCompleted.html>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+        <!--end form-buttons  -->
+
+
+
+</form>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/WD_VNM_Labor_Contract/FormLayout-custom/js/bootstrap.min.js>"></script>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-timezone-with-data.min.js>"></script>
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+
+</SCRIPT>
+
+<script>
+
+//Show populated form if already completed
+var strCompletedForm = FORM_COMPLETED;
+if (strCompletedForm != "")
+{
+//Gather the fields that need to be displayed
+//For images we need to setup the image tag. 
+var imgHeader = "<img src='<$client.env.formfield.headerpg1.value>' />";
+var imgParulSignature = "<img src='<$client.env.formfield.ParulSignature.value>' />";
+
+//Create an array of info to pass to complete the offer letter
+//0 for images sending an image tag, 1 for sections of text sneding the ID of the field that holds the HTML.
+var arrParts = [
+  [0,'imgHeader'],
+  [0,'imgParulSignature'],
+  [1,'hidden_pg']
+];
+//Send (ID of the div to hide,ID of the div to show,Parts to get the offer letter)
+showCompletedOfferLetter('incomplete','complete',arrParts);
+} else {
+//If the offer letter is not complete set up the logos and link field values.
+
+//pickDivisionLogo();
+
+//SetImageOnOfferLetter('headerpg1');
+//SetImageOnOfferLetter('vpsignature');
+//SetImageOnOfferLetter('ParulSignature');
+}
+pickDivisionLogo();
+</script>
+
+
+<SCRIPT> 
+    ChangeCalendarIcons(); //for popup calendar  
+  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+/* RESPONSIVE eFORM BUTTONS STYLE */ 
+  
+$(function(){
+        $("#buttonCancel")
+            .removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue")
+            .addClass("lifesuite__button");
+
+        $('#buttonCancel').attr('id', 'ButtonCancel');
+
+        $("#buttonSave")
+            .removeClass("appInputButton RCappInputButtonBlue")
+            .addClass("lifesuite__button");
+
+        $('#buttonSave').attr('id', 'ButtonSave');
+
+        $("#buttonSaveAndComplete")
+            .removeClass("appInputButton RCappInputButtonBlue")
+            .addClass("lifesuite__button");
+
+        $('#buttonSaveAndComplete').attr('id', 'ButtonSaveAndComplete');
+
+        $("#buttonPrint")
+            .removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue")
+            .addClass("lifesuite__button");
+
+        $('#buttonPrint').attr('id', 'ButtonPrint');
+
+        $("#buttonPreviewDelete")
+            .removeClass("appInputButton RCappInputButtonRed")
+            .addClass("lifesuite__button");
+
+        $('#buttonPreviewDelete').attr('id', 'ButtonPreviewDelete');
+
+        $("#buttonPreviewSave")
+            .removeClass("appInputButton RCappInputButtonBlue")
+            .addClass("lifesuite__button");
+
+        $('#buttonPreviewSave').attr('id', 'ButtonPreviewSave');
+
+        document.getElementById('formButtons').style.display = "block";
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        //$("input[type=text].hasDatepicker").addClass('dateField');
+        $('.inputprompt').addClass('lifesuite__input-label lifesuite__input—block');
+        
+        //jQuery("[class='fa fa-calendar']").click();
+
+        $("body").addClass("apple_custom_theme");
+
+    });
+ if(employee.Sig_Condition == 'True'){
+    
+    document.getElementById('parul').Value = "<$link;<$client.current.parenturl>/ParulSignature.png>";
+  }
+  if(employee.Sig_Condition == 'False'){
+    
+    document.getElementById('parul').Value = "<$link;<$client.current.parenturl>/sig.png>";
+  } 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+//  disableCalButton('disableDate');
+angular.element('document').ready(function() {
+  angular.element('#divLoader').hide();
+});
+</SCRIPT>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/WD_VNM_Labor_Contract/js/script.js>" defer></script>

@@ -1,0 +1,336 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'a06_Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','a06_Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over');
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="Coupon_Situation_de_Famille_Re_elle" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+		<$client.env.FormField.a01_Nom.prompt>
+		<$client.env.FormField.a02_Fonction.prompt>
+		<$client.env.FormField.a03_Adresse.prompt>
+		<$client.env.FormField.a04_Jatteste.prompt>
+		<$client.env.FormField.a05_Employee_Signature.prompt>
+		<$client.env.FormField.a06_Date.prompt>
+		<$client.env.FormField.a07_Employee_Name.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid form-horizontal">
+	<header class="row">
+		<div class="col-lg-12">
+			<div class="img-wrapper">
+				<img class="img-responsive" src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="Paypal Logo">
+			</div>
+		</div>
+	</header>
+	<div class="inner-wrapper center-block mb-20">
+		<div class="row">
+			<div class="col-lg-12">
+				<p class="text-center">
+					REGIME COLLECTIF OBLIGATOIRE <br>
+					&laquo; REMBOURSEMENT DE FRAIS DE SANTE &raquo; <br>
+					DE L’ENSEMBLE DES SALARIES CADRES ET NON CADRES
+				</p>
+				<p class="text-center">
+					<u>COUPON REPONSE</u>
+				</p>
+				<p class="text-center mb-30">
+					JUSTIFICATION DE LA SITUATION DE FAMILLE <br>
+					A remplir et renvoyer aux Ressources Humaines
+				</p>
+				<p>
+					<strong>Je, soussigné(e):</strong>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<label class="control-label">
+					Nom et Prénom:
+				</label>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+				<div class="form-group">
+					<$client.env.FormField.a01_Nom.HTML>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<label class="control-label">
+					Fonction:
+				</label>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+				<div class="form-group">
+					<$client.env.FormField.a02_Fonction.HTML>
+				</div>
+			</div>
+		</div>
+		<div class="row mb-20">
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<label class="control-label">
+					Adresse:
+				</label>
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+				<div class="form-group">
+					<$client.env.FormField.a03_Adresse.HTML>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<p>
+					<strong>J’AI BIEN NOTE QUE JE SUIS TENU DE COTISER REGIME COLLECTIF OBLIGATOIRE « REMBOURSEMENT DE FRAIS DE SANTE » A LA COTISATION CORRESPONDANT A MA SITUATION MATRIMONIALE ET FAMILIALE REELLE.</strong>
+				</p>
+				<p>
+					En conséquence,
+				</p>
+				<p id="jatteste">
+					<strong>1.1. J’atteste :</strong> (veuillez cocher la bonne réponse)
+				</p>
+				<div class="row form-group">
+					<div class="col-lg-12">
+						<div class="form-group">
+							<$client.env.FormField.a04_Jatteste.HTML>
+						</div>
+					</div>
+				</div>
+				<p>
+					<strong>1.2. Je m’engage à informer la DRH de tout changement intervenu dans ma situation matrimoniale ou familiale telle que précisée ci-dessus dans le mois suivant ce changement.</strong>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+			<label class="control-label">
+				Signature: <span class="font-red">*</span>
+			</label>
+		</div>
+		<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<$client.env.FormField.a05_Employee_Signature.HTML>
+			</div>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+			<label class="control-label">
+				Date:
+			</label>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<$client.env.FormField.a06_Date.HTML>
+			</div>
+		</div>
+	</div>
+	<div class="row mb-40">
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+			<label class="control-label">
+				Name:
+			</label>
+		</div>
+		<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+			<div class="form-group">
+				<$client.env.FormField.a07_Employee_Name.HTML>
+			</div>
+		</div>
+	</div>
+	<div class="inner-wrapper center-block">
+		<div class="row">
+			<div class="col-lg-12">
+				<p>
+					<strong>Sont considérés comme ayants droit du salarié :</strong>
+				</p>
+				<ol>
+					<li>
+						Son Conjoint non séparé de corps judiciairement, <br>
+						ou à défaut son Partenaire lié par un PACS <br>
+						ou à défaut son Concubin au sens de l’article 515-8 du Code Civil (*)
+					</li>
+					<li>
+						Ses enfants de moins de 21 ans ainsi que ceux de son conjoint, partenaire ou concubin, à charge au sens de la législation sociale,
+					</li>
+					<li>
+						<p>
+							Leurs enfants de moins de 26 ans à charge au sens de la législation fiscale, à savoir :
+						</p>
+						<ul class="list-indented">
+							<li>
+								3.1. Les enfants du salarié, ceux de son conjoint, de son partenaire, ou de son concubin, pris en compte dans le calcul du quotient familial ou ouvrant droit à un abattement applicable au revenu imposable,
+							</li>
+							<li>
+								3.2. Les enfants du salarié auxquels celui-ci sert une pension alimentaire, quel que soit leur âge, et sauf déclaration personnelle de revenus,
+							</li>
+							<li>
+								3.3. Les enfants infirmes pris en compte dans le calcul du quotient familial).
+							</li>
+						</ul>
+					</li>
+				</ol>
+				<p class="smaller">
+					<em>(*) : article 515-8 du code civil (inséré par Loi n° 99-944 du 15 novembre 1999 art. 3 Journal Officiel du 16 novembre 1999)</em>
+				</p>
+				<p class="smaller">
+					<em>Le concubinage est une union de fait, caractérisée par une vie commune présentant un caractère de stabilité et de continuité, entre deux personnes, de sexe différent ou de même sexe, qui vivent en couple.</em>
+				</p>
+			</div>
+		</div>
+	</div>
+	<p class="invisible">Le concubinage est une union de fait, caractérisée par une vie commune présentant un caractère de stabilité et de continuité, entre deux personnes, de sexe différent ou de même sexe, qui vivent en couple.</p>
+
+	<footer class="row paypal-footer">
+		<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+			<div class="footer-img-wrapper">
+				<img src="<$link;/main/RedCarpet/FormTemplates/Coupon_Situation_de_Famille_Re_elle/img/paypal_logo.jpg>" alt="Paypal footer logo" class="img-responsive">
+			</div>
+		</div>
+		<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+			<p>
+				<small>Coupon-Réponse avec cas de dispenses pouvant être introduits par avenant à l’acte juridique fondateur et bénéficiant aussi aux futurs embauchés</small>
+			</p>
+			<p>
+				FRAIS MEDICAUX : MISE EN CONFORMITE <br>
+				Doc BdR 20071121 1
+			</p>
+		</div>
+	</footer>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+
+<div class="hide">
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript">
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+	"use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    document.getElementById('formButtons').style.display = "block";
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+
+    // frontend validation
+    $('#Coupon_Situation_de_Famille_Re_elle').on('change blur', 'input:visible:not(#signature):not(:button):not(disabled):not(readonly)', function() {
+      validateField($(this));
+    });
+
+    $('#modal').on('click', 'input.lifesuite__button', function() {
+      validateField($('#signature'));
+    });
+
+    $('#Coupon_Situation_de_Famille_Re_elle').on('click', '#ButtonPrint, #buttonPrint, #ButtonSaveAndComplete, #buttonSaveAndComplete', function(e) {
+      let formIsValid = true, btn = $(this);
+      e.preventDefault();
+      $.each($('#Coupon_Situation_de_Famille_Re_elle input:visible:not(:button)'), function(k, v) {
+        if (!$("input.calendar_button").length) formIsValid = true;
+        else{
+          if(false == validateField($(v)) && $(v).is(':visible')) {
+            formIsValid = false;
+          }
+        }
+      });
+      if (formIsValid) {
+        switch (btn.attr('id')) {
+          case 'ButtonPrint':
+            funcPrint();
+          break;
+          case 'ButtonSaveAndComplete':
+            funcSaveAndComplete();
+          break;
+        }
+      }
+      else {
+          $("html, body").animate({ scrollTop: 0 }, "slow");
+      }
+    });
+
+    let focusSigFields = setInterval(function(){
+      "use strict";
+      if(document.getElementById('modal').style.display=='block') {
+        document.getElementById('jatteste').focus();
+        document.getElementById('eSignature1').focus();
+        clearInterval(focusSigFields);
+      }
+    }, 500);
+});
+const disableCalButton = function(el) {
+	"use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+$(document).on('ready', function() {
+	"use strict";
+    $(".modal").hide();
+    disableCalButton($('.disabled-date'));
+});
+</script>

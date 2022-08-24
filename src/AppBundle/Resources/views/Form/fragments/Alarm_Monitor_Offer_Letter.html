@@ -1,0 +1,273 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Full_Name.prompt>
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.Accept_Decline.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <template id="fragment-1">
+        <div class="row mb-20">
+            <div class="col-lg-12 right margin-top text-right">
+                <span><%= todate %></span>
+            </div>
+        </div>
+        <div class="row mb-20">
+            <div class="col-lg-12">
+                <span data-mergestring="a02_Full_Name"><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></span>
+                <br>
+                <span data-mergestring="a03_Address"><$client.tForWhomUserInfo.Address1> <$client.tForWhomUserInfo.Address2></span>
+                <br>
+                <span data-mergestring="a04_City_State_Zip"><$client.tForWhomUserInfo.City>, <$client.tForWhomUserInfo.State> <$client.tForWhomUserInfo.Zip></span>
+            </div>
+        </div>
+        <div class="row mb-20">
+            <div class="col-lg-12">
+                <p>
+                    Dear <span data-mergestring="a05_Greet_Name"><$client.tForWhomUserInfo.First_Name>,</span>
+                </p>
+                <p data-mergestring="a06_Content" class="text-justify">It is my pleasure to extend to you a formal offer to join Precise Systems, Inc. ("Precise Systems") as <span class="article-content"><$client.tEventCategories_Category_16.Value></span>- <$client.tForWhomUserInfo.Functional_Role>. Since 1990, Precise Systems has worked to establish a significant presence in the Defense industry. We are extremely proud of our reputation for excellence among our customers and work diligently to guard it. This superb reputation is directly linked to the outstanding quality of our work and our people. Those who know you, or who have met you, are impressed with your achievements, credentials, and your potential to contribute to the future success of our company.</p>
+                <p class="text-justify" data-mergestring="a07_Content">This position is covered under the Service Contract Labor Standards (SCLS) with Wage Determination <$client.tForWhomUserInfo.Wage_Determination_Schedule>. You will report to <$client.tEventManagers_Person_1.First_Name> <$client.tEventManagers_Person_1.Last_Name> and will be classified as a non-exempt employee paid an hourly rate of $<$client.tForWhomUserInfo.Hourly_Rate> accordingly you will be paid for every hour that you work. Approved overtime will be paid at a rate of one and a half (1.5) times your hourly rate. Additionally, shift differential will apply for hours beyond normal business hours (6:00 a.m. through 6:00 p.m.) Your current shift is scheduled for <$client.tForWhomUserInfo.Shift>. <% if (!!Offer_Start_Date_Language) { %> Your start date will be <%= Offer_Start_Date_Language %>.<% } %><% if (!Offer_Start_Date_Language) { %> Your start date will be determined once your interim clearance, which is a requirement of this position, is issued.<% } %></p>
+            </div>
+        </div>
+        <div class="row mb-10">
+            <div class="col-lg-12 table-responsive">
+                <table class="table table-bordered table-condensed">
+                    <tbody>
+                      <tr class="table-heading-bg">
+                         <td>Shift Differential</td>
+                            <td>Shift Time</td>
+                            <td>Hourly Rate</td>
+                        </tr>
+                        <tr>
+                            <td>12% Differential</td>
+                            <td>1800-0600</td>
+                            <td data-mergestring="a08_Hourly_Amount" class="is-currency"><$client.env.eval(client.tForWhomUserInfo.Hourly_Rate * 1.12)></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row mb-10">
+            <div class="col-lg-12">
+                <p class="text-justify" data-mergestring="a09_Content">Under the SCLS you are entitled to both the hourly rate and a health and welfare benefit that equals $<$client.tForWhomUserInfo.SCLS_Benefit> an hour. Precise Systems is meeting that benefit using a bona fide plan which includes certain insurance coverage. This health and welfare benefit is used to buy into company benefits and supplement other employee related contributions.</p>
+                <p>
+                    <em>
+                        <strong>&bull; The following benefits are available for your election through your Health and Welfare benefit:</strong>
+                    </em>
+                </p>
+                <ul class="mb-10 bullet-list">
+                    <li>Medical, dental and vision insurance coverage.</li>
+                    <li>Group life insurance coverage.</li>
+                    <li>Accidental death and dismemberment insurance coverage.</li>
+                    <li>Short-term disability insurance coverage.</li>
+                    <li>Long-term disability insurance coverage.</li>
+                </ul>
+                <p>
+                    <em>
+                        <strong>Supplemental:</strong>
+                    </em>
+                </p>
+                <ul class="mb-10 bullet-list">
+                    <li>401(k) retirement plan with company contributions.</li>
+                    <li>
+                        Supplemental Life insurance for
+                        <ul class="bullet-list">
+                            <li>Self</li>
+                            <li>Spouse</li>
+                            <li>Dependent</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>
+                    <em>
+                        <strong>In addition:</strong>
+                    </em>
+                </p>
+                <ul class="mb-10 bullet-list">
+                    <li data-mergestring="a10_Content"><$client.tForWhomUserInfo.SCLS_Holidays> Paid holidays.</li>
+                    <li>Leave based on current Wage Determination and the employees service to the specific contract of which they are being hired, if applicable.</li>
+                </ul>
+                <p class="text-justify">During your Onboarding, the provisions and eligibility requirements for each of our employee benefits (including our 401(k)-retirement plan) will be explained to you in detail. Your employment is contingent upon government funding, your ability to qualify to work on our customers’ contracts, your obtaining and maintaining the requisite Occupation health requirements and DoD security clearances (within a reasonable time period), which will allow you to perform the duties for which you are being hired, as well as successfully passing all of Precise Systems’ pre-employment screening. Additionally, your employment is contingent upon completing the I-9 Form (Employment Eligibility Verification) establishing your identity and legal right to work in the United States by your third day of employment.</p>
+                <p class="text-justify" data-mergestring="a11_Content">We would appreciate the courtesy of your signature below to indicate your acceptance of this employment offer. You will be an "at will" employee, which means that either you or Precise Systems is free to terminate your employment at any time, with or without cause and with or without notice. If we do not receive your signed acceptance by <%= Offer_Expiration_Date %>, we will consider you to have declined and this offer will be rescinded.</p>
+                <p>We look forward to having you as a member of the Precise Systems team.  We are certain that you will enjoy a very long and successful career with Precise Systems, and that we will benefit immensely from your service.</p>
+                <p>Sincerely,</p>
+            </div>
+        </div>
+    </template>
+
+    <div id="offer-container"></div>
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-4 col-xs-12">
+            <img src="<$link;/main/RedCarpet/FormTemplates/Alarm_Monitor_Offer_Letter/img/Christina_Signature.png>" alt="HR Signature" class="img-responsive" id="hr-signature">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="mb-20">Christina Payne, SHRM-CP, PHR <br>Senior Vice President of Human Resources and Corporate Relations <br>Precise Systems, Inc.</p>
+            <p class="mb-20">I have read and understand the provisions of this letter and intend to join Precise Systems, Inc. as proposed.</p>
+        </div>
+    </div>
+
+    <div class="row mb-10">
+        <div class="col-lg-12">
+            <$client.env.FormField.Accept_Decline.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-20">
+        <div class="col-lg-7 col-sm-7 col-xs-12 mb-10">
+            <$client.env.FormField.Signature.HTML>
+            <p>Signature: <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></p>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12 mb-10">
+            <$client.env.FormField.Date.HTML>
+            Date:
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="text-blue text-center">
+                22290 EXPLORATION DRIVE, SUITE 400, LEXINGTON PARK, MD 20653 <br>
+                <span class="text-danger">PHONE</span> 301.737.7100 | <span class="text-danger">FAX</span> 301.862.1379 | WWW.GOPRECISE.COM
+            </p>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.Full_Name.HTML>
+    <$client.env.FormField.a01_Date.HTML>
+    <$client.env.FormField.a02_Full_Name.HTML>
+    <$client.env.FormField.a03_Address.HTML>
+    <$client.env.FormField.a04_City_State_Zip.HTML>
+    <$client.env.FormField.a05_Greet_Name.HTML>
+    <$client.env.FormField.a06_Content.HTML>
+    <$client.env.FormField.a07_Content.HTML>
+    <$client.env.FormField.a08_Hourly_Amount.HTML>
+    <$client.env.FormField.a09_Content.HTML>
+    <$client.env.FormField.a10_Content.HTML>
+    <$client.env.FormField.a11_Content.HTML>
+</div>
+
+</form>
+<div class="header-bg">
+    <img src="<$link;/main/RedCarpet/FormTemplates/Alarm_Monitor_Offer_Letter/img/bg_header.jpg>" alt="Precise header" class="img-responsive">
+    <div class="header-inner">
+        <img src="<$link;/main/RedCarpet/FormTemplates/Alarm_Monitor_Offer_Letter/img/tech-serv.png>" alt="Technical Services" class="img-responsive">
+    </div>
+</div>
+<div class="footer-bg">
+    <img src="<$link;/main/RedCarpet/FormTemplates/Alarm_Monitor_Offer_Letter/img/bg_footer.jpg>" alt="Precise footer" class="img-responsive">
+</div>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Alarm_Monitor_Offer_Letter/js/ejs.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Alarm_Monitor_Offer_Letter/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Alarm_Monitor_Offer_Letter/js/moment-with-locales.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Alarm_Monitor_Offer_Letter/js/script_version_1.js>" defer></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+$(window).resize(function() { 
+    document.getElementById('over').style.width=''; 
+});
+
+(function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+})($('.disable-date'));
+
+const DATA = {
+    Offer_Expiration_Date: '<$client.tForWhomUserInfo.Offer_Expiration_Date>'.length ? moment('<$client.tForWhomUserInfo.Offer_Expiration_Date>').format('MM/DD/YYYY') : '',
+    Offer_Start_Date_Language: ('<$client.tForWhomUserInfo.Offer_Start_Date_Language>'.length) ? moment('<$client.tForWhomUserInfo.Offer_Start_Date_Language>').format('MM/DD/YYYY') : '',
+    todate: ''
+}
+
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

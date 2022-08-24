@@ -1,0 +1,440 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <p class="h5"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-sm-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" id="signature-sign" class="lifesuite__button primary" value="Sign">&nbsp; 
+                    <input type="button" id="signature-clear" class="lifesuite__button" value="Clear">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="employee-privacy-acknowledgement-global" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row mb-3">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    <template id="fragment-1"> 
+        <p class="text-center">
+            <strong>PAYPAL CONSENT FORM</strong>
+        </p>
+        <p>&nbsp;</p>
+        <p>Select the link to review the PayPal Employee Privacy Statement available in the languages below</p>
+        <p></p>
+    </template>
+
+    <template id="fragment-2"> 
+        <% if (LOCATION == 'KOR') { %><%# start korea display %>
+            <p class="text-center">
+                <strong>
+                    <u>Consent to the Collection, Use and Third-Party Provision of Personal Information</u>
+                </strong>
+            </p>
+            <p>PayPal Korea Services LLC (hereinafter the “<strong>Company</strong>”) requests for and receives individual consent from each individual, like you, who work hand-in-hand as employee, contractor, otherwise alternative workforce (hereinafter, collectively referred to as the “<strong>workforce</strong>”) regarding the processing of personal information. Please carefully read the following items and sign your name at the bottom of this Consent if you consent to the items below.</p>
+            <p><strong>1. Consent to the Collection and Use of Personal Information:</strong> The Company requests your consent to collect and use your personal information, pursuant to the Korean Personal Information Protection Act. You may refuse to consent; however, you may face such disadvantages as stated at the bottom of the table below.</p>
+            <p>Purpose of Personal Information Collection and Use </p>
+            <ul>
+                <li>Recruitment and personnel information record management</li>
+                <li>Personnel Management: recruitment, promotion, evaluation, compensation, rewards, department transfers, deployments, education, dispatches, etc.</li>
+                <li>Task assistance: Preparation and execution of business contracts, etc., issuance of corporate cards (including credit cards), reimbursements, company vehicle management, mobile phone preparation, etc.</li>
+                <li>Tax filings, insurance work: tax filing, yearly settlement, four major insurances, retirement insurance and pension, group insurance for accidents, etc.</li>
+                <li>Benefits: subsidies, any discounts for the workforce, long-term service, children’s tuition, etc.</li>
+                <li>Certificate issuance both for while in office and after termination of employment</li>
+                <li>Vacation/leave management of the workforce</li>
+                <li>Domestic and overseas education, dispatches, etc.</li>
+                <li>Compensation management including the payroll system (for basic salary, bonuses, allowances, severance pay or retirement pay, etc.), Intranet system management</li>
+                <li>Security/contact: protection of company-processed information, maintenance, improvement, inspection of security systems, maintenance and management of access and entry systems, prevention and evidence collection of possible crimes and corruption within the company, recruitment, department transfer, telegram, and emergency network.</li>
+                <li>Compliance with laws and contracts: compliance with labor contracts, company internal regulations, equal treatment and opportunity for executives and members of the workforce, compliance with the Labor Standards Act, Industrial Safety and Health Act, etc.</li>
+                <li>Other relevant matters in accordance with the Company’s internal rules</li>
+            </ul>
+            <p>Collected Items of Personal Information<br>Name / date of birth / gender / nationality / country of permanent resident status / photo(s)</p>
+            <ul>
+                <li>Address / home contact / mobile contact / emergency contact / email address</li>
+                <li>Bank account number for compensation payments</li>
+                <li>Military service details / veteran status</li>
+                <li>Education details / career experience details / license details</li>
+            </ul>
+            <p>
+                <strong>
+                    <u>Retention and Usage Period of Personal Information</u>
+                </strong>
+            </p>
+            <ul>
+                <li>
+                    <strong>
+                        <u>Employment period or as mandatorily required by relevant laws and regulations</u>
+                    </strong>
+                </li>
+            </ul>
+            <p>Disadvantages upon Refusal to Consent</p>
+            <ul>
+                <li>Inability to proceed with recruitment and termination of employment process</li>
+                <li>Inability to issue certificates for employment or career experience</li>
+                <li>Inability to proceed with leave/vacations and dispatches</li>
+                <li>Inability to file for taxes or to provide subsidies, yearly settlement, four major insurances, retirement insurance and pension, group insurance for accidents, and other benefits </li>
+                <li>Inability to register health insurance dependents</li>
+            </ul>
+            <p><strong>2. Consent to the Collection and Processing of Unique Identification Information:</strong> The Company requests for your consent to collect and process your unique identification information, pursuant to the Korean Personal Information Protection Act. You may refuse to consent; however, you may face such disadvantages as stated at the bottom of the table below.</p>
+            <div class="border border-dark p-1">
+                <p><strong>Purpose:</strong> Recruitment-related work / tax filings, yearly settlement, four major insurances, retirement insurance and pension, group insurance for accidents, and other benefits, certification issuance, Intranet system and payroll system management</p>
+                <p>
+                    <strong>
+                        <u>Items: Passport number, Driver’s license number, Alien registration number, Resident registration number </u>
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        <u>Retention and Usage Period:  Employment period or as mandatorily required by relevant laws and regulations</u>
+                    </strong>
+                </p>
+                <p>
+                    <strong>Disadvantages upon Refusal to Consent:</strong> Inability to complete recruitment and termination of employment processes, register for insurances, issue certificates, and provide benefits
+                </p>
+            </div>
+            <p><strong>4. Consent to the Third-Party Provision of Personal Information:</strong> The Company requests for your consent to third-party provision of your personal information of the Korean Personal Information Protection Act. You may refuse to consent; however, you may face such disadvantages as stated at the bottom of the table below.</p>
+            <div class="border border-dark p-1">
+                <p>
+                    <strong>
+                        <u>Receiver of Personal Information: National Pension Service, National Health Insurance Service, Workers’ Compensation and Welfare Service, Ministry of Employment and Labor and other cooperation organizations major insurances, retirement insurance and pension, group insurance for accidents, and other benefits, certification issuance, department allocation and transfers </u>
+                    </strong>
+                </p>
+                <p>Items: Name / employment starting date / employment termination date / tasks and department (team) / address / mobile contact / email address / bank account number for compensation payments / wage details / photo(s) </p>
+                <p>
+                    <strong>
+                        <u>Retention and Usage Period of the Receiver: Employment period and as mandatorily required by relevant laws and regulations</u>
+                    </strong>
+                </p>
+                <p>Disadvantages upon Refusal to Consent: Inability to register for insurances, provision of accurate compensation, allocate tasks/teams and perform work</p>
+            </div>
+            <p>The Company may provide third parties your information and engage in international data transfer as set forth in the Privacy Statement.</p>
+            <p><strong>5. Consent to Third-Party Provision of Unique Identification Information:</strong> The Company requests for your consent to third-party provision of your unique identification information of the Korean Personal Information Protection Act. You may refuse to consent; however, you may face such disadvantages as stated at the bottom of the table below.</p>
+            <div class="border border-dark p-1">
+                <p>Purpose: Recruitment-related work / tax filings, yearly settlement, four major insurances, retirement insurance and pension, group insurance for accidents, and other benefits, certification issuance, Intranet system and payroll system management</p>
+                <p>
+                    <strong>
+                        <u>Items: Alien registration number / passport number</u>
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        <u>Retention and Usage Period of the Receiver: Employment period or as mandatorily required by relevant laws and regulations</u>
+                    </strong>
+                </p>
+                <p>Disadvantages upon Refusal to Consent: Inability to complete recruitment and termination of employment processes, register for insurances, issue certificates, and provide benefits</p>
+            </div>
+            <p>The Company may provide third parties your unique identification information as set forth in the privacy statement.  The Company may engage in international data transfers as set forth in the privacy statement.</p>
+            <p><strong>6. Consent to Third-Party Provision of Sensitive Information:</strong> The Company requests for your consent to third-party provision of your sensitive information the Korean Personal Information Protection Act. You may refuse to consent; however, you may face such disadvantages as stated at the bottom of the table below.</p>
+            <div class="border border-dark p-1">
+                <p>Purpose: Recruitment-related work / uniform provision / task assignment and team allocation / leave/vacation management / health management benefits, mandatory health inspection completion confirmation</p>
+                <p>
+                    <strong>
+                        <u>Items: Health information / diagnoses of disease / height / weight / sizes for clothing</u>
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        <u>Retention and Usage Period of the Receiver: Employment period and 5 years since termination of employment, or as mandatorily required by relevant laws and regulations</u>
+                    </strong>
+                </p>
+                <p>Disadvantages upon Refusal to Consent: Inability to provide uniforms, complete leave/vacation requests / complete health inspections / perform job tasks</p>
+            </div>
+            <p>I hereby consent to the collection and use of my personal information as informed herein.</p>
+        <% } %><%# end korea display %>
+        <% if (LOCATION == 'CHN') { %><%# start china display %>
+            <p class="text-center">
+                <strong>DATA PROTECTION CONSENT FORM</strong>
+            </p>
+            <p>I acknowledge that on this date I received a copy of the privacy statement for employees and CWs (the “Privacy Statement”) of PayPal, Inc. and each of its affiliates or subsidiaries, including the PayPal entity that I work for (herein referred to as (“company”) (available on the Bridge) and that I have read and understood it.</p>
+            <p>PayPal, together with its affiliates, holding companies, and their subsidiaries (collectively referred to as “Company”) wishes to inform you that it may collect, process and disclose personal data of its employees and Contract Worker (“CW”) individuals (“employee(s)”).  By filling in this form, I consent to the collection, use, storage, disclosure, transfer and processing and disclosure of such personal data. The collection, use, disclosure, transfer and processing of such personal data are in relation to the following purposes:</p>
+            <ol>
+                <li>all employee administrative and human resources related matters, including, but not limited to, performance management, salary and benefits administration, future career planning, employee training and development and development of employee benefit and incentive programmes;</li>
+                <li>evaluative purposes, including for the purposes of assessing and evaluating the suitability, eligibility or qualifications of employees for employment, promotion/adjustment in employment or continuance in employment;</li>
+                <li>managing or terminating an employment relationship, including, but not limited to collecting and verifying references on an employee’s resume, performing background checks, providing employee references, developing manpower and project plans, investigating acts or suspected acts of default or breach of internal company policies, laws, regulations, guidelines or codes of conduct and resolving any employment related grievance;</li>
+                <li>the Company’s legitimate business interests’ purposes, including, but not limited to facilitating transactions and business relationships, business cards preparation and use;  data analysis, audits, developing and improving employee products and services; risk management, fraud detection and prevention, and tax reporting;</li>
+                <li>facilitating the Company’s compliance with any laws, customs and/or regulations which may be applicable to the Company;</li>
+                <li>transmitting to any entity and/or any third-party service providers of the Company, some of which may be outside China, for the above purposes; and</li>
+                <li>any other purpose reasonably related to the aforesaid or stated in the Employee Privacy Statement.</li>
+            </ol>
+            <p>The types of personal data that the Company may collect, hold, use, disclose, transfer or otherwise process include:</p>
+            <ul>
+                <li>a) name, gender, address and telephone number, date of birth, marital status, emergency contacts; </li>
+                <li>b) residency and work permit status, nationality and passport information;</li>
+                <li>c)	identification / passport number, banking details;</li>
+                <li>d)	date of employment, work history, educational background, professional certifications;</li>
+                <li>e)	e-mails, correspondence, and other work and communications created, stored or transmitted by an employee;</li>
+                <li>f)	contact information, including but not limited to mobile number, personal WeChat number, email address;</li>
+                <li>g)	resumes;</li>
+                <li>h)	performance indicators and remuneration histories;</li>
+                <li>i)	those regarding related criminal, administrative/regulatory, disciplinary punishment, penalty or sanction and those in other nature to which the employee is subject; and</li>
+                <li>j)	other types of personal data as provided in the Employee Privacy Statement and agreed to by you from time to time.</li>
+            </ul>
+            <p>All personal data is treated as strictly confidential and is protected accordingly. When there is any amendment to the personal data collected by the Company, you are obligated to report such amendment to the Company in a timely manner.</p>
+            <p>This data will be stored and managed by our nominated data processors and their access is limited to the minimum required for them to fulfil their function. These third party service providers include the payroll provider, the company’s external auditor, the pension provider (if you opted for a company pension), the medical insurance provider (if you opted for company medical provision), the corporate credit card provider (if you have a corporate credit card), the corporate travel management provider (if you travel on business), the car lease provider, the car fleet administrator and the accident management company (if you opted for a company car) , and the mobile telephone provider (if you use a company mobile telephone). Your explicit permission will be obtained before any of your personal data is provided to third party service providers other than those detailed in this consent and the Employee Privacy Statement. </p>
+            </p>
+            <p>The Company is part of a multinational group of companies and this means that some decisions on employees and their careers need input from personnel based outside China. To enable these decisions to be made, the Company gives specific company personnel who are based in overseas locations access to relevant personal data held on devices, databases and files so that they can participate in decisions affecting your career and work. Access to your personal data will be on a "need to know" basis and will be subject to reasonable security arrangements. Any transfer of personal data overseas shall be made according to the applicable law.</p>
+            <p>I hereby</p>
+            <ul>
+                <li>a)	acknowledge and expressly agree that I have read and understood the foregoing, and consent to the collection, use, disclosure and storage of my personal data by the Company for the above-stated purposes, in addition and without prejudice to any deemed consent or other exceptions granted under the law for the collection, use and disclosure of personal data;</li>
+                <li>b)	undertake and acknowledge that any individual whose personal data I have disclosed to the Company in accordance with the above-stated purposes has consented to the collection, use, and/or disclosure of his/her personal data for such purpose(s). I agree to bear all liability and shall fully indemnify the Company against any and all actions, claims, proceedings, costs, damages, legal costs and/or other expenses arising out of a breach of this warranty;</li>
+                <li>c)	expressly consent to third party service providers (as detailed above) having such access as is necessary to fulfil their administrative functions; and</li>
+                <li>d)	expressly consent to such personal data being transferred to the Company’s other offices and entities within and outside China.</li>
+            </ul>
+            <p class="text-center">
+                <strong>ACKNOWLEDGEMENT AND ACCEPTANCE</strong>
+            </p>
+            <p>I have read and fully understand the above contents and acknowledge that I consent to and accept this Data Protection Consent Form voluntarily and freely.</p>
+        <% } %><%# end china display %>
+    </template>
+    
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); getElementById('EPS_English').style.display='block'; getElementById('EPS_English_Chk').checked=true; window.open(Employee_Privacy_Statement.English, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="EPS_English" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">PayPal Employee CW Privacy Statement (English)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); getElementById('EPS_Dutch').style.display='block'; getElementById('EPS_Dutch_Chk').checked=true; window.open(Employee_Privacy_Statement.Dutch, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="EPS_Dutch" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">PayPal Employee CW Privacy Statement (Dutch)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); getElementById('EPS_French').style.display='block'; getElementById('EPS_French_Chk').checked=true; window.open(Employee_Privacy_Statement.French, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="EPS_French" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">PayPal Employee CW Privacy Statement (French)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); getElementById('EPS_French_Canadian').style.display='block'; getElementById('EPS_French_Canadian_Chk').checked=true; window.open(Employee_Privacy_Statement.French_Canadian, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="EPS_French_Canadian" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">PayPal Employee CW Privacy Statement (French Canadian)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); getElementById('EPS_Polish').style.display='block'; getElementById('EPS_Polish_Chk').checked=true; window.open(Employee_Privacy_Statement.Polish, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="EPS_Polish" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">PayPal Employee CW Privacy Statement (Polish)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); getElementById('EPS_Portuguese').style.display='block'; getElementById('EPS_Portuguese_Chk').checked=true; window.open(Employee_Privacy_Statement.Portuguese, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="EPS_Portuguese" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">PayPal Employee CW Privacy Statement (Portuguese)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); getElementById('EPS_Spanish').style.display='block'; getElementById('EPS_Spanish_Chk').checked=true; window.open(Employee_Privacy_Statement.Spanish, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="EPS_Spanish" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">PayPal Employee CW Privacy Statement (Spanish)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="privacy-statement">
+                <$client.env.FormField.EPS_English_Chk.HTML>
+                <$client.env.FormField.EPS_Dutch_Chk.HTML>
+                <$client.env.FormField.EPS_French_Chk.HTML>
+                <$client.env.FormField.EPS_French_Canadian_Chk.HTML>
+                <$client.env.FormField.EPS_Polish_Chk.HTML>
+                <$client.env.FormField.EPS_Portuguese_Chk.HTML>
+                <$client.env.FormField.EPS_Spanish_Chk.HTML>
+            </div>
+        </div>
+    </div>
+    <div id="offer-letter-body" class="row mb-5">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div id="incomplete2">
+                <div id="markup2"></div>
+            </div>
+            <div id="complete2"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label pe-2">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.Signature.HTML>
+        </div>
+        <div class="col-sm-1 pt-2 text-sm-right">
+            <label class="control-label pe-2">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.Date.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label pe-2">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.Name.HTML>
+        </div>
+    </div>
+    
+    <hr class="lifesuite__hr">
+    <div class="lifesuite__row row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 lifesuite__clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.dummy_date.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Global_Privacy_Form_-_Guatemala/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Global_Privacy_Form_-_Guatemala/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Global_Privacy_Form_-_Guatemala/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.getElementById('employee-privacy-acknowledgement-global');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  // configure date fields
+  $('#date').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+
+  // configure auto sign date
+  $('#signature-sign').on('click', function() { 
+    if(validateSignature('signature','eSignature1','name','modal','over','sv')) { 
+      // edit the date field id 
+      $('#date').setFormattedDate(new Date()); 
+    } 
+    xbObj('eSignature1').value=''; 
+    document.getElementById('eSignature1').focus();
+  }); 
+  $('#signature-clear').on('click', function() { 
+    xbObj('signature').value='';showHide('modal'); 
+    showHide('over'); 
+    xbObj('eSignature1').value=''; 
+    // edit the date field id 
+    if (typeof targetdatecheckCLEAR == 'function' ){$('#date').setFormattedDate(null);}  
+  });
+
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.dateField').parent().find('input').prop('disabled', true);
+});
+
+showCheck("EPS_English_Chk", "EPS_English");
+showCheck("EPS_Dutch_Chk", "EPS_Dutch");
+showCheck("EPS_French_Chk", "EPS_French");
+showCheck("EPS_French_Canadian_Chk", "EPS_French_Canadian");
+showCheck("EPS_Polish_Chk", "EPS_Polish");
+showCheck("EPS_Portuguese_Chk", "EPS_Portuguese");
+showCheck("EPS_Spanish_Chk", "EPS_Spanish");
+
+function formatLongDate(date, format) {
+    var sYear = date.getFullYear();
+    var sMonth = date.getMonth() + 1;
+    var sDate = date.getDate();
+    var formattedDate = "";
+    switch(format) {
+        case "mm/dd/yy": 
+            formattedDate = sMonth + "/" + sDate + "/" + sYear;
+            break;
+        case "yy/mm/dd":
+            formattedDate = sYear + "/" + sMonth + "/" + sDate;
+            break;
+        case "dd/mm/yy":
+            formattedDate = sDate + "/" + sMonth + "/" + sYear;
+            break;
+        default:
+            formattedDate = sMonth + "/" + sDate + "/" + sYear;
+            break;
+    }
+    return formattedDate;
+}
+
+const data = {
+    'Current_Date': formatLongDate(new Date(), dateConfig.regions[dateConfig.countries['<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>']]),
+    'Full_Legal_Name': '<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Initial><$client.env.eval(client.tForWhomUserInfo.Middle_Initial.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>',
+    'LOCATION': '<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>'
+};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+</script>

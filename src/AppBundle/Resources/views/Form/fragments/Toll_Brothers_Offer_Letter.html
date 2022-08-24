@@ -1,0 +1,737 @@
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);"> 
+
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+<$client.env.DatePicker.RequiredIncludes>
+<!--- Your Required/Validated Form Fields -->
+</div>
+
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<div style="display:none;">
+<$client.env.FormField.Date.prompt>
+<$client.env.FormField.FirstNameSignature.prompt>
+<$client.env.FormField.LastNameSignature.prompt>
+<$client.env.FormField.SSNSignature.prompt>
+<$client.env.FormField.TollRepName.prompt>
+<$client.env.FormField.TollRepDate.prompt>
+<$client.env.FormField.FirstNameConfirm.HTML>
+<$client.env.FormField.LastNameConfirm.HTML>
+<$client.env.FormField.SSNConfirm.HTML>
+<$client.env.FormField.FirstNameSignatureVerification.HTML>
+<$client.env.FormField.LastNameSignatureVerification.HTML>
+<$client.env.FormField.Timestamp.HTML>
+<$client.env.FormField.TollRepNameSignatureVerification.HTML>
+<$client.env.FormField.TollRepTimestamp.HTML>
+<$client.env.FormField.TodayDate.HTML>
+</div>
+
+<div style="display:none;">
+<textarea id="salescommission_hidden">
+<$client.tUserPage.SalesCommissionGenericDetails>
+</textarea>
+<textarea id="greetingextra_hidden">
+<$client.tUserPage.GreetingExtra>
+</textarea>
+<textarea id="salaryextra_hidden">
+<$client.tUserPage.SalaryExtra>
+</textarea>
+<textarea id="extraverbiage1_hidden">
+<$client.tUserPage.ExtraVerbiage1>
+</textarea>
+<textarea id="extraverbiage2_hidden">
+<$client.tUserPage.ExtraVerbiage2>
+</textarea>
+<textarea id="startdateextra_hidden">
+<$client.tUserPage.StartDateExtra>
+</textarea>
+<textarea id="backgroundcheckextra_hidden">
+<$client.tUserPage.BackgroundCheckExtra>
+</textarea>
+<textarea id="healthinsuranceextra_hidden">
+<$client.tUserPage.HealthInsuranceExtra>
+</textarea>
+<textarea id="lifeinsuranceextra_hidden">
+<$client.tUserPage.LifeInsuranceExtra>
+</textarea>
+<textarea id="ltdextra_hidden">
+<$client.tUserPage.LongTermDisabilityExtra>
+</textarea>
+<textarea id="retirementextra_hidden">
+<$client.tUserPage.RetirementExtra>
+</textarea>
+<textarea id="contributionextra_hidden">
+<$client.tUserPage.ContributionExtra>
+</textarea>
+<textarea id="floatextra_hidden">
+<$client.tUserPage.FloatExtra>
+</textarea>
+<textarea id="vacationextra_hidden">
+<$client.tUserPage.VacationExtra>
+</textarea>
+<textarea id="sickpayextra_hidden">
+<$client.tUserPage.SickPayExtra>
+</textarea>
+<textarea id="performanceextra_hidden">
+<$client.tUserPage.PerformanceExtra>
+</textarea>
+<textarea id="signingbonusextra_hidden">
+<$client.tUserPage.SigningBonusExtra>
+</textarea>
+<textarea id="summaryextra_hidden">
+<$client.tUserPage.SummaryExtra>
+</textarea>
+
+<textarea id="title_hidden">
+<$client.tUserPage.SignatureExtra>
+</textarea>
+
+
+</div>
+
+
+<!--- Begin HTML Content -->
+ 
+<script>
+    var oManager = "<$client.role.RC_OfferLetter>";
+
+    function flattenData(strField){
+        document.getElementById(strField).value=escape(document.getElementById(strField).value);
+        document.getElementById(strField).value=document.getElementById(strField).value.replace(/%0D%0A/g,'<br>');
+        document.getElementById(strField).value=document.getElementById(strField).value.replace(/%0A/g,'<br>');
+        document.getElementById(strField).value=unescape(document.getElementById(strField).value);
+    }
+    
+    flattenData("salescommission_hidden");
+    flattenData("greetingextra_hidden");
+    flattenData("salaryextra_hidden");
+    flattenData("extraverbiage1_hidden");
+    flattenData("extraverbiage2_hidden");
+    flattenData("startdateextra_hidden");
+    flattenData("backgroundcheckextra_hidden");
+    flattenData("healthinsuranceextra_hidden");
+    flattenData("lifeinsuranceextra_hidden");
+    flattenData("ltdextra_hidden");
+    flattenData("retirementextra_hidden");
+    flattenData("contributionextra_hidden");
+    flattenData("floatextra_hidden");
+    flattenData("vacationextra_hidden");
+    flattenData("sickpayextra_hidden");
+    flattenData("performanceextra_hidden");
+    flattenData("signingbonusextra_hidden");
+    flattenData("summaryextra_hidden");
+</script>
+
+<div align="center" style="display:block;" width="250"><img width="250" src="<$link;/main/RedCarpet/FormTemplates/Toll_Brothers_Offer_Letter/tollBrother.png>"></div>   
+
+
+<div id="clauses" style="display:block;">
+
+<div id="clause_1_2" style="display:block;">
+</div>
+<script>
+document.getElementById("clause_1_2").innerHTML = document.getElementById("todaydate").value + "<br><br>";
+</script>
+
+<div id="clause_2_4" style="display:block;">
+</div>
+<script>
+var strAddress = "<$client.tUserPage.First_Name> <$client.tUserPage.Last_Name><br>";
+strAddress = strAddress + "<$client.tUserPage.House_Number> <$client.tUserPage.Street_Name>";
+var strApt = "<$client.tUserPage.Apt>";
+if(strApt.length > 0){ strAddress = strAddress + " Apt " + strApt; }
+strAddress = strAddress + "<br><$client.tUserPage.City>, <$client.tUserPage.State>, <$client.tUserPage.Zip><br><br>";
+document.getElementById("clause_2_4").innerHTML = strAddress;
+</script>
+
+<div id="clause_3_2" style="display:block;">Dear <$client.tUserPage.First_Name>:<br><br></div>
+
+<div id="clause_4_3" style="display:<$client.env.eval((client.tForWhomUserInfo.GreetingExtra=="") && (client.tForWhomUserInfo.Company_Name=='Toll Brothers') && (client.tForWhomUserInfo.Additional_Introduction_Information=='Not applicable') ?'block':'none')>" >On behalf of Toll Bros., Inc. ("The Company")<$client.env.eval(client.tUserPage.GreetingCompany.length()>0?' ':'')><$client.tUserPage.GreetingCompany>, I am pleased to confirm our offer of the <$client.tUserPage.GreetingTemporary> position <$client.tUserPage.GreetingLocation>. Following is a summary of our offer to you:<br><br></div>
+
+<div id="clause_4_4" style="display:<$client.env.eval((client.tForWhomUserInfo.GreetingExtra=="") && (client.tForWhomUserInfo.Company_Name=='Toll WA LP')  && (client.tForWhomUserInfo.Additional_Introduction_Information=='Not applicable')  ?'block':'none')>" >On behalf of Toll WA LP ("Company"), a subsidiary of Toll Brothers, Inc. <$client.env.eval(client.tUserPage.GreetingCompany.length()>0?' ':'')><$client.tUserPage.GreetingCompany>, I am pleased to confirm our offer of the <$client.tUserPage.GreetingTemporary> position <$client.tUserPage.GreetingLocation>. Following is a summary of our offer to you:<br><br></div>
+
+<div id="clause_5_5" style="display:<$client.env.eval((client.tForWhomUserInfo.GreetingExtra=="") && (client.tForWhomUserInfo.Company_Name=='Toll Brothers') && (client.tForWhomUserInfo.Additional_Introduction_Information=='Title') ?'block':'none')>" >On behalf of Toll Bros., Inc. ("The Company")<$client.env.eval(client.tUserPage.GreetingCompany.length()>0?' ':'')><$client.tUserPage.GreetingCompany>, I am pleased to confirm our offer of the <$client.tUserPage.GreetingTemporary> position <$client.tUserPage.GreetingLocation>. By signing this offer letter, you attest that you have not signed any non-compete agreement (and are not bound by any non-compete clause or covenant not to compete) that prohibits you from performing your job at Westminster Title. Following is a summary of our offer to you:<br><br></div> 
+
+<div id="clause_6_6" style="display:<$client.env.eval((client.tForWhomUserInfo.GreetingExtra=="") && (client.tForWhomUserInfo.Company_Name=='Toll WA LP')  && (client.tForWhomUserInfo.Additional_Introduction_Information=='Title')  ?'block':'none')>" >On behalf of Toll WA LP ("Company"), a subsidiary of Toll Brothers, Inc. <$client.env.eval(client.tUserPage.GreetingCompany.length()>0?' ':'')><$client.tUserPage.GreetingCompany>, I am pleased to confirm our offer of the <$client.tUserPage.GreetingTemporary> position <$client.tUserPage.GreetingLocation>. By signing this offer letter, you attest that you have not signed any non-compete agreement (and are not bound by any non-compete clause or covenant not to compete) that prohibits you from performing your job at Westminster Title. Following is a summary of our offer to you:<br><br></div>
+
+
+
+<div id="clause_5_3" class="GreetingAlternate<$client.env.eval(client.tUserPage.GreetingExtra.length()>0?'1':'0')>">
+</div>
+<script>
+var strGreetingExtra = document.getElementById("greetingextra_hidden").value;
+if(strGreetingExtra.length > 0){ document.getElementById("clause_5_3").innerHTML = strGreetingExtra + "<br>"; }
+</script>
+
+<div id="clause_6_2" class="SalaryA" style="display:<$client.env.eval((client.tForWhomUserInfo.SalaryOption=='per year annualized paid bi-weekly')?'block':'none')>">Salary: $<$client.tUserPage.SalaryAmount> per year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_7_3" class="SalaryB" style="display:<$client.env.eval((client.tForWhomUserInfo.SalaryOption=='per hour paid bi-weekly')?'block':'none')>">Hourly Rate: $<$client.tUserPage.SalaryAmount> per hour, paid bi-weekly. This position is considered non-exempt for purposes of federal wage and hour law, which means that you will be eligible for overtime pay as required by applicable law.<br><br></div>
+
+<div id="clause_8_3" class="SalaryC" style="display:<$client.env.eval((client.tForWhomUserInfo.SalaryOption=='per hour paid weekly')?'block':'none')>">Hourly Rate: $<$client.tUserPage.SalaryAmount> per hour, paid weekly. This position is considered non-exempt for purposes of federal wage and hour law, which means that you will be eligible for overtime pay as required by applicable law.<br><br></div>
+
+<div id="clause_9_2"  style="display:<$client.env.eval((client.tForWhomUserInfo.Overtime_Rate!='') && (client.tForWhomUserInfo.Overtime_Rate_2=='')?'block':'none')>">Overtime Rate: $<$client.tUserPage.Overtime_Rate> per hour, paid bi-weekly.<br><br></div>
+
+<div id="clause_10_5"  style="display:<$client.env.eval((client.tForWhomUserInfo.Overtime_Rate!='') && (client.tForWhomUserInfo.Overtime_Rate_2=='')?'block':'none')>">Overtime: On occasion, there may be a need for employees to work overtime. The Company will pay non-exempt employees at the rate of one and one-half times their regular hourly rate of pay for all time actually worked in excess of forty hours in a work week.  In addition, the Company will pay daily overtime, where required by applicable state law.  The Company requires that an employee's overtime be approved in advance by a supervisor.<br><br></div>
+
+<div id="clause_11_4"  style="display:<$client.env.eval((client.tForWhomUserInfo.Overtime_Rate!='') && (client.tForWhomUserInfo.Overtime_Rate_2=='')?'block':'none')>">Bi-weekly Pay Schedule: Employees are paid on a bi-weekly pay schedule. The Company's pay week begins on Friday and ends on Thursday.  Our bi-weekly pay day is every other Friday.  When you receive your paycheck, you are paid through the Thursday of the prior week.<br><br></div>
+
+<div id="clause_12_4"  style="display:<$client.env.eval((client.tForWhomUserInfo.MobileDevice=='2') ?'block':'none')>">Mobile Device Allowance: $75 paid monthly. Receipt of this allowance requires that you download an application onto your personal smart phone to access Company e-mail.<br><br></div>
+
+<div id="clause_13_4"  style="display:<$client.env.eval((client.tForWhomUserInfo.WirlessData=='2') ?'block':'none')>">Device Allowance: $145 paid monthly. This allowance is intended to cover your monthly tablet and smart phone data fees as well as mobile device rental or purchase costs for the purpose of effectively using BuildPro to perform job requirements.<br><br></div>
+
+<div id="clause_14_7"  style="display:<$client.env.eval((client.tForWhomUserInfo.CMPerformanceBonus=='1') && (client.tForWhomUserInfo.CMProductionBonusPerUnit!='') ?'block':'none')>">Performance Bonus:  You will be eligible to participate in the Company's Performance Bonus Program.  With this program, you will be eligible to receive up to $<$client.tUserPage.CMProductionBonusPerUnit> per unit, provided that all bonus requirements have been met.  In addition, if you meet or beat the target schedule for the unit, you will be eligible to receive an additional 25% of the eligible bonus.  Payment of bonuses is contingent upon your being employed through the payment date.  Details of this bonus program will be provided to you in a separate document.<br><br></div>
+
+<div id="clause_14_8"  style="display:<$client.env.eval(client.tForWhomUserInfo.CustomerCareBonusPerQuarter.Length()>=1?'block':'none')>">Performance Bonus:  You will be eligible to participate in the Company's Customer Care Incentive Bonus Program.  With this program, you will be eligible to receive up to <$client.tForWhomUserInfo.CustomerCareBonusPerQuarter>, provided that all bonus requirements have been met.  In addition, if you beat the target Average Aging for Warranty requests, you will be eligible to receive up to an additional 20% of the eligible bonus.  Payment of bonuses is contingent upon your being employed through the payment date.  Details of this bonus program will be provided to you in a separate document.<br><br></div>
+
+<div id="clause_15_4"  style="display:<$client.env.eval((client.tForWhomUserInfo.Overtime_Rate=='') && (client.tForWhomUserInfo.Overtime_Rate_2!='')?'block':'none')>">Overtime Rate: $<$client.tUserPage.Overtime_Rate_2> per hour, paid weekly.<br><br></div>
+
+<div id="clause_16_6"  style="display:<$client.env.eval((client.tForWhomUserInfo.Overtime_Rate=='') && (client.tForWhomUserInfo.Overtime_Rate_2!='')?'block':'none')>">Overtime: On occasion, there may be a need for employees to work overtime.  The Company will pay non-exempt employees at the rate of one and one-half times their regular hourly rate of pay for all time actually worked in excess of forty hours in a work week.  In addition, the Company will pay daily overtime, where required by applicable state law.  The Company requires that an employee's overtime be approved in advance by a supervisor.<br><br></div>
+
+
+<div id="clause_16_99" class="SalaryExtra<$client.env.eval(client.tUserPage.SalaryExtra.length()>0?'1':'')>">
+</div>
+<script>
+var strSalaryExtra = document.getElementById("salaryextra_hidden").value;
+if(strSalaryExtra.length > 0){ document.getElementById("clause_16_99").innerHTML = strSalaryExtra + "<br>"; }
+</script>
+
+<div id="clause_17_6" class="SigningBonusLumpSum<$client.tUserPage.SigningBonusLumpOption>">Signing Bonus: A $<$client.tUserPage.SigningBonusLumpAmount> signing bonus will be paid to you <$client.tUserPage.SigningBonusLumpWhen> <$client.tUserPage.SigningBonusLumpMonths>. Payment of this bonus is contingent upon your being employed through the payment date. If within <$client.tUserPage.SigningBonusLumpDuration> of your start date, you voluntarily terminate your employment with the Company, you agree to reimburse the Company for the full amount of the signing bonus given to you, and you understand that if the amount due is not repaid within a certain amount of time, Toll Bros., Inc. reserves the right to hire outside assistance to help recover any outstanding balance due.<br><br></div>
+
+<div id="clause_18_6" class="SigningBonus5050<$client.tUserPage.SigningBonus5050Option>">Signing Bonus: A $<$client.tUserPage.SigningBonus5050Amount> signing bonus will be paid to you 50% in your first paycheck and 50% after <$client.tUserPage.SigningBonus5050Second>. Payment of this bonus is contingent upon your being employed through the payment date. If within <$client.tUserPage.SigningBonus5050Duration> of your start date, you voluntarily terminate your employment with the Company, you agree to reimburse the Company for the full amount of the signing bonus given to you, and you understand that if the amount due is not repaid within a certain amount of time, Toll Bros., Inc. reserves the right to hire outside assistance to help recover any outstanding balance due.<br><br></div>
+
+<div id="clause_19_99" class="SigningBonusExtra<$client.env.eval(client.tUserPage.SigningBonusExtra.length()>0?'1':'')>">
+</div>
+<script>
+var strSigningBonusExtra = document.getElementById("signingbonusextra_hidden").value;
+if(strSigningBonusExtra.length > 0){ document.getElementById("clause_19_99").innerHTML = strSigningBonusExtra + "<br>"; }
+</script>
+
+<div id="clause_20_3" class="DiscretionaryBonusA<$client.tUserPage.DiscretionaryBonusOptionA>">Discretionary Bonus: You will be eligible to participate in the Company Discretionary Bonus Program, which awards an annual bonus for satisfactory performance at the end of calendar year <$client.tUserPage.DiscretionaryBonusAYear>.  This Discretionary Bonus is paid 50% in January and 50% in July of the following year, and payment of bonuses is contingent upon your being employed through the payment date.<br><br></div>
+
+<div id="clause_21_4" class="DiscretionaryBonusB<$client.tUserPage.DiscretionaryBonusOptionB>">Discretionary Bonus: You will be eligible to participate in the Company Discretionary Bonus Program, which awards an annual bonus for satisfactory performance at the end of the calendar year. If your performance is at a satisfactory level, your first Discretionary Bonus at the end of calendar year <$client.tUserPage.DiscretionaryBonusBYear> will be $<$client.tUserPage.DiscretionaryBonusBAmount>. Discretionary Bonuses are paid 50% in January and 50% in July of the following year, and payment of bonuses is contingent upon your being employed through the payment date.<br><br></div>
+
+<div id="clause_22_6" class="DiscretionaryBonusC<$client.tUserPage.DiscretionaryBonusOptionC>">Discretionary Bonus: You will be eligible to participate in the Company Discretionary Bonus Program, which awards an annual bonus for satisfactory performance at the end of the calendar year.  Based on your performance, at the end of calendar year <$client.tUserPage.DiscretionaryBonusCYear>, you will be eligible to earn a maximum of up to <$client.env.eval(client.tUserPage.DiscretionaryBonusCAmount.length()>0?'$':'')><$client.tUserPage.DiscretionaryBonusCAmount><$client.tUserPage.DiscretionaryBonusCPercentage><$client.env.eval(client.tUserPage.DiscretionaryBonusCPercentage.length()>0?'% of your base salary':'')>.  This Discretionary Bonus is paid 50% in January and 50% in July of the following year, and payment of bonuses is contingent upon your being employed through the payment date.<br><br></div>
+
+<div id="clause_23_4" class="StockPlanOneYear<$client.tUserPage.StockPlanOption>">Stock Options: After one year of employment, you will be eligible to participate in the Company's Stock Option Plan which awards stock options annually at calendar year end.  Thus, you will be eligible to receive your first grant at the end of calendar year <$client.tUserPage.StockPlanYear>. Currently, the Stock Options vest 25% per year.<br><br></div>
+
+<div id="clause_24_3" class="StockPlanNoWait<$client.tUserPage.StockPlanOption>">Stock Options: You will be eligible in December <$client.tUserPage.StockPlanYear> to participate in the Company's Stock Option Plan which awards stock options annually at the end of the calendar year. Currently, the Stock Options vest 25% per year.<br><br></div>
+
+<div id="clause_25_4" class="StockPlanAmount<$client.tUserPage.StockPlanOption>">Stock Options: You will be eligible in December <$client.tUserPage.StockPlanYear> to participate in the Company's Stock Option Plan which awards stock options annually at the end of the calendar year. If your performance is at a satisfactory level, your first Stock Option grant will be <$client.tUserPage.StockPlanNumber> options. Currently, the Stock Options vest 25% per year, beginning one year after the award.<br><br></div>
+
+<div id="clause_26_7" class="Licensure<$client.tUserPage.LicensureOption>">Licensing: As a condition of employment, you must apply for and receive your State of <$client.tUserPage.LicensureState> PE License within <$client.tUserPage.LicensureWithin> of your start date. The Company will reimburse you for costs and fees incurred to obtain your license - specifically, costs and fees for the PE exam, preparation class and license. Re-tests will not be reimbursed. If within <$client.tUserPage.LicensureDuration> of your start date, you voluntarily terminate your employment with the Company, you agree to reimburse the Company for the full amount of licensing expenses reimbursed to you, and you understand that if the amount due is not repaid within a certain amount of time, Toll Bros., Inc. reserves the right to hire outside assistance to help recover any outstanding balance due.<br><br></div>
+
+<div id="clause_27_3" class="LDMAuto<$client.tUserPage.LDMAuto>">Auto: You are required to own, lease or otherwise have available for business use, a four-wheel drive sport utility vehicle or four-wheel drive pick-up. In consideration of this, you will receive:<br><br></div>
+
+<div id="clause_28_2" class="AutoAllowance<$client.tUserPage.AutoAllowanceOption>">Auto Allowance: $<$client.tUserPage.AutoAllowanceAmount> /year annualized; paid bi-weekly.<br><br></div>
+
+<div id="clause_29_2" class="ACMAutoAllowance<$client.tUserPage.ACMAutoAllowance>">Auto Allowance: $2,400 per year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_30_3" class="CMAutoAllowance<$client.tUserPage.CMAutoAllowance>">Auto Allowance: $6,000/year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_31_2" class="APMAutoAllowance<$client.tUserPage.APMAutoAllowance>">Auto Allowance: $4,200/year annualized; paid bi-weekly.<br><br></div>
+
+<div id="clause_32_2" class="LAMAutoAllowance<$client.tUserPage.LAMAutoAllowance>">Auto Allowance: $5,400 per year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_33_2" class="LDMAutoAllowance<$client.tUserPage.LDMAutoAllowance>">Auto Allowance: $7,200 per year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_34_2" class="PMAutoAllowance<$client.tUserPage.PMAutoAllowance>">Auto Allowance: $5,400/year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_35_2" class="SPMAutoAllowance<$client.tUserPage.SPMAutoAllowance>">Auto Allowance: $6,000/year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_36_2" class="GasAllowance<$client.tUserPage.GasAllowanceOption>">Gas Allowance: $<$client.tUserPage.GasAllowanceAmount> /year annualized; paid bi-weekly.<br><br></div>
+
+<div id="clause_37_2" class="ACMAutoAllowance<$client.tUserPage.ACMAutoAllowance>">Gas Allowance: $3,900 per year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_38_3" class="CMAutoAllowance<$client.tUserPage.CMAutoAllowance>">Gas Allowance: $3,900/year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_39_2" class="APMAutoAllowance<$client.tUserPage.APMAutoAllowance>">Gas Allowance: $2,700/year annualized; paid bi-weekly.<br><br></div>
+
+<div id="clause_40_2" class="LAMAutoAllowance<$client.tUserPage.LAMAutoAllowance>">Gas Allowance: $4,800 per year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_41_2" class="LDMAutoAllowance<$client.tUserPage.LDMAutoAllowance>">Gas Allowance: $4,800 per year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_42_2" class="PMAutoAllowance<$client.tUserPage.PMAutoAllowance>">Gas Allowance: $2,700/year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_43_2" class="SPMAutoAllowance<$client.tUserPage.SPMAutoAllowance>">Gas Allowance: $2,700/year annualized, paid bi-weekly.<br><br></div>
+
+<div id="clause_44_4" class="ACMProductionBonus<$client.tUserPage.ACMProductionBonus>">Production Bonus: You will be eligible to participate in Toll Bros., Inc.'s Production Bonus Program.  You will receive $<$client.tUserPage.ACMBonusPerUnit> per unit, provided that all bonus requirements have been met. Payment of bonuses is contingent upon your being employed through the payment date.<br><br></div>
+<!-- additional clause base on jira requeset SERVICES-34912 -->
+<div id="clause_44_5" style="display:<$client.env.eval(((client.tForWhomUserInfo.ACMPerformanceBonus=='1') && (client.tForWhomUserInfo.ACMPerformanceBonusPerUnit!=''))?'block':'none')>">Performance Bonus:  You will be eligible to participate in the Company's Performance Bonus Program.  With this program, you will be eligible to receive up to $<$client.tForWhomUserInfo.ACMPerformanceBonusPerUnit> per unit, provided that all bonus requirements have been met.  In addition, if you meet or beat the target schedule for the unit, you will be eligible to receive an additional 25% of the eligible bonus.  Payment of bonuses is contingent upon your being employed through the payment date.  Details of this bonus program will be provided to you in a separate document.<br><br>
+</div>
+<!-- End SERVICES-34912 -->
+<div id="clause_45_4" class="CMProductionBonus<$client.tUserPage.CMProductionBonus>">Production Bonus: You will be eligible to participate in Toll Bros., Inc.'s Production Bonus Program.  You will receive $<$client.tUserPage.CMBonusPerUnit> per unit, provided that all bonus requirements have been met. Payment of bonuses is contingent upon your being employed through the payment date.<br><br></div>
+
+<div id="clause_46_3" class="CSSignOffBonus<$client.tUserPage.CSSignOffBonus>">Sign-off Bonus: You will be eligible to receive $<$client.tUserPage.CSSignOffBonusAmount> per home at sign-off, for home owners for which you are responsible regardless of cancellation rate, provided all requirements are met.<br><br></div>
+
+<div id="clause_47_2" class="CSBonus<$client.tUserPage.CSBonus>">Bonus: You will be eligible to receive $<$client.tUserPage.CSBonusAmount> per completed customer appointment. This bonus is payable 100% at completion of appointment.<br><br></div>
+
+<div id="clause_48_2" class="CSCommission<$client.tUserPage.CSCommission>">Commission: You will be eligible to receive <$client.tUserPage.CSCommissionAmount>% of total options sold at the design studio. This commission is payable 100% at settlement.<br><br></div>
+
+<div id="clause_49_3" class="LAMScheduleStandard<$client.tUserPage.LAMScheduleOption>">Land Acquisition Bonus: You will be eligible to participate in Toll Brothers Land Acquisition Bonus Program, which awards per lot bonuses as follows:<br><br></div>
+
+<div id="clause_50_1" class="LAMScheduleStandard<$client.tUserPage.LAMScheduleOption>">&nbsp;&nbsp;&nbsp;1. Suggested Bonus Guidelines for land acquisition:<br></div>
+
+<div id="clause_51_4" class="LAMScheduleStandard<$client.tUserPage.LAMScheduleOption>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$400 per lot for Single Family Detached lots<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$200 per lot for Multi-family lots<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$125 per unit for Mid- and High-rise Condos<br><br></div>
+
+<div id="clause_52_2" class="LAMScheduleStandard<$client.tUserPage.LAMScheduleOption>">Each deal will be capped at $50,000 per project. There will be no yearly cap on total compensation.<br><br></div>
+
+<div id="clause_53_1" class="LAMScheduleStandard<$client.tUserPage.LAMScheduleOption>">&nbsp;&nbsp;&nbsp;2. Per Lot Bonuses will be paid as follows: 50% of the land acquisition bonus is earned and paid when the property comes</div>
+
+<div id="clause_54_6" class="LAMScheduleStandard<$client.tUserPage.LAMScheduleOption>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out of due diligence. The remaining 50% of the land acquisition bonus is earned and paid the earlier of 6 months from the<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end of due diligence or closing (Payment of bonuses are contingent on being employed through payment date). If for any<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reason the deal does not close, the second half of the bonus will not be paid. The number of lots upon which the Per Lot<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bonus will be awarded will be based on the "buy right" zoning.  Should the land deal be subject to a re-zoning, an adjusted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;payment program will be determined when the Agreement of Sale is signed by TBI.<br><br></div>
+
+<div id="clause_55_5" class="LAMScheduleStandard<$client.tUserPage.LAMScheduleOption>">In cases where a land acquisition manager was not involved in the entire process (i.e. finding, evaluating, negotiating the deal, etc...) the land acquisition manager will receive a bonus proportionate to their effort associated with the acquisition of the property. The Division President and Regional President will decide the amount of bonus to be paid to the land acquisition manager.<br><br></div>
+
+<div id="clause_56_3" class="LAMScheduleVariable<$client.tUserPage.LAMScheduleOption>">Land Acquisition Bonus: You will be eligible to participate in Toll Brothers Land Acquisition Bonus Program, which awards per lot bonuses as follows:<BR><BR></div>
+
+<div id="clause_57_1" class="LAMScheduleVariable<$client.tUserPage.LAMScheduleOption>">&nbsp;&nbsp;&nbsp;1. Suggested Bonus Guidelines for land acquisition:<br></div>
+
+<div id="clause_58_4" class="LAMScheduleVariable<$client.tUserPage.LAMScheduleOption>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$<$client.tUserPage.LAMScheduleSFD> per lot for Single Family Detached lots<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$<$client.tUserPage.LAMScheduleMF> per lot for Multi-family lots<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-$<$client.tUserPage.LAMScheduleMHC> per unit for Mid- and High-rise Condos<br><br></div>
+
+<div id="clause_59_2" class="LAMScheduleVariable<$client.tUserPage.LAMScheduleOption>">Each deal will be capped at $50,000 per project. There will be no yearly cap on total compensation.<br><br></div>
+
+<div id="clause_60_1" class="LAMScheduleVariable<$client.tUserPage.LAMScheduleOption>">&nbsp;&nbsp;&nbsp;2. Per Lot Bonuses will be paid as follows: 50% of the land acquisition bonus is earned and paid when the property comes<br></div>
+
+<div id="clause_61_6" class="LAMScheduleVariable<$client.tUserPage.LAMScheduleOption>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;out of due diligence. The remaining 50% of the land acquisition bonus is earned and paid the earlier of 6 months from the<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end of due diligence or closing (Payment of bonuses are contingent on being employed through payment date). If for any<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reason the deal does not close, the second half of the bonus will not be paid. The number of lots upon which the Per Lot<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bonus will be awarded will be based on the "buy right" zoning.  Should the land deal be subject to a re-zoning, an adjusted<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;payment program will be determined when the Agreement of Sale is signed by TBI.<br><br></div>
+
+<div id="clause_62_5" class="LAMScheduleVariable<$client.tUserPage.LAMScheduleOption>">In cases where a land acquisition manager was not involved in the entire process (i.e. finding, evaluating, negotiating the deal, etc...) the land acquisition manager will receive a bonus proportionate to their effort associated with the acquisition of the property. The Division President and Regional President will decide the amount of bonus to be paid to the land acquisition manager.<br><br></div>
+
+<div id="clause_63_5" class="LMIBOption<$client.tUserPage.LMIBOption>">Manager Incentive Bonus: You will be eligible to participate in Toll Landscape's Manager Incentive Program, which awards an annual bonus at the end of the calendar year. You will be eligible to earn <$client.tUserPage.LMIBPercent>% of the net profit generated by the <$client.tUserPage.LMIBDivision> Landscape Division each year. This Incentive Bonus is paid 50% in January and 50% in July of the following year; payment of bonuses is contingent upon your being employed through the payment date.<br><br></div>
+
+<div id="clause_64_2" class="LAOption<$client.tUserPage.LAOption>">Auto: You will be provided with a company vehicle that is to be used solely for business purposes.<br><br></div>
+
+<div id="clause_65_2" class="LeasingOption<$client.tUserPage.LeasingOption>">Commission: For units you lease, commission will be paid to you in accordance with the current commission structure.<br><br></div>
+
+<div id="clause_66_4" class="PMDiscretionaryBonus<$client.tUserPage.PMDiscretionaryBonus>">Discretionary Bonus: You will be eligible to participate in the Company Discretionary Bonus Program, which awards an annual bonus for satisfactory performance at the end of calendar year <$client.tUserPage.PMDiscretionaryBonusYear>. This Discretionary Bonus is paid 50% in January and 50% in July of the following year, and payment of bonuses is contingent upon your being employed through the payment date.<br><br></div>
+
+<div id="clause_67_5" class="SalesCommissionTypeA<$client.tUserPage.SalesCommissionStandard><$client.tUserPage.SalesCommissionStandardType>">Sales Commission: You will be eligible to participate in Toll Bros., Inc.'s Sales Commission Program. You will receive $<$client.tUserPage.SalesCommissionStandardAmount> per house you sell at <$client.tUserPage.SalesCommissionStandardCommunity> and are eligible for 100% of this commission at settlement if the following commission requirements are met. To expedite the receipt of your commission on homes you sell, the Company shall pay as an advance, 50% of your commission, upon execution of the Agreement.<br><br></div>
+
+<div id="clause_68_5" class="SalesCommissionTypeB<$client.tUserPage.SalesCommissionStandard><$client.tUserPage.SalesCommissionStandardType>">Sales Commission: You will be eligible to participate in Toll Bros., Inc.'s Sales Commission Program. You will receive $<$client.tUserPage.SalesCommissionStandardAmount> per house sold at <$client.tUserPage.SalesCommissionStandardCommunity> and are eligible for 100% of this commission at settlement if the following commission requirements are met. To expedite the receipt of your commission on homes you sell, the Company shall pay as an advance, 50% of your commission, upon execution of the Agreement.<br><br></div>
+
+<div id="clause_69_5" class="SalesCommissionTypeC<$client.tUserPage.SalesCommissionStandard><$client.tUserPage.SalesCommissionStandardType>">Sales Commission: You will be eligible to participate in Toll Bros., Inc.'s Sales Commission Program. You will receive <$client.tUserPage.SalesCommissionStandardPercent>% of the base sale price, lot premium and structural options for each house you sell at <$client.tUserPage.SalesCommissionStandardCommunity> and are eligible for 100% of this commission at settlement if the following commission requirements are met. To expedite the receipt of your commission on homes you sell, the Company shall pay as an advance, 50% of your commission, upon execution of the Agreement.<br><br></div>
+
+<div id="clause_70_1" class="SalesCommissionStandard<$client.tUserPage.SalesCommissionStandard>">Commission Requirements:<br></div>
+
+<div id="clause_71_1" class="SalesCommissionStandard<$client.tUserPage.SalesCommissionStandard>">&nbsp;&nbsp;-<$client.tUserPage.SalesCommissionStandardResponsible> ("the Sales Person") are responsible for and have taken the Agreement.<br></div>
+
+<div id="clause_72_1" class="SalesCommissionStandard<$client.tUserPage.SalesCommissionStandard>">&nbsp;&nbsp;-The Agreement is signed by the buyer and Toll Bros., Inc. while the Sales Person is employed at the community where<br></div>
+
+<div id="clause_73_1" class="SalesCommissionStandard<$client.tUserPage.SalesCommissionStandard>">&nbsp;&nbsp;&nbsp;the property is located.<br></div>
+
+<div id="clause_74_2" class="SalesCommissionStandard<$client.tUserPage.SalesCommissionStandard>">&nbsp;&nbsp;-The Sales Person is employed by Toll Bros., Inc. when escrow on the property closes with the original buyer.<br><br></div>
+
+<div id="clause_75_3" class="SalesCommissionStandard<$client.tUserPage.SalesCommissionStandard>">If you leave the Company you will be paid 50% of your total commissions, less any sums previously paid, for all agreements signed by the buyer up to and including the last day of employment.<br><br></div>
+
+<div id="clause_76_2" class="SalesCommissionGenericOption<$client.tUserPage.SalesCommissionGenericOption>">Sales Commission: You will be eligible to participate in Toll Bros., Inc.'s Sales Commission Program.<br><br></div>
+
+<div id="clause_77_99" class="SalesCommissionGenericOption<$client.tUserPage.SalesCommissionGenericOption>"></div>
+<script>
+var strSalesComm = document.getElementById('salescommission_hidden').value;
+if(strSalesComm.length>0){ document.getElementById("clause_77_99").innerHTML = strSalesComm + "<br>"; }
+</script>
+
+<div id="clause_78_1" class="SalesCommissionGenericOption<$client.tUserPage.SalesCommissionGenericOption>">Commission Requirements:<br></div>
+
+<div id="clause_79_1" class="SalesCommissionGenericOption<$client.tUserPage.SalesCommissionGenericOption>">&nbsp;&nbsp;-<$client.tUserPage.SalesCommissionGenericResponsible> ("the Sales Person") are responsible for and have taken the Agreement.<br></div>
+
+<div id="clause_80_1" class="SalesCommissionGenericOption<$client.tUserPage.SalesCommissionGenericOption>">&nbsp;&nbsp;-The Agreement is signed by the buyer and Toll Bros., Inc. while the Sales Person is employed at the community where<br></div>
+
+<div id="clause_81_1" class="SalesCommissionGenericOption<$client.tUserPage.SalesCommissionGenericOption>">&nbsp;&nbsp;&nbsp;the property is located.</div>
+
+<div id="clause_82_2" class="SalesCommissionGenericOption<$client.tUserPage.SalesCommissionGenericOption>">&nbsp;&nbsp;-The Sales Person is employed by Toll Bros., Inc. when escrow on the property closes with the original buyer.<br><br></div>
+
+<div id="clause_83_3" class="SalesCommissionGenericOption<$client.tUserPage.SalesCommissionGenericOption>">If you leave the Company you will be paid 50% of your total commissions, less any sums previously paid, for all agreements signed by the buyer up to and including the last day of employment.<br><br></div>
+
+<div id="clause_84_3" class="ServiceBacklogStipendOption<$client.tUserPage.ServiceBacklogStipendOption>">Stipend: Part of your job description is to service customers who have already purchased homes, but have not yet settled. For your work in this area, you will receive a stipend of $<$client.tUserPage.ServiceBacklogStipendAmount> per paycheck for your first <$client.tUserPage.ServiceBacklogStipendDuration>.<br><br></div>
+
+<div id="clause_85_2" class="SalesMonthlyStipendOption<$client.tUserPage.SalesMonthlyStipendOption>">Stipend: You will receive a stipend of $<$client.tUserPage.SalesMonthlyStipendAmount> per paycheck for your first <$client.tUserPage.SalesMonthlyStipendDuration>.<br><br></div>
+
+<div id="clause_86_3" class="LayoffClause<$client.tUserPage.LayoffOption>">Lay-Off Clause: It is agreed that you will receive a minimum of <$client.tUserPage.LayoffMonths> months severance if your position is eliminated due to a staff reduction (lay-off).<br><br></div>
+
+<div id="clause_87_3" class="SeveranceClause<$client.tUserPage.SeveranceOption>">Severance Pay: It is understood that any severance pay remaining from previous employment with Toll Bros., Inc. will be forfeited effective upon rehire.<br><br></div>
+
+<div id="clause_88_99" class="ExtraOptionA<$client.env.eval(client.tUserPage.ExtraVerbiage1.length()>0?'1':'')>"></div>
+<script>
+var strExtraVerbiage = "<$client.tUserPage.ExtraHeading1>";
+if(strExtraVerbiage.length > 0){ strExtraVerbiage = strExtraVerbiage + ": "; }
+strExtraVerbiage = strExtraVerbiage + document.getElementById("extraverbiage1_hidden").value;
+if(strExtraVerbiage.length > 0){ document.getElementById("clause_88_99").innerHTML = strExtraVerbiage + "<br>"; }
+</script>
+
+<div id="clause_89_99" class="ExtraOptionB<$client.env.eval(client.tUserPage.ExtraVerbiage2.length()>0?'1':'')>"></div>
+<script>
+var strExtraVerbiage = "<$client.tUserPage.ExtraHeading2>";
+if(strExtraVerbiage.length > 0){ strExtraVerbiage = strExtraVerbiage + ": "; }
+strExtraVerbiage = strExtraVerbiage + document.getElementById("extraverbiage2_hidden").value;
+if(strExtraVerbiage.length > 0){ document.getElementById("clause_89_99").innerHTML = strExtraVerbiage + "<br>"; }
+</script>
+
+<div id="clause_90_2" class="StartDateSpecific<$client.tUserPage.StartDateOption>">Start Date: <$client.env.eval(client.tUserPage.SpecificStartDate.subString(5,6))>/<$client.env.eval(client.tUserPage.SpecificStartDate.subString(8,9))>/<$client.env.eval(client.tUserPage.SpecificStartDate.subString(0,3))><br><br></div>
+
+<div id="clause_91_2" class="StartDateTBD<$client.tUserPage.StartDateOption>">Start Date: To be determined.<br><br></div>
+
+<div id="clause_92_99" class="StartDateExtra<$client.env.eval(client.tUserPage.StartDateExtra.length()>0?'1':'')>"></div>
+<script>
+var strStartDateExtra = document.getElementById("startdateextra_hidden").value;
+if(strStartDateExtra.length > 0){ document.getElementById("clause_92_99").innerHTML = strStartDateExtra + "<br>"; }
+</script>
+
+<div id="clause_93_5" style="display:<$client.env.eval((client.tForWhomUserInfo.BackgroundCheckOption=='1')?'block':'none')>">Background Screening: It is understood by both parties that employment with the Company is contingent upon a background screening that will consist of a Motor Vehicle Report, criminal, credit, education and civil background check performed by an independent authorized agency. We recommend that you do not give notice to your current employer until your hiring manager receives an "all clear" from Human Resources.<br><br></div>
+
+<div id="clause_94_4" style="display:<$client.env.eval((client.tForWhomUserInfo.BackgroundCheckOption=='2')?'block':'none')>">Background Screening: It is understood by both parties that employment with the Company is contingent upon a general background screening performed by an independent authorized agency. We recommend that you do not give notice to your current employer until your hiring manager receives an "all clear" from Human Resources.<br><br></div>
+
+<div id="clause_95_5" style="display:<$client.env.eval((client.tForWhomUserInfo.BackgroundCheckOption=='3')?'block':'none')>">Background Check and Drug Screening, if applicable: It is understood by both parties that employment with the Company is contingent upon a background screening that will include, without limitation, a review of a Motor Vehicle Report, criminal and civil background check and a 5 Panel Drug Screen. We recommend that you do not give notice to your current employer until your hiring manager receives an "all clear" from Human Resources.<br><br></div> 
+
+<div id="clause_95_99" class="BackgroundCheckExtra<$client.env.eval(client.tUserPage.BackgroundCheckExtra.length()>0?'1':'')>"></div>
+<script>
+var strBGCheckExtra = document.getElementById("backgroundcheckextra_hidden").value;
+if(strBGCheckExtra.length > 0){ document.getElementById("clause_95_99").innerHTML = strBGCheckExtra + "<br>"; }
+</script>
+
+<div id="clause_96_4" style="display:<$client.env.eval((client.tForWhomUserInfo.HealthInsuranceOption=='1')?'block':'none')>">Health Insurance: You are eligible to enroll in our health insurance plans. Coverage will be effective the first day of the month following 60 days of employment. An enrollment kit, providing specific information about your choice of health plans as well as your share of the cost, will be mailed to your home address prior to your effective date.<br><br></div>
+
+<div id="clause_97_4" style="display:<$client.env.eval((client.tForWhomUserInfo.HealthInsuranceOption=='2')?'block':'none')>">Health Insurance: You are eligible to enroll in our health insurance plans. Coverage will be effective the first day of the month following 30 days of employment. An enrollment kit, providing specific information about your choice of health plans as well as your share of the cost, will be mailed to your home address prior to your effective date.<br><br></div>
+ 
+
+<div id="clause_99_12" style="display:<$client.env.eval((client.tForWhomUserInfo.HealthInsuranceOption=='3')?'block':'none')>">Health Insurance: You are eligible to enroll in our health insurance plans. Coverage will be effective the first day of the month following sixty days of employment. An enrollment kit, providing specific information about your choice of health plans as well as your share of the cost, will be mailed to your home address prior to your effective date. We will reimburse you for COBRA or personal health insurance expenses incurred for up to <$client.tUserPage.HealthInsuranceMonths> month(s). It is your responsibility to sign up for COBRA coverage and pay the cost. To be reimbursed, please access CONCUR (the Travel and Expense Reporting site on our Intranet) to submit an expense report.  COBRA reimbursement requests must be submitted separately from other business expenses and include a copy of the insurance carrier's invoice and proof of payment, e.g. a cancelled check (front and back of the check), online payment confirmation, or a copy of a bank statement. If within one year of your start date, you voluntarily terminate your employment with the Company, you agree to reimburse the Company for the full amount of the COBRA expenses given to you, and you understand that if the amount due is not repaid within a certain amount of time, the Company reserves the right to hire outside assistance to help recover any outstanding balance due.<br><br></div>
+
+<div id="clause_100_9" style="display:<$client.env.eval((client.tForWhomUserInfo.HealthInsuranceOption=='4')?'block':'none')>">Health Insurance: You are eligible to enroll in our health insurance plans. Coverage will be effective the first day of the month following sixty days of employment. An enrollment kit, providing specific information about your choice of health plans as well as your share of the cost, will be mailed to your home address prior to your effective date. We will reimburse you for COBRA or personal health insurance expenses incurred until you are eligible for our benefits. It is your responsibility to sign up for COBRA coverage and pay the cost. To be reimbursed, please access CONCUR (the Travel and Expense Reporting site on our Intranet) to submit an expense report.  COBRA reimbursement requests must be submitted separately from other business expenses and include a copy of the insurance carrier's invoice and proof of payment, e.g. a cancelled check (front and back of the check), online payment confirmation, or a copy of a bank statement. If within one year of your start date, you voluntarily terminate your employment with the Company, you agree to reimburse the Company for the full amount of the COBRA expenses given to you, and you understand that if the amount due is not repaid within a certain amount of time, the Company reserves the right to hire outside assistance to help recover any outstanding balance due. <br><br></div>
+
+<div id="clause_101_99" class="HealthInsuranceExtra<$client.env.eval(client.tUserPage.HealthInsuranceExtra.length()>0?'1':'')>"></div>
+<script>
+var strHealthInsuranceExtra = document.getElementById("healthinsuranceextra_hidden").value;
+if(strHealthInsuranceExtra.length > 0){ document.getElementById("clause_101_99").innerHTML = strHealthInsuranceExtra + "<br>"; }
+</script>
+
+<!--Life Insurance is STANDARD-->
+<div id="clause_102_3" style="display:<$client.env.eval((client.tForWhomUserInfo.LifeInsuranceOption=='1')?'block':'none')>">Life Insurance: Company-paid insurance in the amount of your base annual salary (excluding bonuses and commissions) effective the first of the month following six months of employment.<br><br></div> 
+
+<!--Life Insurance is REHIRE-->
+<div id="clause_103_3" style="display:<$client.env.eval((client.tForWhomUserInfo.LifeInsuranceOption=='2')?'block':'none')>">Life Insurance: Company-paid insurance in the amount of your base annual salary (excluding bonuses and commissions), effective the first of the month following 30 days of employment.<br><br></div> 
+
+<!--Life Insurance is SALES MANAGER-->
+<div id="clause_104_3" style="display:<$client.env.eval((client.tForWhomUserInfo.LifeInsuranceOption=='3')?'block':'none')>">Life Insurance: Company-paid insurance in the amount of your annual base salary (excluding bonuses and commissions), subject to a $200,000 maximum, will be effective the first of the month following six months of employment. Beginning with your one-year work anniversary, the amount of insurance will be calculated based on your then-current annual base salary and your commissions from the previous calendar year and will be subject to a $200,000 maximum.
+<br><br></div> 
+
+<!--Life Insurance is SALES MANAGER REHIRE-->
+<div id="clause_105_3" style="display:<$client.env.eval((client.tForWhomUserInfo.LifeInsuranceOption=='4')?'block':'none')>">Life Insurance: Company-paid insurance in the amount of your annual base salary (excluding bonuses and commissions), subject to a $200,000 maximum, will be effective the first of the month following 30 days of employment. Beginning with your one-year work anniversary, the amount of insurance will be calculated based on your then-current annual base salary and your commissions from the previous calendar year and will be subject to a $200,000 maximum.<br><br></div> 
+
+<!---Life Insurance is TIS-->
+<div id="clause_106_3" style="display:<$client.env.eval((client.tForWhomUserInfo.LifeInsuranceOption=='5')?'block':'none')>">Life Insurance: Company-paid insurance in the amount of your annual base salary effective the first of the month following sixty days of employment.<br><br></div>
+
+<!--Life Insurance is TIS REHIRE-->
+<div id="clause_107_3" style="display:<$client.env.eval((client.tForWhomUserInfo.LifeInsuranceOption=='6')?'block':'none')>">Life Insurance: Company-paid insurance in the amount of your annual base salary effective the first of the month following 30 days of employment.<br><br></div> 
+
+<!--Life Insurance is PART TIME-->
+<div id="clause_108_3" style="display:<$client.env.eval((client.tForWhomUserInfo.LifeInsuranceOption=='7')?'block':'none')>">Life Insurance: Company-paid insurance in the amount of your base annual salary (excluding bonuses and commissions) effective the first of the month following six months of employment.<br><br></div> 
+
+<div id="clause_106_99" class="LifeInsuranceExtra<$client.env.eval(client.tUserPage.LifeInsuranceExtra.length()>0?'1':'')>"></div>
+<script>
+var strLifeInsuranceExtra = document.getElementById("lifeinsuranceextra_hidden").value;
+if(strLifeInsuranceExtra.length > 0){ document.getElementById("clause_106_99").innerHTML = strLifeInsuranceExtra + "<br>"; }
+</script>
+
+<!--Long Term Disabillity is STANDARD-->
+<div id="clause_107_4" style="display:<$client.env.eval((client.tForWhomUserInfo.LongTermDisabilityOption=='1')?'block':'none')>">Long-Term Disability Insurance: Company paid coverage begins the first of the month following six months of employment. Benefit payments begin on the 91st day of disability in an amount equal to 60% of your basic monthly earnings (excluding bonuses and commissions), subject to a $10,000.00 maximum per month.<br><br></div> 
+
+<!--Long Term Disabillity is REHIRE-->
+<div id="clause_108_4" style="display:<$client.env.eval((client.tForWhomUserInfo.LongTermDisabilityOption=='2')?'block':'none')>">Long-term Disability Insurance: Company-paid coverage begins the first of the month following 30 days of employment.  Benefit payments begin on the 91st day of disability in an amount equal to 60% of your basic monthly earnings (excluding bonuses and commissions), subject to a $10,000 maximum per month.<br><br></div> 
+
+<!--Long Term Disabillity is SALES MANAGER-->
+<div id="clause_109_4" style="display:<$client.env.eval((client.tForWhomUserInfo.LongTermDisabilityOption=='3')?'block':'none')>">Long-Term Disability Insurance: Company-paid coverage begins the first of the month following six months of employment. Benefit payments begin on the 91st day of disability and are subject to a $10,000 maximum per month. Until your one-year work anniversary, the amount of the benefit payment is equal to 60% of your basic monthly earnings (excluding bonuses and commissions). Beginning with your one-year work anniversary, the amount of the benefit payment will equal 60% of your monthly earnings, which is calculated based on your then-current annual base salary (excluding bonuses and commissions) and your commissions from the previous calendar year.<br><br></div> 
+
+<!--Long Term Disabillity is SALES MANAGER REHIRE-->
+<div id="clause_110_4" style="display:<$client.env.eval((client.tForWhomUserInfo.LongTermDisabilityOption=='4')?'block':'none')>">Long-Term Disability Insurance: Company-paid coverage begins the first of the month following 30 days of employment. Benefit payments begin on the 91st day of disability and are subject to a $10,000 maximum per month. Until your one-year work anniversary, the amount of the benefit payment is equal to 60% of your basic monthly earnings (excluding bonuses and commissions). Beginning with your one-year work anniversary, the amount of the benefit payment will equal 60% of your monthly earnings, which is calculated based on your then-current annual base salary (excluding bonuses and commissions) and your commissions from the previous calendar year.<br><br></div> 
+
+<!--Long Term Disabillity is TIS-->
+<div id="clause_110A_4" style="display:<$client.env.eval((client.tForWhomUserInfo.LongTermDisabilityOption=='5')?'block':'none')>">Long-term Disability Insurance: Company-paid coverage begins the first of the month following sixty days of employment. Benefit payments begin on the 91st day of disability in an amount equal to 60% of your basic monthly earnings (excluding bonuses and commissions), subject to a $10,000.00 maximum per month<br><br></div> 
+
+<!--Long Term Disabillity is TIS-->
+<div id="clause_111A_4" style="display:<$client.env.eval((client.tForWhomUserInfo.LongTermDisabilityOption=='5')?'block':'none')>">Short-Term Disability: Company-paid coverage begins the first of the month following sixty days of employment. Benefit payments begin on the 15th day of disability in an amount equal to 70% of your basic weekly earnings up to a maximum of $200 per week.<br><br></div> 
+
+<!--Long Term Disabillity is TIS REHIRE-->
+<div id="clause_112A_4" style="display:<$client.env.eval((client.tForWhomUserInfo.LongTermDisabilityOption=='6')?'block':'none')>">Long-term Disability Insurance: Company-paid coverage begins the first of the month following 30 days of employment. Benefit payments begin on the 91st day of disability in an amount equal to 60% of your basic monthly earnings (excluding bonuses and commissions), subject to a $10,000.00 maximum per month.<br><br></div> 
+
+<!--Long Term Disabillity is TIS REHIRE-->
+<div id="clause_113A_4" style="display:<$client.env.eval((client.tForWhomUserInfo.LongTermDisabilityOption=='6')?'block':'none')>">Short-Term Disability: Company-paid coverage begins the first of the month following 30 days of employment. Benefit payments begin on the 15th day of disability in an amount equal to 70% of your basic weekly earnings up to a maximum of $200 per week.<br><br></div> 
+
+<!--Long Term Disabillity is PART TIME-->
+<div id="clause_114A_4" style="display:<$client.env.eval((client.tForWhomUserInfo.LongTermDisabilityOption=='7')?'block':'none')>">Long-term Disability Insurance: Company paid coverage begins the first of the month following six months of employment. Benefit payments begin on the 91st day of disability in an amount equal to 60% of your basic monthly earnings (excluding bonuses and commissions), subject to a $6,000.00 maximum per month.<br><br></div> 
+
+<div id="clause_111_99" class="LTDExtra<$client.env.eval(client.tUserPage.LongTermDisabilityExtra.length()>0?'1':'')>"></div>
+<script>
+var strLongTermDisabilityExtra = document.getElementById("ltdextra_hidden").value;
+if(strLongTermDisabilityExtra.length > 0){ document.getElementById("clause_111_99").innerHTML = strLongTermDisabilityExtra + "<br>"; }
+</script>
+
+<div id="clause_112_5" style="display:<$client.env.eval((client.tForWhomUserInfo.RetirementOption=='1')?'block':'none')>">401(k) Savings Plan: Subject to plan limitations and restrictions, you will be eligible to contribute to or rollover an existing plan to our Plan as of your date of hire.  Company contributions will begin on your one-year anniversary with the Company.  Employees are fully vested 6 years from their start date provided that they have completed 1000 hours of service each year. <br><br></div> 
+
+<div id="clause_113_4" style="display:<$client.env.eval((client.tForWhomUserInfo.RetirementOption=='2')?'block':'none')>">401(k) Savings Plan: Subject to plan provisions, you will be given credit for your previous service with respect to 401(k) participation.  You will receive information from Prudential regarding enrollment in the Plan.<br><br></div>  
+ 
+<div id="clause_114_99" class="RetirementExtra<$client.env.eval(client.tUserPage.RetirementExtra.length()>0?'1':'')>"></div>
+<script>
+var strRetirementExtra = document.getElementById("retirementextra_hidden").value;
+if(strRetirementExtra.length > 0){ document.getElementById("clause_114_99").innerHTML = strRetirementExtra + "<br>"; }
+</script>
+
+
+<div id="clause_115_8" class="indented" style="display:<$client.env.eval((client.tForWhomUserInfo.ContributionOption=='1')?'block':'none')>">Discretionary Contribution: As of your one-year anniversary, the Company will make a discretionary contribution of 2% of your total compensation for each eligible plan year. <br><br>Basic Contribution: You may also contribute from your compensation, in whole percentage amounts, any amount up to the dollar limit prescribed by the IRS for personal contributions into 401(k) plans. The Company will match your contribution by depositing $0.50 for each $1.00 you deposit up to 4% of your compensation. Thus, you will receive a maximum Matching Contribution of 2% of your total compensation if you contribute 4% or more of your compensation to the Plan.<br><br></div>  
+
+<div id="clause_116_9" class="indented" style="display:<$client.env.eval((client.tForWhomUserInfo.ContributionOption=='2')?'block':'none')>">Discretionary Contribution: As of your one-year anniversary, the Company will make a discretionary contribution of 2% of your total compensation for each eligible plan year. <br><br>Basic Contribution: You may also contribute from your compensation, in whole percentage amounts, any amount up to the dollar limit prescribed by the IRS for personal contributions into 401(k) plans. At some point in the future, you may be considered to be "highly compensated", as defined by the IRS for a specific calendar year.  At that point, you may contribute up to 8% of your total compensation (up to the IRS annual limit). The Company will match your contribution by depositing $0.50 for each $1.00 you deposit up to 4% of your compensation. Thus, you will receive a maximum Matching Contribution of 2% of your compensation if you contribute 4% of your compensation to the Plan.<br> <br></div>  
+
+<!-- <div id="clause_120_11" class="ContributionHighly<$client.tUserPage.ContributionOption>">Company Contributions: Toll Brothers has given employees company contributions to individual 401(k) accounts in two ways. The first is a discretionary contribution where the Company contributes 2% of an employee's total compensation for each eligible plan year, plus 2% of his/her compensation, if any, over the "Social Security Wage Base" (currently $106,800). In addition, the Company has been matching 50% of each employee's contribution up to 4% of his/her compensation, with a 6-year vesting schedule provided that 1000 hours of service were completed each year.<br><br>Because of current challenging economic times, the Company has temporarily suspended discretionary and matching contributions.<br><br>We are hopeful that our markets will recover soon and that we can resume our discretionary and matching contributions.<br><br></div> -->
+
+<div id="clause_121_99" class="ContributionExtra<$client.env.eval(client.tUserPage.ContributionExtra.length()>0?'1':'')>"></div>
+<script>
+var strContributionExtra = document.getElementById("contributionextra_hidden").value;
+if(strContributionExtra.length > 0){ document.getElementById("clause_121_99").innerHTML = strContributionExtra + "<br>"; }
+</script>
+
+<div id="clause_122_6" class="StockPurchasePlan<$client.tUserPage.StockPurchasePlan>">Employee Stock Purchase Plan: Subject to the plan limitations and restrictions you can, at quarterly intervals, purchase Toll Brothers, Inc.'s common stock at a 5% discount from the New York Stock Exchange market price, without a commission charge. You are also able to purchase stock at a 15% discount with the restriction that you may not sell this stock for a period of 3 years from the date of purchase. Purchases can be made by payroll deductions, check or cash. In accordance with any changes to IRS regulations and policies, this plan is subject to termination or modification.<br><br></div>
+
+<div id="clause_123_3" class="DiscountPlan<$client.tUserPage.DiscountPlan>">Discounts: All full-time Employees are eligible for a discount from the full price of a Toll Brothers home (% discount is based on tenure with the Company). A variety of other discounts are available through Toll Brothers subsidiaries.<br><Br></div>
+
+<div id="clause_124_1" style="display:<$client.env.eval((client.tForWhomUserInfo.VacationOption=='1')?'block':'none')>">Vacation: You will be eligible to accrue up to 10 vacation days per year. You will accrue vacation hours for each complete month of service, excluding your first month of employment. You may accrue and carry over up to 1½ times your yearly vacation accrual. After five years of service, you will be eligible to accrue 15 vacation days per year. Details on vacation accrual can be found in your Employee Handbook, which you will be asked to review during the onboarding process.<br><br></div>  
+<!--remove base on jira request SERVICES-34912 -->
+<!--
+<div id="clause_125_9" style="display:<$client.env.eval((client.tForWhomUserInfo.VacationOption=='2')?'block':'none')>">Vacation: You will be eligible to accrue up to 8 vacation days per year. You will accrue vacation hours for each complete month of service, excluding your first month of employment. You may accrue and carry over up to 1½ times your yearly vacation accrual. After five years of service, you will be eligible to accrue 12 vacation days per year. Details on vacation accrual can be found in your Employee Handbook, which you will be asked to review during the onboarding process.<br><br></div>  
+-->
+<div id="clause_126_5" style="display:<$client.env.eval((client.tForWhomUserInfo.VacationOption=='3')?'block':'none')>">Vacation: You will be eligible to accrue up to 15 vacation days per year. You will accrue vacation hours for each complete month of service, excluding your first month of employment. You may accrue and carry over up to 1½ times (22½ days) your yearly vacation accrual. Details on vacation accrual can be found in your Employee Handbook, which you will be asked to review during the onboarding process.<br><br></div>  
+
+<div id="clause_127_5" style="display:<$client.env.eval((client.tForWhomUserInfo.VacationOption=='4')?'block':'none')>">Vacation: You will be credited for time served towards your vacation accrual schedule. Therefore, you will be eligible to receive vacation based on your accrual rate prior to separation. You can accrue and carry over up to 1½ times your yearly accrual. Details on vacation accrual can be found in your Employee Handbook, which you will be asked to review during the onboarding process.<br><br></div>  
+
+<div id="clause_128_4" style="display:<$client.env.eval((client.tForWhomUserInfo.VacationOption=='5')?'block':'none')>">Vacation: You will be eligible to accrue up to 60 hours of vacation per year. You will accrue vacation hours for each complete month of service, excluding your first month of employment. You may accrue and carry over up to 1½ times your yearly vacation accrual. After five years of service, you will be eligible to accrue 90 hours per year. Details on vacation accrual can be found in your Employee Handbook.<br><br></div>  
+
+<div id="clause_130_99" class="VacationExtra<$client.env.eval(client.tUserPage.VacationExtra.length()>0?'1':'')>"></div>
+<script>
+var strVacationExtra = document.getElementById("vacationextra_hidden").value;
+if(strVacationExtra.length > 0){ document.getElementById("clause_130_99").innerHTML = strVacationExtra + "<br>"; }
+</script>
+
+<div id="clause_131_3" style="display:<$client.env.eval((client.tForWhomUserInfo.FloatOption=='1')?'block':'none')>">In addition to your earned vacation, you will receive 24 hours of personal time per calendar year: For your first year, you will receive:<br><br>&nbsp; &nbsp; -24 hours of personal time for the calendar year, if your start date is on or before March 31st<br>&nbsp; &nbsp; -16 hours of personal time for the calendar year, if your start date is on or before June 30th<br>&nbsp; &nbsp; -8 hours of personal time for the calendar year, if your start date is on or before September 30th<br><br><p>Wellness Day: You will receive 8 hours of wellness time per calendar year to use for preventive health screenings and routine health examinations.<br/><br/></p>
+</div>
+<!---
+<div id="clause_132_4" style="display:<$client.env.eval((client.tForWhomUserInfo.FloatOption=='1')?'block':'none')>">&nbsp;&nbsp;                                                                     <br>
+<p>&nbsp;         &nbsp; -Three personal days for the calendar year, if your start date is on or before March 31st<br>-Two personal days for the calendar year, if your start date is on or before June 30th<br>-One personal day for the calendar year, if your start date is on or before September 30th<br><br></p>Wellness Day: You will receive one wellness day per calendar year to use for preventive health screenings and routine health examinations.<br/><br/>
+</div>
+-->
+<!-- jira SERVICES-36995 update by rtalavera 
+    detail:
+    1. EUP Personal Holiday field update dropdown Service Tech/Non-Exempt Landscape to Part Time (30-39 hrs/weekly)
+    2. Update FloatOption 2 based on new specsheet SERVICES-36995 
+-->
+<!--
+<div id="clause_133_2" style="display:<$client.env.eval((client.tForWhomUserInfo.FloatOption=='2')?'block':'none')>">In addition to your earned vacation, you will receive one personal day per calendar year. For your first year, you will receive one personal day, if your start date falls on or before June 30th.<br><br>Wellness Day: You will receive one wellness day per calendar year to use for preventive health screenings and routine health examinations.<br/><br/></div>
+-->
+<div id="clause_133_2" style="display:<$client.env.eval((client.tForWhomUserInfo.FloatOption=='2')?'block':'none')>">In addition to your earned vacation, you will receive 18 hours of personal time per calendar year. For your first year, you will receive:<br><br>-18 hours for the calendar year, if your start date is on or before March 31st<br>-12 hours for the calendar year, if your start date is on or before June 30th<br>-6 hours for the calendar year, if your start date is on or before September 30th<br><br>Wellness Day: You will receive 6 hours of wellness time per calendar year to use for preventive health screenings and routine health examinations.<br/><br/></div>
+<!-- end SERVICES-36995 by rtalavera -->
+
+<div id="clause_133A_3" style="display:<$client.env.eval((client.tForWhomUserInfo.FloatOption=='3')?'block':'none')>">In addition to your earned vacation, you will receive personal and wellness hours in accordance with the Collective Bargaining Agreement. Please refer to the agreement for details.<br><br></div>
+<!--
+<div id="clause_133_3" style="display:<$client.env.eval((client.tForWhomUserInfo.FloatOption=='3')?'block':'none')>">&nbsp;&nbsp;-Two personal days for the calendar year, if your start date is on or before June 30th<br>&nbsp;&nbsp;-One personal day for the calendar year, if your start date is after June 30th and on or before September 30th<br><br>Wellness Day: You will receive one wellness day per calendar year to use for preventive health screenings and routine health examinations.<br/><br/></div>
+-->
+
+<div id="clause_134_99" class="FloatExtra<$client.env.eval(client.tUserPage.FloatExtra.length()>0?'1':'')>"></div>
+<script>
+var strFloatExtra = document.getElementById("floatextra_hidden").value;
+if(strFloatExtra.length > 0){ document.getElementById("clause_134_99").innerHTML = strFloatExtra + "<br>"; }
+</script>
+
+<div id="clause_134A_4" style="display:<$client.env.eval((client.tForWhomUserInfo.Other_Holidays=='Apartment Living')?'block':'none')>">Company Holidays: The Toll Brothers Apartment Living Division has its own holiday schedule.  Please review the Toll Brothers Apartment Living Holiday Schedule in the Forms Library in RedCarpet and, after your start date, on the Human Resources Intranet for details.<br><br></div>  
+
+<div id="clause_135_5" style="display:<$client.env.eval((client.tForWhomUserInfo.SickPayOption=='1')?'block':'none')>">Sick Pay: You will be eligible to accrue 48 hours or a state-mandated number of hours (whichever is greater) of sick leave annually. Any sick days that you do not use are carried forward, as long as you remain employed with the Company. Unused sick days are not payable upon separation of employment. If you have questions regarding your sick leave accrual, please contact Benefits at (866) 947-3378.<br><br>Workers Compensation Insurance Office: CorVel Corporation, P.O. Box 44015, Nottingham, MD 21236. Telephone: 800-906-4461<br><br></div>  
+
+<div id="clause_136_8" style="display:<$client.env.eval((client.tForWhomUserInfo.SickPayOption=='2')?'block':'none')>">Sick Pay: You will accrue one (1) hour of paid sick leave for every thirty (30) hours worked.<br><br>Sick leave accrual will cap at forty-eight (48) hours.  Any sick days which you do not use during the calendar year are carried forward, as long as you remain employed by the Company. Unused sick days are not payable upon separation of employment.<br><br>California employees will accrue paid sick leave pursuant to the employer's policy which satisfies or exceeds the accrual, carryover, and use requirements of Labor Code §246.  Details on California's notice regarding employee rights to accrue and use paid sick leave can be found in the Healthy Workplaces/Healthy Families Act form, which you will be asked to review during the onboarding process.<br><br>Workers Compensation Insurance Office: CorVel Corporation, P.O. Box 44015, Nottingham, MD 21236. Telephone: 800-906-4461<br><br></div> 
+
+<div id="clause_137_5" style="display:<$client.env.eval((client.tForWhomUserInfo.SickPayOption=='3')?'block':'none')>">Sick Pay: You will accrue a pro-rated amount of sick leave based on your part-time status. Any sick days which you do not use during the calendar year are carried forward as long as you remain employed by the Company. Unused sick days are not payable upon separation of employment. If you have questions regarding your sick leave accrual, please contact Benefits at (866) 947-3378.<br><br>Workers Compensation Insurance Office: CorVel Corporation, P.O. Box 44015, Nottingham, MD 21236. Telephone: 800-906-4461<br><br></div> 
+
+<div id="clause_139_99" class="SickPayExtra<$client.env.eval(client.tUserPage.SickPayExtra.length()>0?'1':'')>"></div>
+<script>
+var strSickPayExtra = document.getElementById("sickpayextra_hidden").value;
+if(strSickPayExtra.length > 0){ document.getElementById("clause_139_99").innerHTML = strSickPayExtra + "<br>"; }
+</script>
+
+<div id="clause_142_5" style="display:<$client.env.eval((client.tForWhomUserInfo.PerformanceOption=='1')?'block':'none')>">Performance Evaluation: During your course of employment with the Company, your performance and other factors will be regularly reviewed with you by your Supervisor.<br><br>Currently, it is Company policy to perform a salary review for your position on an annual basis mid-year. Your first salary review will take place in July <$client.tUserPage.PerformanceYear>. I will be willing to answer any questions you may have on how this affects you individually.<br><br></div>
+
+<div id="clause_143_6" style="display:<$client.env.eval((client.tForWhomUserInfo.PerformanceOption=='2')?'block':'none')>">Performance Evaluation: During your course of employment with the Company, your performance and other factors will be regularly reviewed with you by your Supervisor.<br><br>Currently, it is Company policy to perform a salary review for your position on an annual basis at calendar year end. Your first salary review will take place at year end  <$client.tUserPage.PerformanceYear>. I will be willing to answer any questions you may have on how this affects you individually.<br><br></div>
+
+<div id="clause_144_5" style="display:<$client.env.eval((client.tForWhomUserInfo.PerformanceOption=='3')?'block':'none')>">Performance Evaluation: During your course of employment with the Company, your performance and other factors will be regularly reviewed with you by your Supervisor. I will be willing to answer any questions you may have on how this affects you individually.<br><br></div>
+
+<div id="clause_145_7" style="display:<$client.env.eval((client.tForWhomUserInfo.PerformanceOption=='4')?'block':'none')>">Performance Evaluation: During the course of your employment with the Company, your performance and other factors will be regularly reviewed with you by your Supervisor. Currently, it is Company policy to perform a salary review for your position on an annual basis at the end of the calendar year. Your first salary review will take place in December <$client.tUserPage.PerformanceYear>. I will be willing to answer any questions you may have on how this affects you individually.<br><br></div>
+
+<div id="clause_143_99" class="PerformanceExtra<$client.env.eval(client.tUserPage.PerformanceExtra.length()>0?'1':'')>"></div>
+<script>
+var strPerformanceExtra = document.getElementById("performanceextra_hidden").value;
+if(strPerformanceExtra.length > 0){ document.getElementById("clause_143_99").innerHTML = strPerformanceExtra + "<br>"; }
+</script>
+
+<div id="clause_144_6" style="display:block;">Employment Arbitration: It is Company policy to use Alternative Dispute Resolution or "Arbitration" to resolve those rare employment disputes that may arise between employer and employee that cannot be resolved through the normal in-house dispute resolution process. As a condition of your employment with us, you agree to be bound by our Arbitration policy and will be asked to sign an agreement to this effect. The Human Resources or Legal Departments can answer specific questions you may have about our Arbitration policy.<br><br></div>
+
+<div id="clause_145_3" class="SummaryStandard<$client.tUserPage.SummaryOption>">The Company policies and benefits listed above are a summary. These policies and benefits are more specifically set forth in the Company Policy Manual or the applicable plan document and are subject to change.<br><br></div>
+
+<div id="clause_146_3" class="SummaryNoBenefits<$client.tUserPage.SummaryOption>">The Company policies listed above are a summary. These policies are more specifically set forth in the Company Policy Manual or the applicable plan document and are subject to change.<br><br></div>
+
+<div id="clause_147_99" class="SummaryExtra<$client.env.eval(client.tUserPage.SummaryExtra.length()>0?'1':'')>"></div>
+<script>
+var strSummaryExtra = document.getElementById("summaryextra_hidden").value;
+if(strSummaryExtra.length > 0){ document.getElementById("clause_147_99").innerHTML = strSummaryExtra + "<br>"; }
+</script>
+
+
+<div id="clause_147_10" style="display:<$client.env.eval((client.tForWhomUserInfo.StateRequirments=='Washington State')?'block':'none')>">Toll Bros., Inc., is another subsidiary of Toll Brothers, Inc., that serves as a common paymaster for other subsidiaries within the Toll Brothers family of companies, including Toll WA. To allow for the streamlining of payroll processes among commonly owned companies, like Toll WA and Toll Bros., Inc., Washington law allows a "qualified employer of record" to provide paymaster services to affiliated businesses.  Paymaster services include payroll and related human resource services.  A "qualified employer of record" is someone who has no functional employment relationship with a qualified employee and no contractual liability with the qualified employee for employee costs.  A "functional employment relationship," on the other hand, means having control over the work schedule and activities of an employee and control over all employment decisions such as salary, discipline, hiring and layoffs.  Toll WA runs all of the operations in the State of Washington and will be your functional employer.  Toll Bros., Inc., which is responsible only for payroll and other related human resource services for Toll WA's operations, will be your "qualified employer of record."  That is why you will receive your paychecks and other employee benefits from Toll Bros and not from Toll WA. <br><br></div>
+
+
+<div id="clause_148_6" style="display:block;">This letter does not constitute an employment contract.  We recognize that employees have the right to terminate their employment relationship at any time and for any reason and the Company reserves the same right.<br><br>I trust this letter accurately sums up our understanding.  If you have any questions or want clarification on any of the above, please do not hesitate to contact me. We are looking forward to having you join us.<br><br></div>
+
+<div id="clause_148A_2" style="display:block;">Very truly yours,<br><br></div>
+
+<div id="clause_SIG1_5" style="display:block;">
+<script>
+    if(oManager > 0){ document.write('<table cellpadding="0" cellspacing="0">'); }
+    else { document.write('<table style="display:none;">'); }
+</script>
+    <tr>
+        <td>Name</td>
+        <td> &nbsp;</td>
+        <td>Date</td>
+    </tr>
+    <tr>
+        <td><$client.env.FormField.TollRepName.HTML></td>
+        <td> &nbsp; </td>
+        <td class="dateCell"><$client.env.FormField.TollRepDate.HTML></td>
+    </tr>
+</table>
+<script>
+    if(oManager > 0){ document.write('<table style="display:none;">'); } 
+    else { document.write('<table cellpadding="0" cellspacing="0">'); }
+</script>
+    <tr>
+        <td>
+            <script>
+                document.write(document.getElementById('tollname').value);
+            </script>
+        </td>
+        <td> &nbsp; </td>
+        <td>
+            <script>
+                document.write(document.getElementById('ts2').value);
+            </script>
+        </td>
+    </tr>
+</table>
+</div>
+
+
+<div id="clause_148A_4" style="display:<$client.env.eval((client.tForWhomUserInfo.SignatureExtra!='') ?'block':'none')>"></div>   
+
+<div id="clause_148B_4" style="display:<$client.env.eval(((client.tForWhomUserInfo.SignatureExtra=="") && (client.tForWhomUserInfo.TollBrothersSignature=="Standard")) ?'block':'none')>">Michael Patschke<br>Vice President, Talent Acquisition<br>Toll Brothers, Inc.<br><br></div>   
+
+<div id="clause_148C_4" style="display:<$client.env.eval(((client.tForWhomUserInfo.SignatureExtra=="") && (client.tForWhomUserInfo.TollBrothersSignature=="Washington state") ) ?'block':'none')>">Michael Patschke<br>Vice President, Talent Acquisition<br>Toll WA LP<br><br></div>   
+
+<!---<div id="clause_148B_4" style="display:<$client.env.eval((client.tForWhomUserInfo.TollBrothersSignature=='Standard') && (client.tForWhomUserInfo.SignatureExtra.length()=='0') ?'block':'none')>">Michael Patschke<br>Vice President, Talent Acquisition<br>Toll Brothers, Inc.<br><br></div>   
+
+<div id="clause_148C_4" style="display:<$client.env.eval( (client.tForWhomUserInfo.TollBrothersSignature=='Washington State') && (client.tForWhomUserInfo.SignatureExtra.length()=='0') ?'block':'none')>">Michael Patschke<br>Vice President, Talent Acquisition<br>Toll WA LP<br><br></div>   
+-->
+<script>
+var SignatureExtra = document.getElementById("title_hidden").value;
+if(strSummaryExtra.length > 0){ document.getElementById("clause_148A_4").innerHTML = SignatureExtra; }
+
+$content="";
+var sContent=jQuery("#clause_148A_4").html().split("\n");
+jQuery.each(sContent, function(i, obj){
+    $content+=""+obj+"<br>";
+});
+jQuery("#clause_148A_4").html($content);
+
+</script>
+
+<div id="clause_149_8" style="display:block;">Toll Brothers' Corporate Office: 250 Gibraltar Road, Horsham, PA 19044. Telephone: (215) 938-8000<br><br>If you prefer not to sign electronically, please do not proceed further. Please contact your local recruiter for directions on completing your new hire paperwork via an alternative method.<br><br>
+TO SIGN THIS DOCUMENT ELECTRONICALLY<br><br>
+By completing this section and clicking the 'Save and Complete Task' button below, you are indicating your acceptance of the terms of this offer.<br><br></div>
+<script>
+if(oManager > 0){ document.getElementById("clause_149_8").style.display="none"; }
+</script>
+
+<div id="clause_SIG2_2" style="display:block;">
+<table cellpadding="0" cellspacing="0">
+    <tr>
+        <td>First Name</td>
+        <td> &nbsp; </td>
+        <td>Last Name</td>
+        <td> &nbsp;</td>
+        <td>Date</td>
+        <td> &nbsp;</td>
+        <td>Last 4 Digits of SSN</td>
+    </tr>
+    <tr>
+        <td><$client.env.FormField.FirstNameSignature.HTML></td>
+        <td> &nbsp; </td>
+        <td><$client.env.FormField.LastNameSignature.HTML></td>
+        <td> &nbsp;</td>
+        <td class="dateCell"><$client.env.FormField.Date.HTML></td>
+        <td> &nbsp;</td>
+        <td><$client.env.FormField.SSNSignature.HTML></td>
+    </tr>
+</table>
+</div>
+<script>
+if(oManager > 0){ document.getElementById("clause_SIG2_2").style.display="none"; }
+</script>
+        
+</div>
+
+<div id="hiddendiv_pg1">
+<$client.env.FormField.Page1.HTML>
+</div>
+
+<div id="hiddendiv_pg2">
+<$client.env.FormField.Page2.HTML>
+</div>
+
+<div id="hiddendiv_pg3">
+<$client.env.FormField.Page3.HTML>
+</div>
+<!--- End HTML Content -->
+
+<br><br>
+
+
+<$client.env.FormButtons>
+
+</form>
+
+<SCRIPT>               //for popup calender
+ChangeCalendarIcons();
+var strCompletedForm = FORM_COMPLETED;
+if (strCompletedForm != ""){
+    document.getElementById("hiddendiv_pg1").style.display="block";
+    document.getElementById("hiddendiv_pg2").style.display="block";
+    document.getElementById("hiddendiv_pg3").style.display="block";
+    showCompleted();
+}
+ 
+
+
+jQuery(".ExtraOptionB1").each(function(){
+
+var $this=jQuery(this).html();
+//console.log($this.replace(/[•]+/gi, '<br/>-'));
+//jQuery(this).html($this.replace(/•/gi, '<br/>-'));
+});
+
+console.log("FORM COMPLETED: "+strCompletedForm)
+
+</SCRIPT>

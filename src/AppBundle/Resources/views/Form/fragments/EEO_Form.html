@@ -1,0 +1,469 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+
+<div id="form-loader"" class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="eeo-form" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display: none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.a01_Name.prompt>
+        <$client.env.FormField.a02_Position.prompt>
+        <$client.env.FormField.a03_Office.prompt>
+        <$client.env.FormField.a04_Gender_Female.prompt>
+        <$client.env.FormField.a04_Gender_Male.prompt>
+        <$client.env.FormField.a04_Gender_NA.prompt>
+        <$client.env.FormField.a05_LGBT.prompt>
+        <$client.env.FormField.a06_LGBT.prompt>
+        <$client.env.FormField.a07_LGBT.prompt>
+        <$client.env.FormField.a08_Disability.prompt>
+        <$client.env.FormField.a09_Disability.prompt>
+        <$client.env.FormField.a10_Disability.prompt>
+        <$client.env.FormField.a10_Veteran.prompt>
+        <$client.env.FormField.a11_Veteran.prompt>
+        <$client.env.FormField.a12_Veteran.prompt>
+        <$client.env.FormField.a13_Ethnicity.prompt>
+        <$client.env.FormField.a14_Ethnicity.prompt>
+        <$client.env.FormField.a15_Race_Indian.prompt>
+        <$client.env.FormField.a16_Race_Asian.prompt>
+        <$client.env.FormField.a17_Race_Black.prompt>
+        <$client.env.FormField.a18_Race_Hawaiian.prompt>
+        <$client.env.FormField.a19_Race_NA.prompt>
+        <$client.env.FormField.a19_Race_White.prompt>
+        <$client.env.FormField.a20_Individual_Reporting.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <header class="row mb-30">
+        <div class="col-lg-12">
+            <div class="heading-wrapper center-block mb-10">
+                <img src="<$link;/main/RedCarpet/FormTemplates/EEO_Form/img/kirkland_heading_short.jpg>" alt="KIRKLAND &amp; ELLIS LLP" class="img-responsive">
+            </div>
+            <h3 class="text-center">
+                <strong>EEO / NALP Survey</strong><br>
+                U.S. Offices Only
+            </h3>
+        </div>
+    </header>
+
+    <div class="row">
+        <div class="col-lg-1 col-sm-12 col-xs-12">
+            <strong>Name:</strong>
+        </div>
+        <div class="col-lg-5 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a01_Name.html>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-1 col-sm-12 col-xs-12">
+            <strong>Position:</strong>
+        </div>
+        <div class="col-lg-5 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a02_Position.html>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-1 col-sm-12 col-xs-12">
+            <strong>Office:</strong>
+        </div>
+        <div class="col-lg-5 col-sm-12 col-xs-12">
+            <div class="form-group">
+                <$client.env.FormField.a03_Office.html>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <p>
+                Kirkland &amp; Ellis LLP values and appreciates individuals from diverse social, economic, cultural, and personal backgrounds. All employment decisions, including, but not limited to, recruiting, hiring, placement, promotion, compensation, and evaluation are made without regard to the employee’s sex, race, color, gender, religion, national origin, citizenship, pregnancy, age, marital status, ancestry, physical or mental disability, medical condition, veteran status, sexual orientation, gender identity or expression, genetic information, or any other characteristic protected under federal, state, or local law.
+            </p>
+            <p>
+                Kirkland &amp; Ellis LLP is subject to certain governmental record-keeping and reporting requirements for administration of civil rights laws and regulations. In order to comply with these requirements, and in order to maintain statistics used to measure the Firm's success in building and maintaining a diverse workforce, the Firm invites individuals to voluntarily self-identify their gender, race, ethnicity, sexual orientation, gender identity, gender expression, and other personal characteristics as indicated below. Submission of the requested information is voluntary and refusal to provide any will not subject you to any adverse treatment. This information will not be retained in Kirkland &amp; Ellis LLP personnel files.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <strong>
+                                    <em>Gender</em>
+                                </strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <$client.env.FormField.a04_Gender_Male.html>
+                            </td>
+                            <td>
+                                <strong>Male</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <$client.env.FormField.a04_Gender_Female.html>
+                            </td>
+                            <td>
+                                <strong>Female</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <$client.env.FormField.a04_Gender_NA.html>
+                            </td>
+                            <td>
+                                <strong>I choose not to answer</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-lg-9 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th colspan="4">
+                                <strong>
+                                    <em>Other Characteristics</em>
+                                </strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td>&nbsp;</td>
+                            <td>
+                                <strong>Yes</strong>
+                            </td>
+                            <td>
+                                <strong>No</strong>
+                            </td>
+                            <td>
+                                <strong>N/A or I choose not to answer</strong>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <td class="text-left">
+                                <strong>LGBT</strong>
+                            </td>
+                            <td>
+                                <div class="i-block">
+                                    <$client.env.FormField.a05_LGBT.html>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="i-block">
+                                    <$client.env.FormField.a06_LGBT.html>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="i-block">
+                                    <$client.env.FormField.a07_LGBT.html>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <td class="text-left">
+                                <strong>Disability</strong>
+                            </td>
+                            <td>
+                                <div class="i-block">
+                                    <$client.env.FormField.a08_Disability.html>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="i-block">
+                                    <$client.env.FormField.a09_Disability.html>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="i-block">
+                                    <$client.env.FormField.a10_Disability.html>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="text-center">
+                            <td class="text-left">
+                                <strong>Veteran</strong>
+                            </td>
+                            <td>
+                                <div class="i-block">
+                                    <$client.env.FormField.a10_Veteran.html>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="i-block">
+                                    <$client.env.FormField.a11_Veteran.html>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="i-block">
+                                    <$client.env.FormField.a12_Veteran.html>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="box mb-20">
+        <div class="row b-bottom box-heading">
+            <div class="col-lg-12">
+                <strong>
+                    <em>Ethnicity</em>
+                </strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 col-sm-1 col-xs-1 text-center">
+                <div class="i-block">
+                    <$client.env.FormField.a13_Ethnicity.html>
+                </div>
+            </div>
+            <div class="col-lg-11 col-sm-11 col-xs-11">
+                <strong>Hispanic or Latino:</strong> A person of Cuban, Mexican, Puerto Rican, South or Central American, or other Spanish culture or origin, regardless of race.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 col-sm-1 col-xs-1 text-center">
+                <div class="i-block">
+                    <$client.env.FormField.a14_Ethnicity.html>
+                </div>
+            </div>
+            <div class="col-lg-11 col-sm-11 col-xs-11">
+                <em>If no, please complete the section below.</em>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-1 col-sm-1 col-xs-1 text-center">
+                <div class="i-block">
+                    <$client.env.FormField.a15_Ethnicity.html>
+                </div>
+            </div>
+            <div class="col-lg-11 col-sm-11 col-xs-11">
+                <em>I choose not to answer.</em>
+            </div>
+        </div>
+        <div class="row box-heading">
+            <div class="col-lg-12">
+                <strong>
+                    <em>Race <small>(Select one or more)</small></em>
+                </strong>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-1 col-sm-1 col-xs-1 text-center">
+                <div class="i-block">
+                    <$client.env.FormField.a15_Race_Indian.html>
+                </div>
+            </div>
+            <div class="col-lg-11 col-sm-11 col-xs-11">
+                <strong>American Indian or Alaska Native (Not Hispanic or Latino):</strong> A person having origins in any of the original peoples of North and South America (including Central America), and who maintains tribal affiliation or community attachment.
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-1 col-sm-1 col-xs-1 text-center">
+                <div class="i-block">
+                    <$client.env.FormField.a16_Race_Asian.html>
+                </div>
+            </div>
+            <div class="col-lg-11 col-sm-11 col-xs-11">
+                <strong>Asian (Not Hispanic or Latino):</strong> A person having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian Subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand and Vietnam.
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-1 col-sm-1 col-xs-1 text-center">
+                <div class="i-block">
+                    <$client.env.FormField.a17_Race_Black.html>
+                </div>
+            </div>
+            <div class="col-lg-11 col-sm-11 col-xs-11">
+                <strong>Black or African American (Not Hispanic or Latino):</strong> A person having origins in any of the Black racial groups of Africa.
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-1 col-sm-1 col-xs-1 text-center">
+                <div class="i-block">
+                    <$client.env.FormField.a18_Race_Hawaiian.html>
+                </div>
+            </div>
+            <div class="col-lg-11 col-sm-11 col-xs-11">
+                <strong>Native Hawaiian or Other Pacific Islander (Not Hispanic or Latino):</strong> A person having origins in any of the peoples of Hawaii, Guam, Samoa, or other Pacific Islands.
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-1 col-sm-1 col-xs-1 text-center">
+                <div class="i-block">
+                    <$client.env.FormField.a19_Race_White.html>
+                </div>
+            </div>
+            <div class="col-lg-11 col-sm-11 col-xs-11">
+                <strong>White (Not Hispanic or Latino):</strong> A person having origins in any of the original peoples of Europe, the Middle East, or North Africa.
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 col-sm-1 col-xs-1 text-center">
+                <div class="i-block">
+                    <$client.env.FormField.a19_Race_NA.html>
+                </div>
+            </div>
+            <div class="col-lg-11 col-sm-11 col-xs-11">
+                <strong>I choose not to answer.</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="box mb-40">
+        <div class="row box-heading b-bottom">
+            <div class="col-lg-12">
+                <strong>
+                    <em>Individual Reporting</em>
+                </strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 col-sm-1 col-xs-1 text-center">
+                <div class="i-block">
+                    <$client.env.FormField.a20_Individual_Reporting.html>
+                </div>
+            </div>
+            <div class="col-lg-11 col-sm-11 col-xs-11 b-left">
+                By checking this box, I choose not to have my ethnicity, race, LGBT, disability and/or veteran status reported to any third party, other than in aggregate, anonymized form. I understand that this selection will preclude me from being individually identified as diverse to certain diversity-interested clients who may request this information for their matters.
+            </div>
+        </div>
+    </div>
+
+    <footer class="row">
+        <div class="col-lg-12">
+            <h3 class="text-center">
+                <strong>
+                    <small>Error! Unknown document property name.</small> CONFIDENTIAL
+                </strong>
+            </h3>
+        </div>
+    </footer>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+        
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(document).on('ready', function() {
+    // hide modal once form is ready
+    $('#form-loader').hide();
+});
+
+angular.module("LifeSuite.FormBuilder.Services")
+    .controller("BaseFormController", ["$scope","UiHelper","LocStr", function($scope, UiHelper, LocStr) {
+        // checkbox groups
+        angular.element('[data-checkbox-group]').on('change', function() {
+            let groupId = this.getAttribute('data-checkbox-group');
+            let checked = this.checked;
+            angular.forEach(angular.element('[data-checkbox-group="' + groupId + '"]'), function(v,k) {
+                v.checked = false;
+            });
+            this.checked = checked;
+        });
+
+        angular.element(document).ready(function() {
+            funcRCFormSetup();
+            // hide loader once form is ready
+            angular.element('#divLoader').hide();
+        });
+    }]);
+</script>

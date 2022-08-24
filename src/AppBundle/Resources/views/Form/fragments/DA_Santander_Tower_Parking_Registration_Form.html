@@ -1,0 +1,515 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Applicant_initial.prompt>
+        <$client.env.FormField.Apt_Box.prompt>
+        <$client.env.FormField.Business_Phone.prompt>
+        <$client.env.FormField.Card_Issued_Date.prompt>
+        <$client.env.FormField.Choice.prompt>
+        <$client.env.FormField.City.prompt>
+        <$client.env.FormField.Color.prompt>
+        <$client.env.FormField.Color_2.prompt>
+        <$client.env.FormField.Company_Suite.prompt>
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Date_2.prompt>
+        <$client.env.FormField.Email.prompt>
+        <$client.env.FormField.Evening_Telephone.prompt>
+        <$client.env.FormField.First_Name.prompt>
+        <$client.env.FormField.Last_Name.prompt>
+        <$client.env.FormField.Laz_initial.prompt>
+        <$client.env.FormField.License_Plate.prompt>
+        <$client.env.FormField.License_Plate_2.prompt>
+        <$client.env.FormField.Make.prompt>
+        <$client.env.FormField.Make_2.prompt>
+        <$client.env.FormField.Model.prompt>
+        <$client.env.FormField.Model_2.prompt>
+        <$client.env.FormField.Monly_parking_paid_by.prompt>
+        <$client.env.FormField.Online_System_Password.prompt>
+        <$client.env.FormField.Online_System_Password_Hint.prompt>
+        <$client.env.FormField.Online_System_User_Name.prompt>
+        <$client.env.FormField.State.prompt>
+        <$client.env.FormField.State_2.prompt>
+        <$client.env.FormField.Street_Address.prompt>
+        <$client.env.FormField.Toll_Tag.prompt>
+        <$client.env.FormField.Year.prompt>
+        <$client.env.FormField.Year_2.prompt>
+        <$client.env.FormField.Zip_Code.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="form-group">
+                <img src="<$link;/main/RedCarpet/FormTemplates/DA_Santander_Tower_Parking_Registration_Form/img/laz_parking_logo.png>" alt="Laz Parking Logo" class="img-responsive">
+            </div>
+            
+        </div>
+        <div class="col-sm-5 pt-sm-5">
+            <div class="form-group pt-sm-5 text-right">
+                <div class="d-inline-block">
+                    <$client.env.FormField.Choice.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="d-inline-block">DATE CARD ISSUED</div>
+                <div class="d-inline-block">
+                    <$client.env.FormField.Card_Issued_Date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="d-inline-block">ACCOUNT #</div>
+                <div class="d-inline-block">
+                    <$client.env.FormField.account.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box mb-1">
+        <div class="row b-bottom">
+            <div class="col-sm-5 b-right pt-1 pl-1">
+                Last Name
+                <$client.env.FormField.Last_Name.HTML>
+            </div>
+            <div class="col-sm-3 b-right pt-1 pl-1">
+                First Name
+                <$client.env.FormField.First_Name.HTML>
+            </div>
+            <div class="col-sm-4 pt-1 pl-1">
+                Company Suite #
+                <$client.env.FormField.Company_Suite.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-sm-5 b-right pt-1 pl-1">
+                Street Address (if no company enter home)
+                <$client.env.FormField.Street_Address.HTML>
+            </div>
+            <div class="col-sm-2 b-right pt-1 pl-1">
+                Apt or Box #
+                <$client.env.FormField.Apt_Box.HTML>
+            </div>
+            <div class="col-sm-2 b-right pt-1 pl-1">
+                City
+                <$client.env.FormField.City.HTML>
+            </div>
+            <div class="col-sm-1 b-right pt-1 pl-1">
+                State
+                <$client.env.FormField.State.HTML>
+            </div>
+            <div class="col-sm-2 pt-1 pl-1">
+                Zip Code
+                <$client.env.FormField.Zip_Code.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-sm-4 b-right pt-1 pl-1">
+                Business Phone
+                <$client.env.FormField.Business_Phone.HTML>
+            </div>
+            <div class="col-sm-4 b-right pt-1 pl-1">
+                Evening Telephone
+                <$client.env.FormField.Evening_Telephone.HTML>
+            </div>
+            <div class="col-sm-4 pt-1 pl-1">
+                E-Mail Address
+                <$client.env.FormField.Email.HTML>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 b-right pt-1 pl-1">
+                Online System User Name
+                <$client.env.FormField.Online_System_User_Name.HTML>
+            </div>
+            <div class="col-sm-4 b-right pt-1 pl-1">
+                Online System Password
+                <$client.env.FormField.Online_System_Password.HTML>
+            </div>
+            <div class="col-sm-4 pt-1 pl-1">
+                Online System Password Hint
+                <$client.env.FormField.Online_System_Password_Hint.HTML>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-1">
+        <div class="col-sm-12">
+            <div class="d-inline-block">
+                <h4>
+                    <strong>Check One:</strong>
+                    Monthly parking paid for by:
+                </h4>
+            </div>
+            <div class="d-inline-block">
+                <$client.env.FormField.Monly_parking_paid_by.HTML>
+                <strong>Individual Parkers must provide credit card for auto draft</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Please provide information on all vehicles that you might utilize when using your parking card. It is your responsibility to update this information with the Parking Management Office by completing a new Parking Registration Form.</p>
+        </div>
+    </div>
+
+    <h4 class="text-center">VEHICLE INFORMATION</h4>
+    <div class="box row mb-5">
+        <div class="col-sm-6 b-right">
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>Toll Tag #</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.Toll_Tag.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>License Plate</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.License_Plate.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>State</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.State_1.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>Year</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.Year.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>Color</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.Color.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>Make</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.Make.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>Model</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.Model.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>Toll Tag #</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.Toll_Tag_2.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>License Plate</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.License_Plate_2.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>State</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.State_2.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>Color</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.Color_2.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>Year</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.Year_2.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row b-bottom">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>Make</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.Make_2.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="d-inline-block pl-1">
+                        <h4>Model</h4>
+                    </div>
+                    <div class="d-inline-block">
+                        <$client.env.FormField.Model_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-sm-12">
+            <p class="text-center">
+                <strong>LAZ Parking Reserves the right to terminate or refuse parking to any individual for any reason it deems appropriate. Card Holder has read the rules and regulations for the parking facility and understands and to its contents.</strong>
+            </p>
+            <p class="text-center lead">
+                <strong>PLEASE TURN, READ AND SIGN PARKING AGREEMENT.</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-sm-12">
+            <p class="text-center">
+                <strong>LAZ PARKING</strong><br>
+                <strong>TERMS AND CONDITIONS</strong>
+            </p>
+            <p>
+                <strong>Note:</strong> Because rates vary by location, ALL fees designated by a $__ field will be filled upon application submission in the presence of the applicant.
+            </p>
+            <ol type="1">
+                <li class="mb-2">
+                    <strong>
+                        <u>Obtaining a Parking Access Sticker</u>
+                    </strong><br>
+                    <strong>A.</strong> A monthly parking card or sticker may be obtained by the company administrator or as an individual by registering online at <a href="http://www.lazparking.com" target="_blank">www.lazparking.com</a>. Applicants must complete the application identifying each vehicle to be used by the sticker holder. The following information must be furnished for each vehicle listed: License tag number, vehicle make, model, year and color. <br>
+                    <strong>B.</strong> Unless otherwise provided in your Lease agreement, each parking sticker is provided at a nonrefundable fee of <strong>$15.00</strong>. Additionally, a <strong>$15.00</strong> fee will be invoiced to replace a lost, stolen or damaged sticker. <br>
+                    <strong>C.</strong> A lost or stolen parking sticker should be reported as soon as possible.
+                </li>
+                <li class="mb-2">
+                    <strong>
+                        <u>Conditions For Use of a Parking Access Sticker</u>
+                    </strong><br>
+                    <strong>A.</strong> A parking sticker or permit authorizes the holder to have only one of the vehicles listed on the application in the garage at any given time. <br>
+                    <strong>B.</strong> Owners of more than one vehicle must have one sticker for each vehicle and only one vehicle is allowed to park in the garage at the time. <br>
+                    <strong>C.</strong> If driving two vehicles on the same day, only one car will be permitted to use the parking sticker. The other car must pull a ticket and park in Visitor Parking and must pay for parking at the current daily rate. <br>
+                    <strong>D.</strong> The card holder is responsible for updating online any changes regarding sticker type, license number, address, employer or telephone number. <br>
+                    <strong>E.</strong> Any parker found to be misusing their parking privileges (Example, but not limited to: passing the sticker to another individual) will be subject to termination of privileges. <br>
+                    <strong>F.</strong> Failure to properly register your car or misuse of parking spaces may subject your car to towing or immobilization by the placement of a boot. <br>
+                    <strong>G.</strong> Long term storage of vehicles. properly registered or not. is not permitted without the prior written consent of LAZ Parking. Special Rates apply for overnight storage.
+                </li>
+                <li class="mb-2">
+                    <strong>
+                        <u>Payments on a Parking Account</u>
+                    </strong><br>
+                    <strong>A.</strong> All checks should be made payable to LAZ Parking. Payments should list the card holder's name on the check. <br>
+                    <strong>B.</strong> Payment for monthly parking is due on the 1st of each month. Payment is considered late after the 5th and card deactivation is on the 10<sup>th</sup>. A reconnection fee of <strong><u>$15.00</u></strong> will be invoiced for all cards deactivated. If the 10<sup>th</sup> falls on a Saturday, Sunday or Holiday, payments are due the prior business day. Prorating of monthly charges will be done on a half month basis only. Any parker with an outstanding balance after the 10th of the month may be assessed a <strong><u>$15.00</u></strong> late fee. If the balance remains outstanding beyond the 10<sup>th</sup> the parking card will be deactivated and monthly parking privileges will be terminated until payment is made. A <strong><u>$15.00</u></strong> reactivation fee may be assessed in addition to the late fee. Anyone having their card deactivated a total of three (3) times risks having their parking privileges terminated. <br>
+                    <strong>C.</strong> Refunds for parking will not be made to anyone whose card has been deactivated due to nonpayment. <br>
+                    <strong>D.</strong> Monthly payment must be made by check to the remit address on the invoice. <br>
+                    <strong>E.</strong> All checks returned from the bank for nonpayment will be assessed a <strong><u>$30.00</u></strong> charge. <br>
+                    <strong>F.</strong> If the parker believes an error has been made on his/her account proof of payment will be required (canceled check or cash receipt). No adjustments will be made without verification.
+                </li>
+                <li class="mb-2">
+                    <strong>
+                        <u>Termination of Parking</u>
+                    </strong><br>
+                    <strong>A.</strong> Upon termination of parking, the parking Access Sticker may be discarded. The tenant's parking account must be current and paid in full. <br>
+                    <strong>B.</strong> The rental for a parker's final month will be prorated on a half month basis only if a full month is not used. Access Stickers cancelled by the 15<sup>th</sup> day of any month will be credited a half month. No credit for stickers after the 15<sup>th</sup>day of the month. 
+                </li>
+                <li class="mb-2">
+                    <strong>Procedures When you Drive a Different Vehicle </strong><br>
+                    <strong>A.</strong> If the monthly parker is driving without an access sticker. a ticket should be pulled to enter the parking deck. You will be granted a onetime exit without charge provided that your ticket is properly validated, To do so. you must have your ticket validated during regular business hours at the garage office located on level B2 of the Thanksgiving Tower. The parker's name, sticker and ticket number will be logged and a follow up check of the access sticker use history will be performed. Any person found to be misusing their parking access will be subject to termination of parking privileges. 
+                </li>
+                <li class="mb-2">
+                    <strong>
+                        <u>Parking Deck Procedures</u>
+                    </strong><br>
+                    <strong>A.</strong> Follow directional signs throughout all levels of the deck. <br>
+                    <strong>B.</strong> Use your parking access sticker to both enter and exit from the facility. DO NOT TAKE A TICKET TO ENTER THE GARAGE unless otherwise authorized to do so. <br>
+                    <strong>C.</strong> The parking access system will not allow pass backs or multiple exits. Access sticker must be used in sequence. Only one entrance and one exit are allowed per cycle. Unlimited cycles are allowed daily. <br>
+                    <strong>D.</strong> Overnight storage of a vehicle is not permitted without the prior consent of LAZ Parking <br>
+                    <strong>E.</strong> PARKERS WHO ARE OBSERVED DRIVING THE WRONG WAY WILL BE GIVEN ONE WRITTEN WARNING. FUTURE VIOLATION MAY RESULT IN TERMINATION OF PARKING PRIVILEGES. <br>
+                    <strong>F.</strong> A speed limit of 5 mph will be monitored by Parking Personnel and Security Officers: violations will be issued. <br>
+                    <strong>G.</strong> Parking is not allowed in RESERVED, VISITOR, HANDICAP PARKING OR IN NO PARKING ZONES unless authorized to do so. <br>
+                    <strong>H.</strong>PARKING IS ALLOWED BETWEEN THE LINES IN ONE SPACE ONLY. PLEASE DO NOT PARK IN CROSSED OUT AREAS OR SOLID PRINTED AREAS AT STAIRWELL ENTRANCES. <br>
+                    <strong>I. </strong>Please deposit trash in containers located at each elevator station. <br>
+                    <strong>J.</strong> Any accident occurring in the garage involving damage to vehicles or personal injury should be reported to the Police (911), Building Security and the Parking Management Office. <br>
+                    <strong>K.</strong> LAZ Parking, its respective owners, affiliates and subsidiaries and their respective shareholders, directors, officers, employees and agents and all other parties, including but not limited to this facility's owner or landlord is not responsible for theft, damage, loss of vehicles or items within the vehicle while parked on the premise. Damage or theft to any vehicle is the sole responsibility of the vehicle's owner. <br>
+                    <strong>L.</strong> Any parker receiving three (3) or more violations will be subject to termination without further warning. Violations are issued for using two spaces, driving the wrong way, speeding or any other reasons at the discretion of the Parking Manager <br>
+                    <strong>M.</strong> Unidentified vehicles. A citation will be left on the windshield. A response is required the following day to ensure identification.
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-sm-6">
+            <div class="mb-1">
+                <strong>Applicant Initial &amp; Date</strong>
+            </div>
+            <div class="d-inline-block">
+                <$client.env.FormField.Applicant_initial.HTML>
+            </div>
+            <div class="d-inline-block">
+                <$client.env.FormField.Date.HTML>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="mb-1">
+                <strong>LAZ Initial &amp; Date</strong>
+            </div>
+            <div class="d-inline-block">
+                <$client.env.FormField.Laz_initial.HTML>
+            </div>
+            <div class="d-inline-block">
+                <$client.env.FormField.Date_2.HTML>
+            </div>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/DA_Santander_Tower_Parking_Registration_Form/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+(function(el) {
+    'use strict';
+    $(el).parent().append('<div class="coverlay"/>');
+}('.disabled'));
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

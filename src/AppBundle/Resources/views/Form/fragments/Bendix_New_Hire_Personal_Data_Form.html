@@ -1,0 +1,508 @@
+<!--[if lt IE 8]>
+<style type="text/css">
+    #tableContent{border: 1px solid #333 !important;}
+    #tdContentWrapper{padding: 15px 35px 35px 35px !important;}
+ #imgLogo{margin-right: 20px !important;}
+</style>
+<![endif]-->
+
+
+<div class="sh" id="modal" style="display:none;">
+
+            <div id="box">
+
+                        <b>Electronic Signature</b>
+
+                        <p style="fontweight:normal;padding:0px">
+
+                                    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+
+                        </p>
+
+                        <br>
+
+                        <b>Type your Name:</b>
+
+                        <input type=text id="eSignature1">&nbsp;
+
+                        <input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','Datesigned');xbObj('eSignature1').value='';">&nbsp;
+
+                        <input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp;
+
+                        <input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+
+    </div>
+
+</div>
+
+
+<div id="over" style="display:none;"></div>
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+
+
+
+
+<$client.env.FormField.Datesigned.prompt>
+<$client.env.FormField.a_birth_name.prompt>
+<$client.env.FormField.a_cell_phone.prompt>
+<$client.env.FormField.a_citizenship_text.prompt>
+<$client.env.FormField.a_city.prompt>
+<$client.env.FormField.a_country.prompt>
+<$client.env.FormField.a_country_citizenship.prompt>
+<$client.env.FormField.a_country_citizenship1.prompt>
+<$client.env.FormField.a_date_birth.prompt>
+<$client.env.FormField.a_first_name.prompt>
+<$client.env.FormField.a_gender.prompt>
+<$client.env.FormField.a_gender1.prompt>
+<$client.env.FormField.a_last_name.prompt>
+<$client.env.FormField.a_marital_status.prompt>
+<$client.env.FormField.a_mi.prompt>
+<$client.env.FormField.a_nationality.prompt>
+<$client.env.FormField.a_nationality1.prompt>
+<$client.env.FormField.a_nationality2.prompt>
+<$client.env.FormField.a_nationality3.prompt>
+<$client.env.FormField.a_nationality4.prompt>
+<$client.env.FormField.a_nationality_text.prompt>
+<$client.env.FormField.a_ssn.prompt>
+<$client.env.FormField.a_state.prompt>
+<$client.env.FormField.a_street_address.prompt>
+<$client.env.FormField.a_suffix.prompt>
+<$client.env.FormField.a_suffix1.prompt>
+<$client.env.FormField.a_suffix2.prompt>
+<$client.env.FormField.a_suffix3.prompt>
+<$client.env.FormField.a_suffix4.prompt>
+<$client.env.FormField.a_telephone.prompt>
+<$client.env.FormField.a_zip.prompt>
+<$client.env.FormField.b_branch_service.prompt>
+<$client.env.FormField.b_disability_date.prompt>
+<$client.env.FormField.b_entry_date.prompt>
+<$client.env.FormField.b_ethnic_origin.prompt>
+<$client.env.FormField.b_ethnicity.prompt>
+<$client.env.FormField.b_ethnicity1.prompt>
+<$client.env.FormField.b_exit_date.prompt>
+<$client.env.FormField.b_individual_disabilities.prompt>
+<$client.env.FormField.b_individual_disabilities1.prompt>
+<$client.env.FormField.b_learned_date.prompt>
+<$client.env.FormField.b_military_reserves.prompt>
+<$client.env.FormField.b_military_reserves1.prompt>
+<$client.env.FormField.b_please_choose.prompt>
+<$client.env.FormField.b_race_category.prompt>
+<$client.env.FormField.b_veteran.prompt>
+<$client.env.FormField.b_veteran1.prompt>
+<$client.env.FormField.signature.prompt>
+<$client.env.FormField.signatureverification.prompt>
+
+
+
+
+
+
+
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table width="950" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" class="subheadblack">NEW HIRE PERSONAL &amp; GENERAL INFORMATION FORM</td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">***Private and Confidential***</td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" valign="top"><div align="justify">Welcome to the Team! At our organization,total quality begins your first day on the job.Please complete this information
+    to ensure that we accurately build your employee profile and ensure timely delivery of your first pay check.</div></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" valign="top"><div align="justify">NOTE: Indicate your Legal Name,as it will appear on your Human Resource and Payroll records. If your Legal Name
+      includes more than one first name or is a combination of a first initial and middle name,enter all of this information in
+    the"First Name" block.</div></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="top"><table width="950" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000">
+      
+      <tr>
+        <td width="191" height="30" align="left" valign="middle" class="boldtext">SOCIAL SECURITY NUMBER</td>
+        <td width="273" height="30" align="left" valign="middle" class="boldtext">FIRST NAME</td>
+        <td width="41" height="30" align="left" valign="middle" class="boldtext">MI</td>
+        <td width="153" height="30" align="left" valign="middle" class="boldtext">LAST NAME</td>
+        <td width="280" height="30" align="left" valign="middle" class="boldtext"><span class="smalltext1">BIRTH NAME:</span><span class="subhead3">(If applicable)</span></td>
+      </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.a_ssn.HTML></td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.a_first_name.HTML></td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.a_mi.HTML></td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.a_last_name.HTML></td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.a_birth_name.HTML></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td align="center" valign="top"><table width="950" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000">
+      <tr>
+        <td width="100" height="30" align="left" valign="middle" class="boldtext">DATE OF BIRTH</td>
+        <td width="213" height="30" align="left" valign="middle" class="textp"><$client.env.FormField.a_date_birth.HTML></td>
+        <td width="271" height="30" align="center" valign="middle"><table width="250" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="60" class="smalltext1">GENDER</td>
+            <td width="89" class="textitallic"><$client.env.FormField.a_gender.HTML></td>
+            <td width="101" class="textitallic"><$client.env.FormField.a_gender1.HTML></td>
+          </tr>
+        </table></td>
+        <td width="121" height="30" align="left" valign="middle" class="boldtext">MARITAL STATUS</td>
+        <td width="233" height="30" align="left" valign="middle" class="textp"><$client.env.FormField.a_marital_status.HTML></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="top"><table width="950" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000">
+      <tr>
+        <td width="195" height="1" align="left" valign="middle" bgcolor="#000000"></td>
+        <td width="179" height="1" align="left" valign="middle" bgcolor="#000000"></td>
+        <td width="102" height="1" align="left" valign="middle" bgcolor="#000000"></td>
+        <td width="153" height="1" align="left" valign="middle" bgcolor="#000000"></td>
+        <td width="81" height="1" align="left" valign="middle" bgcolor="#000000"></td>
+        <td width="226" height="1" align="left" valign="middle" bgcolor="#000000"></td>
+      </tr>
+      <tr>
+        <td height="30" colspan="6" align="center" valign="middle"><table width="930" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="342" align="left" valign="middle" class="textitallic">SUFFIX / PREFERRED SALUTATION: (check one)</td>
+            <td width="106" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_suffix.HTML></td>
+            <td width="105" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_suffix1.HTML></td>
+            <td width="108" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_suffix2.HTML></td>
+            <td width="106" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_suffix3.HTML></td>
+            <td width="163" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_suffix4.HTML></td>
+          </tr>
+        </table></td>
+        </tr>
+      <tr>
+        <td height="30" colspan="6" align="left" valign="middle" class="textitallic">
+          <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="137" align="left" valign="middle" class="textitallic">STREET ADDRESS:</td>
+              <td width="805" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_street_address.HTML></td>
+            </tr>
+          </table></td>
+        </tr>
+      <tr>
+        <td height="30" colspan="6" align="left" valign="middle" class="textitallic">
+          <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="137" align="left" valign="middle" class="textitallic">CITY:</td>
+              <td width="805" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_city.HTML></td>
+            </tr>
+          </table></td>
+        </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">STATE:</td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.a_state.HTML></td>
+        <td height="30" align="left" valign="middle" class="textitallic">ZIP:</td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.a_zip.HTML></td>
+        <td height="30" align="left" valign="middle" class="textitallic">COUNTRY:</td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.a_country.HTML></td>
+      </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">TELEPHONE:</td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.a_telephone.HTML></td>
+        <td height="30" align="left" valign="middle" class="textitallic">CELL PHONE:</td>
+        <td height="30" colspan="3" align="left" valign="middle" class="textp"><$client.env.FormField.a_cell_phone.HTML></td>
+        </tr>
+      <tr>
+        <td height="30" align="left" valign="top" class="textitallic">NATIONALITY:</td>
+        <td height="30" colspan="5" align="left" valign="middle" class="textitallic">
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="118" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_nationality.HTML></td>
+            <td width="118" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_nationality1.HTML></td>
+            <td width="118" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_nationality2.HTML></td>
+            <td width="169" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_nationality3.HTML></td>
+            <td width="158" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_nationality4.HTML></td>
+    <td width="64" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_nationality_text.HTML></td>
+          </tr>
+        </table></td>
+        </tr>
+      <tr>
+        <td height="30" align="left" valign="top" class="textitallic">COUNTRY OF CITIZENSHIP:</td>
+        <td height="30" colspan="5" align="left" valign="middle" class="textitallic">
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="122" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_country_citizenship.HTML></td>
+            <td width="122" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_country_citizenship1.HTML></td>
+            <td width="501" align="left" valign="middle" class="textitallic"><$client.env.FormField.a_citizenship_text.HTML></td>
+          </tr>
+        </table>
+    </td>
+        </tr>
+      
+    </table></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td align="left" valign="top"><div align="justify"><span class="subhead3">ABOUT MY MILITARY SERVICE</span> Providing this information about your veteran status and military service is voluntary. If
+    you have service in more than one military branch, please indicate the most recent service only.</div></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="top"><table width="950" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000">
+      <tr>
+        <td width="213" height="30" align="left" valign="middle" class="textitallic">I am a U.S. Veteran</td>
+        <td width="731" height="30" align="left" valign="middle" class="textitallic">
+          <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="73" align="left" valign="middle" class="textitallic"><$client.env.FormField.b_veteran.HTML></td>
+                <td width="654" align="left" valign="middle" class="textitallic"><$client.env.FormField.b_veteran1.HTML></td>
+              </tr>
+            </table>
+        </td>
+      </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">If Yes, Please Choose:</td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.b_please_choose.HTML></td>
+      </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">I am in the U.S. Military 
+          Reserves</td>
+        <td height="30" align="left" valign="middle" class="textitallic">
+          <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="73" align="left" valign="middle" class="textitallic"><$client.env.FormField.b_military_reserves.HTML></td>
+                <td width="654" align="left" valign="middle" class="textitallic"><$client.env.FormField.b_military_reserves1.HTML></td>
+              </tr>
+            </table>
+        </td>
+      </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">Branch of Service</td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.b_branch_service.HTML></td>
+      </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">Service / Reserves Entry Date</td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.b_entry_date.HTML></td>
+      </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">Service / Reserves Exit Date</td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.b_exit_date.HTML></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" valign="top" class="subheading">To review the list of wars defined by the Office of Personnel Management, please go to this website:</td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" valign="top"><a href="http://www.opm.gov/policy-data-oversight/veterans-services/vet-guide/" target="_blank">http://www.opm.gov/policy-data-oversight/veterans-services/vet-guide/</a></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td align="left" valign="top"><span class="subhead3">ABOUT DISABILITY</span> Providing this information about a disability is voluntary.</td>
+  </tr>
+  
+  
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="top"><table width="950" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000">
+      <tr>
+        <td width="197" height="1" align="left" valign="middle" bgcolor="#000000" class="textp"></td>
+        <td width="275" height="1" align="left" valign="middle" bgcolor="#000000" class="textp"></td>
+        <td width="97" height="1" align="left" valign="middle" bgcolor="#000000" class="textp"></td>
+        <td width="371" height="1" align="left" valign="middle" bgcolor="#000000" class="textp"></td>
+      </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">Individual with a Disability?</td>
+        <td height="30" colspan="3" align="left" valign="middle" class="textitallic">
+          <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="76" align="left" valign="middle" class="textitallic"><$client.env.FormField.b_individual_disabilities.HTML></td>
+                <td width="667" align="left" valign="middle" class="textitallic"><$client.env.FormField.b_individual_disabilities1.HTML></td>
+              </tr>
+            </table>
+        </td>
+        </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">If Yes, Enter Disability Date:</td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.b_disability_date.HTML></td>
+        <td height="30" align="left" valign="middle" class="textitallic">Date Learned:</td>
+        <td height="30" align="left" valign="middle" class="textp"><$client.env.FormField.b_learned_date.HTML></td>
+      </tr>
+      
+    </table></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td align="left" valign="top"><div align="justify"><span class="subhead3">ABOUT EEO RACE/ETHNIC IDENTIFICATION</span> We ask applicants to complete this information to assist us in complying
+      with federal equal employment reporting requirements. All applications for employment will be considered without regard to
+      race, religion, color, national origin, sex, age, disability or veteran status. Data will be used only for statistical purposes and to
+    measure effectiveness of recruitment efforts and affirmative action programs.</div></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+
+  </tr>
+  <tr>
+    <td align="center" valign="top"><table width="950" border="1" align="center" cellpadding="0" cellspacing="0" bordercolor="#000000">
+      <tr>
+        <td width="152" height="1" align="left" valign="middle" bgcolor="#000000"></td>
+        <td width="792" height="1" align="left" valign="middle" bgcolor="#000000"></td>
+      </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">ETHNICITY:</td>
+        <td height="30" align="left" valign="middle" class="textitallic"><$client.env.FormField.b_ethnicity.HTML></td>
+      </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">ETHNIC ORIGIN:</td>
+        <td height="30" align="left" valign="middle" class="textitallic"><$client.env.FormField.b_ethnic_origin.HTML></td>
+      </tr>
+      <tr>
+        <td height="30" align="left" valign="middle" class="textitallic">RACE CATEGORY:</td>
+        <td height="30" align="left" valign="middle" class="textitallic"><$client.env.FormField.b_race_category.HTML></td>
+      </tr>
+      
+    </table></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" valign="top"><span class="smalltext1">To review the race/ethnic definitions defined by the EEOC, please go to this website</span>: <a href="http://www.eeoc.gov/" target="_blank">http://www.eeoc.gov/</a></td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" valign="top"><div align="justify">I certify that the information provided by me is complete and accurate. I further understand that this information provided
+      by me becomes apart of my official employment record,and that I may be asked to provide written documentation to
+    substantiate this information.</div></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="top"><table width="950" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="475" height="1" align="left" valign="middle"></td>
+        <td width="475" height="1" align="left" valign="middle"></td>
+      </tr>
+      <tr>
+        <td align="left" valign="middle"><$client.env.FormField.signature.HTML></td>
+        <td align="left" valign="middle"><$client.env.FormField.Datesigned.HTML></td>
+      </tr>
+      <tr>
+        <td align="left" valign="middle" class="smalltext1">Employee Signature</td>
+        <td align="left" valign="middle" class="smalltext1">Date</td>
+      </tr>
+      
+    </table></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+
+<div style="display:none;">
+<$client.env.FormField.signatureverification.HTML>
+<$client.env.FormField.full_name.HTML>
+</div>
+
+
+
+
+<br> <br>
+
+<$client.env.FormButtons>
+</form>
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+    disableCalButton('DateBirth');
+</SCRIPT>

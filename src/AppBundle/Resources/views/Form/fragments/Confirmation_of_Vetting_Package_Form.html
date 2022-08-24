@@ -1,0 +1,259 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Signature_Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.First_Name.prompt>
+        <$client.env.FormField.Middle_Name.prompt>
+        <$client.env.FormField.Last_Name.prompt>
+        <$client.env.FormField.Legal_Entity.prompt>
+        <$client.env.FormField.Division.prompt>
+        <$client.env.FormField.Job_Code.prompt>
+        <$client.env.FormField.Title.prompt>
+        <$client.env.FormField.Registered.prompt>
+        <$client.env.FormField.Cost_Center.prompt>
+        <$client.env.FormField.IT_Playforms.prompt>
+        <$client.env.FormField.Vetting_Package.prompt>
+        <$client.env.FormField.Fingerprint_code.prompt>
+        <$client.env.FormField.Cast_Type.prompt>
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.Signature_Date.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="inner-wrapper center-block">
+
+                <section class="row my-30">
+                    <div class="col-lg-4 col-xs-4 col-xs-12">
+                        <div class="img-header">
+                            <img class="img-responsive" src="<$link;/map_images/main/RedCarpet/FormTemplates/Confirmation_of_Vetting_Package_Form/img/ubs_logo_alpha.png>" alt="UBS Logo">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-xs-12 text-center">
+                        <h3 class="heading">
+                            <strong>Confirmation of Vetting Package</strong>
+                        </h3>
+                    </div>
+                </section>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        Full Name
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.First_Name.HTML>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.Middle_Name.HTML>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.Last_Name.HTML>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            Legal Entity
+                            <$client.env.FormField.Legal_Entity.HTML>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            Division
+                            <$client.env.FormField.Division.HTML>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            Job Code
+                            <$client.env.FormField.Job_Code.HTML>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            Title
+                            <$client.env.FormField.Title.HTML>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            Registered
+                            <$client.env.FormField.Registered.HTML>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            Cost Center
+                            <$client.env.FormField.Cost_Center.HTML>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            IT Platform
+                            <$client.env.FormField.IT_Platforms.HTML>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            Vetting Package
+                            <$client.env.FormField.Vetting_Package.HTML>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-20">
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            Fingerprint code
+                            <$client.env.FormField.Fingerprint_code.HTML>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="form-group">
+                            Cast Type
+                            <$client.env.FormField.Cast_Type.HTML>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-8 col-sm-8 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.Signature.HTML>
+                            <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-xs-12">
+                        <div class="form-group">
+                            <$client.env.FormField.Signature_Date.HTML>
+                            Date
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.Full_Name.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Confirmation_of_Vetting_Package_Form/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Confirmation_of_Vetting_Package_Form/js/script_version_1.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+// event and profile vars
+const DIVISION = "<$client.tEventCategories_Category_27.Code>";
+const REGISTERED_ROLE = "<$client.tEventCategories_Category_25.Code>";
+const HIRE_TYPE = "<$client.tEventCategories_Category_22.Code>";
+const HIGHLY_PRIVILEGED_USER = "<$client.tForWhomUserInfo.Highly_Privileged_User>";
+const SENSITIVE_DATA_ACCESS = "<$client.tForWhomUserInfo.Sensitive_Data_Access>";
+const RANK_DESC = "<$client.tForWhomUserInfo.Rank_Desc>";
+const LEGAL_ENTITY = "<$client.tEventCategories_Category_32.Code>";
+const VETTING_PATH = "<$link;/main/RedCarpet/FormTemplates/Confirmation_of_Vetting_Package_Form/js/config_version_1.json>";
+
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

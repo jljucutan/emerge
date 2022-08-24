@@ -1,0 +1,413 @@
+<!-- Main QA Area --> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal2" style="display:none;"> 
+  <div class="modal-content"> 
+   <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+   <p style="fontweight:normal;padding:0px"> 
+     <$client.env.eval(client.env.param.verbiage.length()==0? 'By electronically signing this document by typing my full name below, I acknowledge and agree that&#58; i&#41; I am creating a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature; and ii&#41; I have read and understood the contents of this Offer Letter and agree to be bound by its terms.':client.env.param.verbiage)> 
+   </p> 
+   <br> 
+   <div class="row"> 
+     <div class="lifesuite__clearfix"> 
+      <b>Type your Name:</b> <input type=text id="eSignature2" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+    </div> 
+  </div> 
+  <div class="row"> 
+   <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px;"> 
+     <input type="button" class="lifesuite__button btn-sign" value="Sign" onClick="validateSignature('signature2','eSignature2','','modal2','over','sv2');xbObj('eSignature2').value='';">&nbsp; 
+     <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';">&nbsp; 
+     <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+   </div> 
+ </div> 
+</div> 
+</div> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal3" style="display:none;"> 
+  <div class="modal-content"> 
+   <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+   <p style="fontweight:normal;padding:0px"> 
+     <$client.env.eval(client.env.param.verbiage.length()==0? 'By electronically signing this document by typing my full name below, I acknowledge and agree that&#58; i&#41; I am creating a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature; and ii&#41; I have read and understood the contents of this Offer Letter and agree to be bound by its terms.':client.env.param.verbiage)> 
+   </p> 
+   <br> 
+   <div class="row"> 
+     <div class="lifesuite__clearfix"> 
+      <b>Type your Name:</b> <input type=text id="eSignature3" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+    </div> 
+  </div> 
+  <div class="row"> 
+   <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px;"> 
+     <input type="button" class="lifesuite__button btn-sign" value="Sign" onClick="validateSignature('signature3','eSignature3','','modal3','over','sv3');xbObj('eSignature3').value='';">&nbsp; 
+     <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature3').value='';showHide('modal3');showHide('over');xbObj('eSignature3').value='';">&nbsp; 
+     <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal3');showHide('over');xbObj('eSignature3').value='';"> 
+   </div> 
+ </div> 
+</div> 
+</div> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal4" style="display:none;"> 
+  <div class="modal-content"> 
+   <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+   <p style="fontweight:normal;padding:0px"> 
+     <$client.env.eval(client.env.param.verbiage.length()==0? 'By electronically signing this document by typing my full name below, I acknowledge and agree that&#58; i&#41; I am creating a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature; and ii&#41; I have read and understood the contents of this Offer Letter and agree to be bound by its terms.':client.env.param.verbiage)> 
+   </p> 
+   <br> 
+   <div class="row"> 
+     <div class="lifesuite__clearfix"> 
+      <b>Type your Name:</b> <input type=text id="eSignature4" class="lifesuite__text-input lifesuite__button.primary:hover ng-invalid" style="width: 99%">&nbsp; 
+    </div> 
+  </div> 
+  <div class="row"> 
+   <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px;"> 
+     <input type="button" class="lifesuite__button btn-sign" value="Sign" onClick="validateSignature('signature4','eSignature4','','modal4','over','sv4');xbObj('eSignature4').value='';">&nbsp; 
+     <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature4').value='';showHide('modal4');showHide('over');xbObj('eSignature4').value='';">&nbsp; 
+     <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal4');showHide('over');xbObj('eSignature4').value='';"> 
+   </div> 
+ </div> 
+</div> 
+</div>
+
+<div id="over" style="display:none;"></div> 
+<SCRIPT> 
+  showScreen('over') 
+</SCRIPT> 
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+  <div class="fb-spinner"> 
+   <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+ </div> 
+</div> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);"> 
+
+  <div style="display:none;">
+    <$client.env.FormField.Form_Name.prompt>
+    <$client.env.FormField.Form_Name.HTML>
+    <$client.env.FormField.Form_Type.prompt>
+    <$client.env.FormField.Form_Type.HTML>
+    <$client.env.FormField.Form_Owner.prompt>
+    <$client.env.FormField.Form_Owner.HTML>
+    <$client.env.FormField.Form_CreateDate.prompt>
+    <$client.env.FormField.Form_CreateDate.HTML>
+    <$client.env.FormField.Form_Completed.prompt>
+    <$client.env.FormField.Form_Completed.HTML>
+    <$client.env.FormField.Form_Delivered.prompt>
+    <$client.env.FormField.Form_Delivered.HTML>
+    <$client.env.FormField.Form_TaskId.prompt>
+    <$client.env.FormField.Form_TaskId.HTML>
+    <$client.env.FormField.display_version.HTML>
+
+    <!-- Your Required/Validated Form Fields -->
+
+    <$client.env.formfield.Signature.prompt>
+    <$client.env.formfield.SignDate.prompt>
+    <$client.env.formfield.Comment1.prompt>
+    <$client.env.formfield.Approve1.prompt>
+    <$client.env.formfield.ApproveSignature1.prompt>
+    <$client.env.formfield.Comment2.prompt>
+    <$client.env.formfield.Approve2.prompt>
+    <$client.env.formfield.ApproveSignature2.prompt>
+    <$client.env.formfield.Comment3.prompt>
+    <$client.env.formfield.Approve3.prompt>
+    <$client.env.formfield.ApproveSignature3.prompt>
+
+
+  </div>
+
+  <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+  <!-- Begin HTML Content -->
+
+  <div id='container'>
+
+    <div class="srt_eform_row">
+      <div class="col-lg-9"/>
+      <div id="srt_eform_logo"/>
+      <img class="srt_eform_logo" src="company_logo.png">
+    </div>
+  </div>
+    <div class="col-lg-3 pull-right"/>
+        <strong>UBS Financial Services (Uruguay) S.R.L.</strong><br>
+        Ruta 8km. 17,500, Zonamerica-Edificio <br>
+        @ 1 Office 307, CP 91600, <br>Montevideo, Uruguay<br>
+        Tel. (598) 25188300<br>
+        <a href = "https://www.ubs.com" target="_blank">www.ubs.com</a><br><br><br>
+    </div>
+</div>
+
+<div id='incomplete'>
+  <div class="srt_eform_row" id="offer_letter_OfferClause">
+    <div class="col-xs-12 srt_eform_module ubs-mb-4" id="inner-content">
+      <div class="srt_eform_text_inner"></div>
+      <div id="markup1"></div>
+    </div>
+
+    <div class="<$client.env.eval((client.role.SMC_HR_Americas<1)?'hide':'')>">
+      <div class="row ubs-mb-4">
+        <div class="col-sm-12">
+          Comment
+          <$client.env.formfield.Comment1.html>
+          <div class="approve-container">
+            <$client.env.formfield.Approve1.html>
+          </div>
+        </div>
+      </div>
+      <div class="row ubs-mb-4">
+        <div class="col-sm-7">
+          <div class="signature-container">
+            HR Approval Signature
+            <$client.env.formfield.ApproveSignature1.html>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="<$client.env.eval((client.role.SMC4EyeCheck<1)?'hide':'')>">
+      <div class="row ubs-mb-4">
+        <div class="col-sm-12">
+          Comment
+          <$client.env.formfield.Comment2.html>
+          <div class="approve-container">
+            <$client.env.formfield.Approve2.html>
+          </div>
+        </div>
+      </div>
+      <div class="row ubs-mb-4">
+        <div class="col-sm-7">
+          <div class="signature-container">
+            4EyeCheck Signature
+            <$client.env.formfield.ApproveSignature2.html>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="<$client.env.eval((client.role.AppRoleOne<1)?'hide':'')>">
+      <div class="row ubs-mb-4">
+        <div class="col-sm-12">
+          Comment
+          <$client.env.formfield.Comment3.html>
+          <div class="approve-container">
+            <$client.env.formfield.Approve3.html>
+          </div>
+        </div>
+      </div>
+      <div class="row ubs-mb-4">
+        <div class="col-sm-7">
+          <div class="signature-container">
+            Recruiting Signature
+            <$client.env.formfield.ApproveSignature3.html>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id='complete'>
+</div>
+
+<div id='fields'>
+  <div class="srt_eform_row">
+    <p>&nbsp;</p>
+
+   <div class="col-xs-12 col-sm-12 col-lg-6 srt_eform_module">
+     <p><strong>Por “LA EMPRESA”<br>UBS Financial Services (Uruguay) S.R.L.</strong></p>
+      <div class="srt_eform_text_inner">
+        <div class="input-text">
+          &nbsp;
+        </div>
+        <div class="input-label" style="border-top:1px solid black">
+          ALEJANDRO PLEVAK <br>C.I. 2.686.224-4<br>
+        </div>
+      </div>
+    </div>
+
+   <div class="col-xs-12 col-sm-12 col-lg-6 srt_eform_module">
+     <p><strong>Por “LA TRABAJADORA”<br>&nbsp;</strong></p>
+      <div class="srt_eform_text_inner">
+        <div class="input-text">
+          &nbsp;
+        </div>
+        <div class="input-label" style="border-top:1px solid black">
+          <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name><br><$client.tForWhomUserInfo.SMC_Document_Type> / <$client.tForWhomUserInfo.SMC_Document_ID_Number>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div> <!-- end of fields -->
+
+</div> 
+
+
+
+
+<!--Form Buttons-->
+<div class="row" id="formButtons" style="display: none;">
+  <div class="lifesuite__clearfix">
+    <div class="srt_eform_section">
+      <div id="srt_form_btn_wrapper">
+        <div class="srt_eform_row">
+          <div class="col-lg-12 srt_eform_module">
+            <div class="srt_eform_text_inner">
+             <$client.env.FormButtons>
+           </div>
+           <!-- end srt_eform_text_inner  -->
+         </div>
+         <!--end 12 -->
+       </div>
+       <!-- end srt_form_btn_wrapper  -->
+     </div>
+     <!--end row  -->
+   </div>
+   <!--end eform_section  -->
+ </div>
+</div>
+<!--end Form Buttons-->
+<div style="display:none;">
+<$client.env.formfield.SignDate.html>
+          <$client.env.formfield.Signature.html>
+  <$client.env.formfield.headerpg1.html>
+  <$client.env.formfield.hidden_pg.html>
+  <$client.env.formfield.hidden_pg2.html>
+  <$client.env.formfield.hidden_pg3.html>
+  <$client.env.FormField.SignatureVerification.HTML>
+  <$client.env.FormField.SignatureVerification2.HTML>
+  <$client.env.FormField.SignatureVerification3.HTML>
+  <$client.env.FormField.SignatureVerification4.HTML>
+  <$client.env.formfield.Full_Name.html>
+  <div id='markup2'></div>
+<div id='markup3'></div>
+<div id='incomplete2'></div>
+<div id='incomplete3'></div>
+<div id='complete2'></div>
+<div id='complete3'></div>
+</div>
+</form>
+
+
+
+
+<SCRIPT> 
+    ChangeCalendarIcons(); //for popup calendar  
+    disableCalButton('disableDate');
+    //<$client.env.eval((client.role.HRops)?'showDiv(\'signature2\',\'divOne\');showDiv(\'signature3\',\'divTwo\');showDiv(\'signature5\',\'divFour\');showDiv(\'signature4\',\'divThree\');showDiv(\'signature7\',\'divOneB\')':'')>
+    //<$client.env.eval((client.role.appRoleFive)?'showDiv(\'signature2\',\'divOne\');showDiv(\'signature7\',\'divOneB\')':'')>
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+/* RESPONSIVE eFORM BUTTONS STYLE */ 
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach;
+}
+const requireByRejector = function(comments) {
+  comments.each(function() {
+    const comment = $(this);
+    let hasChecked = false;
+    $('[name$=".' + comment.data('rejector') + '"]').each(function() {
+      const rejector = $(this);
+      if(rejector.prop('checked')) {
+        hasChecked = true;
+        if (rejector.val() == 'Reject') {
+          comment.addClass('ng-invalid');
+          return;
+        }
+        comment.removeClass('ng-invalid');
+      }
+    });
+    if (!hasChecked) {
+      comment.removeClass('ng-invalid');
+    }
+  });
+}
+requireByRejector($('[name$=".Comment1"], [name$=".Comment2"], [name$=".Comment3"]'));
+
+$('[checkboxradio]').each(function() {
+  const radio = $(this);
+  radio.on('change', function() {
+    const thisName = radio.prop('name');
+    const siblings = $('[name="' + thisName + '"]');
+    let checked = radio.prop('checked');
+    siblings.prop('checked', false);
+    radio.prop('checked', !!checked);
+    const nem = thisName.split('.');
+    requireByRejector($('[data-rejector="' + nem[nem.length-1] + '"]'));
+  });
+});
+
+$(function(){
+  $("#buttonCancel")
+  .removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue")
+  .addClass("lifesuite__button");
+  $('#buttonCancel').attr('id', 'ButtonCancel');
+  $("#buttonSave")
+  .removeClass("appInputButton RCappInputButtonBlue")
+  .addClass("lifesuite__button");
+  $('#buttonSave').attr('id', 'ButtonSave');
+  $("#buttonSaveAndComplete")
+  .removeClass("appInputButton RCappInputButtonBlue")
+  .addClass("lifesuite__button");
+  $('#buttonSaveAndComplete').attr('id', 'ButtonSaveAndComplete');
+  $("#buttonPrint")
+  .removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue")
+  .addClass("lifesuite__button");
+  $('#buttonPrint').attr('id', 'ButtonPrint');
+  $("#buttonPreviewDelete")
+  .removeClass("appInputButton RCappInputButtonRed")
+  .addClass("lifesuite__button");
+  $('#buttonPreviewDelete').attr('id', 'ButtonPreviewDelete');
+  $("#buttonPreviewSave")
+  .removeClass("appInputButton RCappInputButtonBlue")
+  .addClass("lifesuite__button");
+  $('#buttonPreviewSave').attr('id', 'ButtonPreviewSave');
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $('.inputprompt').addClass('lifesuite__input-label lifesuite__input—block');
+  document.getElementById('formButtons').style.display = "block";
+  $("body").addClass("UBS_custom_theme");
+
+});
+
+</SCRIPT>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/SMC_Uruguay_Employment_Contract_-_Trial/script_Version_2.js>"></script>
+
+<script>
+//Show populated form if already completed
+var strCompletedForm = FORM_COMPLETED;
+console.log(FORM_COMPLETED);
+if (strCompletedForm != "")
+{
+//Gather the fields that need to be displayed
+//For images we need to setup the image tag. 
+//var imgHeader = "<img class='srt_eform_logo' src='<$client.env.formfield.headerpg1.value>' />";
+//var imgDISignature = "<img src='<$client.env.formfield.disignature.value>' />";
+var imgASSSignature = "<img class='hrsignature_JM' src='<$client.env.formfield.asssignature.value>' />";
+
+//Create an array of info to pass to complete the offer letter
+//0 for images sending an image tag, 1 for sections of text sneding the ID of the field that holds the HTML.
+var arrParts = [
+[1,'hidden_pg']
+];
+var arrParts2 = [
+[1,'hidden_pg2']
+];
+var arrParts3 = [
+[1,'hidden_pg3']
+];
+//Send (ID of the div to hide,ID of the div to show,Parts to get the offer letter)
+showCompletedOfferLetter('incomplete','complete',arrParts);
+showCompletedOfferLetter('incomplete2','complete2',arrParts2);
+showCompletedOfferLetter('incomplete3','complete3',arrParts3);
+} 
+
+</script>

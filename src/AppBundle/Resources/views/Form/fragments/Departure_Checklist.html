@@ -1,0 +1,305 @@
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+    <div id="box">
+        <b>Electronic Signature</b>
+        <p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)></p>
+        <br>
+        <b>Type your Name:</b> 
+        <input type=text id="eSignature1">&nbsp;
+        <input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">      
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+showScreen('over')
+</SCRIPT>
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>
+/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return
+SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML> 
+
+
+<$client.env.FormField.a01_FirstName.prompt>
+<$client.env.FormField.a02_LastName.prompt>
+<$client.env.FormField.a03_Division.prompt>
+<$client.env.FormField.a03_Entity.prompt>
+<$client.env.FormField.a03_Division.prompt>
+<$client.env.FormField.a04_Department.prompt>
+<$client.env.FormField.a05_Location.prompt>
+<$client.env.FormField.a07_ManagerName.prompt>
+<$client.env.FormField.a08_LastWorkingDate.prompt>
+<$client.env.FormField.a09_FinalDepartureDate.prompt>
+<$client.env.FormField.b01_BankorTreasuryAccess.prompt>
+<$client.env.FormField.b01a_ifYesWhatAccessRequiresClosing.prompt>
+<$client.env.FormField.b02_FieldEquipTools.prompt>
+<$client.env.FormField.b03_Uniform.prompt>
+<$client.env.FormField.b04_SafetyEquip.prompt>
+<$client.env.FormField.b05_CompanyDoc.prompt>
+<$client.env.FormField.b06_SecurityCards.prompt>
+<$client.env.FormField.b07_MobilePhone.prompt>
+<$client.env.FormField.b07a_MobileNum.prompt>
+<$client.env.FormField.b08_AccessKeys.prompt>
+<$client.env.FormField.b09_CorporatePurchaseCards.prompt>
+<$client.env.FormField.b10_LaptopPortReplicator.prompt>
+<$client.env.FormField.b11_KeyboardMouse.prompt>
+<$client.env.FormField.b12_DeskPhone.prompt>
+<$client.env.FormField.b13_MobileIfYesAction.prompt>
+<$client.env.FormField.b14_MobileNumIfYesAction.prompt>
+<$client.env.FormField.c01_Passcode.prompt>
+<$client.env.FormField.c02_SIM.prompt>
+<$client.env.FormField.c03_Fleet.prompt>
+<$client.env.FormField.c04_FleetIfYes.prompt>
+<$client.env.FormField.c05_KeysPetrolCardsETags.prompt>
+<$client.env.FormField.c06_RemovalofDOA.prompt>
+<$client.env.FormField.c07_SalesforceLogin.prompt>
+<$client.env.FormField.a10_CurrentEmployeeAdd.prompt>
+
+
+
+
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<!--HTML [S] -->
+
+<table class="tbl_outer">
+    <tr>
+     <td>&nbsp;</td>
+ </tr>
+    <tr>
+      <td><table class="tbl_inner_border border_blue">
+        <tr>
+          <td width="17%" height="48" class=" normal header">Form</td>
+          <td colspan="3" class="header bold ">Departure Checklist</td>
+          <td width="12%" rowspan="3" align="center"> <img src="img-logo.gif" /></td>
+        </tr>
+        <!--<tr>
+          <td height="55" class="header normal">Document No.</td>
+          <td width="32%" class="header bold ">Z08133</td>
+          <td width="13%" class="header normal ">Version</td>
+          <td width="26%" class="header bold ">3</td>
+        </tr>-->
+        <tr>
+          <td class="header normal ">Process Area</td>
+          <td colspan="3" class="header bold ">Human Resources</td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td ><table class="tbl_inner_border border_blue paddingtb">
+        <tr>
+          <td colspan="4" class="font_white bg_blue bold">Employment Details</td>
+        </tr>
+        <tr class="normal">
+          <td width="21%" >First Name</td>
+          <td width="36%" ><$client.env.FormField.a01_FirstName.HTML></td>
+          <td width="17%"  >Last Name</td>
+          <td width="26%" ><$client.env.FormField.a02_LastName.HTML></td>
+        </tr>
+         <tr class="normal">
+          <td>Employee ID</td>
+          <td><$client.env.FormField.a03_Entity.HTML></td>
+          <td>Division</td>
+          <td><$client.env.FormField.a03_Division.HTML></td>
+        </tr>
+         <tr class="normal">
+          <td >Department</td>
+          <td ><$client.env.FormField.a04_Department.HTML></td>
+          <td >Location</td>
+          <td ><$client.env.FormField.a05_Location.HTML></td>
+        </tr>
+         <tr class="normal">
+          <td>Manager’s Name</td>
+          <td colspan="3"><$client.env.FormField.a07_ManagerName.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td >Last Working Date</td>
+          <td >
+            <table class="tbl_inner no-padding">
+              <tr class="no-padding">
+                <td><$client.env.FormField.a08_LastWorkingDate.HTML></td>
+              </tr>
+          </table></td>
+          <td >Final Departure Date</td>
+          <td >
+            <table class="tbl_inner no-padding">
+              <tr class="no-padding">
+                <td><$client.env.FormField.a09_FinalDepartureDate.HTML></td>
+              </tr>
+          </table></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td><table class="tbl_inner_border border_blue neg_margin_top paddingtb">
+        <tr >
+          <td colspan="4" class="font_white bg_blue bold">Responsibility / Actions</td>
+        </tr>
+        <tr class="normal">
+          <td colspan="3" >Does the Employee/ Non-Employee have any of the following bank or Treasury system access?</td>
+          <td ><$client.env.FormField.b01_BankorTreasuryAccess.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td >If Yes, what access requires closing</td>
+          <td colspan="3" ><$client.env.FormField.b01a_ifYesWhatAccessRequiresClosing.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td colspan="3" >Is the employee named as a technical or business representative or alternate on any Corporate licence held by Zinfra or in his or her own right, or a nominated or alternate Business Unit Custodian / Record Holder in respect of Zinfra’s Corporate licences ?</td>
+          <td ><$client.env.FormField.z01_IsTheEmployee.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td colspan="3" >Remove employee access from all asset owner systems (if applicable)</td>
+          <td><$client.env.FormField.z02_EmployeeAccess.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td colspan="2" class="center sub-header bold" >Issued Item</td>
+          <td colspan="2" class="center sub-header bold" >Issued Item</td>
+        </tr>
+        <tr class="normal">
+          <td width="26%" >Field Equipment and Tools</td>
+          <td width="22%" ><$client.env.FormField.b02_FieldEquipTools.HTML></td>
+          <td width="26%" >Access Keys - Building, Office</td>
+          <td width="26%" ><$client.env.FormField.b08_AccessKeys.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td >Uniform- please collect and destroy</td>
+          <td ><$client.env.FormField.b03_Uniform.HTML></td>
+          <td >Corporate Purchase Cards and Receipts- if yes please destroy the cards and send email to PurchasingCards@jemena.com.au informing the Purchasing Card Administrator to cancel the card with the bank.</td>
+          <td ><$client.env.FormField.b09_CorporatePurchaseCards.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td >Safety Equipment</td>
+          <td ><$client.env.FormField.b04_SafetyEquip.HTML></td>
+          <td >Laptop, Port Replicator, Power Adapter and Power Cable</td>
+          <td ><$client.env.FormField.b10_LaptopPortReplicator.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td >Company Documentation</td>
+          <td ><$client.env.FormField.b05_CompanyDoc.HTML></td>
+          <td >Desktop, Keyboard, Mouse, External Monitor</td>
+          <td ><$client.env.FormField.b11_KeyboardMouse.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td >Security/ID Cards</td>
+          <td ><$client.env.FormField.b06_SecurityCards.HTML></td>
+          <td >Desktop, Keyboard, Mouse, External Monitor</td>
+          <td ><$client.env.FormField.b12_DeskPhone.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td >Mobile Phone <strong>(Handset)</strong></td>
+          <td ><$client.env.FormField.b07_MobilePhone.HTML></td>
+          <td >If yes, what are the actions</td>
+          <td ><$client.env.FormField.b13_MobileIfYesAction.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td >Mobile Phone number <strong>(Service)</strong></td>
+          <td ><$client.env.FormField.z03_MobilePhoneNum.HTML></td>
+          <td >If yes, what are the actions</td>
+          <td ><$client.env.FormField.b14_MobileNumIfYesAction.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td colspan="4" ><strong>IMPORTANT:</strong><br>
+          <ul>
+            <li style="list-style:disc; margin-left:20px;">If you choose Request service cancellation or Request transfer to another employee under Mobile Phone Number (Service), please log request via <a href="https://jemena.service-now.com/zinfraitportal/?id=sc_cat_item&sys_id=ddfbe8654fde6200cd5120201310c770" target="_blank" style="font-size:12px;">IT Portal.</a></li>
+            <li style="list-style:disc; margin-left:20px;">Mobile handsets must be returned to Zinfra in a state of Factory Defaults. All passwords, accounts, email and photos removed.</li>
+            <li style="list-style:disc; margin-left:20px;">If handsets are to be returned to IT or transferred to another employee, please obtain passcode and SIM unlock code and test.</li>
+          </ul>
+          </td>
+        </tr>
+        <tr class="normal">
+          <td >Passcode</td>
+          <td ><$client.env.FormField.c01_Passcode.HTML></td>
+          <td class="center" ><strong>Systems</strong></td>
+          <td ><strong>Does employee have access?</strong></td>
+        </tr>
+        <tr class="normal">
+          <td ><span class="center">SIM unlock code</span></td>
+          <td ><$client.env.FormField.c02_SIM.HTML></td>
+          <td>Salesforce</td>
+          <td ><$client.env.FormField.c07_SalesforceLogin.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td >Fleet</td>
+          <td ><$client.env.FormField.c03_Fleet.HTML></td>
+          <td>Aconex</td>
+          <td><$client.env.FormField.z04_Aconex.HTML></td>
+          <!--<td class="center">If yes, what are the actions</td>
+          <td ><$client.env.FormField.c04_FleetIfYes.HTML></td>-->
+        </tr>
+        <tr class="normal">
+          <td >Rego (if applicable)</td>
+          <td ><$client.env.FormField.z07_Rego.HTML></td>
+          <td >Office 365</td>
+          <td ><$client.env.FormField.z05_Office365.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td >Keys/ Petrol Cards/ E-Tag</td>
+          <td ><$client.env.FormField.c05_KeysPetrolCardsETags.HTML></td>
+          <td >OneDrive for Business</td>
+          <td ><$client.env.FormField.z06_OneDrive.HTML></td>
+        </tr>
+        <tr class="normal">
+          <td >Removal of DOA</td>
+          <td ><$client.env.FormField.c06_RemovalofDOA.HTML></td>
+          <td colspan="2" >&nbsp;</td>
+        </tr>
+        <tr class="normal">
+          <td colspan="4" >Comments/Notes:</td>
+          <!--<td ><$client.env.FormField.c07_SalesforceLogin.HTML></td>-->
+        </tr>
+        <tr class="normal">
+          <td colspan="4" ><$client.env.FormField.z08_Comments.HTML></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+    </tr>
+</table>
+
+
+<!--HTML [E] -->
+
+
+<div style="display:none;">
+<$client.env.FormField.SignatureVerification.HTML>
+<$client.env.FormField.hName.HTML>
+</div>
+<$client.env.FormButtons>
+</form>
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+if('<$client.env.eval(client.role.HR)>'=='1'){
+    disableCalButton('payrollDate');
+}
+else if('<$client.env.eval(client.role.Payroll)>'=='1'){
+    disableCalButton('hrDate');
+}
+</SCRIPT>

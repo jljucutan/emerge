@@ -1,0 +1,178 @@
+{
+    "fields": [
+        {
+            "name": "National_ID_IssuedBy",
+            "validation": "required",
+            "title": "National ID Issued By",
+            "readonly": true
+        },
+        {
+            "name": "National_ID_Type",
+            "validation": "required",
+            "title": "National ID Type",
+            "readonly": true
+        },
+        {
+            "name": "SSNO",
+            "validation": "required",
+            "title": "National ID/SSN",
+            "validateByCountry": {
+                "ESP": {
+                    "validation": "required,regex-optional",
+                    "regex": "^[A-Za-z0-9]{8,9}$",
+                    "message": "8-9 alphanumeric characters"
+                },
+                "HKG": {
+                    "validation": "required,regex-optional",
+                    "regex": "^[A-Za-z][0-9]{6}\\([0-9]\\)$",
+                    "message": "in zxxxxxx(x) format"
+                },
+                "JPN": {
+                    "validation": "required,regex-optional",
+                    "regex": "^[0-9]{10}$",
+                    "message": "exactly 10 digits"
+                },
+                "KOR": {
+                    "validation": "required,regex-optional",
+                    "regex": "^[0-9]{13}$",
+                    "message": "exactly 13 digits"
+                }
+            }
+        },
+        {
+            "name": "India_UAN_No",
+            "validation": "required",
+            "title": "Universal Account Number (UAN)",
+            "regex": "^[0-9]{12}$",
+            "message": "exactly 12-digit digits"
+        },
+        {
+            "name": "India_AADHAAR_No",
+            "validation": "required",
+            "title": "AADHAAR Number (12 Digits)",
+            "regex": "^[0-9]{12}$",
+            "message": "exactly 12-digit digits"
+        },
+        {
+            "name": "MaritalStatus",
+            "validation": "required",
+            "title": "Marital Status",
+            "readonly": true,
+            "validateByCountry": {
+                "KOR": {
+                    "readonly": false
+                }
+            }
+        },
+        {
+            "name": "Nationality",
+            "validation": "required",
+            "title": "Nationality (Country of Birth)",
+            "readonly": true,
+            "validateByCountry": {
+                "KOR": {
+                    "readonly": false
+                }
+            }
+        },
+        {
+            "name": "Ethnicity",
+            "title": "Ethnicity",
+            "validateByCountry": {
+                "HKG": {
+                    "validation": "required"
+                },
+                "THA": {
+                    "validation": "required"
+                }
+            }
+        },
+        {
+            "name": "Gender",
+            "validation": "required",
+            "title": "Gender"
+        },
+        {
+            "name": "EC_First_Name",
+            "validation": "required",
+            "title": "First Name"
+        },
+        {
+            "name": "EC_Last_Name",
+            "validation": "required",
+            "title": "Last Name"
+        },
+        {
+            "name": "EC_Relationship",
+            "validation": "required",
+            "title": "Relationship"
+        },
+        {
+            "name": "EC_Address_Line1",
+            "validation": "required,regex-optional",
+            "title": "Address Line 1",
+            "regex": "^.{1,60}$",
+            "message": "up to 60 characters. Please use Address Line 2 to complete your address."
+        },
+        {
+            "name": "EC_Address_Line2",
+            "title": "Address Line 2"
+        },
+        {
+            "name": "EC_Country",
+            "validation": "required",
+            "title": "Country"
+        },
+        {
+            "name": "EC_City",
+            "validation": "required",
+            "title": "City"
+        },
+        {
+            "name": "EC_State",
+            "validation": "required",
+            "title": "State"
+        },
+        {
+            "name": "EC_Zip",
+            "validation": "required",
+            "title": "Postal Code"
+        },
+        {
+            "name": "EC_Primary_Country_Code",
+            "validation": "required",
+            "title": "Primary Country Phone Code"
+        },
+        {
+            "name": "EC_Primary_Phone_Number_Type",
+            "validation": "required",
+            "title": "Phone type"
+        },
+        {
+            "name": "EC_Primary_Phone_Number",
+            "validation": "required,regex-optional",
+            "title": "Primary Phone Number",
+            "regex": "^[0-9]{7,13}$",
+            "message": "7-13 digits"
+        },
+        {
+            "name": "EC_Mobile_Country_Code"
+        },
+        {
+            "name": "EC_Secondary_phone_type"
+        },
+        {
+            "name": "EC_Mobile_Phone_Number",
+            "validation": "regex-optional",
+            "title": "Secondary Phone Number",
+            "regex": "^[0-9]{7,13}$",
+            "message": "7-13 digits"
+        },
+        {
+            "name": "license_plate_number"
+        },
+        {
+            "name": "abono_transport_zone"
+        }
+    ]
+}

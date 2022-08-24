@@ -1,0 +1,2866 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    <$client.env.FormField.a01_last_name.prompt>
+    <$client.env.FormField.a02_first_name.prompt>
+    <$client.env.FormField.a03_middle_name.prompt>
+    <$client.env.FormField.a04_name_extension.prompt>
+    <$client.env.FormField.a05_preferred_time_of_day.prompt>
+    <$client.env.FormField.a06_primary_phone.prompt>
+    <$client.env.FormField.a07_preferred_time_of_day.prompt>
+    <$client.env.FormField.a08_primary_phone.prompt>
+    <$client.env.FormField.a09_email_address.prompt>
+    <$client.env.FormField.a10_from_month_year_date.prompt>
+    <$client.env.FormField.a11_to_month_year_date.prompt>
+    <$client.env.FormField.a12_street_address.prompt>
+    <$client.env.FormField.a13_apt_no.prompt>
+    <$client.env.FormField.a14_city.prompt>
+    <$client.env.FormField.a15_State.prompt>
+    <$client.env.FormField.a16_Zip.prompt>
+    <$client.env.FormField.a17_person_who_know_you.prompt>
+    <$client.env.FormField.a18_street_address.prompt>
+    <$client.env.FormField.a19_apt_no.prompt>
+    <$client.env.FormField.a20_city.prompt>
+    <$client.env.FormField.a21_state.prompt>
+    <$client.env.FormField.a22_zip.prompt>
+    <$client.env.FormField.a23_phone_number.prompt>
+    <$client.env.FormField.a24_from_month_year_date.prompt>
+    <$client.env.FormField.a25_to_month_year_date.prompt>
+    <$client.env.FormField.a26_street_address.prompt>
+    <$client.env.FormField.a27_apt_no.prompt>
+    <$client.env.FormField.a28_city.prompt>
+    <$client.env.FormField.a29_State.prompt>
+    <$client.env.FormField.a30_Zip.prompt>
+    <$client.env.FormField.a31_person_who_know_you.prompt>
+    <$client.env.FormField.a32_street_address.prompt>
+    <$client.env.FormField.a33_apt_no.prompt>
+    <$client.env.FormField.a34_city.prompt>
+    <$client.env.FormField.a35_state.prompt>
+    <$client.env.FormField.a36_zip.prompt>
+    <$client.env.FormField.a37_phone_number.prompt>
+    <$client.env.FormField.a38_from_month_year_date.prompt>
+    <$client.env.FormField.a39_to_month_year_date.prompt>
+    <$client.env.FormField.a40_street_address.prompt>
+    <$client.env.FormField.a41_apt_no.prompt>
+    <$client.env.FormField.a42_city.prompt>
+    <$client.env.FormField.a43_State.prompt>
+    <$client.env.FormField.a44_Zip.prompt>
+    <$client.env.FormField.a45_person_who_know_you.prompt>
+    <$client.env.FormField.a46_street_address.prompt>
+    <$client.env.FormField.a47_apt_no.prompt>
+    <$client.env.FormField.a48_city.prompt>
+    <$client.env.FormField.a49_state.prompt>
+    <$client.env.FormField.a50_zip.prompt>
+    <$client.env.FormField.a51_phone_number.prompt>
+    <$client.env.FormField.a52_from_month_year_date.prompt>
+    <$client.env.FormField.a53_to_month_year_date.prompt>
+    <$client.env.FormField.a54_street_address.prompt>
+    <$client.env.FormField.a55_apt_no.prompt>
+    <$client.env.FormField.a56_city.prompt>
+    <$client.env.FormField.a57_State.prompt>
+    <$client.env.FormField.a58_Zip.prompt>
+    <$client.env.FormField.a59_person_who_know_you.prompt>
+    <$client.env.FormField.a60_street_address.prompt>
+    <$client.env.FormField.a61_apt_no.prompt>
+    <$client.env.FormField.a62_city.prompt>
+    <$client.env.FormField.a63_state.prompt>
+    <$client.env.FormField.a64_zip.prompt>
+    <$client.env.FormField.a65_phone_number.prompt>
+    <$client.env.FormField.a66_from_month_year_date.prompt>
+    <$client.env.FormField.a67_to_month_year_date.prompt>
+    <$client.env.FormField.a68_street_address.prompt>
+    <$client.env.FormField.a69_apt_no.prompt>
+    <$client.env.FormField.a70_city.prompt>
+    <$client.env.FormField.a71_State.prompt>
+    <$client.env.FormField.a72_Zip.prompt>
+    <$client.env.FormField.a73_person_who_know_you.prompt>
+    <$client.env.FormField.a74_street_address.prompt>
+    <$client.env.FormField.a75_apt_no.prompt>
+    <$client.env.FormField.a76_city.prompt>
+    <$client.env.FormField.a77_state.prompt>
+    <$client.env.FormField.a78_zip.prompt>
+    <$client.env.FormField.a79_phone_number.prompt>
+    <$client.env.FormField.a80_from_month_year_date.prompt>
+    <$client.env.FormField.a81_to_month_year_date.prompt>
+    <$client.env.FormField.a82_code.prompt>
+    <$client.env.FormField.a83_name_of_school.prompt>
+    <$client.env.FormField.a84_Degree.prompt>
+    <$client.env.FormField.a85_awarded_date.prompt>
+    <$client.env.FormField.a86_Street_Address.prompt>
+    <$client.env.FormField.a87_City.prompt>
+    <$client.env.FormField.a88_State.prompt>
+    <$client.env.FormField.a89_Zip.prompt>
+    <$client.env.FormField.a90_Person_Who_Knows_You.prompt>
+    <$client.env.FormField.a91_Street_Address.prompt>
+    <$client.env.FormField.a92_Apt_no.prompt>
+    <$client.env.FormField.a93_City.prompt>
+    <$client.env.FormField.a94_State.prompt>
+    <$client.env.FormField.a95_Zip.prompt>
+    <$client.env.FormField.a96_Telephone_Number.prompt>
+    <$client.env.FormField.a97_from_month_year_date.prompt>
+    <$client.env.FormField.a98_to_month_year_date.prompt>
+    <$client.env.FormField.a99_code.prompt>
+    <$client.env.FormField.b00_name_of_school.prompt>
+    <$client.env.FormField.b01_Degree.prompt>
+    <$client.env.FormField.b02_awarded_date.prompt>
+    <$client.env.FormField.b03_Street_Address.prompt>
+    <$client.env.FormField.b04_City.prompt>
+    <$client.env.FormField.b05_State.prompt>
+    <$client.env.FormField.b06_Zip.prompt>
+    <$client.env.FormField.b07_Person_Who_Knows_You.prompt>
+    <$client.env.FormField.b08_Street_Address.prompt>
+    <$client.env.FormField.b09_Apt_no.prompt>
+    <$client.env.FormField.b10_City.prompt>
+    <$client.env.FormField.b11_State.prompt>
+    <$client.env.FormField.b12_Zip.prompt>
+    <$client.env.FormField.b13_Telephone_Number.prompt>
+    <$client.env.FormField.b14_from_month_year_date.prompt>
+    <$client.env.FormField.b15_to_month_year_date.prompt>
+    <$client.env.FormField.b16_code.prompt>
+    <$client.env.FormField.b17_name_of_school.prompt>
+    <$client.env.FormField.b18_Degree.prompt>
+    <$client.env.FormField.b19_awarded_date.prompt>
+    <$client.env.FormField.b20_Street_Address.prompt>
+    <$client.env.FormField.b21_City.prompt>
+    <$client.env.FormField.b22_State.prompt>
+    <$client.env.FormField.b23_Zip.prompt>
+    <$client.env.FormField.b24_Person_Who_Knows_You.prompt>
+    <$client.env.FormField.b25_Street_Address.prompt>
+    <$client.env.FormField.b26_Apt_no.prompt>
+    <$client.env.FormField.b27_City.prompt>
+    <$client.env.FormField.b28_State.prompt>
+    <$client.env.FormField.b29_Zip.prompt>
+    <$client.env.FormField.b30_Telephone_Number.prompt>
+    <$client.env.FormField.b31_License_Certification_Obtained.prompt>
+    <$client.env.FormField.b32_Obtained_Date.prompt>
+    <$client.env.FormField.b33_License_Certification_Number.prompt>
+    <$client.env.FormField.b34_License_Certification_Obtained.prompt>
+    <$client.env.FormField.b35_Obtained_Date.prompt>
+    <$client.env.FormField.b36_License_Certification_Number.prompt>
+    <$client.env.FormField.b37_License_Certification_Obtained.prompt>
+    <$client.env.FormField.b38_Obtained_Date.prompt>
+    <$client.env.FormField.b39_License_Certification_Number.prompt>
+    <$client.env.FormField.b39_Previously_Worked_for_GEO_Groups.prompt>
+    <$client.env.FormField.b39_Previously_Worked_for_GEO_Groups_2.prompt>
+    <$client.env.FormField.b40_From_Month_Year_Date.prompt>
+    <$client.env.FormField.b41_To_Month_Year_Date.prompt>
+    <$client.env.FormField.b42_Location_Name.prompt>
+    <$client.env.FormField.b43_Address.prompt>
+    <$client.env.FormField.b44_State.prompt>
+    <$client.env.FormField.b45_Zip.prompt>
+    <$client.env.FormField.b46_Position_Title.prompt>
+    <$client.env.FormField.b47_Reason_for_Leaving.prompt>
+    <$client.env.FormField.b48_Position_Title.prompt>
+    <$client.env.FormField.b49_Reason_for_Leaving.prompt>
+    <$client.env.FormField.b50_Work_on_Weekdays.prompt>
+    <$client.env.FormField.b50_Work_on_Weekdays_2.prompt>
+    <$client.env.FormField.b51_Work_on_Evenings.prompt>
+    <$client.env.FormField.b51_Work_on_Evenings_2.prompt>
+    <$client.env.FormField.b52_Work_on_Weekends_and_Holidays.prompt>
+    <$client.env.FormField.b52_Work_on_Weekends_and_Holidays_2.prompt>
+    <$client.env.FormField.b53_Work_Overtime.prompt>
+    <$client.env.FormField.b53_Work_Overtime_2.prompt>
+    <$client.env.FormField.b54_Have_you_ever_get_fired.prompt>
+    <$client.env.FormField.b54_Have_you_ever_get_fired_2.prompt>
+    <$client.env.FormField.b55_Month_Year_Date.prompt>
+    <$client.env.FormField.b56_Code.prompt>
+    <$client.env.FormField.b57_Specify_Reason.prompt>
+    <$client.env.FormField.b58_Employers_Name_Address.prompt>
+    <$client.env.FormField.b59_State.prompt>
+    <$client.env.FormField.b60_Zip.prompt>
+    <$client.env.FormField.b61_Month_Year_Date.prompt>
+    <$client.env.FormField.b62_Code.prompt>
+    <$client.env.FormField.b63_Specify_Reason.prompt>
+    <$client.env.FormField.b64_Employers_Name_Address.prompt>
+    <$client.env.FormField.b65_State.prompt>
+    <$client.env.FormField.b66_Zip.prompt>
+    <$client.env.FormField.b67_Resides_with_anyone_employed.prompt>
+    <$client.env.FormField.b67_Resides_with_anyone_employed_2.prompt>
+    <$client.env.FormField.b68_Relatives_working.prompt>
+    <$client.env.FormField.b68_Relatives_working_2.prompt>
+    <$client.env.FormField.b69_Relative_Name.prompt>
+    <$client.env.FormField.b70_Relative_Title.prompt>
+    <$client.env.FormField.b71_Relative_Relationship.prompt>
+    <$client.env.FormField.b72_Relative_Location.prompt>
+    <$client.env.FormField.b72_Served_Marine.prompt>
+    <$client.env.FormField.b72_Served_Marine_2.prompt>
+    <$client.env.FormField.b72_Served_Military.prompt>
+    <$client.env.FormField.b72_Served_Military_2.prompt>
+    <$client.env.FormField.b73_From_Month_Year_Date.prompt>
+    <$client.env.FormField.b74_To_Month_Year_Date.prompt>
+    <$client.env.FormField.b75_Code.prompt>
+    <$client.env.FormField.b76_Service_Certificate_No.prompt>
+    <$client.env.FormField.b77_Enlisted.prompt>
+    <$client.env.FormField.b77_Enlisted_2.prompt>
+    <$client.env.FormField.b78_Military_Status.prompt>
+    <$client.env.FormField.b78_Military_Status_2.prompt>
+    <$client.env.FormField.b78_Military_Status_3.prompt>
+    <$client.env.FormField.b78_Military_Status_4.prompt>
+    <$client.env.FormField.b79_Country.prompt>
+    <$client.env.FormField.b80_From_Month_Year_Date.prompt>
+    <$client.env.FormField.b81_To_Month_Year_Date.prompt>
+    <$client.env.FormField.b82_Code.prompt>
+    <$client.env.FormField.b83_Service_Certificate_No.prompt>
+    <$client.env.FormField.b84_Enlisted.prompt>
+    <$client.env.FormField.b84_Enlisted_2.prompt>
+    <$client.env.FormField.b85_Military_Status.prompt>
+    <$client.env.FormField.b85_Military_Status_2.prompt>
+    <$client.env.FormField.b85_Military_Status_3.prompt>
+    <$client.env.FormField.b85_Military_Status_4.prompt>
+    <$client.env.FormField.b86_Country.prompt>
+    <$client.env.FormField.b87_Born_before_1960.prompt>
+    <$client.env.FormField.b87_Born_before_1960_2.prompt>
+    <$client.env.FormField.b88_Registered_in_Selective_Service_System.prompt>
+    <$client.env.FormField.b88_Registered_in_Selective_Service_System_2.prompt>
+    <$client.env.FormField.b89_Registration_Number.prompt>
+    <$client.env.FormField.b90_Legal_Explanation_Explanation.prompt>
+    <$client.env.FormField.b91.prompt>
+    <$client.env.FormField.b91_2.prompt>
+    <$client.env.FormField.b92_Investigation_Date.prompt>
+    <$client.env.FormField.b93_Agency_Code.prompt>
+    <$client.env.FormField.b94_Other_Agency.prompt>
+    <$client.env.FormField.b95_Clearance_Code.prompt>
+    <$client.env.FormField.b96_Investigation_Date.prompt>
+    <$client.env.FormField.b97_Agency_Code.prompt>
+    <$client.env.FormField.b98_Other_Agency.prompt>
+    <$client.env.FormField.b99_Clearance_Code.prompt>
+    <$client.env.FormField.c00_Investigation_Date.prompt>
+    <$client.env.FormField.c01_Agency_Code.prompt>
+    <$client.env.FormField.c02_Other_Agency.prompt>
+    <$client.env.FormField.c03_Clearance_Code.prompt>
+    <$client.env.FormField.c04_Investigation_Date.prompt>
+    <$client.env.FormField.c05_Agency_Code.prompt>
+    <$client.env.FormField.c06_Other_Agency.prompt>
+    <$client.env.FormField.c07_Clearance_Code.prompt>
+    <$client.env.FormField.c08_Suspended_from_Government_Employment.prompt>
+    <$client.env.FormField.c08_Suspended_from_Government_Employment_2.prompt>
+    <$client.env.FormField.c09_Suspension_Date.prompt>
+    <$client.env.FormField.c10_Dept_Taking_Action.prompt>
+    <$client.env.FormField.c11_Suspension_Date.prompt>
+    <$client.env.FormField.c12_Dept_Taking_Action.prompt>
+    <$client.env.FormField.c13_Suspension_Date.prompt>
+    <$client.env.FormField.c14_Dept_Taking_Action.prompt>
+    <$client.env.FormField.c15_Suspension_Date.prompt>
+    <$client.env.FormField.c16_Dept_Taking_Action.prompt>
+    <$client.env.FormField.c17_Convicted.prompt>
+    <$client.env.FormField.c17_Convicted_2.prompt>
+    <$client.env.FormField.c18_Police_Record_Date.prompt>
+    <$client.env.FormField.c19_Offense.prompt>
+    <$client.env.FormField.c20_Disposition.prompt>
+    <$client.env.FormField.c21_Law_Enforcement_Authority.prompt>
+    <$client.env.FormField.c22_State.prompt>
+    <$client.env.FormField.c23_Country.prompt>
+    <$client.env.FormField.c24_Police_Record_Date.prompt>
+    <$client.env.FormField.c25_Offense.prompt>
+    <$client.env.FormField.c26_Disposition.prompt>
+    <$client.env.FormField.c27_Law_Enforcement_Authority.prompt>
+    <$client.env.FormField.c28_State.prompt>
+    <$client.env.FormField.c29_Country.prompt>
+    <$client.env.FormField.c30_Work_Post_Conviction.prompt>
+    <$client.env.FormField.c30_Work_Post_Conviction_2.prompt>
+    <$client.env.FormField.c31_Employer.prompt>
+    <$client.env.FormField.c32_Position_Title.prompt>
+    <$client.env.FormField.c33_Employer.prompt>
+    <$client.env.FormField.c34_Position_Title.prompt>
+    <$client.env.FormField.c35_Consideration.prompt>
+    <$client.env.FormField.c36_Worked_in_Institutional_Facility.prompt>
+    <$client.env.FormField.c36_Worked_in_Institutional_Facility_2.prompt>
+    <$client.env.FormField.c37_Employer.prompt>
+    <$client.env.FormField.c38_Position_Title.prompt>
+    <$client.env.FormField.c39_Location.prompt>
+    <$client.env.FormField.c40_Phone_Number.prompt>
+    <$client.env.FormField.c41_Employer.prompt>
+    <$client.env.FormField.c42_Position_Title.prompt>
+    <$client.env.FormField.c43_Location.prompt>
+    <$client.env.FormField.c44_Phone_Number.prompt>
+    <$client.env.FormField.c45_Employer.prompt>
+    <$client.env.FormField.c46_Position_Title.prompt>
+    <$client.env.FormField.c47_Location.prompt>
+    <$client.env.FormField.c48_Phone_Number.prompt>
+    <$client.env.FormField.c49_Engaged_in_Sexual_Abuse.prompt>
+    <$client.env.FormField.c49_Engaged_in_Sexual_Abuse_2.prompt>
+    <$client.env.FormField.c50_Explanation.prompt>
+    <$client.env.FormField.c51_Convicted_Sexual_Abuse.prompt>
+    <$client.env.FormField.c51_Convicted_Sexual_Abuse_2.prompt>
+    <$client.env.FormField.c52_Explanation.prompt>
+    <$client.env.FormField.c53_Accused_Sexual_Abuse.prompt>
+    <$client.env.FormField.c53_Accused_Sexual_Abuse_2.prompt>
+    <$client.env.FormField.c54_Explanation.prompt>
+    <$client.env.FormField.c55_Initial.prompt>
+    <$client.env.FormField.c56_Initial.prompt>
+    <$client.env.FormField.c57_Initial.prompt>
+    <$client.env.FormField.c58_Initial.prompt>
+    <$client.env.FormField.c59_Initial.prompt>
+    <$client.env.FormField.c60_Initial.prompt>
+    <$client.env.FormField.c61_Initial.prompt>
+    <$client.env.FormField.c62_Initial.prompt>
+    <$client.env.FormField.c63_Agreed_with_Terms.prompt>
+    <$client.env.FormField.c63_Agreed_with_Terms_2.prompt>
+    <$client.env.FormField.c64_Signature.prompt>
+    <$client.env.FormField.c65_Date.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <header class="row mb-30">
+        <div class="col-lg-3 col-md-3 col-xs-5 col-sm-12 pull-right">
+            <img src="<$link;/main/RedCarpet/FormTemplates/GEO_Employment_Questionnaire/img/geo_group_logo.jpg>" alt="Geo Group Inc" class="img-responsive">
+        </div>
+    </header>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="text-center mb-20">
+                <strong>Employment Questionnaire</strong>
+            </h4>
+            <p class="mb-20 lead">
+                Please answer all questions on this form. If no response is necessary or applicable, indicate this on the form (for example, enter "None" or "N/A"). If you have any questions, please contact Human Resources at the facility where you interviewed.
+            </p>
+            <p class="bg-black lead mb-0">
+                <strong>IDENTIFYING INFORMATION</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-12">
+            <strong>FULL NAME</strong>
+        </div>
+        <div class="col-lg-5 col-md-5 col-xs-5 col-sm-12">
+            <ul>
+                <li>If you have only initials in your name, use them and state (IO).</li>
+                <li>If you have no middle name, enter "NMN."</li>
+            </ul>
+        </div>
+        <div class="col-lg-5 col-md-5 col-xs-5 col-sm-12">
+            <ul>    
+                <li>If you are a "Jr.," "Sr.," "II," etc., enter this in the box after your middle name.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <small>Last Name</small>
+            <$client.env.FormField.a01_last_name.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            First Name
+            <$client.env.FormField.a02_first_name.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <small>Middle Name</small>
+            <$client.env.FormField.a03_middle_name.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+            <small>Jr., II, etc.</small>
+            <$client.env.FormField.a04_name_extension.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <label class="control-label">
+                <strong>TELEPHONE NUMBERS</strong>
+            </label>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 b-left">
+            <small>Primary (include Area Code and extension)</small>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <$client.env.FormField.a05_preferred_time_of_day.HTML>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <$client.env.FormField.a06_primary_phone.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 b-left">
+            <small>Secondary (include area code)</small>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <$client.env.FormField.a07_preferred_time_of_day.HTML>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <$client.env.FormField.a08_primary_phone.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom mb-30">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <label class="control-label">
+                <strong>EMAIL ADDRESS</strong>
+            </label>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 b-left">
+            <$client.env.FormField.a09_email_address.HTML>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="bg-black lead">
+                <strong>WHERE YOU HAVE LIVED</strong>
+            </p>
+            <p class="ml-10">
+                List the places where you have lived, beginning with the most recent (#1) and working back 7 years. All periods must be accounted for in your list. Be sure to indicate the actual physical location of your residence: do not use a post office box as an address, do not list a permanent address when you were actually living at a school address, etc. Be sure to specify your location as closely as possible: for example, do not list only your base or ship, list your barracks number or home port. You may omit temporary military duty locations under 90 days (list your permanent address instead), and you should use your APO/FPO address if you lived overseas.
+            </p>
+            <p class="ml-10">
+                For any address in the last 5 years, list a person who knew you at that address, and who preferably still lives in that area (do not list people for residences completely outside this 5-year period, and do not list your spouse, former spouse, or other relatives). Also for addresses in the last 5 years, if the addresses is "General Delivery," a Rural or Star Route, or may be difficult to locate, provide directions for locating the residence on an attached continuation sheet.
+            </p>
+        </div>
+    </div>
+    <div class="row b-top b-bottom">
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a10_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a11_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col md-5 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.a12_street_address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <small>Apt. #</small>
+                    <$client.env.FormField.a13_apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a14_city.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a15_State.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a16_Zip.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <small>Name of Person Who Knows You</small>
+            <$client.env.FormField.a17_person_who_know_you.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.a18_street_address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <small>Apt #</small>
+                    <$client.env.FormField.a19_apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a20_city.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a21_state.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a22_zip.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <small>Telephone Number</small>
+            <$client.env.FormField.a23_phone_number.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a24_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a25_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col md-5 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.a26_street_address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <small>Apt. #</small>
+                    <$client.env.FormField.a27_apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a28_city.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a29_State.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a30_Zip.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <small>Name of Person Who Knows You</small>
+            <$client.env.FormField.a31_person_who_know_you.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.a32_street_address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <small>Apt #</small>
+                    <$client.env.FormField.a33_apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a34_city.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a35_state.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a36_zip.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <small>Telephone Number</small>
+            <$client.env.FormField.a37_phone_number.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a38_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a39_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col md-5 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.a40_street_address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <small>Apt. #</small>
+                    <$client.env.FormField.a41_apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a42_city.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a43_State.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a44_Zip.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <small>Name of Person Who Knows You</small>
+            <$client.env.FormField.a45_person_who_know_you.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.a46_street_address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <small>Apt #</small>
+                    <$client.env.FormField.a47_apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a48_city.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a49_state.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a50_zip.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <small>Telephone Number</small>
+            <$client.env.FormField.a51_phone_number.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a52_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a53_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col md-5 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.a54_street_address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <small>Apt. #</small>
+                    <$client.env.FormField.a55_apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a56_city.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a57_State.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a58_Zip.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <small>Name of Person Who Knows You</small>
+            <$client.env.FormField.a59_person_who_know_you.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.a60_street_address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <small>Apt #</small>
+                    <$client.env.FormField.a61_apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a62_city.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a63_state.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a64_zip.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <small>Telephone Number</small>
+            <$client.env.FormField.a65_phone_number.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a66_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a67_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col md-5 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.a68_street_address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <small>Apt. #</small>
+                    <$client.env.FormField.a69_apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a70_city.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a71_State.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a72_Zip.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom mb-30">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <small>Name of Person Who Knows You</small>
+            <$client.env.FormField.a73_person_who_know_you.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.a74_street_address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <small>Apt #</small>
+                    <$client.env.FormField.a75_apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a76_city.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a77_state.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a78_zip.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <small>Telephone Number</small>
+            <$client.env.FormField.a79_phone_number.HTML>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <p class="bg-black lead">
+                <strong>WHERE YOU WENT TO SCHOOL</strong>
+            </p>
+            <p class="ml-10">
+                List the schools you have attended, beyond Junior High School, beginning with the most recent (#1). List High School/GED, College or University degrees and the dates they were received.
+            </p>
+            <ul class="ml-4">
+                <li>
+                    <p>
+                        Use one of the following codes in the "Code" block:
+                    </p>
+                    <div>
+                        <div class="i-block">
+                            <p>
+                                <strong>1</strong> - High School
+                            </p>
+                        </div>
+                        <div class="i-block">
+                            <p>
+                                <strong>2</strong> - College/University/Military College
+                            </p>
+                        </div>
+                        <div class="i-block">
+                            <p>
+                                <strong>3</strong> - Vocational/Technical/Trade School
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <p>
+                        For schools you attended in the past 3 years, list a person who knew you at school (an instructor, student, etc.). Do not list people for education completely outside this 3-year period.
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        For correspondence schools and extension classes, provide the address where the records are maintained.
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row b-bottom b-top">
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a80_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a81_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>Code</small>
+            <$client.env.FormField.a82_code.HTML>
+        </div>
+        <div class="col-lg-4 col md-4 col-sm-12 col-xs-12 b-right">
+            <small>Name of School</small>
+            <$client.env.FormField.a83_name_of_school.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 b-right">
+            <small>Degree/Diploma/Other</small>
+            <$client.env.FormField.a84_Degree.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 cal_no_btn">
+            <small>Month/Year Awarded</small>
+            <$client.env.FormField.a85_awarded_date.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-9 col md-9 col-sm-12 col-xs-12 b-right">
+            <small>Street Address and City (Country) of School State</small>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+                    <$client.env.FormField.a86_Street_Address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+                    <$client.env.FormField.a87_City.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a88_State.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a89_Zip.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <small>Name of Person Who Knows You</small>
+            <$client.env.FormField.a90_Person_Who_Knows_You.HTML>
+        </div>
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.a91_Street_Address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+                    <small>Apt. #</small>
+                    <$client.env.FormField.a92_Apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.a93_City.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.a94_State.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>ZIP Code</small>
+            <$client.env.FormField.a95_Zip.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12">
+            <small>Telephone Number</small>
+            <$client.env.FormField.a96_Telephone_Number.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a97_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.a98_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>Code</small>
+            <$client.env.FormField.a99_code.HTML>
+        </div>
+        <div class="col-lg-4 col md-4 col-sm-12 col-xs-12 b-right">
+            <small>Name of School</small>
+            <$client.env.FormField.b00_name_of_school.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 b-right">
+            <small>Degree/Diploma/Other</small>
+            <$client.env.FormField.b01_Degree.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 cal_no_btn">
+            <small>Month/Year Awarded</small>
+            <$client.env.FormField.b02_awarded_date.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-9 col md-9 col-sm-12 col-xs-12 b-right">
+            <small>Street Address and City (Country) of School State</small>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+                    <$client.env.FormField.b03_Street_Address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+                    <$client.env.FormField.b04_City.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.b05_State.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12">
+            <small>ZIP Code</small>
+            <$client.env.FormField.b06_Zip.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <small>Name of Person Who Knows You</small>
+            <$client.env.FormField.b07_Person_Who_Knows_You.HTML>
+        </div>
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.b08_Street_Address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+                    <small>Apt. #</small>
+                    <$client.env.FormField.b09_Apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.b10_City.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.b11_State.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>ZIP Code</small>
+            <$client.env.FormField.b12_Zip.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12">
+            <small>Telephone Number</small>
+            <$client.env.FormField.b13_Telephone_Number.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.b14_from_month_year_date.HTML>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                    <small>To</small>
+                </div>
+                <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                    <small>Month/Year</small>
+                    <$client.env.FormField.b15_to_month_year_date.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>Code</small>
+            <$client.env.FormField.b16_code.HTML>
+        </div>
+        <div class="col-lg-4 col md-4 col-sm-12 col-xs-12 b-right">
+            <small>Name of School</small>
+            <$client.env.FormField.b17_name_of_school.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 b-right">
+            <small>Degree/Diploma/Other</small>
+            <$client.env.FormField.b18_Degree.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 cal_no_btn">
+            <small>Month/Year Awarded</small>
+            <$client.env.FormField.b19_awarded_date.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-9 col md-9 col-sm-12 col-xs-12 b-right">
+            <small>Street Address and City (Country) of School State</small>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+                    <$client.env.FormField.b20_Street_Address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+                    <$client.env.FormField.b21_City.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.b22_State.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12">
+            <small>ZIP Code</small>
+            <$client.env.FormField.b23_Zip.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom mb-30">
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <small>Name of Person Who Knows You</small>
+            <$client.env.FormField.b24_Person_Who_Knows_You.HTML>
+        </div>
+        <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+                    <small>Street Address</small>
+                    <$client.env.FormField.b25_Street_Address.HTML>
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+                    <small>Apt. #</small>
+                    <$client.env.FormField.b26_Apt_no.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12 b-right">
+            <small>City (Country)</small>
+            <$client.env.FormField.b27_City.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.b28_State.HTML>
+        </div>
+        <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+            <small>ZIP Code</small>
+            <$client.env.FormField.b29_Zip.HTML>
+        </div>
+        <div class="col-lg-2 col md-2 col-sm-12 col-xs-12">
+            <small>Telephone Number</small>
+            <$client.env.FormField.b30_Telephone_Number.HTML>
+        </div>
+    </div>
+    <div class="box">
+        <div class="row bg-black">
+            <div class="col-lg-12">
+                <p class="lead mb-0">
+                    <strong>LICENSES/CERTIFICATIONS</strong>
+                </p>
+            </div>
+        </div>
+        <div class="row b-bottom hidden-xs">
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom b-right">
+                License/Certification Obtained
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom b-right">
+                Date Obtained
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom">
+                License/Certification #
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom b-right">
+                <small class="visible-xs">License/Certification Obtained</small>
+                <$client.env.FormField.b31_License_Certification_Obtained.HTML>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom b-right cal_no_btn">
+                <small class="visible-xs">Date Obtained</small>
+                <$client.env.FormField.b32_Obtained_Date.HTML>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom">
+                <small class="visible-xs">License/Certification #</small>
+                <$client.env.FormField.b33_License_Certification_Number.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom b-right">
+                <small class="visible-xs">License/Certification Obtained</small>
+                <$client.env.FormField.b34_License_Certification_Obtained.HTML>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom b-right cal_no_btn">
+                <small class="visible-xs">Date Obtained</small>
+                <$client.env.FormField.b35_Obtained_Date.HTML>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom">
+                <small class="visible-xs">License/Certification #</small>
+                <$client.env.FormField.b36_License_Certification_Number.HTML>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom b-right">
+                <small class="visible-xs">License/Certification Obtained</small>
+                <$client.env.FormField.b37_License_Certification_Obtained.HTML>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom b-right cal_no_btn">
+                <small class="visible-xs">Date Obtained</small>
+                <$client.env.FormField.b38_Obtained_Date.HTML>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 b-bottom">
+                <small class="visible-xs">License/Certification #</small>
+                <$client.env.FormField.b39_License_Certification_Number.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-black">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>YOUR EMPLOYMENT HISTORY</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row common-height">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-8">
+            <p>
+                Have you previously worked for The GEO Group, Inc., or any of its affiliated companies?
+            </p>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 b-left b-bottom">
+            <p class="text-center">
+                <strong>Yes</strong>
+            </p>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 b-bottom b-left b-right">
+            <p class="text-center">
+                <strong>No</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-8">
+            If yes, please provide the most recent information:
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 b-left text-center">
+            <$client.env.FormField.b39_Previously_Worked_for_GEO_Groups.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 b-left b-right text-center">
+            <$client.env.FormField.b39_Previously_Worked_for_GEO_Groups_2.HTML>
+        </div>
+    </div>
+    <div class="row b-top b-bottom text-center">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6 b-right cal_no_btn">
+            <small>From: <br class="hidden-xs">Month/Year</small>
+            <$client.env.FormField.b40_From_Month_Year_Date.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6 b-right cal_no_btn">
+            <small>To: <br class="hidden-xs">Month/Year</small>
+            <$client.env.FormField.b41_To_Month_Year_Date.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 b-right">
+            <small>Location Name </small>
+            <br class="hidden-xs"> &nbsp;
+            <$client.env.FormField.b42_Location_Name.HTML>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 b-right">
+            <small>Address <em>(include city/Country if outside U.S.)</em></small> <br class="hidden-xs"> &nbsp;
+            <$client.env.FormField.b43_Address.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6 b-right">
+            <small>State</small> <br class="hidden-xs"> &nbsp;
+            <$client.env.FormField.b44_State.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-6">
+            <small>Zip Code</small> <br class="hidden-xs"> &nbsp;
+            <$client.env.FormField.b45_Zip.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom text-center">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 hidden-xs">
+            &nbsp;
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 b-left b-right">
+            <small>Position Title</small>
+            <$client.env.FormField.b46_Position_Title.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <small>Reason for Leaving:</small>
+            <$client.env.FormField.b47_Reason_for_Leaving.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom text-center mb-30">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 hidden-xs">
+            &nbsp;
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 b-left b-right">
+            <small>Position Title</small>
+            <$client.env.FormField.b48_Position_Title.HTML>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <small>Reason for Leaving:</small>
+            <$client.env.FormField.b49_Reason_for_Leaving.HTML>
+        </div>
+    </div>
+    <div class="row bg-black">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>YOUR AVAILABILITY</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">&nbsp;</div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-left b-right text-center">
+            <strong>Yes</strong>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-right text-center">
+            <strong>No</strong>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <span class="rounded bg-black">
+                <strong>a</strong>
+            </span>&nbsp;
+            Are you able to work on weekdays?
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-left b-right text-center">
+            <$client.env.FormField.b50_Work_on_Weekdays.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-right text-center">
+            <$client.env.FormField.b50_Work_on_Weekdays_2.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <span class="rounded bg-black">
+                <strong>b</strong>
+            </span>&nbsp;
+            Are you available to work evenings as needed?
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-left b-right text-center">
+            <$client.env.FormField.b51_Work_on_Evenings.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-right text-center">
+            <$client.env.FormField.b51_Work_on_Evenings_2.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <span class="rounded bg-black">
+                <strong>c</strong>
+            </span>&nbsp;
+            Are you available to work on weekends and holidays?
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-left b-right text-center">
+            <$client.env.FormField.b52_Work_on_Weekends_and_Holidays.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-right text-center">
+            <$client.env.FormField.b52_Work_on_Weekends_and_Holidays_2.HTML>
+        </div>
+    </div>
+    <div class="row mb-30">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <span class="rounded bg-black">
+                <strong>d</strong>
+            </span>&nbsp;
+            Are you able to work overtime as needed?
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-left b-right text-center b-bottom">
+            <$client.env.FormField.b53_Work_Overtime.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-right text-center b-bottom">
+            <$client.env.FormField.b53_Work_Overtime_2.HTML>
+        </div>
+    </div>
+    <div class="row bg-black">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>YOUR EMPLOYMENT RECORD</strong>
+            </p>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row b-bottom">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                Has any of the following happened to you in the last 7 years? If "Yes," begin with the most recent occurrence and go backward, providing date fired, quit, or left, and other information requested.
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left b-right">
+                <div class="row b-bottom">
+                    <div class="col-lg-6 text-center b-right">
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <strong>No</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.b54_Have_you_ever_get_fired.HTML>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.b54_Have_you_ever_get_fired_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    Use the following codes and explain the reason your employment was ended:
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <p>
+                    <strong>1</strong>-Fired from a job
+                </p>
+                <p>
+                    <strong>2</strong>-Quit a job after being told you’d be fired
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <p>
+                    <strong>3</strong>-Left a job by mutual agreement following allegations of misconduct
+                </p>
+                <p>
+                    <strong>4</strong>-Left a job by mutual agreement following allegations of unsatisfactory performance
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <p>
+                    <strong>5</strong>-Left a job for other reasons under unfavorable circumstances
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row b-top b-bottom text-center">
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right cal_no_btn">
+            <small>Month/Year</small>
+            <$client.env.FormField.b55_Month_Year_Date.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>Code</small>
+            <$client.env.FormField.b56_Code.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small>Specify Reason</small>
+            <$client.env.FormField.b57_Specify_Reason.HTML>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+            <small>Employer’s Name and Address <em>(include city/Country if outside U.S.)</em></small>
+            <$client.env.FormField.b58_Employers_Name_Address.HTML>
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.b59_State.HTML>
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+            <small>Zip Code</small>
+            <$client.env.FormField.b60_Zip.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom text-center mb-30">
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right cal_no_btn">
+            <small>Month/Year</small>
+            <$client.env.FormField.b61_Month_Year_Date.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>Code</small>
+            <$client.env.FormField.b62_Code.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small>Specify Reason</small>
+            <$client.env.FormField.b63_Specify_Reason.HTML>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+            <small>Employer’s Name and Address <em>(include city/Country if outside U.S.)</em></small>
+            <$client.env.FormField.b64_Employers_Name_Address.HTML>
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <$client.env.FormField.b65_State.HTML>
+        </div>
+        <div class="col-lg-1 col-md-2 col-sm-12 col-xs-12">
+            <small>Zip Code</small>
+            <$client.env.FormField.b66_Zip.HTML>
+        </div>
+    </div>
+    <div class="row bg-black">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>RELATIVES</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row b-bottom common-height">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 b-right">
+            If practical, The GEO Group, Inc. does not allow a relative, cohabitants or individuals with close personal relationships to be in a direct supervisory role over the other. In addition, alternative arrangements may be necessary if there is the perception of bias, favoritism or similar conflict, even if no reporting relationship exists. <br>
+            <strong>If you answered yes, please add additional information about the individual residing in the same household or relative working at our company:</strong>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-right text-center">
+            <strong>Yes</strong>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-right text-center">
+            <strong>No</strong>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <span class="rounded bg-black">
+                <strong>a</strong>
+            </span>&nbsp;
+            Do you currently reside in the same household with anyone employed by The GEO Group, Inc. or any of its affiliated companies?
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-left b-right text-center">
+            <$client.env.FormField.b67_Resides_with_anyone_employed.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-right text-center">
+            <$client.env.FormField.b67_Resides_with_anyone_employed_2.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom mb-30">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <span class="rounded bg-black">
+                <strong>b</strong>
+            </span>&nbsp;
+            Do you have a relative currently employed by The GEO Group, Inc. or any of its affiliated companies?
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-left b-right text-center">
+            <$client.env.FormField.b68_Relatives_working.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-right text-center">
+            <$client.env.FormField.b68_Relatives_working_2.HTML>
+        </div>
+    </div>
+    <div class="row b-top b-bottom">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 text-center b-right">
+            <small>Name:</small>
+            <$client.env.FormField.b69_Relative_Name.HTML>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 text-center">
+            <small>Title</small>
+            <$client.env.FormField.b70_Relative_Title.HTML>
+        </div>
+    </div>
+    <div class="row b-bottom mb-30">
+        <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">&nbsp;</div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center b-left b-right">
+            <small>Relationship</small>
+            <$client.env.FormField.b71_Relative_Relationship.HTML>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 text-center">
+            <small>Location</small>
+            <$client.env.FormField.b72_Relative_Location.HTML>
+        </div>
+    </div>
+    <div class="row bg-black">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>YOUR MILITARY HISTORY</strong>
+            </p>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row b-bottom">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <span class="rounded bg-black">
+                    <strong>a</strong>
+                </span>&nbsp;
+                Have you served in the United States military?
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-6 text-center b-right">
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <strong>No</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.b72_Served_Marine.HTML>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.b72_Served_Marine_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row b-bottom">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <span class="rounded bg-black">
+                    <strong>b</strong>
+                </span>&nbsp;
+                Have you served in the United States Merchant Marine?
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.b72_Served_Military.HTML>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.b72_Served_Military_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row">
+            <div class="col-lg-12">
+                List all of your military service below, including service in Reserve, National Guard, and U.S. Merchant Marine. Start with the most recent period of service (#1) and work backward. If you had a break in service, each separate period should be listed.
+                <p>
+                    Use one of the codes listed below to identify your branch of service:
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                <p>
+                    <strong>1 -</strong> Air Force
+                </p>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                <p>
+                    <strong>2 -</strong> Army
+                </p>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                <p>
+                    <strong>3 -</strong> Navy
+                </p>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                <p>
+                    <strong>4 -</strong> Marine Corps
+                </p>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                <p>
+                    <strong>5 -</strong> Coast Guard
+                </p>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                <p>
+                    <strong>6 -</strong> Merchant Marine
+                </p>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                <p>
+                    <strong>7 -</strong> National Guard
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="ml-20">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    Mark "O" block for Officer or "E" block for Enlisted.
+                </p>
+                <ul class="ml-20">
+                    <li>
+                        <strong>Status.</strong> "X" the appropriate block for the status of your service during the time that you served. If your service was in the National Guard, do not use an "X": use the two letter code for the state to mark the block.
+                    </li>
+                    <li>
+                        <strong>Country.</strong> If your service was with other than the U.S. Armed Forces, identify the country for which you served.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="ml-30 mb-30">
+        <div class="row b-top b-bottom text-center common-height">
+            <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                        <small>Month/Year</small>
+                        <$client.env.FormField.b73_From_Month_Year_Date.HTML>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                        <small>To</small>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                        <small>Month/Year</small>
+                        <$client.env.FormField.b74_To_Month_Year_Date.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+                <small>Code</small>
+                <$client.env.FormField.b75_Code.HTML>
+            </div>
+            <div class="col-lg-2 col md-2 col-sm-12 col-xs-12">
+                <small>Service/Certificate No</small>
+                <$client.env.FormField.b76_Service_Certificate_No.HTML>
+            </div>
+            <div class="col-lg-4 col md-4 col-sm-12 col-xs-12 b-left b-right">
+                <div class="row b-bottom hidden-xs">
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-right">
+                        <small>O</small>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 b-right">
+                        <small>E</small>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <small>Status</small>
+                    </div>
+                </div>
+                <div class="row common-height">
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 b-right text-left">
+                        <div class="i-block">
+                            <$client.env.FormField.b77_Enlisted.HTML>
+                        </div>
+                        <div class="i-block">
+                            <small class="visible-xs">
+                                O
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 b-right text-left">
+                        <div class="i-block">
+                            <$client.env.FormField.b77_Enlisted_2.HTML>
+                        </div>
+                        <div class="i-block">
+                            <small class="visible-xs">
+                                E
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-12">
+                        <div class="row common-height hidden-xs">
+                            <div class="col-lg-3 b-right">
+                                <small>Active</small>
+                            </div>
+                            <div class="col-lg-3 b-right">
+                                <small>Active Reserve</small>
+                            </div>
+                            <div class="col-lg-3 b-right">
+                                <small>Inactive Reserve</small>
+                            </div>
+                            <div class="col-lg-3">
+                                <small>National Guard (State)</small>
+                            </div>
+                        </div>
+                        <div class="row text-left">
+                            <div class="col-lg-3 col-sm-1 col-xs-12 b-right">
+                                <div class="i-block">
+                                    <$client.env.FormField.b78_Military_Status.HTML>
+                                </div>
+                                <div class="i-block">
+                                    <small class="visible-xs">Active</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-1 col-xs-12 b-right">
+                                <div class="i-block">
+                                    <$client.env.FormField.b78_Military_Status_2.HTML>
+                                </div>
+                                <div class="i-block">
+                                    <small class="visible-xs">Active Reserve</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-1 col-xs-12 b-right">
+                                <div class="i-block">
+                                    <$client.env.FormField.b78_Military_Status_3.HTML>
+                                </div>
+                                <div class="i-block">
+                                    <small class="visible-xs">Inactive Reserve</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-1 col-xs-12">
+                                <div class="i-block">
+                                    <$client.env.FormField.b78_Military_Status_4.HTML>
+                                </div>
+                                <div class="i-block">
+                                    <small class="visible-xs">National Guard (State)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col md-2 col-sm-12 col-xs-12">
+                <small>Country</small>
+                <$client.env.FormField.b79_Country.HTML>
+            </div>
+        </div>
+        <div class="row b-bottom text-center">
+            <div class="col-lg-3 col md-3 col-sm-12 col-xs-12 b-right">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                        <small class="visible-xs">Month/Year</small>
+                        <$client.env.FormField.b80_From_Month_Year_Date.HTML>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-xs-12 col-sm-12">
+                        <small class="visible-xs">To</small>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 cal_no_btn">
+                        <small class="visible-xs">Month/Year</small>
+                        <$client.env.FormField.b81_To_Month_Year_Date.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col md-1 col-sm-12 col-xs-12 b-right">
+                <small class="visible-xs">Code</small>
+                <$client.env.FormField.b82_Code.HTML>
+            </div>
+            <div class="col-lg-2 col md-2 col-sm-12 col-xs-12">
+                <small class="visible-xs">Service/Certificate No</small>
+                <$client.env.FormField.b83_Service_Certificate_No.HTML>
+            </div>
+            <div class="col-lg-4 col md-4 col-sm-12 col-xs-12 b-left b-right">
+                <div class="row common-height">
+                    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right text-left">
+                        <div class="i-block">
+                            <$client.env.FormField.b84_Enlisted.HTML>
+                        </div>
+                        <div class="i-block">
+                            <small class="visible-xs">
+                                O
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 text-left">
+                        <div class="i-block">
+                            <$client.env.FormField.b84_Enlisted_2.HTML>
+                        </div>
+                        <div class="i-block">
+                            <small class="visible-xs">
+                                E
+                            </small>
+                        </div>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-8 col-xs-12 common-height">
+                        <div class="row common-height text-left">
+                            <div class="col-lg-3 col-sm-2 col-xs-12 b-right">
+                                <div class="i-block">
+                                    <$client.env.FormField.b85_Military_Status.HTML>
+                                </div>
+                                <div class="i-block">
+                                    <small class="visible-xs">Active</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-2 col-xs-12 b-right">
+                                <div class="i-block">
+                                    <$client.env.FormField.b85_Military_Status_2.HTML>
+                                </div>
+                                <div class="i-block">
+                                    <small class="visible-xs">Active Reserve</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-2 col-xs-12 b-right">
+                                <div class="i-block">
+                                    <$client.env.FormField.b85_Military_Status_3.HTML>
+                                </div>
+                                <div class="i-block">
+                                    <small class="visible-xs">Inactive Reserve</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-2 col-xs-12">
+                                <div class="i-block">
+                                    <$client.env.FormField.b85_Military_Status_4.HTML>
+                                </div>
+                                <div class="i-block">
+                                    <small class="visible-xs">National Guard (State)</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col md-2 col-sm-12 col-xs-12">
+                <small class="visible-xs">Country</small>
+                <$client.env.FormField.b86_Country.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-black">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>YOUR SELECTIVE SERVICE RECORD</strong>
+            </p>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row b-bottom">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <span class="rounded bg-black">
+                    <strong>a</strong>
+                </span>&nbsp;
+                Are you a male born after December 31, 1959? If "<strong>No</strong>," go to <strong>18</strong>. If "<strong>Yes</strong>," go to b.
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-6 text-center b-right">
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <strong>No</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.b87_Born_before_1960.HTML>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.b87_Born_before_1960_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row b-bottom common-height">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <span class="rounded bg-black">
+                    <strong>b</strong>
+                </span>&nbsp;
+                Have you registered with the Selective Service System? If "<strong>Yes</strong>," provide your registration number. If "<strong>No</strong>," show the reason for your legal exemption below.
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left common-height">
+                <div class="row common-height">
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.b88_Registered_in_Selective_Service_System.HTML>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.b88_Registered_in_Selective_Service_System_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                Registration Number
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <$client.env.FormField.b89_Registration_Number.HTML>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                Legal Exemption Explanation
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <$client.env.FormField.b90_Legal_Explanation_Explanation.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-black">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>YOUR INVESTIGATIONS RECORD</strong>
+            </p>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row b-bottom common-height">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <span class="rounded bg-black">
+                    <strong>a</strong>
+                </span>&nbsp;
+                Has the United States Government ever investigated your background and/or granted you a security clearance? If "<strong>Yes</strong>," use the codes that follow to provide the requested information below. If "<strong>Yes</strong>," but you can’t recall the investigating agency and/or the security clearance received, enter "Other" agency code or clearance, as appropriate, and "<strong>Don’t know</strong>" or "<strong>Don’t recall</strong>" under the "<strong>Other Agency</strong>" heading, below. If your response is "<strong>No</strong>," or you don’t know or can’t recall if you were investigated and cleared, check the "<strong>No</strong>" box.
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-6 text-center b-right">
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <strong>No</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.b91.HTML>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.b91_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        Codes for Investigating Agency <br>
+                        <strong>1-</strong>Defense Department <br>
+                        <strong>2-</strong>State Department <br>
+                        <strong>3-</strong>Office of Personnel Management
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <strong>4-</strong>FBI <br>
+                        <strong>5-</strong>Treasury Department <br>
+                        <strong>6-</strong>Other (Specify)
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-left">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        Codes for Security Clearance <br>
+                        Received <br>
+                        <strong>0-</strong>Not Required <br>
+                        <strong>1-</strong>Confidential <br>
+                        <strong>2-</strong>Secret
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <strong>3-</strong>Top Secret <br>
+                        <strong>4-</strong>Sensitive Compartmented Information <br>
+                        <strong>5-</strong>Q
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <strong>6-</strong>L <br>
+                        <strong>7-</strong>Other
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom text-center">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right cal_no_btn">
+                        <small>Month/Year</small>
+                        <$client.env.FormField.b92_Investigation_Date.HTML>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                        <small>Agency Code</small>
+                        <$client.env.FormField.b93_Agency_Code.HTML>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+                        <small>Other Agency</small>
+                        <$client.env.FormField.b94_Other_Agency.HTML>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <small>Clearance Code</small>
+                        <$client.env.FormField.b95_Clearance_Code.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right cal_no_btn">
+                        <small>Month/Year</small>
+                        <$client.env.FormField.b96_Investigation_Date.HTML>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                        <small>Agency Code</small>
+                        <$client.env.FormField.b97_Agency_Code.HTML>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+                        <small>Other Agency</small>
+                        <$client.env.FormField.b98_Other_Agency.HTML>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <small>Clearance Code</small>
+                        <$client.env.FormField.b99_Clearance_Code.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom text-center">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right cal_no_btn">
+                        <small class="visible-xs">Month/Year</small>
+                        <$client.env.FormField.c00_Investigation_Date.HTML>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                        <small class="visible-xs">Agency Code</small>
+                        <$client.env.FormField.c01_Agency_Code.HTML>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+                        <small class="visible-xs">Other Agency</small>
+                        <$client.env.FormField.c02_Other_Agency.HTML>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <small class="visible-xs">Clearance Code</small>
+                        <$client.env.FormField.c03_Clearance_Code.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right cal_no_btn">
+                        <small class="visible-xs">Month/Year</small>
+                        <$client.env.FormField.c04_Investigation_Date.HTML>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+                        <small class="visible-xs">Agency Code</small>
+                        <$client.env.FormField.c05_Agency_Code.HTML>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+                        <small class="visible-xs">Other Agency</small>
+                        <$client.env.FormField.c06_Other_Agency.HTML>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <small class="visible-xs">Clearance Code</small>
+                        <$client.env.FormField.c07_Clearance_Code.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <span class="rounded bg-black">
+                    <strong>b</strong>
+                </span>&nbsp;
+                To your knowledge, have you ever had a clearance or access authorization denied, suspended, or revoked, or have you ever been debarred from government employment? If "<strong>Yes</strong>," give date of action and agency. <strong>Note:</strong> An administrative downgrade or termination of a security clearance is not a revocation.
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-6 text-center b-right">
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <strong>No</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 text-center b-right">
+                        <$client.env.FormField.c08_Suspended_from_Government_Employment.HTML>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <$client.env.FormField.c08_Suspended_from_Government_Employment_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom text-center">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right cal_no_btn">
+                        <small>Month/Year</small>
+                        <$client.env.FormField.c09_Suspension_Date.HTML>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <small>Department of Agency Taking Action</small>
+                        <$client.env.FormField.c10_Dept_Taking_Action.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right cal_no_btn">
+                        <small>Month/Year</small>
+                        <$client.env.FormField.c11_Suspension_Date.HTML>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <small>Department of Agency Taking Action</small>
+                        <$client.env.FormField.c12_Dept_Taking_Action.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row b-bottom text-center">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right cal_no_btn">
+                        <small class="visible-xs">Month/Year</small>
+                        <$client.env.FormField.c13_Suspension_Date.HTML>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <small class="visible-xs">Department of Agency Taking Action</small>
+                        <$client.env.FormField.c14_Dept_Taking_Action.HTML>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right cal_no_btn">
+                        <small class="visible-xs">Month/Year</small>
+                        <$client.env.FormField.c15_Suspension_Date.HTML>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <small class="visible-xs">Department of Agency Taking Action</small>
+                        <$client.env.FormField.c16_Dept_Taking_Action.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-black">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>YOUR POLICE RECORD</strong>
+            </p>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row b-bottom">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <span class="rounded bg-black">
+                    <strong>a</strong>
+                </span>&nbsp;
+                Have you committed or been convicted of a crime other than a minor traffic violation? <br>
+                <em>
+                    Please note that DUI/DWI convictions are not considered minor traffic violations for purposes of this question.
+                </em>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-6 text-center b-right">
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <strong>No</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.c17_Convicted.HTML>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.c17_Convicted_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    A conviction will not necessarily disqualify you from consideration for employment. The company may, however consider the nature, date, and circumstances of the offense as well as whether the offense is relevant to the duties of the position for which you are applying.
+                </p>
+                <p>
+                    If you answered "Yes," explain your answer(s) in the space provided.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div data-toggleable-section="police-record" class="row b-top b-bottom text-center">
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right cal_no_btn">
+            <small>Month/Year</small>
+            <br class="hidden-xs">&nbsp;
+            <$client.env.FormField.c18_Police_Record_Date.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small>Offense/Charge</small>
+            <br class="hidden-xs">&nbsp;
+            <$client.env.FormField.c19_Offense.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small>Disposition/ Outcome (Guilty, Innocent, Dismissed, etc.)</small>
+            <$client.env.FormField.c20_Disposition.HTML>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+            <small>Law Enforcement Authority/Court <em>(Include City and county/country if outside U.S.)</em></small>
+            <br class="hidden-xs">&nbsp;
+            <$client.env.FormField.c21_Law_Enforcement_Authority.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>State</small>
+            <br class="hidden-xs">&nbsp;
+            <$client.env.FormField.c22_State.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small>ZIP Code</small>
+            <br class="hidden-xs">&nbsp;
+            <$client.env.FormField.c23_Country.HTML>
+        </div>
+    </div>
+    <div data-toggleable-section="police-record" class="row b-bottom text-center">
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right cal_no_btn">
+            <small class="visible-xs">Month/Year</small>
+            <$client.env.FormField.c24_Police_Record_Date.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">Offense/Charge</small>
+            <$client.env.FormField.c25_Offense.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">Disposition/ Outcome (Guilty, Innocent, Dismissed, etc.)</small>
+            <$client.env.FormField.c26_Disposition.HTML>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">Law Enforcement Authority/Court <em>(Include City and county/country if outside U.S.)</em></small>
+            <$client.env.FormField.c27_Law_Enforcement_Authority.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">State</small>
+            <$client.env.FormField.c28_State.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">ZIP Code</small>
+            <$client.env.FormField.c29_Country.HTML>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group clearfix">
+                <div data-control-section="police-record" class="pull-right">
+                    <button data-control="add" class="lifesuite__button primary btn-sm" type="button">
+                        <strong>
+                            <i class="fa fa-plus"></i>
+                        </strong>
+                        Add Police Record
+                    </button>
+                    <button data-control="delete" class="lifesuite__button alt-primary btn-sm" type="button">
+                        <strong>
+                            <i class="fa fa-minus"></i>
+                        </strong>
+                        Remove Police Record
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                <span class="rounded bg-black">
+                    <strong>b</strong>
+                </span>&nbsp;
+                Have you completed similar or like work to the position you are applying for post-conviction? <br>
+                If yes, please indicate the name of the company and position title:
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-6 text-center b-right">
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <strong>No</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.c30_Work_Post_Conviction.HTML>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.c30_Work_Post_Conviction_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-toggleable-section="post-conviction-jobs">
+        <div class="row b-bottom b-top hidden-xs">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                <small>Employer/Company Name:</small>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <small>Position Title:</small>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+                <small class="visible-xs">Employer/Company Name</small>
+                <$client.env.FormField.c31_Employer.HTML>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <small class="visible-xs">Position Title:</small>
+                <$client.env.FormField.c32_Position_Title.HTML>
+            </div>
+        </div>
+    </div>
+    <div data-toggleable-section="post-conviction-jobs" class="row b-bottom">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">Employer/Company Name</small>
+            <$client.env.FormField.c33_Employer.HTML>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <small class="visible-xs">Position Title:</small>
+            <$client.env.FormField.c34_Position_Title.HTML>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group clearfix">
+                <div data-control-section="post-conviction-jobs" class="pull-right">
+                    <button data-control="add" class="lifesuite__button primary btn-sm" type="button">
+                        <strong>
+                            <i class="fa fa-plus"></i>
+                        </strong>
+                        Add Police Record
+                    </button>
+                    <button data-control="delete" class="lifesuite__button alt-primary btn-sm" type="button">
+                        <strong>
+                            <i class="fa fa-minus"></i>
+                        </strong>
+                        Remove Police Record
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-12">
+            <p>
+                Is there any specific information The GEO Group, Inc should use in its consideration of your employment in regards to this conviction? (Mitigating circumstances, rehabilitation efforts, e.g., education/training)?:
+            </p>
+        </div>
+    </div>
+    <div class="row b-bottom mb-30">
+        <div class="col-lg-12">
+            <$client.env.FormField.c35_Consideration.HTML>
+        </div>
+    </div>
+    <div class="row bg-black mb-10">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>PREA</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row b-bottom">
+        <div class="col-lg-12">
+            <p>
+                PREA 28 CFR §115.17 prohibits the hiring, promotion or otherwise enlisting the services of anyone who may have contact with an individual incarcerated or detained at a GEO facility who has engaged in, been convicted of, or been civilly or administratively adjudicated for engaging in sexual abuse or sexual activity facilitated by force in confinement settings or the community. PREA 28 CFR §115.17 also requires that any incident of sexual harassment (as defined in §115.16) be considered in determining whether to hire, promote, or otherwise enlist the services of anyone who may have contact with an individual incarcerated or detained at a GEO facility. In compliance with PREA requirements and consistent with the Fair Credit Reporting Act, GEO will request a criminal background check which includes, but is not limited to contacting prior employers to obtain information on substantiated allegations of sexual abuse or any resignation pending investigation of an allegation of sexual abuse. PREA also requires that background checks for all current employees and contractors who may have contact with an individual incarcerated or detained at a GEO facility at least once every five years.
+            </p>
+            <p>
+                PREA requires that GEO ask applicants and employees who may have contact with individuals incarcerated or detained at a GEO facility directly whether they have engaged in, been convicted of, or been civilly or administratively adjudicated for engaging in sexual abuse or sexual activity facilitated by force in confinement settings or the community. Please find definition of sexual abuse per §115.6. Accordingly, please answer the following questions:
+            </p>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row common-height">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                Have you ever worked for an Employer that is a prison, jail, lock up, community confinement facility, juvenile facility, or similar type institution? <br>
+                <em>If you answered "Yes," please list all employment that applies:</em>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-6 text-center b-right">
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <strong>No</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.c36_Worked_in_Institutional_Facility.HTML>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.c36_Worked_in_Institutional_Facility_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-toggleable-section="confinement-facility-jobs">
+        <div class="row b-bottom b-top hidden-xs">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+                <small>Employer/Company Name:</small>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+                <small>Position Title:</small>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+                <small>Location (City and State)</small>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <small>Phone Number:</small>
+            </div>
+        </div>
+        <div class="row b-bottom">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+                <small class="visible-xs">Employer/Company Name:</small>
+                <$client.env.FormField.c37_Employer.HTML>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+                <small class="visible-xs">Position Title:</small>
+                <$client.env.FormField.c38_Position_Title.HTML>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+                <small class="visible-xs">Location (City and State)</small>
+                <$client.env.FormField.c39_Location.HTML>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                <small class="visible-xs">Phone Number:</small>
+                <$client.env.FormField.c40_Phone_Number.HTML>
+            </div>
+        </div>
+    </div>
+    <div data-toggleable-section="confinement-facility-jobs" class="row b-bottom">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">Employer/Company Name:</small>
+            <$client.env.FormField.c41_Employer.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">Position Title:</small>
+            <$client.env.FormField.c42_Position_Title.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">Location (City and State)</small>
+            <$client.env.FormField.c43_Location.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <small class="visible-xs">Phone Number:</small>
+            <$client.env.FormField.c44_Phone_Number.HTML>
+        </div>
+    </div>
+    <div data-toggleable-section="confinement-facility-jobs" class="row b-bottom">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">Employer/Company Name:</small>
+            <$client.env.FormField.c45_Employer.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">Position Title:</small>
+            <$client.env.FormField.c46_Position_Title.HTML>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 b-right">
+            <small class="visible-xs">Location (City and State)</small>
+            <$client.env.FormField.c47_Location.HTML>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <small class="visible-xs">Phone Number:</small>
+            <$client.env.FormField.c48_Phone_Number.HTML>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group clearfix">
+                <div data-control-section="confinement-facility-jobs" class="pull-right">
+                    <button data-control="add" class="lifesuite__button primary btn-sm" type="button">
+                        <strong>
+                            <i class="fa fa-plus"></i>
+                        </strong>
+                        Add Police Record
+                    </button>
+                    <button data-control="delete" class="lifesuite__button alt-primary btn-sm" type="button">
+                        <strong>
+                            <i class="fa fa-minus"></i>
+                        </strong>
+                        Remove Police Record
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row common-height">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                Have you engaged in sexual abuse in a prison, jail, lock up, community confinement facility, juvenile facility, or other institution? (Please note that sexual abuse in this setting includes sexual acts with the consent of inmate, detainee, resident, etc.) <br>
+                <em>If you answered "Yes," please explain below:</em>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-6 text-center b-right">
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <strong>No</strong>
+                    </div>
+                </div>
+                <div class="row common-height">
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.c49_Engaged_in_Sexual_Abuse.HTML>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.c49_Engaged_in_Sexual_Abuse_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-top b-bottom">
+        <div class="col-lg-12">
+            <$client.env.FormField.c50_Explanation.HTML>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row common-height">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                Have you ever been convicted of engaging or attempting to engage in sexual activity in the community facilitated by force, overt or implied threats of force, or coercion or if the victim did not consent or was unable to consent or refuse? <br>
+                <em>If you answered "Yes," please explain below:</em>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-6 text-center b-right">
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <strong>No</strong>
+                    </div>
+                </div>
+                <div class="row common-height">
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.c51_Convicted_Sexual_Abuse.HTML>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.c51_Convicted_Sexual_Abuse_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-top b-bottom">
+        <div class="col-lg-12">
+            <$client.env.FormField.c52_Explanation.HTML>
+        </div>
+    </div>
+    <div class="ml-30">
+        <div class="row common-height">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                Have you ever been accused in a civil or administrative hearing of engaging or attempting to engage in sexual activity in the community facilitated by force, overt or implied threats of force, or coercion or if the victim did not consent or was unable to consent or refuse? <br>
+                <em>If you answered "Yes," please explain below:</em>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 b-left">
+                <div class="row b-bottom">
+                    <div class="col-lg-6 text-center b-right">
+                        <strong>Yes</strong>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <strong>No</strong>
+                    </div>
+                </div>
+                <div class="row common-height">
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center b-right">
+                        <$client.env.FormField.c53_Accused_Sexual_Abuse.HTML>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 col-xs-6 text-center">
+                        <$client.env.FormField.c53_Accused_Sexual_Abuse_2.HTML>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row b-top b-bottom">
+        <div class="col-lg-12">
+            <$client.env.FormField.c54_Explanation.HTML>
+        </div>
+    </div>
+    <div class="row bg-black mb-20">
+        <div class="col-lg-12">
+            <p class="lead mb-0">
+                <strong>CANDIDATE ACKNOWLEDGEMENT AND AUTHORIZATION</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row mb-30">
+        <div class="col-lg-12">
+            <p>
+                This questionnaire is not complete until fully completed, signed, and all statements below have been read and initialed.
+            </p>
+            <p>
+                I hereby certify that all of the information I provided in this questionnaire (or any other accompanying or required documents) is correct, accurate and complete to the best of my knowledge. I understand that the falsification, misrepresentation or omission of any facts in this questionnaire or any other accompanying or required documents will be cause for denial of employment or immediate termination of employment regardless of the timing or circumstances of discovery.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.c55_Initial.HTML>
+            </div>
+            <p>
+                I understand that only the Chief Executive Officer of GEO or his authorized designee, and no manager, supervisor, or other representative of the Company, has the authority to enter into any agreement for employment for any specified period of time, or to make any agreement contrary to the at-will employment relationship, and with respect to any agreement entered into by the Chief Executive Officer, any such agreements must be in writing and signed by the Chief Executive Officer or his authorized designee and by me or my authorized representative.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.c56_Initial.HTML>
+            </div>
+            <p>
+                I understand that the submission of a questionnaire is not an offer of employment and does not guarantee employment.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.c57_Initial.HTML>
+            </div>
+            <p>
+                I further understand and agree that, except for employment-at-will status, if hired my wages, working conditions, job assignment(s), and compensation rate(s) will be subject to change by the Company.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.c58_Initial.HTML>
+            </div>
+            <p>
+                I understand that the Company may share the information contained in this questionnaire with other Company employees for employment and administrative purposes and hereby consent to such transfer.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.c59_Initial.HTML>
+            </div>
+            <p>
+                I understand and expressly agree that if employed by the Company, I have no expectation of privacy in any lockers or storage areas provided to me (locker, desk, etc.). Backpacks, purses or similar items are open to investigation by the Company without prior notice to me.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.c60_Initial.HTML>
+            </div>
+            <p>
+                I understand that, consistent with federal and state law, I may be required to submit to a pre-employment physical examination, psychological examination/evaluation and/or legally permissible drug testing. Further, I understand that if I am required to submit to a drug screen, any offer of employment is contingent upon my receiving a negative test result.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.c61_Initial.HTML>
+            </div>
+            <p>
+                I understand I have a right to receive any public record obtained directly by the Company as part of its investigation into my background in connection with this application or any public record obtained during any subsequent background investigation conducted should I become employed by the Company.
+            </p>
+            <div class="i-block mb-10">
+                Initial:
+            </div>
+            <div class="i-block mb-10">
+                <$client.env.FormField.c62_Initial.HTML>
+            </div>
+            <p>
+                I understand that by typing my name below, I am (a) indicating that I understand and agree to the terms set forth in this Employment Questionnaire which contains all the understandings between the Company and me concerning the topics addressed herein, and supersedes any prior inconsistent understandings between the Company and me on such issues; and (b) agreeing to use an electronic method of signature for this acknowledgement. I understand that my electronic signature is as legally binding as an ink signature.
+            </p>
+            <div class="i-block mb-10 v-middle">
+                Do you agree with the terms above:
+            </div>
+            <div class="i-block mb-10 v-middle">
+                <$client.env.FormField.c63_Agreed_with_Terms.HTML>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+            <label class="control-label">
+                Signature:
+            </label>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <$client.env.FormField.c64_Signature.HTML>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+            <label class="control-label">
+                Date:
+            </label>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            <$client.env.FormField.c65_Date.HTML>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div class="hide">
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.full_name.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+
+function disableCalButton(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+$(document).on('ready', function() {
+    "use strict";
+    $(".modal").hide();
+    $('[data-checkbox-group]').on('click', function() {
+        let groupId = $(this).data('checkbox-group');
+        let checked = $(this).prop('checked');
+        $('[data-checkbox-group="' + groupId + '"]').prop('checked', false);
+        $(this).prop('checked', checked);
+    });
+    // sets responsive table uniform height
+    const setCommonHeight = function() {
+        $('.common-height').each(function() {
+            let height = $(this).height();
+            $.each($(this).children('div'), function(k,v) {
+                $(v).css({'height': height});
+            });
+        });
+    };
+    if(!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        setCommonHeight();
+    }
+    $(window).on('resize', function() {
+        location.reload();
+    });
+    // inputs only accepts valid telephone number
+    $('.phone-dashes').on('keyup paste', function() {
+        let num = $(this).val().replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
+        if (num) {
+            $(this).val(num[1] + '-' + num[2] + '-' + num[3]);
+        }
+    });
+
+    // show toggleable sections that has been filled out
+    $.each($('[data-toggleable-section] input[type="text"], [data-toggleable-section] select'), function(k,v) {
+        if ($(v).val().length > 0) {
+            console.log($(v).prop('name') + ' ' + $(v).val())
+            $(v).closest('[data-toggleable-section]').show();
+        }
+    });
+
+    // toggle sections
+    const showSections = function(controller, target) {
+        if (target.length > 0) {
+            $(target).first().show();
+        }
+    }
+    const hideSections = function(controller, target) {
+        if (target.length > 0) {
+            $(target).last().hide();
+        }
+    }
+    const toggleSectionControls = function(section, target) {
+        let hasTarget = false;
+        let targets = 0;
+        $.each(target, function(k,v) {
+            if ($(v).is(':visible')) {
+                hasTarget = true;
+                targets += 1;
+            }
+        });
+        if (!hasTarget) {
+            section.find('[data-control="delete"]').hide();
+        }
+        if (hasTarget) {
+            section.find('[data-control="delete"]').show();
+        }
+        if (targets >= target.length) {
+            section.find('[data-control="add"]').hide();
+            return;
+        }
+        section.find('[data-control="add"]').show();
+    }
+    $('[data-control-section] button').on('click', function() {
+        let sectionGroup = $(this).parent().data('control-section');
+        switch ($(this).data('control')) {
+            case "add":
+            let sectionHidden = $('[data-toggleable-section="' + sectionGroup + '"]:hidden');
+            showSections($(this), sectionHidden);
+            break;
+            case "delete":
+            let sectionVisible = $('[data-toggleable-section="' + sectionGroup + '"]:visible');
+            hideSections($(this), sectionVisible);
+            break;
+        }
+        toggleSectionControls($(this).parent(), $('[data-toggleable-section="' + sectionGroup + '"]'));
+    });
+    toggleSectionControls($('[data-control-section="police-record"]'), $('[data-toggleable-section="police-record"]'));
+    toggleSectionControls($('[data-control-section="post-conviction-jobs"]'), $('[data-toggleable-section="post-conviction-jobs"]'));
+    toggleSectionControls($('[data-control-section="confinement-facility-jobs"]'), $('[data-toggleable-section="confinement-facility-jobs"]'));
+    if (strFormCompleted) {
+        $('[data-control]')
+            .removeClass('alt-primary primary')
+            .addClass('disabled')
+            .prop('disabled', 'disabled');
+    }
+});
+</script>

@@ -1,0 +1,645 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2" style="padding-left: 0;"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value=''; document.getElementById('eSignature1').focus();">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form" class="form-horizontal">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.accnt1_Category.prompt>
+        <$client.env.FormField.accnt1_Type.prompt>
+        <$client.env.FormField.accnt1_Routing.prompt>
+        <$client.env.FormField.accnt1_Number.prompt>
+        <$client.env.FormField.accnt1_Retype_Number.prompt>
+        <$client.env.FormField.accnt1_Deposit_Type.prompt>
+        <$client.env.FormField.accnt1_Amount.prompt>
+        <$client.env.FormField.accnt2_Category.prompt>
+        <$client.env.FormField.accnt2_Type.prompt>
+        <$client.env.FormField.accnt2_Routing.prompt>
+        <$client.env.FormField.accnt2_Number.prompt>
+        <$client.env.FormField.accnt2_Retype_Number.prompt>
+        <$client.env.FormField.accnt2_Deposit_Type.prompt>
+        <$client.env.FormField.accnt2_Amount.prompt>
+        <$client.env.FormField.accnt3_Category.prompt>
+        <$client.env.FormField.accnt3_Type.prompt>
+        <$client.env.FormField.accnt3_Routing.prompt>
+        <$client.env.FormField.accnt3_Number.prompt>
+        <$client.env.FormField.accnt3_Retype_Number.prompt>
+        <$client.env.FormField.accnt3_Deposit_Type.prompt>
+        <$client.env.FormField.accnt3_Amount.prompt>
+        <$client.env.FormField.California_Resident.prompt>
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.Date.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main class="container-fluid">
+    <header class="row">
+        <div class="col-lg-12">
+            <h4>
+                Direct Deposit
+            </h4>
+            <h5>
+                <$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Initial><$client.env.eval(client.tForWhomUserInfo.Middle_Initial.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>
+            </h5>
+        </div>
+    </header>
+    <div class="row">
+        <div class="col-lg-12">
+            <p>I hereby authorize Kirkland &amp; Ellis LLP ("K&amp;E") to deposit my paycheck each payday into the account(s) referenced below. I further agree to the following conditions: </p>
+            <ol>
+                <li> This authorization is to remain in full force and effect until revoked or superseded by me, either electronically or in writing, or K&amp;E has been notified by your financial institution that the deposit service has been terminated; </li>
+                <li> If funds to which I am not entitled are deposited to my account(s), I authorize K&amp;E to direct the financial institution(s) to return said funds; </li>
+                <li> I absolve K&amp;E from any liability to pay charges for insufficient fund transactions that result from a failure within the Automated Clearing House network to correctly and timely deposit monies into my account. </li>
+            </ol>
+            <p> Your direct deposit authorization will be effective with the next available paydate. </p>
+            <p> Please validate all account information for accuracy before saving. Incorrect information could result in a delay in the receipt of your net pay. K&amp;E waits until funds are returned from your financial institution before your net pay is reissued. </p>
+            <p>You must designate a direct deposit account as your Expense account. Your expense account can be the same as your primary account. Not having an account type of ‘Expense’ setup will result in paper checks being issued for reimbursement of expenses.</p>
+            <p>
+                <a id="check-modal-control" href="#">View Check Example</a>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <strong class="text-warning">Direct Deposit Details</strong>
+            <div class="table-responsive center-block">
+                <table id="table-direct-deposit" class="table table-hover table-striped table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>
+                                *Account Category
+                            </th>
+                            <th>
+                                *Account Type
+                            </th>
+                            <th>
+                                Routing Number
+                            </th>
+                            <th>
+                                Account Number
+                            </th>
+                            <th>
+                                Retype Account Number
+                            </th>
+                            <th>
+                                Deposit Type
+                            </th>
+                            <th>
+                                Amount or Percent
+                            </th>
+                            <th>
+                                &nbsp;
+                            </th>
+                            <th>
+                                &nbsp;
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <$client.env.FormField.accnt1_Category.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt1_Type.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt1_Routing.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt1_Number.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt1_Retype_Number.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt1_Deposit_Type.HTML>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <div class="input-group-addon addon-dollar">$</div>
+                                    <$client.env.FormField.accnt1_Amount.HTML>
+                                    <div class="input-group-addon addon-percent">%</div>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" role="button" class="btn btn-sm btn-default btn-add">
+                                    +
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" role="button" class="btn btn-sm btn-default btn-remove">
+                                    -
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <$client.env.FormField.accnt2_Category.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt2_Type.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt2_Routing.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt2_Number.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt2_Retype_Number.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt2_Deposit_Type.HTML>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <div class="input-group-addon addon-dollar">$</div>
+                                    <$client.env.FormField.accnt2_Amount.HTML>
+                                    <div class="input-group-addon addon-percent">%</div>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" role="button" class="btn btn-sm btn-default btn-add">
+                                    +
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" role="button" class="btn btn-sm btn-default btn-remove">
+                                    -
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <$client.env.FormField.accnt3_Category.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt3_Type.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt3_Routing.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt3_Number.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt3_Retype_Number.HTML>
+                            </td>
+                            <td>
+                                <$client.env.FormField.accnt3_Deposit_Type.HTML>
+                            </td>
+                            <td>
+                                <div class="input-group">
+                                    <div class="input-group-addon addon-dollar">$</div>
+                                    <$client.env.FormField.accnt3_Amount.HTML>
+                                    <div class="input-group-addon addon-percent">%</div>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" role="button" class="btn btn-sm btn-default btn-add">
+                                    +
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" role="button" class="btn btn-sm btn-default btn-remove">
+                                    -
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <div id="california-resident-section" class="row mb-20">
+        <div class="col-lg-12">
+            <$client.env.FormField.California_Resident.HTML>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="control-label col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            Electronic Signature
+        </label>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="mb-10">
+                <$client.env.FormField.Signature.HTML>
+            </div>
+        </div>
+        <label class="control-label col-lg-1 col-md-1 col-sm-12 col-xs-12">
+            Date
+        </label>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <$client.env.FormField.Date.HTML>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="lifesuite__clearfix lifesuite__float-right">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.FullName.HTML>
+</div>
+
+</form>
+
+<div id="check-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <img src="<$link;/main/RedCarpet/FormTemplates/Kirkland_Direct_Deposit_Form/img/Kirkland_Check_Example2.png>" alt="" class="img-responsive">
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(window).on('load', function() {
+    "use strict";
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input input-sm');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input input-sm');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+const DEPOSIT_TYPES = new Map();
+const ACCOUNT_TYPES = new Map();
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+const isFilledOut = function(rowElem) {
+    "use strict";
+    let isFilled = false;
+    $.each(rowElem.find('input,select'), function(k,v) {
+        if ($(v).val().length > 0) {
+            isFilled = true;
+        }
+    });
+    return isFilled;
+}
+
+const refreshToggleButtons = function() {
+    "use strict";
+    const visibleRows = $('#table-direct-deposit tbody tr:visible');
+    const MAX_ROWS = 3;
+    const MIN_ROWS = 1;
+    if (visibleRows.length <= MIN_ROWS) {
+        $('.btn-remove').prop('disabled', 'disabled');
+    }
+    if (visibleRows.length < MAX_ROWS) {
+        $('.btn-add').prop('disabled', false);
+    }
+    if (visibleRows.length > MIN_ROWS) {
+        $('.btn-remove').prop('disabled', false);
+    }
+    if (visibleRows.length >= MAX_ROWS) {
+        $('.btn-add').prop('disabled', 'disabled');
+        $('.btn-remove').prop('disabled', false);
+    }
+}
+
+const hasDuplicates = function(arr) {
+    "use strict";
+    return arr.filter(function(item, index) {
+        return arr.indexOf(item) != index;
+    });
+}
+
+const makeOptions = function(el, options) {
+    "use strict";
+    el.html('');
+    let first = true;
+    for (let key in options) {
+        if (!!first) {
+            el.append($('<option selected="selected"/>').val(key).text(options[key]));
+            first = false;
+            continue;
+        }
+        el.append($('<option />').val(key).text(options[key]));
+    }
+}
+
+// allow 1 secondary if primary category is already selected
+const categoryHasPrimary = function(cat, cats) {
+    "use strict";
+    let hasPrimary = false;
+    cats.each(function() {
+        if (this.value == 'PRI' && $(this).prop('name') != cat.prop('name')) {
+            hasPrimary = true;
+        }
+    });
+    if (!!hasPrimary) {
+        return true;
+    }
+    return false;
+}
+
+$(document).on('ready', function() {
+
+    // store options
+    // store account types
+    $('[name$=".accnt1_Category"] option').each(function() {
+        ACCOUNT_TYPES.set(this.value, this.innerText);
+    });
+    // store deposit types
+    $('[name$=".accnt1_Deposit_Type"] option').each(function() {
+        DEPOSIT_TYPES.set(this.value, this.innerText);
+    });
+
+    // check example modal
+    $('#check-modal-control').on('click', function(e) {
+        e.preventDefault();
+        $('#check-modal').modal();
+    });
+
+    // hide all accounts that hasn't been filled out
+    const accounts = $('#table-direct-deposit tbody tr');
+    $.each(accounts, function(k,v) {
+        if (!isFilledOut($(v))) {
+            $(v).hide();
+        }
+    });
+
+    // show only the first account if no account is filled
+    const visibleAccounts = $('#table-direct-deposit tbody tr:visible');
+    if (visibleAccounts.length < 1) {
+        accounts.first().show();
+    }
+
+    refreshToggleButtons();
+
+    // add accounts
+    $('.btn-add').on('click', function(e) {
+        const hiddenAccounts = $('#table-direct-deposit tbody tr:hidden');
+        e.preventDefault();
+        hiddenAccounts.first().show();
+        refreshToggleButtons();
+    });
+
+    // remove accounts
+    $('.btn-remove').on('click', function(e) {
+        const visibleAccounts = $('#table-direct-deposit tbody tr:visible');
+        e.preventDefault();
+        visibleAccounts
+            .last()
+            .hide()
+            .find('input,select')
+            .val('');
+        refreshToggleButtons();
+    });
+
+    // disable copy paste on some fields
+    $('.disable-clipboard').on('cut copy paste', function(e) {
+        e.preventDefault();
+        alert("Pasting not allowed. Please input manually.")
+    });
+
+    // allow only numbers on some fields
+    $('.text-numeric').on('change keyup', function(){
+        $(this).val($(this).val().replace(/\D/g, ''));
+    });
+
+    // disable percent when account type is balance
+    $('.deposit-type').on('change', function() {
+        let amountPercentage = $(this).closest('tr').find('.amount-percentage')
+        let accountCategory = $(this).closest('tr').find('.account-category')
+        let amountParent = $(this).closest('tr').find('.input-group');
+        if(accountCategory.val() == "SEC") {
+            amountPercentage.data('max-percent', 100);
+        }
+        switch($(this).val()) {
+        case 'B':
+            amountPercentage.val('').prop('disabled', 'disabled');
+            amountParent.find('.addon-percent, .addon-dollar').hide();
+        break;
+        case 'P':
+            amountPercentage.addClass('is-percent').prop('disabled', false);
+            amountParent.find('.addon-percent').css('display', 'table-cell');
+            amountParent.find('.addon-dollar').hide();
+            if(accountCategory.val() == "EXP") amountPercentage.val('100').prop('disabled', 'disabled');
+            // secondary should have maximum 99 only
+            if(accountCategory.val() == "SEC") {
+                amountPercentage.addClass('secondary-percentage');
+            }
+        break;
+        case 'A':
+            amountPercentage.removeClass('is-percent secondary-percentage').prop('disabled', false);
+            amountParent.find('.addon-dollar').css('display', 'table-cell');
+            amountParent.find('.addon-percent').hide();
+        break;
+        default:
+            amountPercentage.removeClass('is-percent secondary-percentage').prop('disabled', false);
+            amountParent.find('.addon-percent, .addon-dollar').hide();
+                amountPercentage.val('');
+        break;
+        }
+    }).trigger('change');
+
+    // allow only decimal points input
+    $('.amount-percentage').on('keydown keyup', function(e) {
+        if (e.shiftKey == true) {
+            e.preventDefault();
+        }
+        if ((e.keyCode >= 48 && e.keyCode <= 57) || 
+            (e.keyCode >= 96 && e.keyCode <= 105) || 
+            e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 37 ||
+            e.keyCode == 39 || e.keyCode == 46 || e.keyCode == 190) {
+        } else {
+            e.preventDefault();
+        }
+        if($(this).val().indexOf('.') !== -1 && e.keyCode == 190) {
+            e.preventDefault();
+        }
+        if ($(this).val().indexOf('.') > -1) {
+            let inputParts = $(this).val().split('.');
+            if (inputParts[1].length > 2) {
+                inputParts[1] = inputParts[1].substring(0,2);
+                $(this).val(inputParts.join('.'));
+            }
+        }
+    }).on('paste', function(e) {
+        e.preventDefault();
+    });
+
+    const accountCategories = $('.account-category');
+    accountCategories.on('change', function() {
+        const thisAccount = $(this);
+        // prevent duplicate account category
+        let selectedCategories = [];
+        accountCategories.each(function() {
+            if (this.value.length > 0) {
+                selectedCategories.push(this.value);
+            }
+        });
+        const depositType = $(this).closest('tr').find('.deposit-type');
+        // primary first before secondsary
+        if (!categoryHasPrimary($(this), accountCategories) && $(this).val() == 'SEC') {
+            alert("Select Primary first before you can select Secondary");
+            depositType.val("").trigger('change');
+            $(this).val("");
+            return;
+        }
+        if (hasDuplicates(selectedCategories).length > 0) {
+            alert("Account Category duplicates aren\'t allowed. Please choose another Category.");
+            depositType.val("").trigger('change');
+            $(this).val("");
+            return;
+        }
+
+        let opts = {
+            "": "",
+            "B": "Balance",
+            "P": "Percent",
+            "A": "Amount"
+        }
+        switch($(this).val()) {
+            case "PRI":
+            // percent and amount is no longer options
+            delete opts[""];
+            delete opts["P"];
+            delete opts["A"];
+            makeOptions(depositType, opts)
+            break;
+            case "SEC":
+            // balance is no longer an option
+            delete opts[""];
+            delete opts["B"];
+            makeOptions(depositType, opts)
+            break;
+            case "EXP":
+            // balance and amount is no longer options
+            delete opts[""];
+            delete opts["B"];
+            delete opts["A"];
+            makeOptions(depositType, opts)
+            // copy primary if selectec
+            if (selectedCategories.indexOf('PRI') >= 0) {
+                accountCategories.each(function(k, v) {
+                    if ($(v).val() != 'PRI') {
+                        return;
+                    }
+                    const primarySection = $(v).closest('tr');
+                    const thisSection = thisAccount.closest('tr');
+                    thisSection.find('.account-type').val(
+                        primarySection.find('.account-type').val()
+                    );
+                    thisSection.find('.account-routing').val(
+                        primarySection.find('.account-routing').val()
+                    );
+                    thisSection.find('.account-number').val(
+                        primarySection.find('.account-number').val()
+                    );
+                    thisSection.find('.account-number-retype').val(
+                        primarySection.find('.account-number-retype').val()
+                    );
+                });
+            }
+            break;
+            default:
+            // display all options
+            makeOptions(depositType, opts)
+        }
+        depositType.trigger('change');
+    });
+
+    disableCalButton($('.disable-date'));
+
+    // california specific checkbox
+    if ("<$client.tForWhomUserInfo.Current_State>" !== "USA-CA") {
+        $('#california-resident-section').hide();
+    }
+
+    const focusSigFields = setInterval(function(){
+      "use strict";
+      if(document.getElementById('modal').style.display=='block') {
+        document.getElementById('eSignature1').focus();
+        clearInterval(focusSigFields);
+      }
+    }, 500);
+
+    if (strFormCompleted != "") {
+        $('.btn-add, .btn-remove', '#table-direct-deposit').prop('disabled', 'disabled');
+    }
+
+    $(".modal").hide();
+
+});
+
+angular.element(document).ready(function() {
+    angular.element('#divLoader').fadeOut();
+});
+</script>

@@ -1,0 +1,111 @@
+<table border="0">
+		  <tr>
+			<td id='First_Name_prompt'>First Name </td>
+			<td colspan="3"><input type="text" name="First_Name" value="<$client.tForWhomUserInfo.First_Name>" /></td>
+		</tr>
+		<tr>
+			<td id='Middle_Name_prompt'>Middle Name</td>
+			<td colspan="3"><input type="text" name="Middle_Name" value="<$client.tForWhomUserInfo.Middle_Name>" /></td>
+		</tr>
+		<tr>
+			<td id='Last_Name_prompt'>Last Name</td>
+			<td colspan="3"><input type="text" name="Last_Name" value="<$client.tForWhomUserInfo.Last_Name>" /></td>
+		  </tr>
+		<tr>
+			<td id='Full_Name_prompt'><$client.env.promptFull_Name></td>
+			<td colspan="3"><$client.env.inputFull_Name></td>
+		</tr>
+
+	<tr>
+			<td colspan="4">Please type exactly as it appears on your Driver’s License or State ID.</td>
+		</tr>
+		<tr>
+			<td id='Preferred_Name_prompt'><$client.env.promptPreferred_Name></td>
+			<td colspan="3"><$client.env.inputPreferred_Name></td>
+		</tr>
+
+		<tr>
+			<td id='Phone_prompt'><$client.env.promptPhone></td>
+			<td colspan="3"><$client.env.inputPhone></td>
+		</tr>
+		  <tr>
+			<td  id='Email_prompt'>Email Address</td>
+			<td colspan="3"><input type="text" name="Email" value="<$client.tForWhomUserInfo.Email>"  size="40"/>	</td>
+		  </tr>
+		  <tr>
+			<td id='Address1_prompt'><$client.env.promptAddress1></td>
+			<td colspan="3"><$client.env.inputAddress1>	</td>
+		  </tr>
+		  <tr>
+			<td id='Address2_prompt'><$client.env.promptAddress2></td>
+			<td colspan="3"><$client.env.inputAddress2>	</td>
+		  </tr>
+		  <tr>
+			<td id='City_prompt'><$client.env.promptCity></td>
+		<td colspan="3"><$client.env.inputCity>	</td>
+		</tr>
+		<tr>
+			<td id='State_prompt'><$client.env.promptState></td>
+		<td><$client.env.inputState></td>
+			<td id='Zip_prompt'><$client.env.promptZip></td>
+		<td><$client.env.inputZip></td>
+		  </tr>
+		  <tr>
+			<td id='Country_prompt'><$client.env.promptCountry></td>
+			<td colspan="3"><$client.env.inputCountry></td>
+		  </tr>
+		  <tr>
+			<td id='SSNO_prompt'><$client.env.promptSSNO></td>
+			<td colspan="3">
+				<input type="password" id="Pseudo_SSNO" value="<$client.tForWhomUserInfo.SSNO>">
+			</td>
+		  </tr>  
+
+		  <tr>
+			<td id='DOB_prompt'><$client.env.promptDOB></td>
+			<td colspan="3">
+				<input type="password" id="Pseudo_DOB" value="<$client.tForWhomUserInfo.DOB>">
+			</td>
+		  </tr>  
+                  <tr>
+			<td id='Direct_Patient_Contact_prompt'><$client.env.promptDirect_Patient_Contact></td>
+			<td colspan="3"><$client.env.inputDirect_Patient_Contact></td>
+		  </tr>
+<tr>
+			<td id='Emergency_Contact_Name_prompt'><$client.env.promptEmergency_Contact_Name></td>
+			<td colspan="3"><$client.env.inputEmergency_Contact_Name></td>
+		  </tr>
+<tr>
+			<td id='Relationship_to_Emergency_Contact_prompt'><$client.env.promptRelationship_to_Emergency_Contact></td>
+			<td colspan="3"><$client.env.inputRelationship_to_Emergency_Contact></td>
+		  </tr>
+<tr>
+			<td id='Emergency_Contact_Phone_Number_prompt'><$client.env.promptEmergency_Contact_Phone_Number></td>
+			<td colspan="3"><$client.env.inputEmergency_Contact_Phone_Number></td>
+		  </tr>
+
+
+</table>
+
+<div style="display: none;">
+	<$client.env.inputSSNO>
+	<$client.env.inputDOB>
+</div>
+
+<!-- Format Dates on load -->
+<script type="text/javascript">
+if(self.LoadCallback) {
+	LoadCallback(document.forms['frmExtendedUserProfile']);
+}
+$(document).on('ready', function() {
+	"use strict";
+	$('#Pseudo_DOB').datepicker({
+		onSelect: function(date) {
+			$('[name$=".DOB_display"]').datepicker('setDate', date);
+		}
+	});
+	$('#Pseudo_SSNO').on('keyup paste blur', function() {
+		$('[name$=".SSNO"]').val($(this).val());
+	});
+});
+</script>

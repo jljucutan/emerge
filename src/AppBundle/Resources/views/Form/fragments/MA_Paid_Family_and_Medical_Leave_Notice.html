@@ -1,0 +1,534 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col-12">
+                <p class="h5"><strong>Electronic Signature</strong></p>
+                <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            <strong>Type your Name:</strong>
+            <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            <div class="sign-btn-group">
+                <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+                <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+                <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Name.prompt>
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    
+    <div class="row mb-4">
+        <div class="col-sm-5">
+            <div class="parallelo-outter py-3 bg-success position-relative">
+                <div class="parallelo-inner position-absolute top-0 bottom-0 bg-success">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="h5">
+                <strong>Effective January 1, 2022</strong>
+            </p>
+            <p>
+                <strong class="h5">PAID FAMILY AND MEDICAL LEAVE NOTICE TO EMPLOYEES</strong><br>
+                <em>Please read this notice carefully. It contains important information about your rights, obligations, and eligibility under the Massachusetts Paid Family and Medical Leave law. Please keep this notice for your records.</em>
+            </p>
+            <p>The Massachusetts Paid Family and Medical Leave (PFML) law provides most Massachusetts employees the right to paid family and medical leave. These rights are described further below and include both (1) job protection when the employee returns to work and (2) partial wage-replacement benefits while the employee is out of work. Employers can provide these benefits either by (1) participating in the PFML Trust Fund operated by the Massachusetts Department of Family and Medical Leave (the Department), or (2) providing an exempt private plan that offers benefits at least as generous as those available through the Department.</p>
+            <p>An employer may apply for an exemption from the medical leave contribution, family leave contribution, or both. Your employer has elected to provide benefits as follows:</p>
+
+            <div class="border border-dark border-2 d-sm-flex align-items-center">
+                <div class="flex-fill px-3 text-center">
+                    <div class="signature-line border-bottom border-dark text-center">
+                        <strong>Refer to Appendix A</strong>
+                    </div>
+                    (Employer Name)
+                </div>
+                <div class="flex-fill py-3">
+                    <ul class="list-square">
+                        <li>Does not have an approved private plan and is providing all leave benefits through the Department;</li>
+                        <li>Has an approved private plan for both family and medical leave benefits;</li>
+                        <li>Has an approved private plan for family leave benefits only, and is providing medical leave benefits through the Department;</li>
+                        <li>Has an approved private plan for medical leave benefits only, and is providing family leave benefits through the Department.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p>Regardless of whether your employer participates in the state Trust Fund or has a private plan, you will be entitled to certain benefits and protections. You may be required to make contributions to the Trust Fund or to fund your employer’s private plan, but only up to a certain amount. You will also need to tell your employer when you need leave, and you will need to file a claim for benefits with the Department or through your employer’s private plan.</p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-sm-5">
+            <div class="parallelo-outter py-3 bg-success position-relative">
+                <div class="parallelo-inner position-absolute top-0 bottom-0 bg-success">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12"> 
+            <p>
+                <strong>I. Explanation of Benefits</strong>
+            </p>
+            <strong>
+                <u>
+                    <u><em>Leave Allotments.</em></u>
+                </u>
+            </strong>
+            Under the PFML Law, you may be entitled to up to:
+            <ul class="list-bullet mb-2">
+                <li>12 weeks of paid family leave in a benefit year for the birth, adoption, or foster care placement of a child; to care for a family member with a serious health condition; or because of a qualifying exigency arising out of the fact that a family member is on active duty or has been notified of an impending call to active duty in the Armed Forces;</li>
+                <li>20 weeks of paid medical leave in a benefit year if they have a serious health condition that incapacitates them from work;</li>
+                <li>26 weeks of paid family leave in a benefit year to care for a family member who is a covered service member undergoing medical treatment or otherwise addressing consequences of a serious health condition relating to the family member’s military service;</li>
+                <li>26 total weeks, in the aggregate, of paid family and medical leave in a single benefit year.</li>
+            </ul>
+
+            <p>A “benefit year” is the 12 months preceding the Sunday immediately before your leave begins.</p>
+
+            <p><strong><u><em>Other Leaves.</em></u></strong> Any leave you take – paid or unpaid – for the same qualifying reasons listed above will count towards your amount of leave for that benefit year. However, no leave taken before January 1, 2021 will count towards your available leave. Similarly, leave to care for a family member with a serious health condition that was taken before July 1, 2021, also will not count towards your family leave allotment.</p>
+
+            <p><strong><u><em>Eligibility.</em></u></strong> You will be eligible for leave and wage-replacement benefits if you meet the earnings test.  You must have earned at least $5,700 in wages in Massachusetts in the four completed quarters before you apply for benefits. In the same period, you also must have earned at least 30 times your maximum potential benefit amount. (This is the amount calculated in the “Wage Replacement Payments” section below.)</p>
+
+            <p class="mb-0"><strong><u><em>Wage Replacement Payments.</em></u></strong> When you take leave for any of the reasons described above, you will be eligible to apply to the Department or to your employer’s private plan for wage replacement benefits. These benefits will be a proportion of your average weekly earnings. Your maximum potential benefit amount will be as follows:</p>
+            <ul class="list-bullet mb-2">
+                <li>80% of earnings up to 50% of the State Average Weekly Wage</li>
+                <li>50% of earnings above the State Average Weekly Wage</li>
+                <li>In no event more than a maximum amount. For 2022, this maximum benefit amount is $1,084.31. This amount will be adjusted annually based on increases in the State Average Weekly Wage.</li>
+            </ul>
+            <p>Private plans may choose to provide higher benefits but may not provide lower amounts than what the Department would pay.</p>
+
+            <p class="mb-0"><strong><u><em>Concurrent Benefits Payments.</em></u></strong> If you receive benefits from other sources while you are also receiving benefits from the Department, the benefits you receive from the Department may be reduced. Certain types of other benefits will cause a one-for-one reduction in benefits you receive from the Department. This means that for each dollar you receive from these benefits, your benefit from the Department will decrease by a dollar. Benefits that will have this effect include:</p>
+            <ul class="list-bullet mb-2">
+                <li>Workers’ Compensation</li>
+                <li>Unemployment Insurance</li>
+                <li>Permanent Disability Policies or Programs</li>
+                <li>Extended Illness Leave Bank Leave</li>
+            </ul>
+            <p class="mb-0">Other forms of benefits will not reduce the benefits you receive from the Department unless you are receiving more than your average weekly wage in total benefits. Benefits that will have this effect include:</p>
+            <ul class="list-bullet mb-2">
+                <li>Temporary Disability Policies or Programs (including both Short-Term Disability and Long- Term Disability)</li>
+                <li>Employer-run Family and/or Medical Leave Policies or Programs</li>
+            </ul>
+            <p><strong>WARNING: TAKING PAID TIME OFF AND PFML.</strong> Paid Time Off (PTO) includes sick time, vacation days, or personal days (or any other similar form of paid time off not listed in the section above that you earn over time or at a specific time, like at the start of every calendar year). You can <em>only</em> take PTO while on paid family and medical leave in specific situations:</p>
+            <ul class="list-bullet mb-2">
+                <li>During your waiting week, when no benefits are paid;</li>
+                <li>In a single, continuous block of time immediately after your waiting week;</li>
+                <li>After you take PFML leave.</li>
+            </ul>
+            <p>
+                <strong>If you take PTO at any other point while you receive PFML benefits, your benefits will be cancelled.</strong>
+            </p>
+
+            <p>
+                <strong>II. Employee Rights and Protections</strong>
+            </p>
+            <p><strong><u><em>Job Protection.</em></u></strong> Generally, if you take family or medical leave, once you return to work, your employer must restore you to your previous position or to an equivalent position, with the same status, pay, employment benefits, length-of-service credit, and seniority as of the date you started your leave. This may not apply if your position was eliminated due to economic reasons unrelated to your use of leave.</p>
+            <p><strong><u><em>Continuation of Health Insurance.</em></u></strong> Your employer must continue to provide for and contribute to your employment-related health insurance benefits, if any, at the level and under the conditions coverage would have been provided if you had continued working for the duration of such leave.  Your employer may require you to continue to pay your portion of your health insurance premium on the same terms and conditions as before your leave.</p>
+            <p><strong><u><em>No Retaliation.</em></u></strong> It is unlawful for any employer to discriminate or retaliate against you for exercising any right to which you are entitled under the paid family and medical leave law. An employee or former employee who is retaliated against for exercising rights under the law may, not more than three years after the violation occurs, institute a civil action in the superior court.</p>
+            <p>
+                <strong>II. Contribution Amounts</strong>
+            </p>
+            <p><strong>Companies with 25 or more Massachusetts Employees (Refer to Appendix A)</strong><br> To help fund paid leave benefits available under the PFML law, your employer may make a contribution, funded in part by a deduction from your wages, which will either be remitted to the Trust Fund or to the operator of your employer’s private plan. An employer who contributes to the Trust Fund will be required to contribute the following amounts:</p>
+            <div class="table-responsive mb-2">
+                <table class="table table-bordered border-dark">
+                    <thead>
+                        <tr class="text-center">
+                            <th>
+                                <strong>Family Leave Contribution</strong>
+                            </th>
+                            <th>
+                                <strong>Medical Leave Contribution</strong>
+                            </th>
+                            <th>
+                                <strong>Total Contribution Amount</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td>
+                                <strong>0.12% of earnings*</strong>
+                            </td>
+                            <td>
+                                <strong>0.56% of earnings*</strong>
+                            </td>
+                            <td>
+                                <strong>0.68% of earnings*</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Because your employer has 25 or more covered workers, the total contribution amount is 00.68% of wages. Of that 00.68% total contribution amount, there is a split: 17.3% is a family leave contribution and 82.7% is a medical leave contribution.</p>
+            <p>Under the law, employers are responsible for a minimum of 60% of the medical leave contribution (.336% of wages) but are permitted to deduct from employees’ wages up to 40% of the medical leave contribution (.224% of wages) and up to 100% of the family leave contribution (.12% of wages) for a total of .344% of wages. Whether your employer has a private plan or participates in the state Trust Fund, your employer cannot deduct more than these percentages from your wages.</p>
+            <p><strong><u>Companies with fewer than 25 Massachusetts Employees (Refer to Appendix A)</u></strong><br> To help fund paid leave benefits available under the PFML law, your employer may make a deduction from your wages, which will either be remitted to the Trust Fund or to the operator of your employer’s private plan. Whether your employer has a private plan or participates in the state Trust Fund, the deduction cannot exceed the following amounts:</p>
+            <div class="table-responsive mb-2">
+                <table class="table table-bordered border-dark">
+                    <thead>
+                        <tr class="text-center">
+                            <th>
+                                <strong>Family Leave Contribution</strong>
+                            </th>
+                            <th>
+                                <strong>Medical Leave Contribution</strong>
+                            </th>
+                            <th>
+                                <strong>Total Contribution Amount</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td>
+                                <strong>0.12% of earnings*</strong>
+                            </td>
+                            <td>
+                                <strong>0.224% of earnings*</strong>
+                            </td>
+                            <td>
+                                <strong>0.344% of earnings*</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>Because your employer has fewer than 25 covered workers, your employer is not required by law to make any additional contribution on your behalf. Employers may choose to cover some portion of your contribution amount (0.378%* of wages) but are not required to do so. Your employer has elected to allocate the contribution amount as follows:</p>
+            <p>Your employer has elected to allocate the contribution amount as follows:</p>
+
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 table-responsive">
+            <table class="table table-bordered table-hover border-dark" style="min-height: 140px;">
+                <tbody>
+                    <tr>
+                        <td class="bg-primary text-white position-relative" rowspan="3">
+                            <div class="rotate-90 position-absolute" style="min-width: 120px; left: -50px; top: 40%;">
+                                <strong>Medical Leave</strong>
+                            </div>
+                        </td>
+                        <td class="bg-light-blue" colspan="3">
+                            Total Required Contribution:
+                        </td>
+                    </tr>
+                    <tr rowspan="2">
+                        <td rowspan="2">
+                            <div class="d-flex">
+                                <div class="flex-fill">
+                                    <div class="border-bottom border-dark border-2">
+                                        <strong>Refer to Appendix A</strong>
+                                    </div>
+                                    (Employer Name)
+                                </div>
+                                <div class="flex-fill">
+                                    <p class="mb-4">will contribute</p>
+                                    and the remaining
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            _n/a_%
+                        </td>
+                        <td>of the medical leave contribution</td>
+                    </tr>
+                    <tr>
+                        <td>_n/a__%</td>
+                        <td>will be deducted from your earnings</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 table-responsive">
+            <table class="table table-bordered table-hover border-dark" style="min-height: 140px;">
+                <tbody>
+                    <tr>
+                        <td class="bg-success text-white position-relative" rowspan="3">
+                            <div class="rotate-90 position-absolute" style="min-width: 120px; left: -50px; top: 40%;">
+                                <strong>Family Leave</strong>
+                            </div>
+                        </td>
+                        <td class="bg-light-green" colspan="3">
+                            Total Required Contribution: .12%*
+                        </td>
+                    </tr>
+                    <tr rowspan="2">
+                        <td rowspan="2">
+                            <div class="d-flex">
+                                <div class="flex-fill">
+                                    <div class="border-bottom border-dark border-2">
+                                        <strong>Refer to Appendix A</strong>
+                                    </div>
+                                    (Employer Name)
+                                </div>
+                                <div class="flex-fill">
+                                    <p class="mb-4">will contribute</p>
+                                    and the remaining
+                                </div>
+                            </div>
+                        </td>
+                        <td>_0%</td>
+                        <td>of the family leave contribution</td>
+                    </tr>
+                    <tr>
+                        <td>__.12_%</td>
+                        <td>will be deducted from your earnings</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p>Please initial here to indicate that you understand that this percentage of your wages earned in a pay period will be deducted from your pay each pay period: <span class="d-inline-block"><$client.env.FormField.Initial.HTML></span></p>
+            <p>* The numbers provided are through 2022. These rates may be adjusted on an annual basis, effective January 1 of each calendar year.</p>
+            <p>
+                <strong>III. Notifying your Employer</strong>
+            </p>
+            <p><strong><em>BEFORE</em></strong> you take leave or apply for benefits, you MUST notify your employer that you need to take leave. You are required to provide at least 30 days’ notice of your need for leave. If 30 days’ notice is not possible due to circumstances beyond your control, you must provide notice as soon as practicable, and in any event, before you file any application for benefits.</p>
+            <p class="mb-0">When you notify your employer of your need for leave, you must provide the following information:</p>
+            <ol class="mb-2">
+                <li>The anticipated start date of leave;</li>
+                <li>The anticipated length of the leave;</li>
+                <li>The expected date of return from leave;</li>
+                <li>Whether you will need intermittent leave (leave taken in separate blocks of two or more) or reduced leave (leave that involves a reduced schedule of fewer hours or days per week), and;</li>
+                <li>If you need intermittent or reduced leave schedule, the expected frequency of leave and expected duration of each instance of leave.</li>
+            </ol>
+            <p>If any of this information changes, you must tell your employer as soon as you are aware of the change.</p>
+            <p>
+                <strong>IV. Filing a Claim</strong>
+            </p>
+            <p>To apply for Paid Family and Medical Leave benefits, you will need the following information about your employer:</p>
+            <div class="border border-dark border-2 p-3 mx-auto" style="max-width: 350px;">
+                <div class="border-bottom border-dark border-2 ps-2">
+                    <strong>Refer to Appendix A</strong>
+                </div>
+                <div class="ps-2">(Employer Name)</div>
+                <div class="border-bottom border-dark border-2 ps-2">20 Moores Road</div>
+                <div class="ps-2 mb-2">(Employer Street Address)</div>
+                <div class="border-bottom border-dark border-2 ps-2">Malvern, PA, 19355</div>
+                <div class="ps-2">(Employer City, State, Zip)</div>
+                <div class="border-bottom border-dark border-2 ps-2">
+                    <strong>Refer to Appendix A</strong>
+                </div>
+                <div class="ps-2">(Federal Employer ID Number) (FEIN)</div>
+            </div>
+            <p class="mb-0">If your employer has an exempt private plan, you must file a claim for benefits with the provider of that plan. Your employer must provide you information about the private plan and the application process. Your employer has made that information available:</p>
+            <p class="ms-3">
+                &#9633; As an attachment to this Notice <br>
+                <strong>X</strong> Available at: <a href="http://www.sgcbenefits.com" target="_blank">www.sgcbenefits.com</a>. <br>
+                <strong>X</strong> Other: <u>Employees should contact Sedgwick to initiate a Short-Term Disability. At that time Sedgwick will advise you of the Paid Medical Leave private plan requirements</u> <br>
+                &#9633; N/a (Employer contributes to Trust Fund)
+            </p>
+            <p class="mb-0">If your employer contributes to the Trust Fund, you must file a claim for benefits with the Department. You may file this claim in one of two ways:</p>
+            <ol>
+                <li>You can create an account to apply online through the Department’s Claimant Portal at <a href="https://paidleave.mass.gov/login/" target="_blank">https://paidleave.mass.gov/login/</a></li>
+                <li>You can call the Department’s call center at (833) 344‑7365 to complete an application over the phone.</li>
+            </ol>
+            <p>Forms and claim instructions are available on the Department’s website at <a href="https://www.mass.gov/info-details/documents-needed-to-complete-your-paid-family-and-medicalleave-pfml-application" target="_blank">https://www.mass.gov/info-details/documents-needed-to-complete-your-paid-family-and-medicalleave-pfml-application</a>.</p>
+            <p>
+                <strong>V. For More Information</strong>
+            </p>
+            <p>For more detailed information, please consult the Department’s website: www.mass.gov/DFML.</p>
+            <p>You may contact the Department of Family and Medical Leave at:</p>
+            <p class="ms-4 mb-5">
+                <strong>The Massachusetts Department of Family and Medical Leave</strong> <br>
+                PO Box 838 <br>
+                Lawrence, MA 01842 <br>
+                Contact Center: (833) 344-7365 <br>
+                <a href="http://www.mass.gov/DFML" target="_blank">www.mass.gov/DFML</a>
+            </p>
+            <p class="text-center mb-0">
+                <strong>
+                    <u>ACKNOWLEDGMENT</u>
+                </strong>
+            </p>
+            <p>Your signature below acknowledges your receipt of the information above within 30 days from the start date of your employment.</p>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-7 me-4">
+            <$client.env.FormField.Signature.HTML>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.Date.HTML>
+        </div>
+    </div>
+    
+    <div class="row mb-3">
+        <div class="col-sm-5">
+            <$client.env.FormField.Name.HTML>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-12">
+            <p>Your signed acknowledgement will be retained by your employer. Please retain a copy for your own reference.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p class="text-center">
+                <strong>Appendix “A” Schedule of Employers</strong>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered border-dark">
+                    <thead>
+                        <tr class="text-white bg-success">
+                            <th>
+                                <strong>Employee Population</strong>
+                            </th>
+                            <th>
+                                <strong>Company Name</strong>
+                            </th>
+                            <th>
+                                <strong>FEIN</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="5" align="center">25 or more employees</td>
+                            <td>Saint-Gobain Abrasives, Inc.</td>
+                            <td>04-1680390</td>
+                        </tr>
+                        <tr>
+                            <td>Saint-Gobain Ceramics & Plastics, Inc.</td>
+                            <td>13-1780510</td>
+                        </tr>
+                        <tr>
+                            <td>CertainTeed LLC</td>
+                            <td>23-2510893</td>
+                        </tr>
+                        <tr>
+                            <td>Saint-Gobain Performance Plastics Corporation</td>
+                            <td>95-1947155</td>
+                        </tr>
+                        <tr>
+                            <td>Saint-Gobain Shared Services Corporation</td>
+                            <td>20-3429712</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3" align="center">Fewer than 25 Employees</td>
+                            <td>CertainTeed Ceilings Corporation</td>
+                            <td>23-2817856</td>
+                        </tr>
+                        <tr>
+                            <td>CertainTeed Gypsum, Inc.</td>
+                            <td>04-3718860</td>
+                        </tr>
+                        <tr>
+                            <td>Saint-Gobain Corporation</td>
+                            <td>23-2615166</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <p class="text-end">
+                <strong>Updated 11/5/2021</strong>
+            </p>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/MA_Paid_Family_and_Medical_Leave_Notice/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

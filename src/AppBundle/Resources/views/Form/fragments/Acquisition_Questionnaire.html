@@ -1,0 +1,712 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;"> 
+              <div class="modal-content"> 
+                             <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+                             <p style="fontweight:normal;padding:0px"> 
+                                           <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+                             </p> 
+                             <br> 
+                             <div class="row"> 
+                                            <div class="lifesuite__clearfix"> 
+                                                          <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                                            </div> 
+                             </div> 
+                             <div class="row"> 
+                                           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+
+                                                         <input style="margin-top:10px" type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+
+                                                          <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                                           </div> 
+                            </div> 
+              </div> 
+</div> 
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<div class="modal" style="display:block; background: #002E6D;"> 
+              <div class="fb-spinner"> 
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+              </div> 
+</div> 
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>
+/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return
+SubmitCallback(this);">
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+ 
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+
+<$client.env.FormField.Conviction.prompt>
+<$client.env.FormField.Conviction1_CityState.prompt>
+<$client.env.FormField.Conviction1_CityState1.prompt>
+<$client.env.FormField.Conviction1_CityState2.prompt>
+<$client.env.FormField.Conviction1_Date.prompt>
+<$client.env.FormField.Conviction1_Description.prompt>
+<$client.env.FormField.Conviction1_Suspension.prompt>
+<$client.env.FormField.Conviction2_CityState.prompt>
+<$client.env.FormField.Conviction2_CityState2.prompt>
+<$client.env.FormField.Conviction2_Date.prompt>
+<$client.env.FormField.Conviction2_Description.prompt>
+<$client.env.FormField.Conviction2_Suspension.prompt>
+<$client.env.FormField.FormerReferences_OtherName.prompt>
+<$client.env.FormField.Former_Name.prompt>
+<$client.env.FormField.License_Revoked.prompt>
+<$client.env.FormField.License_Revoked_Explain.prompt>
+<$client.env.FormField.NYU_Employee.prompt>
+<$client.env.FormField.NYU_Employee_Unit.prompt>
+<$client.env.FormField.NYUhealth_Employee.prompt>
+<$client.env.FormField.NYUhealth_Employee_Date.prompt>
+<$client.env.FormField.NYUhealth_Employee_Department.prompt>
+<$client.env.FormField.NYUhealth_Employee_Relatives.prompt>
+<$client.env.FormField.NYUhealth_Employee_Relatives_Dept.prompt>
+<$client.env.FormField.NYUhealth_Employee_Relatives_Name.prompt>
+<$client.env.FormField.Participation_Ineligible.prompt>
+<$client.env.FormField.Participation_Ineligible_Explain.prompt>
+<$client.env.FormField.Print_Name.prompt>
+<$client.env.FormField.Reinstated.prompt>
+<$client.env.FormField.Reinstated_Explain.prompt>
+<$client.env.FormField.Sign_Date.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.UnderAge18.prompt>
+
+</div>
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+     <div class="form-group">  
+
+<div class="row h1margin blueBackGround">
+                <div class="col-xs-12 col-md-12">
+                  <h1 class="h1Title" style="font-size:25pt"><b>APPLICANT QUESTIONNAIRE</b></h1>
+                </div>  
+              </div>
+
+              <div class="row">
+                <div class="col-xs-7 col-md-10">
+                </div>
+                <div class="col-xs-1 col-md-1">
+                <div class="pull-right triangle-5">
+                </div>
+                </div>
+              </div>
+
+              <div class="row">
+              <div class="col-xs-12 col-md-12">
+                &nbsp;
+              </div>
+              </div>
+
+              <div class="content">
+
+                <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                      <ol>
+                        <li value="1">
+                          <p>[Please be aware that in some states traffic violations are considered misdemeanors and as such we encourage you to review any citations you have received before answering this question.] Have you ever been convicted of, pled guilty to, or entered a plea of “no contest” to, a crime, misdemeanor or felony, including but not limited to DWI/DUI? </p>
+                        </li>
+                      </ol>
+                  </div>
+                </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 paddingLeft">
+                 <$client.env.FormField.Conviction.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <h6>If yes, please list any convictions, including but not limited to those stated in the initial question above.</h6>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-1">
+                 <h6><b>Date:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction1_Date.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1" style="width:50px">
+                 <h6><b>City:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction1_CityState.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1">
+                 <h6><b>State:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction1_CityState2.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1" style="width:90px">
+                 <h6><b>Conviction:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction1_Suspension.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-1">
+                 <h6><b>Date:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction2_Date.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1" style="width:50px">
+                 <h6><b>City:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction2_CityState.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1">
+                 <h6><b>State:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction2_CityState2.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1"  style="width:90px">
+                 <h6><b>Conviction:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction2_Suspension.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-1">
+                 <h6><b>Date:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction3_Date.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1" style="width:50px">
+                 <h6><b>City:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction3_CityState.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1">
+                 <h6><b>State:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction3_CityState2.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1"  style="width:90px">
+                 <h6><b>Conviction:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction3_Suspension.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-1">
+                 <h6><b>Date:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction4_Date.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1" style="width:50px">
+                 <h6><b>City:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction4_CityState.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1">
+                 <h6><b>State:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction4_CityState2.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1"  style="width:90px">
+                 <h6><b>Conviction:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction4_Suspension.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-1">
+                 <h6><b>Date:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction5_Date.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1" style="width:50px">
+                 <h6><b>City:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction5_CityState.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1">
+                 <h6><b>State:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction5_CityState2.HTML>
+                </div>
+                <div class="col-xs-12 col-md-1"  style="width:90px">
+                 <h6><b>Conviction:</b></h6>
+                </div>
+                <div class="col-xs-12 col-md-2">
+                 <$client.env.FormField.Conviction5_Suspension.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <p><b>Please note: NY Law prohibits unjustified discrimination on the basis of criminal history. Failure to list a conviction will be considered falsification of the application.</b></p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                      <ol>
+                        <li value="2">
+                          <p>(a) Have you ever been excluded, suspended, debarred, or otherwise deemed ineligible to participate in a federally-funded healthcare program?</p>
+                        </li>
+                      </ol>
+                  </div>
+                </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 paddingLeft">
+                 <$client.env.FormField.Participation_Ineligible.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <h6>If <b>yes</b>, please specify:</h6>
+                 <$client.env.FormField.Participation_Ineligible_Explain.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                      <ol style="list-style-type: none">
+                        <li>
+                          <p>(b) Since your exclusion, suspension, debarment, or ineligibility from federally-funded healthcare programs, have you been reinstated?</p>
+                        </li>
+                      </ol>
+                  </div>
+                </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 paddingLeft">
+                 <$client.env.FormField.Reinstated.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <h6>If <b>no</b>, please specify:</h6>
+                 <$client.env.FormField.Reinstated_Explain.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                      <ol>
+                        <li value="3">
+                          <p>Has your professional licensure ever been suspended or revoked?</p>
+                        </li>
+                      </ol>
+                  </div>
+                </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 paddingLeft">
+                 <$client.env.FormField.License_Revoked.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <h6>If <b>yes</b>, please explain:</h6>
+                 <$client.env.FormField.License_Revoked_Explain.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                      <ol>
+                        <li value="4">
+                          <p>Are you currently employed at any unit of New York University?</p>
+                        </li>
+                      </ol>
+                  </div>
+                </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 paddingLeft">
+                 <$client.env.FormField.NYU_Employee.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <h6>If <b>yes</b>, please explain: </h6>
+                 <$client.env.FormField.NYU_Employee_Unit.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                      <ol>
+                        <li value="5">
+                          <p>Are you under 18 years of age?</p>
+                        </li>
+                      </ol>
+                  </div>
+                </div>
+
+               <div class="row">
+                <div class="col-xs-12 col-md-12 paddingLeft">
+                 <$client.env.FormField.UnderAge18.HTML><br>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                      <ol>
+                        <li value="6">
+                          <p>Were you ever an employee or a volunteer at NYU Langone Hospitals (NYU Tisch Hospital, NYU Langone Hospital-Brooklyn, NYU Langone Orthopedic Hospital), NYU Grossman School of Medicine, NYU Langone Health System, any of their affiliates (Woodhull Hospital, Bellevue Hospital, Gouverneur Hospital, NYU Langone Hospital - Long Island), or at NYU Lutheran Augustana Center, NYU Lutheran CHHA, Inc., NYU Lutheran Community Care Org, or the Family Health Centers at NYU Langone? </p>
+                        </li>
+                      </ol>
+                  </div>
+                </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 paddingLeft">
+                 <$client.env.FormField.NYUhealth_Employee.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <h6>If <b>yes</b>, please list dates and departments:</h6>
+                 <$client.env.FormField.NYUhealth_Employee_Department.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                      <ol>
+                        <li value="7">
+                          <p>NYU Langone places certain restrictions on business relationships between individuals within the same department who are “related.” An individual is considered a “Related Employee” with respect to another NYU Langone employee if the person is a(n): (i) family member by blood, marriage or adoption; (ii) domestic partner, significant other in a consensual relationship or roommate; (iii) individual who is not legally related but who resides with a NYU Langone employee; (iv) this definition applies to current relationships and former relationships in the categories above.</p>
+
+                          <p>Do you have any Related Employee(s), currently employed by NYU Langone Hospitals (NYU Tisch Hospital, NYU Langone Hospital-Brooklyn, NYU Langone Orthopedic Hospital), NYU Grossman School of Medicine, NYU Langone Health System, any of their affiliates (Woodhull Hospital, Bellevue Hospital, Gouverneur Hospital, NYU Langone - Long Island), or the Family Health Centers at NYU Langone?</p>
+                        </li>
+                      </ol>
+                  </div>
+                </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 paddingLeft">
+                 <$client.env.FormField.NYUhealth_Employee_Relatives.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <h6>If <b>yes</b>, please provide the name of the related employees and their department/unit:</h6>
+                 <$client.env.FormField.NYUhealth_Employee_Relatives_Dept.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <p><b>NYU Langone Health does not restrict the hiring of relatives of employees or members of the same household, however, such individuals are not permitted to hold positions subject to the supervision of the other. If assigned to a NY City Health & Hospitals Corporation affiliate location, the individuals may not be assigned to the same unit/department.</b></p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <p><b>Please note – employees and candidates for employment must inform the NYU Langone Health Human Resources Department of any changes in relationship or familial status whereby they would be subject to the Related Employee policy.</b></p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-xs-12 col-md-12">
+                      <ol>
+                        <li value="8">
+                          <p>Are your former employment or educational references listed under any other name(s)?</p>
+                        </li>
+                      </ol>
+                  </div>
+                </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 paddingLeft">
+                 <$client.env.FormField.FormerReferences_OtherName.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <h6>If <b>yes</b>, please indicate your former name(s):</h6>
+                 <$client.env.FormField.Former_Name.HTML>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                 <p>I certify that the information contained in this Employment Application is correct to the best of my knowledge. I authorize investigation of all matters contained in the application and agree that any misleading or false statements render this application void and are sufficient cause for immediate dismissal in the event of employment. I understand that my employment is contingent upon satisfactory completion of both a physical examination and background check investigation plus the receipt of satisfactory work and education references. I authorize and request the release of information regarding my employment record (including a statement of whether I am eligible for rehire, reason for separation, work performance, abilities, and qualities relevant to my application for employment), and release NYU Langone and all my present and former employers, their agents and representatives from any and all liability arising from the release or communication of this information. I authorize and request the release of information regarding my academic record to NYU Langone. I represent that there are no restrictive covenants, non- compete agreements, non-disclosure agreements, or other contractual limitations that prevent me from accepting employment and performing the full functions of my position at NYU Langone. If employed, I agree to provide acceptable proof of age and work authorization and to abide by all NYU Langone rules and regulations. If employed, I authorize NYU Langone to conduct any and all verifications as permitted by federal, state, and municipal codes and regulations. I understand that my employment is not governed by any written or oral contract and is considered an "at will" arrangement. This means that I am free, as is NYU Langone, to terminate the employment relationship at any time as long as there is no violation of applicable federal, state, or local law.</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-7">
+                  <$client.env.FormField.Print_Name.HTML>
+                  <label class="blueFont"><b>Name</b></label>
+                </div>
+                <div class="col-xs-12 col-md-5">
+                  <$client.env.FormField.Sign_Date.HTML>
+                  <label class="blueFont"><b>Date</b></label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-7">
+                  <$client.env.FormField.Signature.HTML>
+                  <label class="blueFont"><b>Signature</b></label>
+                </div>
+                <div class="visible-md visible-lg col-xs-12 col-md-1">
+                  &nbsp;
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  
+                </div>
+              </div>
+  
+              <div class="row">
+                   <div class="col-xs-12 col-md-12" style="text-align:right">
+                          <img src="bottomLogo.png" style="width:200px">
+                   </div>
+              </div>
+
+              <div class="row">
+                   <div class="col-xs-12 col-md-12">
+                         <span style="font-size:9pt;color:#e7e6e6">NYUv1.019</span>
+                   </div>
+              </div>
+
+
+            </div>  <!-- end content -->
+
+
+                          <div class="content">
+                <div class="col-xs-12 col-md-12">
+                    <hr class="lifesuite__hr"> 
+                </div>   
+                           </div>
+     
+    
+    </div>
+
+<div style="display:none;">
+<$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+    <$client.env.FormButtons>
+</form>
+
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+
+$(window).load(function() { 
+  $("input[type=text]").addClass('lifesuite__text-input');  
+ $("input[type=text].hasDatepicker").addClass('dateField'); 
+   $("select").addClass('lifesuite__select-input'); 
+   $("input[type=radio]").addClass('lifesuite__radio'); 
+        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+        $("textarea").addClass('lifesuite__textarea-input'); 
+        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+}); 
+
+
+function redIfYes(){
+  var abc = document.getElementsByClassName('conviction')[0];
+  var disabledClass = document.getElementsByClassName("radioYesNo2");
+
+  if(abc.checked == true) {
+       for (j = 0;j < disabledClass.length; j++) {
+           disabledClass[j].classList.add("ng-invalid");
+        }
+  } else {
+       for (j = 0;j < disabledClass.length; j++) {
+           disabledClass[j].className = disabledClass[j].className.replace(/\bng-invalid\b/g, "");
+        }
+  }
+}
+
+function redIfYes1(){
+  var abc = document.getElementsByClassName('participation')[0];
+  if(abc.checked == true) {
+    document.getElementById('participation').classList.add("ng-invalid");
+  } else {
+    document.getElementById('participation').className = document.getElementById('participation').className.replace(/\bng-invalid\b/g, "");
+  }
+}
+
+function redIfYes2(){
+  var abc = document.getElementsByClassName('revoked')[0];
+  if(abc.checked == true) {
+    document.getElementById('revoked').classList.add("ng-invalid");
+  } else {
+    document.getElementById('revoked').className = document.getElementById('revoked').className.replace(/\bng-invalid\b/g, "");
+  }
+}
+
+
+function redIfYes3(){
+  var abc = document.getElementsByClassName('nyu')[0];
+  if(abc.checked == true) {
+    document.getElementById('nyu').classList.add("ng-invalid");
+  } else {
+    document.getElementById('nyu').className = document.getElementById('nyu').className.replace(/\bng-invalid\b/g, "");
+  }
+}
+
+function redIfYes4(){
+  var abc = document.getElementsByClassName('empDepartment')[0];
+  if(abc.checked == true) {
+    document.getElementById('empDepartment').classList.add("ng-invalid");
+  } else {
+    document.getElementById('empDepartment').className = document.getElementById('empDepartment').className.replace(/\bng-invalid\b/g, "");
+  }
+}
+
+function redIfYes5(){
+  var abc = document.getElementsByClassName('relDepartment')[0];
+  if(abc.checked == true) {
+    document.getElementById('relDepartment').classList.add("ng-invalid");
+  } else {
+    document.getElementById('relDepartment').className = document.getElementById('relDepartment').className.replace(/\bng-invalid\b/g, "");
+  }
+}
+
+function redIfYes6(){
+  var abc = document.getElementsByClassName('formerName')[0];
+  if(abc.checked == true) {
+    document.getElementById('formerName').classList.add("ng-invalid");
+  } else {
+    document.getElementById('formerName').className = document.getElementById('formerName').className.replace(/\bng-invalid\b/g, "");
+  }
+}
+
+function redIfNo(){
+  var abc = document.getElementsByClassName('reinstated')[1];
+  if(abc.checked == true) {
+    document.getElementById('reinstated').classList.add("ng-invalid");
+  } else {
+    document.getElementById('reinstated').className = document.getElementById('reinstated').className.replace(/\bng-invalid\b/g, "");
+  }
+}
+redIfYes();
+redIfYes1();
+redIfYes2();
+redIfYes3();
+redIfYes4();
+redIfYes5();
+redIfYes6();
+redIfNo();
+
+
+
+</SCRIPT>

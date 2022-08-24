@@ -1,0 +1,764 @@
+<div id="task_summary_outer">
+    <div id="bg-image">.</div>
+    <div id="EditProfile_container">
+        <div id="EditProfile_wrapper">
+            <div id="EditProfile">
+                <h2>Launch Offboarding Event</h2>
+                <h4>This page simplifies the process of launching an offboarding event.</h4>
+                <div class="heading">
+                    <span class="heading-inner">
+                        CONTACT INFORMATION
+                    </span>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">HR Business Case</span>
+                    <input type="text" id="HR_Business_Case" name="HR_Business_Case">
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Is this an Individual or Group separation?</span>
+                    <$client.env.inputIndividual_or_Group>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Employee ID</span>
+                    <input type="text" id="Employee_HRISID" name="Employee_HRISID" value="<$client.tForWhomUserInfo.Employee_HRISID>" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Legal First Name</span>
+                    <input type="text" id="First_Name" name="First_Name" value="<$client.tForWhomUserInfo.First_Name>" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Legal Last Name</span>
+                    <input type="text" id="Last_Name" name="Last_Name" value="<$client.tForWhomUserInfo.Last_Name>" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Home Address line 1</span>
+                    <$client.env.inputAddress1>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Home Address line 2</span>
+                    <$client.env.inputAddress2>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Country</span>
+                    <$client.env.inputCountry>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">City</span>
+                    <$client.env.inputCity>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">State/County</span>
+                    <$client.env.inputState>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Postal / Zip Code</span>
+                    <$client.env.inputZip>
+                </div>
+                <div class="mb-18"></div>
+
+                <div class="heading">
+                    <span class="heading-inner">
+                      SEPARATION INFORMATION
+                    </span>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Tenure (Continuous Date of Employment)</span>
+                    <input type="text" id="Tenure_CED_pseudo" name="Tenure_CED_pseudo" data-date-enabled="false">
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Grade Level</span>
+                    <input type="text" name="SalaryGradeLvl_pseudo" id="SalaryGradeLvl_pseudo" value="<$client.tForWhomUserInfo.SalaryGradeLvl_Description>" readonly data-title="Grade Level" data-validation="required">
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Location</span>
+                    <input type="text" id="Work_Location_pseudo" name="Work_Location_pseudo" value="<$client.tForWhomUserInfo.Work_Location_Description>" data-title="Location" readonly data-validation="required">
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Annual Base Salary (USD)</span>
+                    <$client.env.inputBaseMonthly70>
+                </div>
+                 <div class="input_wrapper">
+                    <label id="Warn_Eligible_label">Is this employee eligible for WARN?</label>
+                    <$client.env.inputWarn_Eligible>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Severance Weeks</span>
+                    <$client.env.inputSeverance_Weeks>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Additional Severance Weeks</span>
+                    <$client.env.inputSpecial_Event_Override_Severance_Weeks>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Is this employee eligible for Retention?</span>
+                    <select name="Retention_Eligible">
+                        <option value="Retention Eligible - No" <$client.env.eval((client.tEventCategories_Category_46.Value=='Retention Eligible - No')?'Selected':'')>>Retention Eligible - No</option>
+                        <option value="Retention Eligible - Yes" <$client.env.eval((client.tEventCategories_Category_46.Value=='Retention Eligible - Yes')?'Selected':'')>>Retention Eligible - Yes</option>
+                    </select>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Retention Date</span>
+                    <input type="text" id="Special_Event_Retention_Date_pseudo" name="Special_Event_Retention_Date_pseudo" value="<$client.tForWhomUserInfo.Special_Event_Retention_Date>">
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Cobra Eligibility (In calendar months)</span>
+                    <$client.env.inputCobra_Eligibility>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Enhanced Cobra Eligibility</span>
+                    <$client.env.inputCobra_Eligibility_Special_Event_Override>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Bonus</span>
+                    <$client.env.inputBonus>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">AIP Separation Date</span>
+                    <$client.env.inputAIP_Separation_Date>
+                </div>
+                <!-- div class="input_wrapper" style="display: none;">
+                    <span class="floating-label">Cobra Eligibility (In calendar months)</span>
+                    <input type="text" value="" id="Cobra_Eligibility_pseudo" name="Cobra_Eligibility_pseudo" readonly>
+                </div -->
+                <div class="input_wrapper">
+                    <span class="floating-label">Business Case Approval Date</span>
+                    <input type="text" id="Business_Case_Approval_Date_pseudo" name="Business_Case_Approval_Date_pseudo" data-date-enabled="false" readonly>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Retention</span>
+                    <$client.env.inputRetention>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Decisional Unit</span>
+                    <$client.env.inputDecisional_Unit>
+                </div>
+                <div class="input_wrapper">
+                    <span class="floating-label">Customized Retention Bonus Amount (USD)</span>
+                    <$client.env.inputOffboarding_RetentionBonusAmt>
+                </div>
+                <div class="input_wrapper" id="Enhanced_Separation_Policy_Ack_Documents">
+                    <!--span class="floating-label">Separation Policy Documents to present to employee</span-->
+                    <label id="Enhanced_Separation_Policy_Ack_Documents_label">Separation Policy Documents to present to employee</label>
+                    <$client.env.inputEnhanced_Separation_Policy_Ack_Documents>
+                </div>
+                <div class="mb-18"></div>
+
+                <div class="button_group">
+                    <div id="save"></div>
+                    <div id="saveandcomplete"></div>
+                    <div id="cancel"></div>
+                </div>
+
+                <div hidden>
+                    <$client.env.inputHR_Business_Case>
+                    <$client.env.inputEvent_Name>
+                    <$client.env.inputEvt_Location_Code>
+                    <$client.env.inputExempt>
+                    <$client.env.inputOWBPA_Eligible>
+                    <$client.env.inputOWBPA_Age>
+                    <$client.env.inputAge_Over_40>
+                    <$client.env.inputTenure_CED>
+                    <$client.env.inputSalaryGradeLvl>
+                    <$client.env.inputBusiness_Case_Approval_Date>
+                    <$client.env.inputWork_Location>
+                    <$client.env.inputSpecial_Event_Retention_Date>
+                    <input type="text" id="DOB" name="DOB" value="<$client.tForWhomUserInfo.DOB>" readonly>
+                    <input type="text" id="Site_Name" name="Site_Name" value="<$client.env.index.site_name>" />
+                    <input type="text" id="Notification_Date" name="Notification_Date" data-date-enabled="false" readonly>
+                    <input type="text" id="Separation_Date" name="Separation_Date" data-date-enabled="false" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<link href="<$link;/main/RedCarpet/FormTemplates/FormSupport/css/front_validator.css>" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/country.js"></script>
+<script type="text/javascript" src="<$link;/main/SiteGen/DynamicContent/Snippets/Paypal_EditProfile/js>/custom-paypal.js"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>" defer></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/jquery.mask.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator_V2.js>" defer></script>
+
+<script type="text/javascript">
+    /**
+     * SERVICES-40421 | jjucutan | PayPal - Offboarding Provider Page
+     * Define here functions that can be reused
+     */
+    const providerContext = $('#EditProfile');
+    const GLOBAL_STATES = new Map();
+    const TENURE_CED = new Date('<$client.tForWhomUserInfo.Tenure_CED>T00:00:00');
+    const BUSINESS_CASE_APPROVAL_DATE = new Date('<$client.tForWhomUserInfo.Business_Case_Approval_Date>T00:00:00');
+    const EVENT_NAME = '<$client.url.event_name>';
+    const SALARY_GRADE_LVL = Number('<$client.tForWhomUserInfo.SalaryGradeLvl>');
+    const IS_RC_ADMIN = <$client.env.eval(client.role.RedCarpet_Portal>0?'true':'false')>;
+
+    let fields_config = '';
+    let fieldsPromise = $.getJSON("<$link;/Offboarding/UnplacedPages/js/NA_Offboarding_Provider_EditProfile_fields_config.json>", function(data) {
+      fields_config = data.fields;
+    });
+    const focusInputLabel = function(el, isFocused) {
+        "use strict";
+        try {
+            let label = el.closest('.input_wrapper')
+                .find('span.floating-label')
+                .removeClass('label-focus')
+                .css({"color": "#666666"});
+            if (el[0].value.trim().length > 0 || isFocused) {
+                label.addClass('label-focus');
+            }
+            if (isFocused === true) {
+                label.css({"color": "#0070BA"});
+            }
+        }
+        catch(err) {
+            console.error(el)
+            console.error(err);
+        }
+    }
+    const fieldHasVal = function(el) {
+        "use strict";
+        let hasVal = false;
+        $.each(el, function(k, v) {
+            if ($(v).val().length) {
+                hasVal = true;
+            }
+        });
+        return hasVal;
+    }
+    const isCheckboxChecked = function(el) {
+        "use strict";
+        let hasChecked = false;
+        $.each(el, function(k,v){
+            if ($(v).is(':checked')) {
+                hasChecked = true;
+            }
+        });
+        return hasChecked;
+    }
+    const setDefaultValue = function(el, defaultValue) {
+        "use strict";
+        if (el.is('input[type="checkbox"]') || el.is('input[type="radio"]')) {
+            if (isCheckboxChecked(el) === false) {
+                $.each(el, function(k,v) {
+                    if ($(v).val() === defaultValue) {
+                        $(v).prop('checked', 'checked');
+                    }
+                });
+            }
+        }
+        if (el.is('select') && el.val().length < 1 && el.find('option[value="' + defaultValue + '"]').length > 0) {
+            el.val(defaultValue);
+        }
+        if (el.is('select') && el.val().length < 1 && el.find('option:contains(' + defaultValue + ')').length > 0) {
+            el.val(el.find('option:contains(' + defaultValue + ')').prop('value'));
+        }
+        if (el.is('input[type="text"]') && el.val().trim().length < 1) {
+            el.val(defaultValue);
+        }
+    }
+    // email validator
+    const EMAIL_REG = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    const emailFormatValidator = function() {
+      "use strict";
+      let isValid = true;
+      let message = '';
+      if (!EMAIL_REG.test($('#Email').val())) {
+        isValid = false;
+        message = 'Please enter a valid email address.';
+      }
+      return {
+        "isValid": isValid,
+        "message": message
+      }
+    }
+    // define callback validators
+    const employeeIDValidator = function() {
+        "use strict";
+        const employeeField = $('#Employee_HRISID');
+        let isValid = true;
+        let message = '';
+        if (employeeField.val().length > 0 && !/^00[0-9]{6}$/.test(employeeField.val())) {
+            isValid = false;
+            message = 'Employee ID must start with 00 and then include 6 digits (00+6 digits)';
+        }
+        return {
+            "isValid": isValid,
+            "message": message
+        }
+    }
+    const separationValidator = function() {
+      "use strict";
+      let isValid = true;
+      let message = '';
+      let notificationDate = $('#Notification_Date').datepicker('getDate');
+      let separationDate = $('#Separation_Date').datepicker('getDate');
+      if (moment(separationDate).diff(notificationDate, 'days') <= 15) {
+        isValid = false;
+        message = 'Separation Date must be at least 15 days past the Notification Date.';
+      }
+      return {
+        "isValid": isValid,
+        "message": message
+      }
+    }
+
+    const getRetentionAmount = function(specialEventRetentionDate) {
+        "use strict";
+        const offboarding_RetentionBonusAmtField = $('[name$=".Offboarding_RetentionBonusAmt"]');
+        const YEAR_WEEKS = 52;
+        const MIN_WEEKS = 4;
+        let notificationDate = $('#Notification_Date').datepicker('getDate');
+        let termDate = $('#Separation_Date').datepicker('getDate');
+        if (specialEventRetentionDate && specialEventRetentionDate.datepicker('getDate')) {
+            termDate = specialEventRetentionDate.datepicker('getDate');
+        }
+        if (termDate == null || notificationDate == null) {
+            offboarding_RetentionBonusAmtField.val('0.00')
+            return;
+        }
+        let weeksDiff = moment(termDate).diff(notificationDate, 'weeks');
+        if (weeksDiff <= MIN_WEEKS) {
+            offboarding_RetentionBonusAmtField.val('0.00')
+            return;
+        }
+        let standardBonus = (Number($('[name$=".BaseMonthly70"]').val()) / YEAR_WEEKS) * ((weeksDiff - MIN_WEEKS) / 2);
+        offboarding_RetentionBonusAmtField.val(standardBonus.toFixed(2))
+    }    
+
+
+    const populateSeverance = function(v) {
+        "use strict";
+        // severance weeks default value
+        let warnEligible = '<$client.tForWhomUserInfo.Warn_Eligible>'; 
+        const severanceWeeksField = $('[name$=".Severance_Weeks"]');
+        if (v) {
+            warnEligible = v;
+        }
+        if (warnEligible == 'N') {
+            if (SALARY_GRADE_LVL >= 15 && SALARY_GRADE_LVL <= 25) {
+                (!severanceWeeksField.val().length || !!v) && severanceWeeksField.val(10);
+            }
+            if ([26, 27].indexOf(SALARY_GRADE_LVL) >= 0) {
+                (!severanceWeeksField.val().length || !!v) && severanceWeeksField.val(12);
+            }
+            if ([28,29].indexOf(SALARY_GRADE_LVL) >= 0) {
+                (!severanceWeeksField.val().length || !!v) && severanceWeeksField.val(16);
+            }
+            if (SALARY_GRADE_LVL < 15 || SALARY_GRADE_LVL > 29) {
+                !!v && severanceWeeksField.val('');
+            }
+            focusInputLabel(severanceWeeksField);
+            validateField(severanceWeeksField, true);
+        }
+        if (warnEligible == 'Y') {
+            if (SALARY_GRADE_LVL >= 15 && SALARY_GRADE_LVL <= 25) {
+                (!severanceWeeksField.val().length || !!v) && severanceWeeksField.val(3);
+            }
+            if ([26,27].indexOf(SALARY_GRADE_LVL) >= 0) {
+                (!severanceWeeksField.val().length || !!v) && severanceWeeksField.val(5);
+            }
+            if ([28,29].indexOf(SALARY_GRADE_LVL) >= 0) {
+                (!severanceWeeksField.val().length || !!v) && severanceWeeksField.val(9);
+            }
+            if (SALARY_GRADE_LVL < 15 || SALARY_GRADE_LVL > 29) {
+                !!v && severanceWeeksField.val('');
+            }
+            focusInputLabel(severanceWeeksField);
+            validateField(severanceWeeksField, true);
+        }
+    }
+
+    <$include;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>
+    $(window).on('load', function() {
+        $('.floating-label span').css('color', 'rgb(102, 102, 102)');
+        $('.cal_and_button').prop('cellpadding', 0).prop('cellspacing', 0);
+        let isProfileCompleted = sTaskComplete;
+        // replace default submit button with paypal styled
+        $('#TaskSummary_ButtonCancel').detach().appendTo('#cancel').show();
+        if (!isProfileCompleted) {
+            $('#TaskSummary_ButtonSave').prop('onclick', null).unbind('click').detach().appendTo('#saveandcomplete').show().text('Continue');
+            $('#EUPDefaultSaveButton').prop('onclick', null).unbind('click').detach().appendTo('#save').show();
+        }
+
+        // force warn eligible eup update
+        $('[name$=".Warn_Eligible"][value="<$client.tForWhomUserInfo.Warn_Eligible>"]').prop('checked', true);
+
+        // set default warn value if not set
+        if (!$('[name$=".Warn_Eligible"][value="Y"]').is(':checked') && !$('[name$=".Warn_Eligible"][value="N"]').is(':checked')) {
+            $('[name$=".Warn_Eligible"][value="N"]').prop('checked', true);
+        }
+
+        // additional severage default value
+        setDefaultValue($('[name$=".Special_Event_Override_Severance_Weeks"]'), 4);
+        // set default Cobra Eligibility value
+        setDefaultValue($('[name$=".Cobra_Eligibility_Special_Event_Override"]'), 12);
+
+        // force default value for event name
+        $('[name$=".Event_Name"]').val(EVENT_NAME);
+        // force salary level value override persistnet field value due to caching
+        $('[name$=".SalaryGradeLvl"]').val(SALARY_GRADE_LVL);
+
+        // toggle warn eligible on work location change
+        const toggleWarn = function(location) {
+            if (location.indexOf('USA-CA') < 0) {
+                $('[name$=".Warn_Eligible"]').closest('.input_wrapper').hide();
+                return;
+            }
+            $('[name$=".Warn_Eligible"]').closest('.input_wrapper').show();
+        }
+        toggleWarn($('[name$=".Work_Location"]').val());
+        $('[name$=".Work_Location"]').on('change', function() {
+            toggleWarn(this.value);
+            $('[name$=".Warn_Eligible"][value="N"]').prop('checked', true);
+            validateField($('[name$=".Warn_Eligible"]'), true);
+        });        
+        
+        $('[name$=".Enhanced_Separation_Policy_Ack_Documents"]').on('change', function() {
+            validateField($('[name$=".Enhanced_Separation_Policy_Ack_Documents"]'), false, enhancedSeparationPolicy);
+        });
+
+        const enhancedSeparationPolicy = function() { 
+            "use strict";
+            let isValid = true; 
+            let message = ""; 
+            let checkedBoxes = $('[name$=".Enhanced_Separation_Policy_Ack_Documents"]').filter(":checked").length;
+            if(checkedBoxes<1){                
+                    isValid = false;
+                    $('[id$="Enhanced_Separation_Policy_Ack_Documents_label"]').attr('class','label-has-error');
+            }
+            else
+                    $('[id$="Enhanced_Separation_Policy_Ack_Documents_label"]').removeAttr('class');
+            return { 
+                    "isValid": isValid,
+                    "message": message
+            } 
+        }; 
+
+        // options manipulation
+        // keep state options
+        $('[name$="State"] option').each(function(k, v) {
+          if (k == 0) {
+            GLOBAL_STATES.set("", "");
+          }
+          if (k == "N/A") {
+            return;
+          }
+          GLOBAL_STATES.set(v.value, v.innerText);
+        });
+        
+        // load form when all set
+        $('#EditProfile_wrapper').fadeIn();
+
+        // default values
+        // hr business case field
+        let employeeHRISIDVal = $('#Employee_HRISID').val();
+        if (!/^00/.test(employeeHRISIDVal) && employeeHRISIDVal.length > 0) {
+          $('#Employee_HRISID').val('00' + employeeHRISIDVal);
+        }
+        if ($('[name$=".Country"]').val().length < 1) {
+            $('[name$=".Country"]').val("<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>");
+        }
+
+        populateSeverance();
+        $('[name$=".Warn_Eligible"]').on('change', function() {
+            populateSeverance(this.value);
+        });
+
+                                                  
+                                                                                           
+                                                                                                                                                      
+                                               
+                                                                                                                                                   
+            
+
+
+        // show retention
+        if ("<$client.tEventCategories_Category_46.Value>" != "Retention Eligible - Yes") {
+            $('[name$="Retention"], [name$="Retention_Eligible"], #Special_Event_Retention_Date_pseudo').val('').closest('.input_wrapper').hide();
+        }
+
+        // show/hide fields dependent on event
+        if (EVENT_NAME != 'US Enhanced Offboarding') {
+            $('[name$=".Severance_Weeks"]').closest('.input_wrapper').hide();
+            $('[name$=".Special_Event_Override_Severance_Weeks"], [name$=".Special_Event_Override_Bonus_Payment"], [name$=".Cobra_Eligibility_Special_Event_Override"], [name$=".AIP_Separation_Date"], [name$=".Enhanced_Separation_Policy_Ack_Documents"]').val('').closest('.input_wrapper').hide();
+        }
+             // show/hide fields dependent on event
+        if (EVENT_NAME != 'US Offboarding') {
+            $('[name$=".Cobra_Eligibility"]').val('').closest('.input_wrapper').hide();
+        }
+        const toggleAIPSeparation = function() {
+            if ($('[name$=".Bonus"]').val() != 'AIP') {
+                $('[name$=".AIP_Separation_Date"]').val('').closest('.input_wrapper').hide();
+                focusInputLabel($('[name$=".AIP_Separation_Date"]'));
+                validateField($('[name$=".AIP_Separation_Date"]'), true);
+                return;
+            }
+            (EVENT_NAME == 'US Enhanced Offboarding') && $('[name$=".AIP_Separation_Date"]').datepicker('setDate', new Date('<$client.tEventDates_Date_9.Value>')).closest('.input_wrapper').show();
+            focusInputLabel($('[name$=".AIP_Separation_Date"]'));
+        }
+        $('[name$=".Bonus"]').on('change', function() {
+            toggleAIPSeparation();
+        });
+        (EVENT_NAME == 'US Enhanced Offboarding') && toggleAIPSeparation();
+
+        // filter state by country
+        $('[name$=".Country"]').on('change', function() {
+            let stateVal = $('[name$=".State"]').val();
+            const state = $('[name$=".State"]').html('');
+            countryVal = this.value;
+            GLOBAL_STATES.forEach(function(v, k) {
+                if (k == "" || k.substring(0,3) == countryVal) {
+                    state.append(
+                        $('<option/>').val(k).text(v)
+                    );
+                }
+            });
+            // add back the previous value
+            state.val(stateVal);
+            // if value being set does not exist set to blank
+            if (state.val() == null) {
+                state.val("");
+            }
+        });
+        $('[name$=".Country"]').trigger('change');
+
+        // datepickers
+        $('#Notification_Date, #Separation_Date, #Business_Case_Approval_Date_pseudo, #Tenure_CED_pseudo, #Special_Event_Retention_Date_pseudo, [name$=".AIP_Separation_Date"]')
+          .formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>")
+          .datepicker({
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-100:+100",
+            onSelect: function(dateText, instance) {
+                validateField($(this)); 
+                focusInputLabel($(this));
+            }
+          });
+        // datepickers default value
+        $('#DOB_pseudo').datepicker('setDate', new Date('<$client.tForWhomUserInfo.DOB>'))
+          .datepicker("option", "onSelect", function(dateText, instance) {
+            $('[name$=".DOB_display"]', providerContext).datepicker('setDate', $(this).datepicker('getDate'));
+            validateField($(this)); 
+            focusInputLabel($(this));
+          });
+        $('#Notification_Date').datepicker('setDate', new Date('<$client.tEventDates_Date_10.Value>')).on('change', function() {
+            $('[name$=".Retention"]').trigger('change');
+        });
+
+        (EVENT_NAME == 'US Enhanced Offboarding' && $('[name$=".Bonus"]').val() == 'AIP') && !$('[name$=".AIP_Separation_Date"]').datepicker('getDate') && $('[name$=".AIP_Separation_Date"]').datepicker('setDate', new Date('<$client.tEventDates_Date_9.Value>'));
+        $('#Separation_Date').datepicker('setDate', new Date('<$client.tEventDates_Date_9.Value>')).on('change', function() {
+            $('[name$=".Retention"]').trigger('change');
+        });
+        $('#Tenure_CED_pseudo').datepicker('setDate', TENURE_CED).datepicker('disable');
+        if ('<$client.tForWhomUserInfo.Business_Case_Approval_Date>'.length) {
+          $('#Business_Case_Approval_Date_pseudo').datepicker('setDate', BUSINESS_CASE_APPROVAL_DATE)
+        }
+        $('#Business_Case_Approval_Date_pseudo').datepicker("option", "onSelect", function(dateText, instance) {
+          $('[name$=".Business_Case_Approval_Date_display"]', providerContext).datepicker('setDate', $(this).datepicker('getDate'));
+          validateField($(this)); 
+          focusInputLabel($(this));
+        });
+
+        // concatenated date
+        // removed offboarding business unit <$client.tEventCategories_Category_44.Value>_
+        let businessCase = "USA_" + moment('<$client.tEventDates_Date_10.Value>').format('MM/DD/YYYY');
+        $('#HR_Business_Case').val(businessCase);
+        $('[name$=".HR_Business_Case"]').val(businessCase);
+
+        $('#Special_Event_Retention_Date_pseudo').data('date-enabled', false).formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>")
+            .datepicker('setDate', new Date('<$client.tForWhomUserInfo.Special_Event_Retention_Date>'))
+            .on('change', function() {
+                let dt = $(this).datepicker('getDate');
+                let dtObj = null;
+                let dtStr = '';
+                if (!!dt) {
+                    let yyyy = '' + dt.getFullYear();
+                    let mm = '' + (dt.getMonth() + 1);
+                    let dd = '' + dt.getDate();
+                    if (mm.length < 2) {
+                        mm = ('0' + mm);
+                    }
+                    if (dd.length < 2) {
+                        dd = ('0' + dd)
+                    }
+                    dtObj = dt;
+                    dtStr = yyyy + '-' + mm + '-' + dd;
+                }
+                $('[name$=".Special_Event_Retention_Date_display"]').datepicker('setDate', dtObj);
+                $('[name$=".Special_Event_Retention_Date"]').val(dtStr);
+                if ($('[name$=".Retention"]').val() == 'Standard') {
+                    getRetentionAmount($(this));
+                }
+            });
+        // set default value to retention date
+        ("<$client.tEventCategories_Category_46.Value>" == "Retention Eligible - Yes") && !$('[name$=".Special_Event_Retention_Date_display"]').datepicker('getDate') && $('[name$=".Special_Event_Retention_Date_display"], #Special_Event_Retention_Date_pseudo').datepicker('setDate', new Date('<$client.tEventDates_Date_9.Value>'));
+        ("<$client.tEventCategories_Category_46.Value>" == "Retention Eligible - No") && $('[name$=".Special_Event_Retention_Date_display"], #Special_Event_Retention_Date_pseudo').datepicker('setDate', null);
+        // retention bonus amount calculation
+        $('[name$=".Retention"]').val() != 'Customized' && getRetentionAmount($('#Special_Event_Retention_Date_pseudo'));
+        // retention change 
+        const toggleRetentionAmt = function(e) {
+            if (e && $('[name$=".Retention"]').val() != "Standard") {
+                // event should trigger blank
+                $('[name$=".Offboarding_RetentionBonusAmt"]').val('');
+            }
+            if ($('[name$=".Retention"]').val() == "Customized") {
+                $('[name$=".Offboarding_RetentionBonusAmt"]').closest('.input_wrapper').show();
+                focusInputLabel($('[name$=".Offboarding_RetentionBonusAmt"]'));
+                return;
+            }
+            if ($('[name$=".Retention"]').val() == "Standard") {
+                getRetentionAmount($('#Special_Event_Retention_Date_pseudo'));
+            }
+            $('[name$=".Offboarding_RetentionBonusAmt"]').closest('.input_wrapper').hide();
+            validateField($('[name$=".Offboarding_RetentionBonusAmt"]'), true);
+        }
+        toggleRetentionAmt();
+        $('[name$=".Retention"]').on('change', toggleRetentionAmt);
+
+        // focus style text and select fields
+        $('form').on('focus', 'input[type="text"]:visible, select:visible, textarea:visible', function() {
+            focusInputLabel($(this), true);
+        }).on('blur', 'input[type="text"], select, textarea', function() {
+            focusInputLabel($(this));
+        });
+        // focus style date fields
+        $('form').on('focus change', 'input.hasDatepicker', function() {
+            focusInputLabel($(this), true);
+        }).on('blur change', 'input.hasDatepicker', function() {
+            focusInputLabel($(this));
+        });
+        $('form').on('focus change', '.datepicker_button', function() {
+            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'), true);
+        }).on('blur change', '.datepicker_button', function() {
+            focusInputLabel($(this).closest('.cal_and_button').find('input[type="text"]'));
+            $(this).parent().find('.hasDatepicker').trigger('change'); 
+        });
+
+        $.when(fieldsPromise).done(function() {
+          fields_config.forEach(function(fieldConf) {
+            const field = providerContext.find('[name$="' + fieldConf.name + '"]');
+            if (field.length) {
+              field.data({
+                'validation': fieldConf.validation,
+                'title': fieldConf.title
+              });
+              if (fieldConf.label) {
+                field.data('label', fieldConf.label);
+              }
+              if (fieldConf.readonly) {
+                field.prop('readonly', fieldConf.readonly);
+              }
+              if (fieldConf.regex) {
+                field.data('regex', fieldConf.regex);
+              }
+              if (fieldConf.message) {
+                field.data('message', fieldConf.message);
+              }
+            }
+          });
+        });
+
+        // limit option of Individual_or_Group is not rc admin
+        if (!IS_RC_ADMIN) {
+            // disable bulk load option
+            $('[name$=".Individual_or_Group"] option').each(function() {
+                if (this.value == 'Bulk Load (Silkroad Only)') {
+                    $(this).prop('disabled', 'disabled');
+                }
+            });
+        }
+        // dob calculation for age / individual group field update and update OWBPA
+        $('[name$=".Individual_or_Group"]').on('change', function() {
+            let ageYears = moment().diff($('#DOB').val(), 'years');
+            if (ageYears >= 40) {
+                $('[name$=".Age_Over_40"][value="Y"]').prop('checked', true);
+                switch($(this).val()) {
+                    case "Group":
+                    $('[name$=".OWBPA_Eligible"][value="Y"]').prop('checked', true);
+                    break;
+                    case "Individual":
+                    $('[name$=".OWBPA_Eligible"][value="N"]').prop('checked', true);
+                    break;
+                    case "Bulk Load (Silkroad Only)":
+                    $('[name$=".OWBPA_Eligible"][value="L"]').prop('checked', true);
+                    break;
+                }
+            }
+            // less than 40 Y.O.
+            if (ageYears <= 39) {
+                $('[name$=".Age_Over_40"][value="N"]').prop('checked', true);
+                $('[name$=".OWBPA_Eligible"][value="N"]').prop('checked', true);
+            }
+            if (!this.value.length || (ageYears <= 39 && this.value == 'Bulk Load (Silkroad Only)')) {
+                $('[name$=".OWBPA_Eligible"]').prop('checked', false);
+            }
+            // populate age
+            $('[name$="OWBPA_Age"]').val(ageYears);
+            if ($(this).val() == 'Group') {
+                $('[name$=".Decisional_Unit"]').closest('.input_wrapper').show();
+                return;
+            }
+            $('[name$=".Decisional_Unit"]').val('').closest('.input_wrapper').hide();
+        });
+        $('[name$=".Individual_or_Group"]').trigger('change');
+
+        // focus field labels
+        $.each($('form input[type="text"], form select:visible'),function(k,v) {
+            focusInputLabel($(v));
+        });
+        // validate each field
+        providerContext.on('blur click paste keyup', 'input[type="text"]:not(".hasDatepicker"), select', function() {
+          if ($(this).prop('id') == 'Employee_HRISID' && this.value.length > 0) {
+            validateField($(this), false, employeeIDValidator);
+            return;
+          }
+          if($(this).is(':visible') && !validateField($(this))) {
+            $(this).parent().find('.text-error').css({'display': 'inline-block', 'margin-bottom': '-2px'}); 
+          }
+        });
+
+        // validate each date fields
+        providerContext.on('change blur paste', 'input[name$="_display"]:not(":hidden"), input.hasDatepicker:not(:hidden)', function() {
+          validateField($(this)); 
+        });
+
+        // save and complete later
+        providerContext.on('click', '#EUPDefaultSaveButton', function(e) {
+            e.preventDefault();
+            DisableValidation();doSave_Custom('refer-Save');
+        });
+
+        // submit the form if no errors
+        providerContext.on('click', '#TaskSummary_ButtonSave', function(e) {
+            e.preventDefault();
+            let formIsValid = true;
+            $.each($('input:visible, select:visible', providerContext), function(k,v) {
+              // all other fields
+              if($(v).is(':visible') && !validateField($(v))) {
+                formIsValid = false;
+              }
+              // employee id validation
+              if ($(v).is(':visible') && $(v).prop('name') == 'Employee_HRISID' && !validateField($('#Employee_HRISID'), false, employeeIDValidator)) {
+                formIsValid = false;
+              }
+              if(EVENT_NAME == 'US Enhanced Offboarding' && !validateField($('[name$=".Enhanced_Separation_Policy_Ack_Documents"]'), false, enhancedSeparationPolicy)){
+                formIsValid = false;
+              }
+            })
+            if (formIsValid) {
+                doSave_Custom('refer-Complete');
+            }
+            else {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            }
+        });
+
+        if (isProfileCompleted) {
+          $('input, select', providerContext).prop('disabled', true);
+        }
+
+    });
+</script>

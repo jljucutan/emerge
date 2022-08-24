@@ -1,0 +1,107 @@
+<div id="EditProfile">
+  <p>Your legal name must match the name shown on your government-issued ID.</p>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4"><span id="First_Name_promptx">Given Name - Western Script</span> <span class="text-red">*</span></div>
+    <div class="col-sm-8"><input type="text" name="First_Name" value="<$client.tForWhomUserInfo.First_Name>" /></div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4">
+      <span id="Last_Name_promptx">Family Name - Western Script</span>
+      <span class="text-red">*</span>
+    </div>
+    <div class="col-sm-8"><input type="text" name="Last_Name" value="<$client.tForWhomUserInfo.Last_Name>" /></div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4" id="Preferred_Name_promptx">Preferred Given name</div>
+    <div class="col-sm-8"><$client.env.inputPreferred_Name></div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4" id="Preferred_Last_Name_promptx">Preferred Family name</div>
+    <div class="col-sm-8"><$client.env.inputPreferred_Last_Name></div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4" id="Phone_Device_promptx">Phone Device Type</div>
+    <div class="col-sm-8"><$client.env.inputPhone_Device></div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4">
+      <span id="Phone_Country_Code_promptx">Phone Country Code</span>
+      <span class="text-red">*</span>
+    </div>
+    <div class="col-sm-8"><$client.env.inputPhone_Country_Code></div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4">
+      <span id="Phone_promptx">Phone Number</span>
+      <span class="text-red">*</span>
+    </div>
+    <div class="col-sm-8"><$client.env.inputPhone></div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div  class="col-sm-4">
+      <span id="Email_promptx">Email Address</span>
+    </div>
+    <div class="col-sm-8"><input type="text" name="Email" value="<$client.tForWhomUserInfo.Email>"  size="40"/>   </div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4">
+      <span id="Address1_promptx"><$client.env.promptAddress1></span>
+      <span class="text-red">*</span>
+    </div>
+    <div class="col-sm-8"><$client.env.inputAddress1> </div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4"><$client.env.promptAddress2></div>
+    <div class="col-sm-8"><$client.env.inputAddress2> </div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4">
+      <span id="City_promptx"><$client.env.promptCity></span>
+      <span class="text-red">*</span>
+    </div>
+    <div class="col-sm-8"><$client.env.inputCity> </div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4" id="Zip_promptx">Postal Code</div>
+    <div class="col-sm-8"><$client.env.inputZip></div>
+  </div>
+  <div class="lifesuite__row lifesuite__clearfix mb-1">
+    <div class="col-sm-4"><$client.env.promptAddress_Country></div>
+    <div class="col-sm-8"><$client.env.inputAddress_Country></div>
+  </div>
+</div>
+<div id="label-container" hidden></div>
+
+<script>
+if(self.LoadCallback) {
+  LoadCallback(document.forms['frmExtendedUserProfile']);
+}
+if (window.NodeList && !NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = function (callback, thisArg) {
+    thisArg = thisArg || window
+    for (let i = 0; i < this.length; i++) {
+      callback.call(thisArg, this[i], i, this)
+    }
+  }
+}
+document.onreadystatechange = function() {
+  document.querySelectorAll('[id$="_promptx"]').forEach(function(f) {
+    const div = document.createElement('div')
+    div.id = f.id.replace(/x$/, '')
+    div.innerHTML = f.innerHTML.replace(/:/, '')+'*'
+    document.getElementById('label-container').appendChild(div)
+  })
+  document.querySelectorAll('input, select').forEach(function(inpt) {
+    if (inpt.type == 'button') {
+      return
+    }
+    if (inpt.type == 'text') {
+      inpt.classList.add('lifesuite__text-input')
+    }
+    if (inpt.type == 'select-one') {
+      inpt.classList.add('lifesuite__select-input')
+    }
+    inpt.classList.add('w-100')
+  })
+}
+</script>

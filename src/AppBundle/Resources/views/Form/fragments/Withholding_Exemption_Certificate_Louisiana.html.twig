@@ -1,0 +1,300 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="font-weight:normal;padding:0px">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+		<$client.env.FormField.Form_Name.prompt>
+		<$client.env.FormField.Form_Name.HTML>
+		<$client.env.FormField.Form_Type.prompt>
+		<$client.env.FormField.Form_Type.HTML>
+		<$client.env.FormField.Form_Owner.prompt>
+		<$client.env.FormField.Form_Owner.HTML>
+		<$client.env.FormField.Form_CreateDate.prompt>
+		<$client.env.FormField.Form_CreateDate.HTML>
+		<$client.env.FormField.Form_Completed.prompt>
+		<$client.env.FormField.Form_Completed.HTML>
+		<$client.env.FormField.Form_Delivered.prompt>
+		<$client.env.FormField.Form_Delivered.HTML>
+		<$client.env.FormField.Form_TaskId.prompt>
+		<$client.env.FormField.Form_TaskId.HTML>
+		<$client.env.FormField.display_version.HTML>
+		<!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+		<$client.env.FormField.Signer.prompt>
+		<$client.env.FormField.a_tax_year.prompt>
+		<$client.env.FormField.b_employees_tax_1.prompt>
+		<$client.env.FormField.b_employees_tax_2.prompt>
+		<$client.env.FormField.c_employees_tax_state_of.prompt>
+		<$client.env.FormField.d_Full_name.prompt>
+		<$client.env.FormField.e_SSN.prompt>
+		<$client.env.FormField.f_Home_Address.prompt>
+		<$client.env.FormField.g_City.prompt>
+		<$client.env.FormField.h_State.prompt>
+		<$client.env.FormField.i_Zip.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+
+<main class="container-fluid">
+	<header id="top-header" class="top-header row mb-10">
+		<div id="top-header-col" class="top-header-col col-lg-12">
+			R-1307 (1/10)
+			<div id="top-header-box" class="top-header-box box bg-black table-wrapper">
+				<div id="top-header-img" class="top-header-img header-img-wrapper i-block v-middle">
+					<img src="<$link;/main/RedCarpet/FormTemplates/Withholding_Exemption_Certificate_Louisiana/img/ldr_logo.jpg>" alt="Louisiana Department of Revenue" class="img-responsive">
+				</div>
+				<div id="top-heading-title" class="top-heading-title i-block v-middle">
+					<h4 class="text-center px-md">
+						<strong>
+							State of Louisiana Exemption from <br>
+							Withholding Louisiana Income Tax	
+						</strong><br>
+						<small>
+							Form L-4E
+						</small>
+					</h4>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div id="tax-year-row" class="tax-year-row row">
+		<div class="col-lg-12">
+			<div class="box table-wrapper">
+				<div class="i-block text-center px-md">
+					<strong>TAX YEAR 20</strong>
+				</div>
+				<div id="tax-year" class="tax-year i-block">
+					<$client.env.FormField.a_tax_year.HTML>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="employee-tax-row" class="employee-tax-row row">
+		<div id="employee-tax-col" class="employee-tax-col col-lg-12">
+			<p>
+				<strong>For use by employees who:</strong> <em>(check a box below)</em>
+			</p>
+			<div class="mb-10">
+				<div id="employee-tax-1" class="employee-tax-1">
+					<$client.env.FormField.b_employees_tax_1.HTML>
+				</div>
+				<div id="employee-tax-2" class="employee-tax-2">
+					<$client.env.FormField.b_employees_tax_2.HTML>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="print-title" class="print-title row">
+		<div id="print-title-col" class="print-title-col col-lg-12 text-right">
+			<strong>PLEASE PRINT OR TYPE.</strong>
+		</div>
+	</div>
+
+	<div id="employee-info-row" class="employee-info-row row mb-10">
+		<div id="employee-info-row" class="employee-info-row col-lg-12">
+			<div id="employee-info-box" class="employee-info-box box">
+				<div id="employee-info-fullnamessn" class="employee-info-fullnamessn row b-bottom">
+					<div id="employee-info-fullname" class="employee-info-fullname col-lg-8 col-sm-8 col-xs-12 b-right">
+						Type or print full name
+						<$client.env.FormField.d_Full_name.HTML>
+					</div>
+					<div id="employee-info-ssn" class="employee-info-ssn col-lg-4 col-sm-4 col-xs-12">
+						Social Security Number
+						<$client.env.FormField.e_SSN.HTML>
+					</div>
+				</div>
+				<div id="employee-info-address-row" class="employee-info-address-row row b-bottom">
+					<div id="employee-info-address" class="employee-info-address col-lg-12">
+						Home address <em>(Number and Street)</em>
+						<$client.env.FormField.f_Home_Address.HTML>
+					</div>
+				</div>
+				<div id="employee-info-citystatezip" class="employee-info-citystatezip row">
+					<div id="employee-info-city" class="employee-info-city col-lg-6 col-sm-6 col-xs-12 b-right">
+						City
+						<$client.env.FormField.g_City.HTML>
+					</div>
+					<div id="employee-info-state" class="employee-info-state col-lg-2 col-sm-2 col-xs-12 b-right">
+						State
+						<$client.env.FormField.h_State.HTML>
+					</div>
+					<div id="employee-info-zip" class="employee-info-zip col-lg-4 col-sm-4 col-xs-12">
+						Zip
+						<$client.env.FormField.i_Zip.HTML>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="employee-signature-row" class="employee-signature-row row mb-10">
+		<div id="employee-signature-col" class="employee-signature-col col-lg-12">
+			<div class="box">
+				<div class="row b-bottom">
+					<div class="col-lg-12">
+						Employee's certification-Under penalty of perjury, I certify that I incurred no liability for Louisiana income tax for the prior year and that I anticipate that I will incur no liability for Louisiana income tax for the current year or I certify that I meet the conditions set forth under the Servicemember Civil Relief Act, as amended by the Military Spouses Residency Relief Act and further certify that I am domiciled outside of Louisiana.
+					</div>
+				</div>
+				<div id="employee-signer-row" class="employee-signer-row row">
+					<$client.env.FormField.Signer.HTML>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="description-row" class="description-row row mb-20">
+		<div class="col-lg-12 b-bottom">
+			<p>
+				<em>
+					<strong>Employee -</strong> File this certificate with your employer. Otherwise he must withhold Louisiana income tax from your wages.
+				</em>
+			</p>
+			<p>
+				<em>
+					<strong>Employer -</strong> Keep this certificate with your records. This certificate may be used instead of Form L-4 by those employees qualified to claim the exemption.
+				</em>
+			</p>
+		</div>
+	</div>
+
+	<p id="instruction-title-row" class="instruction-title-row text-center">
+		<strong>INSTRUCTIONS</strong>
+	</p>
+
+	<div id="instructions-list-row" class="instructions-list-row row">
+		<div class="col-lg-6 col-sm-6 col-xs-12">
+			<p class="text-justify">
+				<strong>Who may claim exemption from withholding of income tax:</strong> You may be entitled to claim exemption from withholding Louisiana income tax if you meet one of the two qualifications below.
+			</p>
+			<ol class="text-justify" type="1">
+				<li>
+					You incurred no liability for Louisiana income tax for the prior year and you anticipate that you will incur no liability for such income tax for the current year. For this purpose, you incur tax liability if your joint or separate return shows tax before the allowance of any credit for income tax withheld. If you claim this exemption, your employer will not withhold Louisiana income tax from your wages.
+				</li>
+				<li>
+					You are exempt from Louisiana income taxes under the Servicemember Civil Relief Act, as amended by the Military Spouses Residency Relief Act. For your wages to be exempt from Louisiana income taxes, (a) your spouse must be a member of the armed forces stationed in Louisiana in compliance with military orders; (b) you are here in Louisiana solely to be with your spouse; and (c) you and your spouse maintain your domicile in another state.
+				</li>
+			</ol>
+			<p class="text-justify">
+				<strong>When to claim exemption:</strong><br>
+				File this certificate with your employer as soon as you determine you are entitled to claim this exemption. You must file a certificate each year if you wish to continue to claim the exemption.
+			</p>
+		</div>
+		<div class="col-lg-6 col-sm-6 col-xs-12">
+			<p class="text-justify">
+				<strong>Multiple employers:</strong>
+				If you are employed by more than one employer, you may claim the exemption from withholding with each employer, provided that the total of your anticipated income will not cause you to incur any liability for Louisiana income tax for the current year and you incurred no liability for Louisiana income tax for the previous year.
+			</p>
+			<p>
+				<strong>When you must revoke this exemption:</strong> You must revoke this exemption certificate:
+			</p>
+			<ol type="1">
+				<li>
+					within 10 days from the day you anticipate you will incur Louisiana income tax liability for the current year; or
+				</li>
+				<li>
+					by the first day of the last month of your current taxable year if you anticipate you will incur Louisiana income tax liability for the following year; or
+				</li>
+				<li>
+					within 10 days from the day you no longer meet the provisions of the Servicemember Civil Relief Act, as amended by the Military Spouses Residency Relief Act.
+				</li>
+			</ol>
+			<p class="text-justify">
+				If you want to discontinue, or are required to revoke this exemption, you must file a new Employee’s Withholding Exemption Certificate (Form L-4) with your employer.
+			</p>
+		</div>
+	</div>
+
+	<p id="dept-revenue-row" class="dept-revenue-row text-center">
+		<strong>For assistance, call the Department of Revenue at (225) 219-0102</strong>
+	</p>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+	<$client.env.FormField.LoginID.HTML>
+	<$client.env.FormField.AuthParam.HTML>
+	<$client.env.FormField.EmployeeID.HTML>
+	<$client.env.FormField.c_employees_tax_state_of.HTML>
+</div>
+
+</form>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/Withholding_Exemption_Certificate_Louisiana/js/bootstrap.min.js>"></script>
+<script type="text/javascript">
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.querySelector('[name="frmForm"]');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $('#formButtons').show();
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+// move state tax field to 2nd tax option
+const inlineElement = document.createElement('div');
+inlineElement.classList.add('i-block');
+inlineElement.appendChild(document.querySelector('[name$=".c_employees_tax_state_of"]'));
+document.getElementById('employee-tax-2').querySelector('label').insertAdjacentElement('beforeEnd', inlineElement);
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>
