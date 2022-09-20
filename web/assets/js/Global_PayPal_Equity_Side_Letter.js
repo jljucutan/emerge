@@ -47,7 +47,7 @@ const makeid = function() {
 }
 
 const cfgPromise = $.getJSON(CONFIG)
-const tmplPromise = $.get(BASEPATH + '/js/templates/' + EventLocationField.value + '.ejs')
+const tmplPromise = $.get(BASEPATH + '/js/templates_Version_3/' + EventLocationField.value + '.ejs')
 
 $(document).on('ready', function() {
   // fill current date if it hasn't been filled yet
@@ -156,6 +156,9 @@ $(document).on('ready', function() {
       }, 500)
     }
 
+    if (isEmployee) {
+      $('#full_name').val(data['First_Name'] + ' ' + data['Last_Name'])
+    }
     if (isEmployee && parseInt($('#EmployeeStamp').val()) ==0) {
       $('#signature, #sv').val('')
       $('#EmployeeStamp').val(1)

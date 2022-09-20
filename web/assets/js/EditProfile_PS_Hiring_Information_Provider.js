@@ -133,7 +133,7 @@ const extractCountryFromCode = function(countryCodes, code, noDefault) {
 const updateIDTypes = function() {
     "use strict";
     COUNTRY_TO_TYPE_MAP.forEach(function(v, k) {
-        const idTypeSelection = $('[name$=".' + v + '"]');
+        const idTypeSelection = $('[name$=".' + v + '"]', psProviderContext);
         let idType = idTypeSelection.val();
         idTypeSelection.html("");
         let countryCode = $('[name$=".' + k + '"]').val();
@@ -224,7 +224,7 @@ const updateIDNumberFormat = function(nem) {
     "use strict";
     let id = nem[nem.length -1];
     const typeSelection  = $('[name$=".National_ID_Type_' + id + '"]');
-    const idField = $('[name$=".National_ID_Number_' + id + '"]');
+    const idField = $('[name$=".National_ID_Number_' + id + '"]', psProviderContext);
     let countrySelected = NATIONAL_ID_MAP.get($('[name$=".National_ID_Country-' + id + '"]').val());
     if ( typeSelection.val().length > 0 && countrySelected != undefined ) {
         idField
@@ -1195,8 +1195,8 @@ $(window).on('load', function() {
 
     // fields filtrations
     // filter BGR state dropdown onload
-    updateStatesList("GBR", $('[name$=".Great_Britain_County"]'));
-    updateStatesList("GBR", $('[name$=".Mailing_Address_County"]'));
+    updateStatesList("GBR", $('[name$=".Great_Britain_County"]', psProviderContext));
+    updateStatesList("GBR", $('[name$=".Mailing_Address_County"]', psProviderContext));
     // filter practice area based on job function
     let practiceAreaFilterDone = false;
     PRACTICE_AREA_JOB_FUNCTION.forEach(function(entry) {
@@ -1910,10 +1910,10 @@ $(window).on('load', function() {
     $('[name$="Visa_Country_1"]').change(function() {
         filterVisaType($(this).val(), $('#EditProfile [name$=".Visa_Type_1"]'));
         if ($('#EditProfile [name$=".Visa_Type_1"] option').length <= 1 && $('#EditProfile [name$=".Visa_Type_1"] option')[0].value == "") {
-            validateField($('[name$=".Visa_Type_1"]').data('validation', null), true);
+            validateField($('[name$=".Visa_Type_1"]', psProviderContext).data('validation', null), true);
         }
         else {
-            $('[name$=".Visa_Type_1"]').data('validation', 'required');
+            $('[name$=".Visa_Type_1"]', psProviderContext).data('validation', 'required');
         }
     });
     $('[name$="Visa_Country_1"]').trigger("change");
@@ -1921,10 +1921,10 @@ $(window).on('load', function() {
     $('[name$="Visa_Country_2"]').change(function() {
         filterVisaType($(this).val(), $('#EditProfile [name$=".Visa_Type_2"]'));
         if ($('#EditProfile [name$=".Visa_Type_2"] option').length <= 1 && $('#EditProfile [name$=".Visa_Type_2"] option')[0].value == "") {
-            validateField($('[name$=".Visa_Type_2"]').data('validation', null), true);
+            validateField($('[name$=".Visa_Type_2"]', psProviderContext).data('validation', null), true);
         }
         else {
-            $('[name$=".Visa_Type_2"]').data('validation', 'required');
+            $('[name$=".Visa_Type_2"]', psProviderContext).data('validation', 'required');
         }
     });
     $('[name$="Visa_Country_2"]').trigger("change");
@@ -1932,10 +1932,10 @@ $(window).on('load', function() {
     $('[name$="Visa_Country_3"]').change(function() {
         filterVisaType($(this).val(), $('#EditProfile [name$=".Visa_Type_3"]'));
         if ($('#EditProfile [name$=".Visa_Type_3"] option').length <= 1 && $('#EditProfile [name$=".Visa_Type_3"] option')[0].value == "") {
-            validateField($('[name$=".Visa_Type_3"]').data('validation', null), true);
+            validateField($('[name$=".Visa_Type_3"]', psProviderContext).data('validation', null), true);
         }
         else {
-            $('[name$=".Visa_Type_3"]').data('validation', 'required');
+            $('[name$=".Visa_Type_3"]', psProviderContext).data('validation', 'required');
         }
     });
     $('[name$="Visa_Country_3"]').trigger("change");
@@ -1944,10 +1944,10 @@ $(window).on('load', function() {
 
         filterVisaType($(this).val(), $('#EditProfile [name$=".Visa_Type_4"]'));
         if ($('#EditProfile [name$=".Visa_Type_4"] option').length <= 1 && $('#EditProfile [name$=".Visa_Type_3"] option')[0].value == "") {
-            validateField($('[name$=".Visa_Type_4"]').data('validation', null), true);
+            validateField($('[name$=".Visa_Type_4"]', psProviderContext).data('validation', null), true);
         }
         else {
-            $('[name$=".Visa_Type_4"]').data('validation', 'required');
+            $('[name$=".Visa_Type_4"]', psProviderContext).data('validation', 'required');
         }
     });
     $('[name$="Visa_Country_4"]').trigger("change");
@@ -2827,7 +2827,7 @@ $(window).on('load', function() {
         let formIsValid = true;
         errorMapping.clear();
         $.each($('input:not(".datepicker_button"):not(:disabled):not(:hidden), select:not(:disabled):not(:hidden), textarea', psProviderContext), function(k,v) {
-            if(v.type != 'select-one' && $(v).is(':visible') && !validateField($(v))) {
+            if(v.type == 'select-one' && $(v).is(':visible') && !validateField($(v))) {
                 formIsValid = false;
             }
             if ($(v).prop('name').indexOf('Mailing_Address_Same') >= 0 && role != 'recruiter' && !validateField($(v), false, validateAddressEqual)) {
@@ -2841,15 +2841,6 @@ $(window).on('load', function() {
             // pop emergency error 2 and 3
             if (['Emergency_Contact_Primary_2', 'Emergency_Contact_Primary_3'].indexOf(nem[nem.length-1]) >= 0) {
                 errorMapping.delete($(v).prop('name'));
-            }
-            // no option
-            if (v.type == 'select-one') {
-                if ($('option', $(v)).length < 2) {
-                    formIsValid = true
-                }
-                else if($(v).is(':visible') && !validateField($(v))) {
-                    formIsValid = false;
-                }
             }
             switch(nem[nem.length-1]) {
                 case "DOB":
@@ -2923,6 +2914,16 @@ $(window).on('load', function() {
                     }
                     formIsValid = false;
                 break;
+            }
+            if (v.type == 'select-one' && $(v).is(':visible')) {
+                // don't validate select with no option
+                if ($(v, psProviderContext).find('option').length < 2) {
+                    alert(v.name + ' options are: ' + $(v).find('option').length)
+                    formIsValid = true
+                }
+                else {
+                    formIsValid = validateField($(v))
+                }
             }
         });
         if (formIsValid || errorMapping.size==0) {

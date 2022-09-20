@@ -14,8 +14,13 @@ function fnView() {
                     $('<span/>').append(employee.Offer_Date)
                 ),
                 $('<p/>').append(
-                    '1661 West 3rd Ave.<br>',
-                    'Denver, CO 80223'
+                    $('<span/>').append(employee.CompanyAddress),
+                    '<br>',
+                    $('<span/>').append(employee.CompanyCity),
+                    (employee.CompanyState) && ', ',
+                    $('<span/>').append(employee.CompanyState),
+                    (employee.CompanyZip) && ', ',
+                    $('<span/>').append(employee.CompanyZip)
                 ),
                 $('<p/>').append(
                     $('<span/>').append('Re: ', employee.Full_Name, ' Offer of Employment')
@@ -50,6 +55,28 @@ function fnView() {
                         employee.Salary_Amount,
                         '.  Your job is considered non-exempt by Fair Labor Standards Act requirements and therefore you are eligible for overtime. Your hourly wage, less deductions, will be paid on a bi-weekly basis.'
                     ),
+                ),
+                (employee.Compensation_Type == 'Salaried') &&
+                $('<p/>').append(
+                    $('<strong/>').append('Bonus')
+                ),
+                (employee.Compensation_Type == 'Salaried') &&
+                $('<ul/>').append(
+                    $('<li/>').append(
+                        'In addition to your salary, you will be eligible for the annual bonus plan set forth below.  Your bonus will be prorated for the 2023 calendar year.  Specific goal detail to be provided at a later date. ',
+                        $('<ul/>').append(
+                            'Floor Target - ',
+                            employee.Floor_Target_Percentage, '%'
+                        ),
+                        $('<ul/>').append(
+                            'Goal Target - ',
+                            employee.Bonus_Target_Percentage, '%'
+                        ),
+                        $('<ul/>').append(
+                            'Stretch Target - ',
+                            employee.Stretch_Target_Percentage, '%'
+                        )
+                    )
                 ),
                 $('<p/>').append(
                     $('<strong/>').append('Benefits')
@@ -121,10 +148,14 @@ function fnView() {
                     $('<strong/>').append('Offer Contingency')
                 ),
                 $('<p/>').append(
-                    'This offer is further contingent upon successful completion of a background check and drug screen. You will receive an invitation email with a link directly from Sterling, our trusted business partner, with your specific Login Credentials and contact information to complete this mandatory process.'
-                ),
-                $('<p/>').append(
-                    'In compliance with federal law and in order to begin your onboarding process, we require that you provide us with proof of your identity and authorization to work in the United States. Please see the attached List of Acceptable IDs for the form I9 and send the appropriate documentation to Brian Main as soon as possible.'
+                    'The offer outlined above is contingent upon successful completion of a 1) background check ',
+                    (employee.JobSubFamily_Driver == 'Yes') &&
+                    'and motor vehicle record review',
+                    ', 2) pre-employment drug screen and 3) verification of your employment eligibility.<br>',
+                    'You will receive an invitation email with a link directly from Sterling, our trusted business partner, with your specific Login Credentials and contact information to complete this mandatory process.',
+                    'In compliance with federal law and in order to begin your onboarding process, we require that you provide us with proof of your identity and authorization to work in the United States. Please see the attached List of Acceptable IDs for the form I9 and send the appropriate documentation to ',
+                    $('<span/>').append(employee.Hiring_Manager),
+                    ' as soon as possible.'
                 ),
                 $('<p/>').append(
                     $('<strong/>').append('Additional Information')
@@ -133,7 +164,7 @@ function fnView() {
                     'Please be advised that this offer and its acceptance is not an employment agreement and does not constitute a contract of employment by either party for any period. The terms of this offer letter may only be changed through a written addendum executed by Andy Wimberg, HR Director.'
                 ),
                 $('<p/>').append(
-                    employee.Full_Name,
+                    employee.First_Name,
                     ', we are thrilled at the prospect of you joining the QED team. Please feel free to call me directly if you have any questions.'
                 ),
                 $('<p/>').append(

@@ -1,0 +1,266 @@
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+	<div id="box">
+		<b>Electronic Signature</b>
+		<p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)></p>
+		<br>
+		<b>Type your Name:</b> 
+		<input type=text id="eSignature1">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">		
+	</div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+	showScreen('over');
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+
+<!-- ////////////////////////////////////////////////////////  PROMP goes here -->
+
+<$client.env.FormField.a01_Superannuation_Drop.prompt>
+<$client.env.FormField.a02_IfOwnFund_Drop.prompt>
+<$client.env.FormField.a03_Tax.prompt>
+<$client.env.FormField.a04_NameAccount.prompt>
+<$client.env.FormField.a05_BSB.prompt>
+<$client.env.FormField.a06_AccNumber.prompt>
+<$client.env.FormField.a07_01_BankAdd.prompt>
+<$client.env.FormField.a07_BankName.prompt>
+<$client.env.FormField.a08_Deposited.prompt>
+<$client.env.FormField.a09_NameAcc.prompt>
+<$client.env.FormField.a10_BSB.prompt>
+<$client.env.FormField.a11_AccNumber.prompt>
+<$client.env.FormField.a12_01_BankAdd.prompt>
+<$client.env.FormField.a12_BankName.prompt>
+
+
+
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+
+<!-- //////////////////////////////////////////////////////// HTML goes here -->
+
+											<!-- Put your structure here -->
+											<!-- Marked by Astroman -->
+
+									  <div id="container" class='text-width'>
+
+
+
+<table>
+    <tbody>
+        <tr valign="bottom">
+            <td>
+                <img alt="SIG Logo" src="<$link;/main/RedCarpet/FormTemplates/Payroll_Details/img/sig-logo.2022.png"/>
+            </td>
+            <td>
+                <small>
+                    Susquehanna Pacific Pty Ltd <br>
+                    ABN 23 082 467 605 <br>
+                    Level 41, The Chifley Tower <br>
+                    2 Chifley Square <br>
+                    Sydney, NSW 2000 Australia <br>
+                    <a href="http://www.sig.com" target="_blank" style="text-decoration: none;">www.sig.com</a>
+                </small>
+            </td>
+            <td width="50%">
+                <p align="right" style='font-size:1.8em; margin-bottom: 2em;'><strong>Payroll Details Form</strong></p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>&nbsp;</p>
+<div style='border:1px solid #111;padding:10px;'>
+  <p><strong><u>Payroll Information</u></strong></p>
+  <p>&nbsp;</p>
+  <table width="100%" border="0">
+    <tr>
+      <td width="50%"><table width="100%" border="0">
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0">
+            <tr>
+              <td width="53%">Superannuation Fund Details:</td>
+              <td width="47%"><$client.env.FormField.a01_Superannuation_Drop.HTML></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table></td>
+      <td width="50%"><table width="100%" border="0">
+        <tr>
+          <td>If own fund, have you provided a super choice form?</td>
+        </tr>
+        <tr>
+          <td><$client.env.FormField.a02_IfOwnFund_Drop.HTML></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td><table width="100%" border="0">
+        <tr>
+          <td width="33%">Tax File Number:</td>
+          <td width="67%"><$client.env.FormField.a03_Tax.HTML></td>
+        </tr>
+      </table></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><strong><em>Primary Bank Account</em></strong></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Payment Type:
+        EFT (Balance)</td>
+      <td><table width="100%" border="0">
+        <tr>
+          <td width="37%">Name of Account:</td>
+          <td width="63%"><$client.env.FormField.a04_NameAccount.HTML></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td><table width="100%" border="0">
+        <tr>
+          <td width="14%">BSB: </td>
+          <td width="86%"><$client.env.FormField.a05_BSB.HTML></td>
+        </tr>
+      </table></td>
+      <td><table width="100%" border="0">
+        <tr>
+          <td width="37%">Account Number:</td>
+          <td width="63%"><$client.env.FormField.a06_AccNumber.HTML></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td><table width="100%" border="0">
+        <tr>
+          <td width="47%">Bank Name and Address:</td>
+          <td width="53%"><$client.env.FormField.a07_BankName.HTML></td>
+        </tr>
+      </table></td>
+      <td><$client.env.FormField.a07_01_BankAdd.HTML></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><strong><em>Secondary Bank Account (if applicable)</em></strong></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Amount (or %) to</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><table width="100%" border="0">
+        <tr>
+          <td width="28%">be deposited:</td>
+          <td width="72%"><$client.env.FormField.a08_Deposited.HTML></td>
+        </tr>
+      </table></td>
+      <td><table width="100%" border="0">
+        <tr>
+          <td width="37%">Name of Account:</td>
+          <td width="63%"><$client.env.FormField.a09_NameAcc.HTML></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td><table width="100%" border="0">
+        <tr>
+          <td width="14%">BSB: </td>
+          <td width="86%"><$client.env.FormField.a10_BSB.HTML></td>
+        </tr>
+      </table></td>
+      <td><table width="100%" border="0">
+        <tr>
+          <td width="37%">Account Number:</td>
+          <td width="63%"><$client.env.FormField.a11_AccNumber.HTML></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td><table width="100%" border="0">
+        <tr>
+          <td width="47%">Bank Name and Address:</td>
+          <td width="53%"><$client.env.FormField.a12_BankName.HTML></td>
+        </tr>
+      </table></td>
+      <td><$client.env.FormField.a12_01_BankAdd.HTML></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+</div>
+
+
+
+
+
+									  </div>
+
+											
+											  <!-- End of structure -->
+											  
+											  <!-- //////////////////////////////////////////////////////// END OF CODE-->
+
+
+
+
+<div style="display:none;">
+<$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+<br><br>
+
+<$client.env.FormButtons>
+</form>
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+</SCRIPT>

@@ -2,6 +2,7 @@
 * SERVICES-35287 | PayPal - Create China Offer Letter
 * China Offer Letter Version 11
 * 09/14/2021 | psaludares | Development in Test
+* 09/02/2022 | jjucutan | created version 12
 */
 const fnView = function() {
     "use strict";
@@ -106,7 +107,46 @@ const fnView = function() {
                     )
                 ),
             $('<span/>').append(
-                '<strong><u>5. Probation Period 试用期</u></strong><br>'
+                '<strong><u>5. Place of Work 工作地点</u></strong><br>'
+                ),
+            (employee.Workplace_Model == 'In-Office') &&
+            $('<div class="marked" data-toggle="popover" data-placement="top" data-content="Workplace Model = In-Offce"/>').append(
+                $('<p/>').append(
+                    'You will be required to work from the Company’s office located at ',
+                    $('<mark/>').append(employee.LOCATION_DISPLAYNAME),
+                    '. From time to time, you may be required to work at other locations, as directed by the Company. [仅适用于在办公室工作]您需要在位于',
+                    $('<mark/>').append(employee.LOCATION_DISPLAYNAME),
+                    '的公司办公室工作。根据公司的指示，您可能不时需要在其他地点工作。'
+                    )
+                ),
+            (employee.Workplace_Model == 'Virtual Flex') &&
+            $('<div class="marked" data-toggle="popover" data-placement="top" data-content="Workplace Model = Virtual Flex"/>').append(
+                $('<p/>').append(
+                    'Your role may be performed outside of a PayPal office part of the time with the use of virtual working tools we provide. You must work virtually from a location near to the ',
+                    $('<mark/>').append(employee.LOCATION_DISPLAYNAME),
+                    '  PayPal office. You are required to provide the correct address of the aforesaid work location to PayPal and keep PayPal updated of any change by prior notice in writing. In addition to any in-person working, you may also be required to attend a PayPal office for in-person collaboration. We may amend or end the location of your role or remove the ability to work virtually at any time and will give you notice (but will not provide any compensation) if we do so.  You may find more details, including our expectations of you, within our Offsite Working Policy and associated policies.'
+                    ),
+                $('<p/>').append(
+                    '员工可以于部分时间内在PayPal办公室以外的地点使用雇主提供的虚拟工作工具进行工作。员工必须在靠近',
+                    $('<mark/>').append(employee.LOCATION_DISPLAYNAME),
+                    '  PayPal办公室的地点进行虚拟工作。员工需要向PayPal提供上述工作地点的正确地址，如地址有任何变化，员工需要以书面形式事先通知PayPal。除了任何面对面的工作外，员工也可能随时被要求回PayPal办公室进行面对面合作。雇主可能会随时通知员工变更或终止员工的工作地点，或取消员工虚拟工作的资格，但不会提供任何补偿。员工可以在雇主的离线工作政策和其他相关政策中找到包括雇主对员工的期望在内的更多细节。'
+                )
+            ),
+            (employee.Workplace_Model == 'Virtual') &&
+            $('<div class="marked" data-toggle="popover" data-placement="top" data-content="Workplace Model = Virtual"/>').append(
+                $('<p/>').append(
+                    'Your role may be performed outside of a PayPal office with the use of virtual working tools we provide. You must work virtually from a location near to the ',
+                    $('<mark/>').append(employee.LOCATION_DISPLAYNAME),
+                    '  PayPal office. You are required to provide the correct address of the aforesaid work location to PayPal and keep PayPal updated of any change by prior notice in writing. You may also be required to attend a PayPal office from time to time for in-person collaboration. You may find more details, including our expectations of you, within our Offsite Working Policy and associated policies.'
+                    ),
+                $('<p/>').append(
+                    '员工可以在PayPal办公室以外的地点使用雇主提供的虚拟工作工具进行工作。员工必须在靠近 ',
+                    $('<mark/>').append(employee.LOCATION_DISPLAYNAME),
+                    '  PayPal办公室的地点进行虚拟工作。员工需要向PayPal提供上述工作地点的正确地址，如地址有任何变化，员工需要以书面形式事先通知PayPal。员工也可能不时被要求回PayPal办公室进行面对面合作。员工可以在雇主的离线工作政策和其他相关政策中找到包括雇主对员工的期望在内的更多细节。'
+                )
+            ),
+            $('<span/>').append(
+                '<strong><u>6. Probation Period 试用期</u></strong><br>'
                 ),
             (employee.ProbationPeriodRequired == 'yes') &&
             $('<div class="marked" data-toggle="popover" data-placement="top" data-content="Probation Period Required"/>').append(
@@ -127,11 +167,11 @@ const fnView = function() {
                     )
                 ),
             $('<p/>').append(
-                '<strong><u>6.  Social Benefit 社保福利</u></strong><br>',
+                '<strong><u>7.  Social Benefit 社保福利</u></strong><br>',
                 'The Company will provide you with a social benefit in line with national and local regulations and laws. You will be responsible for the personal payment.<br>公司将根据国家和地方法律法规为您缴纳社保，您将负责缴纳您的社保个人缴费部分。'
                 ),
             $('<p/>').append(
-                '<strong><u>7. ANTI BRIBERY AND CORRUPTION 反贿赂反腐败</u></strong><br>',
+                '<strong><u>8. ANTI BRIBERY AND CORRUPTION 反贿赂反腐败</u></strong><br>',
                 'During your employment by the Company, you will abide by applicable anti-corruption laws, PayPal’s Code of Business Conduct & Ethics, PayPal’s Enterprise Anti-Bribery and Corruption Policy and other PayPal policies.  You may not offer, pay, or authorize a bribe or payment or benefit of any kind which may improperly influence or be perceived to improperly influence a government official, private individual, or entity.  You also may not use a third party to do so.  Should anyone, whether public official, vendor, supplier, or any other individual or entity, offer or solicit a bribe or improper payment from you, you must immediately report it to the Company.<br>在您被公司聘用期间，您将遵守适用的反腐败法律、PayPal的《商业道德行为准则》和《企业反贿赂及腐败政策》以及其他的PayPal公司政策。您不得提供、支付或授权进行任何可能不当影响，或被认为会不当影响政府官员、个人或实体的贿赂、付款或任何形式的好处。您也不得通过第三方进行以上行为。若任何人士，无论是公职人员、供应商，或任何其他个人或实体，向您提供或索要贿赂或不正当付款，您必须立刻向公司进行举报。 '
                 ),
             $('<p/>').append(
@@ -141,7 +181,7 @@ const fnView = function() {
                 'You accept that failure to abide by this section shall result in disciplinary measures up to the termination of your employment.<br>您接受，违反本条款将导致最高可至解除劳动合同的纪律处分。'
                 ),
             $('<p/>').append(
-                '<strong><u>8. Other 其他</u></strong><br>',
+                '<strong><u>9. Other 其他</u></strong><br>',
                 'An official employment contract will be signed by you and the Company on or after the date on which your employment with the Company starts.<br>公司将在您正式入职当日或之后与您签订正式劳动合同。'
                 ),
             $('<p/>').append(
@@ -152,6 +192,10 @@ const fnView = function() {
                 ),
             $('<p/>').append(
                 'The Company may, at its sole discretion, transfer your employment to any affiliated company and arrange for you to terminate your employment with the Company and to enter into an employment contract with that affiliated company. You acknowledge and agree that you will not unreasonably withhold your consent to such transfer and the execution of any necessary documentations.<br>公司可全权决定将您转由任何关联公司聘用，并安排您终止与公司的劳动关系并与相关关联公司签订劳动合同。您认可并同意届时您不会无理拒绝该等转聘或拒绝签署必要文件。'
+                ),
+            $('<p/>').append(
+                'The Company respects the privacy of all employees and will comply with all applicable laws regarding processing of personal information. All such personal information is processed in accordance with the PayPal Employee Privacy Statement, a copy of which has been given to you in connection with this offer letter. You acknowledge that you have reviewed and understand the Employee Privacy Statement.<br>',
+                '公司尊重所有员工的隐私，并将遵守所有关于个人信息处理的适用法律。所有此类个人信息均应根据PayPal员工隐私声明进行处理，该声明的副本已与本录用函一起提供给您。您承诺您已阅读并理解员工隐私声明。'
                 ),
             $('<p/>').append(
                 'By signing this offer letter, you also confirm that there is not any non-compete obligation preventing or prohibiting you from joining or serving the Company now or in the future, and agree to solely bear all the consequences and liabilities of the Company if there is such obligation.<br>一旦签署本录用函，您确认不存在阻止或禁止您当前或未来加入公司或服务公司的任何竞业禁止义务，并同意即使存在上述义务，您也将独立承担一切后果和责任。'

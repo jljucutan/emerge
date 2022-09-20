@@ -1,0 +1,389 @@
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+	<div id="box">
+		<b>Electronic Signature</b>
+		<p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)></p>
+		<br>
+		<b>Type your Name:</b> 
+		<input type=text id="eSignature1">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">		
+	</div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+	showScreen('over');
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+
+<!-- ////////////////////////////////////////////////////////  PROMPT goes here -->
+
+<$client.env.FormField.a01_FamName.prompt>
+<$client.env.FormField.a02_GivenName.prompt>
+<$client.env.FormField.a03_MiddleName.prompt>
+<$client.env.FormField.a04_PreName.prompt>
+<$client.env.FormField.a05_TitleDrop.prompt>
+<$client.env.FormField.a06_GenderDrop.prompt>
+<$client.env.FormField.a07_DateBirth.prompt>
+<$client.env.FormField.a08_PersonalEmail.prompt>
+<$client.env.FormField.a09_MaritalStatus.prompt>
+<$client.env.FormField.a10_Nationality.prompt>
+<$client.env.FormField.a11_HomeAddress.prompt>
+<$client.env.FormField.a12_PostalAddress.prompt>
+<$client.env.FormField.a13_HomePhone.prompt>
+<$client.env.FormField.a14_Mobile.prompt>
+<$client.env.FormField.a15_PleaseProvide.prompt>
+<$client.env.FormField.a16_StartDate.prompt>
+<$client.env.FormField.a17_Position.prompt>
+<$client.env.FormField.a18_ProvidedDrop.prompt>
+<$client.env.FormField.a19_IfNo.prompt>
+<$client.env.FormField.a20_NameAccount.prompt>
+<$client.env.FormField.a21_AccountNumber.prompt>
+<$client.env.FormField.a22_BankNameAddress.prompt>
+<$client.env.FormField.a23_AmountDeposit.prompt>
+<$client.env.FormField.a24_NameAccount.prompt>
+<$client.env.FormField.a25_AccountNumber.prompt>
+<$client.env.FormField.a26_BankNameAddress.prompt>
+
+
+
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+
+<!-- //////////////////////////////////////////////////////// HTML goes here -->
+
+																						<!-- Put your structure here -->
+											<!-- Marked by Astroman -->
+
+							  <div id="container" class='text-width'>
+
+<table>
+    <tbody>
+        <tr valign="bottom">
+            <td>
+                <img alt="SIG Logo" src="<$link;/main/RedCarpet/FormTemplates/SHKL_Payroll_Details_Form/img/sig-logo.2022.png"/>
+            </td>
+            <td>
+                <small>
+                    Susquehanna Pacific Pty Ltd <br>
+                    ABN 23 082 467 605 <br>
+                    Level 41, The Chifley Tower <br>
+                    2 Chifley Square <br>
+                    Sydney, NSW 2000 Australia <br>
+                    <a href="http://www.sig.com" target="_blank" style="text-decoration: none;">www.sig.com</a>
+                </small>
+            </td>
+            <td width="50%">
+                <p align="right" style='font-size:1.8em; margin-bottom: 2em;'><strong>Payroll Details Form</strong></p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<table class='tbl-collapse' width="100%" border="1" cellspacing="1" style='border-collapse:collapse;'>
+  <tr>
+    <td style='padding:5px;'><p><strong><u>Personal Details</u></strong></p>
+      <p>&nbsp;</p>
+      <table width="100%" border="0">
+      <tr>
+        <td class='align-top'><table width="100%" border="0">
+          <tr>
+            <td width="25%">Family Name:</td>
+            <td width="75%"><$client.env.FormField.a01_FamName.HTML></td>
+          </tr>
+        </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="25%">Middle Name:</td>
+              <td width="75%"><$client.env.FormField.a03_MiddleName.HTML></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="25%">Title:</td>
+              <td width="75%"><$client.env.FormField.a05_TitleDrop.HTML></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="25%">Date of Birth:</td>
+              <td width="75%"><$client.env.FormField.a07_DateBirth.HTML></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="25%">Marital Status:</td>
+              <td width="75%"><$client.env.FormField.a09_MaritalStatus.HTML></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="25%">Home Address:</td>
+              <td width="75%"><$client.env.FormField.a11_HomeAddress.HTML></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="25%"><p>Postal Address</p>
+                <p>(if different):</p></td>
+              <td width="75%" style='vertical-align:bottom;'><$client.env.FormField.a12_PostalAddress.HTML></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="25%">Home Phone:</td>
+              <td width="75%"><$client.env.FormField.a13_HomePhone.HTML></td>
+            </tr>
+          </table></td>
+        <td class='align-top'><table width="100%" border="0">
+          <tr>
+            <td width="24%">Given Name:</td>
+            <td width="76%"><$client.env.FormField.a02_GivenName.HTML></td>
+          </tr>
+        </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="35%">Preferred Name:</td>
+              <td width="65%"><$client.env.FormField.a04_PreName.HTML></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="18%">Gender:</td>
+              <td width="82%"><$client.env.FormField.a06_GenderDrop.HTML></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="31%">Personal Email:</td>
+              <td width="69%"><$client.env.FormField.a08_PersonalEmail.HTML></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="23%">Nationality:</td>
+              <td width="77%"><$client.env.FormField.a10_Nationality.HTML></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="25%">&nbsp;</td>
+              <td width="75%">&nbsp;</td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="25%" height="32"><p>&nbsp;</p></td>
+              <td width="75%" style='vertical-align:bottom;'>&nbsp;</td>
+            </tr>
+          </table>
+          <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="23%">Mobile:</td>
+              <td width="77%"><$client.env.FormField.a14_Mobile.HTML></td>
+            </tr>
+          </table></td>
+      </tr>
+    </table>
+      <p>&nbsp;</p>
+      <p>Please provide details regarding any medications or medical conditions (this information is only to be used in case of  emergency):</p>
+      <table width="100%" border="0" cellspacing="1">
+        <tr>
+          <td><$client.env.FormField.a15_PleaseProvide.HTML></td>
+        </tr>
+      </table>
+      </td>
+  </tr>
+  <tr>
+    <td style='padding:5px;'><p><strong><u>Employment Details </u></strong></p>
+      <p>&nbsp;</p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="48%" class='align-top'><table width="100%" border="0">
+            <tr>
+              <td width="25%">Start Date: </td>
+              <td width="75%"><$client.env.FormField.a16_StartDate.HTML></td>
+            </tr>
+          </table>
+            <p>&nbsp;</p>
+            <table width="100%" border="0">
+              <tr>
+                <td>Provided eligibility to work documentation: </td>
+                </tr>
+              <tr>
+                <td><$client.env.FormField.a18_ProvidedDrop.HTML></td>
+                </tr>
+            </table>
+            </td>
+          <td width="52%" class='align-top'><table width="100%" border="0">
+            <tr>
+              <td width="24%">Position Title:</td>
+              <td width="76%"><$client.env.FormField.a17_Position.HTML></td>
+            </tr>
+          </table>
+            <p>&nbsp;</p>
+            <table width="100%" border="0">
+              <tr>
+                <td>If no, why?:</td>
+                </tr>
+              <tr>
+                <td><$client.env.FormField.a19_IfNo.HTML></td>
+              </tr>
+            </table>
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td style='padding:5px;'><p><strong><u>Payroll Information</u></strong></p>
+      <p>&nbsp;</p>
+      <p><strong><em>Primary Bank Account </em></strong></p>
+      <p>&nbsp;</p>
+      <table width="100%" border="0" cellspacing="1">
+        <tr>
+          <td width="15%">Payment Type: </td>
+          <td width="27%"> EFT (Balance) </td>
+          <td width="58%">&nbsp;</td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="48%" class='align-top'><table width="100%" border="0">
+            <tr>
+              <td width="32%">Name of Account:</td>
+              <td width="68%"><$client.env.FormField.a20_NameAccount.HTML></td>
+            </tr>
+          </table>
+            <p>&nbsp;</p>
+            <table width="100%" border="0">
+              <tr>
+                <td width="44%">Bank Name and Address: </td>
+                <td width="56%"><$client.env.FormField.a22_BankNameAddress.HTML></td>
+              </tr>
+            </table>
+            </td>
+          <td width="52%" class='align-top'><table width="100%" border="0">
+            <tr>
+              <td width="30%">Account Number:</td>
+              <td width="70%"><$client.env.FormField.a21_AccountNumber.HTML></td>
+            </tr>
+          </table>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p></td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <p><strong><em>Secondary Bank Account (if applicable) </em></strong></p>
+      <p>&nbsp;</p>
+      <table width="100%" border="0">
+        <tr>
+          <td width="48%" class='align-top'><table width="100%" border="0">
+            <tr>
+              <td width="25%">Amount (or %) to  be deposited: </td>
+              <td width="75%"><p>&nbsp;</p>
+                <p><$client.env.FormField.a23_AmountDeposit.HTML></p></td>
+            </tr>
+          </table>
+            <p>&nbsp;</p>
+            <table width="100%" border="0">
+              <tr>
+                <td width="32%">Name of Account:</td>
+                <td width="68%"><$client.env.FormField.a24_NameAccount.HTML></td>
+              </tr>
+            </table>
+            <p>&nbsp;</p>
+            <table width="100%" border="0">
+              <tr>
+                <td width="44%">Bank Name and Address: </td>
+                <td width="56%"><$client.env.FormField.a26_BankNameAddress.HTML></td>
+              </tr>
+            </table>
+            </td>
+          <td width="52%" class='align-top'><table width="100%" border="0">
+            <tr>
+              <td width="25%"><p>&nbsp;</p>
+                <p>&nbsp;</p></td>
+              <td width="75%">&nbsp;</td>
+            </tr>
+          </table>            <p>&nbsp;</p>
+          <table width="100%" border="0">
+            <tr>
+              <td width="30%">Account Number:</td>
+              <td width="70%"><$client.env.FormField.a25_AccountNumber.HTML></td>
+            </tr>
+          </table>
+          <p>&nbsp;</p></td>
+        </tr>
+      </table>
+      </td>
+  </tr>
+
+</table>
+
+
+
+						      </div>
+											
+							  <!-- End of structure -->
+											  
+											  <!-- //////////////////////////////////////////////////////// END OF CODE-->
+
+
+
+<div style="display:none;">
+<$client.env.FormField.f01_e02_EmpSignatureVerification.HTML>
+</div>
+<br><br>
+
+<$client.env.FormButtons>
+</form>
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+</SCRIPT>

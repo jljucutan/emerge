@@ -1,0 +1,224 @@
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+	<div id="box">
+		<b>Electronic Signature</b>
+		<p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)></p>
+		<br>
+		<b>Type your Name:</b> 
+		<input type=text id="eSignature1">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">		
+	</div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+	showScreen('over');
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+
+<!-- ////////////////////////////////////////////////////////  PROMP goes here -->
+<$client.env.FormField.a01_NameOfEmp.prompt>
+<$client.env.FormField.a02_FirmCarryingAcc.prompt>
+<$client.env.FormField.a03_Account.prompt>
+<$client.env.FormField.a04_AddBroker.prompt>
+<$client.env.FormField.b01_NameOfEmp.prompt>
+<$client.env.FormField.b02_FirmCarryingAcc.prompt>
+<$client.env.FormField.b03_Account.prompt>
+<$client.env.FormField.b04_AddBroker.prompt>
+<$client.env.FormField.c01_NameOfEmp.prompt>
+<$client.env.FormField.c02_FirmCarryingAcc.prompt>
+<$client.env.FormField.c03_Account.prompt>
+<$client.env.FormField.c04_AddBroker.prompt>
+<$client.env.FormField.d01_CheckRadio.prompt>
+<$client.env.FormField.e01_Check.prompt>
+<$client.env.FormField.f01_EmpName.prompt>
+<$client.env.FormField.f02_01_EmpNameSignatureVerification.prompt>
+<$client.env.FormField.f02_EmpNameSignature.prompt>
+<$client.env.FormField.f03_Date.prompt>
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+
+<!-- //////////////////////////////////////////////////////// HTML goes here -->
+
+											<!-- Put your structure here -->
+											<!-- Marked by Astroman -->
+
+									  <div id="container" class='text-width'>
+
+
+
+<table>
+    <tbody>
+        <tr valign="bottom">
+            <td>
+                <img alt="SIG Logo" src="<$link;/main/RedCarpet/FormTemplates/Notice_of_Personal_and_Household_Accounts_2/img/sig-logo.2022.png"/>
+            </td>
+            <td>
+                <small>
+                    Susquehanna Pacific Pty Ltd <br>
+                    ABN 23 082 467 605 <br>
+                    Level 41, The Chifley Tower <br>
+                    2 Chifley Square <br>
+                    Sydney, NSW 2000 Australia <br>
+                    <a href="http://www.sig.com" target="_blank" style="text-decoration: none; font-size: 14px;">www.sig.com</a>
+                </small>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1>Notice of Personal and Household Accounts</h1>
+<p>&nbsp;</p>
+<p>The Compliance Department is assigned the responsibility for ensuring that SIG remains in compliance with trading regulations in Australia. In connection, the Compliance Department reviews all personal trading of its employees, and requires each employee to provide details of all existing personal and household accounts. This information is essential in order for the Firm to remain in compliance with its obligations under the rules of the Australian Stock Exchange and the statutory prohibition of insider trading.</strong></p>
+<p style='border-bottom:1px solid #111;'>&nbsp;</p>
+<p>&nbsp;</p>
+<table width="100%" border="0">
+  <tr>
+    <td style='padding:.3em;' class='align-top' width="3%">&bull;</td>
+    <td width="97%"><table class='tbl-default-padd' width="100%" border="0">
+      <tr>
+        <td width="32%">Name  of Employee or Relative:</td>
+        <td colspan="3"><$client.env.FormField.a01_NameOfEmp.HTML></td>
+        </tr>
+      <tr>
+        <td>Firm  Carrying Account:</td>
+        <td width="30%"><$client.env.FormField.a02_FirmCarryingAcc.HTML></td>
+        <td width="11%">Account  # :</td>
+        <td width="27%"><$client.env.FormField.a03_Account.HTML></td>
+      </tr>
+      <tr>
+        <td>Address  of broker:</td>
+        <td colspan="3"><$client.env.FormField.a04_AddBroker.HTML></td>
+        </tr>
+    </table></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="0">
+  <tr>
+    <td style='padding:.3em;' class='align-top' width="3%">&bull;</td>
+    <td width="97%"><table class='tbl-default-padd' width="100%" border="0">
+      <tr>
+        <td width="32%">Name  of Employee or Relative:</td>
+        <td colspan="3"><$client.env.FormField.b01_NameOfEmp.HTML></td>
+      </tr>
+      <tr>
+        <td>Firm  Carrying Account:</td>
+        <td width="30%"><$client.env.FormField.b02_FirmCarryingAcc.HTML></td>
+        <td width="11%">Account  # :</td>
+        <td width="27%"><$client.env.FormField.b03_Account.HTML></td>
+      </tr>
+      <tr>
+        <td>Address  of broker:</td>
+        <td colspan="3"><$client.env.FormField.b04_AddBroker.HTML></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="0">
+  <tr>
+    <td style='padding:.3em;' class='align-top' width="3%">&bull;</td>
+    <td width="97%"><table class='tbl-default-padd' width="100%" border="0">
+      <tr>
+        <td width="32%">Name  of Employee or Relative:</td>
+        <td colspan="3"><$client.env.FormField.c01_NameOfEmp.HTML></td>
+      </tr>
+      <tr>
+        <td>Firm  Carrying Account:</td>
+        <td width="30%"><$client.env.FormField.c02_FirmCarryingAcc.HTML></td>
+        <td width="11%">Account  # :</td>
+        <td width="27%"><$client.env.FormField.c03_Account.HTML></td>
+      </tr>
+      <tr>
+        <td>Address  of broker:</td>
+        <td colspan="3"><$client.env.FormField.c04_AddBroker.HTML></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<table width="100%" border="0">
+  <tr>
+    <td width="49%">Is  the account discretionary or non discretionary:           </td>
+    <td width="51%"><$client.env.FormField.d01_CheckRadio.HTML></td>
+  </tr>
+  <tr>
+    <td><p>(Discretionary  means you make the investment decisions)</p></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="0">
+  <tr>
+    <td width="3%"><$client.env.FormField.e01_Check.HTML></td>
+    <td width="97%"><strong>Check here if neither you nor any other  household member currently holds a brokerage account.</strong></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="0">
+  <tr>
+    <td width="20%">Employee  Name (printed):</td>
+    <td colspan="3"><$client.env.FormField.f01_EmpName.HTML></td>
+    </tr>
+  <tr>
+    <td>Employee  Signature:</td>
+    <td width="50%"><$client.env.FormField.f02_EmpNameSignature.HTML></td>
+    <td width="8%">Date:</td>
+    <td width="22%"><$client.env.FormField.f03_Date.HTML></td>
+  </tr>
+</table>
+
+
+									  </div>
+
+											
+											  <!-- End of structure -->
+											  
+											  <!-- //////////////////////////////////////////////////////// END OF CODE-->
+
+
+
+
+<div style="display:none;">
+<$client.env.FormField.f02_01_EmpNameSignatureVerification.HTML>
+</div>
+
+<br><br>
+
+<$client.env.FormButtons>
+</form>
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+CheckBtn();
+</SCRIPT>

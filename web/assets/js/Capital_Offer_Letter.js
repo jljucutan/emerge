@@ -1,4 +1,4 @@
-// North East Offer Letter
+// Capital Offer Letter
 function fnView() {
     // Offer Letter Content
     $("#markup").html("").append(
@@ -24,17 +24,23 @@ function fnView() {
                 $('<p/>').html(
                     'We at Capital Electric are delighted that you are considering joining our organization.  We believe that our commitment to growth, and the vision, values and practices that create our organizational framework, provide an ideal situation for you to continue, and accelerate, your professional growth.'
                 ),   
+                $('<p/>').append(
+                    'The offer outlined above is contingent upon successful completion of a 1) background check',
+                    (employee.JobSubFamily_Driver == 'Yes') &&
+                    ' and motor vehicle record review',
+                    ', 2) pre-employment drug screen and 3) verification of your employment eligibility.'
+                ),   
                 $('<p/>').html(
-                    'This letter confirms our offer and provides information on our benefits package. This offer is contingent on a successful drug screening and background investigation. The specifics of our offer to you are as follows:'
+                    'The specifics of our offer to you are as follows:'
                 ),   
                 $('<p/>').append(
                     'Initial Position: ' + employee.Job_Template_Name + '<br>',
                     'Initial Salary: ' + employee.Salary_Amount + ((employee.Compensation_Type=='Hourly')? ' per hour': ' per bi-weekly pay period') + ', for an annual salary of ' + getAnnualSalary(employee.Salary_Amount, employee.Salary_Type) + '<br>',
                     'Start Date: ' + employee.Hire_Date + '<br>',
-                    'Vacation: ' + employee.PTO_Days_Vacation + '<br>',
-                    'Vacation Accrual: Bi-weekly accrual of  ' + employee.Vacation_Accrual_Rate + '<br>',
-                    'Sick Leave: ' + employee.PTO_Days_Sick + '<br>',
-                    'Sick Accrual: Bi-weekly accrual of ' + employee.Sick_Accrual_Rate
+                    'Vacation: ' + employee.PTO_Days_Vacation + ' days per year<br>',
+                    'Vacation Accrual: Bi-weekly accrual of  ' + employee.Vacation_Accrual_Rate + ' hours<br>',
+                    'Sick Leave: ' + employee.PTO_Days_Sick + ' days per year<br>',
+                    'Sick Accrual: Bi-weekly accrual of ' + employee.Sick_Accrual_Rate + ' hours'
                 ),
 
                 $('<p/>').append(
