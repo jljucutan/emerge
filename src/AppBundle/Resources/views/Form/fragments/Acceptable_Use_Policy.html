@@ -1,0 +1,264 @@
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+	<div id="box">
+		<b>Electronic Signature</b>
+		<p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+		<br>
+		<b>Type your Name:</b> 
+		<input type=text id="eSignature1">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','over','modal','sv','DateSigned');xbObj('eSignature1').value='';">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','DateSigned');}">&nbsp;
+		<input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">		
+	</div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+	showScreen('over')
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>
+/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return
+SubmitCallback(this);">
+<div style="display:none;">
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML> 
+
+
+<$client.env.FormField.SignatureVerification.prompt>
+<$client.env.FormField.a01_signature.prompt>
+<$client.env.FormField.a02_date.prompt>
+
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+
+    <main class="pa-2">
+        <div class="img-container">
+            <img src="<$link;/main/RedCarpet/FormTemplates/Acceptable_Use_Policy/img.png>" alt="Penn Mutual logo" class="img-fluid">
+        </div>
+        <p class="text-right">
+            <strong>Acceptable Use Policy</strong>
+        </p>
+        <div class="border pa-2">
+            <p>
+                <strong>General Use</strong><br>
+                Use of the Company’s computer resources by Users is permitted and encouraged where such use supports the goals and objectives of the Company. The Company provides its’ Users with computers, access to its network, internet access and computing communications services in order to fulfill their job responsibilities and/or agreements with the Company and its associates or producers. The Company also permits limited personal use of its electronic resources by associates, provided that this does not interfere with work performance. These Standards have been established to ensure that all Users understand the parameters of what they are and are not permitted to do with the Company’s computing resources.
+            </p>
+            <p>
+                <strong>Ownership</strong><br>
+                Company electronic resources, including its computers, networks, e-mail and Internet services remain at all times the property of the Company. All communication and information transmitted by, received from and stored in these systems are the property of the Company. The data Users create on or through the Company’s electronic resources remain the property of the Company. All messages created, sent, or retrieved over the Company's e-mail and internet are the property of the Company and should not be considered private information.
+            </p>
+            <p>
+                <strong>Recording Devices</strong><br>
+                Using Company or personal electronic devices to make audio and/or video recordings of any Company-related meeting is prohibited without the consent of the recording individual’s leader for associates (for non-associates, “leader” means their primary, Home Office Company contact) and the acceptance of all attendees. A “company-related meeting” includes, but is not limited to, departmental meetings, staff meetings, committee meetings, board meetings, disciplinary meetings, investigative interviews, performance appraisal meetings and one-on-one meetings. An “electronic device” is any device that is capable of making an audio recording including, but not limited to, portable digital recorders, cameras, laptop or netbook computers, cell phones, PDAs, eBook readers, Smartphones, tablets, answering machines, voice mail, and MP3 players.
+            </p>
+            <p>
+                <strong>Computers</strong><br>
+                The following Standards of Use and Prohibited Uses and Activities apply to all PCs, laptops, tablets, mobile devices, Smartphones and workstations (hereinafter referred to collectively as “computers”) that are connected to the Company network whether owned by the Company or by the User personally.
+            </p>
+            <ol type="A">
+                <li>
+                    <strong>Standards of Use</strong>
+                </li>
+            </ol>
+            <ol>
+                <li>To prevent computer viruses from being transmitted through the company's e-mail and Internet system, there will be no downloading of any unauthorized software. Any exception to this Standard must be obtained in writing from an individual’s leader.</li>
+                <li>To prevent copyright infringement, only legally licensed software may be installed on Company computers.</li>
+                <li>Users are expected to read, understand and conform to the license requirements of any software products they use or install.</li>
+                <li>All Company owned laptop computers must be encrypted to protect any confidential information on them.</li>
+                <li>
+                    Non-Company owned computers that connect to the Company network must have:
+                    <ol type="a">
+                        <li>Up-to-date anti-virus program;</li>
+                        <li>A personal firewall installed; and,</li>
+                        <li>Current operating system updates.</li>
+                    </ol>
+                </li>
+            </ol>
+            Personally owned devices without the above protection are permitted to connect to guest wireless networks if available.
+            <ol start="6">
+                <li>When unattended, laptop computers must be locked in a drawer, cabinet or office or locked to the User’s desk with a locking device.</li>
+                <li>When left unattended, the User of a desktop computer must lock it by hitting the Ctrl-Alt-Del keys simultaneously.</li>
+                <li>If a computer or managed mobile device is lost, Information Protection must be notified immediately.</li>
+            </ol>
+            <ol type="A" start="2">
+                <li>
+                    <strong>Prohibited Uses and Activities:</strong>
+                </li>
+            </ol>
+            <ol>
+                <li>Using the computer to perpetrate any form of fraud, or software, film or music piracy.</li>
+                <li>Downloading commercial software or any copyrighted materials belonging to third parties, unless this download is covered or permitted under a commercial agreement or other such license.</li>
+                <li>Not having and using proper password protection. (See below)</li>
+            </ol>
+            <p>
+                <strong>Passwords</strong><br>
+                Passwords are important to prevent unauthorized access to and guarantee the confidentiality of Company and personal information. All Associates must review and comply with the Penn Mutual Information Protection Password Standard.
+            </p>
+            <strong>Network</strong>
+            <ol type="A">
+                <li>
+                    <strong>Standards of Use</strong>
+                    <ol>
+                        <li>Users are responsible for using network resources efficiently and accepting limitations or restrictions on resources such as storage space, time limits, or amount of resources consumed - when asked to do so by systems administrators.</li>
+                    </ol>
+                </li>
+                <li>
+                    <strong>Prohibited Uses or Activities</strong>
+                    <ol>
+                        <li>Introduction of malicious programs into the network or server (e.g., viruses, etc.).</li>
+                        <li>Circumventing user authentication or security of any host, network or account.</li>
+                        <li>Effecting security breaches or disruptions of network communication, including, but not limited to, accessing data of which the user is not an intended recipient or logging into a server or account that the user is not expressly authorized to access, unless these duties are within the scope of regular duties. For purposes of this section, "disruption" includes, but is not limited to, network sniffing, pinged floods, packet spoofing, denial of service, and forged routing information for malicious purposes.</li>
+                        <li>Connecting hardware or any type of telecommunications device to the Penn Mutual network unless authorized by Information Protection.</li>
+                        <li>Port scanning or security scanning is expressly prohibited unless prior notification to the Company’s Information Protection Department is made.</li>
+                        <li>Executing any form of network monitoring which will intercept data not intended for the user's host, unless this activity is a part of the user's normal job/duty.</li>
+                        <li>Introducing any form of malicious software into the corporate network.</li>
+                        <li>Undertaking deliberate activities that cause undo impact to User time or computing resources.</li>
+                    </ol>
+                </li>
+            </ol>
+            <p>
+                <strong>Internet</strong>
+            </p>
+            <ol type="A">
+                <li>
+                    <strong>Standards of Use</strong>
+                    <ol>
+                        <li>Users are expected to use the Internet responsibly and productively.</li>
+                        <li>Job-related activities include research and educational articles that would help the User with his or her job duties.</li>
+                        <li>Users may use the Internet for non-business purposes during meal times or other breaks or outside of work hours, provided that all other usage standards and prohibitions are adhered to.</li>
+                    </ol>
+                </li>
+                <li>
+                    <strong>Prohibited Uses and Activities</strong>
+                    <ol>
+                        <li>Visiting Internet sites that contain obscene, hateful, pornographic, sexually explicit or otherwise illegal material.</li>
+                        <li>Hacking into unauthorized areas.</li>
+                        <li>Uploading, posting, publishing or transmitting content that infringes a third-party’s trademark, copyright, trade secret, patent or other intellectual property, or similar laws or regulations, including, but not limited to, the installation or distribution of "pirated" or other software products that are not appropriately licensed for use by the Company.</li>
+                        <li>Unauthorized duplication of copyrighted material including, but not limited to, digitization and distribution of photographs from magazines, books or other copyrighted sources, copyrighted music, and the installation of any copyrighted software for which the Company or the end user does not have an active license.</li>
+                        <li>Users may not use the Internet to download entertainment software or games, or to play games against opponents over the Internet.</li>
+                    </ol>
+                </li>
+            </ol>
+            <p>
+                <strong>E-mail</strong>
+            </p>
+            <ol type="A">
+                <li>
+                    <strong>Standards of Use</strong>
+                    <ol>
+                        <li>The Company provides email access for business usage. The Company recognizes that there will be occasional personal use in order to maintain contact with children in school and receive emergency notifications from schools. Associates should not use their company provided email account for expanded personal use such as online shopping or online banking, etc.</li>
+                        <li>Users should be aware that e-mail messages are considered written communications and, as such, may be the subject of subpoena in litigation and otherwise used in legal proceedings.</li>
+                        <li>The Company may inspect the contents of e-mail messages without notice for various reasons, including without limitation, in the course of an internal investigation, pursuant to FINRA regulations regarding registered persons, etc.</li>
+                        <li>Each User is responsible for the content of all text, audio or images that they place or send over the company's e-mail and Internet system. No e-mail or other electronic communications may be sent that hides the identity of the sender or represents the sender as someone else or someone from another company. All messages communicated on the company's e-mail and Internet system should contain the User’s name.</li>
+                        <li>Users must use extreme caution when opening e-mail attachments received from unknown senders, which may contain viruses, malware or ransomware which can adversely impact company operations.</li>
+                        <li>Users must use Secure Email if the message content or attachments contain Confidential Information which satisfies the Penn Mutual definition for either Personally Identifiable or Company Proprietary Information. Please note that no Personally Identifiable Information should ever be placed in the subject line, even when a secure message is sent.</li>
+                    </ol>
+                </li>
+                <li>
+                    <strong>Prohibited Uses and Activities</strong>
+                    <ol>
+                        <li>Unauthorized disclosure of confidential information.</li>
+                        <li>Sending confidential information without proper precautions, including encryption or Secure Email.</li>
+                        <li>Sending unsolicited e-mail messages not relating to Company business, including the sending of "junk mail" or other advertising material to individuals who did not specifically request such material (e-mail spam).</li>
+                        <li>Soliciting or proselytizing for commercial ventures, religious or political causes, outside organizations or other non-job-related solicitations.</li>
+                        <li>Creating or forwarding “chain letters.”</li>
+                        <li>The posting, storing, transmitting or dissemination of any information, content, software, or material which a reasonable person could deem to be offensive, indecent, pornographic, harassing, distressing, vulgar, hateful, inflammatory, racially or ethnically offensive or otherwise objectionable, regardless of whether such material or its dissemination is unlawful.</li>
+                        <li>Any use for personal gain.</li>
+                        <li>Impersonating or misrepresenting the User’s affiliation with any person or entity.</li>
+                    </ol>
+                </li>
+            </ol>
+            <p>
+                <strong>Instant Messaging/Chat</strong>
+            </p>
+            <ol type="A">
+                <li>
+                    <strong>Standards of Use</strong>
+                    <ol>
+                        <li>Penn Mutual’s messaging/chat systems and the information communicated are the property of Penn Mutual, subject to local law and must be in compliance with Penn Mutual’s corporate policies.</li>
+                        <li>Instant Messaging and Chat resources are provided solely for collaboration and should not be used for extraneous personal conversations.</li>
+                        <li>Instant Messaging and Chat applications are inherently insecure and should not be used to share or otherwise communicate (PII) Personally Identifiable Information of our Clients, Associates or Financial Professionals.</li>
+                    </ol>
+                </li>
+                <li>
+                    <strong>Prohibited Uses and Activities</strong>
+                    <ol>
+                        <li>Unauthorized disclosure of confidential information.</li>
+                        <li>Soliciting or proselytizing for commercial ventures, religious or political causes, outside organizations or other non-job-related solicitations.</li>
+                        <li>The posting, storing, transmitting or dissemination of any information, content, software, or material which a reasonable person could deem to be offensive, indecent, pornographic, harassing, distressing, vulgar, hateful, inflammatory, racially or ethnically offensive or otherwise objectionable, regardless of whether such material or its dissemination is unlawful.</li>
+                        <li>Any use for personal gain.</li>
+                        <li>Impersonating or misrepresenting the User’s affiliation with any person or entity.</li>
+                    </ol>
+                </li>
+            </ol>
+            <p>
+                <strong>Monitoring</strong><br>
+                The Company reserves the right to monitor, inspect, copy, review, and store at any time and without prior notice any and all computer, network, Internet and e-mail use. The Company also reserves the right to search and/or monitor any information, materials, files, software, communications and other content created, accessed, sent, received, and/or stored in any format by any User on Company equipment or any equipment connected to the Company’s network. Users are cautioned that they should have no expectation of privacy while using the Company’s electronic resources. User agrees to cooperate with any inspection and/or investigation involving User’s access to and use of the Company’s computing resources.
+            </p>
+            <p>
+                <strong>Compliance</strong><br>
+                Users are personally responsible for complying with this Policy and its applicable Standards.
+            </p>
+            <p>
+                <strong>Non-Compliant Actions</strong><br>
+                Non-compliance with these Standards may result in disciplinary action, up to and including termination for full and part time associates. The Company reserves the right to take legal action against a User for prohibited or unlawful conduct. Criminal violations may lead to criminal or civil prosecution.
+            </p>
+            <p>
+                <strong>Amendments</strong><br>
+                The Company reserves the right to amend these Standards in its sole discretion.
+            </p>
+            <p>
+                <strong>Applicability</strong><br>
+                These Standards apply to all associates, employees, temporary and part-time employees, financial professionals, field office leaders and field office staff; contractors, consultants, and any other third parties who are using or accessing Penn Mutual (“Company”), electronic resources, including its computers, networks, Internet and e-mail; referred to in these Standards as “Users.” These Standards apply to all equipment that is owned or leased by Penn Mutual. These Standards apply to all equipment that connects to the Company network.
+            </p>
+            <p>
+                <strong>Electronic Signature</strong><br>
+                I understand that by electronically signing this document by typing my full name below, I acknowledge, agree, and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.
+            </p>
+            <div class="d-sm-flex pa-2">
+                <div class="flex-grow pe-3">
+                    <$client.env.FormField.a01_signature.HTML>
+                    <p>Authorized Signature (type your name)</p>
+                </div>
+                <div>
+                    <$client.env.FormField.a02_date.HTML>
+                    <p>Date (mm/dd/yyyy)</p>
+                </div>
+            </div>
+        </div>
+        <p class="text-center">
+            <strong>The Penn Mutual Life Insurance Company,</strong> Philadelphia, PA 19172
+        </p>
+        <p>
+            PM8761
+        </p>
+    </main>
+
+    <div hidden>
+        <$client.env.FormField.SignatureVerification.HTML>
+        <$client.env.FormField.fullname.HTML>
+    </div>
+
+<$client.env.FormButtons>
+</form>
+<script>
+ChangeCalendarIcons(); //for popup calendar
+</script>

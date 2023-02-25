@@ -1,0 +1,312 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <p class="h5"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-sm-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" id="signature-sign" class="lifesuite__button primary" value="Sign">&nbsp; 
+                    <input type="button" id="signature-clear" class="lifesuite__button" value="Clear">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form id="employee-privacy-acknowledgement-global" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row mb-3">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    <template id="fragment-1"> 
+        <p class="text-center">
+            <strong>Acknowledgement of FTC Consent Order </strong>
+        </p>
+        <p>
+            <strong>Select the link to review the U.S. Federal Trade Commission Consent Order (“FTC Consent Order”) available in the languages below:</strong>
+        </p>
+    </template>
+
+    <template id="fragment-2"> 
+        <p>Learn more about the FTC Consent Order here. <a href="<$link;/eprise/main/SiteGen/Onboarding/Content/Uploads/Unplaced_Documents/FTC_Consent/FTC_Consent_202301/Venmo_FTC_Acknowledgement_FAQ_-_Comms_Template_Format_V2_FINAL.pdf>" target="_blank">Venmo FTC Acknowledgement FAQ<a>.</p>
+        <p>By signing electronically below, I acknowledge that I have received and reviewed the FTC Consent Order. I further agree that I will comply with the FTC Consent Order requirements.</p>
+    </template>
+    
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); document.getElementById('FTC_English').style.display='block'; document.getElementById('FTC_English_Chk').checked=true; window.open(Employee_Privacy_Statement.English, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="FTC_English" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">Venmo FTC Consent Order (English)</font>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); document.getElementById('FTC_Chinese').style.display='block'; document.getElementById('FTC_Chinese_Chk').checked=true; window.open(Employee_Privacy_Statement.Chinese, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="FTC_Chinese" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">Venmo FTC Consent Order (Chinese)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); document.getElementById('FTC_Dutch').style.display='block'; document.getElementById('FTC_Dutch_Chk').checked=true; window.open(Employee_Privacy_Statement.Dutch, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="FTC_Dutch" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">Venmo FTC Consent Order (Dutch)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); document.getElementById('FTC_French').style.display='block'; document.getElementById('FTC_French_Chk').checked=true; window.open(Employee_Privacy_Statement.French, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="FTC_French" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">Venmo FTC Consent Order (French)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); document.getElementById('FTC_German').style.display='block'; document.getElementById('FTC_German_Chk').checked=true; window.open(Employee_Privacy_Statement.German, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="FTC_German" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">Venmo FTC Consent Order (German)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); document.getElementById('FTC_Italian').style.display='block'; document.getElementById('FTC_Italian_Chk').checked=true; window.open(Employee_Privacy_Statement.Italian, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="FTC_Italian" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">Venmo FTC Consent Order (Italian)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); document.getElementById('FTC_Japanese').style.display='block'; document.getElementById('FTC_Japanese_Chk').checked=true; window.open(Employee_Privacy_Statement.Japanese, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="FTC_Japanese" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">Venmo FTC Consent Order (Japanese)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); document.getElementById('FTC_Polish').style.display='block'; document.getElementById('FTC_Polish_Chk').checked=true; window.open(Employee_Privacy_Statement.Polish, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="FTC_Polish" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">Venmo FTC Consent Order (Polish)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); document.getElementById('FTC_Portuguese').style.display='block'; document.getElementById('FTC_Portuguese_Chk').checked=true; window.open(Employee_Privacy_Statement.Portuguese, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="FTC_Portuguese" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">Venmo FTC Consent Order (Portuguese)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="row">
+                <div class="col-lg-12 fancyBox" onclick="removePrivacyStatementError(); document.getElementById('FTC_Spanish').style.display='block'; document.getElementById('FTC_Spanish_Chk').checked=true; window.open(Employee_Privacy_Statement.Spanish, '_blank');">
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="FTC_Spanish" src="img/check-mark.png" style="display:none;"></div>
+                    <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+                        <font color="#005ea6">Venmo FTC Consent Order (Spanish)</font>
+                    </div>
+                </div>      
+            </div>
+            <div class="privacy-statement">
+                <$client.env.FormField.FTC_English_Chk.HTML>
+                <$client.env.FormField.FTC_Chinese_Chk.HTML>
+                <$client.env.FormField.FTC_Dutch_Chk.HTML>
+                <$client.env.FormField.FTC_French_Chk.HTML>
+                <$client.env.FormField.FTC_German_Chk.HTML>
+                <$client.env.FormField.FTC_Italian_Chk.HTML>
+                <$client.env.FormField.FTC_Japanese_Chk.HTML>
+                <$client.env.FormField.FTC_Polish_Chk.HTML>
+                <$client.env.FormField.FTC_Portuguese_Chk.HTML>
+                <$client.env.FormField.FTC_Spanish_Chk.HTML>
+            </div>
+        </div>
+    </div>
+    <div id="offer-letter-body" class="row mb-5">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div id="incomplete2">
+                <div id="markup2"></div>
+            </div>
+            <div id="complete2"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label pe-2">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.Signature.HTML>
+        </div>
+        <div class="col-sm-1 pt-2 text-sm-right">
+            <label class="control-label pe-2">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.Date.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label pe-2">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.Name.HTML>
+        </div>
+    </div>
+    
+    <hr class="lifesuite__hr">
+    <div class="lifesuite__row row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 lifesuite__clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.dummy_date.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Venmo_FTC_Consent_Acknowledgement/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/date_formatter.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/global_date_config.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Venmo_FTC_Consent_Acknowledgement/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Venmo_FTC_Consent_Acknowledgement/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.getElementById('employee-privacy-acknowledgement-global');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  // configure date fields
+  $('#date').formatDatePicker(dateConfig, "<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>"); 
+
+  // configure auto sign date
+  $('#signature-sign').on('click', function() { 
+    if(validateSignature('signature','eSignature1','name','modal','over','sv')) { 
+      // edit the date field id 
+      $('#date').setFormattedDate(new Date()); 
+    } 
+    xbObj('eSignature1').value=''; 
+    document.getElementById('eSignature1').focus();
+  }); 
+  $('#signature-clear').on('click', function() { 
+    xbObj('signature').value='';showHide('modal'); 
+    showHide('over'); 
+    xbObj('eSignature1').value=''; 
+    // edit the date field id 
+    if (typeof targetdatecheckCLEAR == 'function' ){$('#date').setFormattedDate(null);}  
+  });
+
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.dateField').parent().find('input').prop('disabled', true);
+});
+
+showCheck("FTC_English_Chk", "FTC_English");
+showCheck("FTC_Chinese_Chk", "FTC_Chinese");
+showCheck("FTC_Dutch_Chk", "FTC_Dutch");
+showCheck("FTC_French_Chk", "FTC_French");
+showCheck("FTC_German_Chk", "FTC_German");
+showCheck("FTC_Italian_Chk", "FTC_Italian");
+showCheck("FTC_Japanese_Chk", "FTC_Japanese");
+showCheck("FTC_Polish_Chk", "FTC_Polish");
+showCheck("FTC_Portuguese_Chk", "FTC_Portuguese");
+showCheck("FTC_Spanish_Chk", "FTC_Spanish");
+
+function formatLongDate(date, format) {
+    var sYear = date.getFullYear();
+    var sMonth = date.getMonth() + 1;
+    var sDate = date.getDate();
+    var formattedDate = "";
+    switch(format) {
+        case "mm/dd/yy": 
+            formattedDate = sMonth + "/" + sDate + "/" + sYear;
+            break;
+        case "yy/mm/dd":
+            formattedDate = sYear + "/" + sMonth + "/" + sDate;
+            break;
+        case "dd/mm/yy":
+            formattedDate = sDate + "/" + sMonth + "/" + sYear;
+            break;
+        default:
+            formattedDate = sMonth + "/" + sDate + "/" + sYear;
+            break;
+    }
+    return formattedDate;
+}
+
+const data = {
+    'Current_Date': formatLongDate(new Date(), dateConfig.regions[dateConfig.countries['<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>']]),
+    'Full_Legal_Name': '<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Initial><$client.env.eval(client.tForWhomUserInfo.Middle_Initial.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name>',
+    'Location': '<$client.env.eval(client.tEventCategories_Category_11.Code.subString(0,2))>'
+};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+</script>

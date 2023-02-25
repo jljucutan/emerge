@@ -70,7 +70,7 @@ const MULTIPART_CONFIG = [
   {
     "name": "DOB",
     "viewedBy": ["newhire", "recruiter"],
-    "requiredBy": ["newhire"],
+    "requiredBy": [],
     "readOnlyTo": []
   },
   {
@@ -177,6 +177,12 @@ const MULTIPART_CONFIG = [
   },
   {
     "name": "National_ID_Number_4",
+    "viewedBy": ["newhire", "recruiter"],
+    "requiredBy": ["newhire"],
+    "readOnlyTo": []
+  },
+  {
+    "name": "Visa_1",
     "viewedBy": ["newhire", "recruiter"],
     "requiredBy": ["newhire"],
     "readOnlyTo": []
@@ -531,6 +537,13 @@ const MULTIPART_CONFIG = [
     "targetlabel": "#Previous_KE_label"
   },
   {
+    "name": "Lateral_Hire",
+    "viewedBy": ["recruiter"],
+    "requiredBy": ["recruiter"],
+    "readOnlyTo": [],
+    "targetlabel": "#Lateral_Hire_label"
+  },
+  {
     "name": "Previous_KE_Employee",
     "viewedBy": ["recruiter","newhire"],
     "requiredBy": ["newhire", "recruiter"],
@@ -612,8 +625,8 @@ const MULTIPART_CONFIG = [
   },
   {
     "name": "Work_Schedule",
-    "viewedBy": ["recruiter"],
-    "requiredBy": ["newhire", "recruiter"],
+    "viewedBy": ["newhire", "recruiter"],
+    "requiredBy": ["newhire"],
     "readOnlyTo": []
   },
   {
@@ -629,9 +642,9 @@ const MULTIPART_CONFIG = [
     "readOnlyTo": []
   },
   {
-    "name": "Permanent_Remote",
+    "name": "Remote_Language",
     "viewedBy": ["recruiter"],
-    "requiredBy": [],
+    "requiredBy": ["recruiter"],
     "readOnlyTo": []
   },
   {
@@ -840,6 +853,31 @@ const MULTIPART_CONFIG = [
     "readOnlyTo": []
   },
   {
+    "name": "Bar_Study_Bonus_Eligible",
+    "viewedBy": ["recruiter"],
+    "requiredBy": [],
+    "readOnlyTo": []
+  },
+  {
+    "name": "Bar_Study",
+    "viewedBy": ["recruiter"],
+    "requiredBy": ["recruiter"],
+    "readOnlyTo": []
+  },
+  {
+    "name": "Bar_Study_Bonus",
+    "class": "currency-field",
+    "viewedBy": ["recruiter"],
+    "requiredBy": ["recruiter"],
+    "readOnlyTo": []
+  },
+  {
+    "name": "Bar_Study_Bonus_Date",
+    "viewedBy": ["recruiter"],
+    "requiredBy": ["recruiter"],
+    "readOnlyTo": []
+  },
+  {
     "name": "Additional_Bonus_Eligible",
     "viewedBy": ["recruiter"],
     "requiredBy": [],
@@ -861,6 +899,12 @@ const MULTIPART_CONFIG = [
     "name": "Additional_Bonus_Code_1",
     "viewedBy": ["recruiter"],
     "requiredBy": [],
+    "readOnlyTo": []
+  },
+  {
+    "name": "JDMBA_Option",
+    "viewedBy": ["recruiter"],
+    "requiredBy": ["recruiter"],
     "readOnlyTo": []
   },
   {
@@ -1174,12 +1218,48 @@ const MULTIPART_CONFIG = [
     "name": "Summer_Associate_End_Date",
     "viewedBy": ["recruiter"],
     "requiredBy": ["recruiter"],
-    "readOnlyTo": ["newhire", "recruiter"]
+    "readOnlyTo": []
+  },
+  {
+    "name": "Office",
+    "viewedBy": ["recruiter"],
+    "requiredBy": ["recruiter"],
+    "readOnlyTo": []
   },
   {
     "name": "Building_Location",
     "viewedBy": ["recruiter"],
-    "requiredBy": [],
+    "requiredBy": ["recruiter"],
     "readOnlyTo": []
-  }
+  },
+  {
+    "name": "Citizenship_Country_1",
+    "viewedBy": ["recruiter", "newhire"],
+    "requiredBy": ["newhire"],
+    "readOnlyTo": []
+  },
+  {
+    "name": "Citizenship_Country_2",
+    "viewedBy": ["recruiter", "newhire"],
+    "requiredBy": ["newhire"],
+    "readOnlyTo": []
+  },
+  {
+    "name": "Citizenship_Country_3",
+    "viewedBy": ["recruiter", "newhire"],
+    "requiredBy": ["newhire"],
+    "readOnlyTo": []
+  },
+  {
+    "name": "Citizenship_Country_4",
+    "viewedBy": ["recruiter", "newhire"],
+    "requiredBy": ["newhire"],
+    "readOnlyTo": []
+  },
+  {
+    "name": "Visa_1",
+    "viewedBy": ["recruiter", "newhire"],
+    "requiredBy": ["newhire"],
+    "readOnlyTo": []
+  },
 ];

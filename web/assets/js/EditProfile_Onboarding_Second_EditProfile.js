@@ -1,6 +1,8 @@
 /**
  * Script for Complete Employee Profile
  * 2021-08-09 | SERVICES-35658 | this is created to cleanup previous code and make it more simple and readable
+ * 2023-02-07 | SERVICES-45871 | added config validation for addtional ID 
+ * 2023-02-22 | SERVICES-45871 | reload validation on SSN when provider not completed yet
  */
 let fields_config = ''
 let fieldsPromise = $.getJSON(FIELDS_CONFIG, function(data) {
@@ -224,7 +226,8 @@ $(window).on('load', function() {
   // event country
   document.getElementById('Evt_Location_Code').value = EVENT_LOCATION
   // display format on label
-  $('#date-format').text(dateConfig.regions[dateConfig.countries[EVENT_LOCATION]].replace('yy', 'yyyy'))
+  //$('#date-format').text(dateConfig.regions[dateConfig.countries[EVENT_LOCATION]].replace('yy', 'yyyy'))
+  $('#date-format').text('mm/dd/yyyy')
 
   // display only marital status for current country
   $('[name$=".MaritalStatus"] option').each(function() {
@@ -236,7 +239,7 @@ $(window).on('load', function() {
 
   // DOB datepicker
   $('#DOB_pseudo').datepicker({
-      dateFormat: 'dd/mm/yy',
+      dateFormat: 'mm/dd/yy',
       changeMonth: true,
       changeYear: true,
       yearRange: "-100:+100",
@@ -372,17 +375,19 @@ $(window).on('load', function() {
     ecStateField.html(EC_STATES)
     // filter states
     $('option', ecStateField).each(function() {
-      if (this.value.indexOf(country) == 0 || this.value == 'NA' || (['POL','BEL','LUX','MEX'].indexOf(country)>=0 && this.value == '')) {
+      //if (this.value.indexOf(country) == 0 || this.value == 'NA' || (['POL','BEL','LUX','MEX'].indexOf(country)>=0 && this.value == '')) {
+      if (this.value.indexOf(country) == 0 || this.value == '') {
         return
       }
       $(this).remove()
     })
     // default to NA if nothing is selected
     if (!$('option[value="' + oldState + '"]', ecStateField).length) {
-      oldState = 'NA'
+      //oldState = 'NA'	  
+      oldState = ''
     }
-    // paland and belgium defaults
-    if (['POL','BEL'].indexOf(country) >= 0) {
+    // Poland, Belgium, Luxembourg, Mexico defaults
+    /*if (['POL','BEL','LUX','MEX'].indexOf(country) >= 0) {
       if (oldState == 'NA') {
         oldState = ''
       }
@@ -391,11 +396,11 @@ $(window).on('load', function() {
       if (ecStateField.val() == '') {
         oldState = 'NA'
       }
-    }
+    }*/
     // add back the old option selected
     ecStateField.val(oldState)
   }
-  
+
   // set default value
   if (!$('[name$=".National_ID_IssuedBy"]').val().length || ['MEX','USA'].indexOf(EVENT_LOCATION) < 0) {
     $('[name$=".National_ID_IssuedBy"]').val(EVENT_LOCATION)
@@ -403,6 +408,9 @@ $(window).on('load', function() {
   $('[name$=".National_ID_IssuedBy2"]').val(EVENT_LOCATION)
   if (!$('[name$=".NationalIDIssuedBy3"]').val().length) {
     $('[name$=".NationalIDIssuedBy3"]').val(EVENT_LOCATION)
+  }
+  if (!sTaskComplete.length) {
+    $('[name$=".National_ID_Type"]').val(NATIONAL_ID_TYPE);
   }
 
   // apply fields attributes required|readonly|disabled etc.
@@ -492,6 +500,12 @@ $(window).on('load', function() {
         $(this).prop('disabled', 'disabled')
       })
     }
+
+
+  $("#EC_State option[value='NA").each(function() {
+    $(this).remove();
+  });
+
   })
 
   // save and complete later
@@ -526,5 +540,4 @@ $(window).on('load', function() {
       }
       doSave_Custom('refer-Complete')
   })
-
 })

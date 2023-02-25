@@ -1,0 +1,624 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;"> 
+    <div class="modal-content"> 
+       <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+       <p style="fontweight:normal;padding:0px"> 
+         <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)> 
+       </p> 
+       <br> 
+       <div class="row"> 
+                     <div class="lifesuite__clearfix"> 
+                                    <strong>Type your Name:</strong> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+       </div> 
+       </div> 
+       <div class="row"> 
+         <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+           <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','Name','modal','over','sv');xbObj('eSignature1').value='';">&nbsp; 
+            <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp; 
+            <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+         </div> 
+     </div> 
+  </div> 
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+
+    showScreen('over') 
+
+</SCRIPT> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+
+<div class="modal" style="display:block; background: #002E6D;"> 
+              <div class="fb-spinner"> 
+                             <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+              </div> 
+</div> 
+
+  
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form''> 
+
+    <div style="display:none;"> 
+
+        <$client.env.FormField.Form_Name.prompt> 
+
+        <$client.env.FormField.Form_Name.HTML> 
+
+        <$client.env.FormField.Form_Type.prompt> 
+
+        <$client.env.FormField.Form_Type.HTML> 
+
+        <$client.env.FormField.Form_Owner.prompt> 
+
+        <$client.env.FormField.Form_Owner.HTML> 
+
+        <$client.env.FormField.Form_CreateDate.prompt> 
+
+        <$client.env.FormField.Form_CreateDate.HTML> 
+
+        <$client.env.FormField.Form_Completed.prompt> 
+
+        <$client.env.FormField.Form_Completed.HTML> 
+
+        <$client.env.FormField.Form_Delivered.prompt> 
+
+        <$client.env.FormField.Form_Delivered.HTML> 
+
+        <$client.env.FormField.Form_TaskId.prompt> 
+
+        <$client.env.FormField.Form_TaskId.HTML> 
+
+        <$client.env.FormField.display_version.HTML> 
+
+<$client.env.FormField.LastName.prompt>
+<$client.env.FormField.FirstName1.prompt>
+<$client.env.FormField.FirstName2.prompt>
+<$client.env.FormField.Checkbox1.prompt>
+<$client.env.FormField.Checkbox2.prompt>
+<$client.env.FormField.a03_gender.prompt>
+<$client.env.FormField.DateOfBirthDD.prompt>
+<$client.env.FormField.DateOfBirthMM.prompt>
+<$client.env.FormField.DateOfBirthYYYY.prompt>
+<$client.env.FormField.HomeAddress1.prompt>
+<$client.env.FormField.HomeAddress2.prompt>
+<$client.env.FormField.HomeAddress3.prompt>
+<$client.env.FormField.HomeAddress4.prompt>
+<$client.env.FormField.HomeAddress5.prompt>
+<$client.env.FormField.NationalInsuranceNumber.prompt>
+<$client.env.FormField.a06_nin1.prompt>
+<$client.env.FormField.a06_nin2.prompt>
+<$client.env.FormField.a06_nin3.prompt>
+<$client.env.FormField.a06_nin4.prompt>
+<$client.env.FormField.a06_nin5.prompt>
+<$client.env.FormField.EmploymentDateDD.prompt>
+<$client.env.FormField.EmploymentDateMM.prompt>
+<$client.env.FormField.EmploymentDateYYYY.prompt>
+<$client.env.FormField.Checkbox3.prompt>
+<$client.env.FormField.Checkbox4.prompt>
+<$client.env.FormField.Checkbox5.prompt>
+<$client.env.FormField.Checkbox6.prompt>
+<$client.env.FormField.Checkbox7.prompt>
+<$client.env.FormField.Checkbox8.prompt>
+<$client.env.FormField.Checkbox9.prompt>
+<$client.env.FormField.Checkbox10.prompt>
+<$client.env.FormField.Checkbox11.prompt>
+<$client.env.FormField.Checkbox12.prompt>
+<$client.env.FormField.Checkbox13.prompt>
+<$client.env.FormField.Checkbox14.prompt>
+<$client.env.FormField.Checkbox15.prompt>
+<$client.env.FormField.Checkbox16.prompt>
+<$client.env.FormField.Checkbox17.prompt>
+<$client.env.FormField.Checkbox18.prompt>
+<$client.env.FormField.Checkbox19.prompt>
+<$client.env.FormField.Signature.prompt>
+<$client.env.FormField.Name.prompt>
+<$client.env.FormField.DateDD.prompt>
+<$client.env.FormField.DateMM.prompt>
+<$client.env.FormField.DateYYYY.prompt>
+<$client.env.FormField.a06_NationalInsuranceNumber.prompt>
+<$client.env.FormField.PayeReference.prompt>
+<$client.env.FormField.EPM61.prompt>
+<$client.env.FormField.CodeNumberOperated.prompt>
+    </div> 
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+
+  
+
+<div class="container-fluid">  
+
+              <div class="form-group">  
+
+<!--mainTable-->
+              <div class="row">
+                <div class="col-xs-12 col-md-4">
+                  <img src="hrmc_logot.png">
+                </div>
+                <div class="col-xs-12 col-md-8 right starterLabel">
+                  <h3>
+                    <strong>Starter checklist</strong><br>
+                    <span>Tell your employer of your circumstances so <br> that you do not pay too much or too little tax</span>
+                  </h3>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <p>
+                    <strong>Do not send this form to HM Revenue and Customs (HMRC)</strong>
+                  </p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <h4><strong>Instructions for employers</strong></h4>
+                  <p>Use this starter checklist to gather information about your new employee if they do not have a P45. You can also use this form if they have a student loan (whether or not they have a P45). Use the information to help fill in your first Full Payment Submission (FPS) for this employee. If you have already submitted your first FPS, keep using the tax code in that FPS until HMRC sends you a new tax code. If the employee gives you their P45 after the first FPS submission, use the tax code shown in parts 2 and 3 of the P45. You must keep the information recorded on the starter checklist for the current and next 3 tax years. This form is for your use only.</p> 
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <h4><strong>Instructions for employees</strong></h4>
+                  <p>Fill in this form if you do not have a P45 (a document you get from your employer when you stop working for them). You should also fill in this form if you have a student loan (whether or not you’ve a P45). Give the completed form to your employer as soon as possible. They need this information to tell HMRC about you and help them to use the right tax code. Make sure you answer the questions correctly. If you do not, you may pay the wrong amount of tax or student loan deductions.</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 bordered">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <h4><strong>Employee’s personal details</strong></h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                     &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <ol class="firstSection">
+                    <li>&nbsp;Last Name<div style="font-weight:normal !important"><$client.env.FormField.PayeReference.html></div></li>
+                    <li>&nbsp;Is this an EPM6 (Modified) PAYE scheme?
+                      <div class="row">
+                        <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h6>Yes</h6>
+                        </div>
+                        <div class="col-xs-3 col-sm-2 col-md-10">
+                          <$client.env.FormField.EPM61.HTML>
+                        </div>
+                      </div>
+                      <div class="row">
+                         <div class="col-xs-3 col-sm-2 col-md-2" style="margin:0 !important">
+                         <h6>No</h6>
+                        </div> 
+                         <div class="col-xs-3 col-sm-2 col-md-10">
+                          <$client.env.FormField.EPM62.HTML>
+                        </div>
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                  <ol class="secondSection">
+                    <li>&nbsp;Code number operated<br><span>
+                      <div style="font-weight:normal !important">When the employee fills in ‘Employee statement’, you can then decide which code you should operate.<$client.env.FormField.CodeNumberOperated.HTML></div></li>
+                    <li>&nbsp;Staff or works number <span style="display:contents">(if you have one)<$client.env.FormField.StafforWorksNumber.HTML></span></li>
+                    <li>&nbsp;Date employee started to work for you <span style="display:contents">DD MM YYYY</span>
+                         <div style="font-weight:normal !important"><$client.env.FormField.EmploymentDateDD.HTML></div>
+                      </li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 bordered">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <h4><strong>Employee statement</strong></h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                     &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-6">
+                  <ol class="thirdSection">
+                    <li>&nbsp;Last name or family name<br><span>Enter the English format of your last name or family name from your passport that you used to enter the UK.<$client.env.FormField.LastName.html></span></li>
+                    <li>&nbsp;First name or given name<br><span>Do not enter initials or shortened names for example, Jim for James or Liz for Elizabeth.
+                    <$client.env.FormField.FirstName1.html>
+                    <$client.env.FormField.FirstName2.HTML></span></li>
+                    <li>&nbsp;Middle name(s) <span style="display:contents">(if you have one)
+                    <$client.env.FormField.MiddleName1.html></span></li>
+                    <li>&nbsp;Date of birth <span style="display:contents">DD MM YYYY</span>
+                         <div style="font-weight:normal !important"><$client.env.FormField.DateOfBirthDD.HTML></div>
+                    </li>
+                    <li>&nbsp;What is your gender?<span style="display:block">
+                    <$client.env.FormField.Gender.html></span></li> 
+                  </ol>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                  <ol class="fourthSection">
+                    <li>&nbsp;Passport number <span style="display:contents"> (if known)</span><br><span>Enter the passport number you presented or will present on entering the UK.
+                    <$client.env.FormField.PassportNumber.html></span></li>
+                    <li>&nbsp;Correspondence address<span><$client.env.FormField.HomeAddress1.HTML><$client.env.FormField.HomeAddress2.HTML><$client.env.FormField.HomeAddress3.HTML><$client.env.FormField.HomeAddress4.HTML><$client.env.FormField.HomeAddress5.HTML></span></li>
+                    <li>&nbsp;Are you a European Economic Area (EEA) citizen?
+                      <div class="row">
+                        <div class="col-xs-3 col-sm-2 col-md-2">
+                         <h6>Yes</h6>
+                        </div>
+                        <div class="col-xs-3 col-sm-2 col-md-10">
+                          <$client.env.FormField.Checkbox1.HTML>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-3 col-sm-2 col-md-2" style="margin:0 !important">
+                         <h6>No</h6>
+                        </div> 
+                         <div class="col-xs-3 col-sm-2 col-md-10">
+                          <$client.env.FormField.Checkbox2.HTML>
+                        </div>
+                      </div>
+                    </li>
+                    <li>&nbsp;National Insurance number <span style="display:contents">(if you have one)
+                    <$client.env.FormField.NationalInsuranceNumber.html></span></li>
+                  </ol>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 bordered">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <h4><strong>Employee statement</strong></h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                     &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                  <ol class="fifthSection">
+                    <li>&nbsp;<strong>You need to select only one of the following statements A, B or C</strong></li>
+
+                    <div class="row">
+                        <div class="col-xs-2 col-md-1">
+                          <h6>A</h6>
+                        </div>
+                        <div class="col-xs-10 col-md-10">
+                          <$client.env.FormField.Checkbox3.HTML>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-2 col-md-1">
+                          <h6>B</h6>
+                        </div>
+                        <div class="col-xs-10 col-md-10">
+                          <$client.env.FormField.Checkbox4.HTML>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-2 col-md-1">
+                          <h6>C</h6>
+                        </div>
+                        <div class="col-xs-10 col-md-10">
+                          <$client.env.FormField.Checkbox5.HTML>
+                        </div>
+                      </div>
+
+                  </ol>
+                </div>
+              </div>
+
+                   
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                   &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 bordered">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-6">
+                  <h4><strong>Student Loan</strong></h4>
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                     &nbsp;
+                </div>
+              </div>
+                  <ol class="sixthSection">
+                    <li>&nbsp;<strong>Tell us if any of the following statements apply to you:</strong>
+                      <ul class="notSection">
+                        <li>you do not have any Student or Postgraduate Loans</li>
+                        <li>you’re still studying full-time on a course that your Student Loan relates to</li>
+                        <li>you completed or left your full-time course after the start of the current tax year, which started on 6 April</li>
+                        <li>you’re already making regular direct debit repayments from your bank, as agreed with the Student Loans Company</li>
+                      </ul>
+                      <div class="row">
+                        <div class="col-xs-11 col-md-10">
+                          <h6>If No, tick this box and go to question 17</h6>
+                        </div>
+                        <div class="col-xs-1 col-md-1">
+                          <$client.env.FormField.Checkbox6.HTML>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-11 col-md-10">
+                          <h6>If Yes, tick this box and go straight to the Declaration</h6>
+                        </div>
+                        <div class="col-xs-1 col-md-1">
+                          <$client.env.FormField.Checkbox7.HTML>
+                        </div>
+                      </div>
+                    </li>
+                    <li>&nbsp;<strong>To avoid repaying more than you need to, tick the correct Student Loans that you have - use the guidance on the right to help you.</strong><br>Please tick all that apply
+                      <div class="row">
+                        <div class="col-xs-11 col-md-10">
+                          <h6>Plan 1</h6>
+                        </div>
+                        <div class="col-xs-1 col-md-1">
+                          <$client.env.FormField.Checkbox8.HTML>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-11 col-md-10">
+                          <h6>Plan 2</h6>
+                        </div>
+                        <div class="col-xs-1 col-md-1">
+                          <$client.env.FormField.Checkbox9.HTML>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-11 col-md-10">
+                          <h6>Plan 4</h6>
+                        </div>
+                        <div class="col-xs-1 col-md-1">
+                          <$client.env.FormField.Checkbox10.HTML>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-11 col-md-10">
+                          <h6>Postgraduate Loan (England and Wales only)</h6>
+                        </div>
+                        <div class="col-xs-1 col-md-1">
+                          <$client.env.FormField.Checkbox11.HTML>
+                        </div>
+                      </div>
+                    </li>
+                  </ol>
+
+                  <div class="col-xs-12 col-md-12">
+                      &nbsp;
+                   </div>
+                </div>
+
+
+                <div class="col-xs-12 col-md-6" style="padding: 0 20px;">
+
+                  <div class="row hidden-xs hidden-sm">
+                    <div class="col-xs-12 col-md-12">
+                      <h4>&nbsp;</h4>
+                    </div>
+                  </div>
+
+                  <div class="row border2px">
+                    <div class="col-xs-12 col-md-12">
+                      <h4><strong>Types of Student Loan</strong></h4>
+                    </div>
+                  </div>
+
+                  <div class="row border2px noTopBorder">
+                    <div class="col-xs-12 col-md-12">
+                      <h6><strong>You have Plan 1 if any of the following apply:</strong></h6>
+                      <ul style="list-style-type: disc; padding-left:20px">
+                        <li>you lived in Northern Ireland when you started your course</li>
+                        <li>you lived in England or Wales and started your course before 1 September 2012</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="row border2px noTopBorder">
+                    <div class="col-xs-12 col-md-12">
+                      <h6><strong>You have a Plan 2 if:</strong></h6>
+                      <p>You lived in England or Wales and started your course on or after 1 September 2012.</p>
+                    </div>
+                  </div>
+
+                  <div class="row border2px noTopBorder">
+                    <div class="col-xs-12 col-md-12">
+                      <h6><strong>You have a Plan 4 if:</strong></h6>
+                      <p>You lived in Scotland and applied through Students Award Agency Scotland (SAAS) when you started your course.</p>
+                    </div>
+                  </div>
+
+                  <div class="row border2px noTopBorder">
+                    <div class="col-xs-12 col-md-12">
+                      <h6><strong>You have a Postgraduate Loan if any of the following apply:</strong></h6>
+                      <ul style="list-style-type: disc; padding-left:20px">
+                        <li>you lived in England and started your Postgraduate Master’s course on or after 1 August 2016</li>
+                        <li>you lived in Wales and started your Postgraduate Master’s course on or after 1 August 2017</li>
+                        <li>you lived in England or Wales and started your Postgraduate Doctoral course on or after 1 August 2018</li>
+                      </ul>
+                    </div>
+                  </div>
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                     &nbsp;
+                </div>
+              </div>
+                
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-md-12">
+              <h6>Employees, for more information about the type of loan you have, go to <a href="https://www.gov.uk/sign-in-to-manage-your-student-loan-balance" target="_blank">www.gov.uk/sign-in-to-manage-your-student-loan-balance</a></h6>
+              <h6>Employers, for guidance go to <a href="https://www.gov.uk/guidance/special-rules-for-student-loans" target="_blank">www.gov.uk/guidance/special-rules-for-student-loans</a></h6>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-12">
+              &nbsp;
+           </div>
+
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 bordered">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <h4><strong>Declaration</strong></h4>
+                    <span>The information you’ve given on this form will help your new employer operate the correct tax code and make correct tax deductions.</span>
+                    <p>Tick the checkbox to confirm your agreement.</p>
+                </div>
+                      <div class="col-xs-12 col-md-12">
+                          <div class="col-xs-11 col-md-5">
+                            <h6>I confirm that the information I’ve given on this form is correct</h6>
+                           </div>
+                           <div class="col-xs-1 col-md-5">
+                            <$client.env.FormField.Checkbox12.HTML>
+                           </div>
+                         </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-6">
+                  <h6><strong>Full name</strong></h6>
+                 <$client.env.FormField.Name.HTML>
+                  <h6><strong>Date</strong> DD MM YYYY</h6>
+                   <$client.env.FormField.DateDD.HTML>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                  <h6><strong>Signature</strong></h6>
+                  <$client.env.FormField.Signature.HTML>
+                </div>
+                
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    &nbsp;
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12 bordered">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <h4><strong>What to do now</strong></h4>
+                    <p>Give this form to your employer or email it to them. </p>
+                    <p>Do not send this form to HMRC.</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    &nbsp;
+                </div>
+              </div>
+       
+              <div class="row">
+                   <div class="col-xs-6 col-md-6">Expat Starter checklist</div>
+                   <div class="col-xs-6 col-md-6 right" style="margin-left:0">HMRC 02/21</div>
+              </div> 
+
+<!--mainTable-->
+                <div class="col-xs-12 col-md-12">
+                    <hr class="lifesuite__hr"> 
+                </div>   
+                  <$client.env.FormButtons> 
+
+              </div> 
+
+</div> 
+
+<div style="display:none"> 
+
+     <$client.env.FormField.SignatureVerification.HTML> 
+     <$client.env.formfield.FullName.html>
+<$client.env.formfield.Login_ID.html>
+<$client.env.formfield.Auth_Param.html>
+<$client.env.formfield.EmployeeID.html>
+</div> 
+
+</form> 
+
+<SCRIPT> 
+
+    ChangeCalendarIcons(); //for popup calendar  
+
+  
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+/* RESPONSIVE eFORM FIELDS STYLE */ 
+
+$(window).load(function() { 
+        $("input[type=text]").addClass('lifesuite__text-input'); 
+        $("input[type=text].hasDatepicker").addClass('dateField'); 
+        $("select").addClass('lifesuite__select-input'); 
+        $("input[type=radio]").addClass('lifesuite__radio'); 
+        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+        $("textarea").addClass('lifesuite__textarea-input'); 
+        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+});  
+
+  
+
+//Fixes to modal issue when viewing in mobile devices 
+$( window ).resize(function() { 
+document.getElementById('over').style.width=''; 
+}); 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+<$client.env.eval((url.forWhom!=account.userguid)?'disableCalButton(\'ddDate\')':'disableCalButton(\'emplyrDate \')')>
+
+</SCRIPT>

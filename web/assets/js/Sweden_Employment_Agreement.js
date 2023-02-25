@@ -6,6 +6,7 @@
  * 04.22.2019 | jjucutan | Remove highlighing on prorated condition
  * 02.11.2022 | jjucutan | created offer letter version 4
  * 08.09.2022 | jjucutan | created offer letter version 7
+ * 10.05.2022 | jjucutan | apply fixes on verbiage
  */
 const fnView = function() {
     $("#markup").html("").append(
@@ -15,15 +16,12 @@ const fnView = function() {
                 $('<strong/>').append('EMPLOYMENT AGREEMENT')
             ),
             $('<p class="hide"/>').text('&nbsp;'),
-            (employee.EntityName == 'PayPal PLC, Filial Sweden') &&
+            (employee.EntityName == 'PayPal Limited, Filial Sweden') &&
             $('<p class="mb-20"/>').append(
                 $('<strong/>').append(
                     'PayPal PLC, Filial Sweden'
                 ),
-                ' acting through its branch registered under the laws of Sweden with registration number 516405-8264 and whose registered address is at St Eriksgatan 117, 113 43 Stockholm',
-                (employee.EntityAddress == 'Regeringsgatan 65, 111 56 Stockholm, Sweden') &&
-                ', with its place of work at Regeringsgatan 65, 111 56 Stockholm, Sweden',
-                ', hereinafter to be referred to as ',
+                ' acting through its branch registered under the laws of Sweden with registration number 516405-8264 and whose registered address is at St Eriksgatan 117, 113 43 Stockholm, with its place of work at Regeringsgatan 65, 111 56 Stockholm, Sweden, hereinafter to be referred to as ',
                 $('<strong/>').append(
                     '“Employer”'
                 ),
@@ -135,7 +133,7 @@ const fnView = function() {
                 $('<li class="marked" data-toggle="popover" data-placement="top" data-content="In Office"/>').append(
                     'The Employee’s usual place of work will be ',
                     $('<mark/>').append(
-                        employee.Location,
+                        employee.LOCATION_DISPLAYNAME
                     ),
                     ',  however, the Employee’s usual place of work may change, as directed by the Employer, in line with the business requirements of the Employer. The Employee may also be required to travel within Stockholm, Sweden, and/or abroad for the performance of their duties. The Employee will not be required to reside anywhere outside of Stockholm, Sweden for a total period of more than [one month] at any one time, other than by mutual consent.'
                 ),
@@ -143,9 +141,9 @@ const fnView = function() {
                 $('<li class="marked" data-toggle="popover" data-placement="top" data-content="Virtual Flex"/>').append(
                     'The Employee’s role may be performed either at the PayPal office in ',
                     $('<mark/>').append(
-                        employee.Location
+                        employee.LOCATION_DISPLAYNAME
                     ),
-                    'or remotely with the use of virtual working tools the Company provides. If the Employee choose to work remotely, he/she must do so from a location near to the Stockholm PayPal office within Sweden. In addition to any in-person working, the Employee may also be required to attend a PayPal office from time to time for in-person collaboration or as per business needs.  The Company may amend or end the location of the Employee’s role or remove the ability to work virtually at any time and will give the Employee notice (but will not provide any compensation) if the Company does so.  The Employee may find more details, including the Company’s expectations of the Employee, within its Offsite Working Policy and associated policies.'
+                    ' or remotely with the use of virtual working tools the Company provides. If the Employee choose to work remotely, he/she must do so from a location near to the Stockholm PayPal office within Sweden. In addition to any in-person working, the Employee may also be required to attend a PayPal office from time to time for in-person collaboration or as per business needs.  The Company may amend or end the location of the Employee’s role or remove the ability to work virtually at any time and will give the Employee notice (but will not provide any compensation) if the Company does so.  The Employee may find more details, including the Company’s expectations of the Employee, within its Offsite Working Policy and associated policies.'
                 ),
                 (employee.Workplace_Model == 'Virtual') &&
                 $('<li class="marked" data-toggle="popover" data-placement="top" data-content="Virtual"/>').append(
@@ -260,7 +258,7 @@ const fnView = function() {
                     'The Employee agrees to take all reasonable steps to safeguard Trade Secrets in accordance with the confidentiality requirements in order to protect them from unauthorized access or amendment.'
                 ),
                 $('<li/>').append(
-                    'All written and other records and all tangibles concerning the Employer or any of its affiliated companies and their business which are in the possession of the Employee shall be carefully kept and immediately immediately returned to the Employer upon its request, and in any case upon the termination of the employment. The Employee shall not be entitled to keep any copies of those records and tangibles. '
+                    'All written and other records and all tangibles concerning the Employer or any of its affiliated companies and their business which are in the possession of the Employee shall be carefully kept and immediately returned to the Employer upon its request, and in any case upon the termination of the employment. The Employee shall not be entitled to keep any copies of those records and tangibles. '
                 )
             ),
             $('<p class="hide"/>').append('&nbsp;'),
@@ -270,7 +268,7 @@ const fnView = function() {
             $('<p class="hide"/>').append('&nbsp;'),
             $('<ol class="list-indented mb-30"/>').append(
                 $('<li/>').append(
-                    'All intellectual property rights, including but not limited to patent rights, design rights, copyrights and related rights, database rights, trademark rights and chip rights, ensuing, in Sweden and abroad, from the work performed by the Employee under during the Employment is transferred by the Employee to and exclusively vested in the Employer. The Employee may not independently disclose, multiply, use, manufacture, bring on the market or sell, lease, deliver or otherwise trade, offer on behalf of any third party, or commission the registration of the results of his work <p class="hide">&nbsp;</p>'
+                    'All intellectual property rights, including but not limited to patent rights, design rights, copyrights and related rights, database rights, trademark rights and chip rights, ensuing, in Sweden and abroad, from the work performed by the Employee during the Employment is transferred by the Employee to and exclusively vested in the Employer. The Employee may not independently disclose, multiply, use, manufacture, bring on the market or sell, lease, deliver or otherwise trade, offer on behalf of any third party, or commission the registration of the results of his work <p class="hide">&nbsp;</p>'
                 ),
                 $('<li/>').append(
                     'Insofar as the rights specified hereinafter are not vested in the Employer by operation of law or on the grounds of this Agreement, the Employee covenants that he/she will transfer and, insofar as possible, hereby transfers to the Employer any intellectual property rights of any nature in or arising from work performed by the Employee in the discharge of his/her duties, both in Sweden and abroad, at the Employer’s costs.<p class="hide">&nbsp;</p>'
@@ -417,7 +415,7 @@ const fnView = function() {
                     'Should any provision of this Employment Agreement be or become invalid, the validity of the other provision(s) shall not be affected, and the invalid clause shall be replaced by such other valid clause that best meets the parties’ common intention when agreeing on the invalid clause.'
                 ),
                 $('<li/>').append(
-                    'The Employment Agreement is subject to the laws of Sweden. Any dispute, controversy or claim that may arise regarding the origin, interpretation or application of this Agreement or derogating from this Agreement, shall, if not settled through consultations between the Parties, be solved by general court.'
+                    'The Agreement is subject to the laws of Sweden. Any dispute, controversy or claim that may arise regarding the origin, interpretation or application of this Agreement or derogating from this Agreement, shall, if not settled through consultations between the Parties, be solved by general court.'
                 )
             ),
             $('<p class="hide"/>').append('&nbsp;'),

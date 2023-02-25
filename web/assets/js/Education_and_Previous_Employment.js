@@ -9,7 +9,7 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 
 const displayedSections = function(sections) {
     'use strict'
-    let hidden = 0
+    let hidden = 0;
     sections.forEach(function(s) {
         if (s.offsetParent === null) {
             hidden++
@@ -138,5 +138,11 @@ document.onreadystatechange = function() {
             document.getElementById('add-employment'),
             document.querySelectorAll('.additional-employment'),
             marker)
+    })
+    // remove empty radio
+    document.querySelectorAll('input[type="radio"]').forEach(r => {
+        if (r.value == "") {
+            r.closest('td').remove()
+        }
     })
 }

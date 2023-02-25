@@ -1,0 +1,438 @@
+<table id="EditProfile" border="0">
+<b>Please validate the information below for the New Associate Offer Letter:</b>
+<tr>
+</tr>
+    <tr>
+   <td id='First_Name_prompt'>First Name </td>
+   <td colspan="3"><input type="text" name="First_Name" value="<$client.tForWhomUserInfo.First_Name>" /></td>
+  </tr>
+  <tr>
+   <td id='Last_Name_prompt'>Last Name</td>
+   <td colspan="3"><input type="text" name="Last_Name" value="<$client.tForWhomUserInfo.Last_Name>" /></td>
+    </tr>
+    <tr>
+   <td id='Address1_prompt'><$client.env.promptAddress1></td>
+   <td colspan="3"><$client.env.inputAddress1> </td>
+    </tr>
+    <tr>
+   <td id='City_prompt'><$client.env.promptCity></td>
+  <td colspan="3"><$client.env.inputCity> </td>
+  </tr>
+  <tr>
+   <td id='State_prompt'><$client.env.promptState></td>
+  <td><$client.env.inputState></td>
+  <tr>
+   <td id='Zip_prompt'><$client.env.promptZip></td>
+  <td><$client.env.inputZip></td>
+    </tr>
+<!-- Company Details   -->
+    <tr>
+        <td colspan="4"><b><span style="color:blue; font-family:Helvetica;">Richards Company Location Details</span></b></td>
+    </tr>
+  <tr>
+        <td id='Service_Center_prompt'><$client.env.promptService_Center></td>
+        <td colspan="3"><$client.env.inputService_Center></td>
+    </tr>
+    <tr>
+        <td id='Remote_prompt'><$client.env.promptRemote></td>
+        <td colspan="3"><$client.env.inputRemote></td>
+    </tr>    
+         <!-- Section Heading: Job Details   -->
+<tr><p></p>
+<td colspan="80"><b><span style="color:blue; font-family:Helvetica;">Job Description </span></b></td><p></p></tr>
+<tr> 
+<td id='Job_Template_Name_prompt'><$client.env.promptJob_Template_Name></td>
+<td colspan="3"><$client.env.inputJob_Template_Name></td>
+</tr> 
+<tr> 
+<td id='JobSubFamily_Driver_prompt'><$client.env.promptJobSubFamily_Driver></td>
+<td colspan="3"><$client.env.inputJobSubFamily_Driver ></td>
+</tr> 
+<tr> 
+<td id='Hiring_Manager_prompt'><$client.env.promptHiring_Manager_Name></td>
+<td colspan="3"><$client.env.inputHiring_Manager_Name></td>
+</tr>
+<tr> 
+<td id='Hiring_Manager_Job_Template_Name_prompt'><$client.env.promptHiring_Manager_Job_Template_Name></td>
+<td colspan="3"><$client.env.inputHiring_Manager_Job_Template_Name></td>
+</tr>
+<tr> 
+<td id='Offer_Date_prompt'><$client.env.promptOffer_Date></td>
+<td colspan="3"><$client.env.inputOffer_Date></td>
+</tr> 
+<td id='Hire_Date_prompt'><$client.env.promptHire_Date></td>
+<td colspan="3"><$client.env.inputHire_Date></td>
+</tr>
+         <!-- Section Heading: Compensation Details   -->
+<tr><p></p>
+<td colspan="80"><b><span style="color:blue; font-family:Helvetica;">Compensation Details </span></b></td><p></p></tr>
+<tr> 
+<td id='FLSA_Status_prompt'><$client.env.promptFLSA_Status></td>
+<td colspan="3"><$client.env.inputFLSA_Status></td>
+</tr> 
+<tr> 
+<td id='Salary_Amount_prompt'><$client.env.promptSalary_Amount></td>
+<td colspan="3"><$client.env.inputSalary_Amount></td>
+</tr>
+<tr> 
+<td id='Salary_Type_prompt'><$client.env.promptSalary_Type></td>
+<td colspan="3"><$client.env.inputSalary_Type></td>
+</tr>
+<tr> 
+<td id='Annual_Salary_prompt'><$client.env.promptAnnual_Salary></td>
+<td colspan="3"><$client.env.inputAnnual_Salary></td>
+</tr>
+<tr> 
+<td id='Bonus_General_Eligibility_prompt'><$client.env.promptBonus_General_Eligibility></td>
+<td colspan="3"><$client.env.inputBonus_General_Eligibility></td>
+</tr>
+<td id='Bonus_General_Structure_prompt'><$client.env.promptBonus_General_Structure></td>
+<td colspan="3"><$client.env.inputBonus_General_Structure></td>
+</tr>
+            <!-- Section Heading: Benefits   -->
+<td colspan="80"><b><span style="color:blue; font-family:Helvetica;">Benefits </span></b></td>
+<tr> 
+<td id='Frontloaded_Vacation_Days_prompt'><$client.env.promptFrontloaded_Vacation_Days></td>
+<td colspan="3"><$client.env.inputFrontloaded_Vacation_Days></td>
+</tr> 
+<tr> 
+<td id='Frontloaded_Vacation_Hrs_prompt'><$client.env.promptFrontloaded_Vacation_Hrs></td>
+<td colspan="3"><$client.env.inputFrontloaded_Vacation_Hrs></td>
+</tr> 
+</table>
+
+<div id="offerLetterDefault-container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="d-flex justify-content-end">
+                <div class="img-wrapper">
+                    <img src="<$link;/main/RedCarpet/FormTemplates/Richards_Offer_Letter/img/richards-logo-print.png>" alt="Richards Electric Logo" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="markup1"></div>
+</div>
+
+<div hidden>
+  <input id="Current_Date" type="text" value="">
+</div>
+
+<div class='buttonContainer'>
+    <button type="button" id="TaskSummary_ButtonCancel2" class="lifesuite__button" onclick="window.history.back()">Cancel</button>
+    <button type="button" id="EUPDefaultSaveButton2" class="lifesuite__button" onclick="doSave_Custom('refer-Save');">Save &amp; Complete Later</button>
+    <button type="button" id="EUPDefaultSaveButtonPreview" class="lifesuite__button" onclick="DisableValidation();window.print();doSave_Custom('refer-Save');">Save &amp; Preview Offer</button>
+    <button type="button" id="EUPButtonPreview" class="lifesuite__button" onclick="window.print();">Preview Offer</button>
+    <button type="button" id="TaskSummary_ButtonSave2" class="lifesuite__button primary" onclick="EnableValidation();doSave_Custom('refer-Complete');">Save &amp; Complete Task</button>
+</div>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/jquery.mask.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>" defer></script>
+
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Richards_Offer_Letter/js/moment-with-locales.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Richards_Offer_Letter/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Richards_Offer_Letter/js/script.js>" defer></script>
+
+<script type="text/javascript">
+
+const TEMPLATE_PATH1 = '<$link;/main/RedCarpet/FormTemplates/Richards_Offer_Letter/js/templates/Richards_Offer_Letter.offerClause1_Version_1.ejs>'
+const data = {
+    'Current_Date': document.getElementById('Current_Date').value,
+    'First_Name': '<$client.tForWhomUserInfo.First_Name>',
+    'Full_Name': '<$client.tForWhomUserInfo.Full_Name>',
+    'Address1': '<$client.tForWhomUserInfo.Address1>',
+    'City': '<$client.tForWhomUserInfo.City>',
+    'State_Description': '<$client.tForWhomUserInfo.State_Description>',
+    'Zip': '<$client.tForWhomUserInfo.Zip>',
+    'Job_Template_Name': '<$client.tForWhomUserInfo.Job_Template_Name>',
+    'Service_Center': '<$client.tForWhomUserInfo.Service_Center>',
+    'Residential_Location': '<$client.tEventCategories_Category_22.Value>',
+    'Salary_Type': '<$client.tForWhomUserInfo.Salary_Type>',
+    'Salary_Amount': new Number('<$client.tForWhomUserInfo.Salary_Amount>'),
+    'Annual_Salary': 0,
+    'Remote': '<$client.tForWhomUserInfo.Remote>',
+    'Salary_Type': '<$client.tForWhomUserInfo.Salary_Type>',
+    'FLSA_Status': '<$client.tForWhomUserInfo.FLSA_Status>',
+    'Bonus_General_Eligibility': '<$client.tForWhomUserInfo.Bonus_General_Eligibility>',
+    'Bonus_General_Structure': '<$client.tForWhomUserInfo.Bonus_General_Structure>',
+    'Frontloaded_Vacation_Days': '<$client.tForWhomUserInfo.Frontloaded_Vacation_Days>',
+    'Frontloaded_Vacation_Hrs': '<$client.tForWhomUserInfo.Frontloaded_Vacation_Hrs>',
+    'JobSubFamily_Driver': '<$client.tForWhomUserInfo.JobSubFamily_Driver>',
+    'Hiring_Manager': '<$client.tForWhomUserInfo.Hiring_Manager>',
+    'Hiring_Manager_Job_Template_Name': '<$client.tForWhomUserInfo.Hiring_Manager_Job_Template_Name>',
+};
+    $(window).on('load', function() {
+
+        //readonly fields
+        $('[name$=".Annual_Salary"]').prop('readonly', true);
+
+        let isProfileCompleted = sTaskComplete;
+
+        if (isProfileCompleted) {
+            $('#EUPDefaultSaveButton2,#TaskSummary_ButtonSave2, #EUPDefaultSaveButtonPreview').css('display','none');
+            $('#EUPButtonPreview').css('display','block');
+        }else{
+            $('#EUPButtonPreview').css('display','none');
+        }
+
+        const updateDataFields = function(field) {
+          'use strict';
+          if (field.prop('name').indexOf('.') >= 0) {
+            let name = field.prop('name').split('.')
+            if (field.prop('type') == 'select-one') {
+              data[name[name.length-1]] = field.val();
+              data[name[name.length-1] + '_Description'] = field.val();
+            } else {
+                let nem = name[name.length-1];
+              data[nem] = field.val();
+              if (nem == 'Annual_Salary') {
+                  data[nem] = field.val().replaceAll(',', '');
+              }
+            }
+          } else {
+            data[field.prop('name')] = field.val();
+          }
+        }
+        $('input, select', '#EditProfile').each(function(_, f) {
+          updateDataFields($(f));
+        });
+        render(TEMPLATE_STR, 'markup1', data)
+        //onchange First_Name
+        $('input, select', '#EditProfile').on('keyup paste blur change', function() {
+          updateDataFields($(this));
+          setTimeout(function() {
+            render(TEMPLATE_STR, 'markup1', data)
+          }, 1000)
+        });
+
+        //onchange Salary_Amount
+        $('#EditProfile').on('keyup paste blur', '[name$=".Salary_Amount"]', function() {
+            //console.log(getAnnualSalary2(this.value,$("[name$='.Salary_Type'] option:selected").html()));
+            if(this.value != '' && $("[name$='.Salary_Type'] option:selected").html() != ''){
+                $('[name$=".Annual_Salary"]').val(getAnnualSalary2(this.value,$("[name$='.Salary_Type'] option:selected").html()));
+                updateDataFields($('[name$=".Annual_Salary"]'))
+                setTimeout(function() {
+                  render(TEMPLATE_STR, 'markup1', data)
+                }, 1000)
+            }else{
+                $('[name$=".Annual_Salary"]').val('');
+                updateDataFields($('[name$=".Annual_Salary"]'))
+                setTimeout(function() {
+                  render(TEMPLATE_STR, 'markup1', data)
+                }, 1000)
+            }
+            
+        });
+
+        //onchange Salary_Type
+        $('#EditProfile').on('change', '[name$=".Salary_Type"]', function() {
+            if($("[name$='.Salary_Type'] option:selected").html() != '' && $('[name$=".Salary_Amount"]').val() != ''){
+                $('[name$=".Annual_Salary"]').val(getAnnualSalary2($('[name$=".Salary_Amount"]').val(),$("[name$='.Salary_Type'] option:selected").html()));    
+                updateDataFields($('[name$=".Annual_Salary"]'))
+                setTimeout(function() {
+                  render(TEMPLATE_STR, 'markup1', data)
+                }, 1000)
+            }else{
+                $('[name$=".Annual_Salary"]').val('');
+                updateDataFields($('[name$=".Annual_Salary"]'))
+                setTimeout(function() {
+                  render(TEMPLATE_STR, 'markup1', data)
+                }, 1000)
+            }
+            
+        });
+
+    }); //end of onload
+
+
+var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    });
+
+var formatterBasic = new Intl.NumberFormat();
+
+    function getNumber(Number_String) {
+        var Formatted_Number = 0;
+
+        try {
+            Formatted_Number = parseFloat(Number_String);
+        }
+        catch (error) {
+            Formatted_Number = error;
+        }
+        finally {
+            return Formatted_Number;
+        }
+    }
+
+function getCurrencyFormat(Number_String) {
+        var Formatted_Number = 0;
+
+        try {
+            Formatted_Number = formatter.format(parseFloat(Number_String));
+        }
+        catch (error) {
+            Formatted_Number = error;
+        }
+        finally {
+            return Formatted_Number;
+        }
+    }
+
+    function getAnnualSalary(Salary_Amount, Salary_Type) {
+        var Annual_Salary = 0;
+        var Salary_Multiplier = 0;
+
+        switch (Salary_Type) {
+            case "hourly":
+                Salary_Multiplier = 2080;
+                break;
+            case
+             "daily":
+                Salary_Multiplier = 260;
+                break;
+            case
+             "weekly":
+                Salary_Multiplier = 52;
+                break;
+            case
+             "bi-weekly":
+                Salary_Multiplier = 26;
+                break;
+            case
+             "monthly":
+                Salary_Multiplier = 12;
+                break;
+            case
+             "bi-monthly":
+                Salary_Multiplier = 6;
+                break;
+            case
+             "annually":
+                Salary_Multiplier = 1;
+                break;
+            default:
+                break;
+        }
+
+        try {
+            Annual_Salary = parseFloat(Salary_Amount) * parseInt(Salary_Multiplier);
+            Annual_Salary = formatter.format(Annual_Salary);
+        }
+        catch (error) {
+            Annual_Salary = error;
+        }
+        finally {
+            return Annual_Salary;
+        }
+    }
+
+
+    function getAnnualSalary2(Salary_Amount, Salary_Type) {
+        var Annual_Salary = 0;
+        var Salary_Multiplier = 0;
+
+        switch (Salary_Type) {
+            case "hourly":
+                Salary_Multiplier = 2080;
+                break;
+            case
+             "daily":
+                Salary_Multiplier = 260;
+                break;
+            case
+             "weekly":
+                Salary_Multiplier = 52;
+                break;
+            case
+             "bi-weekly":
+                Salary_Multiplier = 26;
+                break;
+            case
+             "monthly":
+                Salary_Multiplier = 12;
+                break;
+            case
+             "bi-monthly":
+                Salary_Multiplier = 6;
+                break;
+            case
+             "annually":
+                Salary_Multiplier = 1;
+                break;
+            default:
+                break;
+        }
+
+        try {
+            Annual_Salary = parseFloat(Salary_Amount) * parseInt(Salary_Multiplier);
+            Annual_Salary = formatterBasic.format(Annual_Salary);
+        }
+        catch (error) {
+            Annual_Salary = error;
+        }
+        finally {
+            return Annual_Salary;
+        }
+    }
+
+
+    function getPTOSickHours() {
+        var Hire_Month;
+        var PTO_Sick_Hours = 0;
+
+        try {
+            Hire_Month = new Date("<$client.tForWhomUserInfo.Hire_Dt>").getMonth();
+        }
+        catch (error) {
+            Hire_Month = error;
+            PTO_Sick_Hours = error;
+        }
+        finally {
+            switch (Hire_Month) {
+                case 0:
+                    PTO_Sick_Hours = 72;
+                    break;
+                case 1:
+                    PTO_Sick_Hours = 66;
+                    break;
+                case 2:
+                    PTO_Sick_Hours = 60;
+                    break;
+                case 3:
+                    PTO_Sick_Hours = 54;
+                    break;
+                case 4:
+                    PTO_Sick_Hours = 48;
+                    break;
+                case 5:
+                    PTO_Sick_Hours = 42;
+                    break;
+                case 6:
+                    PTO_Sick_Hours = 36;
+                    break;
+                case 7:
+                    PTO_Sick_Hours = 30;
+                    break;
+                case 8:
+                    PTO_Sick_Hours = 24;
+                    break;
+                case 9:
+                    PTO_Sick_Hours = 18;
+                    break;
+                case 10:
+                    PTO_Sick_Hours = 12;
+                    break;
+                case 11:
+                    PTO_Sick_Hours = 6;
+                    break;
+                default:
+                    break;
+            }
+
+            return PTO_Sick_Hours;
+        }
+    }
+
+</script>

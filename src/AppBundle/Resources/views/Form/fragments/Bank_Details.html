@@ -1,321 +1,450 @@
-<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
-<div class="modal" id="modal" style="display:none;">
-  <div class="modal-content">
-    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
-    <p style="font-weight:normal;padding:0px">
-    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
-    </p>
-    <br>
-    <div class="row">
-      <div class="lifesuite__clearfix">
-        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
-      </div>
-    </div>
-    <div class="row">
-      <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;">
-        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';">&nbsp;
-        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
-        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
-      </div>
-    </div>
-  </div>
-</div>
-<div id="over" style="display:none;"></div>
-<!-- RESPONSIVE eFORM PAGE LOADER-->
-<div class="modal" style="display:block; background: #002E6D;">
-  <div class="fb-spinner">
-    <i class="fa fa-2x fa-spinner fa-pulse"></i>
-  </div>
-</div>
-<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<form id="bank-details-form" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form" class="form-horizontal">
-    <div style="display:none;">
-        <$client.env.FormField.Form_Name.prompt>
-        <$client.env.FormField.Form_Name.HTML>
-        <$client.env.FormField.Form_Type.prompt>
-        <$client.env.FormField.Form_Type.HTML>
-        <$client.env.FormField.Form_Owner.prompt>
-        <$client.env.FormField.Form_Owner.HTML>
-        <$client.env.FormField.Form_CreateDate.prompt>
-        <$client.env.FormField.Form_CreateDate.HTML>
-        <$client.env.FormField.Form_Completed.prompt>
-        <$client.env.FormField.Form_Completed.HTML>
-        <$client.env.FormField.Form_Delivered.prompt>
-        <$client.env.FormField.Form_Delivered.HTML>
-        <$client.env.FormField.Form_TaskId.prompt>
-        <$client.env.FormField.Form_TaskId.HTML>
-        <$client.env.FormField.display_version.HTML>
-        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
-        <$client.env.FormField.Account_Name.prompt>
-        <$client.env.FormField.Account_Number.prompt>
-        <$client.env.FormField.Bank_Name.prompt>
-        <$client.env.FormField.Country.prompt>
-        <$client.env.FormField.Date.prompt>
-        <$client.env.FormField.SignatureVerification.prompt>
-        <$client.env.FormField.Signed.prompt>
-        <$client.env.FormField.Sort_Code_Number.prompt>
-    </div>
-    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
-<main class="container-fluid">
-    <div class="main-container">
-        <header class="row mb-30">
-            <div class="col-lg-12">
-                <h4 class="text-center">
-                    Bank Details
-                </h4>
-            </div>
-        </header>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+
+<div class="modal" id="modal" style="display:none;"> 
+    <div class="modal-content"> 
+        <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2> 
+        <p style="font-weight:normal;padding:0px"> 
+        <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)> 
+        </p> 
+        <br> 
+        <div class="row"> 
+            <div class="lifesuite__clearfix"> 
+            <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+            </div> 
+        </div> 
+
+        <div class="row"> 
+           <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+             <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','fullName','modal','over','sv','date');xbObj('eSignature1').value='';">&nbsp; 
+             <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+            </div> 
+        </div> 
+      </div> 
+</div> 
+
+<div id="over" style="display:none;"></div> 
+
+<SCRIPT> 
+    showScreen('over') 
+</SCRIPT> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+<!-- RESPONSIVE eFORM PAGE LOADER--> 
+<div class="modal" style="display:block; background: #002E6D;"> 
+    <div class="fb-spinner"> 
+        <i class="fa fa-2x fa-spinner fa-pulse"></i> 
+    </div> 
+</div> 
+
+  
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --> 
+
+  
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'> 
+
+    <div style="display:none;"> 
+
+        <$client.env.FormField.Form_Name.prompt> 
+        <$client.env.FormField.Form_Name.HTML> 
+        <$client.env.FormField.Form_Type.prompt> 
+        <$client.env.FormField.Form_Type.HTML> 
+        <$client.env.FormField.Form_Owner.prompt> 
+        <$client.env.FormField.Form_Owner.HTML> 
+        <$client.env.FormField.Form_CreateDate.prompt> 
+        <$client.env.FormField.Form_CreateDate.HTML> 
+        <$client.env.FormField.Form_Completed.prompt> 
+        <$client.env.FormField.Form_Completed.HTML> 
+        <$client.env.FormField.Form_Delivered.prompt> 
+        <$client.env.FormField.Form_Delivered.HTML> 
+        <$client.env.FormField.Form_TaskId.prompt> 
+        <$client.env.FormField.Form_TaskId.HTML> 
+        <$client.env.FormField.display_version.HTML> 
+
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer--> 
+        <$client.env.FormField.country.prompt>
+        <$client.env.FormField.govdoc_expiration.prompt>
+        <$client.env.FormField.govdoc_id.prompt>
+        <$client.env.FormField.govdoc_issued.prompt>
+        <$client.env.FormField.govdoc_type.prompt>
+        <$client.env.FormField.rtw.prompt>
+        <$client.env.FormField.name.prompt>
+        <$client.env.FormField.date.prompt>
+        <$client.env.FormField.signature.prompt>
+    </div> 
+
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>"> 
+    
+     
+
+<div class="container-fluid">  
+
+              <div class="form-group">  
+        <!-- Replace With eForm Specific HTML --> 
         <div class="row">
-            <div class="col-lg-12">
-                <p>
-                    Salary is paid directly into your UK bank account.  If you do not have a UK Bank account or if you do not see your Sort code, please contact your attorney recruiter.                                                                                                                                                                    
-                </p>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgr">
+                <img src="logo.png" class="img-responsive" style="max-width: 120px;">
             </div>
         </div>
-        <div class="row">
-            <label class="control-label col-lg-2 col-sm-3 col-xs-12">
-                Country:
-            </label>
-            <div class="col-lg-10 col-sm-9 col-xs-12">
-                <div class="form-group">
-                    <$client.env.FormField.Country.HTML>
+        <!--//Form Title -->
+        <div class="row margin-bottom">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <h3>Bank Details Form APAC</h3>
+                <p>These are the bank details provided by the employee that is used by Payroll. </p>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            </div>
+        </div>
+        <!--//Section 1 -->
+        <div class="row margin-bottom">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <h5 class="margin-bottom">PAYROLL INFORMATION</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right padding-top">
+                        <p style="white-space: nowrap;">Full Legal Name: <span class="font-red">* </span></p>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <$client.env.FormField.full_name.HTML>
+                        <span class="label-error"> Full Name is required. </span>
+                        <span class="label-error letter-only-error"> Name on Account must be letters only and not contain special characters. </span>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <label class="control-label col-lg-2 col-sm-3 col-xs-12">
-                Sort Code Number:
-            </label>
-            <div class="col-lg-10 col-sm-9 col-xs-12">
-                <div class="form-group">
-                    <$client.env.FormField.Sort_Code_Number.HTML>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right padding-top">
+                        <p style="white-space: nowrap;">Bank Name:</p>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <$client.env.FormField.bank_name.HTML>
+                        <span class="label-error"> Name of Bank is required.</span>
+                        <span class="label-error alphanumeric-error"> Bank Name must be alphanumeric characters only.</span>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <label class="control-label col-lg-2 col-sm-3 col-xs-12">
-                Bank Name:
-            </label>
-            <div class="col-lg-10 col-sm-9 col-xs-12">
-                <div class="form-group">
-                    <$client.env.FormField.Bank_Name.HTML>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right padding-top">
+                        <p>Bank Account #: <span class="font-red">* </span></p>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <$client.env.FormField.account_number.HTML>
+                        <span class="label-error"> Bank Account Number is required. Numeric values only. </span>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <label class="control-label col-lg-2 col-sm-3 col-xs-12">
-                Account Number:
-            </label>
-            <div class="col-lg-10 col-sm-9 col-xs-12">
-                <div class="form-group">
-                    <$client.env.FormField.Account_Number.HTML>
+                
+                <!--India specifc values-->
+                <div class='row'>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right padding-top">
+                        <p>Branch Name: <span class="font-red">* </span></p>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <$client.env.FormField.branch_name.HTML>
+                        <span class="label-error">Name of Branch is required</span>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row mb-40">
-            <label class="control-label col-lg-2 col-sm-3 col-xs-12">
-                Name on Account:
-            </label>
-            <div class="col-lg-10 col-sm-9 col-xs-12">
-                <div class="form-group">
-                    <$client.env.FormField.Account_Name.HTML>
+                
+                <!--India specifc values-->
+                <div class='row'>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right padding-top">
+                        <p>IFSC Code: <span class="font-red">* </span></p>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <$client.env.FormField.ifsc_code.HTML>
+                        <span class="label-error">IFSC Code is required. Alpha-numeric values only.</span>
+                    </div>
                 </div>
+                
+                
             </div>
-        </div>
-        <div class="row">
-            <label class="control-label col-lg-1 col-sm-1 col-xs-12">
-                Signed:
-            </label>
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <$client.env.FormField.Signed.HTML>
-                </div>
+            
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
             </div>
+            
         </div>
-        <div class="row">
-            <label class="control-label col-lg-1 col-sm-1 col-xs-12">
-                Date:
-            </label>
-            <div class="col-lg-6 col-sm-6 col-xs-12">
-                <div class="form-group">
-                    <$client.env.FormField.Date.HTML>
-                </div>
-            </div>
-        </div>
-    </div>
-    <hr class="lifesuite__hr">
-    <div class="row" id="formButtons" style="display: none;">
-        <div class="lifesuite__clearfix lifesuite__float-right">
-            <$client.env.FormButtons>
-        </div>
-    </div>
-</main>
+        
+                 <br><hr class="lifesuite__hr"> 
+                  <div class="row" id="formButtons" style="display: none;"> 
+                      <div class="lifesuite__clearfix lifesuite__float-right">                
+                              <$client.env.FormButtons> 
+                       </div>              
+                  </div> 
+              </div> 
+</div> 
 
-<div hidden>
-    <$client.env.FormField.SignatureVerification.HTML>
-    <$client.env.FormField.real_name.HTML>
-</div>
+<div style="display:none"> 
+    <$client.env.FormField.SignatureVerification.HTML> 
+</div> 
 
-</form>
-<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.min.js>"></script>
-<script type="text/javascript">
-(function() {
-    "use strict";
-    if (!Array.from) {
-      Array.from = (function () {
-        const toStr = Object.prototype.toString;
-        const isCallable = function (fn) {
-          return typeof fn === 'function' || toStr.call(fn) === '[object Function]';
-        };
-        const toInteger = function (value) {
-          var number = Number(value);
-          if (isNaN(number)) { return 0; }
-          if (number === 0 || !isFinite(number)) { return number; }
-          return (number > 0 ? 1 : -1) * Math.floor(Math.abs(number));
-        };
-        let maxSafeInteger = Math.pow(2, 53) - 1;
-        const toLength = function (value) {
-          let len = toInteger(value);
-          return Math.min(Math.max(len, 0), maxSafeInteger);
-        };
+</form> 
 
-        // The length property of the from method is 1.
-        return function from(arrayLike/*, mapFn, thisArg */) {
-          // 1. Let C be the this value.
-          let C = this;
+<SCRIPT> 
 
-          // 2. Let items be ToObject(arrayLike).
-          var items = Object(arrayLike);
+    ChangeCalendarIcons(); //for popup calendar  
+    
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
-          // 3. ReturnIfAbrupt(items).
-          if (arrayLike == null) {
-            throw new TypeError('Array.from requires an array-like object - not null or undefined');
-          }
+/* RESPONSIVE eFORM BUTTONS STYLE */ 
+  
 
-          // 4. If mapfn is undefined, then let mapping be false.
-          let mapFn = arguments.length > 1 ? arguments[1] : void undefined;
-          let T;
-          if (typeof mapFn !== 'undefined') {
-            // 5. else
-            // 5. a If IsCallable(mapfn) is false, throw a TypeError exception.
-            if (!isCallable(mapFn)) {
-              throw new TypeError('Array.from: when provided, the second argument must be a function');
-            }
+$(window).load(function() { 
 
-            // 5. b. If thisArg was supplied, let T be thisArg; else let T be undefined.
-            if (arguments.length > 2) {
-              T = arguments[2];
-            }
-          }
+        $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+        $("#buttonCancel").addClass("lifesuite__button"); 
+        $('#buttonCancel').attr('id','ButtonCancel'); 
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonSave").addClass("lifesuite__button primary"); 
+        $('#buttonSave').attr('id','ButtonSave'); 
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary"); 
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete'); 
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue"); 
+        $("#buttonPrint").addClass("lifesuite__button"); 
+        $('#buttonPrint').attr('id','ButtonPrint'); 
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed"); 
+        $("#buttonPreviewDelete").addClass("lifesuite__button"); 
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete'); 
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonPreviewSave").addClass("lifesuite__button primary"); 
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave'); 
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');        
 
-          // 10. Let lenValue be Get(items, "length").
-          // 11. Let len be ToLength(lenValue).
-          let len = toLength(items.length);
+       document.getElementById('formButtons').style.display = "block"; 
 
-          // 13. If IsConstructor(C) is true, then
-          // 13. a. Let A be the result of calling the [[Construct]] internal method 
-          // of C with an argument list containing the single item len.
-          // 14. a. Else, Let A be ArrayCreate(len).
-          let A = isCallable(C) ? Object(new C(len)) : new Array(len);
+        $("input[type=text]").addClass('lifesuite__text-input'); 
+        $("input[type=text].hasDatepicker").addClass('dateField'); 
+        $("select").addClass('lifesuite__select-input'); 
+        $("input[type=radio]").addClass('lifesuite__radio'); 
+        $("input[type=checkbox]").addClass('lifesuite__checkbox'); 
+        $("textarea").addClass('lifesuite__textarea-input'); 
+        $('label').addClass('lifesuite__input-label lifesuite__input—block'); 
+}); 
+ 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
-          // 16. Let k be 0.
-          let k = 0;
-          // 17. Repeat, while k < len… (also steps a - h)
-          let kValue;
-          while (k < len) {
-            kValue = items[k];
-            if (mapFn) {
-              A[k] = typeof T === 'undefined' ? mapFn(kValue, k) : mapFn.call(T, kValue, k);
-            } else {
-              A[k] = kValue;
-            }
-            k += 1;
-          }
-          // 18. Let putStatus be Put(A, "length", len, true).
-          A.length = len;
-          // 20. Return A.
-          return A;
-        };
-      }());
+
+</SCRIPT>
+
+<script>
+disableCalButton("signDate");
+
+//Transform field input to Uppercase
+$('.toUpperAlphaNum').keyup(function () {
+    //console.log(this.value);
+    var str = $(this).val();
+
+   if (!this.value.match(/^([a-zA-Z0-9]*)$/)) {
+       str = str.replace(/[^[a-zA-Z0-9]/g, '');
     }
-})();
-showScreen('over');
-ChangeCalendarIcons(); //for popup calendar
-/* RESPONSIVE eFORM BUTTONS STYLE */
-$(window).on('load', function() {
-    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
-    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
-    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
-    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
-    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
-    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
-    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
-    $('#formButtons').show();
-    $("input[type=text]").addClass('lifesuite__text-input');
-    $("input[type=text].hasDatepicker").addClass('dateField');
-    $("select").addClass('lifesuite__select-input');
-    $("input[type=radio]").addClass('lifesuite__radio');
-    $("input[type=checkbox]").addClass('lifesuite__checkbox');
-    $("textarea").addClass('lifesuite__textarea-input');
-    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    this.value = str.toUpperCase();
 });
-const thisForm = document.querySelector('#bank-details-form');
+    
+    
+function validateFormFields(em){
+    
+    
+        
+    function IFSCIsReq(){
+        var IFSC_regex = /^[A-Z]{4}0[A-Z0-9]{6}$/ ;
+        if (IFSC_regex.test($('input#IFSCcode').val()) == false) {
+            $('input#IFSCcode').addClass('input-error');
+            //$('input#IFSCcode').parent().next().children("span.label-error:first").css("display","block");
+            $('input#IFSCcode').parent().children("span.label-error:first").css("display","block");
 
-let sortCodeList = [];
-let bankDetailsPromise = $.getJSON('<$link;/main/RedCarpet/FormTemplates/Bank_Details_Form/js/bank_details.json>', function(data) {
-    sortCodeList = data.bankDetails;
-});
-
-const disableCalButton = function(el) {
-    "use strict";
-    el.parent().find('input').prop('disabled', 'disabled');
-}
-
-let sortCodeFieldVal = "<$client.env.FormField.Sort_Code_Number.Value>";
-const refreshSortCodeSelection = function() {
-    "use strict";
-    const sortCodeField = $('[name$=".Sort_Code_Number"]');
-    let country = this.value
-    sortCodeField.html('')
-    sortCodeField.append(
-        $('<option value="" />')
-    );
-    if (country == "") {
-        return;
+            i++;
+        }
     }
-    sortCodeList.forEach(function(sortCode) {
-        if (country == sortCode.country) {
-            const option = $('<option/>').val(sortCode.bankId).text(sortCode.bankId)
-            sortCodeField.append(option)
+    
+    var i=0;
+    //Text Fields
+    $(".require").each(function(){
+        var el_val=$(this).val();
+        if(el_val==''){
+            $(this).addClass('input-error');
+            $(this).parent().children("span.label-error:first").css("display","block");
+            i++;
+            //console.log(this + " err");
+
+        }else{
+            $(this).removeClass('input-error');
+            $(this).parent().children("span.label-error:first").css("display","none");
         }
     });
-    sortCodeField.val(sortCodeFieldVal);
-    if (sortCodeField.val() == null) {
-        sortCodeField.val('');
+    $(":input.letter-only").each(function() {
+    var el_val=$(this).val();
+        if(!/^[a-zA-Z ]+$/.test(el_val) && el_val.length > 0){
+        $(this).addClass('input-error');
+        $(this).parent().children("span.letter-only-error:first").css("display","block");
+        }else{
+        $(this).removeClass('input-error');
+        $(this).parent().children("span.letter-only-error:first").css("display","none");
+        }
+    });
+    $(":input.alphanumeric").each(function() {
+    var el_val=$(this).val();
+        if(!/^[a-zA-Z0-9]+$/.test(el_val) && el_val.length > 0){
+        $(this).addClass('input-error');
+        $(this).parent().children("span.alphanumeric-error:first").css("display","block");
+        }else{
+        $(this).removeClass('input-error');
+        $(this).parent().children("span.alphanumeric-error:first").css("display","none");
+        }
+    });
+    
+    //specific to bank details
+    var AN_regex = /^(?=.*[0-9])[0-9]*?$/ ;
+
+    if (AN_regex.test($('input#AccountNumber').val()) == false) {
+        $('input#AccountNumber').addClass('input-error');
+        $('input#AccountNumber').parent().children("span.label-error:first").css("display","block");
+        i++;
+
     }
-    sortCodeField.trigger('change');
+    
+    <$client.env.eval((client.tEventCategories_25.Value=='Mumbai') || (client.tEventCategories_25.Value=='New Delhi') || (client.tEventCategories_25.Value=='Bangalore') || (client.tEventCategories_25.Value=='Chennai')?'IFSCIsReq();':'')>
+         
+    
+    if(i != 0){
+        $('.error-tab').addClass('show');
+        $('body').scrollTop(0);
+    }
+    else{
+      if(em.id == 'ButtonPrint'){
+         funcPrint();
+       }
+       else if(em.id == 'ButtonSaveAndComplete'){
+         funcSaveAndComplete();
+       }
+       else if(em.id == 'ButtonSave'){
+         funcSave();
+       }
+       else{
+         return false;
+      }
+    }
 }
 
-$(document).on('ready', function() {
-    $('[name$=".Sort_Code_Number"]').on('change', function() {
-        const bankNameField = $('[name$=".Bank_Name"]').val('');
-        let selectedBank = sortCodeList[sortCodeList.map(function(item){return item.bankId}).indexOf($(this).val())];
-        let bankName = "";
-        if (selectedBank) {
-            bankName = selectedBank.bankName;
-        }
-        bankNameField.val(bankName);
-    });
-    $('[name$=".Country"]').on('change', refreshSortCodeSelection);
-    $.when(bankDetailsPromise).then(function() {
-        $('[name$=".Country"]').trigger('change');
-        // form ready
-        $(".modal").hide();
-    });
-    disableCalButton($('[name$=".Date_display"]'));
+
+$('input#AccountNumber').on("blur", function() {
+var AN_regex = /^(?=.*[0-9])[0-9]*?$/ ;
+if(AN_regex.test($(this).val()) == false){
+    $(this).addClass('input-error');
+    $('input#AccountNumber').parent().children("span.label-error:first").css("display","block");
+
+
+}
+else{
+$(this).removeClass('input-error');
+$('input#AccountNumber').parent().children("span.label-error:first").css("display","none");
+    
+}
+}); 
+
+$('input#IFSCcode').on("blur", function() {
+var IFSC_regex = /^[A-Z]{4}0[A-Z0-9]{6}$/ ;
+if(IFSC_regex.test($(this).val()) == false){
+$(this).addClass('input-error');
+    $('input#IFSCcode').parent().children("span.label-error:first").css("display","block");
+
+    console.log("ifsc err");
+}
+else{
+$(this).removeClass('input-error');
+$('input#IFSCcode').parent().children("span.label-error:first").css("display","none");
+    
+        console.log("no ifsc err");
+
+}
+});
+    
+    
+//Text Fields
+$(":input.require").on("blur", function() {
+var el_val=$(this).val();
+    if(el_val.length == 0){
+    $(this).addClass('input-error');
+    $(this).parent().children("span.label-error:first").css("display","block");
+    }else{
+    $(this).removeClass('input-error');
+    $(this).parent().children("span.label-error:first").css("display","none");
+    }
+});
+$(":input.letter-only").on("blur", function() {
+var el_val=$(this).val();
+    if(!/^[a-zA-Z ]+$/.test(el_val) && el_val.length > 0){
+    $(this).addClass('input-error');
+    $(this).parent().children("span.letter-only-error:first").css("display","block");
+    }else{
+    $(this).removeClass('input-error');
+    $(this).parent().children("span.letter-only-error:first").css("display","none");
+    }
+});
+$(":input.alphanumeric").on("blur", function() {
+var el_val=$(this).val();
+    if(!/^[a-zA-Z0-9]+$/.test(el_val) && el_val.length > 0){
+    $(this).addClass('input-error');
+    $(this).parent().children("span.alphanumeric-error:first").css("display","block");
+    }else{
+    $(this).removeClass('input-error');
+    $(this).parent().children("span.alphanumeric-error:first").css("display","none");
+    }
 });
 
-angular.element(document).ready(function() {
-    angular.element('#divLoader').remove();
+$("select.require").on("change", function() {
+var el_val=$(this).val();
+    if(el_val.length == 0){
+    $(this).addClass('input-error');
+    $(this).parent().children("span.label-error:first").css("display","block");
+    }else{
+    $(this).removeClass('input-error');
+    $(this).parent().children("span.label-error:first").css("display","none");
+    }
 });
+
+//Checkbox or Radiobutton
+$('input.requireCheckbox1').change(function() {
+if($(this).prop('checked')){
+    $(this).parent().parent().parent().parent().siblings('label').css("color","#212121");
+    }
+    else{
+    $(this).parent().parent().parent().parent().siblings('label').css("color","#FF4D4D");
+    }
+});
+
+$('input.requireCheckbox2').change(function() {
+if($(this).prop('checked')){
+    $(this).parent().parent().parent().parent().siblings('label').css("color","#212121");
+    }
+    else{
+    $(this).parent().parent().parent().parent().siblings('label').css("color","#FF4D4D");
+    }
+});
+
+$(':input.requiredCheck').change(function() {
+    if($(this).prop('checked')){
+    $(this).parent().parent().parent().parent().siblings('label').css("color","#212121");
+    }
+    else{
+    $(this).parent().parent().parent().parent().siblings('label').css("color","#FF4D4D");
+    }
+});
+
+
+
+
+//Submit Buttons
+$('#buttonPrint').removeAttr('onclick');
+$('#buttonPrint').attr('onclick', 'validateFormFields(this)');
+$('#buttonSaveAndComplete').removeAttr('onclick');
+$('#buttonSaveAndComplete').attr('onclick', 'validateFormFields(this)');
+
+
 </script>

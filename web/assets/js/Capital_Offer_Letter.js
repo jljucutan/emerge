@@ -24,6 +24,9 @@ function fnView() {
                 $('<p/>').html(
                     'We at Capital Electric are delighted that you are considering joining our organization.  We believe that our commitment to growth, and the vision, values and practices that create our organizational framework, provide an ideal situation for you to continue, and accelerate, your professional growth.'
                 ),   
+                $('<p/>').html(
+                    'This letter confirms our offer and provides information on our benefits package.'
+                ),   
                 $('<p/>').append(
                     'The offer outlined above is contingent upon successful completion of a 1) background check',
                     (employee.JobSubFamily_Driver == 'Yes') &&
@@ -35,8 +38,26 @@ function fnView() {
                 ),   
                 $('<p/>').append(
                     'Initial Position: ' + employee.Job_Template_Name + '<br>',
-                    'Initial Salary: ' + employee.Salary_Amount + ((employee.Compensation_Type=='Hourly')? ' per hour': ' per bi-weekly pay period') + ', for an annual salary of ' + getAnnualSalary(employee.Salary_Amount, employee.Salary_Type) + '<br>',
-                    'Start Date: ' + employee.Hire_Date + '<br>',
+                    'Initial Salary: $', 
+                    employee.Salary_Amount,
+                    (employee.Salary_Type == 'annually') &&
+                    $('<span/>').append(
+                        ' annual salary.<br>'
+                    ),
+                    (employee.Salary_Type != 'annually') &&
+                    $('<span/>').append(
+                        (employee.Salary_Type == 'weekly') &&
+                        ' weekly salary',
+                        (employee.Salary_Type == 'bi-monthly') &&
+                        ' bi-monthly basis',
+                        (employee.Salary_Type == 'hourly') &&
+                        ' per hour',
+                        (employee.Salary_Type == 'bi-weekly') &&
+                        ' per bi-weekly pay period',
+                        ', for a ',
+                        getAnnualSalary(employee.Salary_Amount, employee.Salary_Type),
+                        ' annual salary.<br>'
+                    ),
                     'Vacation: ' + employee.PTO_Days_Vacation + ' days per year<br>',
                     'Vacation Accrual: Bi-weekly accrual of  ' + employee.Vacation_Accrual_Rate + ' hours<br>',
                     'Sick Leave: ' + employee.PTO_Days_Sick + ' days per year<br>',
@@ -51,6 +72,9 @@ function fnView() {
                 ),
                 $('<p/>').append(
                     '401K Plan, Flexible Spending Account, Employee Assistance Program and other benefits'
+                ),
+                $('<p/>').append(
+                    'As a condition of your employment and by signing a copy of this offer letter, you agree that for a period of twelve months after the voluntary or involuntary termination of your employment for any reason, you will not solicit, recruit, hire, or employ any person who is an employee of Capital Electric that you had contact with, knowledge of, or association with during your employment. You further agree that you will not urge or induce any person to terminate his or her employment with Capital Electric directly or indirectly by use of a third party.'
                 ),
                 $('<p/>').append(
                     'Our conversations with you leave us confident that you are positioned to immediately contribute to the achievement of our near-term objectives and to play a key role in our future success.  Your breadth of experience lends itself directly to the challenges an aggressive, forward-thinking organization like ours faces.  Most important to us, however, is that we believe you are the type of individual we want to work with and grow with.'

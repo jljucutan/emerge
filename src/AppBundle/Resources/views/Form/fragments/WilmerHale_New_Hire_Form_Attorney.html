@@ -1,0 +1,1207 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="sh" id="modal" style="display:none;"">
+    <div id="box">
+        <b>Electronic Signature</b>
+        <p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <br>
+        <b>Type your Name:</b> 
+        <input type=text id="eSignature1"> 
+        <input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','over','modal','sv');xbObj('eSignature1').value='';"> 
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+        <input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">        
+    </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm'
+action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave
+?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
+<div style="display:none;">
+
+<$client.env.FormField.Form_Name.prompt>
+<$client.env.FormField.Form_Name.HTML>
+<$client.env.FormField.Form_Type.prompt>
+<$client.env.FormField.Form_Type.HTML>
+<$client.env.FormField.Form_Owner.prompt>
+<$client.env.FormField.Form_Owner.HTML>
+<$client.env.FormField.Form_CreateDate.prompt>
+<$client.env.FormField.Form_CreateDate.HTML>
+<$client.env.FormField.Form_Completed.prompt>
+<$client.env.FormField.Form_Completed.HTML>
+<$client.env.FormField.Form_Delivered.prompt>
+<$client.env.FormField.Form_Delivered.HTML>
+<$client.env.FormField.Form_TaskId.prompt>
+<$client.env.FormField.Form_TaskId.HTML>
+<$client.env.FormField.display_version.HTML>
+
+<$client.env.FormField.Is_This.prompt>
+<$client.env.FormField.Address1.prompt>
+<$client.env.FormField.Address2.prompt>
+<$client.env.FormField.Birthdate.prompt>
+<$client.env.FormField.City.prompt>
+<$client.env.FormField.Comp_RateCD.prompt>
+<$client.env.FormField.Comprate.prompt>
+<$client.env.FormField.Country.prompt>
+<$client.env.FormField.EFFDT_1.prompt>
+<$client.env.FormField.EFFDT_2.prompt>
+<$client.env.FormField.EFFDT_3.prompt>
+<$client.env.FormField.Effdt.prompt>
+<$client.env.FormField.Email_Addr.prompt>
+<$client.env.FormField.EmplID.prompt>
+<$client.env.FormField.Employer_1.prompt>
+<$client.env.FormField.Employer_2.prompt>
+<$client.env.FormField.Employer_3.prompt>
+<$client.env.FormField.Ending_Title_1.prompt>
+<$client.env.FormField.Ending_Title_2.prompt>
+<$client.env.FormField.Ending_Title_3.prompt>
+<$client.env.FormField.Ethnic_Grp_CD.prompt>
+<$client.env.FormField.First_Name.prompt>
+<$client.env.FormField.IA_Listing_ID_1.prompt>
+<$client.env.FormField.IA_Listing_ID_2.prompt>
+<$client.env.FormField.IA_Listing_ID_3.prompt>
+
+<$client.env.FormField.Last_Name.prompt>
+<$client.env.FormField.Middile_Initial.prompt>
+<$client.env.FormField.Phone.prompt>
+
+<$client.env.FormField.Postal.prompt>
+<$client.env.FormField.School_type_1.prompt>
+<$client.env.FormField.School_type_2.prompt>
+<$client.env.FormField.School_type_3.prompt>
+<$client.env.FormField.Secondary_Phone.prompt>
+<$client.env.FormField.Sex.prompt>
+<$client.env.FormField.Start_Dt_1.prompt>
+<$client.env.FormField.Start_Dt_2.prompt>
+<$client.env.FormField.Start_Dt_3.prompt>
+<$client.env.FormField.State.prompt>
+<$client.env.FormField.WH_Court_ID_1.prompt>
+<$client.env.FormField.WH_Court_ID_2.prompt>
+<$client.env.FormField.WH_Court_ID_3.prompt>
+<$client.env.FormField.a04_Preferred_Name.prompt>
+<$client.env.FormField.a06_SSN.prompt>
+<$client.env.FormField.a07_Marital_Status.prompt>
+<$client.env.FormField.a19_emergency_Contact_name.prompt>
+<$client.env.FormField.a20_Emergency_Contact_Phone_1.prompt>
+<$client.env.FormField.a21_Emergency_Contact_Relationship_1.prompt>
+<$client.env.FormField.a22_Emergency_Contact_Name_2.prompt>
+<$client.env.FormField.a23_Emergency_Contact_Number_2.prompt>
+<$client.env.FormField.a24_Emergency_Contact_Relationship_2.prompt>
+<$client.env.FormField.a25_Scholastic_Accomplishment_1.prompt>
+<$client.env.FormField.a26_Scholastic_Accomplishment_2.prompt>
+<$client.env.FormField.a27_Scholastic_Accomplishment_3.prompt>
+<$client.env.FormField.a32_WilmerHale_Location.prompt>
+<$client.env.FormField.a33_WH_Class_Year.prompt>
+<$client.env.FormField.a34_Department.prompt>
+<$client.env.FormField.a35_Practice_Group.prompt>
+<$client.env.FormField.a38_Bonus.prompt>
+<$client.env.FormField.a39_Bonus_Type.prompt>
+<$client.env.FormField.a40_Employee_Class_Field.prompt>
+<$client.env.FormField.a41_Pay_Group_monthly_biweekly.prompt>
+<$client.env.FormField.a42_Benefits_Program.prompt>
+<$client.env.FormField.a44_Education_1_School.prompt>
+<$client.env.FormField.a46_Education_1_Major.prompt>
+<$client.env.FormField.a47_Education_1_Honors.prompt>
+<$client.env.FormField.a49_Education_2_School.prompt>
+<$client.env.FormField.a51_Education_2_Major.prompt>
+<$client.env.FormField.a52_Education_2_Honors.prompt>
+<$client.env.FormField.a54_Education_3_School.prompt>
+<$client.env.FormField.a56_Education_3_Major.prompt>
+<$client.env.FormField.a57_Education_3_Honors.prompt>
+<$client.env.FormField.a59_Employment_1_Location.prompt>
+<$client.env.FormField.a63_Employment_2_Location.prompt>
+<$client.env.FormField.a67_Employment_3_Location.prompt>
+<$client.env.FormField.a71_Clerkship_Dates.prompt>
+<$client.env.FormField.a73_Clerkship_Title.prompt>
+<$client.env.FormField.a75_Clerkship_2_Dates.prompt>
+<$client.env.FormField.a77_Clerkship_2_Title.prompt>
+<$client.env.FormField.a79_Clerkship_3_Dates.prompt>
+<$client.env.FormField.a81_Clerkship_3_Title.prompt>
+<$client.env.FormField.a82_Bar_Jurisdiction_1.prompt>
+<$client.env.FormField.a83_Bar_Jurisdiction_License_number_1.prompt>
+<$client.env.FormField.a84_Bar_Jurisdiction_Date_of_Admission_1.prompt>
+<$client.env.FormField.a85_Bar_Jurisdiction_number_2.prompt>
+<$client.env.FormField.a86_Bar_Jurisdiction_License_number_2.prompt>
+<$client.env.FormField.a87_Bar_Jurisdiction_Date_of_Admission_2.prompt>
+<$client.env.FormField.a88_Bar_Jurisdiction_number_3.prompt>
+<$client.env.FormField.a89_Bar_Jurisdiction_License_number_3.prompt>
+<$client.env.FormField.a90_Bar_Jurisdiction_of_Admission_3_Date.prompt>
+<$client.env.FormField.a91_Court_Admission_License_1.prompt>
+<$client.env.FormField.a92_Court_Admission_License_1.prompt>
+<$client.env.FormField.a93_Court_Admission_Date_of_Admission_1.prompt>
+<$client.env.FormField.a94_Court_Admission_License_2.prompt>
+<$client.env.FormField.a95_Court_Admission_License_2.prompt>
+<$client.env.FormField.a96_Court_Admission_Date_of_Admission_2.prompt>
+<$client.env.FormField.a97_Court_Admission_License_3.prompt>
+<$client.env.FormField.a98_Court_Admission_License_3.prompt>
+<$client.env.FormField.a99_Court_Admission_Date_of_Admission_3.prompt>
+<$client.env.FormField.b01_Language_1.prompt>
+<$client.env.FormField.b02_Language_1_Proficiency.prompt>
+<$client.env.FormField.b03_Language_1.prompt>
+<$client.env.FormField.b04_Language_2_Proficiency.prompt>
+<$client.env.FormField.b05_Language_1.prompt>
+<$client.env.FormField.b06_Language_3_Proficiency.prompt>
+<$client.env.FormField.b07_government_security_clearance.prompt>
+<$client.env.FormField.b08_government_security_clearance_level.prompt>
+<$client.env.FormField.b09_government_security_clearance_number.prompt>
+<$client.env.FormField.b10_security_clearance_Effective_date.prompt>
+<$client.env.FormField.b11_clearance_sponsor.prompt>
+<$client.env.FormField.b02Language_Proficiency_Proficiency_Speaking_1.prompt>
+<$client.env.FormField.b02Language_Proficiency_Proficiency_Writing_1.prompt>
+<$client.env.FormField.b03_Language_1_Proficiency_Speaking.prompt>
+<$client.env.FormField.b03_Language_1_Proficiency_Writing.prompt>
+<$client.env.FormField.b04_Language_1_Proficiency_Speaking.prompt>
+<$client.env.FormField.b04_Language_1_Proficiency_Writing.prompt>
+
+
+</div>
+<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<main>
+    <header class="clearfix">
+        <div class="col-30 pull-right">
+            <img src="assets/img/WH_logo.jpg" class="img-responsive" alt="">
+        </div>
+    </header>
+    <section> 
+    <div class="text-center">
+        New Attorney Form
+        </div>
+    </section>
+    <h3 class="text-center">
+        <u>
+            Profile Information
+        </u>
+    </h3>
+    <section>
+        <div class="form-grp">
+            First Name*:
+            <div class="col-30">
+                <$client.env.FormField.First_Name.HTML>
+            </div>
+            Middle Initial:
+            <div class="col-10">
+                <$client.env.FormField.Middle_Name.HTML>
+            </div>
+            Last Name*:
+            <div class="col-30">
+                <$client.env.FormField.Last_Name.HTML>
+            </div>
+        </div>
+    </section>
+        
+
+    <section>
+     <h3 class="text-center">
+        <u>
+            WH-Specific Information
+        </u>
+    </h3>
+    
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Hire Date*:
+                <div class="col-80 pull-right">
+                    <$client.env.FormField.Effdt.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Is this a rehire*:
+                <div class="col-75 pull-right">
+                    <$client.env.FormField.Is_This.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Job Title*:
+                <div class="col-80 pull-right">
+                    <$client.env.FormField.Position.HTML>
+                </div>
+            </div>
+            
+              <div align="right">
+                <b>If rehire = yes enter Peoplesoft ID (not timekeeper ID)</b>
+               
+            </div>
+            
+            <div class="col-50 clearfix pull-right">
+                Peoplesoft ID:
+                <div class="col-75 pull-right">
+                    <$client.env.FormField.EmpID.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                &nbsp;
+                <div class="col-65 pull-right">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                WH Class Year:
+                <div class="col-75 pull-right">
+                    <$client.env.FormField.a33_WH_Class_Year.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Department*:
+                <div class="col-80 pull-right">
+                    <$client.env.FormField.a34_Department.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Practice Group*:
+                <div class="col-75 pull-right">
+                    <$client.env.FormField.a35_Practice_Group.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Salary Amount*:
+                <div class="col-75 pull-right">
+                    <$client.env.FormField.Comprate.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Salary Type:
+                <div class="col-75 pull-right">
+                    <$client.env.FormField.Comp_RateCD.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Bonus:
+                <div class="col-85 pull-right">
+                    <$client.env.FormField.a38_Bonus.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Bonus Reason:
+                <div class="col-75 pull-right">
+                    <$client.env.FormField.a39_Bonus_Type.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp">
+            Employee Class Field – if part time, indicates FTE%:
+            <div class="col-15">
+                <$client.env.FormField.a40_Employee_Class_Field.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            Pay Group (monthly, biweekly)*:
+            <div class="col-15">
+                <$client.env.FormField.a41_Pay_Group_monthly_biweekly.HTML>
+
+            </div>
+ <div>
+ NME is for all hires and NFB is for Summers
+            </div>
+        </div>
+        <div class="form-grp">
+            Benefits Program*:
+            <div class="col-15">
+                <$client.env.FormField.a42_Benefits_Program.HTML>
+            </div>
+        </div>
+    </section>
+    <section>
+    
+    <h3 class="text-center">
+        <u>
+            Bar, Languages and Security Clearance
+        </u>
+    </h3>
+
+    <h3>
+        <u>
+            Bar Jurisdiction
+        </u>
+    </h3>
+
+    
+        <div class="form-grp clearfix">
+            <div class="col-40 clearfix">
+                Bar Jurisdiction 1:
+                <div class="col-50">
+                    <$client.env.FormField.a82_Bar_Jurisdiction_1.HTML>
+                </div>
+            </div>
+            <div class="col-60 clearfix pull-right">
+                Bar Jurisdiction License number 1:
+                <div class="col-55 pull-right">
+                    <$client.env.FormField.a83_Bar_Jurisdiction_License_number_1.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp">
+            Bar Jurisdiction Date of Admission 1:
+            <div class="col-30">
+                <$client.env.FormField.a84_Bar_Jurisdiction_Date_of_Admission_1.HTML>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="form-grp clearfix">
+            <div class="col-40 clearfix">
+                Bar Jurisdiction 2:
+                <div class="col-50">
+                    <$client.env.FormField.a85_Bar_Jurisdiction_number_2.HTML>
+                </div>
+            </div>
+            <div class="col-60 clearfix pull-right">
+                Bar Jurisdiction License number 2:
+                <div class="col-55 pull-right">
+                    <$client.env.FormField.a86_Bar_Jurisdiction_License_number_2.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp">
+            Bar Jurisdiction Date of Admission 2:
+            <div class="col-30">
+                <$client.env.FormField.a87_Bar_Jurisdiction_Date_of_Admission_2.HTML>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="form-grp clearfix">
+            <div class="col-40 clearfix">
+                Bar Jurisdiction 3:
+                <div class="col-50">
+                    <$client.env.FormField.a88_Bar_Jurisdiction_number_3.HTML>
+                </div>
+            </div>
+            <div class="col-60 clearfix pull-right">
+                Bar Jurisdiction License number 3:
+                <div class="col-55 pull-right">
+                    <$client.env.FormField.a89_Bar_Jurisdiction_License_number_3.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp">
+            Bar Jurisdiction Date of Admission 3:
+            <div class="col-30">
+                <$client.env.FormField.a90_Bar_Jurisdiction_of_Admission_3_Date.HTML>
+            </div>
+        </div>
+    </section>
+
+    <section>
+    <h3>
+        <u>
+            Language Proficiency 1
+        </u>
+    </h3>
+        <div class="form-grp clearfix">
+            <div class="col-50">
+                Language:
+                <div class="col-75">
+                    <$client.env.FormField.b01_Language_1.HTML>
+                </div>
+            </div>
+            <div class="col-50 pull-right">
+                Reading Proficiency:
+                <div class="col-55">
+                    <$client.env.FormField.b02_Language_1_Proficiency.HTML>
+                </div>
+            </div>
+        </div>
+              <div class="form-grp clearfix">
+            <div class="col-50">
+                Speaking Proficiency:
+                <div class="col-55">
+                    <$client.env.FormField.b02Language_Proficiency_Proficiency_Speaking_1.HTML>
+                </div>
+            </div>
+            <div class="col-50 pull-right">
+                Writing Proficiency:
+                <div class="col-55">
+                    <$client.env.FormField.b02Language_Proficiency_Proficiency_Writing_1.HTML>
+                </div>
+            </div>
+        </div>
+        <h3>
+        <u>
+            Language Proficiency 2
+        </u>
+    </h3>
+        <div class="form-grp clearfix">
+            <div class="col-50">
+                Language:
+                <div class="col-75">
+                    <$client.env.FormField.b03_Language_1.HTML>
+                </div>
+            </div>
+            <div class="col-50 pull-right">
+                Reading Proficiency:
+                <div class="col-55">
+                    <$client.env.FormField.b04_Language_2_Proficiency.HTML>
+                </div>
+            </div>
+        </div>
+              <div class="form-grp clearfix">
+            <div class="col-50">
+                Speaking Proficiency:
+                <div class="col-55">
+                    <$client.env.FormField.b03_Language_1_Proficiency_Speaking.HTML>
+                </div>
+            </div>
+            <div class="col-50 pull-right">
+                Writing Proficiency:
+                <div class="col-55">
+                    <$client.env.FormField.b03_Language_1_Proficiency_Writing.HTML>
+                </div>
+            </div>
+        </div>
+        <h3>
+        <u>
+            Language Proficiency 3
+        </u>
+    </h3>
+        <div class="form-grp clearfix">
+            <div class="col-50">
+                Language:
+                <div class="col-75">
+                    <$client.env.FormField.b05_Language_1.HTML>
+                </div>
+            </div>
+            <div class="col-50 pull-right">
+                Reading Proficiency:
+                <div class="col-55">
+                    <$client.env.FormField.b06_Language_3_Proficiency.HTML>
+                </div>
+            </div>
+                <div class="form-grp clearfix">
+            <div class="col-50">
+                Speaking Proficiency:
+                <div class="col-55">
+                    <$client.env.FormField.b04_Language_1_Proficiency_Speaking.HTML>
+                </div>
+            </div>
+            <div class="col-50 pull-right">
+                Writing Proficiency:
+                <div class="col-55">
+                    <$client.env.FormField.b04_Language_1_Proficiency_Writing.HTML>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+<section>
+    <h3>
+        <u>
+            Security Clearance
+        </u>
+    </h3>
+
+    
+        <div class="form-grp clearfix">
+            Do you have a government security clearance?
+            <div class="col-60 pull-right">
+                <$client.env.FormField.b07_government_security_clearance.HTML>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            If you have a government security clearance, what level is your clearance?
+            <div class="col-40 pull-right">
+                <$client.env.FormField.b08_government_security_clearance_level.HTML>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            If you have a government security clearance, what is the clearance number?
+            <div class="col-40 pull-right">
+                <$client.env.FormField.b09_government_security_clearance_number.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            Effective dates of your security clearance:
+            <div class="col-40">
+                <$client.env.FormField.b10_security_clearance_Effective_date.HTML>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            Sponsoring organization/agency of your clearance:
+            <div class="col-60 pull-right">
+                <$client.env.FormField.b11_clearance_sponsor.HTML>
+            </div>
+        </div>
+          
+         
+        
+    </section>
+<section>
+    
+     <h3 class="text-center">
+        <u>
+            Profile Information
+        </u>
+    </h3>
+        <div class="form-grp">
+            Preferred Name:
+            <div class="col-40">
+                <$client.env.FormField.a04_Preferred_Name.HTML>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            Date of Birth*:
+            <div class="col-30">
+                <$client.env.FormField.Birthdate.HTML>
+            </div>
+            <div class="col-50 pull-right">
+                SSN*:
+                <div class="col-90">
+                    <$client.env.FormField.National_ID.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp">
+            Marital Status:
+            <div class="col-40">
+                <$client.env.FormField.a07_Marital_Status.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            Email:
+            <div class="col-40">
+                <$client.env.FormField.Email_Addr.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            Address Line 1*:
+            <div class="col-85">
+                <$client.env.FormField.Address1.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            Address Line 2:
+            <div class="col-85">
+                <$client.env.FormField.Address2.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            City*:
+            <div class="col-25">
+                <$client.env.FormField.City.HTML>
+            </div>
+            State*:
+            <div class="col-20">
+                <$client.env.FormField.State.HTML>
+            </div>
+            Zip Code*:
+            <div class="col-10">
+                <$client.env.FormField.Postal.HTML>
+            </div>
+            Country:
+            <div class="col-25">
+                <$client.env.FormField.Country.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            Primary Phone:
+            <div class="col-35">
+                <$client.env.FormField.Phone.HTML>
+            </div>
+            Secondary Phone:
+            <div class="col-35">
+                <$client.env.FormField.Secondary_Phone.HTML>
+            </div>
+        </div>
+  
+    </section>
+
+    <section>
+        <div class="form-grp">
+            <div class="col-35">
+                Emergency Contact Name 1:
+            </div>
+            <div class="col-40">
+                <$client.env.FormField.a19_emergency_Contact_name.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            <div class="col-35">
+                Emergency Contact Phone Number 1:
+            </div>
+            <div class="col-40">
+                <$client.env.FormField.a20_Emergency_Contact_Phone_1.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            <div class="col-35">
+                Emergency Contact Relationship 1:
+            </div>
+            <div class="col-40">
+                <$client.env.FormField.a21_Emergency_Contact_Relationship_1.HTML>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="form-grp">
+            <div class="col-35">
+                Emergency Contact Name 2:
+            </div>
+            <div class="col-40">
+                <$client.env.FormField.a22_Emergency_Contact_Name_2.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            <div class="col-35">
+                Emergency Contact Phone Number 2:
+            </div>
+            <div class="col-40">
+                <$client.env.FormField.a23_Emergency_Contact_Number_2.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            <div class="col-35">
+                Emergency Contact Relationship 2:
+            </div>
+            <div class="col-40">
+                <$client.env.FormField.a24_Emergency_Contact_Relationship_2.HTML>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="form-grp">
+            <div class="col-35">
+                Scholastic Accomplishment 1:
+            </div>
+            <div class="col-40">
+                <$client.env.FormField.a25_Scholastic_Accomplishment_1.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            <div class="col-35">
+                Scholastic Accomplishment 2:
+            </div>
+            <div class="col-40">
+                <$client.env.FormField.a26_Scholastic_Accomplishment_2.HTML>
+            </div>
+        </div>
+        <div class="form-grp">
+            <div class="col-35">
+                Scholastic Accomplishment 3:
+            </div>
+            <div class="col-40">
+                <$client.env.FormField.a27_Scholastic_Accomplishment_3.HTML>
+            </div>
+        </div>
+    </section>
+
+    <section>
+   
+    <h3 class="text-center">
+        <u>
+            Education
+        </u>
+    </h3>
+
+    
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Education 1 Type:
+                <div class="col-70 pull-right">
+                    <$client.env.FormField.School_type_1.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Education 1 School:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.a44_Education_1_School.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Education 1: Graduation Date:
+                <div class="col-50 pull-right">
+                    <$client.env.FormField.EFFDT_1.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Education 1: Major:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.a46_Education_1_Major.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp">
+            <div class="col-50 clearfix">
+                Education 1: Degree:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.a47_Education_1_Honors.HTML>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Education 2 Type:
+                <div class="col-70 pull-right">
+                    <$client.env.FormField.School_type_2.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Education 2 School:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.a49_Education_2_School.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Education 2: Graduation Date:
+                <div class="col-50 pull-right">
+                    <$client.env.FormField.EFFDT_2.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Education 2: Major:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.a51_Education_2_Major.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp">
+            <div class="col-50 clearfix">
+                Education 2: Degree:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.a52_Education_2_Honors.HTML>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Education 3 Type:
+                <div class="col-70 pull-right">
+                    <$client.env.FormField.School_type_3.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Education 3 School:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.a54_Education_3_School.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Education 3: Graduation Date:
+                <div class="col-50 pull-right">
+                    <$client.env.FormField.EFFDT_3.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Education 3: Major:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.a56_Education_3_Major.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp">
+            <div class="col-50 clearfix">
+                Education 3: Degree:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.a57_Education_3_Honors.HTML>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+    <h3 class="text-center">
+        <u>
+            Employment
+        </u>
+    </h3>
+
+    
+    
+    <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Employer 1: Firm:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.Employment_firm_1.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                &nbsp;
+                <div class="col-60 pull-right">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+    
+    
+    
+    
+    
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Employer 1: Type:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.Employer_1.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Employer 1: Location:
+                <div class="col-60 pull-right">
+                    <$client.env.FormField.a59_Employment_1_Location.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Employer 1: Dates:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.Start_Dt_1.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Employer 1: Position:
+                <div class="col-60 pull-right">
+                    <$client.env.FormField.Ending_Title_1.HTML>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="form-grp clearfix">
+        
+               <div class="col-50 clearfix">
+                Employer 2: Firm:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.Employment_firm_2.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                &nbsp;
+                <div class="col-60 pull-right">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+            <div class="col-50 clearfix">
+                Employer 2: Type:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.Employer_2.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Employer 2: Location:
+                <div class="col-60 pull-right">
+                    <$client.env.FormField.a63_Employment_2_Location.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Employer 2: Dates:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.Start_Dt_2.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Employer 2: Position:
+                <div class="col-60 pull-right">
+                    <$client.env.FormField.Ending_Title_2.HTML>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="form-grp clearfix">
+               <div class="col-50 clearfix">
+                Employer 3: Firm:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.Employment_firm_3.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                &nbsp;
+                <div class="col-60 pull-right">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+            <div class="col-50 clearfix">
+                Employer 3: Type:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.Employer_3.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Employer 3: Location:
+                <div class="col-60 pull-right">
+                    <$client.env.FormField.a67_Employment_3_Location.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Employer 3: Dates:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.Start_Dt_3.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Employer 3: Position:
+                <div class="col-60 pull-right">
+                    <$client.env.FormField.Ending_Title_3.HTML>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+    <h3 class="text-center">
+        <u>
+            Clerkship
+        </u>
+    </h3>
+
+    
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Clerkship 1: Court:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.WH_Court_ID_1.HTML>
+                </div>
+            </div>
+            <div class="col-50 pull-right">
+                Clerkship 1: Dates:
+                <div class="col-65">
+                    <$client.env.FormField.a71_Clerkship_Dates.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Clerkship 1: Judge:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.IA_Listing_ID_1.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Clerkship 1: Title:
+                <div class="col-70 pull-right">
+                    <$client.env.FormField.a73_Clerkship_Title.HTML>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Clerkship 2: Court:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.WH_Court_ID_2.HTML>
+                </div>
+            </div>
+            <div class="col-50 pull-right">
+                Clerkship 2: Dates:
+                <div class="col-65">
+                    <$client.env.FormField.a75_Clerkship_2_Dates.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Clerkship 2: Judge:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.IA_Listing_ID_2.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Clerkship 2: Title:
+                <div class="col-70 pull-right">
+                    <$client.env.FormField.a77_Clerkship_2_Title.HTML>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Clerkship 3: Court:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.WH_Court_ID_3.HTML>
+                </div>
+            </div>
+            <div class="col-50 pull-right">
+                Clerkship 3: Dates:
+                <div class="col-65">
+                    <$client.env.FormField.a79_Clerkship_3_Dates.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="form-grp clearfix">
+            <div class="col-50 clearfix">
+                Clerkship 3: Judge:
+                <div class="col-65 pull-right">
+                    <$client.env.FormField.IA_Listing_ID_3.HTML>
+                </div>
+            </div>
+            <div class="col-50 clearfix pull-right">
+                Clerkship 3: Title:
+                <div class="col-70 pull-right">
+                    <$client.env.FormField.a81_Clerkship_3_Title.HTML>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br>
+    <br>
+    <h3 class="text-center">
+        <u>
+            ELECTION TO SELF-IDENTIFY IN CONNECTION WITH DIVERSITY AND INCLUSION INITIATIVES
+        </u>
+    </h3>
+    <section>
+        <div class="form-grp">
+            <p style="text-align: justify;">
+                Our Election To Self-Identify Form is in furtherance of the firm’s diversity and inclusion initiatives, and those being pursued by firm clients and bar associations. In connection with these initiatives, information from the form may be shared on an aggregate or identified basis within and outside the firm, including with clients. The information will also be used to maintain internal affinity group distribution lists and to ensure that we are inclusive in circulating invitations for specific diversity and inclusion events, both internal and external. Your decision to complete or not complete all or part of this form will not have any impact on your employment or subject you to adverse treatment. On the form, you may elect to self-identify or select “I prefer not to provide this information” in response to any question. If you have questions about this form, please feel free to contact the Legal Personnel and Development Department or Human Resources.
+            </p>
+        </div>
+    </section>
+    <br>
+    <section>
+        <div class="form-grp">
+            Name:
+            <div class="col-30">
+                <$client.env.FormField.Full_Name.HTML>
+            </div>
+            office:
+            <div class="col-10">
+                <$client.env.FormField.Office.HTML>
+            </div>
+            Date
+            <div class="col-30">
+                <$client.env.FormField.VETSIDate.HTML>
+            </div>
+        </div>
+    </section>
+    <section style="border-bottom: 1px solid #000000;">
+        <div class="form-grp">
+            I prefer not to complete this form
+            <div class="col-30">
+                <$client.env.FormField.IPreferNot.HTML>
+            </div>
+        </div>
+        <div>
+            (If you check this box, there is no need to complete the rest of the form. Please click Save at the bottom of the form.)
+        </div>
+    </section>
+    <br>
+    <section>
+        <div class="form-grp">
+            <b><u>Gender*:</u></b>
+            <div class="col-60">
+                <$client.env.FormField.Gender.HTML>
+            </div>
+        </div>
+    </section>
+    <br>
+    <section style="border-bottom: 1px solid #000000;">
+        <b><u>Race/Ethnicity (See definitions below)*:</u></b>
+        <div class="form-grp">
+            <div class="col-60">
+                <$client.env.FormField.Ethnicity.HTML>
+            </div>
+        </div>
+        Please select two or more races:
+        <div class="form-grp">
+            
+            <div class="col-60">
+                <$client.env.FormField.EthnicityOfTwoOrMore.HTML>
+            </div>
+        </div>
+        <div>
+            *If you choose not to self-identify gender or race/ethnicity, we may elect to share information based on other available information.
+        </div>
+    </section>
+    <br>
+    <section >
+        <b><u>LGBTQ (Lesbian/Gay/Bisexual/Transgender/Queer):</u></b>
+        <div class="form-grp">
+            
+            <div class="col-60">
+                <$client.env.FormField.LGBTQ.HTML>
+            </div>
+        </div>
+        
+    </section>
+    <section >
+        <div class="form-grp">
+            <b><u>Veteran:</u></b>
+            <div class="col-60">
+                <$client.env.FormField.Veteran.HTML>
+            </div>
+        </div>
+    </section>
+    <section >
+        <div class="form-grp">
+            <p style="text-align: justify;">
+                Definitions:<br>
+                American Indian or Alaskan Native – A person having origins in any of the original peoples of North and South America (including Central America), and who maintains tribal affiliation or community attachment.<br>
+                Asian – A person having origins in any of the original peoples of the Far East, Southeast Asia, or the Indian subcontinent, including, for example, Cambodia, China, India, Japan, Korea, Malaysia, Pakistan, the Philippine Islands, Thailand, and Vietnam.<br>
+                Black or African American – A person having origins in any of the Black racial groups of Africa.<br>
+                Hispanic or Latino – A person having origins of Cuban, Mexican, Puerto Rican, Central or South American or other Spanish culture or origin, regardless of race.<br>
+                Middle Eastern or North African – A person having origins in the Middle East or North Africa.<br>
+                Native Hawaiian or other Pacific Islander – A person having origins in any of the peoples of Hawaii, Guam, Samoa, or other Pacific Islands.<br>
+                White/Caucasian – A person having origins in any of the original peoples of Europe.<br>
+                Veteran – A person who has served, but is not currently serving, on active duty in the U.S. Army, Navy, Air Force, Marine Corps, or the Coast Guard, or who served in the U.S. Merchant Marine during World War II. 
+            </p>
+        </div>
+    </section>    
+    
+  
+
+
+
+    
+   
+
+    
+    
+</main>
+
+<div style="display:none;">
+<$client.env.FormField.Position_Nbr.HTML>
+<$client.env.FormField.Clerkship_judge_Code_1.HTML>
+<$client.env.FormField.Clerkship_judge_Code_2.HTML>
+<$client.env.FormField.Clerkship_judge_Code_3.HTML>
+<$client.env.FormField.Clerkship_court_Code_1.HTML>
+<$client.env.FormField.Clerkship_court_Code_2.HTML>
+<$client.env.FormField.Clerkship_court_Code_3.HTML>
+<$client.env.FormField.School_code_1.HTML>
+<$client.env.FormField.School_code_2.HTML>
+<$client.env.FormField.School_code_3.HTML>
+</div>
+<$client.env.FormButtons>
+</form>
+<SCRIPT>
+ChangeCalendarIcons(); //for popup calendar
+</SCRIPT>

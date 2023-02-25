@@ -1,0 +1,566 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <p class="h5"><strong>Electronic Signature</strong></p>
+    <p>
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <div class="row">
+      <div class="col-lg-12">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.HRMC_Another_Job.prompt>
+        <$client.env.FormField.HRMC_Country.prompt>
+        <$client.env.FormField.HRMC_Date.prompt>
+        <$client.env.FormField.HRMC_Date_of_Birth.prompt>
+        <$client.env.FormField.HRMC_Employment_Start_Date.prompt>
+        <$client.env.FormField.HRMC_First_Name_0.prompt>
+        <$client.env.FormField.HRMC_First_Name_1.prompt>
+        <$client.env.FormField.HRMC_Full_name.prompt>
+        <$client.env.FormField.HRMC_Home_Address.prompt>
+        <$client.env.FormField.HRMC_Last_Name.prompt>
+        <$client.env.FormField.HRMC_National_Insurance_Number.prompt>
+        <$client.env.FormField.HRMC_Plan_1.prompt>
+        <$client.env.FormField.HRMC_Plan_2.prompt>
+        <$client.env.FormField.HRMC_Plan_4.prompt>
+        <$client.env.FormField.HRMC_Postgraduate_loan.prompt>
+        <$client.env.FormField.HRMC_Receive_Payments.prompt>
+        <$client.env.FormField.HRMC_Receive_Payments_April_6.prompt>
+        <$client.env.FormField.HRMC_Sex.prompt>
+        <$client.env.FormField.HRMC_Signature.prompt>
+        <$client.env.FormField.HRMC_Statement_A.prompt>
+        <$client.env.FormField.HRMC_Statement_B.prompt>
+        <$client.env.FormField.HRMC_Statement_C.prompt>
+        <$client.env.FormField.HRMC_Student_Loan.prompt>
+        <$client.env.FormField.HRMC_Studying.prompt>
+        <$client.env.FormField.HRMC_Zip.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="d-sm-flex align-items-end">
+                <div class="mb-3">
+                    <img class="img-fluid" src="<$link;/main/RedCarpet/FormTemplates/HRMC_Starter_Checklist/hrmc_logot.png>">
+                </div>
+                <div class="flex-grow-1">
+                    <p class="text-sm-end h4">
+                        <strong>Starter checklist</strong><br>
+                        Tell your employer of your circumstances so <br> that you do not pay too much or too little tax
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <p>
+                <strong>Do not send this form to HM Revenue and Customs (HMRC)</strong>
+            </p>
+            <p class="h5">
+                <strong>Instructions for employer</strong>
+            </p>
+            <p>Use this starter checklist to gather information about your new employee if they do not have a P45. You can also use this form if they have a student loan (whether or not they have a P45). Use the information to help fill in your first Full Payment Submission (FPS) for this employee. If you have already submitted your first FPS, keep using the tax code in that FPS until HMRC sends you a new tax code. If the employee gives you their P45 after the first FPS submission, use the tax code shown in parts 2 and 3 of the P45. You must keep the information recorded on the starter checklist for the current and next 3 tax years. This form is for your use only.</p>
+            <p class="h5">
+                <strong>Instructions for employee</strong>
+            </p>
+            <p>Fill in this form if you do not have a P45 (a document you get from your employer when you stop working for them). You should also fill in this form if you have a student loan (whether or not you’ve a P45). Give the completed form to your employer as soon as possible. They need this information to tell HMRC about you and help them to use the right tax code. Make sure you answer the questions correctly. If you do not, you may pay the wrong amount of tax or student loan deductions.</p>
+        </div>
+    </div>
+
+    <div class="row border-top border-dark border-3 pt-2">
+        <div class="col-sm-12">
+            <p class="h5">
+                <strong>Employee’s personal details</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <div class="col-sm-6">
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">1</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>Last name</strong>
+                    </p>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <$client.env.FormField.HRMC_Last_Name.HTML>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">2</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>First name</strong><br>
+                        Do not enter initials or shortened names for example, Jim for James or Liz for Elizabeth
+                    </p>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <$client.env.FormField.HRMC_First_Name_0.HTML>
+                    <$client.env.FormField.HRMC_First_Name_1.HTML>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">3</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>What is your sex?</strong><br>
+                        As shown on your birth certificate or gender recognition certificate
+                    </p>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <$client.env.FormField.HRMC_Sex.HTML>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">4</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>Date of birth</strong> DD MM YYYY
+                    </p>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <$client.env.FormField.HRMC_Date_of_Birth.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">5</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>Home address</strong>
+                    </p>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <$client.env.FormField.HRMC_Home_Address.HTML>
+                    <$client.env.FormField.HRMC_Zip.HTML>
+                    <$client.env.FormField.HRMC_Country.HTML>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">6</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>National Insurance number</strong> (if known)
+                    </p>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <$client.env.FormField.HRMC_National_Insurance_Number.HTML>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">7</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>Employment start date</strong> DD MM YYYY
+                    </p>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <$client.env.FormField.HRMC_Employment_Start_Date.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row border-top border-dark border-3 pt-2">
+        <div class="col-sm-12">
+            <p class="h5">
+                <strong>Employee Statement</strong>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <p>These questions will help you to choose the statement that matches your circumstances. The statement you choose helps your employer to apply the correct tax code.</p>
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">8</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>Do you have another job?</strong>
+                    </p>
+                </div>
+                <div class="col-offset-2 col-sm-10">
+                    <div class="d-flex">
+                        <div class="radio-side">
+                            <$client.env.FormField.HRMC_Another_Job.HTML>
+                        </div>
+                        <div>
+                            <p>Put an ‘X’ in the statement C box below</p>
+                            <p>Go to question 9</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">9</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>Do you receive payments from a State,workplace or private pension?</strong>
+                    </p>
+                </div>
+                <div class="col-offset-2 col-sm-10">
+                    <div class="d-flex">
+                        <div class="radio-side">
+                            <$client.env.FormField.HRMC_Receive_Payments.HTML>
+                        </div>
+                        <div>
+                            <p>Put an ‘X’ in the statement C box below</p>
+                            <p>Go to question 10</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">10</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <strong>Since 6 April have you received payments from:</strong>
+                    <ul class="list-bulleted">
+                        <li>another job which has ended or any of the following taxable benefits</li>
+                        <li>Jobseeker’s Allowance (JSA)</li>
+                        <li>Employment and Support Allowance (ESA)</li>
+                        <li>Incapacity Benefit</li>
+                    </ul>
+                </div>
+                <div class="col-offset-2 col-sm-10">
+                    <div class="d-flex">
+                        <div class="radio-side">
+                            <$client.env.FormField.HRMC_Receive_Payments_April_6.HTML>
+                        </div>
+                        <div>
+                            <p>Put an ‘X’ in the statement B box below</p>
+                            <p>Put an ‘X’ in the statement A box below</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="border border-dark mx-auto box-centered mb-3">
+        <div class="row">
+            <div class="col-sm-4 border-bottom border-dark">
+                <div class="text-center">
+                    <strong>Statement A</strong>
+                    <div class="d-flex justify-content-center">
+                        <$client.env.FormField.HRMC_Statement_A.HTML>
+                    </div>
+                    <p>Current personal allowance</p>
+                </div>
+            </div>
+            <div class="col-sm-4 border-bottom border-start border-end border-dark">
+                <div class="text-center">
+                    <strong>Statement B</strong>
+                    <div class="d-flex justify-content-center">
+                        <$client.env.FormField.HRMC_Statement_B.HTML>
+                    </div>
+                    <p>Current personal allowance on a Week 1/Month 1 basis</p>
+                </div>
+            </div>
+            <div class="col-sm-4 border-bottom border-dark">
+                <div class="text-center">
+                    <strong>Statement C</strong>
+                    <div class="d-flex justify-content-center">
+                        <$client.env.FormField.HRMC_Statement_C.HTML>
+                    </div>
+                    <p>Tax Code BR</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 border-bottom border-dark p-2">
+                <strong>Key</strong>
+                <div>
+                    This is my first job since 6 April and since the 6 April I have not received payments from any of the following:
+                </div>
+                <ul class="list-bulleted">
+                    <li>Jobseeker’s Allowance</li>
+                    <li>Employment and Support Allowance</li>
+                    <li>Incapacity Benefit</li>
+                </ul>
+            </div>
+            <div class="col-sm-4 border-bottom border-start border-end border-dark p-2">
+                <strong>Key</strong>
+                <div>
+                    Since 6 April I have had another job but I do not have a P45. And/or since the 6 April I have received payments from any of the following:
+                </div>
+                <p>I have another job and/or I am in receipt of a State, workplace or private pension.</p>
+            </div>
+            <div class="col-sm-4 border-bottom border-dark p-2">
+                <strong>Key</strong>
+                <p>I have another job and/or I am in receipt of a State, workplace or private pension.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 p-2">
+                <strong>Key</strong>
+                <p>Jobseeker’s Allowance (JSA) is an unemployment benefit which can be claimed while looking for work.Employment and Support Allowance (ESA) is a benefit which can be claimed if you have a disability or health condition that affects how much you can work.Incapacity Benefit is help if you could not work because of an illness or disability before 31 January 2011.State Pension is a pension paid when you reach State Pension age.Workplace pension is a pension which was arranged by your employer and is being paid to you.Private pension is a pension arranged by you and is being paid to you.Please note that no other Government or HMRC paid benefits need to be considered when completing this form.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row border-top border-dark border-3 pt-2">
+        <div class="col-sm-12">
+            <p class="h5">
+                <strong>Student loans</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-6">
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">11</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>Do you have a student or postgraduate loan?</strong>
+                    </p>
+                </div>
+                <div class="col-offset-2 col-sm-10">
+                    <div class="d-flex">
+                        <div class="radio-side">
+                            <$client.env.FormField.HRMC_Student_Loan.HTML>
+                        </div>
+                        <div>
+                            <p>Go to question 12</p>
+                            <p>Go straight to the Declaration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">12</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>Do any of the following statements apply:</strong>
+                    </p>
+                    <ul class="list-bulleted">
+                        <li>you’re still studying on a course that your student loan relates to</li>
+                        <li>you completed or left your course after the start of the current tax year, which started on 6 April</li>
+                        <li>you’ve already repaid your loan in full</li>
+                        <li>you’re paying the Student Loans Company by Direct Debit from your bank to manage your end of loan repayments</li>
+                    </ul>
+                </div>
+                <div class="col-offset-2 col-sm-10">
+                    <div class="d-flex">
+                        <div class="radio-side">
+                            <$client.env.FormField.HRMC_Studying.HTML>
+                        </div>
+                        <div>
+                            <p>Go straight to the Declaration</p>
+                            <p>Go to question 13</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3 col-sm-2 text-end">
+                    <div class="border border-dark px-2">13</div>
+                </div>
+                <div class="col-9 col-sm-10">
+                    <p>
+                        <strong>To avoid repaying more than you need to, tick the correct student loan or loans that you have – use the guidance on the right to help you.</strong>
+                    </p>
+                    <p>Please tick all that apply</p>
+                </div>
+                <div class="col-sm-offset-2 col-sm-10">
+                    <$client.env.FormField.HRMC_Plan_1.HTML>
+                    <$client.env.FormField.HRMC_Plan_2.HTML>
+                    <$client.env.FormField.HRMC_Plan_4.HTML>
+                    <$client.env.FormField.HRMC_Postgraduate_loan.HTML>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <p>Employees, for more information about the type of loan you have or to check your balance, go to <a class="text-decoration-none text-dark" href="https://www.gov.uk/sign-in-to-manage-your-student-loan-balance" target="_blank">www.gov.uk/sign-in-to-manage-your-student-loan-balance</a></p>
+            <p>Employers, for guidance on student loans and which plan or loan type to use if your employee has selected more than one, go to <a class="text-decoration-none text-dark" href="https://www.gov.uk/guidance/special-rules-for-student-loans" target="_blank">www.gov.uk/guidance/special-rules-for-student-loans</a></p>
+            <div class="border border-dark">
+                <div class="p-2 border-bottom border-dark">
+                    <strong>You have Plan 1 if any of the following apply:</strong>
+                    <ul class="list-bulleted">
+                        <li>you lived in Northern Ireland when you started your course</li>
+                        <li>you lived in England or Wales and started your course before 1 September 2012</li>
+                    </ul>
+                </div>
+                <div class="p-2 border-bottom border-dark">
+                    <strong>You have Plan 2 if:</strong>
+                    <p>You lived in England or Wales and started your course on or after 1 September 2012.</p>
+                </div>
+                <div class="p-2 border-bottom border-dark">
+                    <strong>You have Plan 4 if:</strong>
+                    <p>You lived in Scotland and applied through the Students Award Agency Scotland (SAAS) when you started your course.</p>
+                </div>
+                <div class="p-2">
+                    <strong>You have a postgraduate loan if any of the following apply:</strong>
+                    <ul class="list-bulleted">
+                        <li>you lived in England and started your postgraduate master’s course on or after 1 August 2016</li>
+                        <li>you lived in Wales and started your postgraduate master’s course on or after 1 August 2017</li>
+                        <li>you lived in England or Wales and started your postgraduate doctoral course on or after 1 August 2018</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row border-top border-dark border-3 pt-2">
+        <div class="col-sm-12">
+            <p class="h5">
+                <strong>Declaration</strong>
+            </p>
+            <p>I confirm that the information I’ve given on this form is correct.</p>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-6 pe-3">
+            <p>
+                <strong>Full name</strong> Use capital letters
+            </p>
+            <$client.env.FormField.HRMC_Full_name.HTML>
+        </div>
+        <div class="col-sm-6">
+            <p>
+                <strong>Signature</strong>
+            </p>
+            <$client.env.FormField.HRMC_Signature.HTML>
+        </div>
+    </div>
+
+    <div class="row border-top border-dark border-3 pt-2">
+        <div class="col-sm-12">
+            <p class="h5">
+                <strong>Give this form to your employer</strong>
+            </p>
+            <p>Your employer will use the information to make sure you pay the right amount of tax.</p>
+            <p>Do not send this form to HMRC.</p>
+        </div>
+    </div>
+
+    <div class="row border-top border-dark border-3 pt-2">
+        <div class="col-sm-12">
+            <p class="h5">
+                <strong>Employer guidance</strong>
+            </p>
+            <p>For information on how to work out your new employee’s tax code, go to www.gov.uk/new-employee-tax-code</p>
+            <p>Use Statement A, B or C that your employee has chosen in the employee statement section and apply the tax code below:</p>
+            <ul class="list-bulleted">
+                <li>Statement A – use the current personal allowance</li>
+                <li>Statement B – use the current personal allowance on a ‘week 1/month 1’ basis</li>
+                <li>Statement C – use tax code BR</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/bootstrap.bundle.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+</script>

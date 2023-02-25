@@ -1,84 +1,45 @@
 <table id="SelfIDEPtable" border="0">
-  <tr>
-    <td id="National_ID_Country_prompt">National ID Country:</td>
-    <td><$client.env.inputNational_ID_Country></td>
-  </tr>
-  <tr>
-    <td id="National_ID_Type_USA_prompt">National ID Type:</td>
+  <!-- tr>
+    <td id="National_ID_Type_USA_promptx">National ID Type:</td>
     <td><$client.env.inputNational_ID_Type_USA></td>
-  </tr>
+  </tr -->
   <tr>
-    <td id="National_ID_Number_prompt">National ID Number:</td>
+    <td id="DOB_promptx">Date of Birth:</td>
+    <td><$client.env.inputDOB></td>
+  </tr>
+
+  <tr>
+    <td id="Citizenship_Status_promptx">US Permanent Resident(<em>US permanent residents do not need to provide citizenship or nationality.</em>):</td>
+    <td><$client.env.inputUS_Perm_Resident></td>
+  </tr>
+
+  <tr>
+    <td id="Citizenship_Status_promptx">Citizenship Status:</td>
+    <td><$client.env.inputCitizenship_Status></td>
+  </tr>
+
+  <tr>
+    <td id="Nationality_Primary_promptx">Nationality:</td>
+    <td id="Nationality_Primary_prompt" style="display:none">Nationality</td>
+    <td><$client.env.inputNationality_Primary></td>
+  </tr>
+
+  <tr>
+    <td id="National_ID_Number_promptx">Social Security Number:</td>
     <td><$client.env.inputNational_ID_Number></td>
   </tr>
   <tr>
-    <td id="Passport_Country_prompt">Passport Country:</td>
-    <td><$client.env.inputPassport_Country></td>
-  </tr>
-  <tr>
-    <td id="Passport_ID_Number_prompt">Passport ID Number:</td>
-    <td><$client.env.inputPassport_ID_Number></td>
-  </tr>
-  <tr>
-    <td id="Passport_Issued_Date_prompt">Passport Issued Date:</td>
-    <td><$client.env.inputPassport_Issued_Date></td>
-  </tr>
-  <tr>
-    <td id="Passport_Expiration_Date_prompt">Passport Expiration Date:</td>
-    <td><$client.env.inputPassport_Expiration_Date></td>
-  </tr>
-  <tr>
-    <td id="Visa_Country_prompt">Visa ID Country:</td>
-    <td><$client.env.inputVisa_Country></td>
-  </tr>
-  <tr>
-    <td id="Visa_ID_Type_USA_prompt">Visa ID Type:</td>
-    <td><$client.env.inputVisa_ID_Type_USA></td>
-  </tr>
-  <tr>
-    <td id="Visa_ID_Number_prompt">Visa ID Number:</td>
-    <td><$client.env.inputVisa_ID_Number></td>
-  </tr>
-  <tr>
-    <td id="Visa_Issued_Date_prompt">Visa Issued Date:</td>
-    <td><$client.env.inputVisa_Issued_Date></td>
-  </tr>
-  <tr>
-    <td id="Visa_Expiration_Date_prompt">Visa Expiration Date:</td>
-    <td><$client.env.inputVisa_Expiration_Date></td>
-  </tr>
-  <tr>
-    <td id="DOB_prompt">Date of Birth:</td>
-    <td><$client.env.inputDOB></td>
-  </tr>
-  <tr>
-    <td id="WD_Gender_prompt">Gender:</td>
+    <td id="WD_Gender_promptx">Gender:</td>
     <td><$client.env.inputWD_Gender></td>
   </tr>
-  <tr>
-    <td id="Ethnicity_USA_prompt">Race / Ethnicity:</td>
-    <td><$client.env.inputEthnicity_USA></td>
-  </tr>
-  <tr>
-    <td id="Marital_Status_USA_prompt">Marital Status:</td>
-    <td><$client.env.inputMarital_Status_USA></td>
-  </tr>
-  <tr>
-    <td id="Citizenship_Status_prompt">Citizenship Status:</td>
-    <td><$client.env.inputCitizenship_Status></td>
-  </tr>
-  <tr>
-    <td id="Nationality_Primary_prompt">Nationality:</td>
-    <td><$client.env.inputNationality_Primary></td>
-  </tr>
-  <tr>
-    <td id="Disability_prompt">Disability:</td>
-    <td><$client.env.inputDisability></td>
-  </tr>
 </table>
+<div id="label-container" hidden>
+<input type="text" id="WD_USA_CompleteEditProfile">
+</div>
 
 <script src="<$link;/Onboarding/UnplacedPages/js/WD_USA_CompleteEditProfile.js>" defer></script>
 <script>
+// added US_Perm_Resident field as per SERVICES-43192
 if(self.LoadCallback) {
   LoadCallback(document.forms['frmExtendedUserProfile']);
 }

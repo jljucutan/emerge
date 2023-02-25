@@ -11,7 +11,7 @@ function fnView() {
             ),
             $('<div/>').append(
                 $('<p/>').append(
-                    $('<span/>').append(employee.Offer_Date)
+                    $('<span/>').append(employee.Offer_Date+'<br>&nbsp;')
                 ),
                 $('<p/>').append(
                     $('<span/>').append(employee.CompanyAddress),
@@ -23,10 +23,10 @@ function fnView() {
                     $('<span/>').append(employee.CompanyZip)
                 ),
                 $('<p/>').append(
-                    $('<span/>').append('Re: ', employee.Full_Name, ' Offer of Employment')
+                    $('<span/>').append('&nbsp;<br>Re: ', employee.Full_Name, ' Offer of Employment<br>&nbsp;')
                 ),
                 $('<p/>').append(
-                    'Dear ', employee.First_Name, ':'
+                    'Dear ', employee.First_Name, ':<br>&nbsp;'
                 ),
                 $('<p/>').append(
                     'It is our pleasure to confirm our offer of employment to you as a ',
@@ -40,27 +40,34 @@ function fnView() {
                     '. Your employment package will include the following:'
                 ),
                 $('<p/>').append(
-                    $('<strong/>').append('Salary')
+                    $('<strong/>').append('&nbsp;<br>Salary')
                 ),
                 $('<ul/>').append(
-                    (employee.Compensation_Type == 'Salaried') &&
+                    (['annually', 'bi-monthly', 'bi-weekly', 'weekly'].includes(employee.Salary_Type)) &&
                     $('<li/>').append(
-                        'Your salary will be $',
-                        employee.Salary_Amount,
-                        '.  Your salary, less deductions, will be paid on a bi-weekly basis. '
+                        'Your annual salary will be ',
+                        getAnnualSalary(employee.Salary_Amount, employee.Salary_Type),
+                        '.  Your salary, less deductions, will be paid on a bi-weekly basis.'
                     ),
-                    (employee.Compensation_Type == 'Hourly') &&
+                    (employee.Salary_Type == 'hourly') &&
                     $('<li/>').append(
                         'Your hourly rate will be $',
                         employee.Salary_Amount,
-                        '.  Your job is considered non-exempt by Fair Labor Standards Act requirements and therefore you are eligible for overtime. Your hourly wage, less deductions, will be paid on a bi-weekly basis.'
+                        (employee.FLSA_Status == 'Non-exempt') &&
+                        '.  Your job is considered non-exempt by Fair Labor Standards Act requirements and therefore you are eligible for overtime.',
+                        (employee.FLSA_Status == 'Exempt') &&
+                        '. Your hourly wage, less deductions, will be paid on a bi-weekly basis.'
                     ),
+                    (employee.Salary_Structure_Required == 'Yes') &&
+                    $('<li/>').append(
+                        employee.Salary_Structure
+                    )
                 ),
-                (employee.Compensation_Type == 'Salaried') &&
+                (employee.Bonus_General_Eligibility=='Yes') &&
                 $('<p/>').append(
-                    $('<strong/>').append('Bonus')
+                    $('<strong/>').append('&nbsp;<br>Bonus')
                 ),
-                (employee.Compensation_Type == 'Salaried') &&
+                (employee.Bonus_General_Eligibility=='Yes') &&
                 $('<ul/>').append(
                     $('<li/>').append(
                         'In addition to your salary, you will be eligible for the annual bonus plan set forth below.  Your bonus will be prorated for the 2023 calendar year.  Specific goal detail to be provided at a later date. ',
@@ -78,8 +85,18 @@ function fnView() {
                         )
                     )
                 ),
+                (employee.Commission_Eligibility == 'Yes') &&
                 $('<p/>').append(
-                    $('<strong/>').append('Benefits')
+                    $('<strong/>').append('Commission Structure')
+                ),
+                (employee.Commission_Eligibility == 'Yes') &&
+                $('<ul/>').append(
+                    $('<li/>').append(
+                        employee.Commission_Structure
+                    )
+                ),
+                $('<p/>').append(
+                    $('<strong/>').append('&nbsp;<br>Benefits')
                 ),
                 $('<ul/>').append(
                     $('<li/>').append(
@@ -94,7 +111,9 @@ function fnView() {
                         )
                     ),
                     $('<li/>').append(
-                        'Vacation is accrued every pay period; you will receive a prorated 2 weeks of vacation, available for use after you have completed 6 months of service.  QED allows 40 hours of vacation to be rolled over year to year.'
+                        'Vacation is accrued every pay period; you will receive a prorated ',
+                        employee.PTO_Days_Vacation,
+                        ' days of vacation, available for use after you have completed 6 months of service.  QED allows 40 hours of vacation to be rolled over year to year.'
                     ),
                     $('<li/>').append(
                         'QED offers the following 7 paid holidays:  ',
@@ -122,50 +141,46 @@ function fnView() {
                     
                 ),
                 $('<p/>').append(
-                    $('<strong/>').append('Additional Items:')
+                    $('<strong/>').append('&nbsp;<br>Additional Items:')
                 ),
                 $('<ul/>').append(
                     $('<li/>').append(
                         'QED will provide the IT equipment necessary to perform your role.'
                     ),
-                    (employee.Reimbursement_Eligibility == 'Yes') &&
+                    (employee.Reimbursement_Eligibility=='Yes') &&
                     $('<li/>').append(
-                        'Expenses ',
-                        $('<ul/>').append(
-                            $('<li/>').append(
-                                'Entertainment, lunches, and misc. expenses with customers will be reimbursed monthly using the Concur expense system.'
-                            ),
-                            $('<li/>').append(
-                                'QED will reimburse you up to $90.00/month for your personal cellular phone expense.'
-                            ),
-                            $('<li/>').append(
-                                'QED will provide a $450/month auto allowance for use of your personal vehicle.'
-                            )
-                        )
+                        'Entertainment, lunches, and misc. expenses with customers will be reimbursed monthly using the Concur expense system.'
+                    ),
+                    (employee.Phone_Stipend_Eligibility=='Yes') &&
+                    $('<li/>').append(
+                        'QED will reimburse you up to $90.00/month for your personal cellular phone expense.'
+                    ),
+                    (employee.Car_Stipend_Eligibility=='Yes') &&
+                    $('<li/>').append(
+                        'QED will provide a $450/month auto allowance for use of your personal vehicle.'
                     )
                 ),
                 $('<p/>').append(
-                    $('<strong/>').append('Offer Contingency')
+                    $('<strong/>').append('&nbsp;<br>Offer Contingency')
                 ),
                 $('<p/>').append(
                     'The offer outlined above is contingent upon successful completion of a 1) background check ',
                     (employee.JobSubFamily_Driver == 'Yes') &&
                     'and motor vehicle record review',
-                    ', 2) pre-employment drug screen and 3) verification of your employment eligibility.<br>',
-                    'You will receive an invitation email with a link directly from Sterling, our trusted business partner, with your specific Login Credentials and contact information to complete this mandatory process.',
-                    'In compliance with federal law and in order to begin your onboarding process, we require that you provide us with proof of your identity and authorization to work in the United States. Please see the attached List of Acceptable IDs for the form I9 and send the appropriate documentation to ',
-                    $('<span/>').append(employee.Hiring_Manager),
-                    ' as soon as possible.'
+                    ', 2) pre-employment drug screen and 3) verification of your employment eligibility.'
                 ),
                 $('<p/>').append(
-                    $('<strong/>').append('Additional Information')
+                    $('<strong/>').append('&nbsp;<br>Additional Information')
                 ),
                 $('<p/>').append(
-                    'Please be advised that this offer and its acceptance is not an employment agreement and does not constitute a contract of employment by either party for any period. The terms of this offer letter may only be changed through a written addendum executed by Andy Wimberg, HR Director.'
+                    'As a condition of your employment and by signing a copy of this offer letter, you agree that for a period of twelve months after the voluntary or involuntary termination of your employment for any reason, you will not solicit, recruit, hire, or employ any person who is an employee of QED that you had contact with, knowledge of, or association with during your employment. You further agree that you will not urge or induce any person to terminate his or her employment with QED directly or indirectly by use of a third party.'
+                ),
+                $('<p/>').append(
+                    'Please be advised that this offer and its acceptance is not an employment agreement and does not constitute a contract of employment by either party for any period. The terms of this offer letter may only be changed through a written addendum executed by Andy Wimberg, HR Director.<br>&nbsp;'
                 ),
                 $('<p/>').append(
                     employee.First_Name,
-                    ', we are thrilled at the prospect of you joining the QED team. Please feel free to call me directly if you have any questions.'
+                    ', we are thrilled at the prospect of you joining the QED team. Please feel free to call me directly if you have any questions.<br>&nbsp;'
                 ),
                 $('<p/>').append(
                     'Sincerely,'
@@ -175,7 +190,7 @@ function fnView() {
                     $('<span/>').append(employee.Hiring_Manager_Job_Template_Name)
                 ),
                 $('<p/>').append(
-                    'I agree to the terms of the employment set forth above.	'
+                    '&nbsp;<br>I agree to the terms of the employment set forth above.  '
                 ),
                 $('<p/>').append(
                     '&nbsp;'

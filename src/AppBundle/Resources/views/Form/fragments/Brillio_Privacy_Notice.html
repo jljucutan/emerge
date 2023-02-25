@@ -1,0 +1,169 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <div class="h6">
+        <strong>Electronic Signature</strong>
+    </div>
+    <div class="mb-3" style="font-size: 12px;">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <strong>Type your Name:</strong>
+        <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.a01_Address.prompt>
+        <$client.env.FormField.a02_Address.prompt>
+        <$client.env.FormField.a03_Date.prompt>
+        <$client.env.FormField.a04_Date.prompt>
+        <$client.env.FormField.a05_Name.prompt>
+        <$client.env.FormField.a06_Signature.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <p class="text-center">
+                Aviso de Privacidad para Empleados / <br class="hidden-xs"> Privacy Notice for Employees 
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 px-2">
+            <p class="mb-0">BRILLIO MÉXICO, S. DE R.L. DE C.V. (la “Sociedad”), con domicilio en </p>
+            <$client.env.FormField.a01_Address.HTML> 
+            <p>, es responsable del tratamiento y protección de sus datos personales. </p>
+            <p class="text-justify">Sus datos personales serán utilizados por la Sociedad para (i) llevar a cabo los trámites de inscripción en el Instituto Mexicano del Seguro Social y el Instituto del Fondo Nacional de Vivienda para los Trabajadores; (ii) en su caso, la apertura de una cuenta bancaria para el pago de nómina; (iii) la administración y pago de nómina; (iv) el otorgamiento de prestaciones laborales; (v) la elaboración, mantenimiento y actualización de los expedientes laborales; (vi) la contratación de seguros en favor de los empleados; (vii) en su caso, la contratación por parte de la Sociedad de medios de pago para la agilización y control de sus gastos de viaje y representación, incluyendo tarjetas corporativas, de crédito y/o de servicios; y (viii) dar cumplimiento a las leyes y reglamentos aplicables en materia laboral y de seguridad social.</p>
+            <p class="text-justify">Para las finalidades establecidas en el párrafo anterior, la Sociedad recabará sus siguientes datos personales: nombre, fecha y lugar de nacimiento, nacionalidad, edad, sexo, estado civil, domicilio particular, número telefónico, dirección de correo electrónico, copia de identificación oficial, número de Registro Federal de Contribuyentes, Clave Única de Registro de Población (CURP), número de afiliación al Instituto Mexicano del Seguro Social, antecedentes escolares y profesionales (incluyendo currículum y título profesional), acta de nacimiento, acta de matrimonio,  información sobre créditos con el Instituto del Fondo Nacional de Vivienda para los Trabajadores o con el Instituto del Fondo Nacional para el Consumo de los Trabajadores (FONACOT), teléfono particular, datos de contacto en caso de emergencia y cuentas bancarias. También podrán recabarse los siguientes datos personales sensibles: estado de salud y resultados de exámenes médicos. La Empresa podrá recabar datos personales y datos personales sensibles adicionales siempre y cuando no sean excesivos respecto de las finalidades antes mencionadas. </p>
+            <p class="text-justify">A fin de cumplir con las finalidades descritas anteriormente, la Sociedad podrá compartir con terceros, nacionales o extranjeros, y/o filiales, nacionales o extranjeras, algunos o todos sus datos personales y datos personales sensibles. Asimismo, la Sociedad se asegurará, a través de la firma de convenios y/o la adopción de otros documentos vinculantes, que dichos terceros mantengan medidas de seguridad, administrativas, técnicas y físicas adecuadas para resguardar sus datos personales, así como que dichos terceros únicamente utilicen sus datos personales para las finalidades para los cuales fueron recabados y de conformidad con el presente Aviso de Privacidad.</p>
+            <p class="text-justify">Usted tiene derecho de acceder, rectificar y cancelar sus datos personales, oponerse al tratamiento de los mismos, limitar su uso o divulgación, o revocar el consentimiento que ha otorgado a la Sociedad para el tratamiento de dichos datos, enviando una solicitud al correo electrónico hr@brillio.com, atención: Oficial de Privacidad (la “Solicitud”).</p>
+            <p class="text-justify">La Solicitud deberá contener, por lo menos, la siguiente información: (i) nombre completo y correo electrónico o domicilio para comunicarle la respuesta a la Solicitud; (ii) los documentos que acrediten su identidad (i.e. identificación oficial vigente) o, en su caso, la representación legal de la persona que tramita la Solicitud en su nombre y representación (i.e. carta poder firmada ante dos testigos acompañada de copia de las identificaciones oficiales del otorgante de la carta poder y del representante legal); (iii) una descripción clara de los datos personales respecto de los que busca ejercer alguno de los derechos antes mencionados; y (iv) cualquier otro elemento o documento que facilite la identificación de sus datos personales. En caso de solicitudes de rectificación de datos personales, usted deberá indicar las modificaciones a realizar y aportar la documentación que sustente su petición.</p>
+            <p class="text-justify">De conformidad con lo dispuesto por la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (la “Ley”), la Sociedad cuenta con un plazo de 20 (veinte) días hábiles contados a partir de la fecha de recepción de su Solicitud para notificarle la determinación adoptada a través del correo electrónico o domicilio que usted haya proporcionado en la Solicitud y, en caso de resultar procedente, la Sociedad contará con un plazo adicional de 15 (quince) días hábiles siguientes a la fecha de notificación para hacerla efectiva. Los plazos antes referidos podrán ser ampliados una sola vez por un periodo igual, siempre y cuando así lo justifiquen las circunstancias del caso. </p>
+            <p class="text-justify">Se le avisará sobre cualquier modificación a este Aviso de Privacidad.</p>
+            <p class="mb-0">Acepto el tratamiento y transferencia de mis datos personales de conformidad con los términos del presente Aviso de Privacidad el día </p>
+            <$client.env.FormField.a03_Date.HTML>
+            <p>de 2022.</p>
+        </div>
+        <div class="col-sm-6 px-2">
+            <p class="mb-0">BRILLIO MÉXICO, S. DE R.L. DE C.V. (the “Company”), with address at </p>
+            <$client.env.FormField.a02_Address.HTML> 
+            <p>is the data controller for purposes of processing and protecting your personal data. </p>
+            <p class="text-justify">Your personal data will be used by the Company to (i) carry out the registration proceedings before the Mexican Social Security Institute and the Institute of the National Housing Fund for the Workers; (ii) when applicable, the opening of a bank account for the payment of payroll; (iii) the management and payment of the payroll; (iv) the granting of labor benefits; (v) the preparation, maintenance and updating of the labor files; (vi) the hiring of insurances in favor of the employees; (vii) in its case, the hiring by the Company of payment means for the improvement and control of your travel and representation expenses, including corporate, credit and services cards; and (viii) compliance of the applicable laws and regulations in labor and social security matters.</p>
+            <p class="text-justify">For the purposes established in the paragraph above, the Company will collect the following personal data: complete name, date and place of birth, nationality, age, sex, marital status personal address, phone number, email address, copy of an official identification, Tax Payers Registry number (Registro Federal de Contribuyentes), Unique Population Registry Code (CURP) (Clave Única de Registro de Población), affiliation number to the Mexican Social Security Institute, educational and professional background (including curriculum and professional degree title), birth certificate, marriage certificate, information regarding loans granted by the Institute of the National Housing Fund for the Workers and the Institute of the National Fund for the Workers Consumption (FONACOT) personal telephone, contact information in case of emergency and bank accounts. Likewise, we may collect the following sensitive personal data: health status and medical tests results. The Company may collect additional personal data and sensitive personal data as long as they are not excessive for the abovementioned purposes. </p>
+            <p class="text-justify">In order to comply with the above-mentioned purposes, the Company will share with third parties, whether national or foreign, some or all of your personal data and sensitive personal data. Likewise, the Company will ensure, through the execution of agreements and/or any other binding documents, that such third parties maintain adequate administrative, technical and physical security measures to protect your personal data, as well as that such third parties only use your personal data for the purposes for which it was collected and pursuant to the provisions set forth in this Privacy Notice.</p>
+            <p class="text-justify">You have the right to access, rectify and cancel your personal data, oppose to the processing of such personal data, limit its use or disclosure, or revoke the consent that you have granted us to process your personal data, by emailing a request to hr@brillio.com, attention: Privacy Officer (the “Request”).</p>
+            <p class="text-justify">The Request shall contain at least the following information: (i) complete name and e-mail or address to inform you of the answer to the Request; (ii) the documents evidencing your identity (i.e. official identification in force) or, as the case may be, the legal representation of the individual processing the Request on your name and behalf (i.e. signed proxy letter signed before two witnesses attaching copy of the official identifications of the proxy letter grantor and the legal representative); (iii) a clear description of the personal data with which you seek to exercise the aforementioned rights; and (iv) any other information or document that may facilitate the location of the personal data. In the case of rectification of personal data, you shall indicate the modifications to be carried out and provide the supporting documentation for your request.</p>
+            <p class="text-justify">In accordance with the Federal Law for the Protection of Personal Data in Possession of Individuals (the “Law”), the Company has a term of twenty (20) business days from the date of reception of your Request to notify you through email or to the address you provided in your Request, the response, and in the event the response is favorable, the Company will have an additional term of fifteen (15) business days from the date of the notification to comply with it. The aforementioned term may be extended once for an equal period of time only if such extension is appropriate under the circumstances.</p>
+            <p class="text-justify">You will be notified of any changes to this Privacy Notice.</p>
+            <p class="mb-0">I hereby accept the processing and transfer of my personal data pursuant to the terms of this Privacy Notice on </p>
+            <$client.env.FormField.a04_Date.HTML>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="d-sm-flex justify-content-center">
+                <div class="me-2">
+                    <$client.env.FormField.a05_Name.HTML>
+                </div>
+                <div>
+                    <$client.env.FormField.a06_Signature.HTML>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="text-center">[Employee’s name and signature]</p>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Brillio_Privacy_Notice/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $('[id$="_a03_Date"], [id$="_a04_Date"]').hide();
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

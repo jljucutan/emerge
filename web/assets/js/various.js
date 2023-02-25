@@ -395,11 +395,18 @@ function hasDependency(sVal, sName, sID) {
   var isValid = true;
   if('<$client.env.serversidevalidation>' == '1'){return isValid;}
 
-  var field = $(document.getElementsByName(sName)[0]).parent().find('[data-depends]');
+  var isDate = false;
+  var thisField = document.querySelector('[name="' + sName + '"]');
+  // detect date fields
+  if (document.querySelector('[name="' + sName + '_display"]')) {
+    thisField = document.querySelector('[name="' + sName + '_display"]');
+    isDate = true;
+  }
+  var depends = document.querySelector('[name$=".' + thisField.dataset.depends + '"]');
 
-  if ($($(field).data('depends')).val().length > 0) {
+  if (depends.value.length > 0) {
     isValid = false;
-    if ($(field).hasClass('dateField')) {
+    if (isDate) {
       return eFormRequiredDate(sVal, sName, sID);
     }
     return eFormRequiredField(sVal, sName, sID);
@@ -3401,26 +3408,26 @@ function requireSendFrom(sValue,sName,sField){
     return false;
 }
 
-function eFormRequiredFieldFrench(sValue,sName,sField){
+function eFormRequiredFieldFrench(sValue,sName,sField) {
   'use strict';
   if('<$client.env.serversidevalidation>' == '1'){return true;}
   if (sValue.length > 0) {
+    AddError(sField,'Erreur de validation, informations obligatoires manquantes dans','');
     return false;
   }
-  AddError(sField,'Erreur de validation, informations obligatoires manquantes dans','');
-  return true;
+  return eFormValidDateFr(sValue,sName,sField);
 }
 
-function eFormValidDateFr(sVal,sName,sID,sFormat) {
+function eFormValidDateFr(sVal, sName, sID) {
   'use strict';
   if (CheckDate(sVal)){
     return true;
   }
-  if (sFormat == null) { 
-    sFormat = 'mm/dd/yyyy'; 
+  if (!/^dddd\/dd\/$/.test(sVal)) { 
+    AddError(sID,'Erreur de validation, date ou format invalide (' + sFormat + ') dans','');
+    return false;
   }
-  AddError(sID,'Erreur de validation, date ou format invalide (' + sFormat + ') dans','');
-  return false;
+  return true;
 }
 
 function eFormRequiredDateFrench(sVal,sName,sID,sFormat){
@@ -3466,3 +3473,19 @@ function eFormNameValidCase(sVal,sName,sID){
   }
   return true;
 }
+
+function validatePhoneNumbers(sVal, sName, sID){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  // validating only with input
+  if (sVal.length < 1) {
+    return true;
+  }
+  if (!/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/.test(sVal)) {
+    AddError(sID, 'Error in validation, only 999-999-9999 is accepted format in', '');
+    return false;
+  }
+  return true;
+}
+
+eFormRequiredField

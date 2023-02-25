@@ -1,137 +1,228 @@
-function requireOnePrimary(sValue,sName,sField){
-    if('<$client.env.serversidevalidation>' == '1'){return true;}
-    var hasChecked = false;
-    document.querySelectorAll('[name$=".contact_primary_1"], [name$=".contact_primary_2"]').forEach(function(c) {
-      if (c.checked) {
-        hasChecked = true;
-      }
-    });
-    if (!hasChecked) {
-      AddError(sField, 'Erreur de validation, veuillez sélectionner le contact principal dans', '');
-      return false;
-    }
-    return true;
+function eFormRequiredFieldFrench(sValue,sName,sField){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (sValue.length <= 0) {
+    AddError(sField,'Erreur de validation, informations obligatoires manquantes dans','');
+    return false;
+  }
+  return true;
 }
 
-function validateDepends(sValue,sName,sField){
-    if('<$client.env.serversidevalidation>' == '1'){return true;}
-    var isRequired = false;
-    var config = <$include;/main/RedCarpet/FormTemplates/Fiche_Profil_-_SELIA/js/config.json>;
-    config.fieldAttrs.forEach(function(f) {
-      if (f.name != sField) {
-        return true;
-      }
-      if (!f.dependsOnAnyOf) {
-        return true;
-      }
-      f.dependsOnAnyOf.forEach(function(dep) {
-        if (document.querySelector('[name$=".' + dep + '"]').value.length) {
-          isRequired = true;
-        }
-      })
-    });
-    if (isRequired) {
-      if (document.querySelector('[name="' + sName + '"]').type == 'hidden') {
-        return eFormRequiredDate(sValue,sName,sField);
-      }
-      return eFormRequiredField(sValue,sName,sField);
-    }
+function eFormRequiredNonZeroFrench(sValue,sName,sField){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var v = new Number(sValue);
+  if (sValue > 0) {
+    return false;
+  }
+  AddError(sField,'Erreur de validation, informations obligatoires manquantes dans','');
+  return true;
+}
+
+function eFormValidDateFr(sVal,sName,sID,sFormat) {
+  'use strict';
+  if (CheckDate(sVal)){
     return true;
+  }
+  if (sFormat == null) { 
+    sFormat = 'mm/dd/yyyy'; 
+  }
+  AddError(sID,'Erreur de validation, date ou format invalide (' + sFormat + ') dans','');
+  return false;
+}
+
+function eFormRequiredDateFrench(sVal,sName,sID,sFormat){
+  'use strict';
+  if(!eFormRequiredFieldFrench(sVal,sName,sID)) { 
+    return false; 
+  }
+  return eFormValidDate(sVal,sName,sID,sFormat);
+}
+
+function requireOnePrimary(sValue,sName,sField){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var hasChecked = false;
+  document.querySelectorAll('[name$=".contact_primary_1"], [name$=".contact_primary_2"]').forEach(function(c) {
+    if (c.checked) {
+      hasChecked = true;
+    }
+  });
+  if (!hasChecked) {
+    AddError(sField, 'Erreur de validation, veuillez sélectionner le contact principal dans', '');
+    return false;
+  }
+  return true;
+}
+
+function requireDepends(sValue,sName,sField){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var isRequired = false;
+  var config = <$include;/main/RedCarpet/FormTemplates/Fiche_Profil_-_SELIA/js/config.json>;
+  config.fieldAttrs.forEach(function(f) {
+    if (f.name != sField) {
+      return true;
+    }
+    if (!f.dependsOnAnyOf) {
+      return true;
+    }
+    f.dependsOnAnyOf.forEach(function(dep) {
+      if (document.querySelector('[name$=".' + dep + '"]').value.length) {
+        isRequired = true;
+      }
+    })
+  });
+  if (isRequired) {
+    if (document.querySelector('[name="' + sName + '"]').type == 'hidden') {
+      return eFormRequiredDateFrench(sValue,sName,sField);
+    }
+    return eFormRequiredFieldFrench(sValue,sName,sField);
+  }
+  return true;
 }
 
 function optionalDepends(sValue,sName,sField){
-    if('<$client.env.serversidevalidation>' == '1'){return true;}
-    var isRequired = true;
-    var config = <$include;/main/RedCarpet/FormTemplates/Fiche_Profil_-_SELIA/js/config.json>;
-    config.fieldAttrs.forEach(function(f) {
-      if (f.name != sField) {
-        return true;
-      }
-      if (!f.optionalWhenNoValueOn) {
-        return true;
-      }
-      f.optionalWhenNoValueOn.forEach(function(dep) {
-        if (document.querySelector('[name$=".' + dep + '"]').value.length) {
-          isRequired = false;
-        }
-      })
-    });
-    if (isRequired) {
-      if (document.querySelector('[name="' + sName + '"]').type == 'hidden') {
-        return eFormRequiredDate(sValue,sName,sField);
-      }
-      return eFormRequiredField(sValue,sName,sField);
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  var isRequired = false;
+  var config = <$include;/main/RedCarpet/FormTemplates/Fiche_Profil_-_SELIA/js/config.json>;
+  config.fieldAttrs.forEach(function(f) {
+    if (f.name != sField) {
+      return true;
     }
+    if (!f.dependsOnAnyOf) {
+      return true;
+    }
+    f.dependsOnAnyOf.forEach(function(dep) {
+      if (!document.querySelector('[name$=".' + dep + '"]').value.length) {
+        isRequired = true;
+      }
+    })
+  });
+  if (!isRequired) {
     return true;
+  }
+  if (document.querySelector('[name="' + sName + '"]').type == 'hidden') {
+    return eFormRequiredDateFrench(sValue,sName,sField);
+  }
+  return eFormRequiredFieldFrench(sValue,sName,sField);
 }
 
 function requireOnePrimaryDepends(sValue,sName,sField){
-    if('<$client.env.serversidevalidation>' == '1'){return true;}
-    // optional if no filled noms
-    if (validateDepends(sValue,sName,sField)) {
-      return true;
-    }
-    return requireOnePrimary(sValue,sName,sField)
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  // optional if no filled noms
+  if (requireDepends(sValue,sName,sField)) {
+    return true;
+  }
+  return requireOnePrimary(sValue,sName,sField)
 }
 
 function nameValidation(sValue,sName,sField){
-    if('<$client.env.serversidevalidation>' == '1'){return true;}
-    if (sValue.length < 1) {
-      return true;
-    }
-    if (!/^[-A-Z ',]+$/.test(sValue)) {
-      AddError(sField, 'Erreur de validation, seules les majuscules, les tirets, les apostrophes et les virgules sont autorisés dans', '');
-      return false;
-    }
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (sValue.length < 1) {
     return true;
+  }
+  if (!/^[-A-Z ']+$/.test(sValue)) {
+    AddError(sField, 'Erreur de validation, autoriser uniquement les lettres majuscules, les traits d\'union ou les apostrophes, et aucun symbole, caractère accentué, étranger ou spécial n\'est autorisé dans', '');
+    return false;
+  }
+  return true;
+}
+
+function nameUpperCaseValidation(sValue,sName,sField){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (sValue.length < 1) {
+    return true;
+  }
+  if (!/^[-A-Z ']+$/.test(sValue)) {
+    AddError(sField, 'Erreur de validation, n\'autoriser que les lettres majuscules, les tirets ou les apostrophes, et aucun symbole, caractère accentué, étranger ou spécial n\'est autorisé dans', '');
+    return false;
+  }
+  return true;
 }
 
 function nameValidationRequired(sValue,sName,sField){
-    if('<$client.env.serversidevalidation>' == '1'){return true;}
-    if (!eFormRequiredField(sValue,sName,sField)) {
-      return false;
-    }
-    return nameValidation(sValue,sName,sField);
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  /*if (!eFormRequiredFieldFrench(sValue,sName,sField)) {
+    return false;
+  }*/
+  if(sValue.length<1)
+    AddError(sField,'Erreur de validation, informations obligatoires manquantes dans','');
+  else
+    return nameUpperCaseValidation(sValue,sName,sField);
+  return true;
 }
 
 function addressValidation(sValue,sName,sField){
-    if('<$client.env.serversidevalidation>' == '1'){return true;}
-    if (sValue.length < 1) {
-      return true;
-    }
-    if (!/^[-A-Z0-9 ,']+$/.test(sValue)) {
-      AddError(sField, 'Erreur de validation, seuls les majuscules, les chiffres, le trait d\'union, l\'apostrophe et la virgule sont autorisés dans', '');
-      return false;
-    }
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (sValue.length < 1) {
     return true;
+  }
+  if (!/^[-A-Z0-9 .,']+$/.test(sValue)) {
+    AddError(sField, 'Erreur de validation, seuls les majuscules, les chiffres, le trait d\'union, l\'apostrophe et la virgule sont autorisés dans', '');
+    return false;
+  }
+  return true;
 }
 
 function addressValidationRequired(sValue,sName,sField){
-    if('<$client.env.serversidevalidation>' == '1'){return true;}
-    if (!eFormRequiredField(sValue,sName,sField)) {
-      return false;
-    }
-    return addressValidation(sValue,sName,sField);
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (!addressValidation(sValue,sName,sField)) {
+    return false;
+  }
+  return eFormRequiredFieldFrench(sValue,sName,sField);
 }
 
-function requireByAddressFR(sValue,sName,sField) {
-    if('<$client.env.serversidevalidation>' == '1'){return true;}
-    var addressFR = ['Tax_Address_Pays','No_de_la_voie','Bis_Ter','Type_de_voie','Nom_de_la_voie','Complement_dadresse','Code_postal','Bureau_distributeur','No_INSEE_commune'];
-    var isRequired = true;
-    addressFR.forEach(function(addr) {
-        if (!document.querySelector('[name$=".' + addr + '"]').value.length) {
-            isRequired = false;
-        }
-    })
-    if (isRequired) {
-        return eFormRequiredField(sValue,sName,sField);
-    }
+function requireDependsAddress(sValue,sName,sField){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (!addressValidation(sValue,sName,sField)) {
+    return false;
+  }
+  return requireDepends(sValue,sName,sField);
 }
 
-function requiredByAddressFRAddress(sValue,sName,sField) {
-    if('<$client.env.serversidevalidation>' == '1'){return true;}
-    if (addressValidation(sValue,sName,sField)) {
-        return requireByAddressFR(sValue,sName,sField);
-    }
-    return true;
+function optionalDependsName(sValue,sName,sField){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (!nameValidation(sValue,sName,sField)) {
+    return false;
+  }
+  return optionalDepends(sValue,sName,sField);
+}
+
+function optionalDependsAddress(sValue,sName,sField){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (!addressValidation(sValue,sName,sField)) {
+    return false;
+  }
+  return optionalDepends(sValue,sName,sField);
+}
+
+function validateSSNRequired(sValue,sName,sField){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (sValue && sValue.length != 15) {
+    AddError(sField,'Erreur de validation, seuls 15 caractères exactement sont autorisés dans','');
+    return false;
+  }
+  return eFormRequiredFieldFrench(sValue,sName,sField);
+}
+
+function validateAlphaNumericRequired(sValue,sName,sField){
+  'use strict';
+  if('<$client.env.serversidevalidation>' == '1'){return true;}
+  if (!/^[A-Z0-9']+$/.test(sValue)) {
+    AddError(sField,'Erreur de validation, seuls les chiffres et les majuscules sont autorisés','');
+    return false;
+  }
+  return eFormRequiredFieldFrench(sValue,sName,sField);
 }

@@ -304,16 +304,14 @@ const refreshSortCodeSelection = function() {
 }
 
 $(document).on('ready', function() {
-    $('[name$=".Sort_Code_Number"]').on('change', function(e) {
+    $('[name$=".Sort_Code_Number"]').on('change', function() {
         const bankNameField = $('[name$=".Bank_Name"]');
         let selectedBank = sortCodeList[sortCodeList.map(function(item){return item.bankId}).indexOf($(this).val())];
         let bankName = "";
         if (selectedBank) {
             bankName = selectedBank.bankName;
         }
-        if (bankName.length) {
-            bankNameField.val(bankName);
-        }
+        bankNameField.val(bankName);
         if (this.value != 'Other') {
             $('[name$=".Other_Sort_Code_Number"]').val('').prop({
                 'disabled': 'disabled',
@@ -324,9 +322,6 @@ $(document).on('ready', function() {
             })
         }
         else {
-            if (!!e) {
-                bankNameField.val('');
-            }
             $('[name$=".Other_Sort_Code_Number"]').prop({
                 'disabled': false,
                 'placeholder': 'Enter Sort Code Here'
@@ -341,6 +336,7 @@ $(document).on('ready', function() {
         $('[name$=".Country"]').trigger('change');
         // form ready
         $(".modal").hide();
+        $('[name$=".Bank_Name"]').val("<$client.env.FormField.Bank_Name.Value>")
     });
     disableCalButton($('[name$=".Date_display"]'));
     if ($('[name$=".Sort_Code_Number"]').val() != 'Other') {

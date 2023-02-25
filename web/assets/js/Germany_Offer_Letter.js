@@ -2,13 +2,12 @@
  * SERVICES-36404 | jjucutan | PayPal - Create Germany Offer Letter
  * 2021-02-11 | jjucutan | created version 3
  * 2022-08-12 | jjucutan | created version 4
+ * 2022-01-03 | jjucutan | created version 5, updated heading address
  */
  function fnView() { 
 
-    let footer = '';
-    if (OfferLetterData.EntityName === "PayPal PLC, German Branch") {
-        footer = 'PayPal PLC, German Branch - Registered Office: Ballycoolin Business Park, Ballycoolin Road, Blanchardstown, Dublin 15, Ireland, Company Registration Number SE646492<br>&nbsp;<br>';
-    }
+    let footer = `<mark>${OfferLetterData.EntityName}</mark>, German Branch - Registered Office: Ballycoolin Business Park, Ballycoolin Road, Blanchardstown, Dublin 15, Ireland, Company Registration Number SE646492<br>&nbsp;<br>`;
+
     // removed footer 2022-080-12
     // if (OfferLetterData.EntityName === "PayPal Deutschland GmbH") {
         // footer = 'PayPal Deutschland GmbH, Geschäftsführerin: Daniela Matiz, HRB Nr.: 17106 P, Amtsgericht Potsdam, Sitz der Gesellschaft: Kleinmachnow';
@@ -49,16 +48,13 @@
 
     $("#markup").html("").append(
         $('<div class="offerClause"/>').append(
-            (OfferLetterData.EntityName == 'PayPal PLC, German Branch') && $('<p style="font-size: 10px !important;"/>').append(
-                $('<mark/>').append(
-                    'PayPal PLC, Ballycoolin Business Park, Ballycoolin Road, Blanchardstown, Dublin 15, Ireland'
-                    )
-                ),
-            (OfferLetterData.EntityName == 'PayPal Deutschland GmbH') && $('<p style="font-size: 10px !important;"/>').append(
-                $('<mark/>').append(
-                    'PayPal Deutschland GmbH, Marktplantz 1 14532 Europarc-Dreilinden'
-                    )
-                )
+            `<mark>${OfferLetterData.EntityName}</mark>– Ballycoolin Business Park, Ballycoolin Road, Blanchardstown, Dublin 15, Ireland`
+            // (OfferLetterData.EntityName == 'PayPal Deutschland GmbH') && $('<p style="font-size: 10px !important;"/>').append(
+            //     $('<mark/>').append(
+            //         'PayPal Deutschland GmbH, Marktplantz 1 14532 Europarc-Dreilinden'
+            //         )
+            //     )
+            // )
             )
         );
     $("#markup2").html("").append(
@@ -98,13 +94,13 @@
             (OfferLetterData.Workplace_Model=='In-Office') &&
             $('<p class="marked" data-toggle="popover" data-placement="top" data-content="Workplace Model = In Office"/>').append(
                 'Sie sind verpflichtet, Ihre Tätigkeit im Betrieb der Gesellschaft in ',
-                $('<mark/>').append(OfferLetterData.Location),
+                $('<mark/>').append(OfferLetterData.LOCATION_DISPLAYNAME),
                 ' zu erbringen. Des Weiteren können Sie verpflichtet sein, nach Anforderung der Gesellschaft Ihre Tätigkeit gelegentlich auch an anderen Standorten zu erbringen.'
                 ),
             (OfferLetterData.Workplace_Model=='Virtual Flex') &&
             $('<p class="marked" data-toggle="popover" data-placement="top" data-content="Workplace Model = Virtual Flex"/>').append(
                 'Die Tätigkeit des Praktikanten kann zu einem gewissen Zeitanteil außerhalb eines PayPal-Büros erbracht werden, wobei der Praktikant hierbei die von der Gesellschaft zur Verfügung gestellten virtuellen Arbeitsmittel benutzen wird. Sofern der Praktikant virtuell arbeitet, muss er seine Tätigkeit an einem Ort erbringen, der sich innerhalb Deutschlands und in der Nähe des ',
-                $('<mark/>').append(OfferLetterData.Location),
+                $('<mark/>').append(OfferLetterData.LOCATION_DISPLAYNAME),
                 ' PayPal-Betriebes befindet. Neben seiner individuellen Tätigkeit kann der Praktikant aus Gründen des persönlichen Austausches zur Anwesenheit in einem der PayPal Büros verpflichtet sein. Die Gesellschaft kann unter Abwägung der betrieblichen und der persönlichen Interessen jederzeit den Tätigkeitsort des Praktikanten ändern oder auch die Möglichkeit des virtuellen Arbeitens wieder abschaffen. Die Gesellschaft wird den Praktikanten in diesem Fall entsprechend benachrichtigen (eine Kompensationszahlung erfolgt jedoch nicht). Weitere Einzelheiten, einschließlich der an den Praktikanten gestellten Anforderungen, sind der Offsite Working Richtlinie der Gesellschaft sowie weiteren Richtlinien zu entnehmen.'
                 ),
             (OfferLetterData.Workplace_Model=='Virtual') &&
@@ -173,10 +169,11 @@
 $("#markup5").html("").append(
     $('<div class="offerClause5"/>').append(
         $('<p class="fb-size9"/>').append(
-            (OfferLetterData.EntityName === "PayPal PLC, German Branch") && 
-            'PayPal PLC, German Branch - Registered Office: Ballycoolin Business Park, Ballycoolin Road, Blanchardstown, Dublin 15, Ireland, Company Registration Number SE646492<br>&nbsp;<br>',
-            (OfferLetterData.EntityName === "PayPal Deutschland GmbH") &&
-            'PayPal Deutschland GmbH, Geschäftsführerin: Daniela Matiz, HRB Nr.: 17106 P, Amtsgericht Potsdam, Sitz der Gesellschaft: Kleinmachnow'
+            `<mark>${OfferLetterData.EntityName}</mark> – Registered Office: Ballycoolin Business Park, Ballycoolin Road, Blanchardstown, Dublin 15, Ireland`
+            // (OfferLetterData.EntityName === "PayPal PLC, German Branch") && 
+            // 'PayPal PLC, German Branch - Registered Office: Ballycoolin Business Park, Ballycoolin Road, Blanchardstown, Dublin 15, Ireland, Company Registration Number SE646492<br>&nbsp;<br>',
+            // (OfferLetterData.EntityName === "PayPal Deutschland GmbH") &&
+            // 'PayPal Deutschland GmbH, Geschäftsführerin: Daniela Matiz, HRB Nr.: 17106 P, Amtsgericht Potsdam, Sitz der Gesellschaft: Kleinmachnow'
         )
     )
 );
@@ -198,13 +195,13 @@ $("#markup6").html("").append(
             (OfferLetterData.Workplace_Model=='In-Office') &&
             $('<p class="marked" data-toggle="popover" data-placement="top" data-content="Workplace Model = In Office"/>').append(
                 'You will be required to work from the Company’s office located at ',
-                $('<mark/>').append(OfferLetterData.Location),
+                $('<mark/>').append(OfferLetterData.LOCATION_DISPLAYNAME),
                 '. From time to time, you may be required to work at other locations, as directed by the Company.'
                 ),
             (OfferLetterData.Workplace_Model=='Virtual Flex') &&
             $('<p class="marked" data-toggle="popover" data-placement="top" data-content="Workplace Model = Virtual Flex"/>').append(
                 'Your role may be performed outside of a PayPal office part of the time with the use of virtual working tools we provide. You must work virtually from a location near to the ',
-                $('<mark/>').append(OfferLetterData.Location),
+                $('<mark/>').append(OfferLetterData.LOCATION_DISPLAYNAME),
                 ' PayPal office, within Germany. In addition to any in-person working, you may also be required to attend a PayPal office for in-person collaboration.  We may amend or end the location of your role or remove the ability to work virtually at any time and will give you notice (but will not provide any compensation) if we do so. We may amend or end the location of your role or remove the ability to work virtually at any time, insofar as this is reasonable after weighing up the operational and personal interests and will give you notice (but will not provide any compensation) if we do so.  You may find more details, including our expectations of you, within our Offsite Working Policy and associated policies.'
                 ),
             (OfferLetterData.Workplace_Model=='Virtual') &&

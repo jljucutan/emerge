@@ -1,0 +1,400 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <div class="h6">
+        <strong>Electronic Signature</strong>
+    </div>
+    <div class="mb-3" style="font-size: 12px;">
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <strong>Type your Name:</strong>
+        <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Name.prompt>
+        <$client.env.FormField.Signature.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+        <$client.env.FormField.Signature_Spanish.prompt>
+        <$client.env.FormField.a01_Computer_Brand.prompt>
+        <$client.env.FormField.a01_Computer_Brand_Spanish.prompt>
+        <$client.env.FormField.a02_Computer_Model.prompt>
+        <$client.env.FormField.a02_Computer_Model_Spanish.prompt>
+        <$client.env.FormField.a03_Computer_Serial.prompt>
+        <$client.env.FormField.a03_Computer_Serial_Spanish.prompt>
+        <$client.env.FormField.a04_Computer_Mouse.prompt>
+        <$client.env.FormField.a04_Computer_Mouse_Spanish.prompt>
+        <$client.env.FormField.a05_Cellular_Phone_Brand.prompt>
+        <$client.env.FormField.a05_Cellular_Phone_Brand_Spanish.prompt>
+        <$client.env.FormField.a06_Cellular_Phone_Model.prompt>
+        <$client.env.FormField.a06_Cellular_Phone_Model_Spanish.prompt>
+        <$client.env.FormField.a08_Cellular_Phone_Series_number.prompt>
+        <$client.env.FormField.a08_Cellular_Phone_Series_number_Spanish.prompt>
+        <$client.env.FormField.a09_Cellular_Phone_Line_Number.prompt>
+        <$client.env.FormField.a09_Cellular_Phone_Line_Number_Spanish.prompt>
+        <$client.env.FormField.a10_Screen_Brand.prompt>
+        <$client.env.FormField.a10_Screen_Brand_Spanish.prompt>
+        <$client.env.FormField.a11_Screen_Model.prompt>
+        <$client.env.FormField.a11_Screen_Model_Spanish.prompt>
+        <$client.env.FormField.a12_Screen_Serial.prompt>
+        <$client.env.FormField.a12_Screen_Serial_Spanish.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 px-2">
+            <p class="text-center">CARTA RESPONSIVA HERRAMIENTAS DE TRABAJO</p>
+        </div>
+        <div class="col-sm-6 px-2">
+            <p>WORK TOOLS ACKNOWLEDGMENT LETTER</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">Como consecuencia de mi contrato individual de trabajo con  Brillio México, S. de R.L. de C.V. (“Brillio”), en este acto hago constar lo siguiente:</p>
+        </div>
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">As a consequence of my employment agreement with the Brillio México, S. de R.L. de C.V. (“Brillio”), herein I acknowledge the following: </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">Recibo de Brillio en calidad de herramientas de trabajo (en adelante las “Herramientas de Trabajo”), y para el correcto desempeño de mis labores, lo siguiente:</p>
+        </div>
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">I receive as work tools (herein the “Work Tools”) from Brillio, and for the correct performance of my services, the following: </p>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-6 px-2">
+            <p class="mb-0">(1) Equipo de cómputo </p>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">de la marca </p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a01_Computer_Brand_Spanish.HTML></div>,
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">modelo </p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a02_Computer_Model_Spanish.HTML></div>,
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">número de serie </p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a03_Computer_Serial_Spanish.HTML></div>,
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">mouse </p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a04_Computer_Mouse_Spanish.HTML></div>; y
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 px-2">
+            <p class="mb-0">(1) Computer equipment</p> 
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">brand</p> 
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a01_Computer_Brand.HTML></div>,
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">model</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a02_Computer_Model.HTML></div>,
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">Series number</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a03_Computer_Serial.HTML></div>,
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">mouse</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a04_Computer_Mouse.HTML></div>; and 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-6 px-2">
+            <p class="mb-0">(2) Teléfono Celular</p>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">de la marca</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a05_Cellular_Phone_Brand_Spanish.HTML></div>,
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">modelo</p>
+                <div class="flex-grow-1 d-sm-flex align-items-center">
+                    <div class="flex-grow-1"><$client.env.FormField.a06_Cellular_Phone_Model_Spanish.HTML></div>,
+                </div>
+            </div>
+            <p class="mb-0">
+                con el siguiente
+            </p>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">número de serie</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a08_Cellular_Phone_Series_number_Spanish.HTML></div>.
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">con línea número</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a09_Cellular_Phone_Line_Number_Spanish.HTML></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 px-2">
+            <p class="mb-0">(2) Cellular Phone</p>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">brand</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a05_Cellular_Phone_Brand.HTML></div>,
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">model</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a06_Cellular_Phone_Model.HTML></div>,
+                </div>
+            </div>
+            <p class="mb-0">
+                with the following
+            </p>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">series number</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a08_Cellular_Phone_Series_number.HTML></div>.
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">with phone line number</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a09_Cellular_Phone_Line_Number.HTML></div>.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-6 px-2">
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">(3) Monitor de la marca</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a10_Screen_Brand_Spanish.HTML></div>,
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">modelo</p>
+                <div class="flex-grow-1 d-sm-flex align-items-center">
+                    <div class="flex-grow-1"><$client.env.FormField.a11_Screen_Model_Spanish.HTML></div>
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">y número de serie</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a12_Screen_Serial_Spanish.HTML></div>.
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 px-2">
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">(3) Screen brand</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a10_Screen_Brand.HTML></div>,
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">model</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a11_Screen_Model.HTML></div>,
+                </div>
+            </div>
+            <div class="d-sm-flex align-items-center">
+                <p class="mb-0 pe-1">with the following serial number</p>
+                <div class="d-flex align-items-center flex-grow-1">
+                    <div class="flex-grow-1"><$client.env.FormField.a12_Screen_Serial.HTML></div>.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">Reconozco y acepto a:</p>
+        </div>
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">I acknowledge and agree to:</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">(i) Cumplir con los términos de la Política de Herramientas de Trabajo de Brillio durante mi empleo e incluso después de la conclusión de la relación laboral por cualquier causa;</p>
+        </div>
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">(i) Comply with the terms of the Work Tools Policy of Brillio during my employment and even after the end of the employment relationship for any cause;</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">(ii) Devolver las Herramientas de Trabajo en cualquier momento cuando sea solicitado por Brillio; y</p>
+        </div>
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">(ii) Return the Work Tools at any time when requested by Brillio; and</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">(iii) Inmediatamente reportar a Brillio cualquier avería de las Herramientas de Trabajo. </p>
+        </div>
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">(iii) Immediately report to Brillio any malfunction of the Work Tools. </p>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-6 px-2">
+            <p class="text-justify">Reconozco y acepto que quedo incondicionalmente como responsable del buen uso de las Herramientas de Trabajo. Así mismo, reconozco que en caso de que las Herramientas de Trabajo sufran cualquier tipo de percance o descompostura como consecuencia de negligencia o   mal uso de mi parte, o en caso de robo,  </p>
+        </div>
+        <div class="col-sm-6 px-2">
+            <p class="text-justify"> I acknowledge and agree that I am unconditionally responsible for the correct use of the Work Tools. IN addition, I acknowledge that if the Work Tools suffer any type of mishap or equipment failure as a consequence of my negligence or carelessness, or in the event of a theft, I will be solely responsible to cover the relevant expenses.</p>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-sm-flex justify-content-center">
+                <div>
+                    <$client.env.FormField.Date.HTML>
+                </div>
+            </div>
+            <p class="text-center">fecha / date</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-offset-2 col-sm-4 pe-2">
+            <$client.env.FormField.Name.HTML>
+        </div>
+        <div class="col-sm-4">
+            <$client.env.FormField.Signature.HTML>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="text-center">
+                Nombre y firma del trabajador / Name and signature of employee
+            </p>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Brillio_Working_Tools_delivery_minute/js/bootstrap.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Brillio_Working_Tools_delivery_minute/js/script.js>" defer></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+const CONFIG = {
+    fieldPairs: [
+        ['01_Computer_Brand', '01_Computer_Brand_Spanish'],
+        ['02_Computer_Model', '02_Computer_Model_Spanish'],
+        ['03_Computer_Serial', '03_Computer_Serial_Spanish'],
+        ['04_Computer_Mouse', '04_Computer_Mouse_Spanish'],
+        ['05_Cellular_Phone_Brand', '05_Cellular_Phone_Brand_Spanish'],
+        ['06_Cellular_Phone_Model', '06_Cellular_Phone_Model_Spanish'],
+        ['08_Cellular_Phone_Series_number', '08_Cellular_Phone_Series_number_Spanish'],
+        ['09_Cellular_Phone_Line_Number', '09_Cellular_Phone_Line_Number_Spanish'],
+        ['a10_Screen_Brand_Spanish', 'a10_Screen_Brand'],
+        ['a11_Screen_Model_Spanish', 'a11_Screen_Model'],
+        ['a12_Screen_Serial_Spanish', 'a12_Screen_Serial'],
+    ]
+}
+
+$(window).on('load', function() {
+    $('[id$="_Date"]').hide();
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

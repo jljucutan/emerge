@@ -1,0 +1,62 @@
+<div class="offerClause1">
+    <p><%= Current_Date %></p>
+    <p><%= Full_Name %><br><%= Address1 %><br><%= City %>, <%= State_Description %>&nbsp;<%= Zip %></p>
+    <p>Dear <%= First_Name %>,</p>
+    <p>
+        On behalf of Richards Electric, a subsidiary of Springfield Electric Supply Company (SESCO), it is with great pleasure that I confirm the details of our offer of employment as <%= Job_Template_Name %>>, 
+        <% if (Remote =='Yes') { %> 
+            working remotely in <%= Residential_Location %>
+        <% } else { %>
+            working in our <%= Service_Center %> location
+        <% } %>.
+    </p>
+    <p>
+        As we discussed, your starting 
+        <% if (Salary_Type=='hourly') { %>
+            compensation in this position will be <%= new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Salary_Amount) %> per hour
+        <% } else { %> 
+            base salary compensation in this position will be <%= new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Annual_Salary) %> annually
+        <% } %>. 
+        The <%= Job_Template_Name %> position is
+        <% if (FLSA_Status=='Non-exempt') { %> 
+            a non-exempt position for purposes of federal wage-hour law, which means that you will be eligible for overtime pay for hours actually worked in excess of 40 in a given work 
+        <% } %>
+        <% if (FLSA_Status=='Exempt') { %> 
+            exempt for purposes of federal wage-hour law, which means that you will not be eligible for overtime pay.
+        <% } %>
+    </p>
+    <p>
+        In addition to your base compensation, you will be eligible to participate in the following components of our total compensation program:
+    </p>
+    <ul class="list-bulleted">
+        <% if (Bonus_General_Eligibility=='Yes') { %>
+            <li><%= Bonus_General_Structure %>, subject to the terms and conditions specified in the prevailing plan document;.</li>
+        <% } %>
+        <li>Performance Development Plan, usually following the completion of 90 days of employment and each subsequent year of employment during the announced performance review focal cycle;</li>
+        <li>Health Benefit Plan, which provides major medical, prescription drug card, and dental coverage, Vision Plan, Flexible Spending Plan, Basic and Supplemental Group Term Life Insurance, Short-Term and Long-Term Disability Insurance, and 401(k) Profit Sharing Plan, subject to applicable waiting periods and plan terms; </li>
+        <li>Paid holidays as published on the annual SESCO Holiday Schedule;</li>
+        <li>
+            Paid Time Off (PTO),&nbsp;
+            <% if (Frontloaded_Vacation_Days.length) { %>
+                <%= Frontloaded_Vacation_Days %> days,&nbsp;
+            <% } %>
+            <% if (Frontloaded_Vacation_Hrs.length) { %>
+                <%= Frontloaded_Vacation_Hrs %> hours,&nbsp;
+            <% } %>
+            for use in <%= moment().format('YYYY'); %> upon successful completion of 60 days of employment, then to progress to additional weeks under SESCO’s prevailing PTO policy, subject to policy accrual provisions;
+        </li>
+        <li>Employee Account for purchase of materials through SESCO, subject to the prevailing Employee Purchases Policy.</li>
+    </ul>
+    <p>
+        As we discussed, our employment offer is contingent upon the successful completion of a 1) background check 
+        <% if (JobSubFamily_Driver == 'Yes') { %>and motor vehicle record review<% } %>, 2) pre-employment drug screen and 3) verification of your employment eligibility.
+    </p>
+    <p>As a condition of your employment and by signing a copy of this offer letter, you agree that for a period of twelve months after the voluntary or involuntary termination of your employment for any reason, you will not solicit, recruit, hire, or employ any person who is an employee of Richards Electric that you had contact with, knowledge of, or association with during your employment. You further agree that you will not urge or induce any person to terminate his or her employment with Richards Electric directly or indirectly by use of a third party.</p>
+    <p>We look forward to your joining Richards Electric and becoming a member of the <%= Service_Center %> team. We recognize, however, that you retain the option, as does Richards Electric, of ending your employment with the Company at any time, with or without notice and with or without cause. As such, your employment with Richards Electric is at-will and neither this letter nor any other oral or written representations may be considered a contract for any specific period of time.</p>
+    <p>Should you have any questions, please do not hesitate to contact us. Please also confirm your understanding of this employment opportunity by signing in the place provided below.</p>
+    <p>&nbsp;</p>
+    <p>Sincerely,</p>
+    <p><%= Hiring_Manager %><br><%= Hiring_Manager_Job_Template_Name %></p>
+    <p>I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.</p>
+    <p>&nbsp;</p>
+</div>

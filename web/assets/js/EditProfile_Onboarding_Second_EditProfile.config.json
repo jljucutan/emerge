@@ -161,6 +161,16 @@
                 "validation": "required,regex-optional",
                 "regex": "^[0-9]{9}$",
                 "message": "9 digits"
+              },
+              "IND-AAD": {
+                "validation": "required,regex-optional",
+                "regex": "^[0-9]{12}$",
+                "message": "12 digits"
+              },
+              "IND-EPFO": {
+                "validation": "required,regex-optional",
+                "regex": "^[0-9]{7}$",
+                "message": "7 digits"
               }
             }
           }
@@ -368,25 +378,61 @@
     },
     {
       "name": "EC_State",
-      "validation": "required",
+      "validation": " ",
       "title": "State/County",
       "actionBasedValidation": {
           "validateByValueOf": [
             {
               "field": "EC_Country",
               "values": {
-                "BEL": {
-                  "validation": " "
+                "USA": {
+                  "validation": "required"
                 },
-                "POL": {
-                  "validation": " "
+                "BRA": {
+                  "validation": "required"
                 },
-                "LUX": {
-                  "validation": " "
+                "ESP": {
+                  "validation": "required"
                 },
-                "MEX": {
-                  "validation": " "
+                "DEU": {
+                  "validation": "required"
+                },
+                "ITA": {
+                  "validation": "required"
+                },
+                "NLD": {
+                  "validation": "required"
+                },
+                "MYS": {
+                  "validation": "required"
+                },
+                "IND": {
+                  "validation": "required"
+                },
+                "CAN": {
+                  "validation": "required"
+                },
+                "AUS": {
+                  "validation": "required"
+                },
+                "JPN": {
+                  "validation": "required"
+                },
+                "THA": {
+                  "validation": "required"
+                },
+                "HKG": {
+                  "validation": "required"
+                },
+                "CHN": {
+                  "validation": "required"
+                },
+                "GTM": {
+                  "validation": "required"
                 }
+              },
+              "fallback": {
+                  "validation": " "
               }
             }
           ]
@@ -452,11 +498,16 @@
                   "validation": "required,regex-optional",
                   "regex": "^[0-9]{10,11}$",
                   "message": "10 or 11 digits"
+                },
+                "ARG|54": {
+                  "validation": "required,regex-optional",
+                  "regex": "^[0-9]{10,11}$",
+                  "message": "10 or 11 digits"
                 }
               },
               "fallback": {
                   "validation": "required,regex-optional",
-                  "title": "Secondary Phone Number",
+                  "title": "Primary Phone Number",
                   "regex": "^[0-9]{7,13}$",
                   "message": "7-13 digits"
               }
@@ -524,6 +575,11 @@
                 },
                 "BRA|55": {
                   "validation": "regex-optional",
+                  "regex": "^[0-9]{10,11}$",
+                  "message": "10 or 11 digits"
+                },
+                "ARG|54": {
+                  "validation": "required,regex-optional",
                   "regex": "^[0-9]{10,11}$",
                   "message": "10 or 11 digits"
                 }

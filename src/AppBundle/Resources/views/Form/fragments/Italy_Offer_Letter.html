@@ -1,390 +1,306 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement --> 
+<div class="modal" id="modal" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12">
+                <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','date');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal2" style="display:none;">
+    <div class="modal-content">
+        <p class="lifesuite__h2" style="margin-left: 0;"><strong>Electronic Signature</strong></p>
+        <p><$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
+        <div class="row">
+            <div class="col-lg-12"> 
+                <strong>Type your Name:</strong> <input type=text id="eSignature2" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp; 
+                <div class="lifesuite__clearfix lifesuite__float-right" style="margin-right:-15px; width: 278px;"> 
+                    <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature2','eSignature2','SignerMan','modal2','over','sv2','date2');xbObj('eSignature2').value='';document.getElementById('eSignature2').focus();">&nbsp; 
+                    <input id="clear-sig-2" type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature2','date2');}">&nbsp; 
+                    <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
 <!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
-<div class="sh" id="modal" style="display:none;"">
-<div id="box">
-<b>Electronic Signature</b>
-<p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
-<br>
-<b>Type your Name:</b> 
-<input type=text id="eSignature1"> 
-<input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" onClick="validateSignature('signature','eSignature1','first_name,last_name','over','modal','sv');xbObj('eSignature1').value='';"> 
-<input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';"> 
-<input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">        
-</div>
-</div>
-<div id="over" style="display:none;"></div>
-<SCRIPT>
-showScreen('over')
-</SCRIPT>
-<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
-<div class="sh" id="modal2" style="display:none;"">
-<div id="box">
-<b>Electronic Signature</b>
-<p style="font-weight:normal;padding:0px"><$client.env.eval(client.env.param.verbiage.length()==0?'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the 
-information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten signature.':client.env.param.verbiage)></p>
-<br>
-<b>Type your Name:</b> 
-<input type=text id="eSignature2"> 
-<input type="button" class="appInputButton RCappInputButtonBlue" value="Sign" 
-
-onClick="validateSignature('signature2','eSignature2','','over','modal2','sv2');xbObj('eSignature2').value='';"> 
-<input type="button" class="appInputButton RCappInputButtonOrange" value="Clear" onClick="xbObj('signature2').value='';showHide('modal2');showHide('over');xbObj('eSignature2').value='';"> 
-<input type="button" class="appInputButton RCappInputButtonOrange" value="Cancel" 
-onClick="showHide('modal2');showHide('over');xbObj('eSignature2').value='';">        
-</div>
-</div>
-<div id="over" style="display:none;"></div>
-<SCRIPT>
-showScreen('over')
-</SCRIPT>
-<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-
-
-
-
-
-<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave ?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);">
-<div style="display:none;">
-<$client.env.FormField.Form_Name.prompt>
-<$client.env.FormField.Form_Name.HTML>
-<$client.env.FormField.Form_Type.prompt>
-<$client.env.FormField.Form_Type.HTML>
-<$client.env.FormField.Form_Owner.prompt>
-<$client.env.FormField.Form_Owner.HTML>
-<$client.env.FormField.Form_CreateDate.prompt>
-<$client.env.FormField.Form_CreateDate.HTML>
-<$client.env.FormField.Form_Completed.prompt>
-<$client.env.FormField.Form_Completed.HTML>
-<$client.env.FormField.Form_Delivered.prompt>
-<$client.env.FormField.Form_Delivered.HTML>
-<$client.env.FormField.Form_TaskId.prompt>
-<$client.env.FormField.Form_TaskId.HTML>
-<$client.env.FormField.display_version.HTML>
-
-<$client.env.FormField.Signature.prompt>
-<$client.env.FormField.Date.prompt>
-<$client.env.FormField.First_Name.prompt>
-<$client.env.FormField.Last_Name.prompt>
-<$client.env.FormField.Recruiter.prompt>
-<$client.env.FormField.SignatureVerification.prompt>
-<$client.env.FormField.hidden_pg1.prompt>
-<$client.env.FormField.hidden_pg2.prompt>
-<$client.env.FormField.hidden_pg3.prompt>
-</div>
-<input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
-
-
-
-
-
-
-<table width="100%">
-
-<tr valign="top">
-<td rowspan="6" width="50%">
-<img src="<$link;/main/RedCarpet/FormTemplates/eBay_Template_Contract_Ireland_eBay_rptest/Ebay_logo.png>" border="0" width="180" height="80">
-</td>
-<td align="right" width="50%"><strong>eBay</strong></td>
-</tr>
-<tr>
-<td align="right">Atrium Building</td>
-</tr>
-<tr>
-<td align="right">Old Navan Road</td>
-</tr>
-<tr>
-<td align="right">Blanchardstown</td>
-</tr>
-<tr>
-<td align="right">Dublin 15</td>
-</tr>
-<tr>
-<td align="right">Ireland</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-</tr>
-
-</table><br><br>
-
-
-
-
-<div id="clauses" style="width:100%;">
-
-<div id="clause_1_11"> Strictly Private and Confidential<br><br><$client.tForWhomUserInfo.EnityName> Contract of Employment<br><br><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name><br><$client.tForWhomUserInfo.Address1><br><$client.tForWhomUserInfo.Address2><$client.env.eval(client.tForWhomUserInfo.Address2.length()>0?"<br> ":"")><$client.env.eval(client.tForWhomUserInfo.City.length()>0?'<$client.tForWhomUserInfo.City>, ':'')><$client.tForWhomUserInfo.State> <$client.tForWhomUserInfo.Postal_Code><br><br><$client.env.eval(date.now('%d %B %Y'))><br><br></div>
-
-<div id="clause_2_13"><br>Dear <$client.tForWhomUserInfo.First_Name>,<br><br>In accordance with the Terms of Employment (Information) Acts, 1994 - 2001, your employment with <$client.tForWhomUserInfo.EnityName>; the Company, shall be subject to the following terms and conditions. <br><br>This offer of employment is subject to you providing evidence of eligibility to work in Ireland.<br><br></div>
-
-
-<div id="clause_4_4" style="display:<$client.env.eval(((client.tEventCategories_Category_17.Code=='RLYes')&&(client.tEventCategories_Category_18.Code!='RM001'))?'block':'none')>">
-Your continued employment is conditional upon you providing evidence of eligibility to work in Ireland and you satisfying the ongoing requirements of the eBay@Home Policy (as may be amended by the Company, from time to time).<br><br>Your employment is offered under the terms and conditions contained in this contract, and in conjunction with <$client.tForWhomUserInfo.EnityName> policies and procedures which can be found on the Company’s intranet.  These policies and procedures will be provided to you as part of your induction.  The Company policies may be amended from time to time and are not legally binding.  It is your responsibility to appraise yourself of any changes to the Company’s policies and procedures.<br><br></div>
-
-<div id="clause_4_4" style="display:<$client.env.eval(((client.tEventCategories_Category_17.Code=='RLYes')&&(client.tEventCategories_Category_18.Code=='RM001'))?'block':'none')>">
-Your continued employment is conditional upon you providing evidence of eligibility to work in Ireland and you satisfying the ongoing requirements of the Remote Working Appendix and of any policy or standard relating to home-working notified to you (as may be amended by the Company, from time to time.<br><br>Your employment is offered under the terms and conditions contained in this contract, and in conjunction with eBay Europe Services Ltd. policies and procedures which can be found on the Company’s intranet. These policies and procedures will be provided to you as part of your induction.  The Company policies may be amended from time to time and are not legally binding. It is your responsibility to appraise yourself of any changes to the Company’s policies and procedures.<br><br></div>
-
-<div id="clause_3_4">Employer<br>Your employment with the Company will continue subject to the provisions of this contract until terminated by either party in accordance with the terms of this contract.<br><br></div>
-
-<div id="clause_4_4" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'))?'block':'none')>">Position<br>You will be employed as <$client.tForWhomUserInfo.Business_Title> and you will initially report to <$client.tForWhomUserInfo.MngrBsnssTitle> subject to the provision of this clause and clause entitled “Probation” below.  Your employment with the Company will commence on the <$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.StartDate))>','%d %B %Y'))>.<br><br></div>
-
-<div id="clause_5_6" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T'))?'block':'none')>">Position<br>Subject to the probationary period and the provision of clause entitled “Probation” below, you will be employed as <$client.tForWhomUserInfo.Business_Title> and you will initially report to <$client.tForWhomUserInfo.MngrBsnssTitle> from the <$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.StartDate))>','%d %B %Y'))> for a fixed term of <$client.tForWhomUserInfo.FTELength> months.  Notwithstanding the fact that this is a Fixed-Term Contract, the Company reserves the right to terminate this contract in advance of its termination date.  The provisions of the Unfair Dismissals Acts 1977-2007 shall not apply to the termination of your employment with the Company where such termination occurs by reason only of the expiry of the fixed term herein.<br><br></div>
-
-<div id="clause_6_5" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='I'))?'block':'none')>">Position<br>You will be employed as an intern and you will initially report to <$client.tForWhomUserInfo.MngrBsnssTitle>  from the <$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.StartDate))>','%d %B %Y'))> for a fixed term of <$client.tForWhomUserInfo.InternshipLength> weeks. The provisions of the Unfair Dismissals Acts 1977-2007 shall not apply to the termination of your employment with the Company where such termination occurs by reason only of the expiry of the fixed term herein.<br><br></div>
-
-<div id="clause_6_5" style="display:<$client.env.eval(((client.tForWhomUserInfo.Employee_Type=='1'))?'block':'none')>">No previous employment counts as part of your continuous employment with the Company.<br><br></div>
-
-<div id="clause_6_5" style="display:<$client.env.eval(((client.tForWhomUserInfo.Employee_Type=='2') || (client.tForWhomUserInfo.Employee_Type=='4'))?'block':'none')>">Your employment with <$client.tForWhomUserInfo.Previous_Entity_Name> counts as part of your continuous employment and therefore your continuous employment for statutory purposes began on <$client.env.eval(Date.Format('<$client.env.eval(Date.parse(client.tForWhomUserInfo.Original_Hire_Date))>','%d %B %Y'))>.<br><br></div>
-
-<div id="clause_7_4">However, your reporting relationship is subject to change in the future as the Company requires maximum flexibility from all staff while endeavouring to give a broad range of experience and exposure to staff.<br><br></div>
-
-<div id="clause_8_14" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T')) ?'block':'none')>">Your duties will include those specified to you in your job description. In addition, you must be prepared to undertake such other work as may be assigned to you by the Company from time to time.  Such work may be outside the area of your normal duties and it may be for such Entity companies as the Company may require.<br><br>You will perform all acts, duties and obligations and comply with such orders as may be designated by the Company and which are reasonably consistent with your position.  The Company reserves the right to give further instructions as regards your tasks and duties with the Company from time to time.  The Company may require you (as part of your duties of employment) to perform duties or services not only for the Company but also for any of its affiliates where such duties or services are of similar status to or consistent with your position with the Company.  The Company may at its sole discretion; assign your employment to any affiliate on the same terms and conditions set out, or referred to, in this Contract.<br><br></div>
-
-<div id="clause_9_6">Place of Work<br>The operational base for the above position will be <span id='AddressPlace'></span> <$client.tForWhomUserInfo.IEPPContractAddress>. <$client.env.eval((client.tEventCategories_17.Value !='Yes')?'However, you may be required from time to time to work or travel outside of the operational base.  Business Travel Accident Insurance (BTA) will be provided through the Company’s Global Corporate Policy. In such circumstances, the Company will endeavour to give you as much notice of its requirement for you to travel as is reasonably possible, however, there may be occasions when it is not possible to give you such notice. Your place of work may change at the discretion of the company.':'')><br><br></div>
-
-<div id="clause_10_6">Hours of Work<br>Your basic working hours will be 40 hours per week. Your manager will assign you your schedule. There is a high degree of flexibility required of all employees in relation to business needs and these hours of work may be changed at the discretion of the Company who will endeavour to give you as much notice as possible of any changes to working hours<br><br>
-
-<$client.env.eval((client.tEventCategories_17.Value=='Yes')?'You hereby agree to fully co-operate in assisting the Company to maintain accurate records of your working hours for the purposes of the Organisation of Working Time (Records) (Prescribed Form and Exemptions) Regulations 2001.<br><br>':'')></div>
-
-<div id="clause_11_4" style="display:<$client.env.eval((((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='I'))) && ((client.tForWhomUserInfo.Exempt=='N')) ?'block':'none')>">While the Company will endeavour to facilitate you with the shift patterns of your choice it cannot guarantee that you will be assigned to the shift pattern of your choice. You may also be required to work additional hours by way of overtime in line with company policy.  The fact that you may be required to work on a Sunday is taken into account in the determination of your rate of remuneration.  The breaks applicable to your particular shift can be found in the Work hours and pay policy which will be provided to you as part of your induction.<br><br></div>
-
-<!--div id="clause_12_10" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='I'))?'none':'block')>">Probation<br><$client.env.eval(((((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T') && (client.tForWhomUserInfo.FTELength>=11) )||(client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R')) && ((client.tForWhomUserInfo.Exempt=='N') || (client.tForWhomUserInfo.Exempt=='E')))?'You will be initially employed for a probationary period of <$client.tForWhomUserInfo.Telesales_Probation_Ireland_Paypal> months':'')><$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T') && (client.tForWhomUserInfo.FTELength<=10) && ((client.tForWhomUserInfo.Exempt=='N') || (client.tForWhomUserInfo.Exempt=='E'))) ?'You will be initially employed for a probationary period of 2 (two) months':'')> during which your performance/conduct/behaviour<$client.env.eval((((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='I'))) && ((client.tForWhomUserInfo.Exempt=='N')) ?'/attendance/timekeeping ':'')> will be reviewed to ascertain your suitability for a continued role with the Company.  The Company reserves the right to extend this probationary period at its sole discretion subject to a maximum period of eleven months.  Your employment may be terminated either during this period or on the expiry thereof at the discretion of the Company without the application of the disciplinary procedure.  In such case, either party may terminate the employment by giving to the other party two weeks' notice in writing.  The Company may in its sole discretion pay you salary in lieu of notice.<br><br></div-->
-
-<div id="clause_12_10" style="display:<$client.env.eval(((client.tForWhomUserInfo.Telesales_Probation_Ireland_Paypal==0))?'none':'block')>">Probation<br><$client.env.eval(((((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T') && (client.tForWhomUserInfo.FTELength>=11) )||(client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R')) && ((client.tForWhomUserInfo.Exempt=='N') || (client.tForWhomUserInfo.Exempt=='E')))?'You will be initially employed for a probationary period of <$client.tForWhomUserInfo.Telesales_Probation_Ireland_Paypal> months':'')><$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T') && (client.tForWhomUserInfo.FTELength<=10) && ((client.tForWhomUserInfo.Exempt=='N') || (client.tForWhomUserInfo.Exempt=='E'))) ?'You will be initially employed for a probationary period of 2 (two) months':'')> during which your performance/conduct/behaviour<$client.env.eval((((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='I'))) && ((client.tForWhomUserInfo.Exempt=='N')) ?'/attendance/timekeeping ':'')> will be reviewed to ascertain your suitability for a continued role with the Company.  The Company reserves the right to extend this probationary period at its sole discretion subject to a maximum period of eleven months.  Your employment may be terminated either during this period or on the expiry thereof at the discretion of the Company without the application of the disciplinary procedure.  In such case, either party may terminate the employment by giving to the other party two weeks' notice in writing.  The Company may in its sole discretion pay you salary in lieu of notice.<br><br></div>
-
-
-
-<div id="clause_13_10">Remuneration<br><br>Salary<br>Details of your salary are specified in your offer letter. You will be paid on a four weekly basis, two weeks in arrears for a total of 13 pay periods per year. Your salary will be reviewed on an annual basis; however the Company is under no obligation to increase your salary in any year. <br><br>Your salary will be payable directly to your Irish bank account/ building society account by credit transfer.  You will provide the Company with full details relating to your bank account and if you do not have a bank account, you will open one immediately.  Your salary can only be paid into an Irish bank Account of which you are the sole account holder or joint account holder.  Your salary can only be paid by means of bank transfer. <br><br>You may, under Section 23 of the National Minimum Wage Act 2000, request from the Company a written statement of your average hourly rate of pay for any pay reference period falling within the previous 12 months as provided for in that section.<br><br></div>
-
-<div id="clause_14_2">Expenses<br>You will be entitled to be reimbursed in respect of such expenses as are properly incurred by you in connection with the business of the Company provided same are properly vouched.<br><br></div>
-
-<div id="clause_15_4" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R')) && ((client.tForWhomUserInfo.Relocation=='Y')) ?'block':'none')>">In the event that your employment ceases for any reason prior to completion of first year from relocation date, the net value of the Relocation Assistance shall be refundable to the Company on a pro-rated basis and your repayment obligation will be reduced by 1/12 for every full month of employment over the course of the year.  If you do not repay this amount to the Company reserves the right to deduct the full amount from your salary and /or to seek to recover such relocation assistance from you as a contractual debt.<br><br></div>
-
-<div id="clause_16_2" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T'))?'block':'none')>">Bonus<br>You may be entitled to a small bonus for work well done.  This bonus will be at the absolute discretion of your manager.<br><br></div>
-
-<div id="clause_17_2">Benefits<br><br></div>
-<!--
-<div id="clause_18_2" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'))?'block':'none')>">Bonus<br>For details regarding your bonus eligibility please see your offer letter.<br><br></div>
--->
-
-<div id="clause_19_10">Holidays<br>Your holiday entitlement shall be 200 hours per annum in accordance with the provisions of the Organisation of Working Time Act, 1997.  While on probation you may only take holidays that you have accrued. Your annual leave hours accrue at 16.66 hours per month.  While the Company will make every effort to accommodate your vacation requests, the needs of our customers must also be considered and for this reason you are advised to request vacations as far in advance as possible. The final decision in allocating annual leave dates rests with the Company.  <br><br>The Company's annual leave year runs from 1 January to 31 December each year.  You should endeavour to take all annual leave within the leave year to which it relates. Employees who have not used their full entitlement in any calendar year will be permitted to carry over up to maximum of 40 hours into the following calendar year. Any annual leave hours carried over must be taken before March 31st of the new calendar year.<br><br></div>
-
-
-
-
-
-
-
-
-<div id="clause_190_10">You are also entitled to public holidays in accordance with the Organisation of Working Time Act, 1997.   If for operational reasons you are required to work on a public holiday, the Company will give you a paid day off within a 4 week period of the day, an additional day of annual leave or an additional days pay. <br><br>If your employment commences or is terminated during the annual leave year, your holiday entitlement will be assessed on a pro rata basis. When, in the event of the termination of your employment, the paid holidays already taken exceed the paid holiday entitlement on the date of termination, the Company will deduct the excess holiday pay from any termination pay. If the amount of money owing to you for such a deduction is insufficient, you will repay the Company whatever sum is necessary to recover the excess.<br><br></div>
-
-
-
-
-<div id="clause_20_15" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'))?'block':'none')>">Private Health Insurance <br>The Company operates a Health Insurance Plan to which the Company contributes 100% of the cost for you and your immediate family.  Children up to the age of 18 or 21 if in full time education are covered by the Company contribution. Participation in the health insurance plan is subject to the rules and provisions of the scheme and any related contracts or policies of insurance in force from time to time.  The Company reserves the right to amend or withdraw this benefit at any time.  If a scheme provider refuses for any reason (whether under its own interpretation of the terms of the relevant insurance policy or otherwise) to provide the relevant benefits(s) to you, the Company shall not be liable to provide, or compensate for the loss of such benefit(s).<br><br></div>
-
-<div id="clause_21_10" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'))?'block':'none')>">
-Sick Pay Scheme <br>
-Subject to compliance with the provisions of clause 9, you may be eligible at the Company’s discretion to participate in the Company's Sick Pay Scheme which covers the first 26 weeks of absence due to illness in any twelve month period. The Company reserves the right to decline to pay sick pay or to cease paying sick pay to you at any time and will review each case on an individual basis. If you receive company sick pay, you are required to claim for and refund to the Company all monies which you are entitled to receive in respect of Social Welfare and in default the Company is entitled to disqualify you from payment under the Sick Pay Scheme or to reduce the amount payable to you. Additional rules may be set out in any sickness absence Policies on the Company’s intranet or other rules notified to you and with which you must comply . Entry to the Sick Pay Scheme is at the absolute discretion of the Company. <br><br>The Company will not usually pay Discretionary Sick Pay in the following circumstances: <br>&nbsp;&nbsp;&nbsp;&nbsp;&bull; during your probationary period <br>&nbsp;&nbsp;&nbsp;&nbsp;&bull; during notice of termination of employment (whether given by the Company or you); <br>&nbsp;&nbsp;&nbsp;&nbsp;&bull; if the Company has commenced any formal performance improvement process (PIP) or disciplinary process or notified you of an intention to do so or if any such hearing is pending or if you have an active disciplinary warning or are under a formal PIP; or<br>&nbsp;&nbsp;&nbsp;&nbsp;&bull; if the Company has commenced (or notified you of an intention to commence) any redundancy consultation process with you. <br><br>Note: this is not an exhaustive list of the circumstances in which Discretionary Sick Pay may not be paid and payment remains in the sole discretion of the Company. The Company will comply with any obligation imposed by law, including regarding any disability, if applicable.<br><br></div>
-
-<div id="clause_22_15" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'))?'block':'none')>">Income Protection Insurance-IPI <br>Income Protection Insurance is an insurance policy which provides an income benefit in the event of a long term illness of an employee.  <br><br>Employees may be eligible to receive benefit under the IPI Scheme from the 27th week of absence due to illness. Entry to the IPI Scheme is at the discretion of the Company and the insurer.  <br><br>If an employee's absence from work is occasioned by the actionable negligence of a third party in respect of which damages may be recoverable, the employee must notify the Company of that fact and of any claim, compromise, settlement or judgment made or awarded in connection therewith and the employee shall provide the Company with all relevant details. In such circumstances, all remuneration paid to the employee by the Company during his/her absence or payments made to any third party including payments in respect of pension contribution, income or other tax and pay related social insurance contributions in respect of the employee's remuneration during such absence, constitute loans by the Company to the employee and must be repaid by the employee on demand by the Company. The liability to repay such loans shall arise when demanded by the Company, though the Company may agree at its discretion to refrain from taking action to enforce the repayment pending the outcome of the employee’s claim vs the third party and may agree, at its sole discretion to limit enforcement of the repayment to the sums the employee recovers from the third party as loss of earnings relating to the sums so loaned, (and whether such recovery arises by reason of any claim, compromise, settlement or judgment).<br><br></div>
-
-
-
-
-<div id="clause_23_2" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'))?'block':'none')>">Life Assurance  <br>The Company's Life Assurance Scheme which is non-contributory and provides for four times your annual salary which becomes effective immediately on the commencement of your employment with the Company.<br><br></div>
-
-<div id="clause_24_2" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'))?'block':'none')>">Business Travel Accident Insurance  <br>(BTA) will be provided through the Company’s Global Corporate Policy.  In such circumstances, the Company will endeavour to give you as much notice of its requirement for you to travel as is reasonably possible, however, there may be occasions when it is not possible to give you such notice.<br><br></div>
-
-<div id="clause_25_6" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'))?'block':'none')>">PRSA Scheme  <br>Upon the commencement of your employment you will be eligible to participate in a Personal Retirement Saving Account (PRSA) facility.  You can, if you wish, contribute a percentage of your salary to the PRSA subject to the Revenue rules.  The Company will in turn match your contributions up to a maximum of 7 % of your gross basic salary.  The Company reserves the right to review the level of its contributions to this plan as business needs dictates.<br><br></div>
-
-<div id="clause_26_2" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'))?'block':'none')>">Your entitlement under the Life Assurance and PRSA schemes above and the cover provided will be subject to any restrictions or maximum levels imposed by the Company's insurers and the rules and regulations of such schemes as are in force from time to time.<br><br></div>
-
-<div id="clause_27_15">Conditions of Benefits <br><br>For the avoidance of doubt, you acknowledge and accept the Company’s right to deduct any benefit in kind tax payable in respect hereof from your salary from time to time.<br><br>No liability will accrue to the Company in the event that cover under any benefit scheme provided by the Company for you is refused by the provider of such scheme(s) or any conditions or limitations to the benefit are applied by the provider.  The Company’s sole obligations in respect of any benefit schemes which may be offered from time to time is to pay the premium from time to time required by the provider and to pay you such sums (if any) as may from time to time be received by the Company from the provider in respect of any claim made by you under any scheme.  For the avoidance of doubt, the Company shall be under no obligation to take any action to enforce the terms of any benefit scheme or otherwise to procure the benefit of any scheme for you.  Your participation in any benefit scheme and/or receipt or anticipated receipt of benefits under any such scheme shall not in any way interfere with the Company’s entitlement to terminate your employment in accordance with the terms of this Agreement.<br><br></div>
-
-<div id="clause_28_13">Absence<br>In the event of absence from work, <$client.env.eval((((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='I'))) && ((client.tForWhomUserInfo.Exempt=='N')) ?'you are required to contact the WFM Sickline number and your supervisor/manager personally by phone within one hour of the start of your shift on the first day of absence ':'')> <$client.env.eval((((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='I'))) && ((client.tForWhomUserInfo.Exempt=='E')) ?'contact your manager':'')>. Contact by way of text message or email will not suffice.  If your absence is due to illness, a certificate from a qualified medical practitioner, stating the medical reason for your absence, and the expected duration thereof, must be submitted on the third day of a continuous absence and on a weekly basis thereafter.  The Company reserves the right to have you examined by a medical practitioner or a specialist of its choice.<br><br></div>
-
-
-<div id="clause_280_10"><$client.env.eval((((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='I'))) && ((client.tForWhomUserInfo.Exempt=='N')) ?' Further details on the attendance and timekeeping policy are available on the Company intranet and will be provided to you as part of your induction.<br><br> If you fail to attend work for your scheduled shift and fail to call your Supervisor/Manager within one hour from the start of your scheduled shift this may be considered, in the absence of a reasonable explanation, to be misconduct and you may be subject to disciplinary action at the discretion of the Company up to and including the termination of your employment contract.<br><br>':'')>If you fail to attend work and fail to call your Supervisor/Manager for 3 days consecutively you are deemed to have voluntarily terminated your employment.<br><br></div>
-
-<div id="clause_29_12">Other Employment <br>You will not, while employed by the Company, be employed, engaged or interested in any other business, activity, employment or any other outside commercial interests without the express permission in writing of the Company.  The Company will not withhold this consent unreasonably.  If you have any concerns about whether another employment is in contravention of your obligations under this clause you should speak to your supervisor/manager  or a Business Ethics Officer who will do their best to assist you make a decision in this regard. <br><br>By signing this Contract you accept that the Company is your primary employer and that you will not enter into other employment which will have the effect of your working hours exceeding more than an average of 48 hours per week calculated over 4 months.<br><br></div>
-
-<div id="clause_30_17">Confidentiality <br>You may not without authorisation disclose any information of a confidential nature relating to the Company or any associated Companies or their business or in respect of which the Company owes an obligation of confidence to any third party during or after your employment except in the proper course of your employment or as required by law.<br><br>You may not remove any documents or things belonging to the Company or which contain any confidential information from the Company's premises at any time without proper advance authorisation.<br><br>You must return to the Company upon request and, in any event, upon the termination of your employment, all documents and things belonging to the Company or which contain or refer to any confidential information and which are in your possession or under your control.<br><br>The Employee Proprietary Information and Inventions Agreement is enclosed for your review and approval.  This form must be submitted to the Company before your start date.<br><br></div>
-
-<div id="clause_31_15">Health and Safety <br>The Company will take all reasonably practicable steps to ensure your health, safety and welfare while at work.  In addition, you shall take reasonable care for your own safety and health and that of any of your fellow employees and any other persons who may be affected by your acts or omissions while at work.<br><br><$client.env.eval((client.tEventCategories_17.Value=='Yes')?'The Company reserves the right to attend at your home to carry out a workspace risk assessment. The Company  shall be entitled to inspect your workspace upon one day’s advance notice. In the case of an injury while working at home, you must immediately notify the Company.<br><br>':'')>You shall co-operate fully with the Company, all of your fellow employees and any other persons to such extent as will enable the Company, its employees, servants, agents and all other relevant persons to comply with any provisions of the Safety, Health and Welfare at Work Act, 2005, all and any Regulations made pursuant to that Act and any other relevant legislation which may be in force from time to time.<br><br>You are required to use any clothing, equipment, appliance or other means which are provided by the Company for securing your health, safety or welfare while at work.  Your failure to co-operate with this clause will be regarded as a disciplinary matter and may lead to your dismissal.<br><br>You are required to familiarise yourself with the Company's Health & Safety Policy.<br><br></div>
-
-<div id="clause_31_16" style="display:<$client.env.eval(((client.tEventCategories_17.Value=='Yes'))?'block':'none')>">Confidential Information <br> You are responsible for ensuring the security of all confidential information in your home. In particular, you undertake to: <br>
-a)&nbsp;&nbsp;encrypt and/or protect by password any confidential information held on your  home computer;<br>
-b)&nbsp;&nbsp;lock your computer terminal whenever it is left unattended;<br>
-c)&nbsp;&nbsp;ensure any wireless network is secure;<br>
-d)&nbsp;&nbsp;keep all papers in filing cabinets that are locked when not in use;<br>
-e)&nbsp;&nbsp;comply with the Company’s data protection policy from time to time in force.<br>
-<br></div>
-
-<div id="clause_31_16" style="display:<$client.env.eval(((client.tEventCategories_17.Value=='Yes'))?'block':'none')>">Right to Enter<br> You hereby consent to the Company’s representatives, at one day’s notice, entering your home address to:<br>
-a)&nbsp;&nbsp;install, inspect, replace, repair, maintain or service any property belonging to the Company during your employment;<br>
-b)&nbsp;&nbsp;carry out health and safety risk assessments of property belonging to the Company and your workspace during your employment; and<Br>
-c)&nbsp;&nbsp;recover property belonging to the Company on or after termination of your employment. <br><br></div>
-
-<div id="clause_32_3">Deductions <br>The Company has the right to deduct from your pay, any sums which you may owe the Company, including, without limitation, any overpayments or loans made to you by the Company or losses suffered by the Company as a result of your negligence or breach of Company rules.<br><br></div>
-
-<div id="clause_33_7">Offenses <br>Your employment with the Company is at all times subject to you not becoming involved in any criminal activity or being convicted of a criminal offence other than summary Road Traffic Acts offences or an offence which in the reasonable opinion of the Company does not affect your position with the Company.<br><br>In the event that while in employment you become convicted of criminal activity, disciplinary action, up to and including dismissal may be taken.<br><br></div>
-
-<div id="clause_34_5">Lay-off/Short-time <br>The Company reserves the right to lay you off from work or reduce your working hours where, through circumstances beyond its control, it is unable to maintain you in employment or maintain you in full-time employment.  You will receive as much notice as is reasonably possible prior to such lay-off or short-time.  <br><br>You will not be paid during the lay-off period and you will only be paid for hours actually worked during periods of short-time.<br><br></div>
-
-<div id="clause_35_10">Search <br>The Company reserves the right to search your person, property or vehicle while on or when departing from the Company premises.  In the event of you unreasonably refusing to submit to a search, this will be treated as misconduct on your part.  Accordingly, it may be dealt with through the disciplinary procedure and may lead to your dismissal.<br><br></div>
-
-<div id="clause_36_15" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='I'))?'none':'block')>">Notice Period <br>Subject to the clause 5 entitled "Probation" above, the Company may terminate your employment by the Company on the giving of four weeks’ notice in writing unless your entitlement to statutory notice under the Minimum Notice and Terms of Employment Act 1973 – 2001 is greater, in which case statutory notice applies. Where you intend to resign from your employment, you will be required to give the Company four weeks’ notice in writing.<br><br>The Company may, in its discretion pay you salary in lieu of notice. Nothing in this Contract shall prevent the giving of a lesser period of notice by either party where it is mutually agreed.  <br><br>The Company further reserves the right to require you not to attend the Company’s premises during any period of notice, or, alternatively to require you to carry out other duties and functions as may be prescribed by the Company during this time.<br><br>In the event of the termination of your employment by reason of serious misconduct on your part, you will not be entitled to receive notice in accordance with this clause.  <br><br>This Agreement will automatically terminate without any right to notice or compensation when you attain the normal retirement age of sixty six (66) years.<br><br></div>
-
-<div id="clause_37_10">Disciplinary & Grievance Procedures <br>Copies of these procedures can be found on the Company intranet.  The disciplinary procedure includes details of the procedure which will be observed in the event of your dismissal in accordance with Section 14 of the Unfair Dismissals Acts 1977-2007. Subject to clause 5 above, your employment may be terminated either during your probation or on the expiry thereof at the discretion of the Company without the application of the disciplinary procedure.<br><br></div>
-
-<div id="clause_38_15">Data Protection  <br>The Company may from time to time collect and retain personal data about you from which you may be identified.  While much of your personal data will come directly from you, there will be circumstances where personal data from other sources will be collected and retained by the Company.  The Company will typically hold personal data on your personnel file but it will also hold <$client.env.eval((((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='T')) || ((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='I'))) && ((client.tForWhomUserInfo.Exempt=='N')) ?'working time records,':'')> payroll records, records of phone, email, internet and other IT usage and so on which will include data directly related to you.  The Company does not propose disclosing your personal data to any third party outside the Company, save where required by law to do so.<br><br></div>
-
-<div id="clause_380_25">Employee information may be stored in hard and electronic format locally within the office of your employment as well as in the United States and other countries in which the Company, Company affiliates, agents, or contractors have a physical presence.  Employee information may be shared in the normal course and scope of business with other Company affiliates and employees worldwide to facilitate the uses described above. Employee information may also be shared with third party vendors (e.g. medical benefit providers, stock brokerages, retirement benefit providers, etc.) whom the Company has chosen to outsource work to, in order to facilitate the uses described above. In the event that data is provided to an outsourced third party, the Company will maintain its right to ownership of information and ensure that adequate privacy precautions are taken.  As permitted by law, the Company may share Employee information with legal and regulatory authorities to comply with an investigation or when we believe in good faith that the disclosure is necessary to: prevent imminent physical harm or financial loss; or report suspected illegal activity.<br><br>The specific Corporate Privacy Policy is enclosed for your review and signature.  This form must be returned to the Company before your start date and that by signing this Contract you are confirming your acceptance of this situation and approving the Company to forward this information to the parent company or to any group company, located outside the European Economic Area (EEA). <br><br>By signing this Contract, you hereby consent to the collection and retention of such personal data.<br><br></div>
-
-<div id="clause_39_2">Intellectual Property <br>The Employee Proprietary Information and Inventions Agreement is enclosed for your review and approval.  This agreement must be signed and submitted to the Company before your start date.<br><br></div>        
-
-<div id="clause_40_38" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'))?'block':'none')>">Post-Termination Restrictions <br><br>In this clause, the following expressions shall have the following meanings unless the context otherwise admits:<br><br>“Associated Company” means a company which for the time being is: a Entity (as defined in Section 155 of the Companies Act 1963) of the Company; and/or a holding company (as defined in Section 155 of the Companies Act 1963) of the Company; and/or any other company on behalf of which you carry out duties at the request of the Company; and/or a company which is an undertaking of substantial interest of the Company within the meaning of Section 16 of the Companies Act 1986; and/or any other company designated by the Company as an associated company;<br><br>“Directly or Indirectly” means whether alone, jointly or as principal or agent, whether in conjunction with or on behalf of any other Person as employee, consultant, director (including a shadow director), partner, shareholder or otherwise;<br><br>“Person” means any individual person, firm, company, partnership, unincorporated association, joint venture or other entity;<br><br>“Restricted Area” means the island of Ireland;<br><br>“Termination Date” means the date of termination of your employment for whatsoever reason.<br><br>For the duration of your employment and for a period of <$client.env.eval(((client.tForWhomUserInfo.SalaryGrade<=27)) ?'6 months':'')><$client.env.eval(((client.tForWhomUserInfo.SalaryGrade>=28)) ?'1 year':'')> following the Termination Date, without the prior written consent of the Company, you  will not Directly or Indirectly within the Restricted Area  <br><br>canvass, solicit or approach or cause to be canvassed, solicited or approached for orders any Person who at any time during the 6 months immediately preceding the Termination Date is or was in negotiation for the supply of goods or services with the Company; a client or customer of the Company; or in the habit of dealing with orders that relate to goods and/or services which are competitive with or of the type supplied by the Company and in respect of whom you or one of your subordinates acting in the course of his/her duties dealt or had contact with that Person during the 6 months immediately preceding the Termination Date;<br><br>solicit or entice or endeavour to solicit or entice away from the Company or employ any person who was employed in an executive, supervisory, technical, sales or senior administrative capacity independent contractor or consultant by the Company at any time during the 6 months preceding the Termination Date and in respect of whom you, acting in the course of your duties dealt or had contact during the 12 months immediately preceding the Termination Date;<br><br></div>
-
-
-<div id="clause_40_49" style="display:<$client.env.eval(((client.tForWhomUserInfo.EMPLOYEE_GROUP_CD=='R'))?'block':'none')>">be engaged, concerned or interested in any Person who is a client or customer of the Company if such engagement, concern or interest causes or would cause the client or customer to cease or materially to reduce its orders or contracts with, or the volume of goods and services received from the Company.<br><br>For the period <$client.env.eval(((client.tForWhomUserInfo.SalaryGrade<=27)) ?'6 months':'')><$client.env.eval(((client.tForWhomUserInfo.SalaryGrade>=28)) ?'1 year':'')> following the Termination Date, without the prior written consent of the Company, you will not directly or indirectly within the Restricted Area be engaged, concerned or interested in or provide technical, commercial or professional advice to any Person which is wholly or partly in competition with the business of the Company (list of competitors available upon request at the time of termination).<br><br>You will not use in connection with any business any name that includes the name of the Company or any Associated Company or any colourable imitation of such names.<br><br>You acknowledge that while it is the intention of the parties to this Agreement that the restrictions set out in this clause are considered by the parties no greater than is necessary for the protection of the interests of the Company and any Associated Company, nevertheless in the event that any of the said restrictions be adjudged to be invalid or unenforceable by any Court of competent jurisdiction but would be adjudged fair and reasonable if any part of the wording thereof were amended, modified, deleted or reduced in scope then this clause shall apply with such amendments, modifications, deletions and reductions in scope as may be necessary to make them valid and effective.  <br><br>Nothing contained in this clause shall act to prevent you from using generic skills learnt while employed by the Company in any business or activity which is not in competition with the Company.<br><br>You shall, at the request and expense of the Company, enter into a direct agreement or undertaking with any Associated Company to which you provide services whereby you will accept restrictions corresponding to the restrictions in this clause (or such of them as may be appropriate in the circumstances) as the Company may reasonably require in the circumstances.<br><br>You agree that if in the course of your employment or thereafter during the continuance in force of the restrictions set out in this Clause 21, you receive an offer of employment from any Person, you will immediately provide that person with a complete and accurate copy of this Agreement.<br><br></div>
-
-<div id="clause_41_14">Electronic Monitoring <br>Please be advised that you may have your electronic communications monitored such as e mail, voicemail messages, computer files, internet use etc.  The Electronic Monitoring Acknowledgement Form is enclosed for your review and signature.  The Form must be returned to the Company before your start date and by signing this Contract you are confirming your acceptance of electronic monitoring.<br><br>Furthermore, please be advised that the Company has an "Acceptable Usage Policy" which you are required to observe when using the Company's computers and IT services such as email and Internet. Failure to comply with this policy may result in the disciplinary action being taken against you up to and including the termination of your employment contract.<br><br>The company has a phone usage policy; details on this are available on the company intranet<br><br></div>
-
-<div id="clause_42_17">Headings <br>The headings in this employment Contract are for convenience purposes only and have no legal effect<br><br>Notices<br>Any notice to be given by either party pursuant to this Contract must be in writing and sent by pre-paid post or delivered by hand to, in the case of the Company, its registered office for the time being and in your case to the last address submitted by you to the Company. Any such notice shall be deemed to have been served if by hand, at the time of delivery and if by registered post, 48 hours after posting.<br><br>Governing Law<br>Your employment will at all times and in all respects be governed by the laws of Ireland and subject to the exclusive jurisdiction of the Irish courts.<br><br>Please indicate your acceptance of this Contract of Employment by signing this letter and submitting to the Human Resources Department.<br><br>We look forward to welcoming you to <$client.tForWhomUserInfo.EnityName>.</div>
-
-
-</div><!--parent div-->
-
-
-
-<div id="hiddendiv_pg1">
-<$client.env.formfield.hidden_pg1.html>
-</div>
-<div id="hiddendiv_pg2">
-<$client.env.formfield.hidden_pg2.html>
-</div>
-<div id="hiddendiv_pg3">
-<$client.env.formfield.hidden_pg3.html>
-</div>
-<div id="hiddendiv_pg4">
-<$client.env.formfield.hidden_pg4.html>
-</div>
-<div id="hiddendiv_pg5">
-<$client.env.formfield.hidden_pg5.html>
-</div>
-<div id="hiddendiv_pg6">
-<$client.env.formfield.hidden_pg6.html>
-</div>
-<div id="hiddendiv_pg7">
-<$client.env.formfield.hidden_pg7.html>
-</div>
-<div id="hiddendiv_pg8">
-<$client.env.formfield.hidden_pg8.html>
-</div>
-<div id="hiddendiv_pg9">
-<$client.env.formfield.hidden_pg9.html>
-</div>
-<div id="hiddendiv_pg10">
-<$client.env.formfield.hidden_pg10.html>
-</div>
-<div id="hiddendiv_pg11">
-<$client.env.formfield.hidden_pg11.html>
-</div>
-<div id="hiddendiv_pg12">
-<$client.env.formfield.hidden_pg12.html>
+<form id="italy-offer-letter" name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="img-wrapper">
+                <img src="<$link;/RedCarpet/Onboarding/Uploads/Images/paypal_logo.jpg>" alt="PayPal Logo" class="img-responsive">
+            </div>
+        </div>
+    </div>
+    <template id="fragment-1">
+        <p>&nbsp;</p>
+        <p class="sidebar-address"><mark><$client.tForWhomUserInfo.EnityName></mark><br>Italiana -Via Roberto Lepetit 8/10,<br>20124 Milano Registered Address: Ballycoolin Business Park,<br>Ballycoolin Road, Blanchardstown,<br>Dublin 15, D15 VNC4 <br>Registered in Ireland No. 646492</p>
+    </template>
+    <template id="fragment-2">
+        <p>&nbsp;</p>
+        <p class="mb-5">
+            <mark><$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Middle_Name><$client.env.eval(client.tForWhomUserInfo.Middle_Name.length()>0?' ':'')><$client.tForWhomUserInfo.Last_Name></mark><br>
+            <mark><$client.tForWhomUserInfo.Address1></mark><br>
+            <% if ('<$client.tForWhomUserInfo.Address2>'.length > 0) { %>
+            <mark><$client.tForWhomUserInfo.Address2></mark><br>
+            <% } %>
+            <mark><$client.tForWhomUserInfo.Zip></mark>&nbsp;<mark><$client.tForWhomUserInfo.City></mark>
+        </p>
+        <p class="hide"></p>
+        <p class="text-right">Milan, <%= Current_Date %></p>
+        <p class="text-justify">Dear <mark><$client.env.eval(client.tForWhomUserInfo.Preferred_First_Name.length()>0?client.tForWhomUserInfo.Preferred_First_Name:client.tForWhomUserInfo.First_Name)></mark>,</p>
+        <p class="text-justify">Further to your <% if ('<$client.tForWhomUserInfo.EMPLOYEE_GROUP_CD>'=='T') { %><mark>application for a full-time fixed term position and your</mark><% } %> recent meetings and discussions, I am delighted to offer you the position of <mark><$client.tForWhomUserInfo.Business_Title></mark> with <mark><$client.tForWhomUserInfo.EnityName></mark> (the "Company").</p>
+        <p class="text-justify">Your gross annual base salary will be <mark><$client.tForWhomUserInfo.Salary_Amount></mark> Euros, <% if ('<$client.tForWhomUserInfo.EMPLOYEE_GROUP_CD>'=='T') { %><mark>prorated,</mark><% } %> paid monthly, directly into your bank account. </p>
+        <% if ('<$client.tForWhomUserInfo.Workplace_Model>' == 'In-Office') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Workplace Model = In Office"></div>
+            <p class="text-justify">You will be required to work from the Company’s office located at <mark><$client.tForWhomUserInfo.LOCATION_DISPLAYNAME></mark>. From time to time, you may be required to work at other locations, as directed by the Company.</p>
+        </div>
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.Workplace_Model>' == 'Virtual Flex') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Workplace Model = Virtual Flex"></div>
+            <p class="text-justify">Your role may be performed outside of a PayPal office part of the time with the use of virtual working tools we provide. You must work virtually from a location near to the <mark><$client.tForWhomUserInfo.LOCATION_DISPLAYNAME></mark> PayPal office, within Italy. In addition to any in-person working, you may also be required to attend a PayPal office for in-person collaboration.  We may amend or end the location of your role or remove the ability to work virtually at any time and will give you notice (but will not provide any compensation) if we do so.  You may find more details, including our expectations of you, within our Offsite Working Policy and associated policies.</p>
+        </div>
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.Workplace_Model>' == 'Virtual') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Workplace Model = Virtual"></div>
+            <p class="text-justify">Your role may be performed outside of a PayPal office, within Italy with the use of virtual working tools we provide. You may also be required to attend a PayPal office for in-person collaboration.  You may find more details, including our expectations of you, within our Offsite Working Policy and associated policies.</p>
+        </div>
+        <% } %>
+        <% if ('<$client.tEventCategories_Category_31.Value>' == 'Yes') { %>
+        <div class="marked">
+            <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="AIP = Yes"></div>
+            <p class="text-justify">You will be eligible to participate in the PayPal Holdings, Inc. Annual Incentive Plan for a specified fiscal year (AIP) with an annual bonus based on individual achievement as well as company performance.  The annual bonus period is from January 1 through December 31. Your target bonus for the AIP is <mark><$client.tForWhomUserInfo.eIP_Target_Pct></mark>% of your annual base salary, pro-rated based on your hire date and days of service during the AIP bonus period.  There is no guarantee any AIP bonus will be awarded or received, and any actual bonus will be determined after the end of the annual bonus period. Any AIP bonus, even if it is made repeatedly or regularly and whatever its amount, can never lead to a vested right for you, the employee.</p>
+            <p class="text-justify">To be eligible to receive any AIP bonus, you must be employed before October 1st and you must be in continuous employment on the date the bonus is received, subject to applicable laws. If your employment start date with a PayPal company commences on or after October 1st, your eligibility to participate in the AIP will begin on January 1st of the following calendar year. Any bonus is at PayPal’s sole and absolute discretion and subject to the terms and conditions of the AIP.  PayPal reserves the right, in its sole discretion, to amend, change or cancel the AIP at any time.  Further, the bonus plan that you are eligible to participate in may change over time.  You acknowledge and agree that PayPal may substitute the plan referenced in this letter and any contract of employment or any offer documentation, as it determines in its sole discretion from time to time.</p>
+        </div>
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.Relocation>' == 'Y') { %>
+            <% if ('<$client.tForWhomUserInfo.Relo_Bonus>' == 'No') { %>
+            <div class="marked">
+                <div id="<%= makeid(); %>" data-toggle="popover" data-placement="top" data-content="Employee Relocating"></div>
+                <p class="text-justify">To help you relocate from <mark><$client.tForWhomUserInfo.RelocationFrom></mark> to <mark><$client.tForWhomUserInfo.PayAreaCity></mark>, you will be entitled to benefits as outlined in your Relocation Agreement.</p>
+                <p class="text-justify">Should your employment be terminated by the Company for a justified reason for which you are responsible or as a result of your resignation within 12 full months from your start date, all miscellaneous and lump sum cash allowances must be repaid in full.</p>
+                <p class="text-justify">Upon acceptance of this offer letter our relocation partner AIRES will contact you directly to initiate this process.</p>
+            </div>
+            <% } %>
+        <% } %>
+        <% if ('<$client.tForWhomUserInfo.Relocation>' == 'Y') { %>
+            <% if ('<$client.tForWhomUserInfo.Relo_Bonus>' == 'Yes') { %>
+            <div class="marked">
+                <div id="<%= makeid() %>" data-toggle="popover" data-placement="top" data-content="Employee Relocating"></div>
+                <p class="text-justify">To help you relocate from <mark><$client.tForWhomUserInfo.RelocationFrom></mark> to <mark><$client.tForWhomUserInfo.PayAreaCity></mark>, you will receive a one-time miscellaneous lump sum cash allowance of <mark><$client.tForWhomUserInfo.ESTIMATED_RELO_COST></mark>&nbsp;<mark><$client.tForWhomUserInfo.ESTIMATED_RELO_COST_CRNCY_CD></mark> payable NET with your first salary. Should your employment be terminated by the Company for a justified reason for which you are responsible or as a result of your resignation within 12 full months from your start date, the miscellaneous lump sum cash allowance must be repaid in full.</p>
+            </div>
+            <% } %>
+        <% } %>
+        <p class="text-justify">You will be entitled to the statutory and contractual benefits in Itlay and you will receive further details in your offer pack.</p>
+        <p class="text-justify">As a condition of your employment, you will be required to sign a formal employment contract containing the terms set forth in this offer letter. This offer of employment is made subject to:</p>
+        <ol>
+            <li>Receipt, prior to your start date, of satisfactory written references from your current employer or any other applicable references;</li>
+            <li>Successful completion of international background checks;</li>
+            <li>Proof of your ability to work in Italy on a continuous basis.</li>
+        </ol>
+        <p class="text-justify">We respect the privacy of all interns and will comply with all applicable laws regarding processing of  personal information. All such personal  information is processed in accordance with the PayPal Employee Privacy Statement, a copy of which has been given you in connection with this Offer. You acknowledge that you have reviewed and understand the Employee Privacy Statement.</p>
+        <p class="text-justify">This offer of employment will lapse if not signed and returned within 10 days of the date of issue.</p>
+        <p class="text-justify">Please bring proof of your ability to work in Italy with you on your first day as we will need to see the original and take a copy for our files.</p>
+        <p class="text-justify">All of us at <mark><$client.tForWhomUserInfo.EnityName></mark> are very excited about you joining our team and look forward to a beneficial and fruitful working relationship.</p>
+        <p class="text-justify">Yours sincerely,</p>
+        <p class="text-justify"><mark><%= signatory %></mark></p>
+        <p class="text-justify mb-4">For and on behalf of <mark><$client.tForWhomUserInfo.EnityName></mark></p>
+        <p class="hide"></p>
+    </template>
+    
+    <div id="offer-letter-body" class="row">
+        <div class="col-sm-2">
+            <div id="incomplete">
+                <div id="markup1"></div>
+            </div>
+            <div id="complete"></div>
+        </div>
+        <div class="col-sm-8">
+            <div id="incomplete2">
+                <div id="markup2"></div>
+            </div>
+            <div id="complete2"></div>
+        </div>
+    </div>
+    <template id="fragment-3">
+        <p class="ml-lg-4">
+            <strong>Employee:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete3">
+                <div id="markup3"></div>
+            </div>
+            <div id="complete3"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature.HTML>
+        </div>
+        <div class="col-sm-1 pt-2 text-sm-right">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name.HTML>
+        </div>
+    </div>
+
+    <template id="fragment-4">
+        <p class="ml-lg-4">
+            <strong>Employer:</strong>
+        </p>
+    </template>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="incomplete4">
+                <div id="markup4"></div>
+            </div>
+            <div id="complete4"></div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="signature" class="control-label">Signature: <span class="text-danger">*</span></label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.signature2.HTML>
+        </div>
+        <div class="col-sm-1 pt-2 text-sm-right">
+            <label class="control-label">Date:</label>
+        </div>
+        <div class="col-sm-3">
+            <$client.env.FormField.date2.HTML>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <div class="col-sm-2 pt-2 text-sm-right">
+            <label for="full_name" class="control-label">Name:</label>
+        </div>
+        <div class="col-sm-5">
+            <$client.env.FormField.name2.HTML>
+        </div>
+    </div>
+
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="col-lg-12 clearfix">
+            <div class="sign-btn-group">
+                <$client.env.FormButtons>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.SignatureVerification2.HTML>
+    <$client.env.FormField.hidden_pg1.HTML>
+    <$client.env.FormField.hidden_pg2.HTML>     
+    <$client.env.FormField.hidden_pg3.HTML>     
+    <$client.env.FormField.hidden_pg4.HTML>     
+    <$client.env.formfield.EmployeeStamp.html>
+    <$client.env.formfield.SignatoryStamp.html>
+    <$client.env.formfield.RecruiterStamp.html>
+    <$client.env.formfield.SignerMan.html>
+    <$client.env.formfield.CoordinatorStamp.html>
+    <$client.env.formfield.Current_Date.html>
 </div>
 
-
-<p><strong>I hereby acknowledge that I have received, read and understood this Contract and I hereby agree to be bound by the terms and conditions of employment set out therein.</strong></p><br>
-
-
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-<tr>
-<td>First Name:&nbsp;&nbsp; <$client.env.formfield.First_Name.HTML></td>
-</tr>
-<tr>
-<td>Surname:&nbsp;&nbsp;&nbsp;&nbsp; <$client.env.formfield.Last_Name.HTML></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>Signed:&nbsp;&nbsp; <$client.env.formfield.Signature.HTML></td>
-
-</tr>
-<tr>
-<td>Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <$client.env.formfield.Date.HTML></td>
-
-</tr>
-<tr>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>For the Company: <$client.env.formfield.Recruiter.HTML></td>
-
-</tr>
-</table>
-
-
-<br><br>
-<div style="display:none;">
-<$client.env.FormField.SignatureVerification.HTML>
-<$client.env.FormField.signature2verification.HTML>
-
-</div>
-
-<$client.env.FormButtons>
 </form>
-<SCRIPT>
-ChangeCalendarIcons(); //for popup calendar
-add2();
-</SCRIPT>
-
+<script src="<$link;/main/RedCarpet/FormTemplates/Italy_Offer_Letter/js/bootstrap.min.js>"></script>
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/front_validator.js>"></script> 
+<script type="text/javascript" src="<$link;/main/RedCarpet/FormTemplates/FormSupport/js/moment-with-locales.min.js>"></script> 
+<script src="<$link;/main/RedCarpet/FormTemplates/Italy_Offer_Letter/js/ejs.min.js>"></script>
+<script src="<$link;/main/RedCarpet/FormTemplates/Italy_Offer_Letter/js/script.js>" defer></script>
 <script>
-<$client.env.eval((url.forWhom!=account.userguid)?'disableCalButton(\'signDate\')':'disableCalButton(\'hrDate\')')>
-//Show populated form if already completed
-var strCompletedForm = FORM_COMPLETED;
-if (strCompletedForm != ""){
-showCompleted();
-}
-
-
-$(document).ready(function(){
-document.getElementById('hidden_pg1').style.height = 0; 
-document.getElementById('hidden_pg2').style.height = 0; 
-document.getElementById('hidden_pg3').style.height = 0; 
-document.getElementById('hidden_pg4').style.height = 0; 
-document.getElementById('hidden_pg5').style.height = 0; 
-document.getElementById('hidden_pg6').style.height = 0; 
-document.getElementById('hidden_pg7').style.height = 0; 
-document.getElementById('hidden_pg8').style.height = 0; 
-document.getElementById('hidden_pg9').style.height = 0; 
-document.getElementById('hidden_pg10').style.height = 0; 
-document.getElementById('hidden_pg11').style.height = 0; 
-document.getElementById('hidden_pg12').style.height = 0; 
-
-document.getElementById('hidden_pg1').style.height = document.getElementById('hidden_pg1').scrollHeight + 'px';
-document.getElementById('hidden_pg2').style.height = document.getElementById('hidden_pg2').scrollHeight + 'px'; 
-document.getElementById('hidden_pg3').style.height = document.getElementById('hidden_pg3').scrollHeight + 'px'; 
-document.getElementById('hidden_pg4').style.height = document.getElementById('hidden_pg4').scrollHeight + 'px'; 
-document.getElementById('hidden_pg5').style.height = document.getElementById('hidden_pg5').scrollHeight + 'px'; 
-document.getElementById('hidden_pg6').style.height = document.getElementById('hidden_pg6').scrollHeight + 'px'; 
-document.getElementById('hidden_pg7').style.height = document.getElementById('hidden_pg7').scrollHeight + 'px'; 
-document.getElementById('hidden_pg8').style.height = document.getElementById('hidden_pg8').scrollHeight + 'px'; 
-document.getElementById('hidden_pg9').style.height = document.getElementById('hidden_pg9').scrollHeight + 'px'; 
-document.getElementById('hidden_pg10').style.height = document.getElementById('hidden_pg10').scrollHeight + 'px'; 
-document.getElementById('hidden_pg11').style.height = document.getElementById('hidden_pg11').scrollHeight + 'px'; 
-document.getElementById('hidden_pg12').style.height = document.getElementById('hidden_pg12').scrollHeight + 'px'; 
-
-document.getElementById('over').style.width=''; 
-
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+const thisForm = document.getElementById('italy-offer-letter');
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+  $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+  $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+  $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete').prop('onclick', null);
+  $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint').prop('onclick', null);
+  $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+  $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+  $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+  document.getElementById('formButtons').style.display = "block";
+  $("input[type=text]").addClass('lifesuite__text-input');
+  $("input[type=text].hasDatepicker").addClass('dateField');
+  $("select").addClass('lifesuite__select-input');
+  $("input[type=radio]").addClass('lifesuite__radio');
+  $("input[type=checkbox]").addClass('lifesuite__checkbox');
+  $("textarea").addClass('lifesuite__textarea-input');
+  $('label').addClass('lifesuite__input-label lifesuite__input—block');
+  $('.signDate, .dateField').parent().find('input').prop('disabled', true);
 });
 
+const data = {
+    'Current_Date': document.getElementById('Current_Date').value,
+    'signatory': ''
+};
+const isNewhire = $('#hidden_pg').prop('readonly') || <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+// signature section clearing on task reopen variables
+const isCoordinator = <$client.env.eval((client.role.rc_hrcoordinators==1)?'true':'false')>;
+const isRecruiter = <$client.env.eval((client.tEventManagers_Person_8.UserGuid==account.userguid)?'true':'false')>;
+const isSignatory = <$client.env.eval((client.role.rc_italy_company_signatory>0)?'true':'false')>;
+const isEmployee = <$client.env.eval((url.forWhom==account.userguid)?'true':'false')>;
+const EmployeeStamp = "<$client.env.eval((url.forWhom==account.userguid)?'EmployeeStamp':'')>"; 
+if (isSignatory) {
+    $('#SignerMan').val("<$client.account.username_first> <$client.account.username>");
+}
 </script>
-
-<!--if newhire enable signature and date, if not disable signature and date

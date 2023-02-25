@@ -1,0 +1,153 @@
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <p class="h5 mb-1">
+        <strong>Electronic Signature</strong>
+    </p>
+    <p>
+    <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <div class="row">
+      <div class="col-lg-12">
+        <strong>Type your Name:</strong> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="sign-btn-group">
+            <input type="button" class="lifesuite__button primary" value="Sign" onclick="validateSignature('signature','eSignature1','fullName','modal','over','sv', 'Date');xbObj('eSignature1').value='';document.getElementById('eSignature1').focus();">&nbsp;
+            <input type="button" class="lifesuite__button" value="Clear" onclick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value=''; if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+            <input type="button" class="lifesuite__button" value="Cancel" onclick="showHide('modal');showHide('over');xbObj('eSignature1').value='';" style="margin-right: -8px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<form name="frmForm" action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role="form">
+    <div hidden>
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+        <!-- Replace With eForm Specific Data Field Prompts From Formalizer-->
+        <$client.env.FormField.Date.prompt>
+        <$client.env.FormField.Employee_Name.prompt>
+        <$client.env.FormField.Employee_Signature.prompt>
+        <$client.env.FormField.Witness_Signature.prompt>
+        <$client.env.FormField.SignatureVerification.prompt>
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+<main class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="border-bottom border-dark pb-1">
+                <div class="d-flex align-items-end border-bottom border-dark">
+                    <div class="flex-grow-1">
+                        <p class="h3">Termination Agreement</p>
+                    </div>
+                    <div style="max-width: 200px;">
+                        <img src="<$link;/main/RedCarpet/FormTemplates/Term_Agreement/img/ensco-logo.png>" alt="Ensco Logo" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-12">
+            <p>I, the undersigned, whose employment with ENSCO is terminated, hereby acknowledge that during my employment I have had access to proprietary, patent and confidential concepts, data, information, processes, techniques, instruments and procedures of the company. I acknowledge and ratify the agreement I previously entered into with respect to my acquisition of confidential knowledge. “I agree that during and for twelve (12) months after termination of my employment for any reason I shall not, directly or indirectly, except to the extent I am acting as an employee of the Company solely for the Company’s benefit in connection with the Company’s business and in accordance with the Company’s business practices and employee policies: Solicit any employee of the Company who was employed by the Company during the term of my employment with the Company to leave the Company’s employ, or hire any such employee.” I am aware of my obligation to not discuss any Controlled Unclassed Information (CUI) information I had access to while working at ENSCO after termination. <em>I also represent that any company sensitive information contained on personally owned equipment of any nature such as cell phones, MP3 devices, personal computers, PDAs, flash drives, etc. have been delivered to the company or properly destroyed.</em></p> 
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-12 col-sm-6">
+            Employee Name:
+            <$client.env.FormField.Employee_Name.HTML>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-12 col-sm-6">
+            Employee Signature:
+            <$client.env.FormField.Employee_Signature.HTML>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-12 col-sm-6">
+            Witness Signature:
+            <p class="border-bottom border-dark">&nbsp;</p>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-12 col-sm-6">
+            Date:
+            <$client.env.FormField.Date.HTML>
+        </div>
+    </div>
+    <hr class="lifesuite__hr">
+    <div class="row" id="formButtons" style="display: none;">
+        <div class="sign-btn-group">
+            <$client.env.FormButtons>
+        </div>
+    </div>
+</main>
+
+<div hidden>
+    <$client.env.FormField.SignatureVerification.HTML>
+    <$client.env.FormField.Witness_Signature.HTML>
+</div>
+
+</form>
+<script src="<$link;/main/RedCarpet/FormTemplates/Term_Agreement/js/bootstrap.min.js>"></script>
+<script>
+showScreen('over');
+ChangeCalendarIcons(); //for popup calendar
+/* RESPONSIVE eFORM BUTTONS STYLE */
+$(document).on('ready', function() {
+    $("#buttonCancel").removeClass().addClass("lifesuite__button").prop('id','ButtonCancel');
+    $("#buttonSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSave');
+    $("#buttonSaveAndComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonSaveAndComplete');
+    $("#buttonPrint").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPrint');
+    $("#buttonPreviewDelete").removeClass().addClass("lifesuite__button").prop('id','ButtonPreviewDelete');
+    $("#buttonPreviewSave").removeClass().addClass("lifesuite__button primary").prop('id','ButtonPreviewSave');
+    $("#buttonComplete").removeClass().addClass("lifesuite__button primary").prop('id','ButtonComplete');
+    $("input[type=text]").addClass('lifesuite__text-input');
+    $("input[type=text].hasDatepicker").addClass('dateField');
+    $("select").addClass('lifesuite__select-input');
+    $("input[type=radio]").addClass('lifesuite__radio');
+    $("input[type=checkbox]").addClass('lifesuite__checkbox');
+    $("textarea").addClass('lifesuite__textarea-input');
+    $('label').addClass('lifesuite__input-label lifesuite__input—block');
+    $('#formButtons').show();
+});
+
+const disableCalButton = function(el) {
+    "use strict";
+    el.parent().find('input').prop('disabled', 'disabled');
+}
+
+$(window).on('load', function() {
+    $(".modal").hide();
+});
+angular.element(window).on('load', function() {
+    setTimeout(function() {
+        angular.element('#divLoader').hide();
+    }, 800);
+});
+</script>

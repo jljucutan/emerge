@@ -1,0 +1,280 @@
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- Modal E-Signature box: Note there is a DIV below that is also needed to implement -->
+<div class="modal" id="modal" style="display:none;">
+  <div class="modal-content">
+    <h2 class="lifesuite__h2"><strong>Electronic Signature</strong></h2>
+    <p style="fontweight:normal;padding:0px">
+      <$client.env.eval(client.env.param.verbiage.length()==0? 'I understand that by electronically signing this document by typing my full name below, that I acknowledge, agree and attest that the information provided by me is true and correct and I am freely intending to create and adopt as my own a legally binding electronic signature that carries the same legal effect and enforceability as my handwritten.':client.env.param.verbiage)>
+    </p>
+    <br>
+    <div class="row">
+      <div class="lifesuite__clearfix">
+        <b>Type your Name:</b> <input type=text id="eSignature1" class="lifesuite__text-input ng-invalid" style="width: 99%">&nbsp;
+                  </div>
+    </div>
+    <div class="row">
+      <div class="lifesuite__clearfix lifesuite__float-right sign-button" style="width: 278px;">
+        <input type="button" class="lifesuite__button primary" value="Sign" onClick="validateSignature('signature','eSignature1','full_name','modal','over','sv','Date');xbObj('eSignature1').value='';">&nbsp;
+        <input type="button" class="lifesuite__button" value="Clear" onClick="xbObj('signature').value='';showHide('modal');showHide('over');xbObj('eSignature1').value='';if (typeof targetdatecheckCLEAR == 'function' ){targetdatecheckCLEAR('signature','Date');}">&nbsp;
+        <input type="button" class="lifesuite__button" value="Cancel" onClick="showHide('modal');showHide('over');xbObj('eSignature1').value='';">
+      </div>
+    </div>
+  </div>
+</div>
+<div id="over" style="display:none;"></div>
+<SCRIPT>
+    showScreen('over')
+</SCRIPT>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- RESPONSIVE eFORM PAGE LOADER-->
+
+<div class="modal" style="display:block; background: #002E6D;">
+  <div class="fb-spinner">
+    <i class="fa fa-2x fa-spinner fa-pulse"></i>
+  </div>
+</div>
+
+<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<form name='frmForm' action="<$link;config.path.RCFolder_FormTemplates>/<$name;<$client.current.parent>>/doSave?<$client.env.QUERY_STRING>" method="post" onsubmit="return SubmitCallback(this);" role='form'>
+    <div style="display:none;">
+        <$client.env.FormField.Form_Name.prompt>
+        <$client.env.FormField.Form_Name.HTML>
+        <$client.env.FormField.Form_Type.prompt>
+        <$client.env.FormField.Form_Type.HTML>
+        <$client.env.FormField.Form_Owner.prompt>
+        <$client.env.FormField.Form_Owner.HTML>
+        <$client.env.FormField.Form_CreateDate.prompt>
+        <$client.env.FormField.Form_CreateDate.HTML>
+        <$client.env.FormField.Form_Completed.prompt>
+        <$client.env.FormField.Form_Completed.HTML>
+        <$client.env.FormField.Form_Delivered.prompt>
+        <$client.env.FormField.Form_Delivered.HTML>
+        <$client.env.FormField.Form_TaskId.prompt>
+        <$client.env.FormField.Form_TaskId.HTML>
+        <$client.env.FormField.display_version.HTML>
+ 
+<$client.env.FormField.Ack1.prompt>
+<$client.env.FormField.Ack2.prompt>
+<$client.env.FormField.Ack3.prompt>
+<$client.env.FormField.Ack5.prompt>
+<$client.env.FormField.Ack6.prompt>
+<$client.env.FormField.Date.prompt>
+<$client.env.FormField.Employee_Name.prompt>
+<$client.env.FormField.I_Agree.prompt>
+<$client.env.FormField.signature.prompt>
+<$client.env.FormField.signatureverification.prompt>
+
+    </div>
+    <input type="hidden" name="tagparamlist" value="<$client.env.tagparamlist>">
+
+<div id="DefaultFont">
+
+<div class='row'>
+    <div class="col-sm-3"><img src="<$link;/main/RedCarpet/FormTemplates/PayPal_Electronic_Monitoring_Acknowledgement/paypal-logo.png>" width="200" height="100" border="0" /></div>
+    <div class="col-sm-9">&nbsp;</div>
+</div>
+
+<div class="container-fluid"> 
+  <div class="form-group"> 
+  <div class='row'>
+  <div class='col-lg-12 text-center'>
+    <h4><strong>New Hire Policy Acknowledgement Form</strong></h4>
+  </div>
+</div>
+
+<br>
+
+<div class='row'>
+  <div class='col-lg-12'>
+    <p>By selecting the link of each policy I acknowledge that I have read the policy and understand how this policy affects me and understand the guidelines and requirements of each.</p>
+  </div>
+</div>
+<br>
+
+<!-- <div class='row'>
+<div class='col-lg-3'>
+         &nbsp;
+</div>
+
+<div class='col-lg-6 fancyBox' onclick="getElementById('check1').style.display='block'; getElementById('Ack1').checked=true; window.open('<$link;/eprise/main/SiteGen/Onboarding/Content/Uploads/Unplaced_Documents/Employee_Privacy_Statement_2018v3_Non-EU.pdf >','_blank');" >
+      <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="check1" src="check-mark.png" style="display:none;"></div>
+      <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+      <font color="#005ea6">PayPal Employee Privacy Statement</font>
+                  </div>
+</div>      
+</div> -->
+
+<div class='row'>
+<div class='col-lg-3'>
+         &nbsp;
+</div>
+
+<div class='col-lg-6 fancyBox' onclick="getElementById('check2').style.display='block'; getElementById('Ack2').checked=true; window.open('<$link;/eprise/main/SiteGen/Onboarding/Content/Uploads/Unplaced_Documents/Group_Policies/Insider_Trading_Policy_March_2019.pdf>','_blank');" >
+      <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="check2" src="check-mark.png" style="display:none;"></div>
+      <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+      <font color="#005ea6">Insider Trading Policy</font>
+                  </div>
+</div>      
+</div>
+
+<div class='row'>
+<div class='col-lg-3'>
+         &nbsp;
+</div>
+
+
+<div class='col-lg-6 fancyBox' onclick="getElementById('check3').style.display='block'; getElementById('Ack3').checked=true; window.open('<$link;/eprise/main/SiteGen/Onboarding/Content/Uploads/Unplaced_Documents/PayPal_Employee_Handbook_Acknowledgement_Americas_Final_0715.pdf>','_blank');" >
+      <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="check3" src="check-mark.png" style="display:none;"></div>
+      <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+      <font color="#005ea6">Employee Handbook Acknowledgement</font>
+                  </div>      
+</div>
+</div>
+
+<div class='row'>
+<div class='col-lg-3'>
+         &nbsp;
+</div>
+
+
+</div>
+
+
+
+
+<div class='row'>
+<div class='col-lg-3'>
+         &nbsp;
+</div>
+<div class='col-lg-6 fancyBox<$client.env.eval((client.tEventCategories_25.Code.indexOf('USA-CA') < 0)?' hide':'')>' onclick="getElementById('check6').style.display='block'; getElementById('Ack6').checked=true; window.open('<$link;/eprise/main/SiteGen/Onboarding/Content/Uploads/Unplaced_Documents/PayPal_California_Consumer_Privacy_Act_Notice.pdf>','_blank');" >
+      <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><img id="check6" src="check-mark.png" style="display:none;"></div>
+      <div class='col-xs-11 col-sm-11 col-md-11 col-lg-11'>
+      <font color="#005ea6">PayPal California Consumer Privacy Act Notice</font>
+                  </div>      
+</div>
+</div>
+
+  
+  <div class='col-lg-3'>
+  &nbsp;
+  </div>
+</div>
+<br>
+<div class='row'>
+  <div class='col-lg-12'>
+    <p>By selecting the link of each policy and handbook acknowledgement above (boxes 1 and 2), I acknowledge that I have reviewed and understand the applicable policy and handbook and how it affects me. I understand that, as an employee of PayPal (or one of its subsidiaries), I am expected to comply fully with the policies set forth in the documents listed above and, by signing below, I agree that I will comply with said policies. Furthermore, I agree to notify Human Resources if, in the future, I become aware of a violation of these policies. I realize and acknowledge that failure to observe and comply with these policies could result in discipline, up to and including termination of employment. In addition to disciplinary actions, I realize and acknowledge that violation of the policies set forth above may result in civil or criminal fines and/or imprisonment. By signing below, I acknowledge that all representations I have made in conjunction with the above policies and in this acknowledgement are true and accurate to the best of my knowledge.</p>
+    
+  
+  </div>
+</div>
+
+<div class='row'>
+       <div class="col-sm-1">&nbsp;</div>
+       <div class="col-sm-2"><$client.env.FormField.I_Agree.html></div>
+       <div class="col-sm-9">&nbsp;</div>
+</div>
+
+<br>
+
+<div class='row'>
+    <div class="col-lg-1 col-sm-12 col-xs-12 AlignMergeStringText"><strong>Signature:</strong></div>
+    <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.signature.html></div>
+    <div class="col-lg-1 col-sm-12 col-xs-12 AlignMergeStringText"><strong>Date:</strong></div>
+    <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.Date.html></div>
+</div>
+
+<div class='row'>
+    <div class="col-lg-1 col-sm-12 col-xs-12 AlignMergeStringText"><strong>Name:</strong></div>
+    <div class="col-lg-5 col-sm-12 col-xs-12"><$client.env.FormField.Employee_Name.html></div>
+    <div class="col-lg-6 col-sm-12 col-xs-12">&nbsp;</div>
+</div>
+
+
+
+
+
+</div>
+  </div>
+</div>
+      <hr class="lifesuite__hr">
+<$client.env.FormButtons>
+<div style="display:none">
+     <$client.env.FormField.signatureverification.HTML>
+     <$client.env.FormField.ack1.HTML>
+     <$client.env.FormField.ack2.HTML>
+     <$client.env.FormField.ack3.HTML>
+     <$client.env.FormField.ack5.HTML>
+     <$client.env.FormField.ack6.HTML>
+</div>
+</form>
+<SCRIPT>
+    ChangeCalendarIcons(); //for popup calendar
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+<!-- RESPONSIVE eFORM FIELDS STYLE-->
+
+$(window).load(function() {
+       $("#buttonCancel").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonCancel").addClass("lifesuite__button");
+        $('#buttonCancel').attr('id','ButtonCancel');
+        $("#buttonSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSave").addClass("lifesuite__button primary");
+        $('#buttonSave').attr('id','ButtonSave');
+        $("#buttonSaveAndComplete").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonSaveAndComplete").addClass("lifesuite__button primary");
+        $('#buttonSaveAndComplete').attr('id','ButtonSaveAndComplete');
+        $("#buttonPrint").removeClass("appInputButton RCappInputButtonOrange RCappInputButtonBlue");
+        $("#buttonPrint").addClass("lifesuite__button");
+        $('#buttonPrint').attr('id','ButtonPrint');
+        $("#buttonPreviewDelete").removeClass("appInputButton RCappInputButtonRed");
+        $("#buttonPreviewDelete").addClass("lifesuite__button");
+        $('#buttonPreviewDelete').attr('id','ButtonPreviewDelete');
+        $("#buttonPreviewSave").removeClass("appInputButton RCappInputButtonBlue");
+        $("#buttonPreviewSave").addClass("lifesuite__button primary");
+        $('#buttonPreviewSave').attr('id','ButtonPreviewSave');    
+        $("#buttonComplete").removeClass("appInputButton RCappInputButtonBlue"); 
+        $("#buttonComplete").addClass("lifesuite__button primary"); 
+        $('#buttonComplete').attr('id','ButtonComplete');
+        
+        /*document.getElementById('formButtons').style.display = "block";*/
+
+        $("input[type=text]").addClass('lifesuite__text-input');
+        $("input[type=text].hasDatepicker").addClass('dateField');
+        $("select").addClass('lifesuite__select-input');
+        $("input[type=radio]").addClass('lifesuite__radio');
+        $("input[type=checkbox]").addClass('lifesuite__checkbox');
+        $("textarea").addClass('lifesuite__textarea-input');
+        $('label').addClass('lifesuite__input-label lifesuite__input—block');
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var groupField2 = document.getElementsByClassName('groupField2');
+/* if(isFilled(groupField2)){
+    sectionToggle('AdditionalAccounts,Account1,deleteAccount','block');
+}
+
+var groupField3 = document.getElementsByClassName('groupField3');
+if(isFilled(groupField3)){
+    sectionToggle('Account2','block');
+    sectionToggle('addAccount','none');
+} */
+
+if(strFormCompleted!=''){
+    document.getElementById('actionButtons').style.display = 'none';
+}
+
+</SCRIPT>
+
+<script>
+//showCheck("Ack1","check1") ;
+showCheck("Ack2","check2") ;
+showCheck("Ack3","check3") ;
+showCheck("Ack5","check5") ;
+showCheck("Ack6","check6") ;
+disableCalButton("signDate");
+</script>

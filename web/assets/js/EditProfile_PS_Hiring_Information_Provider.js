@@ -604,18 +604,21 @@ const requireTargetIfNotEmpty = function(controller, targets) {
     targets.data('validation', 'required');
 }
 
-const toggleDisplayByValue = function(controller, target, toggleVal) {
+const toggleDisplayByValue = function(controller, target, toggleVal, toggleHide) {
     "use strict";
-    let display = false;
+    // added toggleHide for reverse operation
+    let display = toggleHide ? true : false;
     if (controller.prop('type') == 'radio') {
         controller.each(function() {
             if ($(this).is(':checked') && toggleVal.indexOf($(this).val()) >= 0) {
-                display = true;
+                display = toggleHide ? false : true;
             }
         });
     }
-    if (['text', 'select-one'].indexOf(controller.prop('type')) >= 0 && toggleVal.indexOf(controller.val()) >= 0) {
-        display = true;
+    // added fix when selection is empty
+    // if (['text', 'select-one'].indexOf(controller.prop('type')) >= 0 && toggleVal.indexOf(controller.val()) >= 0) {
+    if (['text', 'select-one'].indexOf(controller.prop('type')) >= 0 && toggleVal.indexOf(controller.val()) >= 0 && controller.val().length) {
+        display = toggleHide ? false : true;
     }
     if (!!display) {
         target.closest('.input_wrapper').show();
@@ -685,7 +688,7 @@ const requireTargetByController = function(controller, target) {
     }
 }
 
-const updateCitizenshipStatusList = function(country, citizenshipStatusField) {
+/*const updateCitizenshipStatusList = function(country, citizenshipStatusField) {
     "use strict";
     let citizenshipStatusValue = citizenshipStatusField.val();
     citizenshipStatusField.html('');
@@ -705,7 +708,7 @@ const updateCitizenshipStatusList = function(country, citizenshipStatusField) {
         }
         citizenshipStatusField.val(citizenshipStatusValue);
     });
-}
+}*/
 const filterVisaType = function(countryVal, visaTypeField) {
     let visaTypeVal = visaTypeField.val();
     visaTypeField.find('option').remove().end().append(new Option("", ""));
@@ -759,9 +762,9 @@ $(window).on('load', function() {
         ALL_VISA_TYPE.set($(this).val(), $(this).text());
     });
 
-    $('[name$=".Citizenship_Status_1"] option').each(function() {
+    /*$('[name$=".Citizenship_Status_1"] option').each(function() {
         ALL_CITIZENSHIP_STATUS.set($(this).val(), $(this).text());
-    });
+    });*/
 
     // storage for dropdowns, etc
     // store id types
@@ -882,7 +885,7 @@ $(window).on('load', function() {
         $('[name$=".HIGHEST_EDUC_LVL"]').val("A")
     }
     // set legal name defaults
-    if ($('[name$=".Legal_First_Name"]').val().length < 1) {
+    /*if ($('[name$=".Legal_First_Name"]').val().length < 1) {
         $('[name$=".Legal_First_Name"]').val(DEFAULT_FIRST_NAME);
     }
     if ($('[name$=".Legal_Middle_Name"]').val().length < 1) {
@@ -890,7 +893,7 @@ $(window).on('load', function() {
     }
     if ($('[name$=".Legal_Last_Name"]').val().length < 1) {
         $('[name$=".Legal_Last_Name"]').val(DEFAULT_LAST_NAME);
-    }
+    }*/
     // pre-populate with event job title
     if ($('[name$=".Position_Job_Title_Code"]').val().length < 1) {
         $('[name$=".Position_Job_Title_Code"]').val(document.getElementById('job-code').value);
@@ -1005,6 +1008,10 @@ $(window).on('load', function() {
     if (EVENT_NAME != 'Summer Associates') {
         $('[name$=".Summer_Associate_End_Date"]').closest('.input_wrapper').hide();
     }
+    if (EVENT_NAME != 'New Associates') {
+        $('[name*=".Bar_Study"]').closest('.input_wrapper').hide();
+        $('[name*=".Bar_Study"]').data('validation', null);
+    }
     // make Summer Associate End Date datepicker
     $('[name$=".Summer_Associate_End_Date"]').data('date-enabled', 'false')
         .formatDatePicker(dateConfig, extractCountryFromCode(COUNTRY_CODES, $('#event-location-code').val()))
@@ -1077,6 +1084,8 @@ $(window).on('load', function() {
     // hide work schedule field for attorney*
     if (JOB_CODE_INDEX >= 0 && /^Attorney/.test(JOB_CODE_MAP[JOB_CODE_INDEX].hierarchy)) {
         $('[name$=".Work_Schedule"]', psProviderContext).closest('.input_wrapper').hide();
+        // added validation null when hidden to remove validation required set from multipart
+        $('[name$=".Work_Schedule"]').data('validation', null);
     }
 
     // hide location for 101, 102, 103, 104, 105, 106, 107
@@ -1121,7 +1130,7 @@ $(window).on('load', function() {
     if($('[name$=".Offer_Letter_Annual_Compensation"]').val() == "") {
         $('[name$=".Offer_Letter_Annual_Compensation"]').val(DEFAULT_SALARY)
     }
-    if (EVENT_NAME == 'Summer Associates') {
+    if (EVENT_NAME == 'Summer Associates' || EVENT_NAME == 'New Associates') {
         $('[name$=".Offer_Letter_Annual_Compensation"]').val('215,000')
         // pre-populate for summer assoc event
         if (!$('[name$=".Salary_Amount_Currency_Code"]').val().length) {
@@ -1586,7 +1595,7 @@ $(window).on('load', function() {
 
     // filter Citizenship Status by Citizenship Country
     // Country 1
-    $('[name$="Citizenship_Country_1"]').change(function() {
+    /*$('[name$="Citizenship_Country_1"]').change(function() {
         updateCitizenshipStatusList($(this).val(), $('#EditProfile [name$=".Citizenship_Status_1"]'));
         if ($('#EditProfile [name$=".Citizenship_Status_1"] option').length <= 1 && $('#EditProfile [name$=".Citizenship_Status_1"] option')[0].value == "") {
             validateField($('[name$=".Citizenship_Status_1"]').data('validation', null), true);
@@ -1595,9 +1604,9 @@ $(window).on('load', function() {
             $('[name$=".Citizenship_Status_1"]').data('validation', 'required');
         }
     });
-    $('[name$="Citizenship_Country_1"]').trigger("change");
+    $('[name$="Citizenship_Country_1"]').trigger("change");*/
     // Country 2
-    $('[name$="Citizenship_Country_2"]').change(function() {
+    /*$('[name$="Citizenship_Country_2"]').change(function() {
         updateCitizenshipStatusList($(this).val(), $('#EditProfile [name$=".Citizenship_Status_2"]'));
         if ($('#EditProfile [name$=".Citizenship_Status_2"] option').length <= 1 && $('#EditProfile [name$=".Citizenship_Status_2"] option')[0].value == "") {
             validateField($('[name$=".Citizenship_Status_2"]').data('validation', null), true);
@@ -1606,9 +1615,9 @@ $(window).on('load', function() {
             $('[name$=".Citizenship_Status_2"]').data('validation', 'required');
         }
     });
-    $('[name$="Citizenship_Country_2"]').trigger("change");
+    $('[name$="Citizenship_Country_2"]').trigger("change");*/
     // Country 3
-    $('[name$="Citizenship_Country_3"]').change(function() {
+    /*$('[name$="Citizenship_Country_3"]').change(function() {
         updateCitizenshipStatusList($(this).val(), $('#EditProfile [name$=".Citizenship_Status_3"]'));
         if ($('#EditProfile [name$=".Citizenship_Status_3"] option').length <= 1 && $('#EditProfile [name$=".Citizenship_Status_3"] option')[0].value == "") {
             validateField($('[name$=".Citizenship_Status_3"]').data('validation', null), true);
@@ -1617,9 +1626,9 @@ $(window).on('load', function() {
             $('[name$=".Citizenship_Status_3"]').data('validation', 'required');
         }
     });
-    $('[name$="Citizenship_Country_3"]').trigger("change");
+    $('[name$="Citizenship_Country_3"]').trigger("change");*/
     // Country 4
-    $('[name$="Citizenship_Country_4"]').change(function() {
+    /*$('[name$="Citizenship_Country_4"]').change(function() {
         updateCitizenshipStatusList($(this).val(), $('#EditProfile [name$=".Citizenship_Status_4"]'));
         if ($('#EditProfile [name$=".Citizenship_Status_4"] option').length <= 1 && $('#EditProfile [name$=".Citizenship_Status_4"] option')[0].value == "") {
             validateField($('[name$=".Citizenship_Status_4"]').data('validation', null), true);
@@ -1628,7 +1637,7 @@ $(window).on('load', function() {
             $('[name$=".Citizenship_Status_4"]').data('validation', 'required');
         }
     });
-    $('[name$="Citizenship_Country_4"]').trigger("change");
+    $('[name$="Citizenship_Country_4"]').trigger("change");*/
 
 
     // show citizenship that are filled
@@ -2388,7 +2397,7 @@ $(window).on('load', function() {
     role != 'recruiter' && $('[name$=".Emergency_Contact_Phone_Add_3"], [name$=".Additional_Phone_Type_3"], [name$=".Emergency_Contact_Phone_Add_Country_Code_3"]').trigger('keyup');
 
     // datepickers
-    $('[name$=".Expected_Job_End_Date"], [name$=".Referral_Eligibility_Date_1"], [name$=".Referral_Eligibility_Date_2"], [name$=".Referral_Eligibility_Date_3"]', psProviderContext) 
+    $('[name$=".Expected_Job_End_Date"], [name$=".Referral_Eligibility_Date_1"], [name$=".Referral_Eligibility_Date_2"], [name$=".Referral_Eligibility_Date_3"], [name$=".Bar_Study_Bonus_Date"]', psProviderContext) 
         .data('date-enabled', 'false')
         .formatDatePicker(dateConfig, extractCountryFromCode(COUNTRY_CODES, $('#event-location-code').val()))
         .datepicker("option", "onSelect", function(dateText, instance) {
@@ -2571,8 +2580,30 @@ $(window).on('load', function() {
             return;
         }
         $('.additional-bonus-section', psProviderContext).first().show();
+        role == 'recruiter' && $('[name$=".Additional_Bonus_Code_1"]').trigger('change');
     });
     role == 'recruiter' && $('[name$=".Additional_Bonus_Eligible"]').trigger('change');
+
+    // additional bonus code 1
+    $('[name$=".Additional_Bonus_Code_1"]').on('change', function() {
+        let toShow = toggleDisplayByValue(
+        $('[name$=".Additional_Bonus_Code_1"]'),
+            $('[name$=".JDMBA_Option"]'), 
+            'JMB'
+        )
+    });
+    role == 'recruiter' && $('[name$=".Additional_Bonus_Code_1"]').trigger('change');
+
+    // JDMBA option
+    $('[name$=".JDMBA_Option"]').on('change', function() {
+        let toShow = toggleDisplayByValue(
+        $('[name$=".JDMBA_Option"]'),
+            $('[name$=".Additional_Bonus_Amount_1"], [name$=".Additional_Bonus_Currency_Code_1"], [name$=".Additional_Bonus_Date_1"]'), 
+            'CYC',
+            true // true for reverse operation
+        )
+    });
+    role == 'recruiter' && $('[name$=".JDMBA_Option"]').trigger('change');
 
     // Guaranteed bonus section
     // toggle guarateed bonus eliginle dependent fields
@@ -2589,7 +2620,7 @@ $(window).on('load', function() {
             });
             return
         }
-        if($('[name$=".Guaranteed_Bonus_Type"]').val().length < 1) {
+        if(!!$('[name$=".Guaranteed_Bonus_Type"]').val() && $('[name$=".Guaranteed_Bonus_Type"]').val().length < 1) {
             focusInputLabel($('[name$=".Guaranteed_Bonus_Type"]').val('The Greater of'));
         }
         // bonus type and paid class year show
@@ -2649,6 +2680,38 @@ $(window).on('load', function() {
         role == 'recruiter' && $('[name$=".Guaranteed_Bonus_Type"]', psProviderContext).trigger('change');
     }
     // then trigger guarateed bonus type
+
+    // select "Yes" when Bar Study Bonus Description is populated
+    if ($('[name$=".Bar_Study"]').val().length) {
+        $('[name$=".Bar_Study_Bonus_Eligible"][value="Y"]').prop("checked", true);
+    }
+
+    // bar study bonus eligible
+    $('[name$=".Bar_Study_Bonus_Eligible"]').on('change', function() {
+        let toShow = toggleDisplayByValue(
+            $('[name$=".Bar_Study_Bonus_Eligible"]'),
+            $('[name$=".Bar_Study"]'),
+            'Y'
+        ) 
+        if (!toShow) {
+            role == 'recruiter' && EVENT_NAME == 'New Associates' && $('[name$=".Bar_Study"]').trigger('change');
+        }
+    });
+    role == 'recruiter' && EVENT_NAME == 'New Associates' && $('[name$=".Bar_Study_Bonus_Eligible"]').trigger('change');
+
+    // bar study bonus description
+    $('[name$=".Bar_Study"]').on('change', function() {
+        let toShow = toggleDisplayByValue(
+            $('[name$=".Bar_Study"]'),
+            $('[name$=".Bar_Study_Bonus"], [name$=".Bar_Study_Bonus_Date"]'),
+            '100328,100329'
+        ) 
+        if (!toShow) {
+            $('[name$=".Bar_Study_Bonus_Date"]').trigger('change');
+            validateField($('[name$=".Bar_Study_Bonus_Date"]'), true);
+        }
+    });
+    role == 'recruiter' && EVENT_NAME == 'New Associates' && $('[name$=".Bar_Study"]').trigger('change');
 
     // class fields section
     switch($('#job-code').val()) {
@@ -2827,8 +2890,40 @@ $(window).on('load', function() {
         let formIsValid = true;
         errorMapping.clear();
         $.each($('input:not(".datepicker_button"):not(:disabled):not(:hidden), select:not(:disabled):not(:hidden), textarea', psProviderContext), function(k,v) {
-            if(v.type == 'select-one' && $(v).is(':visible') && !validateField($(v))) {
+            // combined old with the new implementation to address dropdowns with blank options
+            /*if(v.type == 'select-one' && $(v).is(':visible') && !validateField($(v))) {
                 formIsValid = false;
+            }*/
+            // tweaked a bit since formIsValid is a flag
+            // that is set to false when validation fails
+            // and should not be set back to true
+            // even when validation succeeds on other fields
+            if (v.type == 'select-one' && $(v).is(':visible')) {
+                // don't validate select with no option
+                if ($(v, psProviderContext).find('option').length < 2) {
+                    // no need to set flag to true
+                    // since it will override any/all
+                    // "formIsValid = false"
+                    // set prior
+                    // alert(v.name + ' options are: ' + $(v).find('option').length)
+                    // formIsValid = true
+                }
+                else {
+                    // replaced with a condition
+                    // so it will not override any/all
+                    // "formIsValid = false"
+                    // set prior
+                    // formIsValid = validateField($(v))
+                    if(!validateField($(v))) { 
+                        formIsValid = false;
+                    }
+                }
+            }
+            // placed the validation for regular text field since it is missing from existing code
+            else {
+                if(!validateField($(v))) { 
+                    formIsValid = false;
+                }
             }
             if ($(v).prop('name').indexOf('Mailing_Address_Same') >= 0 && role != 'recruiter' && !validateField($(v), false, validateAddressEqual)) {
                 formIsValid = false;
@@ -2915,7 +3010,8 @@ $(window).on('load', function() {
                     formIsValid = false;
                 break;
             }
-            if (v.type == 'select-one' && $(v).is(':visible')) {
+            // moved to top must be combine with the old implementation
+            /*if (v.type == 'select-one' && $(v).is(':visible')) {
                 // don't validate select with no option
                 if ($(v, psProviderContext).find('option').length < 2) {
                     alert(v.name + ' options are: ' + $(v).find('option').length)
@@ -2924,7 +3020,7 @@ $(window).on('load', function() {
                 else {
                     formIsValid = validateField($(v))
                 }
-            }
+            }*/
         });
         if (formIsValid || errorMapping.size==0) {
             doSave_Custom('refer-Complete');

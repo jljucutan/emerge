@@ -116,7 +116,7 @@ const fnView = function() {
             $('<p class="marked" data-toggle="popover" data-placement="top" data-content="Workplace Model = In Office"/>').append(
                 'Your Current Work location will be ',
                 $('<mark/>').append(
-                    OfferLetterData.LOCATION_DISPLAYNAME
+                    OfferLetterData.BuildingAddress
                 ),
                 '.'
             ),
@@ -125,19 +125,19 @@ const fnView = function() {
             $('<p class="marked" data-toggle="popover" data-placement="top" data-content="Workplace Model = Virtual Flex"/>').append(
                 'Your role may be performed outside of a PayPal office, at your discretion, with the use of virtual working tools we provide. You may choose the location for your virtual working, however you must be available to attend a PayPal office, ',
                 $('<mark/>').append(
-                    OfferLetterData.LOCATION_DISPLAYNAME
+                    OfferLetterData.BuildingAddress
                 ),
-                ' for in-person collaboration if required. Should you choose to work virtually, since such choice is being made at your discretion based on personal preferences as compared to PayPal’s business needs, you agree that you will not be entitled to, and hereby waive all associated rights, to the benefits or entitlements of any other location or State, including access to any dispute resolution mechanisms, which shall continue to be governed by the terms of this employment offer.  We may amend or end the location of your role or remove the ability to work virtually at any time and will give you notice (but will not provide any compensation) if we do so. You may find more details, including our expectations of you, within our Offsite Working Policy and associated policies.'
+                ' for in-person collaboration if required. Should you choose to work virtually, since such choice is being made at your discretion based on personal preferences as compared to PayPal’s business needs, you agree that you will not be entitled to, and hereby waive all associated rights, to the benefits or entitlements of any other location or State. Your benefits and entitlements shall continue to be governed by the terms of this employment offer. We may amend or end the location of your role or remove the ability to work virtually at any time and will give you notice (but will not provide any compensation) if we do so. You may find more details, including our expectations of you, within our Offsite Working Policy and associated policies.'
             ),
             // Workplace model virtual 
             (OfferLetterData.WORKPLACE_MODEL == 'Virtual' && OfferLetterData.Event_Location_Value != 'Mumbai') &&
             $('<p class="marked" data-toggle="popover" data-placement="top" data-content="Workplace Model = Virtual and Event Location is not Mumbai"/>').append(
-                'You agree that as a personal preference, you have voluntarily opted for employment where your role may be performed outside of a PayPal office with the use of virtual working tools we provide. You may however be required to attend a PayPal office for in-person collaboration. Details of your benefits are mentioned in this offer. Since you’ve chosen to work virtually from a location of your choice, you will not be entitled to the benefits or entitlements other than those mentioned in this offer, or those available to employees in any other PayPal location or office, including access to any dispute resolution mechanisms, which shall continue to be governed by the terms of this employment offer.  You may find more details, including our expectations of you, within our Offsite Working Policy and associated policies.'
+                'You agree that as a personal preference, you have voluntarily opted for employment where your role may be performed outside of a PayPal office with the use of virtual working tools we provide. You may however be required to attend a PayPal office for in-person collaboration. Details of your benefits are mentioned in this offer. Since you’ve chosen to work virtually from a location of your choice, you will not be entitled to the benefits or entitlements other than those mentioned in this offer, or those available to employees in any other PayPal location or office. Your benefits and entitlements shall continue to be governed by the terms of this employment offer.  You may find more details, including our expectations of you, within our Offsite Working Policy and associated policies.'
             ),
             // Workplace model virtual and event location mumbai
             (OfferLetterData.WORKPLACE_MODEL == 'Virtual' && OfferLetterData.Event_Location_Value == 'Mumbai') &&
             $('<p class="marked" data-toggle="popover" data-placement="top" data-content="Workplace Model = Virtual and Event location is Mumbai"/>').append(
-                'Your role will be performed outside of a PayPal office with the use of virtual working tools we provide. You may however be required to attend a PayPal office for in-person collaboration. Details of your benefits are mentioned in this offer. Since the you may choose to work virtually from a location of their choice, you will not be entitled to the benefits or entitlements other than those mentioned in this offer, or those available to employees in any other PayPal location or office, including access to any dispute resolution mechanisms, which shall continue to be governed by the terms of this employment offer.  You may find more details, including our expectations of you, within the our Offsite Working Policy and associated policies.'
+                'Your role will be performed outside of a PayPal office with the use of virtual working tools we provide. You may however be required to attend a PayPal office for in-person collaboration. Details of your benefits are mentioned in this offer. Since the you may choose to work virtually from a location of their choice, you will not be entitled to the benefits or entitlements other than those mentioned in this offer, or those available to employees in any other PayPal location or office. Your benefits and entitlements shall continue to be governed by the terms of this employment offer.  You may find more details, including our expectations of you, within the our Offsite Working Policy and associated policies.'
             ),
             $('<p/>').append(
                 'Your gross annual base salary will be ',

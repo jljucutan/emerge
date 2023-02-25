@@ -12,8 +12,14 @@
        <td colspan="3"><$client.env.inputHire_Date></td>
     </tr>
     <tr>
-       <td id="Full_Name_prompt"><$client.env.promptFull_Name></td>
-       <td colspan="3"><input id="Full_Name" name="Full_Name" type="text" value="<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name>"></td>
+       <td id="Sonepeople_Name_prompt">Sonepeople Name</td>
+       <td colspan="3">
+         <input id="Sonepeople_Name" name="Sonepeople_Name" type="text" readonly value="<$client.tForWhomUserInfo.First_Name> <$client.tForWhomUserInfo.Last_Name>">
+      </td>
+    </tr>
+    <tr>
+       <td id="Full_Name_prompt">Legal Name (if different)</td>
+       <td colspan="3"><input id="Full_Name" name="Full_Name" type="text" value="<$client.tForWhomUserInfo.Full_Name>"></td>
     </tr>
     <tr>
        <td id="Rehire_prompt"><$client.env.promptRehire></td>
@@ -56,8 +62,16 @@
          <td colspan="3"><input type="text" id="Work_Location_Category" name="Work_Location_Category" readonly value="<$client.tEventCategories_Category_46.Value>" /></td>
    </tr>
    <tr>
-        <td id="Event_Manager_prompt">Manager</td>
-         <td colspan="3"><input type="text" id="Event_Manager" name="Event_Manager" readonly value="<$client.tEventManagers_Person_9.First_Name> <$client.tEventManagers_Person_9.Last_Name>" /></td>
+      <td id="Event_Manager_prompt">Manager</td>
+      <td colspan="3"><input type="text" id="Event_Manager" name="Event_Manager" readonly value="<$client.tEventManagers_Person_9.First_Name> <$client.tEventManagers_Person_9.Last_Name>" /></td>
+   </tr>
+   <tr> 
+      <td id="Employment_Type_prompt">Employment Type</td>
+      <td colspan="3"><$client.env.inputEmployment_Type></td>
+   </tr>
+   <tr> 
+      <td id="Weekly_Standard_Hours_prompt">Standard Weekly Hours</td>
+      <td colspan="3"><$client.env.inputWeekly_Standard_Hours></td>
    </tr>
 
          <!-- Section Heading: Compensation Details   -->
@@ -68,32 +82,20 @@
       <td colspan="3"><$client.env.inputSalary_Type></td>
    </tr>
    <tr> 
-      <td id="Employment_Type_prompt">Permanent or Temporary</td>
-      <td colspan="3"><$client.env.inputEmployment_Type></td>
-   </tr>
-   <tr> 
-      <td id="Weekly_Standard_Hours_prompt">Standard Weekly Hours</td>
-      <td colspan="3"><$client.env.inputWeekly_Standard_Hours></td>
-   </tr>
-   <tr> 
-      <td id="Compensation_Type_prompt"><$client.env.promptCompensation_Type></td>
+      <td id="Compensation_Type_prompt">Pay Type</td>
       <td colspan="3"><$client.env.inputCompensation_Type></td>
    </tr>
    <tr> 
-      <td id="Payroll_Frequency_prompt">Frequency</td>
+      <td id="Payroll_Frequency_prompt">Base Pay Unit</td>
       <td colspan="3"><$client.env.inputPayroll_Frequency></td>
    </tr>
    <tr> 
-      <td id="Salary_Amount_prompt">Pay Amount (Hourly)</td>
+      <td id="Salary_Amount_prompt">Base Pay</td>
       <td colspan="3"><$client.env.inputSalary_Amount></td>
    </tr>
    <tr> 
-      <td id="Annual_Salary_prompt"><$client.env.promptAnnual_Salary></td>
+      <td id="Annual_Salary_prompt">Annual Salary</td>
       <td colspan="3"><$client.env.inputAnnual_Salary></td>
-   </tr>
-   <tr> 
-      <td id="Per_Pay_Amount_prompt">Per Pay Amount (Salaried)</td>
-      <td colspan="3"><$client.env.inputPer_Pay_Amount></td>
    </tr>
    <tr> 
       <td id="Billable_Role_prompt">Billable</td>
@@ -144,8 +146,8 @@
    <tr><p></p>
       <td colspan="80"><b><span style="color:blue; font-family:Helvetica;">Pay Targets </span></b></td><p></p></tr>
    <tr> 
-      <td id="Commission_Eligibility_prompt">Commission</td>
-      <td colspan="3"><$client.env.inputCommission_Eligibility></td>
+      <td id="Pay_Components_prompt">Pay Components</td>
+      <td colspan="3"><$client.env.inputPay_Components></td>
    </tr>
    <tr> 
       <td id="Commission_Percentage_prompt">Commission Percentage</td>
@@ -156,12 +158,16 @@
       <td colspan="3"><$client.env.inputCommission_Structure></td>
    </tr>
    <tr> 
-      <td id="SIP_Target_Amount_prompt">LTI-SIP Amount</td>
+      <td id="SIP_Target_Amount_prompt">Annual LTI-SIP Target ($)</td>
       <td colspan="3"><$client.env.inputSIP_Target_Amount></td>
    </tr>
    <tr> 
       <td id="SIP_Structure_prompt">LTI-SIP Notes</td>
       <td colspan="3"><$client.env.inputSIP_Structure></td>
+   </tr>
+   <tr> 
+      <td id="Bonus_prompt">Bonus ($)</td>
+      <td colspan="3"><$client.env.inputBonus></td>
    </tr>
    <tr> 
       <td id="Bonus_Target_Percentage_prompt">Bonus Target Percentage</td>
@@ -172,6 +178,14 @@
       <td colspan="3"><$client.env.inputBonus_Pay_Frequency></td>
    </tr>
    <tr> 
+      <td id="Union_Dues_Eligibility_prompt">Payment of Union Dues</td>
+      <td colspan="3"><$client.env.inputUnion_Dues_Eligibility></td>
+   </tr>
+   <tr> 
+      <td id="Union_Dues_prompt">Union Dues</td>
+      <td colspan="3"><$client.env.inputUnion_Dues></td>
+   </tr>
+   <tr> 
       <td id="Deduction_Frequency_prompt">Union Dues Payment Frequency</td>
       <td colspan="3"><$client.env.inputDeduction_Frequency></td>
    </tr>
@@ -179,45 +193,96 @@
       <td id="Entitlement_Option_prompt">Entitlements</td>
       <td colspan="3"><$client.env.inputEntitlement_Option></td>
    </tr>
+   <tr> 
+      <td id="Entitlement_Exception_Option_prompt">Entitlement Exception</td>
+      <td colspan="3"><$client.env.inputEntitlement_Exception_Option></td>
+   </tr>
+   <tr> 
+      <td id="Entitlement_Exception_prompt">Entitlement Exception ($ or Date)</td>
+      <td colspan="3"><$client.env.inputEntitlement_Exception></td>
+   </tr>
 
             <!-- Section Heading: Cooper   -->
-   <tr class="cooper-section"><p></p>
-      <td colspan="80"><b><span style="color:blue; font-family:Helvetica;">Cooper Use Only </span></b></td><p></p></tr>
-   <tr class="cooper-section"> 
+   <tr><p></p>
+      <td colspan="80">
+         <b><span style="color:blue; font-family:Helvetica;">Cooper Use Only </span></b><p></p>
+         <input type="hidden" name="cooper-section">
+      </td>
+   </tr>
+   <tr> 
       <td id="Annuity_prompt">Annuity</td>
       <td colspan="3"><$client.env.inputAnnuity></td>
    </tr>
-   <tr class="cooper-section"> 
+   <tr> 
       <td id="Retirement_prompt">Retirement</td>
       <td colspan="3"><$client.env.inputRetirement></td>
    </tr>
-   <tr class="cooper-section"> 
+   <tr> 
       <td id="FICA_Reimb_prompt">FICA Reimb:</td>
       <td colspan="3"><$client.env.inputFICA_Reimb></td>
    </tr>
-   <tr class="cooper-section"> 
+   <tr> 
       <td id="Education_prompt">Education</td>
       <td colspan="3"><$client.env.inputEducation></td>
    </tr>
-   <tr class="cooper-section"> 
+   <tr> 
       <td id="Health_Reimb_prompt">Health Reimb</td>
       <td colspan="3"><$client.env.inputHealth_Reimb></td>
    </tr>
-   <tr class="cooper-section"> 
+   <tr> 
       <td id="Workers_Comp_prompt">Workers Comp</td>
       <td colspan="3"><$client.env.inputWorkers_Comp></td>
    </tr>
-   <tr class="cooper-section"> 
+   <tr> 
       <td id="Additional_Comments_prompt">Additional Comments</td>
       <td colspan="3"><$client.env.inputAdditional_Comments></td>
    </tr>
 
 </table>
+<div hidden>
+   <$client.env.inputJobCode_Union>
+   <input id="OpCo" name="OpCo" type="text" value="<$client.tEventCategories_Category_21.Value>">
+</div>
 <script src="<$link;/Onboarding/UnplacedPages/ProviderPages/js/New_Hire_Associate_EditProfile.js>" defer></script>
 <script>
+   const VALIDATION_CONFIG = '<$link;/Onboarding/UnplacedPages/ProviderPages/js/New_Hire_Associate_EditProfile.json>';
    const CAR_STIPEND_ELIGIBILITY = '<$client.tForWhomUserInfo.Car_Stipend_Eligibility>';
    const PHONE_STIPEND_ELIGIBILITY = '<$client.tForWhomUserInfo.Phone_Stipend_Eligibility>';
    const EXPAT_STIPEND_ELIGIBILITY = '<$client.tForWhomUserInfo.Expat_Stipend_Eligibility>';
    const JOBCODE_UNION = '<$client.tForWhomUserInfo.JobCode_Union>';
-   const OPCO = '<$client.tEventCategories_Category_21.Value>';
+   const REQUIRED_FIELDS = [
+      'Hire_Date_display',
+      'Full_Name',
+      'Rehire',
+      'Hire_Reason',
+      'Job_Template_Code',
+      'Job_Template_Name',
+      'Cost_Center_Category',
+      'Cost_Function',
+      'Work_Location_Category',
+      'Event_Manager',
+      'Salary_Type',
+      'Employment_Type',
+      'Weekly_Standard_Hours',
+      'Compensation_Type',
+      'Salary_Type',
+      'Salary_Amount',
+      'Annual_Salary',
+      'Billable_Role',
+      'Shift_Differential_Eligibility',
+      'Allowances',
+      'Car_Eligibility',
+      'Entitlement_Option',
+      'Annuity',
+      'Retirement',
+      'FICA_Reimb',
+      'Education',
+      'Health_Reimb',
+      'Workers_Comp',
+      'Additional_Comments',
+   ]
+   const FIELDS_DEFAULT_VALUE = {
+      Rehire: 'No',
+      Weekly_Standard_Hours: 40,
+   }
 </script>
